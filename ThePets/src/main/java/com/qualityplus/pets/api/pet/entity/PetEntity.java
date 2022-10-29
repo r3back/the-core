@@ -17,6 +17,10 @@ public interface PetEntity {
     Location getLocation();
     PetEggEntity getEgg();
 
+    int getLevel();
+    double getXp();
+    double getMaxXp();
+
     public static enum DeSpawnReason{
         SERVER_TURNED_OFF,
         PLAYER_DE_SPAWN_PET

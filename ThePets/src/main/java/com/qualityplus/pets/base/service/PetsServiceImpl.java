@@ -36,7 +36,9 @@ public final class PetsServiceImpl implements PetsService {
     public Optional<Pet> getSpawnedPet(UUID uuid) {
         UserData data = dataMap.get(uuid);
 
-        return data.getSpawnedData().getSpawnedPetId() == null ? Optional.empty() : Optional.ofNullable(Pets.getByID(data.getSpawnedData().getSpawnedPetId()));
+        String petId = data.getSpawnedData().getSpawnedPetId();
+
+        return petId == null ? Optional.empty() : Optional.ofNullable(Pets.getByID(petId));
     }
 
     @Override

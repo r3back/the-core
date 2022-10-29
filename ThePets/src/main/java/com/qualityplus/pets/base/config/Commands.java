@@ -22,4 +22,6 @@ public final class Commands extends OkaeriConfig {
     public CommandDetails openCommand = new CommandDetails(Collections.singletonList("open"), "Open Enchanting GUI", "/TheEnchanting open", "theenchanting.open", true, Duration.ZERO.getSeconds(), true, "thepets");
     public CommandDetails helpCommand = new CommandDetails(Collections.singletonList("help"), "Show all commands", "/TheEnchanting help", "theenchanting.help", true, Duration.ZERO.getSeconds(), true, "thepets");
     public CommandDetails giveEggCommand = new CommandDetails(Collections.singletonList("giveegg"), "Give egg to a player", "/TheEnchanting giveegg <player> <id>", "theenchanting.giveegg", true, Duration.ZERO.getSeconds(), true, "thepets");
+    public CommandDetails deSpawnCommand = new CommandDetails(Collections.singletonList("despawn"), "Despawn command", "/TheEnchanting despawn", "theenchanting.despawn", true, Duration.ZERO.getSeconds(), true, "thepets");
+
 }

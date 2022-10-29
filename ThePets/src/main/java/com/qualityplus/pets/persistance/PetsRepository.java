@@ -19,10 +19,10 @@ import java.util.UUID;
 })
 public interface PetsRepository extends DocumentRepository<UUID, UserData> {
     @DocumentPath("name")
-    Optional<PetsData> findByName(String name);
+    Optional<UserData> findByName(String name);
 
     @DocumentPath("uuid")
-    Optional<PetsData> findByUuid(UUID uuid);
+    Optional<UserData> findByUuid(UUID uuid);
 
 
     default UserData get(OfflinePlayer player) {

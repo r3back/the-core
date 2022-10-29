@@ -25,4 +25,8 @@ public final class Pet extends OkaeriConfig {
     private Map<Integer, Double> xpRequirements;
     /*private Map<Integer, List<String>> skillsInfoInGUI;
     private Map<Integer, List<String>> skillsInfoInMessage;*/
+
+    public double getLevelRequirement(int level){
+        return xpRequirements.getOrDefault(level, 1D);
+    }
 }

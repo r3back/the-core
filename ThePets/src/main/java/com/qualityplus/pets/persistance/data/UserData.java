@@ -10,7 +10,20 @@ import java.util.UUID;
 @EqualsAndHashCode(callSuper = true)
 public final class UserData extends Document {
     private UUID uuid;
-    private PetsData petsData;
-    private SpawnedData spawnedData;
-    private InventoryData inventoryData;
+    private PetsData petsData = new PetsData();
+    private SpawnedData spawnedData = new SpawnedData();
+    private InventoryData inventoryData = new InventoryData();
+    private UserSettings userSettings = new UserSettings();
+
+    public void switchConvertToItemMode(){
+        boolean convertToItemMode = userSettings.isConvertPetToItemMode();
+
+        userSettings.setConvertPetToItemMode(!convertToItemMode);
+    }
+
+    public void switchPetsHiddenMode(){
+        boolean petsAreHidden = userSettings.isPetsAreHidden();
+
+        userSettings.setPetsAreHidden(!petsAreHidden);
+    }
 }

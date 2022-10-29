@@ -30,6 +30,8 @@ import java.util.UUID;
 @RequiredArgsConstructor(access = AccessLevel.PRIVATE)
 public final class ArmorStandPet implements PetEntity {
     private ArmorStand armorStand;
+
+    private final UserData userData;
     @Getter
     private final UUID petUniqueId;
     @Getter
@@ -37,8 +39,9 @@ public final class ArmorStandPet implements PetEntity {
 
     private final Pet pet;
 
-    public static ArmorStandPet create(Player player, PetEggEntity petEgg){
-        return new ArmorStandPet(petEgg.getUuid(), player.getUniqueId(), petEgg.getPet());
+
+    public static ArmorStandPet create(UserData data, PetEggEntity petEgg){
+        return new ArmorStandPet(data, petEgg.getUuid(), data.getUuid(), petEgg.getPet());
     }
 
     /*public static ArmorStandPet create(UserData userData){
@@ -84,6 +87,27 @@ public final class ArmorStandPet implements PetEntity {
         return new PetEggEntity(petUniqueId, pet);
     }
 
+    @Override
+    public int getLevel() {
+        Optional<UserData> data = ThePets.getApi().getPetsService().getData(owner);
+
+        return data.map(userData1 -> userData1.getPetsData().getLevel(petUniqueId)).orElse(1);
+    }
+
+    @Override
+    public double getXp() {
+        Optional<UserData> data = ThePets.getApi().getPetsService().getData(owner);
+
+        return data.map(userData1 -> userData1.getPetsData().getXp(petUniqueId)).orElse(1D);
+    }
+
+    @Override
+    public double getMaxXp() {
+        int level = getLevel();
+
+        return Optional.ofNullable(pet).map(p -> p.getLevelRequirement(level)).orElse(1D);
+    }
+
 
     @Override
     public void followOwner() {
@@ -97,8 +121,10 @@ public final class ArmorStandPet implements PetEntity {
 
         Optional<UserData> data = ThePets.getApi().getPetsService().getData(offPlayer.getUniqueId());
 
-        data.ifPresent(userData -> userData.getSpawnedData().setSpawnedPetUUID(petUniqueId));
-        data.ifPresent(userData -> userData.getSpawnedData().setSpawnedPetId(pet.getId()));
+        data.flatMap(userData -> Optional.ofNullable(userData.getSpawnedData())).ifPresent(spawnedData -> {
+            spawnedData.setSpawnedPetUUID(petUniqueId);
+            spawnedData.setSpawnedPetId(pet.getId());
+        });
     }
 
 

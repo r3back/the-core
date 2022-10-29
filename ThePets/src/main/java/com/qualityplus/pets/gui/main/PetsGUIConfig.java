@@ -8,6 +8,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -19,4 +21,5 @@ public final class PetsGUIConfig extends OkaeriConfig implements SimpleGUI {
     private Item convertPetToItemDisabled;
     private Item hidePetsEnabled;
     private Item hidePetsDisabled;
+    private List<Integer> slots;
 }
