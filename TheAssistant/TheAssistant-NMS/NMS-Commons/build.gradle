@@ -1,0 +1,9 @@
+group = 'com.qualityplus'
+project.version = '1.0.0'
+
+dependencies {
+    compileOnly project(':TheAssistant:TheAssistant-API')
+    compileOnly 'org.spigotmc:spigot:1.8'
+    compileOnly 'org.spigotmc:spigot-api:1.8-R0.1-SNAPSHOT'
+    implementation 'eu.okaeri:okaeri-platform-bukkit:0.4.0-preview54'
+}

@@ -1,0 +1,64 @@
+rootProject.name = 'TheCore'
+include (
+        'TheAssistant',
+        'TheAssistant:Addons',
+        'TheAssistant:TheAssistant-API',
+        'TheAssistant:TheAssistant-Plugin',
+        'TheAssistant:Addons:Commons',
+        'TheAssistant:Addons:Economy',
+        'TheAssistant:Addons:MMOItems',
+        'TheAssistant:Addons:MythicMobs',
+        'TheAssistant:Addons:JetMinions',
+
+        'TheAssistant:Addons:NPC',
+        'TheAssistant:Addons:Placeholders',
+
+        'TheAssistant:Addons:Regions',
+        'TheAssistant:Addons:Paster',
+        'TheAssistant:Addons:Paster:Paster-Common',
+        'TheAssistant:Addons:Paster:WorldEdit6',
+        'TheAssistant:Addons:Paster:WorldEdit7',
+        'TheAssistant:Addons:Regions:Region-Common',
+        'TheAssistant:Addons:Regions:Residence',
+        'TheAssistant:Addons:Regions:UltraRegions',
+        'TheAssistant:Addons:Regions:WorldGuard6',
+        'TheAssistant:Addons:Regions:WorldGuard7',
+
+        'TheAssistant:TheAssistant-NMS',
+        'TheAssistant:TheAssistant-NMS:NMS-Commons',
+        'TheAssistant:TheAssistant-NMS:NMS-V1_8_R1',
+        'TheAssistant:TheAssistant-NMS:NMS-V1_8_R3',
+        'TheAssistant:TheAssistant-NMS:NMS-V1_12_R1',
+        'TheAssistant:TheAssistant-NMS:NMS-V1_13_R1',
+        'TheAssistant:TheAssistant-NMS:NMS-V1_14_R1',
+        'TheAssistant:TheAssistant-NMS:NMS-V1_15_R1',
+        'TheAssistant:TheAssistant-NMS:NMS-V1_16_R1',
+        'TheAssistant:TheAssistant-NMS:NMS-V1_16_R3',
+        'TheAssistant:TheAssistant-NMS:NMS-V1_17_R1',
+        'TheAssistant:TheAssistant-NMS:NMS-V1_18_R1',
+        'TheAssistant:TheAssistant-NMS:NMS-V1_18_R2',
+        'TheAssistant:TheAssistant-NMS:NMS-V1_19_R1'
+
+
+)
+include 'TheSkills'
+include 'TheAlchemy'
+include 'ThePets'
+include 'TheBank'
+include 'TheAuction'
+include 'TheCrafting'
+include 'TheDragon'
+
+include 'TheAnvil'
+include 'TheCollections'
+include 'TheTrades'
+include 'TheSouls'
+include ('TheRunes',
+        'TheRunes:TheRunes-NMS',
+        'TheRunes:TheRunes-NMS:TheRunes-Legacy',
+        'TheRunes:TheRunes-NMS:TheRunes-Newest')
+include ('TheEnchanting',
+         'TheEnchanting:TheEnchanting-NMS',
+         'TheEnchanting:TheEnchanting-NMS:TheEnchanting-Legacy',
+         'TheEnchanting:TheEnchanting-NMS:TheEnchanting-Newest')
+

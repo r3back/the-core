@@ -1,0 +1,12 @@
+name: TheBank
+description: The Bank Plugin
+main: com.qualityplus.bank.TheBank
+version: ${version}
+api-version: 1.13
+authors: [QualityPlus]
+load: POSTWORLD
+depend: [TheAssistant]
+commands:
+  thebank:
+    aliases: [bank]
+    description: TheBank's main command

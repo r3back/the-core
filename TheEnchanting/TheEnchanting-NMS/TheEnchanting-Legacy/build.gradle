@@ -1,0 +1,8 @@
+group = 'com.qualityplus'
+project.version = '1.0.0'
+
+dependencies {
+    compileOnly 'org.spigotmc:spigot-api:1.12.2-R0.1-SNAPSHOT'
+    compileOnly project(':TheEnchanting:TheEnchanting-NMS')
+    compileOnly 'com.github.cryptomorin:XSeries:9.1.0'
+}

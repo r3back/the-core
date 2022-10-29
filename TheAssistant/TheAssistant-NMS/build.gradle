@@ -1,0 +1,9 @@
+group = 'com.qualityplus'
+project.version = '1.0.0'
+
+allprojects {
+    dependencies {
+        compileOnly 'org.spigotmc:spigot-api:1.18.1-R0.1-SNAPSHOT'
+        compileOnly project(':TheAssistant:TheAssistant-API')
+    }
+}

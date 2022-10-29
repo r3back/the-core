@@ -1,0 +1,12 @@
+name: TheSkills
+description: The Skills Plugin
+main: com.qualityplus.skills.TheSkills
+version: ${version}
+api-version: 1.13
+authors: [QualityPlus]
+load: POSTWORLD
+depend: [TheAssistant]
+commands:
+  theskills:
+    aliases: ["skills", "sk"]
+    description: Skills's main command

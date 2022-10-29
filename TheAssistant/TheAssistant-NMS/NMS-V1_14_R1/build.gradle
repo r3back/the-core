@@ -1,0 +1,9 @@
+group = 'com.qualityplus'
+project.version = '1.0.0'
+
+dependencies {
+    compileOnly 'org.spigotmc:spigot:1.14.4'
+    compileOnly 'org.spigotmc:spigot-api:1.14.4-R0.1-SNAPSHOT'
+    compileOnly project(':TheAssistant:TheAssistant-NMS:NMS-Commons')
+    implementation 'eu.okaeri:okaeri-platform-bukkit:0.4.0-preview54'
+}

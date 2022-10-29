@@ -1,0 +1,79 @@
+plugins {
+    id 'com.github.johnrengelman.shadow'
+}
+
+dependencies {
+    compileOnly project(':TheAssistant:TheAssistant-Plugin')
+    compileOnly project(':TheAssistant:TheAssistant-API')
+    compileOnly project(':TheAssistant:Addons:Commons')
+    compileOnly project(':TheAssistant:TheAssistant-NMS:NMS-Commons')
+
+    compileOnly 'org.spigotmc:spigot-api:1.15.2-R0.1-SNAPSHOT'
+    compileOnly 'com.zaxxer:HikariCP:4.0.3'
+
+    //XMaterial
+    compileOnly 'com.github.cryptomorin:XSeries:9.1.0'
+
+    //NBT API
+    compileOnly 'de.tr7zw:item-nbt-api:2.11.0-SNAPSHOT'
+
+    //Okaeri
+    compileOnly 'eu.okaeri:okaeri-platform-bukkit:0.4.0-preview54'
+    compileOnly 'eu.okaeri:okaeri-configs-json-simple:4.0.0-beta2'
+    compileOnly 'eu.okaeri:okaeri-persistence-redis:1.5.10'
+    compileOnly 'eu.okaeri:okaeri-persistence-jdbc:1.5.10'
+
+    compileOnly fileTree(dir: '/libs', include: ['*.jar'])
+
+    //Nms
+    compileOnly project(':TheEnchanting')
+    compileOnly project(':TheEnchanting:TheEnchanting-NMS')
+}
+
+processResources{
+    filesMatching('plugin.yml') {
+        expand 'version': version
+    }
+}
+
+def copyJars =  { file -> {
+    def dir = 'C:/Users/andre/OneDrive/Desktop/TEST'
+    mkdir dir
+    copy {
+        into dir
+        from file
+    }
+}
+}
+
+shadowJar {
+    archiveFileName = 'TheAnvil.jar'
+
+    dependencies {
+        exclude(dependency('org.jetbrains:.*'))
+    }
+
+    relocate 'com.cryptomorin.xseries', 'com.qualityplus.assistant.lib.com.cryptomorin.xseries'
+    relocate 'i18n-platform-commands', 'com.qualityplus.assistant.lib.i18n-platform-commands'
+    relocate 'eu.okaeri', 'com.qualityplus.assistant.lib.eu.okaeri'
+    relocate 'com.zaxxer.hikari', 'com.qualityplus.assistant.lib.com.zaxxer.hikari'
+    relocate 'io.netty', 'com.qualityplus.assistant.lib.io.netty'
+    relocate 'org.json.simple', 'com.qualityplus.assistant.lib.org.json.simple'
+    relocate 'org.reactivestreams', 'com.qualityplus.assistant.lib.org.reactivestreams'
+    relocate 'reactor', 'com.qualityplus.assistant.lib.reactor'
+    relocate 'org.slf4j', 'com.qualityplus.assistant.lib.org.slf4j'
+    relocate 'org.h2', 'com.qualityplus.assistant.lib.org.h2'
+    relocate 'org.mariadb.jdbc', 'com.qualityplus.assistant.lib.org.mariadb.jdbc'
+    relocate 'org.intellij.lang.annotations', 'com.qualityplus.assistant.lib.org.intellij.lang.annotations'
+    relocate 'org.jetbrains.annotations', 'com.qualityplus.assistant.lib.org.jetbrains.annotations'
+    relocate 'de.tr7zw', 'com.qualityplus.assistant.lib.de.tr7zw'
+
+
+    doLast {
+        copyJars(archiveFile)
+    }
+}
+
+artifacts {
+    archives shadowJar
+}

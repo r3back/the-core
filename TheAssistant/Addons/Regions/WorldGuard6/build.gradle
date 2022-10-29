@@ -1,0 +1,14 @@
+group = 'com.qualityplus'
+project.version = '1.0.0'
+
+repositories{
+    maven { url 'https://maven.enginehub.org/repo/' }
+}
+
+dependencies {
+    compileOnly 'org.spigotmc:spigot-api:1.18.1-R0.1-SNAPSHOT'
+    compileOnly 'com.sk89q.worldguard:worldguard-legacy:6.1.3-SNAPSHOT'
+
+    compileOnly project(':TheAssistant:Addons:Regions:Region-Common')
+    compileOnly project(':TheAssistant:Addons:Commons')
+}

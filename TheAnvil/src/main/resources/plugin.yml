@@ -1,0 +1,13 @@
+name: TheAnvil
+description: The Anvil Plugin
+main: com.qualityplus.anvil.TheAnvil
+version: ${version}
+api-version: 1.13
+authors: [QualityPlus]
+load: POSTWORLD
+depend: [TheAssistant]
+softdepend: [EcoEnchants, TheEnchanting]
+commands:
+  theanvil:
+    aliases: ["anvil", "theanv"]
+    description: Anvil's main command

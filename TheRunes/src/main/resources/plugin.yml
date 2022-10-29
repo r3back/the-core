@@ -1,0 +1,13 @@
+name: TheRunes
+description: The Runes Plugin
+main: com.qualityplus.runes.TheRunes
+version: ${version}
+api-version: 1.13
+authors: [QualityPlus]
+load: POSTWORLD
+softdepend: [TheSkills]
+depend: [TheAssistant]
+commands:
+  therunes:
+    aliases: ["runes"]
+    description: Runes's main command

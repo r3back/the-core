@@ -1,0 +1,12 @@
+name: ThePets
+description: The Pets Plugin
+main: com.qualityplus.pets.ThePets
+version: ${version}
+api-version: 1.13
+authors: [QualityPlus]
+load: POSTWORLD
+depend: [TheAssistant]
+commands:
+  thepets:
+    aliases: ["pets", "pet"]
+    description: Pets's main command

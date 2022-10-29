@@ -1,0 +1,16 @@
+group = 'com.qualityplus'
+project.version = '1.0.0'
+
+repositories{
+    maven { url 'https://mvn.lumine.io/repository/maven-public/' }
+}
+
+dependencies {
+    compileOnly 'org.spigotmc:spigot-api:1.18.1-R0.1-SNAPSHOT'
+
+    compileOnly project(':TheAssistant:TheAssistant-API')
+    compileOnly project(':TheAssistant:Addons:Commons')
+    compileOnly fileTree(dir: '/libs', include: ['*.jar'])
+
+    //compileOnly 'io.lumine:Mythic-Dist-Premium:5.1.0-SNAPSHOT'
+}

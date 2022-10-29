@@ -1,0 +1,12 @@
+name: TheSouls
+description: The Souls Plugin
+main: com.qualityplus.souls.TheSouls
+version: ${version}
+api-version: 1.13
+authors: [QualityPlus]
+load: POSTWORLD
+depend: [TheAssistant]
+commands:
+  thesouls:
+    aliases: [souls]
+    description: Souls's main command

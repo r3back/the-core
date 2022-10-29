@@ -1,0 +1,19 @@
+group = 'com.qualityplus'
+project.version = '1.0.0'
+
+repositories{
+    maven { url 'https://nexus.lucko.me/repository/all/' }
+}
+
+dependencies {
+    compileOnly 'org.spigotmc:spigot-api:1.18.1-R0.1-SNAPSHOT'
+
+    compileOnly project(':TheAssistant:TheAssistant-API')
+    compileOnly project(':TheAssistant:Addons:Commons')
+
+    compileOnly 'eu.okaeri:okaeri-platform-bukkit:0.4.0-preview54'
+    compileOnly ('be.maximvdw:MVdWPlaceholderAPI:3.0.1-SNAPSHOT'){
+        exclude(group: 'org.spigotmc')
+    }
+    compileOnly 'me.clip:placeholderapi:2.10.9'
+}

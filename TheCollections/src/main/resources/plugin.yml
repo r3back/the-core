@@ -1,0 +1,12 @@
+name: TheCollections
+description: The Collections Plugin
+main: com.qualityplus.collections.TheCollections
+version: ${version}
+api-version: 1.13
+authors: [QualityPlus]
+load: POSTWORLD
+depend: [TheAssistant]
+commands:
+  thecollections:
+    aliases: ["collections", "cl"]
+    description: Collections's main command

@@ -1,0 +1,17 @@
+group = 'com.qualityplus'
+project.version = '1.0.0'
+
+repositories{
+    maven { url 'https://maven.enginehub.org/repo/' }
+}
+
+dependencies {
+    compileOnly 'org.spigotmc:spigot-api:1.18.1-R0.1-SNAPSHOT'
+    compileOnly ('com.sk89q.worldedit:worldedit-bukkit:6.1.4-SNAPSHOT'){ transitive = false }
+    compileOnly ('com.sk89q.worldedit:worldedit-core:6.1.4-SNAPSHOT'){ transitive = false }
+
+    implementation 'eu.okaeri:okaeri-platform-bukkit:0.4.0-preview.72'
+
+    compileOnly project(':TheAssistant:Addons:Paster:Paster-Common')
+    compileOnly project(':TheAssistant:Addons:Commons')
+}

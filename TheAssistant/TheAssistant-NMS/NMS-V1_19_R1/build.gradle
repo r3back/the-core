@@ -1,0 +1,13 @@
+group = 'com.qualityplus'
+project.version = '1.0.0'
+
+dependencies {
+    //Required for GameProfile
+    compileOnly 'com.mojang:authlib:1.5.25'
+    compileOnly 'com.mojang:brigadier:1.0.18'
+
+    compileOnly 'org.spigotmc:spigot:1.19'
+    compileOnly 'org.spigotmc:spigot-api:1.19-R0.1-SNAPSHOT'
+    compileOnly project(':TheAssistant:TheAssistant-NMS:NMS-Commons')
+    implementation 'eu.okaeri:okaeri-platform-bukkit:0.4.0-preview54'
+}
