@@ -1,0 +1,2 @@
+# TheCore
+TheCore Plugin
