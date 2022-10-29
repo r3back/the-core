@@ -22,7 +22,7 @@ public final class CollectionsServiceImpl implements CollectionsService {
     private final Map<UUID, UserData> dataMap = new HashMap<>();
 
     @Override
-    public Optional<UserData> getCollectionsData(UUID uuid) {
+    public Optional<UserData> getData(UUID uuid) {
         return Optional.ofNullable(dataMap.getOrDefault(uuid, null));
     }
 
@@ -46,7 +46,7 @@ public final class CollectionsServiceImpl implements CollectionsService {
 
         toAdd = collectionsXPGainEvent.getXp();
 
-        UserCollections collections = getCollectionsData(player.getUniqueId())
+        UserCollections collections = getData(player.getUniqueId())
                 .map(UserData::getCollections)
                 .orElse(new UserCollections());
 

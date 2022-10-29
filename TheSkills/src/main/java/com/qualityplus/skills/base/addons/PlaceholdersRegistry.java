@@ -23,18 +23,18 @@ public final class PlaceholdersRegistry {
 
         for(Skill skill : Skills.values()){
             addon.registerPlaceholders("skill_" + skill.getId() + "_xp",
-                    e -> String.valueOf(service.getSkillsData(e.getPlayer().getUniqueId()).map(data -> data.getSkills().getXp(skill.getId())).orElse(0D)));
+                    e -> String.valueOf(service.getData(e.getPlayer().getUniqueId()).map(data -> data.getSkills().getXp(skill.getId())).orElse(0D)));
             addon.registerPlaceholders("skill_" + skill.getId() + "_level",
-                    e -> String.valueOf(service.getSkillsData(e.getPlayer().getUniqueId()).map(data -> data.getSkills().getLevel(skill.getId())).orElse(0)));
+                    e -> String.valueOf(service.getData(e.getPlayer().getUniqueId()).map(data -> data.getSkills().getLevel(skill.getId())).orElse(0)));
         }
 
         for(Perk perk : Perks.values())
             addon.registerPlaceholders("perk_" + perk.getId() + "_level",
-                    e -> String.valueOf(service.getSkillsData(e.getPlayer().getUniqueId()).map(data -> data.getSkills().getLevel(perk.getId())).orElse(0)));
+                    e -> String.valueOf(service.getData(e.getPlayer().getUniqueId()).map(data -> data.getSkills().getLevel(perk.getId())).orElse(0)));
 
         for(Stat stat : Stats.values())
             addon.registerPlaceholders("stat_" + stat.getId() + "_level",
-                    e -> String.valueOf(service.getSkillsData(e.getPlayer().getUniqueId()).map(data -> data.getSkills().getLevel(stat.getId())).orElse(0)));
+                    e -> String.valueOf(service.getData(e.getPlayer().getUniqueId()).map(data -> data.getSkills().getLevel(stat.getId())).orElse(0)));
 
 
         if(addon instanceof Registrable) ((Registrable) addon).registerAddon();

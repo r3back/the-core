@@ -25,8 +25,22 @@ public final class PlaceholderBuilder {
         return new PlaceholderBuilder().with(placeholders);
     }
 
+    @SafeVarargs
+    public static PlaceholderBuilder create(List<IPlaceholder>... placeholders){
+        return PlaceholderBuilder.create().with(placeholders);
+    }
+
+
     public PlaceholderBuilder with(List<IPlaceholder> placeholders){
         placeholderList.addAll(placeholders);
+        return this;
+    }
+
+    @SafeVarargs
+    public final PlaceholderBuilder with(List<IPlaceholder>... placeholdersArray){
+        for (List<IPlaceholder> placeholders : placeholdersArray) {
+            placeholderList.addAll(placeholders);
+        }
         return this;
     }
 

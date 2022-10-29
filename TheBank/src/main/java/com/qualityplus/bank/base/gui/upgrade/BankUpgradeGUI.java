@@ -5,13 +5,10 @@ import com.qualityplus.assistant.api.util.IPlaceholder;
 import com.qualityplus.assistant.inventory.Item;
 import com.qualityplus.assistant.util.StringUtils;
 import com.qualityplus.assistant.util.inventory.InventoryUtils;
-import com.qualityplus.assistant.util.itemstack.ItemStackUtils;
 import com.qualityplus.assistant.util.placeholder.Placeholder;
 import com.qualityplus.bank.api.box.Box;
 import com.qualityplus.bank.base.gui.BankGUI;
-import com.qualityplus.bank.base.gui.deposit.BankDepositGUI;
 import com.qualityplus.bank.base.gui.main.BankInterfaceGUI;
-import com.qualityplus.bank.base.gui.withdraw.BankWithdrawGUI;
 import com.qualityplus.bank.base.upgrade.BankUpgrade;
 import com.qualityplus.bank.persistence.data.BankData;
 import com.qualityplus.bank.util.BankItemStackUtils;
@@ -42,7 +39,7 @@ public final class BankUpgradeGUI extends BankGUI {
     public @NotNull Inventory getInventory() {
         InventoryUtils.fillInventory(inventory, config.getBackground());
 
-        BankData bankData = box.service().getBankData(uuid).orElse(new BankData());
+        BankData bankData = box.service().getData(uuid).orElse(new BankData());
 
         Optional<BankUpgrade> playerUpgrade = box.files().bankUpgrades().getUpgrade(bankData);
 
@@ -131,7 +128,7 @@ public final class BankUpgradeGUI extends BankGUI {
 
             if(upgrade == null) return;
 
-            BankData bankData = box.service().getBankData(uuid).orElse(new BankData());
+            BankData bankData = box.service().getData(uuid).orElse(new BankData());
 
             BankUpgrade playerUpgrade = box.files().bankUpgrades().getUpgrade(bankData).orElse(null);
 

@@ -29,7 +29,7 @@ public abstract class Stat extends CommonObject implements ListenerRegistrable {
     }
 
     public int getStat(Player player, String id){
-        return TheSkills.getApi().getSkillsService().getSkillsData(player.getUniqueId())
+        return TheSkills.getApi().getSkillsService().getData(player.getUniqueId())
                 .map(UserData::getSkills)
                 .map(userPerks -> userPerks.getLevel(id))
                 .orElse(1);

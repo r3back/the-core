@@ -32,7 +32,7 @@ public final class UserListener implements Listener {
     @EventHandler
     public void onQuit(PlayerQuitEvent event) {
         this.tasker.newChain()
-                .async(() -> service.getDragonData(event.getPlayer().getUniqueId()))
+                .async(() -> service.getData(event.getPlayer().getUniqueId()))
                 .acceptAsync((Consumer<Optional<UserData>>) user -> user.ifPresent(Document::save))
                 .acceptAsync((Consumer<Optional<UserData>>) user -> user.ifPresent(service::removeData))
                 .execute();

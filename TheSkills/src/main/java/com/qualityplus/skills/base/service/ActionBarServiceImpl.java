@@ -65,7 +65,7 @@ public final class ActionBarServiceImpl implements ActionBarService {
 
             if(!actionBar.isEnabled()) return;
 
-            Optional<UserData> data = service.getSkillsData(player.getUniqueId());
+            Optional<UserData> data = service.getData(player.getUniqueId());
 
             List<IPlaceholder> placeholders = data.map(SkillsPlaceholderUtil::getStatPlaceholders)
                     .map(p -> p.with(SkillsPlaceholderUtil.getHealthPlaceholders(player)))

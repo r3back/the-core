@@ -54,7 +54,7 @@ public final class CollectionsInternalListener implements Listener {
 
         UUID uuid = player.getUniqueId();
 
-        Optional<UserData> data = box.service().getCollectionsData(uuid);
+        Optional<UserData> data = box.service().getData(uuid);
 
         Collection skill = event.getCollection();
 

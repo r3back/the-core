@@ -22,7 +22,7 @@ public final class SkillsServiceImpl implements SkillsService {
     private final Map<UUID, UserData> dataMap = new HashMap<>();
 
     @Override
-    public Optional<UserData> getSkillsData(UUID uuid) {
+    public Optional<UserData> getData(UUID uuid) {
         return Optional.ofNullable(dataMap.getOrDefault(uuid, null));
     }
 
@@ -48,7 +48,7 @@ public final class SkillsServiceImpl implements SkillsService {
 
         toAdd = skillsXPGainEvent.getXp();
 
-        UserSkills skills = getSkillsData(player.getUniqueId())
+        UserSkills skills = getData(player.getUniqueId())
                 .map(UserData::getSkills)
                 .orElse(new UserSkills());
 

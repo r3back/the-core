@@ -60,7 +60,7 @@ public final class RemoveCommand extends AssistantCommand {
                 sender.sendMessage(StringUtils.color(box.files().messages().pluginMessages.invalidAmount));
                 return false;
             }
-            Optional<UserData> data = box.service().getSkillsData(player.getUniqueId());
+            Optional<UserData> data = box.service().getData(player.getUniqueId());
 
             data.ifPresent(userData -> userData.getSkills().removeLevel(object.getId(), level));
 

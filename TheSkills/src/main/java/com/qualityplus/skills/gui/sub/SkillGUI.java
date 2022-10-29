@@ -50,7 +50,7 @@ public final class SkillGUI extends SkillsGUI {
 
         setItem(config.getCloseGUI());
 
-        UserData data = box.service().getSkillsData(uuid).orElse(new UserData());
+        UserData data = box.service().getData(uuid).orElse(new UserData());
 
         int level = data.getSkills().getLevel(skill.getId());
 

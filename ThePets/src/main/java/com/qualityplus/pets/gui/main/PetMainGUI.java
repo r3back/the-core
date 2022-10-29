@@ -1,6 +1,7 @@
 package com.qualityplus.pets.gui.main;
 
 import com.qualityplus.assistant.api.util.IPlaceholder;
+import com.qualityplus.assistant.inventory.Item;
 import com.qualityplus.assistant.util.StringUtils;
 import com.qualityplus.assistant.util.actionbar.ActionBarUtils;
 import com.qualityplus.assistant.util.itemstack.ItemStackUtils;
@@ -50,6 +51,10 @@ public final class PetMainGUI extends PetsGUI {
 
         int count = 0;
 
+        String selectedPet = data.map(UserData::getPetName).orElse(null);
+
+        String petName = selectedPet == null ? box.files().messages().petMessages.nonSelectedPetInGUI : box.files().messages().petMessages.selectedPetInGUI.replace("%pet_egg_item_displayname%", selectedPet);
+
         /**
          * Change exception for list size checker
          */
@@ -67,19 +72,17 @@ public final class PetMainGUI extends PetsGUI {
             }
         }
 
-        if(petsAreHidden){
-            setItem(config.getHidePetsEnabled());
-        }else{
-            setItem(config.getHidePetsDisabled());
-        }
+        List<IPlaceholder> selectedPetPl = new Placeholder("pet_selected_pet", petName).alone();
 
-        if(isConvertItemMode){
-            setItem(config.getConvertPetToItemEnabled());
-        }else{
-            setItem(config.getConvertPetToItemDisabled());
-        }
+        Item petsAreHiddenItem = petsAreHidden ? config.getHidePetsEnabled() : config.getHidePetsDisabled();
 
-        setItem(config.getPetMenuInfoItem());
+        setItem(petsAreHiddenItem, selectedPetPl);
+
+        Item convertItemModeItem = isConvertItemMode ? config.getConvertPetToItemEnabled() : config.getConvertPetToItemDisabled();
+
+        setItem(convertItemModeItem, selectedPetPl);
+
+        setItem(config.getPetMenuInfoItem(), selectedPetPl);
 
         return inventory;
     }
@@ -94,14 +97,15 @@ public final class PetMainGUI extends PetsGUI {
 
 
         return PlaceholderBuilder.create(
-                        new Placeholder("pet_gui_item_displayname", pet.map(p -> p.getPetEgg().getDisplayName()).orElse("")),
-                        new Placeholder("pet_gui_item_description", pet.map(p -> p.getPetEgg().getLore()).orElse(Collections.emptyList())),
-                        new Placeholder("pet_level", entity.map(PetEntity::getLevel).orElse(1)),
+                        new Placeholder("pet_egg_egg_displayname", pet.map(p -> p.getPetEgg().getEggDisplayName()).orElse("")),
+                        new Placeholder("pet_egg_displayname", pet.map(p -> p.getPetEgg().getDisplayName()).orElse("")),
+
+                        new Placeholder("pet_egg_description", pet.map(p -> p.getPetEgg().getLore()).orElse(Collections.emptyList())),
+                        new Placeholder("pet_level_number", entity.map(PetEntity::getLevel).orElse(1)),
                         new Placeholder("pet_level_progress", percentage),
                         new Placeholder("pet_action_bar", ActionBarUtils.getReplacedBar(percentage)),
                         new Placeholder("pet_xp", xp),
-                        new Placeholder("pet_max_xp", maxXp),
-                        new Placeholder("pet_info_gui", pet.map(p -> p.getPetGUIOptions().getMainMenuLore()).orElse(Collections.emptyList()))
+                        new Placeholder("pet_max_xp", maxXp)
                 ).get();
     }
 

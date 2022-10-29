@@ -19,7 +19,7 @@ public final class Pet extends OkaeriConfig {
     private int maxLevel;
     private PetEgg petEgg;
     private boolean enabled;
-    private PetGUIOptions petGUIOptions;
+    //private PetGUIOptions petGUIOptions;
     private CommandRewards commandRewards;
     private PetEntityOptions petEntityOptions;
     private Map<Integer, Double> xpRequirements;

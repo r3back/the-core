@@ -19,9 +19,9 @@ public final class PlaceholdersRegistry {
 
         for(Collection collection : CollectionsRegistry.values()){
             addon.registerPlaceholders("collection_" + collection.getId() + "_xp",
-                    e -> String.valueOf(service.getCollectionsData(e.getPlayer().getUniqueId()).map(data -> data.getCollections().getXp(collection.getId())).orElse(0D)));
+                    e -> String.valueOf(service.getData(e.getPlayer().getUniqueId()).map(data -> data.getCollections().getXp(collection.getId())).orElse(0D)));
             addon.registerPlaceholders("collection_" + collection.getId() + "_level",
-                    e -> String.valueOf(service.getCollectionsData(e.getPlayer().getUniqueId()).map(data -> data.getCollections().getLevel(collection.getId())).orElse(0)));
+                    e -> String.valueOf(service.getData(e.getPlayer().getUniqueId()).map(data -> data.getCollections().getLevel(collection.getId())).orElse(0)));
         }
 
         if(addon instanceof Registrable) ((Registrable) addon).registerAddon();

@@ -8,7 +8,7 @@ public final class RuneCraftLevelProvider implements LevelProvider {
     @Override
     public int getLevel(Player player) {
         return TheSkills.getApi().getSkillsService()
-                .getSkillsData(player.getUniqueId())
+                .getData(player.getUniqueId())
                 .map(userData -> userData.getSkills().getLevel("runecrafting"))
                 .orElse(0);
     }
@@ -16,7 +16,7 @@ public final class RuneCraftLevelProvider implements LevelProvider {
     @Override
     public void addXp(Player player, double xp) {
         TheSkills.getApi().getSkillsService()
-                .getSkillsData(player.getUniqueId())
+                .getData(player.getUniqueId())
                 .ifPresent(userData -> userData.getSkills().addXp("runecrafting", xp));
     }
 }

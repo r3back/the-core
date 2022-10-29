@@ -35,7 +35,7 @@ public abstract class Perk extends CommonObject implements Listener, ListenerReg
     }
 
     public int getStat(Player player, String id){
-        return TheSkills.getApi().getSkillsService().getSkillsData(player.getUniqueId())
+        return TheSkills.getApi().getSkillsService().getData(player.getUniqueId())
                 .map(UserData::getSkills)
                 .map(userPerks -> userPerks.getLevel(id))
                 .orElse(1);

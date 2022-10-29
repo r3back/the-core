@@ -36,7 +36,7 @@ public final class SkillsInternalListener implements Listener {
 
         UUID uuid = player.getUniqueId();
 
-        Optional<UserData> data = box.service().getSkillsData(uuid);
+        Optional<UserData> data = box.service().getData(uuid);
 
         Bukkit.getScheduler().runTask(box.plugin(), () -> {
 
@@ -61,7 +61,7 @@ public final class SkillsInternalListener implements Listener {
 
         UUID uuid = player.getUniqueId();
 
-        Optional<UserData> data = box.service().getSkillsData(uuid);
+        Optional<UserData> data = box.service().getData(uuid);
 
         Skill skill = event.getSkill();
 

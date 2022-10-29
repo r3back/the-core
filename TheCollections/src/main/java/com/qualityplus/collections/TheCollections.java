@@ -21,6 +21,6 @@ public final class TheCollections extends OkaeriSilentPlugin {
         Bukkit.getOnlinePlayers()
                 .stream()
                 .map(Player::getUniqueId)
-                .forEach(uuid -> box.service().getCollectionsData(uuid).ifPresent(UserData::save));
+                .forEach(uuid -> box.service().getData(uuid).ifPresent(UserData::save));
     }
 }

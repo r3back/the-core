@@ -22,14 +22,14 @@ public final class ArmorStatsListener implements Listener {
         if(!ItemStackUtils.isNull(e.getNewArmorPiece()))
             TheSkills.getApi()
                     .getItemStats(e.getNewArmorPiece())
-                    .forEach((key, value1) -> box.service().getSkillsData(player.getUniqueId())
+                    .forEach((key, value1) -> box.service().getData(player.getUniqueId())
                     .ifPresent(data -> data.getSkills().addArmor(key.getId(), value1)));
 
 
         if(!ItemStackUtils.isNull(e.getOldArmorPiece()))
             TheSkills.getApi()
                     .getItemStats(e.getOldArmorPiece())
-                    .forEach((key, value1) -> box.service().getSkillsData(player.getUniqueId())
+                    .forEach((key, value1) -> box.service().getData(player.getUniqueId())
                     .ifPresent(data -> data.getSkills().removeArmor(key.getId(), value1)));
 
     }

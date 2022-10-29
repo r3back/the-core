@@ -62,7 +62,7 @@ public final class GameRankingImpl implements GameRanking {
     }
 
     private String getRecordMessage(EventPlayer player){
-        Optional<UserData> dragonPlayer = userDBService.getDragonData(player.getUuid());
+        Optional<UserData> dragonPlayer = userDBService.getData(player.getUuid());
 
         double oldRecord = dragonPlayer.map(UserData::getRecord).orElse(0.0);
 

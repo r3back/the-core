@@ -49,7 +49,7 @@ public final class StatsAndPerksGUI extends SkillsGUI {
         if(hasNext)
             setItem(config.nextPage);
 
-        UserData data = box.service().getSkillsData(uuid).orElse(new UserData());
+        UserData data = box.service().getData(uuid).orElse(new UserData());
 
         if(type.equals(GUIType.STAT)){
             setItem(config.statInfoItem, Collections.singletonList(new Placeholder("player", PlayerUtils.getPlayerName(uuid))));

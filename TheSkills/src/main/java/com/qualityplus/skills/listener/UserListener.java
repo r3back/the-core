@@ -32,7 +32,7 @@ public final class UserListener implements Listener {
     @EventHandler
     public void onQuit(PlayerQuitEvent event) {
         this.tasker.newChain()
-                .async(() -> box.service().getSkillsData(event.getPlayer().getUniqueId()))
+                .async(() -> box.service().getData(event.getPlayer().getUniqueId()))
                 .acceptAsync((Consumer<Optional<UserData>>) user -> user.ifPresent(Document::save))
                 .acceptAsync((Consumer<Optional<UserData>>) user -> user.ifPresent(box.service()::removeData))
                 .execute();

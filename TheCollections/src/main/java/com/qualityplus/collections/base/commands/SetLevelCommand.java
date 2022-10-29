@@ -59,7 +59,7 @@ public final class SetLevelCommand extends AssistantCommand {
                 return false;
             }
 
-            Optional<UserData> data = box.service().getCollectionsData(player.getUniqueId());
+            Optional<UserData> data = box.service().getData(player.getUniqueId());
 
             data.ifPresent(userData -> userData.getCollections().setLevel(collection.getId(), level));
 

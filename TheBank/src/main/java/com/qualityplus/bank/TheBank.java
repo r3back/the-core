@@ -23,7 +23,7 @@ public final class TheBank extends OkaeriSilentPlugin {
         Bukkit.getOnlinePlayers()
                 .stream()
                 .map(Player::getUniqueId)
-                .map(box.service()::getBankData)
+                .map(box.service()::getData)
                 .filter(Optional::isPresent)
                 .map(Optional::get)
                 .forEach(BankData::save);

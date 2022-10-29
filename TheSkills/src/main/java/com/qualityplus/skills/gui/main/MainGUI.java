@@ -41,7 +41,7 @@ public final class MainGUI extends SkillsGUI {
 
         setItem(config.getCloseGUI());
 
-        UserData data = box.service().getSkillsData(uuid).orElse(new UserData());
+        UserData data = box.service().getData(uuid).orElse(new UserData());
 
         for(Skill skill : Skills.values(Skill::isEnabled))
             Optional.ofNullable(skill.getGuiOptions()).ifPresent(option -> inventory.setItem(option.getSlot(), getItem(data, skill, option)));

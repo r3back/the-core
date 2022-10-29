@@ -42,7 +42,7 @@ public final class BankInterfaceGUI extends BankGUI {
     public @NotNull Inventory getInventory() {
         InventoryUtils.fillInventory(inventory, config.getBackground());
 
-        BankData bankData = box.service().getBankData(uuid).orElse(new BankData());
+        BankData bankData = box.service().getData(uuid).orElse(new BankData());
 
         List<IPlaceholder> placeholders = getPlaceholders(bankData);
 

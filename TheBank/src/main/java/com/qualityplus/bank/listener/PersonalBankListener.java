@@ -49,7 +49,7 @@ public final class PersonalBankListener implements Listener {
 
         if(!isPersonalBank(inHand)) return;
 
-        BankData data = box.service().getBankData(player.getUniqueId()).orElse(new BankData());
+        BankData data = box.service().getData(player.getUniqueId()).orElse(new BankData());
 
         RemainingTime time = TimeUtils.getRemainingTime(new Markable(box.files().config().personalBankDelay.getEffectiveTime(), data.getLastInterestTime()).remainingTime());
 

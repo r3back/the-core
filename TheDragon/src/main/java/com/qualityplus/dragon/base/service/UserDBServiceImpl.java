@@ -16,7 +16,7 @@ public final class UserDBServiceImpl implements UserDBService {
     private final Map<UUID, UserData> dataMap = new HashMap<>();
 
     @Override
-    public Optional<UserData> getDragonData(UUID uuid) {
+    public Optional<UserData> getData(UUID uuid) {
         return Optional.ofNullable(dataMap.getOrDefault(uuid, null));
     }
 

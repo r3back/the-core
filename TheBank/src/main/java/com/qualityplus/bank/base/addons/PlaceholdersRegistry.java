@@ -17,13 +17,13 @@ public final class PlaceholdersRegistry {
         PlaceholdersAddon addon = TheAssistantPlugin.getAPI().getAddons().getPlaceholders();
 
         addon.registerPlaceholders("bank_user_money",
-                e -> String.valueOf(service.getBankData(e.getPlayer().getUniqueId()).map(BankData::getMoney).orElse(0D)));
+                e -> String.valueOf(service.getData(e.getPlayer().getUniqueId()).map(BankData::getMoney).orElse(0D)));
 
         addon.registerPlaceholders("bank_last_interest",
-                e -> String.valueOf(service.getBankData(e.getPlayer().getUniqueId()).map(BankData::getLastInterest).orElse(0D)));
+                e -> String.valueOf(service.getData(e.getPlayer().getUniqueId()).map(BankData::getLastInterest).orElse(0D)));
 
         addon.registerPlaceholders("bank_current_profile_id",
-                e -> service.getBankData(e.getPlayer().getUniqueId()).map(BankData::getBankUpgrade).orElse(""));
+                e -> service.getData(e.getPlayer().getUniqueId()).map(BankData::getBankUpgrade).orElse(""));
 
         if(addon instanceof Registrable) ((Registrable) addon).registerAddon();
     }

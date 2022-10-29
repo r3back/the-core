@@ -36,7 +36,7 @@ public final class BankWithdrawGUI extends BankGUI {
     }
 
     private BankData getData(){
-        return box.service().getBankData(uuid).orElse(new BankData());
+        return box.service().getData(uuid).orElse(new BankData());
     }
 
     @Override

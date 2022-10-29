@@ -47,7 +47,7 @@ public final class GiveEggCommand extends AssistantCommand {
                 return false;
             }
 
-            Optional<ItemStack> petEgg = PetEggUtil.fromEgg(pet.getPetEgg());
+            Optional<ItemStack> petEgg = PetEggUtil.createNewPet(player.getUniqueId(), box.files().config().petEggItem, pet);
 
             if(!petEgg.isPresent()){
                 player.sendMessage(StringUtils.color(box.files().messages().petMessages.invalidPetEgg));

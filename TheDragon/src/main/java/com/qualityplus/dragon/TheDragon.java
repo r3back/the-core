@@ -26,7 +26,7 @@ public final class TheDragon extends OkaeriSilentPlugin {
         Bukkit.getOnlinePlayers()
                 .stream()
                 .map(Player::getUniqueId)
-                .forEach(uuid -> box.usersDB().getDragonData(uuid).ifPresent(UserData::save));
+                .forEach(uuid -> box.usersDB().getData(uuid).ifPresent(UserData::save));
 
         box.game().finish();
 

@@ -23,7 +23,6 @@ import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -62,7 +61,7 @@ public final class AddCommand extends AssistantCommand {
                 return false;
             }
 
-            Optional<UserData> data = box.service().getSkillsData(player.getUniqueId());
+            Optional<UserData> data = box.service().getData(player.getUniqueId());
 
             data.ifPresent(userData -> userData.getSkills().addLevel(object.getId(), level));
 

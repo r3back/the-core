@@ -41,7 +41,7 @@ public final class CategoryGUI extends CollectionsGUI {
 
         setItem(config.getCloseGUI());
 
-        UserData data = box.service().getCollectionsData(uuid).orElse(new UserData());
+        UserData data = box.service().getData(uuid).orElse(new UserData());
 
         setItems(category, data);
 
@@ -100,7 +100,7 @@ public final class CategoryGUI extends CollectionsGUI {
                     .filter(collection -> collection.getCategory().equals(category.getId()))
                     .findFirst();
 
-            UserData data = box.service().getCollectionsData(uuid).orElse(new UserData());
+            UserData data = box.service().getData(uuid).orElse(new UserData());
 
             optionalCollection.ifPresent(s -> {
                 if(data.getCollections().getXp(s.getId()) > 0)

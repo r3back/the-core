@@ -37,7 +37,7 @@ public final class DefenseStat extends Stat {
 
         Player player = (Player) event.getEntity();
 
-        double multiplier = damageReductionPercentagePerLevel * TheSkills.getApi().getSkillsService().getSkillsData(player.getUniqueId())
+        double multiplier = damageReductionPercentagePerLevel * TheSkills.getApi().getSkillsService().getData(player.getUniqueId())
                 .map(UserData::getSkills)
                 .map(userPerks -> userPerks.getLevel(id))
                 .orElse(1);

@@ -26,7 +26,7 @@ public final class TheSkills extends OkaeriSilentPlugin {
         Bukkit.getOnlinePlayers()
                 .stream()
                 .map(Player::getUniqueId)
-                .forEach(uuid -> box.service().getSkillsData(uuid).ifPresent(UserData::save));
+                .forEach(uuid -> box.service().getData(uuid).ifPresent(UserData::save));
     }
 
     @Planned(ExecutionPhase.PRE_SETUP)

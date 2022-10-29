@@ -54,7 +54,7 @@ public final class SetXPCommand extends AssistantCommand {
                 return false;
             }
 
-            Optional<UserData> data = box.service().getCollectionsData(player.getUniqueId());
+            Optional<UserData> data = box.service().getData(player.getUniqueId());
 
             data.ifPresent(userData -> userData.getCollections().setXp(collection.getId(), xp));
 

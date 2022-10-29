@@ -9,7 +9,6 @@ import com.qualityplus.collections.gui.category.CategoryGUI;
 import com.qualityplus.collections.util.CollectionsItemStackUtil;
 import com.qualityplus.collections.util.CollectionsPlaceholderUtil;
 import com.qualityplus.collections.persistance.data.UserData;
-import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
@@ -35,7 +34,7 @@ public final class MainGUI extends CollectionsGUI {
 
         setItem(config.getCloseGUI());
 
-        UserData data = box.service().getCollectionsData(uuid).orElse(new UserData());
+        UserData data = box.service().getData(uuid).orElse(new UserData());
 
         for(CollectionCategory category : box.files().categories().collectionCategories)
             Optional.ofNullable(category.getGuiOptions()).ifPresent(option -> inventory.setItem(option.getSlot(), getItem(data, category, option)));

@@ -73,4 +73,8 @@ public final class Placeholder implements IPlaceholder {
     public boolean isListPlaceholder() {
         return toReplace != null;
     }
+
+    public List<IPlaceholder> alone(){
+        return Collections.singletonList(this);
+    }
 }

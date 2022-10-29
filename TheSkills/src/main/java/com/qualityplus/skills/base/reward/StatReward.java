@@ -19,7 +19,7 @@ public final class StatReward extends OkaeriConfig implements Reward {
     public void execute(Player player) {
         TheSkills.getApi()
                 .getSkillsService()
-                .getSkillsData(player.getUniqueId())
+                .getData(player.getUniqueId())
                 .ifPresent(userData -> userData.getSkills().addLevel(stat, amount));
     }
 }

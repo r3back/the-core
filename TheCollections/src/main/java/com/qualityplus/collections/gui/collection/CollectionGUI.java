@@ -41,7 +41,7 @@ public final class CollectionGUI extends CollectionsGUI {
 
         setItem(config.getCloseGUI());
 
-        UserData data = box.service().getCollectionsData(uuid).orElse(new UserData());
+        UserData data = box.service().getData(uuid).orElse(new UserData());
 
         int level = data.getCollections().getLevel(collection.getId());
 

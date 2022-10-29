@@ -22,6 +22,9 @@ public final class Messages extends OkaeriConfig {
         public String invalidPetEgg = "&cError trying to give Pet Egg!";
         public String cantSpawn = "&cYou can't spawn a pet you already have a pet spawned!";
 
+        public String selectedPetInGUI = "%pet_egg_item_displayname%";
+        public String nonSelectedPetInGUI = "&cNone";
+
     }
 
 

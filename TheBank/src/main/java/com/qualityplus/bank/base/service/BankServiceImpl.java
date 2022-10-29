@@ -19,7 +19,7 @@ public final class BankServiceImpl implements BankService {
     private @Inject TransactionHandler service;
 
     @Override
-    public Optional<BankData> getBankData(UUID uuid) {
+    public Optional<BankData> getData(UUID uuid) {
         return Optional.ofNullable(dataMap.getOrDefault(uuid, null));
     }
 
@@ -35,6 +35,6 @@ public final class BankServiceImpl implements BankService {
 
     @Override
     public void handleTransaction(Player player, BankTransaction transaction) {
-        service.handleTransaction(player, getBankData(player.getUniqueId()).orElse(new BankData()), transaction);
+        service.handleTransaction(player, getData(player.getUniqueId()).orElse(new BankData()), transaction);
     }
 }
