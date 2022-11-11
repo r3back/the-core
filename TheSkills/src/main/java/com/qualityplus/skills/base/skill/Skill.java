@@ -1,51 +1,43 @@
 package com.qualityplus.skills.base.skill;
 
 import com.cryptomorin.xseries.XMaterial;
-import com.qualityplus.assistant.api.common.rewards.Reward;
 import com.qualityplus.assistant.api.common.rewards.commands.CommandReward;
 import com.qualityplus.skills.api.effect.CommonObject;
 import com.qualityplus.skills.api.registry.ListenerRegistrable;
+import com.qualityplus.skills.base.reward.StatReward;
 import com.qualityplus.skills.base.skill.gui.GUIOptions;
+import com.qualityplus.skills.base.skill.level.SkillLevel;
 import com.qualityplus.skills.base.skill.registry.Skills;
-import com.qualityplus.assistant.api.common.rewards.commands.CommandRewards;
-import com.qualityplus.skills.base.reward.StatRewards;
 import com.qualityplus.skills.util.SkillsPlayerUtil;
 import lombok.*;
-import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
+import java.util.*;
 
-@AllArgsConstructor
+@Data
 @NoArgsConstructor
-@Getter
-@Setter
+@AllArgsConstructor
+@EqualsAndHashCode(callSuper = true)
 public abstract class Skill extends CommonObject implements ListenerRegistrable {
     private int maxLevel;
-    private StatRewards statRewards;
-    private CommandRewards commandRewards;
     private Map<Integer, Double> xpRequirements;
-    private Map<Integer, List<String>> skillsInfoInGUI;
-    private Map<Integer, List<String>> skillsInfoInMessage;
+    private Map<Integer, List<String>> skillInfoInGUI;
+    private Map<Integer, List<StatReward>> statRewards;
+    private Map<Integer, List<String>> skillInfoInMessage;
+    private Map<Integer, List<CommandReward>> commandRewards;
 
-    public Skill(String id, boolean enabled, String displayName, List<String> description, int maxLevel, StatRewards statRewards, CommandRewards commandRewards, GUIOptions skillGUIOptions,
-                 Map<Integer, Double> xpRequirements, Map<Integer, List<String>> skillsInfoInGUI, Map<Integer, List<String>> skillsInfoInMessage) {
-        this.id = id;
-        this.enabled = enabled;
-        this.displayName = displayName;
-        this.description = description;
+    public Skill(String id, boolean enabled, String displayName, List<String> description, GUIOptions skillGUIOptions, double initialAmount, int maxLevel,
+                 Map<Integer, Double> xpRequirements, Map<Integer, List<String>> skillInfoInGUI, Map<Integer, List<StatReward>> statRewards,
+                 Map<Integer, List<String>> skillInfoInMessage, Map<Integer, List<CommandReward>> commandRewards) {
+        super(id, enabled, displayName, description, skillGUIOptions, initialAmount);
         this.maxLevel = maxLevel;
-        this.statRewards = statRewards;
-        this.commandRewards = commandRewards;
-        this.guiOptions = skillGUIOptions;
         this.xpRequirements = xpRequirements;
-        this.skillsInfoInGUI = skillsInfoInGUI;
-        this.skillsInfoInMessage = skillsInfoInMessage;
+        this.skillInfoInGUI = skillInfoInGUI;
+        this.statRewards = statRewards;
+        this.skillInfoInMessage = skillInfoInMessage;
+        this.commandRewards = commandRewards;
     }
 
     @Override
@@ -58,17 +50,13 @@ public abstract class Skill extends CommonObject implements ListenerRegistrable 
         extraListeners.add(listener);
     }
 
-    public List<String> getSkillCacheMessages(int level, MessageType type) {
-        List<String> lore = new ArrayList<>();
-
-        Map<Integer, List<String>> toWorkWith = type.equals(MessageType.GUI) ? skillsInfoInGUI : skillsInfoInMessage;
-
-        if (toWorkWith.containsKey(level)) {
-            lore.addAll(toWorkWith.get(level));
+    private <T> T getMap(Map<Integer, T> map, int level){
+        if (map.containsKey(level)) {
+            return map.get(level);
         } else {
             int highestLevel = 1;
 
-            for (Integer startLevel : toWorkWith.keySet()) {
+            for (Integer startLevel : map.keySet()) {
                 if (startLevel > level)
                     break;
 
@@ -76,45 +64,29 @@ public abstract class Skill extends CommonObject implements ListenerRegistrable 
                     highestLevel = startLevel;
             }
 
-            lore.addAll(toWorkWith.getOrDefault(highestLevel, new ArrayList<>()));
+            return map.getOrDefault(highestLevel, null);
         }
-
-        return lore;
     }
 
+    public List<String> getCachedMessage(int level) {
+        return getMap(skillInfoInMessage, level);
+    }
 
-    public List<Reward> getRewards(int level, RewardType type) {
-        Map<Integer, List<Reward>> toWorkWith = type.equals(RewardType.STAT) ? statRewards.getRewards() : commandRewards.getRewards();
+    public List<String> getCachedGUI(int level) {
+        return getMap(skillInfoInGUI, level);
 
-        if (toWorkWith.containsKey(level)) {
-            return toWorkWith.get(level);
-        } else {
-            int highestLevel = 1;
+    }
 
-            for (Integer startLevel : toWorkWith.keySet()) {
-                if (startLevel > level)
-                    break;
+    public List<CommandReward> getCommandRewards(int level) {
+        return getMap(commandRewards, level);
+    }
 
-                if (startLevel > highestLevel)
-                    highestLevel = startLevel;
-            }
-
-            return toWorkWith.getOrDefault(highestLevel, new ArrayList<>());
-        }
+    public List<StatReward> getStatRewards(int level) {
+        return getMap(statRewards, level);
     }
 
     public double getLevelRequirement(int level){
-        return xpRequirements.getOrDefault(level, 1D);
-    }
-
-    public enum MessageType{
-        LEVEL_UP,
-        GUI
-    }
-
-    public enum RewardType{
-        COMMAND,
-        STAT
+        return getMap(xpRequirements, level);
     }
 
     protected double getBlockBreakEventXp(BlockBreakEvent e, Map<XMaterial, Double> rewards){

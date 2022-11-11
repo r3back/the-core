@@ -67,11 +67,11 @@ public final class SkillsInternalListener implements Listener {
 
         Bukkit.getScheduler().runTask(box.plugin(), () -> {
             event.getSkill()
-                    .getRewards(event.getNewLevel(), Skill.RewardType.COMMAND)
+                    .getCommandRewards(event.getNewLevel())
                     .forEach(reward -> reward.execute(player));
 
             event.getSkill()
-                    .getRewards(event.getNewLevel(), Skill.RewardType.STAT)
+                    .getStatRewards(event.getNewLevel())
                     .forEach(reward -> reward.execute(player));
 
             PlaceholderBuilder builder = data
@@ -79,7 +79,7 @@ public final class SkillsInternalListener implements Listener {
                     .orElse(PlaceholderBuilder.create());
 
             List<IPlaceholder> placeholders = builder
-                    .with(new Placeholder("skill_info_message", StringUtils.processMulti(skill.getSkillCacheMessages(event.getNewLevel() + 1, Skill.MessageType.LEVEL_UP), builder.get())))
+                    .with(new Placeholder("skill_info_message", StringUtils.processMulti(skill.getCachedMessage(event.getNewLevel() + 1), builder.get())))
                     .get();
 
             Config.LevelUpSettings settings = box.files().config().levelUpSettings;

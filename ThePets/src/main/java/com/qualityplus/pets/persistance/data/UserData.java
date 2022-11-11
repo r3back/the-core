@@ -1,7 +1,11 @@
 package com.qualityplus.pets.persistance.data;
 
+import com.qualityplus.pets.ThePets;
 import com.qualityplus.pets.api.pet.Pets;
 import com.qualityplus.pets.base.pet.Pet;
+import com.qualityplus.pets.persistance.data.inside.InventoryData;
+import com.qualityplus.pets.persistance.data.inside.SpawnedData;
+import com.qualityplus.pets.persistance.data.inside.UserSettings;
 import eu.okaeri.persistence.document.Document;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -12,11 +16,11 @@ import java.util.UUID;
 @Data
 @EqualsAndHashCode(callSuper = true)
 public final class UserData extends Document {
-    private UUID uuid;
-    private PetsData petsData = new PetsData();
-    private SpawnedData spawnedData = new SpawnedData();
     private InventoryData inventoryData = new InventoryData();
     private UserSettings userSettings = new UserSettings();
+    private SpawnedData spawnedData = new SpawnedData();
+    private String name;
+    private UUID uuid;
 
     public void switchConvertToItemMode(){
         boolean convertToItemMode = userSettings.isConvertPetToItemMode();
@@ -30,19 +34,14 @@ public final class UserData extends Document {
         userSettings.setPetsAreHidden(!petsAreHidden);
     }
 
-    public Optional<Pet> getPet(){
-        String id = spawnedData.getSpawnedPetId();
 
-        if(id == null) return Optional.empty();
-
-        Pet pet = Pets.getByID(id);
-
-        return Optional.ofNullable(pet);
+    public Optional<PetData> getSpawnedPetData(){
+        return Optional.ofNullable(spawnedData.getSpawnedPetUUID())
+                .flatMap(ThePets.getApi().getPetsService()::getData);
     }
 
-    public String getPetName(){
-        return getPet()
-                .map(pet -> pet.getPetEgg().getDisplayName())
-                .orElse(null);
+    public Optional<Pet> getSpawnedPet(){
+        return Optional.ofNullable(spawnedData.getSpawnedPetId())
+                .map(Pets::getByID);
     }
 }

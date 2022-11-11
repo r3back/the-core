@@ -2,6 +2,7 @@ package com.qualityplus.auction.base.gui.view.normal;
 
 import com.qualityplus.assistant.TheAssistantPlugin;
 import com.qualityplus.assistant.api.util.IPlaceholder;
+import com.qualityplus.assistant.base.dependency.UsualDependencies;
 import com.qualityplus.assistant.inventory.SignGUI;
 import com.qualityplus.assistant.util.StringUtils;
 import com.qualityplus.assistant.util.itemstack.ItemStackUtils;
@@ -207,13 +208,19 @@ public final class NormalAuctionViewGUI extends AuctionGUI {
         }else if(isItem(slot, config.bidAmount) && !isOwnAuction() && canSubmit()){
             player.closeInventory();
 
-            SignGUI.builder()
-                    .action(event1 -> changeBid(event1.getPlayer(), event1.getLines().get(0)))
-                    .withLines(box.files().messages().auctionMessages.submitBid)
-                    .uuid(player.getUniqueId())
-                    .plugin(box.plugin())
-                    .build()
-                    .open();
+            if(UsualDependencies.isProtocolLib()){
+                SignGUI.builder()
+                        .action(event1 -> changeBid(event1.getPlayer(), event1.getLines().get(0)))
+                        .withLines(box.files().messages().auctionMessages.submitBid)
+                        .uuid(player.getUniqueId())
+                        .plugin(box.plugin())
+                        .build()
+                        .open();
+            }else{
+                box.plugin().getLogger().warning("You need to install ProtocolLib to use Sign GUIS!");
+            }
+
+
         }
     }
 

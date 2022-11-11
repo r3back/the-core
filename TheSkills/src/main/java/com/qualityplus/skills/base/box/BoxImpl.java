@@ -26,7 +26,7 @@ public final class BoxImpl implements Box {
                               SpidermanConfig, SteelSkinConfig, WizardConfig, SeaFortuneConfig, PotionMasterConfig, BrewerChanceConfig, OrbMasterConfig> perkFiles;
     private @Inject SkillFiles<AlchemyConfig, CarpentryConfig, CombatConfig, DiscovererConfig, EnchantingConfig, FarmingConfig, FishingConfig, ForagingConfig,
                                MiningConfig, RunecraftingConfig, TamingConfig, DungeoneeringConfig> skillFiles;
-    private @Inject StatFiles<CritChanceConfig, CritDamageConfig, DefenseConfig, FerocityConfig, IntelligenceConfig, MagicFindConfig, MiningSpeedConfig,
+    private @Inject StatFiles<CritChanceConfig, CritDamageConfig, DefenseConfig, FerocityConfig, IntelligenceConfig, MagicFindConfig,
                               PetLuckConfig, SpeedConfig, StrengthConfig> statFiles;
     private @Inject ConfigFiles<Config, Inventories, Commands, Messages> files;
     private @Inject ActionBarService actionBarService;
@@ -49,7 +49,7 @@ public final class BoxImpl implements Box {
     }
 
     @Override
-    public StatFiles<CritChanceConfig, CritDamageConfig, DefenseConfig, FerocityConfig, IntelligenceConfig, MagicFindConfig, MiningSpeedConfig,
+    public StatFiles<CritChanceConfig, CritDamageConfig, DefenseConfig, FerocityConfig, IntelligenceConfig, MagicFindConfig,
             PetLuckConfig, SpeedConfig, StrengthConfig> statFiles() {
         return statFiles;
     }

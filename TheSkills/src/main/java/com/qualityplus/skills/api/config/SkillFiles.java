@@ -1,6 +1,9 @@
 package com.qualityplus.skills.api.config;
 
 import com.qualityplus.assistant.api.config.ConfigReloader;
+import eu.okaeri.configs.OkaeriConfig;
+
+import java.util.List;
 
 public interface SkillFiles <A, CA, C, D, E, F, FH, FG, M, R, T, DU> extends ConfigReloader {
     A alchemy();
@@ -15,4 +18,6 @@ public interface SkillFiles <A, CA, C, D, E, F, FH, FG, M, R, T, DU> extends Con
     M mining();
     R runeCrafting();
     T taming();
+
+    List<OkaeriConfig> getAll();
 }

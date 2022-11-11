@@ -1,16 +1,16 @@
 package com.qualityplus.skills.base.skill.skills;
 
+import com.qualityplus.assistant.api.common.rewards.commands.CommandReward;
 import com.qualityplus.assistant.base.event.PlayerKillEvent;
 import com.qualityplus.skills.TheSkills;
+import com.qualityplus.skills.base.reward.StatReward;
 import com.qualityplus.skills.base.skill.Skill;
 import com.qualityplus.skills.base.skill.gui.GUIOptions;
 import com.qualityplus.assistant.api.common.rewards.commands.CommandRewards;
 import com.qualityplus.skills.base.reward.StatRewards;
+import com.qualityplus.skills.base.skill.level.SkillLevel;
 import com.qualityplus.skills.util.SkillsPlayerUtil;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
@@ -20,20 +20,17 @@ import org.bukkit.event.EventPriority;
 import java.util.List;
 import java.util.Map;
 
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
 public final class CombatSkill extends Skill {
     private Map<EntityType, Double> rewards;
 
     @Builder
-    public CombatSkill(String id, boolean enabled, String displayName, List<String> description, StatRewards statRewards, CommandRewards commandRewards,
-                       GUIOptions skillGUIOptions, Map<Integer, List<String>> skillsInfoInGUI, Map<Integer, List<String>> skillsInfoInMessage,
-                       Map<Integer, Double> xpRequirements, int maxLevel, Map<EntityType, Double> rewards) {
-        super(id, enabled, displayName, description, maxLevel, statRewards, commandRewards, skillGUIOptions, xpRequirements, skillsInfoInGUI, skillsInfoInMessage);
-
+    public CombatSkill(String id, boolean enabled, String displayName, List<String> description, GUIOptions skillGUIOptions, double initialAmount, int maxLevel, Map<Integer, Double> xpRequirements, Map<Integer, List<String>> skillInfoInGUI, Map<Integer, List<StatReward>> statRewards, Map<Integer, List<String>> skillInfoInMessage, Map<Integer, List<CommandReward>> commandRewards, Map<EntityType, Double> rewards) {
+        super(id, enabled, displayName, description, skillGUIOptions, initialAmount, maxLevel, xpRequirements, skillInfoInGUI, statRewards, skillInfoInMessage, commandRewards);
         this.rewards = rewards;
     }
+
 
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
     public void onKillMob(PlayerKillEvent e){

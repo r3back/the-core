@@ -1,6 +1,7 @@
 package com.qualityplus.assistant.util.random;
 
 import com.qualityplus.assistant.api.util.Randomable;
+import com.qualityplus.assistant.util.math.MathUtils;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -37,6 +38,15 @@ public final class RandomSelector<T extends Randomable> {
     public static <T> T getRandom(Map<T, Double> probabilitiesMap){
         List<EasyRandom<T>> items = probabilitiesMap.keySet().stream()
                 .map(item -> new EasyRandom<>(item, probabilitiesMap.get(item)))
+                .collect(Collectors.toList());
+
+        return Optional.ofNullable(new RandomSelector<>(items).getRandom()).map(EasyRandom::getItem).orElse(null);
+    }
+
+    @Nullable
+    public static <T> T getRandom(List<T> itemsWithoutProbabilities){
+        List<EasyRandom<T>> items = itemsWithoutProbabilities.stream()
+                .map(item -> new EasyRandom<>(item, MathUtils.randomBetween(0, 100)))
                 .collect(Collectors.toList());
 
         return Optional.ofNullable(new RandomSelector<>(items).getRandom()).map(EasyRandom::getItem).orElse(null);

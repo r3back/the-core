@@ -20,8 +20,7 @@ public interface Box {
     ConfigFiles<Config, Inventories, Commands, Messages> files();
     SkillFiles<AlchemyConfig, CarpentryConfig, CombatConfig, DiscovererConfig, EnchantingConfig, FarmingConfig, FishingConfig,
             ForagingConfig, MiningConfig, RunecraftingConfig, TamingConfig, DungeoneeringConfig> skillFiles();
-    StatFiles<CritChanceConfig, CritDamageConfig, DefenseConfig, FerocityConfig, IntelligenceConfig, MagicFindConfig, MiningSpeedConfig,
-            PetLuckConfig, SpeedConfig, StrengthConfig> statFiles();
+    StatFiles<CritChanceConfig, CritDamageConfig, DefenseConfig, FerocityConfig, IntelligenceConfig, MagicFindConfig, PetLuckConfig, SpeedConfig, StrengthConfig> statFiles();
     PerkFiles<AbilityDamageConfig, BonusAttackSpeedConfig, CactusSkinConfig, EagleEyesConfig, FarmingFortuneConfig, ForagingFortuneConfig, IronLungsConfig,
             LeavesMasterConfig, LightningPunchConfig, MedicineManConfig, MiningFortuneConfig, MiningSpeedConfig, OnePunchManConfig, ProjectileMasterConfig,
             RefurbishedConfig, SpidermanConfig, SteelSkinConfig, WizardConfig, SeaFortuneConfig, PotionMasterConfig, BrewerChanceConfig, OrbMasterConfig> perkFiles();

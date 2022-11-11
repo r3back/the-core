@@ -52,16 +52,15 @@ public final class Stats {
     public static void reloadStats(@Inject Box box){
         values().forEach(Stat::unregisterListeners);
 
-        Stream.of(box.statFiles().defense().defenseStat,
-                        box.statFiles().intelligence().intelligenceStat,
-                        box.statFiles().critChance().critChanceStat,
-                        box.statFiles().critDamage().critDamageStat,
-                        box.statFiles().magicFind().magicFindStat,
-                        box.statFiles().mining().miningSpeedPerk,
-                        box.statFiles().ferocity().ferocityStat,
-                        box.statFiles().petLuck().petLuckStat,
-                        box.statFiles().speed().speedStat,
-                        box.statFiles().strength().strengthStat)
+        Stream.of(box.statFiles().defense().getStat(),
+                        box.statFiles().intelligence().getStat(),
+                        box.statFiles().critChance().getStat(),
+                        box.statFiles().critDamage().getStat(),
+                        box.statFiles().magicFind().getStat(),
+                        box.statFiles().ferocity().getStat(),
+                        box.statFiles().petLuck().getStat(),
+                        box.statFiles().speed().getStat(),
+                        box.statFiles().strength().getStat())
                 .filter(CommonObject::isEnabled)
                 .forEach(stat -> {
                     stat.register();

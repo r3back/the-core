@@ -2,6 +2,7 @@ package com.qualityplus.auction.base.gui.create;
 
 import com.qualityplus.assistant.TheAssistantPlugin;
 import com.qualityplus.assistant.api.util.IPlaceholder;
+import com.qualityplus.assistant.base.dependency.UsualDependencies;
 import com.qualityplus.assistant.inventory.SignGUI;
 import com.qualityplus.assistant.util.StringUtils;
 import com.qualityplus.assistant.util.itemstack.ItemStackUtils;
@@ -9,11 +10,13 @@ import com.qualityplus.assistant.util.placeholder.Placeholder;
 import com.qualityplus.assistant.util.time.Markable;
 import com.qualityplus.auction.api.box.Box;
 import com.qualityplus.auction.base.gui.AuctionGUI;
+import com.qualityplus.auction.base.gui.all.AllAuctionsGUI;
 import com.qualityplus.auction.base.gui.main.MainAuctionGUI;
 import com.qualityplus.auction.base.gui.view.ViewOpener;
 import com.qualityplus.auction.base.gui.view.normal.NormalAuctionViewGUI;
 import com.qualityplus.auction.base.gui.time.AuctionTimeGUI;
 import com.qualityplus.auction.base.searcher.AuctionSearcher;
+import com.qualityplus.auction.base.searcher.filters.StringFilter;
 import com.qualityplus.auction.persistence.data.AuctionBid;
 import com.qualityplus.auction.persistence.data.AuctionItem;
 import com.qualityplus.auction.persistence.data.User;
@@ -133,13 +136,17 @@ public final class CreateAuctionGUI extends AuctionGUI {
 
                 player.closeInventory();
 
-                SignGUI.builder()
-                        .action(event1 -> changeBidPrice(player, auctionItem, event1.getLines().get(0)))
-                        .withLines(box.files().messages().auctionMessages.startingBid)
-                        .uuid(player.getUniqueId())
-                        .plugin(box.plugin())
-                        .build()
-                        .open();
+                if(UsualDependencies.isProtocolLib()){
+                    SignGUI.builder()
+                            .action(event1 -> changeBidPrice(player, auctionItem, event1.getLines().get(0)))
+                            .withLines(box.files().messages().auctionMessages.startingBid)
+                            .uuid(player.getUniqueId())
+                            .plugin(box.plugin())
+                            .build()
+                            .open();
+                }else{
+                    box.plugin().getLogger().warning("You need to install ProtocolLib to use Sign GUIS!");
+                }
 
             }else if(isItem(slot, config.createAuctionFilled)){
                 if(auctionItem.getItemStack() == null) return;

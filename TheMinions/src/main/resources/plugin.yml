@@ -1,0 +1,12 @@
+name: TheMinions
+description: The Minions Plugin
+main: com.qualityplus.minions.TheMinions
+version: ${version}
+api-version: 1.13
+authors: [QualityPlus]
+load: POSTWORLD
+depend: [TheAssistant]
+commands:
+  theminions:
+    aliases: [minions]
+    description: Minions's main command

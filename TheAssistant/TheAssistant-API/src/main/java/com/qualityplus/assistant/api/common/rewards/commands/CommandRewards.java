@@ -11,6 +11,6 @@ import java.util.Map;
 
 @AllArgsConstructor
 @Getter @Setter
-public final class CommandRewards extends OkaeriConfig implements Rewards<Reward> {
-    private Map<Integer, List<Reward>> rewards = new HashMap<>();
+public final class CommandRewards extends OkaeriConfig implements Rewards<CommandReward> {
+    private Map<Integer, List<CommandReward>> rewards = new HashMap<>();
 }

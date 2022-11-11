@@ -1,5 +1,6 @@
 package com.qualityplus.bank.base.gui.deposit;
 
+import com.qualityplus.assistant.base.dependency.UsualDependencies;
 import com.qualityplus.bank.api.box.Box;
 import com.qualityplus.bank.api.transaction.TransactionType;
 import com.qualityplus.bank.base.gui.BankGUI;
@@ -93,13 +94,17 @@ public final class BankDepositGUI extends BankGUI {
             box.service().handleTransaction(player, new BankTransaction(getHalf(), TransactionType.DEPOSIT, type));
             player.openInventory(new BankDepositGUI(box, player, type).getInventory());
         }else if(isItem(slot, config.getDepositCustomAmount())){
-            SignGUI.builder()
-                    .action(this::handleDeposit)
-                    .withLines(box.files().messages().bankMessages.enterAmountToDeposit)
-                    .uuid(player.getUniqueId())
-                    .plugin(box.plugin())
-                    .build()
-                    .open();
+            if(UsualDependencies.isProtocolLib()){
+                SignGUI.builder()
+                        .action(this::handleDeposit)
+                        .withLines(box.files().messages().bankMessages.enterAmountToDeposit)
+                        .uuid(player.getUniqueId())
+                        .plugin(box.plugin())
+                        .build()
+                        .open();
+            }else{
+                box.plugin().getLogger().warning("You need to install ProtocolLib to use Sign GUIS!");
+            }
         }
     }
 

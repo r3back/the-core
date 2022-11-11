@@ -5,10 +5,7 @@ import com.qualityplus.assistant.api.commands.command.AssistantCommand;
 import com.qualityplus.assistant.util.StringUtils;
 import com.qualityplus.pets.api.box.Box;
 import com.qualityplus.pets.api.pet.Pets;
-import com.qualityplus.pets.api.pet.entity.PetEntity;
 import com.qualityplus.pets.base.pet.Pet;
-import com.qualityplus.pets.base.pet.egg.PetEggEntity;
-import com.qualityplus.pets.base.pet.entity.ArmorStandPet;
 import com.qualityplus.pets.util.PetEggUtil;
 import eu.okaeri.commons.bukkit.time.MinecraftTimeEquivalent;
 import eu.okaeri.injector.annotation.Inject;
@@ -47,7 +44,7 @@ public final class GiveEggCommand extends AssistantCommand {
                 return false;
             }
 
-            Optional<ItemStack> petEgg = PetEggUtil.createNewPet(player.getUniqueId(), box.files().config().petEggItem, pet);
+            Optional<ItemStack> petEgg = PetEggUtil.createNewEgg(box.files().config().petEggItem, pet);
 
             if(!petEgg.isPresent()){
                 player.sendMessage(StringUtils.color(box.files().messages().petMessages.invalidPetEgg));

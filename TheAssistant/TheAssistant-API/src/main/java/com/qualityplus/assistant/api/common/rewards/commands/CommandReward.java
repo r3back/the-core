@@ -2,15 +2,14 @@ package com.qualityplus.assistant.api.common.rewards.commands;
 
 import com.qualityplus.assistant.api.common.rewards.Reward;
 import eu.okaeri.configs.OkaeriConfig;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
+@Data
+@NoArgsConstructor
 @AllArgsConstructor
-@Getter
-@Setter
+@EqualsAndHashCode(callSuper = true)
 public final class CommandReward extends OkaeriConfig implements Reward {
     private CommandExecutor commandExecutor;
     private String command;

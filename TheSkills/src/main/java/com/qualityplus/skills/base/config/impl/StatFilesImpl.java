@@ -1,17 +1,21 @@
 package com.qualityplus.skills.base.config.impl;
 
 import com.qualityplus.skills.api.config.StatFiles;
+import com.qualityplus.skills.base.config.common.BaseFile;
 import com.qualityplus.skills.base.config.perk.MiningSpeedConfig;
 import com.qualityplus.skills.base.config.stat.*;
+import eu.okaeri.configs.OkaeriConfig;
 import eu.okaeri.injector.annotation.Inject;
 import eu.okaeri.platform.core.annotation.Component;
 
+import java.util.Arrays;
+import java.util.List;
+
 @Component
-public final class StatFilesImpl implements StatFiles<CritChanceConfig, CritDamageConfig, DefenseConfig, FerocityConfig, IntelligenceConfig, MagicFindConfig, MiningSpeedConfig,
+public final class StatFilesImpl implements StatFiles<CritChanceConfig, CritDamageConfig, DefenseConfig, FerocityConfig, IntelligenceConfig, MagicFindConfig,
         PetLuckConfig, SpeedConfig, StrengthConfig> {
 
     private @Inject IntelligenceConfig intelligenceConfig;
-    private @Inject MiningSpeedConfig miningSpeedConfig;
     private @Inject CritChanceConfig critChanceConfig;
     private @Inject CritDamageConfig critDamageConfig;
     private @Inject MagicFindConfig magicFindConfig;
@@ -23,7 +27,7 @@ public final class StatFilesImpl implements StatFiles<CritChanceConfig, CritDama
 
     @Override
     public void reloadFiles() {
-        reloadAll(critChanceConfig, critDamageConfig, defenseConfig, ferocityConfig, intelligenceConfig, magicFindConfig, miningSpeedConfig, petLuckConfig, speedConfig, strengthConfig);
+        reloadAll(critChanceConfig, critDamageConfig, defenseConfig, ferocityConfig, intelligenceConfig, magicFindConfig, petLuckConfig, speedConfig, strengthConfig);
     }
 
     @Override
@@ -56,10 +60,6 @@ public final class StatFilesImpl implements StatFiles<CritChanceConfig, CritDama
         return magicFindConfig;
     }
 
-    @Override
-    public MiningSpeedConfig mining() {
-        return miningSpeedConfig;
-    }
 
     @Override
     public PetLuckConfig petLuck() {
@@ -74,5 +74,10 @@ public final class StatFilesImpl implements StatFiles<CritChanceConfig, CritDama
     @Override
     public StrengthConfig strength() {
         return strengthConfig;
+    }
+
+    @Override
+    public List<OkaeriConfig> getAll() {
+        return Arrays.asList(critChanceConfig, critDamageConfig, defenseConfig, ferocityConfig, intelligenceConfig, magicFindConfig, petLuckConfig, speedConfig, strengthConfig);
     }
 }

@@ -10,34 +10,41 @@ import java.util.concurrent.ThreadLocalRandom;
 
 @UtilityClass
 public final class MathUtils {
-    private static final DecimalFormat roundCommaFormat2 = new DecimalFormat("#,###");
-    private static final DecimalFormat roundDotFormat = new DecimalFormat("#.##");
-    private final static TreeMap<Integer, String> map = new TreeMap<>();
+    private static final DecimalFormat ROUND_COMMA_FORMAT = new DecimalFormat("#,###");
+    private static final DecimalFormat ROUND_DOT_FORMAT = new DecimalFormat("#.##");
+    private final static TreeMap<Integer, String> FORMAT = new TreeMap<>();
+    private static final double[] SIN_FORMAT = new double[65536];
+    private static final double[] PI = new double[65536];
 
     static {
         //roundFormat.setGroupingSize(3);
 
-        map.put(1000, "M");
-        map.put(900, "CM");
-        map.put(500, "D");
-        map.put(400, "CD");
-        map.put(100, "C");
-        map.put(90, "XC");
-        map.put(50, "L");
-        map.put(40, "XL");
-        map.put(10, "X");
-        map.put(9, "IX");
-        map.put(5, "V");
-        map.put(4, "IV");
-        map.put(1, "I");
-        map.put(0, "0");
+        FORMAT.put(1000, "M");
+        FORMAT.put(900, "CM");
+        FORMAT.put(500, "D");
+        FORMAT.put(400, "CD");
+        FORMAT.put(100, "C");
+        FORMAT.put(90, "XC");
+        FORMAT.put(50, "L");
+        FORMAT.put(40, "XL");
+        FORMAT.put(10, "X");
+        FORMAT.put(9, "IX");
+        FORMAT.put(5, "V");
+        FORMAT.put(4, "IV");
+        FORMAT.put(1, "I");
+        FORMAT.put(0, "0");
+    }
+
+    public static double sinCalc(final double a) {
+        float f = (float) a;
+        return SIN_FORMAT[(int) (f * 10430.378F) & '\uffff'];
     }
 
     public static String toRoman(int number) {
-        int l =  map.floorKey(number);
+        int l =  FORMAT.floorKey(number);
         if (number == l)
-            return map.get(number);
-        return map.get(l) + toRoman(number-l);
+            return FORMAT.get(number);
+        return FORMAT.get(l) + toRoman(number-l);
     }
 
     public static String toInt(double value){
@@ -46,9 +53,9 @@ public final class MathUtils {
 
     public static String round(double value){
         if(value <= 999)
-            return roundDotFormat.format(value);
+            return ROUND_DOT_FORMAT.format(value);
         else
-            return roundCommaFormat2.format(value);
+            return ROUND_COMMA_FORMAT.format(value);
     }
 
     public int randomIntBetween(final int min, final int max) {

@@ -10,17 +10,18 @@ import lombok.*;
 import java.util.Collections;
 import java.util.List;
 
+@Data
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Getter
-@Setter
 public final class PetEgg extends OkaeriConfig {
     private String petId;
     private String texture;
-    private List<String> lore;
+    //private List<String> lore;
     private String displayName;
     private XMaterial material;
     private String eggDisplayName;
+    private PetModelEngine petModelEngine;
 
     public String getEggDisplayName(){
         return StringUtils.processMulti(eggDisplayName, new Placeholder("pet_egg_displayname", displayName).alone());

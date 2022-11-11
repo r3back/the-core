@@ -1,5 +1,6 @@
 package com.qualityplus.bank.base.gui.withdraw;
 
+import com.qualityplus.assistant.base.dependency.UsualDependencies;
 import com.qualityplus.bank.api.box.Box;
 import com.qualityplus.bank.api.transaction.TransactionType;
 import com.qualityplus.bank.base.gui.BankGUI;
@@ -97,13 +98,18 @@ public final class BankWithdrawGUI extends BankGUI {
             box.service().handleTransaction(player, new BankTransaction(getCustomPercentage(getData()), TransactionType.WITHDRAW, type));
             player.openInventory(new BankWithdrawGUI(box, player, type).getInventory());
         }else if(isItem(slot, config.getWithdrawAmount())){
-            SignGUI.builder()
-                    .action(this::handleWithdraw)
-                    .withLines(box.files().messages().bankMessages.enterAmountToWithdraw)
-                    .uuid(player.getUniqueId())
-                    .plugin(box.plugin())
-                    .build()
-                    .open();
+            if(UsualDependencies.isProtocolLib()){
+                SignGUI.builder()
+                        .action(this::handleWithdraw)
+                        .withLines(box.files().messages().bankMessages.enterAmountToWithdraw)
+                        .uuid(player.getUniqueId())
+                        .plugin(box.plugin())
+                        .build()
+                        .open();
+            }else{
+                box.plugin().getLogger().warning("You need to install ProtocolLib to use Sign GUIS!");
+            }
+
         }
     }
 

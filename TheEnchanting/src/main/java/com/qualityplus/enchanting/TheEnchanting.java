@@ -58,6 +58,8 @@ public final class TheEnchanting extends OkaeriSilentPlugin {
                     Map<Integer, Double> xpValues = new HashMap<>();
                     Map<Integer, Double> moneyValues = new HashMap<>();
 
+                    if(enchantment.getEnchant() == null) continue;
+
                     for(int i = 1; i<= enchantment.getEnchant().getMaxLevel(); i++){
                         String numberPath = permissionPath + "." + i;
 

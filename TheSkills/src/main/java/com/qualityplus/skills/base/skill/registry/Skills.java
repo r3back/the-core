@@ -50,18 +50,18 @@ public final class Skills {
     public static void reloadSkills(@Inject Box box) {
         values().forEach(Skill::unregisterListeners);
 
-        Stream.of(box.skillFiles().dungeoneering().dungeoneeringSkill,
-                        box.skillFiles().runeCrafting().runecraftingSkill,
-                        box.skillFiles().discoverer().discovererSkill,
-                        box.skillFiles().enchanting().enchantingSkill,
-                        box.skillFiles().carpentry().carpentrySkill,
-                        box.skillFiles().foraging().foragingSkill,
-                        box.skillFiles().alchemy().alchemySkill,
-                        box.skillFiles().farming().farmingSkill,
-                        box.skillFiles().fishing().fishingSkill,
-                        box.skillFiles().combat().combatSkill,
-                        box.skillFiles().mining().miningSkill,
-                        box.skillFiles().taming().tamingSkill)
+        Stream.of(box.skillFiles().dungeoneering().getSkill(),
+                        box.skillFiles().runeCrafting().getSkill(),
+                        box.skillFiles().discoverer().getSkill(),
+                        box.skillFiles().enchanting().getSkill(),
+                        box.skillFiles().carpentry().getSkill(),
+                        box.skillFiles().foraging().getSkill(),
+                        box.skillFiles().alchemy().getSkill(),
+                        box.skillFiles().farming().getSkill(),
+                        box.skillFiles().fishing().getSkill(),
+                        box.skillFiles().combat().getSkill(),
+                        box.skillFiles().mining().getSkill(),
+                        box.skillFiles().taming().getSkill())
                 .filter(Skill::isEnabled)
                 .forEach(skill -> {
                     skill.register();

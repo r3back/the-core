@@ -131,10 +131,18 @@ public final class ItemStackUtils {
         return getFinalItem(item, itemstack, placeholders, LORE_WRAPPER);
     }
 
-    public static ItemStack addCustomModelData(ItemStack itemStack, int customModelData){
-        ItemMeta meta = itemStack.getItemMeta();
-        meta.setCustomModelData(customModelData);
-        itemStack.setItemMeta(meta);
+    public static ItemStack addCustomModelData(ItemStack itemStack, Integer customModelData){
+        if(customModelData == null || XMaterial.getVersion() < 13) return itemStack;
+
+        try {
+            ItemMeta meta = itemStack.getItemMeta();
+
+            meta.setCustomModelData(customModelData);
+
+            itemStack.setItemMeta(meta);
+
+        }catch (Exception ignored){
+        }
 
         return itemStack;
     }
@@ -154,7 +162,8 @@ public final class ItemStackUtils {
         if (item.material == XMaterial.PLAYER_HEAD && item.headData != null)
             return parseTexture(itemstack, item);
 
-        return itemstack;
+        return addCustomModelData(itemstack, item.customModelData);
+
     }
 
     private static ItemStack parseTexture(ItemStack itemStack, Item item){

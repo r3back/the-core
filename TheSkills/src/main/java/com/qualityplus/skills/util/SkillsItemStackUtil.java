@@ -26,6 +26,9 @@ public final class SkillsItemStackUtil {
                     StringUtils.processMulti(item.displayName, placeholders),
                     StringUtils.processMulti(item.lore, placeholders));
 
+            ItemStackUtils.addCustomModelData(firstProcess, skillGUIOptions.getCustomModelData());
+
+
             return ItemStackUtils.getFinalItem(item1, firstProcess, placeholders);
         } catch (Exception e) {
             e.printStackTrace();

@@ -1,10 +1,13 @@
 package com.qualityplus.skills.base.skill.skills;
 
+import com.qualityplus.assistant.api.common.rewards.commands.CommandReward;
 import com.qualityplus.skills.TheSkills;
+import com.qualityplus.skills.base.reward.StatReward;
 import com.qualityplus.skills.base.skill.Skill;
 import com.qualityplus.skills.base.skill.gui.GUIOptions;
 import com.qualityplus.assistant.api.common.rewards.commands.CommandRewards;
 import com.qualityplus.skills.base.reward.StatRewards;
+import com.qualityplus.skills.base.skill.level.SkillLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -28,13 +31,10 @@ public final class FishingSkill extends Skill {
     private double rewardsForAllCaught;
 
     @Builder
-    public FishingSkill(String id, boolean enabled, String displayName, List<String> description, StatRewards statRewards, CommandRewards commandRewards,
-                        GUIOptions skillGUIOptions, Map<Integer, List<String>> skillsInfoInGUI, Map<Integer, List<String>> skillsInfoInMessage,
-                        Map<Integer, Double> xpRequirements, int maxLevel, Map<String, Double> rewards, double rewardsForAllCaught) {
-        super(id, enabled, displayName, description, maxLevel, statRewards, commandRewards, skillGUIOptions, xpRequirements, skillsInfoInGUI, skillsInfoInMessage);
-
-        this.rewardsForAllCaught = rewardsForAllCaught;
+    public FishingSkill(String id, boolean enabled, String displayName, List<String> description, GUIOptions skillGUIOptions, double initialAmount, int maxLevel, Map<Integer, Double> xpRequirements, Map<Integer, List<String>> skillInfoInGUI, Map<Integer, List<StatReward>> statRewards, Map<Integer, List<String>> skillInfoInMessage, Map<Integer, List<CommandReward>> commandRewards, Map<String, Double> rewards, double rewardsForAllCaught) {
+        super(id, enabled, displayName, description, skillGUIOptions, initialAmount, maxLevel, xpRequirements, skillInfoInGUI, statRewards, skillInfoInMessage, commandRewards);
         this.rewards = rewards;
+        this.rewardsForAllCaught = rewardsForAllCaught;
     }
 
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)

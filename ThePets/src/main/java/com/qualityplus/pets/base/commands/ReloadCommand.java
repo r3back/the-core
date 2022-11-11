@@ -3,7 +3,10 @@ package com.qualityplus.pets.base.commands;
 import com.qualityplus.assistant.TheAssistantPlugin;
 import com.qualityplus.assistant.api.commands.command.AssistantCommand;
 import com.qualityplus.assistant.util.StringUtils;
+import com.qualityplus.pets.ThePets;
 import com.qualityplus.pets.api.box.Box;
+import com.qualityplus.pets.api.pet.Pets;
+import com.qualityplus.pets.base.config.pet.Tiger;
 import eu.okaeri.commons.bukkit.time.MinecraftTimeEquivalent;
 import eu.okaeri.injector.annotation.Inject;
 import eu.okaeri.platform.bukkit.annotation.Delayed;
@@ -13,10 +16,12 @@ import org.bukkit.entity.Player;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.logging.Logger;
 
 @Component
 public final class ReloadCommand extends AssistantCommand {
     private @Inject Box box;
+    private @Inject Tiger tiger;
 
     @Override
     public boolean execute(CommandSender sender, String[] args) {
@@ -24,6 +29,8 @@ public final class ReloadCommand extends AssistantCommand {
 
         if(args.length == 1){
             box.files().reloadFiles();
+
+            Pets.reloadPets(tiger, box.plugin());
 
             player.sendMessage(StringUtils.color(box.files().messages().pluginMessages.successfullyReloaded));
         }else{

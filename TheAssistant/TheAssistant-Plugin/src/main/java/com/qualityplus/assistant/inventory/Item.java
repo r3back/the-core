@@ -24,6 +24,7 @@ public final class Item extends OkaeriConfig {
     public boolean enabled;
     public String command;
     public boolean enchanted = false;
+    public Integer customModelData;
 
     public Item(Item item){
         this.material = item.material;
@@ -37,5 +38,6 @@ public final class Item extends OkaeriConfig {
         this.enabled = item.enabled;
         this.command = item.command;
         this.enchanted = item.enchanted;
+        this.customModelData = item.customModelData;
     }
 }

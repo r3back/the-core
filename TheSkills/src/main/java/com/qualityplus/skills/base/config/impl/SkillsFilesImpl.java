@@ -2,8 +2,12 @@ package com.qualityplus.skills.base.config.impl;
 
 import com.qualityplus.skills.api.config.SkillFiles;
 import com.qualityplus.skills.base.config.skills.*;
+import eu.okaeri.configs.OkaeriConfig;
 import eu.okaeri.injector.annotation.Inject;
 import eu.okaeri.platform.core.annotation.Component;
+
+import java.util.Arrays;
+import java.util.List;
 
 @Component
 public final class SkillsFilesImpl implements SkillFiles<AlchemyConfig, CarpentryConfig, CombatConfig, DiscovererConfig, EnchantingConfig, FarmingConfig, FishingConfig,
@@ -80,6 +84,11 @@ public final class SkillsFilesImpl implements SkillFiles<AlchemyConfig, Carpentr
     @Override
     public TamingConfig taming() {
         return tamingConfig;
+    }
+
+    @Override
+    public List<OkaeriConfig> getAll() {
+        return Arrays.asList(alchemyConfig, carpentryConfig, combatConfig, discovererConfig, enchantingConfig, farmingConfig, fishingConfig, foragingConfig, miningConfig, runecraftingConfig, dungeoneeringConfig, tamingConfig);
     }
 
     @Override

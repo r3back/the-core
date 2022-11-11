@@ -35,7 +35,7 @@ public class ListUtils {
         private final List<T> initialList;
 
         private ListBuilder(List<T> initialList) {
-            this.initialList = initialList;
+            this.initialList = new ArrayList<>(initialList);
         }
 
         public static <T> ListBuilder<T> of(List<T> list){

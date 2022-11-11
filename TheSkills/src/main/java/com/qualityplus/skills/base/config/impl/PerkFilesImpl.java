@@ -1,10 +1,15 @@
 package com.qualityplus.skills.base.config.impl;
 
 import com.qualityplus.skills.api.config.PerkFiles;
+import com.qualityplus.skills.base.config.common.BaseFile;
 import com.qualityplus.skills.base.config.perk.OrbMasterConfig;
 import com.qualityplus.skills.base.config.perk.*;
+import eu.okaeri.configs.OkaeriConfig;
 import eu.okaeri.injector.annotation.Inject;
 import eu.okaeri.platform.core.annotation.Component;
+
+import java.util.Arrays;
+import java.util.List;
 
 @Component
 public final class PerkFilesImpl implements PerkFiles<AbilityDamageConfig, BonusAttackSpeedConfig, CactusSkinConfig, EagleEyesConfig, FarmingFortuneConfig, ForagingFortuneConfig, IronLungsConfig,
@@ -149,5 +154,12 @@ public final class PerkFilesImpl implements PerkFiles<AbilityDamageConfig, Bonus
     @Override
     public OrbMasterConfig orbMaster() {
         return orbMasterConfig;
+    }
+
+    @Override
+    public List<OkaeriConfig> getAll() {
+        return Arrays.asList(abilityDamageConfig, bonusAttackSpeedConfig, cactusSkinConfig, eagleEyesConfig, farmingFortuneConfig, foragingFortuneConfig, ironLungsConfig, leavesMasterConfig,
+                lightningPunchConfig, medicineManConfig, miningFortuneConfig, miningSpeedConfig, onePunchManConfig, projectileMasterConfig, refurbishedConfig, spidermanConfig,
+                steelSkinConfig, wizardConfig, seaLuckyChanceConfig, potionMasterConfig, brewerChanceConfig, orbMasterConfig);
     }
 }

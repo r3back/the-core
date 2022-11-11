@@ -20,11 +20,16 @@ public final class Messages extends OkaeriConfig {
         public String invalidPet = "&cInvalid Pet!";
         public String cantDeSpawn = "&cYou don't have a pet to de-spawn!";
         public String invalidPetEgg = "&cError trying to give Pet Egg!";
-        public String cantSpawn = "&cYou can't spawn a pet you already have a pet spawned!";
 
         public String selectedPetInGUI = "%pet_egg_item_displayname%";
         public String nonSelectedPetInGUI = "&cNone";
 
+        public String clickToSummon = "&eLeft-Click to summon!";
+        public String clickToDeSpawn = "&cLeft-Click to despawn!";
+
+        public String successfullyAddedToYourPetMenu = "&aSuccessfully added %pet_egg_displayname% &ato your pet menu!";
+        public String summonedPet = "&aYou summoned your %pet_egg_displayname%&a!";
+        public String deSpawnedPet = "&aYou despawned your %pet_egg_displayname%&a!";
     }
 
 
@@ -40,10 +45,10 @@ public final class Messages extends OkaeriConfig {
         public String mustBeAPlayer = "&cYou must be a player to do that!";
         public String invalidArguments = "&cInvalid Arguments!";
         public String invalidAmount = "&cInvalid Amount!";
-        public String useHelp = "&cUse: /enchanting help";
+        public String useHelp = "&cUse: /pets help";
 
         public String helpMessage = "&7%command% - &e%description%";
-        public String helpHeader = "      &6&lTheEnchanting   ";
+        public String helpHeader = "      &6&lThePets   ";
         public String helpfooter = "&e<< &6Page %page% of %maxpage% &e>>";
         public String previousPage = "<<";
         public String nextPage = ">>";

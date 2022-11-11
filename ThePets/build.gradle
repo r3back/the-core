@@ -8,6 +8,7 @@ repositories {
 }
 
 dependencies {
+    compileOnly project(':TheSkills')
     compileOnly project(':TheAssistant:TheAssistant-Plugin')
     compileOnly project(':TheAssistant:TheAssistant-API')
     compileOnly project(':TheAssistant:Addons:Commons')
@@ -20,6 +21,7 @@ dependencies {
     compileOnly 'mysql:mysql-connector-java:8.0.27'
     compileOnly 'org.mongodb:mongodb-driver-sync:4.6.1'
     compileOnly 'eu.okaeri:okaeri-persistence-mongo:1.5.12'
+    compileOnly 'xyz.xenondevs:particle:1.8.1'
 
     //XMaterial
     compileOnly 'com.github.cryptomorin:XSeries:9.1.0'
@@ -74,6 +76,7 @@ shadowJar {
     relocate 'de.tr7zw', 'com.qualityplus.assistant.lib.de.tr7zw'
     relocate 'com.mysql', 'com.qualityplus.assistant.lib.com.mysql'
     relocate 'com.mongodb', 'com.qualityplus.assistant.lib.com.mongodb'
+    relocate 'xyz.xenondevs', 'com.qualityplus.assistant.lib.xyz.xenondevs'
 
 
     doLast {

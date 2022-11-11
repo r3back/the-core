@@ -21,4 +21,8 @@ public final class UserStats extends Document implements LevellableInteger<Strin
         Stats.values().stream().map(Stat::getId).forEach(perk -> level.putIfAbsent(perk, 0));
         Stats.values().stream().map(Stat::getId).forEach(perk -> fromArmor.putIfAbsent(perk, 0));
     }
+
+    public int getTotalLevel(String value){
+        return getLevel(value) + getArmor(value);
+    }
 }

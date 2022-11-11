@@ -7,7 +7,8 @@ import eu.okaeri.injector.annotation.Inject;
 import eu.okaeri.platform.core.annotation.Component;
 
 @Component
-public final class BasicFiles implements ConfigFiles<Config, Inventories, Messages, Commands> {
+public final class BasicFiles implements ConfigFiles<Config, Inventories, Messages, Commands, CategoriesFile> {
+    private @Inject CategoriesFile categories;
     private @Inject Inventories inventories;
     private @Inject Commands commands;
     private @Inject Messages messages;
@@ -34,10 +35,16 @@ public final class BasicFiles implements ConfigFiles<Config, Inventories, Messag
     }
 
     @Override
+    public CategoriesFile categories() {
+        return categories;
+    }
+
+    @Override
     public void reloadFiles() {
         config.load();
         commands.load();
         messages.load();
+        categories.load();
         inventories.load();
     }
 }

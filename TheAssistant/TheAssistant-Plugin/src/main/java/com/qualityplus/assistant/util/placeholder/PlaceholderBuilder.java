@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -15,6 +16,10 @@ public final class PlaceholderBuilder {
 
     public static PlaceholderBuilder create(){
         return new PlaceholderBuilder();
+    }
+
+    public static PlaceholderBuilder empty(){
+        return create(Collections.emptyList());
     }
 
     public static PlaceholderBuilder create(List<IPlaceholder> placeholders){
@@ -57,4 +62,6 @@ public final class PlaceholderBuilder {
     public List<IPlaceholder> get(){
         return placeholderList;
     }
+
+
 }

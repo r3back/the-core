@@ -1,6 +1,7 @@
 package com.qualityplus.auction.base.gui.all;
 
 import com.qualityplus.assistant.api.util.IPlaceholder;
+import com.qualityplus.assistant.base.dependency.UsualDependencies;
 import com.qualityplus.assistant.inventory.SignGUI;
 import com.qualityplus.assistant.util.inventory.InventoryUtils;
 import com.qualityplus.assistant.util.itemstack.ItemStackUtils;
@@ -208,17 +209,22 @@ public final class AllAuctionsGUI extends AuctionGUI {
             }
             player.closeInventory();
 
-            SignGUI.builder()
-                    .plugin(box.plugin())
-                    .uuid(player.getUniqueId())
-                    .withLines(box.files().messages().auctionMessages.enterQuery)
-                    .action(e -> e.getPlayer().openInventory(
-                            new AllAuctionsGUI(box, 1, uuid, getBuilder()
-                                    .stringFilter(new StringFilter(e.getLines().get(0)))
-                                    .build()).getInventory()
-                    ))
-                    .build()
-                    .open();
+            if(UsualDependencies.isProtocolLib()){
+                SignGUI.builder()
+                        .plugin(box.plugin())
+                        .uuid(player.getUniqueId())
+                        .withLines(box.files().messages().auctionMessages.enterQuery)
+                        .action(e -> e.getPlayer().openInventory(
+                                new AllAuctionsGUI(box, 1, uuid, getBuilder()
+                                        .stringFilter(new StringFilter(e.getLines().get(0)))
+                                        .build()).getInventory()
+                        ))
+                        .build()
+                        .open();
+            }else{
+                box.plugin().getLogger().warning("You need to install ProtocolLib to use Sign GUIS!");
+            }
+
         }else if(isItem(slot, config.goBack)){
             player.openInventory(new MainAuctionGUI(box, searcher, uuid).getInventory());
         }

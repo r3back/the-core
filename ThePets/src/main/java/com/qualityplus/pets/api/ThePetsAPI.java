@@ -1,7 +1,9 @@
 package com.qualityplus.pets.api;
 
-import com.qualityplus.pets.api.service.PetsService;
+import com.qualityplus.pets.api.service.PetService;
+import com.qualityplus.pets.api.service.UserPetService;
 
 public interface ThePetsAPI {
-    PetsService getPetsService();
+    UserPetService getUsersService();
+    PetService getPetsService();
 }

@@ -37,4 +37,6 @@ public final class UserListener implements Listener {
                 .acceptAsync((Consumer<Optional<UserData>>) user -> user.ifPresent(box.service()::removeData))
                 .execute();
     }
+
+
 }

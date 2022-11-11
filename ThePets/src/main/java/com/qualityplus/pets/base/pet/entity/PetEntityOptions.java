@@ -12,4 +12,5 @@ public final class PetEntityOptions extends OkaeriConfig {
     private String displayName;
     private XMaterial material;
     private String texture;
+    private String particle;
 }

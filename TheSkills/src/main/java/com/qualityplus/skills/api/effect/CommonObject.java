@@ -20,6 +20,7 @@ public abstract class CommonObject {
     protected GUIOptions guiOptions;
     protected final List<Listener> registeredListeners = new ArrayList<>();
     protected final List<Class<? extends Listener>> extraListeners = new ArrayList<>();
+
     protected @Getter @Setter double initialAmount;
 
     public CommonObject(String id, boolean enabled, String displayName, List<String> description, GUIOptions skillGUIOptions, double initialAmount) {

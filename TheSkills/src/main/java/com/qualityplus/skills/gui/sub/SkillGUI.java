@@ -89,7 +89,7 @@ public final class SkillGUI extends SkillsGUI {
     private ItemStack getItem(Item item, UserData data, Skill skill, int level){
         PlaceholderBuilder builder = SkillsPlaceholderUtil.getAllPlaceholders(data, skill, level);
 
-        List<String> loreInGui = skill.getSkillCacheMessages(level, Skill.MessageType.GUI);
+        List<String> loreInGui = skill.getCachedGUI(level);
 
         return ItemStackUtils.makeItem(item, builder
                 .with(new Placeholder("skill_info_gui", StringUtils.processMulti(loreInGui, builder.get())))
