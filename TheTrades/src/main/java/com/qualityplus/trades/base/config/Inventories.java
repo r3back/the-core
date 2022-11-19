@@ -40,6 +40,10 @@ public final class Inventories extends OkaeriConfig implements DefaultBackground
             .lockedItem(ItemBuilder.of(XMaterial.GRAY_DYE, 1, "&c???", Arrays.asList("&7Progress trough your item", "&7collections and explore the", "&7world to unlock new trades!")).build())
             .showIconInLockedItem(false)
             .showIconInUnlockedItem(true)
+            .customGoBackItem(ItemBuilder.of(XMaterial.ARROW,  47, 1, "&eGo Back", Arrays.asList("", "&7Click to go back!"))
+                    .command("your go back command %player%")
+                    .enabled(false)
+                    .build())
             .build();
 
     @CustomKey("tradeOptionsGUIConfig")

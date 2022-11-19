@@ -70,6 +70,8 @@ public final class MathUtils {
         return ThreadLocalRandom.current().nextDouble(min, max);
     }
 
+
+
     public static double offset(Location paramLocation1, Location paramLocation2) {
         return offset(paramLocation1.toVector(), paramLocation2.toVector());
     }

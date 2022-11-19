@@ -8,6 +8,7 @@ import com.qualityplus.assistant.util.StringUtils;
 import com.qualityplus.assistant.util.inventory.InventoryUtils;
 import com.qualityplus.assistant.util.itemstack.ItemStackUtils;
 import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.event.inventory.InventoryDragEvent;
@@ -18,6 +19,7 @@ import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 public abstract class GUI implements InventoryHolder, ClickableInventory<Item, Background> {
@@ -48,8 +50,18 @@ public abstract class GUI implements InventoryHolder, ClickableInventory<Item, B
         return Optional.ofNullable(background.items).map(back -> back.keySet().stream().anyMatch(slot -> slot.equals(clickedSlot))).orElse(false);
     }
 
+    protected void handleItemCommandClick(Player player, Item item){
+        player.closeInventory();
+
+        Optional.ofNullable(item)
+                .map(i -> i.command)
+                .filter(Objects::nonNull)
+                .ifPresent(command -> Bukkit.dispatchCommand(Bukkit.getConsoleSender(), command.replace("%player%", player.getName())));
+    }
+
     @Override
     public void setItem(Item item) {
+
         if(!item.enabled || item.slot == null) return;
 
         inventory.setItem(item.slot, ItemStackUtils.makeItem(item));
@@ -77,7 +89,7 @@ public abstract class GUI implements InventoryHolder, ClickableInventory<Item, B
     }
 
     protected boolean isItem(int slot, Item item){
-        return item.enabled && item.slot == slot;
+        return item != null && item.enabled && item.slot == slot;
     }
 
     public void onInventoryClose(InventoryCloseEvent event){}

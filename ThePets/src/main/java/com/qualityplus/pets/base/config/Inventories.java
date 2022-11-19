@@ -72,7 +72,11 @@ public final class Inventories extends OkaeriConfig implements DefaultBackground
                     "&7Selected Pet: &a%pet_selected_pet%",
                     "",
                     "&eClick to show!")).build(),
-            Arrays.asList(10,11,12,13,14,15,16,19,20,21,22,23,24,25,28,29,30,31,32,33,34)
+            Arrays.asList(10,11,12,13,14,15,16,19,20,21,22,23,24,25,28,29,30,31,32,33,34),
+            ItemBuilder.of(XMaterial.ARROW,  47, 1, "&eGo Back", Arrays.asList("", "&7Click to go back!"))
+                    .command("your go back command %player%")
+                    .enabled(false)
+                    .build()
 
     );
 

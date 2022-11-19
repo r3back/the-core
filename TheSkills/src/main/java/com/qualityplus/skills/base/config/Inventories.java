@@ -43,6 +43,10 @@ public final class Inventories extends OkaeriConfig implements DefaultBackground
                     "&eClick to view!")).build(),
             ItemBuilder.of(XMaterial.PLAYER_HEAD,  4, 1, "&a%player%'s Stats", Arrays.asList("", "&e» &7Click to view specific stats."))
                     .headOwner("%player%")
+                    .build(),
+            ItemBuilder.of(XMaterial.ARROW,  47, 1, "&eGo Back", Arrays.asList("", "&7Click to go back!"))
+                    .command("your go back command %player%")
+                    .enabled(false)
                     .build()
 
     );

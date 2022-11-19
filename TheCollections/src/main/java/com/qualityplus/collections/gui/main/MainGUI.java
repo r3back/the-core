@@ -9,6 +9,7 @@ import com.qualityplus.collections.gui.category.CategoryGUI;
 import com.qualityplus.collections.util.CollectionsItemStackUtil;
 import com.qualityplus.collections.util.CollectionsPlaceholderUtil;
 import com.qualityplus.collections.persistance.data.UserData;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
@@ -16,6 +17,7 @@ import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 public final class MainGUI extends CollectionsGUI {
@@ -41,6 +43,8 @@ public final class MainGUI extends CollectionsGUI {
 
         setItem(config.getAllCollectionsItem(), CollectionsPlaceholderUtil.getAllCategoriesPlaceholders(data));
 
+        Optional.ofNullable(config.getCustomGoBackItem()).ifPresent(this::setItem);
+
         return inventory;
     }
 
@@ -64,6 +68,8 @@ public final class MainGUI extends CollectionsGUI {
 
         if(isItem(slot, config.getCloseGUI())) {
             player.closeInventory();
+        }else if(isItem(slot, config.getCustomGoBackItem())){
+            handleItemCommandClick(player, config.getCustomGoBackItem());
         }else{
             Optional<CollectionCategory> optionalCategory = box.files().categories().getBySlot(slot);
 

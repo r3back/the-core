@@ -4,6 +4,21 @@ plugins {
 
 defaultTasks 'build'
 
+
+def copyJars =  {
+    file -> {
+        def dir = 'C:/Users/andre/OneDrive/Desktop/TEST'
+        mkdir dir
+        copy {
+            into dir
+            from file
+        }
+    }
+}
+
+project.ext.copyJars = copyJars
+
+
 subprojects {
     apply plugin: 'java'
     apply plugin: 'maven-publish'

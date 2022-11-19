@@ -78,11 +78,11 @@ public abstract class Skill extends CommonObject implements ListenerRegistrable 
     }
 
     public List<CommandReward> getCommandRewards(int level) {
-        return getMap(commandRewards, level);
+        return Optional.ofNullable(getMap(commandRewards, level)).orElse(Collections.emptyList());
     }
 
     public List<StatReward> getStatRewards(int level) {
-        return getMap(statRewards, level);
+        return Optional.ofNullable(getMap(statRewards, level)).orElse(Collections.emptyList());
     }
 
     public double getLevelRequirement(int level){

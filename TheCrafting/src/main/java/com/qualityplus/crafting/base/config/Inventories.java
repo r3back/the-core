@@ -84,6 +84,10 @@ public final class Inventories extends OkaeriConfig implements DefaultBackground
                     "",
                     "&e» &7Click to craft this item!")).build())
             .resultItemEmpty(ItemBuilder.of(XMaterial.BARRIER, 1, "%crafting_recipe_status_placeholder%", Collections.emptyList()).build())
+            .customGoBackItem(ItemBuilder.of(XMaterial.ARROW,  47, 1, "&eGo Back", Arrays.asList("", "&7Click to go back!"))
+                            .command("your go back command %player%")
+                            .enabled(false)
+                            .build())
             .build();
 
     @CustomKey("modifyRecipeGUI")

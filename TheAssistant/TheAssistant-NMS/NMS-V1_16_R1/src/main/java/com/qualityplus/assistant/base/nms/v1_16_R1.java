@@ -28,11 +28,23 @@ import org.bukkit.metadata.FixedMetadataValue;
 import org.bukkit.plugin.Plugin;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.Collections;
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
 public final class v1_16_R1 extends AbstractNMS{
     private @Getter @Inject Plugin plugin;
+
+    @Override
+    public void damageBlock(List<Player> player, Block block, int damage) {
+
+    }
+
+    @Override
+    public void damageBlock(Player player, Block block, int damage) {
+        damageBlock(Collections.singletonList(player), block, damage);
+    }
 
     @Override
     public InventoryView getFakeInventory(Player player) {

@@ -70,7 +70,8 @@ public final class EnchantMainGUI extends EnchantingGUI {
                 player.closeInventory();
             }else if(slot == 19) {
                 handler.handle(event);
-
+            }else if(isItem(slot, config.getCustomGoBackItem())){
+                handleItemCommandClick(player, config.getCustomGoBackItem());
             }else {
                 event.setCancelled(true);
 
@@ -144,6 +145,8 @@ public final class EnchantMainGUI extends EnchantingGUI {
             setItem(config.getEmptyItem());
 
         setItem(config.getBookShelfItem(), Collections.singletonList(new Placeholder("enchanting_table_bookshelf", bookShelf)));
+
+        Optional.ofNullable(config.getCustomGoBackItem()).ifPresent(this::setItem);
 
         setItem(config.getCloseGUI());
 

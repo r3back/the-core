@@ -47,7 +47,10 @@ public final class Inventories extends OkaeriConfig implements DefaultBackground
             .enchantmentSlots(Arrays.asList(12,13,14,15,16,21,22,23,24,25,30,31,32,33,34))
             .emptyItem(ItemBuilder.of(XMaterial.GRAY_DYE, 23, 1, "&cEnchant Item", Arrays.asList("&7Place an item in the open slot", "&7enchant it!")).build())
             .cannotEnchantItem(ItemBuilder.of(XMaterial.RED_DYE, 23, 1, "&cCannot Enchant Item!", Collections.singletonList("&7This item cannot be enchanted!")).build())
-
+            .customGoBackItem(ItemBuilder.of(XMaterial.ARROW,  47, 1, "&eGo Back", Arrays.asList("", "&7Click to go back!"))
+                    .command("your go back command %player%")
+                    .enabled(false)
+                    .build())
             .build();
 
     @CustomKey("levelEnchantGUI")

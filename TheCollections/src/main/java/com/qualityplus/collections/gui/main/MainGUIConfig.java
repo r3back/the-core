@@ -15,4 +15,5 @@ public final class MainGUIConfig extends OkaeriConfig implements SimpleGUI {
     private CommonGUI commonGUI;
     private Item collectionsItem;
     private Item allCollectionsItem;
+    private Item customGoBackItem;
 }

@@ -36,16 +36,6 @@ processResources{
     }
 }
 
-def copyJars =  { file -> {
-    def dir = 'C:/Users/andre/OneDrive/Desktop/TEST'
-    mkdir dir
-    copy {
-        into dir
-        from file
-    }
-}
-}
-
 shadowJar {
     archiveFileName = 'TheEnchanting.jar'
 
@@ -70,7 +60,7 @@ shadowJar {
 
 
     doLast {
-        copyJars(archiveFile)
+        rootProject.copyJars(archiveFile)
     }
 }
 

@@ -68,6 +68,8 @@ public final class TradesGUI extends TradeGUI {
 
         setItem(config.getGoBack());
 
+        Optional.ofNullable(config.getCustomGoBackItem()).ifPresent(this::setItem);
+
         return inventory;
     }
 
@@ -106,6 +108,8 @@ public final class TradesGUI extends TradeGUI {
             player.openInventory(new TradesGUI(box, uuid, page - 1).getInventory());
         }else if(isItem(slot, config.getGoBack())){
             Optional.ofNullable(config.getGoBack().command).ifPresent(player::performCommand);
+        }else if(isItem(slot, config.getCustomGoBackItem())){
+            handleItemCommandClick(player, config.getCustomGoBackItem());
         }
     }
 }

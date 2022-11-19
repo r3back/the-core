@@ -12,8 +12,26 @@ import java.util.Optional;
 
 @UtilityClass
 public class LocationUtils {
+    private static final String  FULL_LOCATION_FORMAT = "X: %x%, Y: %y%, Z: %z%, Yaw: %yaw%, Pitch: %pitch%, World: %world%";
     private static final String LOCATION_FORMAT = "X: %x%, Y: %y%, Z: %z%, World: %world%";
     private static final String NULL_LOCATION_FORMAT = "&c✘";
+
+
+    public String fullToString(Location location){
+        if(location == null) return NULL_LOCATION_FORMAT;
+
+        //Don't change this to prevent getName taken from WorldInfo
+        String world = Optional.ofNullable(location.getWorld()).map(world1 -> world1.getName()).orElse(NULL_LOCATION_FORMAT);
+
+        return StringUtils.processMulti(FULL_LOCATION_FORMAT, PlaceholderBuilder
+                .create(new Placeholder("world", world),
+                        new Placeholder("x", location.getX()),
+                        new Placeholder("y", location.getY()),
+                        new Placeholder("yaw", location.getYaw()),
+                        new Placeholder("pitch", location.getPitch()),
+                        new Placeholder("z", location.getZ()))
+                .get());
+    }
 
 
     public String toString(Location location){

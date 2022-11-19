@@ -15,18 +15,20 @@ public final class TradesGUIConfig extends OkaeriConfig implements SimpleGUI {
     private final Item lockedItem;
     private final Item previousPage;
     private final Item unlockedItem;
-
+    private final Item customGoBackItem;
     private final boolean showIconInLockedItem;
     private final boolean showIconInUnlockedItem;
 
     @Builder
-    public TradesGUIConfig(CommonGUI commonGUI, Item goBack, Item nextPage, Item lockedItem, Item previousPage, Item unlockedItem, boolean showIconInLockedItem, boolean showIconInUnlockedItem) {
+    public TradesGUIConfig(CommonGUI commonGUI, Item goBack, Item nextPage, Item lockedItem, Item previousPage, Item unlockedItem, boolean showIconInLockedItem, boolean showIconInUnlockedItem,
+                           Item customGoBackItem) {
         this.commonGUI = commonGUI;
         this.goBack = goBack;
         this.nextPage = nextPage;
         this.lockedItem = lockedItem;
         this.previousPage = previousPage;
         this.unlockedItem = unlockedItem;
+        this.customGoBackItem = customGoBackItem;
         this.showIconInLockedItem = showIconInLockedItem;
         this.showIconInUnlockedItem = showIconInUnlockedItem;
     }

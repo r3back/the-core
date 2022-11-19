@@ -18,17 +18,24 @@ public final class Timer extends OkaeriConfig {
     private TimeType type;
 
     public long getEffectiveTime(){
+        return getDuration().toMillis();
+    }
+
+    public long getSeconds(){
+        return getDuration().getSeconds();
+    }
+
+    private Duration getDuration(){
         switch (type){
             case MINUTES:
-                return Duration.ofMinutes(amount).toMillis();
+                return Duration.ofMinutes(amount);
             case DAYS:
-                return Duration.ofDays(amount).toMillis();
+                return Duration.ofDays(amount);
             case HOURS:
-                return Duration.ofHours(amount).toMillis();
-            case SECONDS:
-                return Duration.ofSeconds(amount).toMillis();
+                return Duration.ofHours(amount);
+            default:
+                return Duration.ofSeconds(amount);
         }
-        return 0L;
     }
 
     public enum TimeType{

@@ -10,7 +10,11 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.InventoryView;
 import org.bukkit.inventory.ItemStack;
 
+import java.util.List;
+
 public interface NMS {
+    void damageBlock(List<Player> player, Block block, int damage);
+    void damageBlock(Player player, Block block, int damage);
 
     void sendActionBar(Player player, String message);
 

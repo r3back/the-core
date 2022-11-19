@@ -6,6 +6,7 @@ import com.qualityplus.crafting.api.box.Box;
 import com.qualityplus.crafting.base.gui.CraftingGUI;
 import com.qualityplus.crafting.base.gui.craftingtable.handler.result.TableClickHandler;
 import com.qualityplus.assistant.util.inventory.InventoryUtils;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
@@ -15,6 +16,8 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
+import java.util.Optional;
 
 public final class CraftingTableGUI extends CraftingGUI {
     private final TableClickHandler tableClickHandler;
@@ -43,6 +46,8 @@ public final class CraftingTableGUI extends CraftingGUI {
 
         setItem(config.getCloseGUI());
 
+        Optional.ofNullable(config.getCustomGoBackItem()).ifPresent(this::setItem);
+
         return inventory;
     }
 
@@ -59,8 +64,11 @@ public final class CraftingTableGUI extends CraftingGUI {
                 tableClickHandler.handleResultClick(event, false);
             }else if(config.getRecipeSlots().contains(slot)) {
                 tableClickHandler.handleClick(player);
-            }else if(config.getAutoRecipeSlots().contains(slot)){
+            }else if(config.getAutoRecipeSlots().contains(slot)) {
                 tableClickHandler.handleResultClick(event, true);
+
+            }else if(isItem(slot, config.getCustomGoBackItem())){
+                handleItemCommandClick(player, config.getCustomGoBackItem());
             }else
                 event.setCancelled(true);
         }else

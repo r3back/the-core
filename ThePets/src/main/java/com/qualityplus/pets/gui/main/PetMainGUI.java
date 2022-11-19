@@ -88,6 +88,8 @@ public final class PetMainGUI extends PetsGUI {
             }
         }
 
+        Optional.ofNullable(config.getCustomGoBackItem()).ifPresent(this::setItem);
+
         List<IPlaceholder> selectedPetPl = new Placeholder("pet_selected_pet", petName).alone();
 
         Item petsAreHiddenItem = petsAreHidden ? config.getHidePetsEnabled() : config.getHidePetsDisabled();
@@ -155,6 +157,8 @@ public final class PetMainGUI extends PetsGUI {
                     convertItem(player, pet, spawnedPet);
                 else
                     spawnAndDeSpawn(player, pet, spawnedPet);
+            }else if(isItem(slot, config.getCustomGoBackItem())){
+                handleItemCommandClick(player, config.getCustomGoBackItem());
             }else{
                 player.openInventory(new PetLevelsGUI(box, player, pet, 1).getInventory());
             }

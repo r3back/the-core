@@ -23,11 +23,36 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.metadata.FixedMetadataValue;
 import org.bukkit.plugin.Plugin;
 
-import java.util.Optional;
-import java.util.UUID;
+import java.util.*;
 
 public final class v1_12_R1 extends AbstractNMS{
     private @Getter @Inject Plugin plugin;
+
+    @Override
+    public void damageBlock(List<Player> players, Block block, int damage) {
+        int x = block.getX();
+        int y = block.getY();
+        int z = block.getZ();
+
+        BlockPosition position = new BlockPosition(x, y, z);
+
+        //Keeps the same id to prevent packet glitch
+        Integer id = Optional.ofNullable(clickCache.getIfPresent(block)).orElse(new Random().nextInt(2000));
+
+        clickCache.put(block, id);
+
+        PacketPlayOutBlockBreakAnimation packet = new PacketPlayOutBlockBreakAnimation(id, position, damage);
+
+        players.stream()
+                .filter(Objects::nonNull)
+                .forEach(player -> ((CraftPlayer) player).getHandle().playerConnection.sendPacket(packet));
+
+    }
+
+    @Override
+    public void damageBlock(Player player, Block block, int damage) {
+        damageBlock(Collections.singletonList(player), block, damage);
+    }
 
     @Override
     public InventoryView getFakeInventory(Player player) {

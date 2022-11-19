@@ -22,4 +22,5 @@ public final class PetsGUIConfig extends OkaeriConfig implements SimpleGUI {
     private Item hidePetsEnabled;
     private Item hidePetsDisabled;
     private List<Integer> slots;
+    private Item customGoBackItem;
 }

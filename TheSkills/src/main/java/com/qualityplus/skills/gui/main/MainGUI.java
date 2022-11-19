@@ -49,6 +49,8 @@ public final class MainGUI extends SkillsGUI {
 
         setItem(config.getPlayerInfoItem(), Collections.singletonList(new Placeholder("player", name)));
 
+        Optional.ofNullable(config.getCustomGoBackItem()).ifPresent(this::setItem);
+
         return inventory;
     }
 
@@ -74,6 +76,8 @@ public final class MainGUI extends SkillsGUI {
             player.closeInventory();
         }else if(isItem(slot, config.getPlayerInfoItem())){
             player.openInventory(new StatsAndPerksGUI(box, player, 1, StatsAndPerksGUI.GUIType.STAT).getInventory());
+        }else if(isItem(slot, config.getCustomGoBackItem())){
+            handleItemCommandClick(player, config.getCustomGoBackItem());
         }else{
             Optional<Skill> optionalSkill = Skills.values(Skill::isEnabled).stream().filter(s -> s.getGuiOptions().getSlot() == slot).findFirst();
 

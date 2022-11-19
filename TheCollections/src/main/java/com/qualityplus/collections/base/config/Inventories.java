@@ -48,6 +48,10 @@ public final class Inventories extends OkaeriConfig implements DefaultBackground
                             "",
                             "&eClick to show rankings!"
                             ))
+                    .build(),
+            ItemBuilder.of(XMaterial.ARROW,  47, 1, "&eGo Back", Arrays.asList("", "&7Click to go back!"))
+                    .command("your go back command %player%")
+                    .enabled(false)
                     .build()
     );
 

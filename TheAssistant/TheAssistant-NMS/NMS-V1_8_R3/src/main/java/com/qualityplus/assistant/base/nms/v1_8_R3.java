@@ -20,11 +20,22 @@ import org.bukkit.metadata.FixedMetadataValue;
 import org.bukkit.plugin.Plugin;
 import org.inventivetalent.bossbar.BossBarAPI;
 
+import java.util.Collections;
+import java.util.List;
 import java.util.UUID;
 
 public final class v1_8_R3 extends AbstractNMS{
     private @Getter @Inject Plugin plugin;
 
+    @Override
+    public void damageBlock(List<Player> player, Block block, int damage) {
+
+    }
+
+    @Override
+    public void damageBlock(Player player, Block block, int damage) {
+        damageBlock(Collections.singletonList(player), block, damage);
+    }
     @Override
     public InventoryView getFakeInventory(Player player) {
 

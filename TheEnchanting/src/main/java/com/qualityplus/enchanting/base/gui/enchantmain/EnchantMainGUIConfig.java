@@ -14,6 +14,7 @@ public final class EnchantMainGUIConfig extends OkaeriConfig implements SimpleGU
     private final Item enchantItemNoBookShelfPower;
     private final List<Integer> enchantmentSlots;
     private final Item cannotEnchantItem;
+    private final Item customGoBackItem;
     private final CommonGUI commonGUI;
     private final Item bookShelfItem;
     private final Item nextPageItem;
@@ -23,10 +24,11 @@ public final class EnchantMainGUIConfig extends OkaeriConfig implements SimpleGU
 
     @Builder
     public EnchantMainGUIConfig(Item bookShelfItem, Item nextPageItem, Item backPageItem, CommonGUI commonGUI, Item enchantItem, Item enchantItemNoBookShelfPower, List<Integer> enchantmentSlots,
-                                Item emptyItem, Item cannotEnchantItem) {
+                                Item emptyItem, Item cannotEnchantItem, Item customGoBackItem) {
         this.enchantItemNoBookShelfPower = enchantItemNoBookShelfPower;
         this.cannotEnchantItem = cannotEnchantItem;
         this.enchantmentSlots = enchantmentSlots;
+        this.customGoBackItem = customGoBackItem;
         this.bookShelfItem = bookShelfItem;
         this.nextPageItem = nextPageItem;
         this.backPageItem = backPageItem;

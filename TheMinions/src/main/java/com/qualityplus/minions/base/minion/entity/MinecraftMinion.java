@@ -77,7 +77,7 @@ public abstract class MinecraftMinion implements MinionEntity {
     }
 
 
-    private Player getPlayer(){
+    protected Player getPlayer(){
         return Bukkit.getPlayer(owner);
     }
 
