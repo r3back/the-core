@@ -28,5 +28,6 @@ public final class Commands extends OkaeriConfig {
     public CommandDetails deleteCommand = new CommandDetails(Collections.singletonList("delete"), "Delete recipe command", "/TheCrafting delete <id>", "thecrafting.delete", true, Duration.ZERO.getSeconds(), true, "thecrafting");
     public CommandDetails previewCommand = new CommandDetails(Collections.singletonList("preview"), "View recipe preview", "/TheCrafting preview <id>", "thecrafting.preview", true, Duration.ZERO.getSeconds(), true, "thecrafting");
     public CommandDetails helpCommand = new CommandDetails(Collections.singletonList("help"), "Show all commands", "/TheCrafting help", "thecrafting.help", true, Duration.ZERO.getSeconds(), true, "thecrafting");
+    public CommandDetails openCommand = new CommandDetails(Collections.singletonList("open"), "Open Crafting gui", "/TheCrafting open", "thecrafting.open", true, Duration.ZERO.getSeconds(), true, "thecrafting");
 
 }

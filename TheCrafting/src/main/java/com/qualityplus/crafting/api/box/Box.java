@@ -5,6 +5,6 @@ import com.qualityplus.crafting.base.config.*;
 import org.bukkit.plugin.Plugin;
 
 public interface Box {
-    ConfigFiles<Config, RecipesFile, Inventories, Messages, Commands, Categories> files();
+    ConfigFiles<Config, RecipesFile, Inventories, Messages, Commands, Categories, BlockedCraftings> files();
     Plugin plugin();
 }

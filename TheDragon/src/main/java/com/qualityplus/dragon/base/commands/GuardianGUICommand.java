@@ -18,7 +18,6 @@ import java.util.List;
 public final class GuardianGUICommand extends AssistantCommand {
     private @Inject Box box;
 
-
     @Override
     public boolean execute(CommandSender sender, String[] args) {
         Player player = (Player) sender;

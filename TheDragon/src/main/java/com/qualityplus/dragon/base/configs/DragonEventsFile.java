@@ -15,7 +15,9 @@ import eu.okaeri.platform.core.annotation.Configuration;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -42,7 +44,7 @@ public final class DragonEventsFile extends OkaeriConfig {
                             .build())
                     .put(4, SerializableEvent.builder()
                             .generalSettings(new EventConfig(EventType.GUARDIANS, 10, false, 0, 5))
-                            .guardianSettings(new GuardianConfig())
+                            .guardianSettings(new GuardianConfig(Collections.singletonList(new GuardianChanceConfig("epic_zombie", 100, 0, false)), 10))
                             .build())
                     .build()))
             .build();
@@ -109,6 +111,8 @@ public final class DragonEventsFile extends OkaeriConfig {
         public double lightningDamage = 100;
     }
 
+    @AllArgsConstructor
+    @NoArgsConstructor
     public static class GuardianConfig extends OkaeriConfig{
         public List<GuardianChanceConfig> guardians;
         public int guardiansAmount;

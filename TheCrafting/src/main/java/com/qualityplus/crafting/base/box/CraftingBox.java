@@ -9,11 +9,11 @@ import org.bukkit.plugin.Plugin;
 
 @Component
 public final class CraftingBox implements Box {
-    private @Inject ConfigFiles<Config, RecipesFile, Inventories, Messages, Commands, Categories> files;
+    private @Inject ConfigFiles<Config, RecipesFile, Inventories, Messages, Commands, Categories, BlockedCraftings> files;
     private @Inject Plugin plugin;
 
     @Override
-    public ConfigFiles<Config, RecipesFile, Inventories, Messages, Commands, Categories> files() {
+    public ConfigFiles<Config, RecipesFile, Inventories, Messages, Commands, Categories, BlockedCraftings> files() {
         return files;
     }
 

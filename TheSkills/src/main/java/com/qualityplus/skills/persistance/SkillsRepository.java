@@ -7,7 +7,9 @@ import eu.okaeri.persistence.repository.annotation.DocumentCollection;
 import eu.okaeri.persistence.repository.annotation.DocumentIndex;
 import eu.okaeri.persistence.repository.annotation.DocumentPath;
 import eu.okaeri.platform.core.annotation.DependsOn;
+import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
+import org.bukkit.entity.Player;
 
 import java.util.Optional;
 import java.util.UUID;
@@ -25,12 +27,17 @@ public interface SkillsRepository extends DocumentRepository<UUID, UserData> {
     Optional<UserData> findByUuid(UUID uuid);
 
 
-    default UserData get(OfflinePlayer player) {
-        UserData user = this.findOrCreateByPath(player.getUniqueId());
+    default UserData get(Player player) {
+        return get(player.getUniqueId(), player.getName());
+    }
 
-        user.setUuid(player.getUniqueId());
+    default UserData get(UUID uuid, String name) {
 
-        Optional.ofNullable(player.getName()).ifPresent(user::setName);
+        UserData user = this.findOrCreateByPath(uuid);
+
+        user.setUuid(uuid);
+
+        Optional.ofNullable(name).ifPresent(user::setName);
 
         user.getSkills().fillIfEmpty();
 

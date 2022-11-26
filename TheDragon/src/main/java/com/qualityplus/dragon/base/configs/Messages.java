@@ -61,6 +61,7 @@ public final class Messages extends OkaeriConfig {
         public String guardianAlreadyExist = "%prefix% &7There is a guardian with that id!";
         public String spawnSet = "%prefix% &7Spawn was successfully set in &5%thedragon_spawn_location%&7!";
         public String crystalSet = "%prefix% &7Dragon Crystal was successfully added in &5%thedragon_crystal_location%&7!";
+        public String guardianSpawnSet = "%prefix% &7Guardian spawn was successfully added in &5%thedragon_guardian_spawn_location%&7!";
         public String setupModeLeft = "%prefix% &aYou have left from setup mode!";
         public String altarSet = "%prefix% &7Dragon Altar was successfully added in &5%location%&7!";
         public String altarRemoved = "%prefix% &7Altar was successfully removed!";

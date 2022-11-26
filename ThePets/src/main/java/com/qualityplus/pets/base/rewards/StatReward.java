@@ -1,6 +1,6 @@
 package com.qualityplus.pets.base.rewards;
 
-import com.qualityplus.assistant.api.common.rewards.Reward;
+import com.qualityplus.pets.ThePets;
 import eu.okaeri.configs.OkaeriConfig;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -17,16 +17,10 @@ public final class StatReward extends OkaeriConfig {
     private int amount;
 
     public void addStat(Player player) {
-        com.qualityplus.skills.TheSkills.getApi()
-                .getSkillsService()
-                .getData(player.getUniqueId())
-                .ifPresent(userData -> userData.getSkills().addArmor(stat, amount));
+        ThePets.getApi().getDependencyHandler().getSkills().addStat(player, stat, amount);
     }
 
     public void removeStat(Player player) {
-        com.qualityplus.skills.TheSkills.getApi()
-                .getSkillsService()
-                .getData(player.getUniqueId())
-                .ifPresent(userData -> userData.getSkills().removeArmor(stat, amount));
+        ThePets.getApi().getDependencyHandler().getSkills().removeStat(player, stat, amount);
     }
 }

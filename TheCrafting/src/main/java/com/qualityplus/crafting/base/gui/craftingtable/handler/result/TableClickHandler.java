@@ -16,16 +16,15 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryView;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.scheduler.BukkitScheduler;
 
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @RequiredArgsConstructor
 public final class TableClickHandler {
     //Fake Slot | Special Slot
     private final Map<Integer, IRecipe> automaticRecipes = new HashMap<>();
+    private final BukkitScheduler scheduler = Bukkit.getScheduler();
     private final Map<Integer, Integer> tableRelationSlots;
     private final NormalResultHandler normalHandler;
     private final ShiftResultHandler shiftHandler;
@@ -35,8 +34,8 @@ public final class TableClickHandler {
     private final Box box;
 
     public TableClickHandler(Inventory inventory, InventoryView view, Box box, Map<Integer, Integer> slots) {
-        this.normalHandler = new NormalResultHandler(slots, this, inventory, view);
-        this.shiftHandler = new ShiftResultHandler(slots, this, inventory, view);
+        this.normalHandler = new NormalResultHandler(slots, this, inventory, view, box);
+        this.shiftHandler = new ShiftResultHandler(slots, this, inventory, view, box);
         this.config = box.files().inventories().getCraftingGui();
         this.tableRelationSlots = slots;
         this.inventory = inventory;
@@ -45,7 +44,7 @@ public final class TableClickHandler {
     }
 
     public void handleClick(Player player){
-        Bukkit.getScheduler().runTask(box.plugin(), () -> {
+        scheduler.runTask(box.plugin(), () -> {
             moveItemsToFakeTable();
             checkRecipe(player);
             checkAutomaticCrafts(player);
@@ -71,7 +70,13 @@ public final class TableClickHandler {
     Chequea si hay recipe y si hay pone los items
      */
     private void checkRecipe(Player player){
-        Bukkit.getScheduler().runTask(box.plugin(), () -> inventory.setItem(config.getResultSlot(), getItem(player, CraftingFinderUtil.getCraftingRecipe(inventory, view, tableRelationSlots))));
+        int slot = config.getResultSlot();
+
+        IRecipe recipe = CraftingFinderUtil.getCraftingRecipe(inventory, view, tableRelationSlots);
+
+        ItemStack item = getItem(player, recipe);
+
+        Bukkit.getScheduler().runTask(box.plugin(), () -> inventory.setItem(slot, item));
     }
 
     private void checkAutomaticCrafts(Player player){
@@ -83,11 +88,16 @@ public final class TableClickHandler {
 
         if(recipeList.size() <= 0) return;
 
-        Bukkit.getScheduler().runTask(box.plugin(), () -> {
+        scheduler.runTask(box.plugin(), () -> {
             int i = 0;
             for(CustomRecipe recipe : recipeList){
-                inventory.setItem(config.getAutoRecipeSlots().get(i), getItem(player, recipe));
-                automaticRecipes.put(config.getAutoRecipeSlots().get(i), recipe);
+                if(box.files().blockedCraftings().isBlocked(recipe)) continue;
+
+                int slot = config.getAutoRecipeSlots().get(i);
+
+                inventory.setItem(slot, getItem(player, recipe));
+
+                automaticRecipes.put(slot, recipe);
                 i++;
             }
         });
@@ -100,6 +110,13 @@ public final class TableClickHandler {
                     new Placeholder("crafting_recipe_result_item_displayname", ItemStackUtils.getName(recipe.getResult())),
                     new Placeholder("crafting_recipe_result_item_lore", ItemStackUtils.getItemLore(recipe.getResult()))
             );
+
+            if(box.files().blockedCraftings().isBlocked(recipe)){
+                placeholderList.with(new Placeholder("crafting_recipe_status_placeholder", Optional
+                        .ofNullable(box.files().messages().recipeMessages.blockedCraftingPlaceholder)
+                        .orElse("&cThis recipe is disabled!")));
+                return ItemStackUtils.makeItem(config.getResultItemEmpty(), placeholderList.get());
+            }
 
             if(recipe instanceof CustomRecipe && !((CustomRecipe) recipe).hasPermission(player)) {
                 placeholderList.with(new Placeholder("crafting_recipe_status_placeholder", box.files().messages().recipeMessages.noPermissionPlaceholder));

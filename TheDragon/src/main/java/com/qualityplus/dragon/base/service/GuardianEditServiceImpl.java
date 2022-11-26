@@ -16,8 +16,6 @@ import java.util.*;
 @Component
 public final class GuardianEditServiceImpl implements GuardianEditService {
     private final Map<UUID, GuardianEditMode> editSettings = new HashMap<>();
-    @Inject
-    private Box box;
 
     @Override
     public void setInEditMode(GuardianEditMode editMode) {

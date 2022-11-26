@@ -79,5 +79,6 @@ public final class DragonFiles implements ConfigFiles<Config, DragonEventsFile, 
     @Override
     public void saveFiles() {
         structures.save();
+        dragonGuardians.save();
     }
 }

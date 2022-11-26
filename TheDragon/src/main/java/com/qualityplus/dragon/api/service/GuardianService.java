@@ -1,7 +1,13 @@
 package com.qualityplus.dragon.api.service;
 
-import com.qualityplus.dragon.api.factory.GuardianFactory;
+import com.qualityplus.dragon.api.game.guardian.Guardian;
+import com.qualityplus.dragon.base.configs.DragonEventsFile.GuardianChanceConfig;
+import org.bukkit.Location;
+
+import java.util.List;
 
 public interface GuardianService {
-    GuardianFactory getFactory();
+    Guardian getRandomGuardian(List<GuardianChanceConfig> guardianChanceConfigs);
+
+    Location getRandomLocation();
 }

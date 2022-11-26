@@ -41,7 +41,7 @@ public final class GuardianEditListener implements Listener {
 
         EditType type = editMode.getEditType();
 
-        String message = event.getMessage();
+        String message = StringUtils.unColor(event.getMessage());
 
         event.setCancelled(true);
 

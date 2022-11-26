@@ -14,6 +14,7 @@ import com.qualityplus.dragon.gui.altars.DragonAltarsGUI;
 import com.qualityplus.dragon.gui.crystals.DragonCrystalsGUI;
 import com.qualityplus.dragon.gui.dragons.DragonsGUI;
 import com.qualityplus.dragon.gui.guardians.DragonGuardiansGUI;
+import com.qualityplus.dragon.gui.guardianspawns.GuardianSpawnsGUI;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
@@ -47,9 +48,17 @@ public final class MainMenuGUI extends TheDragonGUI {
 
         inventory.setItem(config.getGuardiansItem().slot, ItemStackUtils.makeItem(config.getGuardiansItem(), getGuardiansPlaceholders()));
 
+        inventory.setItem(config.getGuardianSpawnsItem().slot, ItemStackUtils.makeItem(config.getGuardianSpawnsItem(), getGuardianSpawnsPlaceholders()));
+
+        inventory.setItem(config.getWikiTutorialItem().slot, ItemStackUtils.makeItem(config.getWikiTutorialItem()));
+
         inventory.setItem(config.getCloseGUI().slot, ItemStackUtils.makeItem(config.getCloseGUI()));
 
         return inventory;
+    }
+
+    private List<IPlaceholder> getGuardianSpawnsPlaceholders(){
+        return PlaceholderBuilder.create(new Placeholder("thedragon_guardian_spawns_amount", box.files().guardians().guardianSpawns.size())).get();
     }
 
     private List<IPlaceholder> getGuardiansPlaceholders(){
@@ -102,12 +111,14 @@ public final class MainMenuGUI extends TheDragonGUI {
             player.openInventory(new DragonsGUI(box).getInventory());
         }else if(isItem(slot, config.getGuardiansItem())){
             player.openInventory(new DragonGuardiansGUI(box, 1).getInventory());
-        }else if(isItem(slot, config.getSpawnItem()))
+        }else if(isItem(slot, config.getSpawnItem())) {
             box.structures().getSpawn()
                     .filter(Objects::nonNull)
                     .map(GameStructure::getLocation)
                     .filter(Objects::nonNull)
                     .ifPresent(player::teleport);
+        }else if(isItem(slot, config.getGuardianSpawnsItem()))
+            player.openInventory(new GuardianSpawnsGUI(box, 1).getInventory());
     }
 
 }

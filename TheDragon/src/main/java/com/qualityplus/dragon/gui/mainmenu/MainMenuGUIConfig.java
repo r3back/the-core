@@ -7,10 +7,12 @@ import eu.okaeri.configs.OkaeriConfig;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
+@Setter
 public final class MainMenuGUIConfig extends OkaeriConfig implements SimpleGUI {
     private CommonGUI commonGUI;
     private Item spawnItem;
@@ -19,5 +21,7 @@ public final class MainMenuGUIConfig extends OkaeriConfig implements SimpleGUI {
     private Item schematicItem;
     private Item dragonsItem;
     private Item guardiansItem;
+    private Item guardianSpawnsItem;
+    private Item wikiTutorialItem;
 
 }

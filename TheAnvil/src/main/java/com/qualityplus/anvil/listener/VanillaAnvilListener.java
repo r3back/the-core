@@ -4,6 +4,7 @@ import com.cryptomorin.xseries.XMaterial;
 import com.qualityplus.anvil.base.gui.anvilmain.AnvilMainGUI;
 import com.qualityplus.anvil.api.box.Box;
 import com.qualityplus.anvil.base.session.AnvilSessionImpl;
+import com.qualityplus.assistant.util.block.BlockUtils;
 import eu.okaeri.injector.annotation.Inject;
 import eu.okaeri.platform.core.annotation.Component;
 import org.bukkit.Material;
@@ -27,22 +28,21 @@ public final class VanillaAnvilListener implements Listener {
 
         Block block = e.getClickedBlock();
 
-        if(block == null) return;
+        if(BlockUtils.isNull(block)) return;
 
         if(!blockIsAnvil(block)) return;
 
         if(!box.files().config().openAsVanillaAnvil) return;
 
         e.setCancelled(true);
+
         e.getPlayer().openInventory(new AnvilMainGUI(box, new AnvilSessionImpl(null, null, null)).getInventory());
     }
 
     private boolean blockIsAnvil(Block block){
-        Material material = block.getType();
-
         return Stream.of(XMaterial.ANVIL, XMaterial.CHIPPED_ANVIL, XMaterial.DAMAGED_ANVIL)
                 .map(XMaterial::parseMaterial)
                 .collect(Collectors.toList())
-                .contains(material);
+                .contains(block.getType());
     }
 }

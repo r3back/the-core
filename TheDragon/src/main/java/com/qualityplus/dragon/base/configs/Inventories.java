@@ -15,6 +15,7 @@ import com.qualityplus.dragon.gui.altars.DragonAltarsGUIConfig;
 import com.qualityplus.dragon.gui.confirm.ConfirmGUIConfig;
 import com.qualityplus.dragon.gui.crystals.DragonCrystalsGUIConfig;
 import com.qualityplus.dragon.gui.guardian.GuardianGUIConfig;
+import com.qualityplus.dragon.gui.guardianspawns.GuardianSpawnsGUIConfig;
 import com.qualityplus.dragon.gui.mainmenu.MainMenuGUIConfig;
 import eu.okaeri.configs.OkaeriConfig;
 import eu.okaeri.configs.annotation.*;
@@ -87,6 +88,26 @@ public final class Inventories extends OkaeriConfig implements DefaultBackground
 
     );
 
+    @CustomKey("guardianSpawnsGUIConfig")
+    public GuardianSpawnsGUIConfig guardianSpawnsGUIConfig = new GuardianSpawnsGUIConfig(
+            new CommonGUI(
+                    "Guardian Spawns GUI",
+                    27,
+                    getBackGroundFiller(),
+                    ItemBuilder.of(XMaterial.BARRIER,  22, 1, "&cClose", Arrays.asList("", "&e» &7Click to close")).build()
+            ),
+            ItemBuilder.of(XMaterial.PLAYER_HEAD, 1, "&5&nGuardian Spawn:&d %thedragon_guardian_spawn_id%", Arrays.asList("",
+                            "&5► &dLocation: &5%thedragon_guardian_spawn_location%",
+                            "",
+                            "&5► &dLeft-Click to teleport",
+                            "&5► &dRight-Click to remove"))
+                    .headData("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvODQwOWUwM2JlZTYxNDdlYzllYTdjMjFiNjc1MmQ0OWJlMDRhZTFlNzdjYmVjNTc0YWY4N2FjMzlhNDE5NzUyYyJ9fX0=").build(),
+            ItemBuilder.of(XMaterial.ARROW,  21, 1, "&5Previous Page", Collections.singletonList("&7Click to go to previous page")).build(),
+            ItemBuilder.of(XMaterial.ARROW,  23, 1, "&5Next Page", Collections.singletonList("&7Click to go to next page")).build(),
+            ItemBuilder.of(XMaterial.ARROW,  18, 1, "&5Go Back", Collections.singletonList("&7Click to go to main menu")).build()
+
+    );
+
 
     @CustomKey("dragonsGUIConfig")
     public DragonsGUIConfig dragonsGUIConfig = new DragonsGUIConfig(
@@ -143,8 +164,19 @@ public final class Inventories extends OkaeriConfig implements DefaultBackground
             ItemBuilder.of(XMaterial.PLAYER_HEAD,  13, 1, "&5&nGame Altars", Arrays.asList("", "&5► &dAmount: &5%thedragon_altars_amount%", "", "&5» &dClick to view")).headData("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZjQ2ODRlM2U3ODkwY2FmN2QxMzc2MmVhMTllYjE0YzU5NDBiODhmZDdmMDc3ZDgxZTZlZmZiNGY2ZGYxNmMyNiJ9fX0").build(),
             ItemBuilder.of(XMaterial.PLAYER_HEAD, 14, 1, "&5&nCurrent Game Schematic", Arrays.asList("", "&5► &dGame Schematic: &5%thedragon_schematic_id%", "", "&5» &dAdd it in &5/TheDragon/schematics", "  &dand then change it in &5config.yml")).headData("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMTQ4Yjg5YjFhYTk4OGRhODc4MDA0ODhjMzcyNjBhYTg5OGQyYzA3YWM4NmMwOTljNDQ5NGZjMGY0ZjBkY2NhMiJ9fX0=").build(),
             ItemBuilder.of(XMaterial.PLAYER_HEAD, 15, 1, "&5&nGame Dragons", Arrays.asList("", "&5► &dAmount: &5%thedragon_dragons_amount%", "", "&5» &dClick to view all dragons!")).headData("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZjY4YzFjMDc5YTdmZmIzNmY0OGRkNzE1MDM1NWUzZTBiN2Y2OGRkNjA1ZTZmODg0NzMxM2MzNjBjZjYxZTBjIn19fQ==").build(),
-            ItemBuilder.of(XMaterial.PLAYER_HEAD, 22, 1, "&5&nGame Guardians", Arrays.asList("", "&5► &dAmount: &5%thedragon_guardians_amount%", "", "&5» &dClick to view all guardians!")).headData("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvY2M4OWRjNTA0YTVjNmZjZTMxNzM0N2ZmZDQ4NGVjY2EyMjAyMmU2MjRjMDM0ZWI5YzgyNDYzZTg0OGE1YTg5NyJ9fX0=").build()
+            ItemBuilder.of(XMaterial.PLAYER_HEAD, 22, 1, "&5&nGame Guardians", Arrays.asList("", "&5► &dAmount: &5%thedragon_guardians_amount%", "", "&5» &dClick to view all guardians!")).headData("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvY2M4OWRjNTA0YTVjNmZjZTMxNzM0N2ZmZDQ4NGVjY2EyMjAyMmU2MjRjMDM0ZWI5YzgyNDYzZTg0OGE1YTg5NyJ9fX0=").build(),
+            getBackUpGuardianSpawn(),
+            getBackUpWiki()
+
     );
+
+    public Item getBackUpGuardianSpawn(){
+        return ItemBuilder.of(XMaterial.PLAYER_HEAD, 23, 1, "&5&nGame Spawn Guardians", Arrays.asList("", "&5► &dAmount: &5%thedragon_guardian_spawns_amount%", "", "&5» &dClick to view all guardian spawns!")).headData("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvODQwOWUwM2JlZTYxNDdlYzllYTdjMjFiNjc1MmQ0OWJlMDRhZTFlNzdjYmVjNTc0YWY4N2FjMzlhNDE5NzUyYyJ9fX0=").build();
+    }
+
+    public Item getBackUpWiki(){
+        return ItemBuilder.of(XMaterial.PLAYER_HEAD, 21, 1, "&5&nWiki Tutorial", Arrays.asList("", "&5► &dClick to view wiki tutorial!")).headData("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvY2RjZGVlNmQwNmRmMjM0YjhlNjAzMzI4Yjk2YzU3ZjNhMzEyZTc5YWFiZmMzYmU3MmE4YjQyMTg3OGVkNjhjZiJ9fX0=").build();
+    }
 
     @CustomKey("guardianGUIConfig")
     public GuardianGUIConfig guardianGUIConfig = new GuardianGUIConfig(

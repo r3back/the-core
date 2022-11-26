@@ -2,6 +2,8 @@ package com.qualityplus.crafting.base.gui.craftingtable.handler.result;
 
 import com.qualityplus.assistant.util.inventory.InventoryUtils;
 import com.qualityplus.assistant.util.itemstack.ItemStackUtils;
+import com.qualityplus.crafting.TheCrafting;
+import com.qualityplus.crafting.api.box.Box;
 import com.qualityplus.crafting.api.recipes.IRecipe;
 import com.qualityplus.crafting.base.gui.craftingtable.handler.CommonHandler;
 import com.qualityplus.crafting.base.recipes.CustomRecipe;
@@ -23,6 +25,7 @@ public final class NormalResultHandler implements CommonHandler {
     private final TableClickHandler clickHandler;
     private final Inventory inventory;
     private final InventoryView view;
+    private final Box box;
 
     public void handle(Player player, InventoryClickEvent event, IRecipe automatic, boolean isAuto){
         if(!event.isLeftClick()) return;
@@ -40,6 +43,8 @@ public final class NormalResultHandler implements CommonHandler {
         IRecipe recipe = isAuto ? automatic : CraftingFinderUtil.getCraftingRecipe(inventory, view, tableRelationSlots);
 
         if(recipe == null) return;
+
+        if(box.files().blockedCraftings().isBlocked(recipe)) return;
 
         ItemStack result = recipe.getResult().clone();
 

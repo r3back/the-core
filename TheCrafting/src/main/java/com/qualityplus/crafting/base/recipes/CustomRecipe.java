@@ -1,5 +1,6 @@
 package com.qualityplus.crafting.base.recipes;
 
+import com.cryptomorin.xseries.XMaterial;
 import com.qualityplus.assistant.util.map.MapUtils;
 import com.qualityplus.crafting.api.recipes.IRecipe;
 import com.qualityplus.crafting.api.recipes.Recipes;
@@ -88,5 +89,14 @@ public final class CustomRecipe extends OkaeriConfig implements IRecipe {
 
     public boolean hasPermission(Player player){
         return recipePermission == null || player.hasPermission(recipePermission);
+    }
+
+
+    public boolean resultIsEquals(XMaterial material) {
+        ItemStack itemStack = getResult();
+
+        if(result == null) return false;
+
+        return result.isSimilar(material.parseItem());
     }
 }

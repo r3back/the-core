@@ -54,13 +54,18 @@ public final class ArmorStandPet extends MinecraftPet {
     @Override
     public void followOwner() {
         Optional.ofNullable(getNextLocation())
-                .filter(location -> entityIsValid(armorStand))
-                .ifPresent(armorStand::teleport);
+                .ifPresent(this::teleportNotNull);
     }
 
 
     private static boolean entityIsValid(ArmorStand armorStand){
         return armorStand != null && !armorStand.isDead();
+    }
+
+    protected void teleportNotNull(Location location){
+        if(!entityIsValid(armorStand)) return;
+
+        armorStand.teleport(location);
     }
 
     private void createArmorStand(Location location){

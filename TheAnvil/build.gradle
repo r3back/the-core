@@ -43,21 +43,7 @@ shadowJar {
         exclude(dependency('org.jetbrains:.*'))
     }
 
-    relocate 'com.cryptomorin.xseries', 'com.qualityplus.assistant.lib.com.cryptomorin.xseries'
-    relocate 'i18n-platform-commands', 'com.qualityplus.assistant.lib.i18n-platform-commands'
-    relocate 'eu.okaeri', 'com.qualityplus.assistant.lib.eu.okaeri'
-    relocate 'com.zaxxer.hikari', 'com.qualityplus.assistant.lib.com.zaxxer.hikari'
-    relocate 'io.netty', 'com.qualityplus.assistant.lib.io.netty'
-    relocate 'org.json.simple', 'com.qualityplus.assistant.lib.org.json.simple'
-    relocate 'org.reactivestreams', 'com.qualityplus.assistant.lib.org.reactivestreams'
-    relocate 'reactor', 'com.qualityplus.assistant.lib.reactor'
-    relocate 'org.slf4j', 'com.qualityplus.assistant.lib.org.slf4j'
-    relocate 'org.h2', 'com.qualityplus.assistant.lib.org.h2'
-    relocate 'org.mariadb.jdbc', 'com.qualityplus.assistant.lib.org.mariadb.jdbc'
-    relocate 'org.intellij.lang.annotations', 'com.qualityplus.assistant.lib.org.intellij.lang.annotations'
-    relocate 'org.jetbrains.annotations', 'com.qualityplus.assistant.lib.org.jetbrains.annotations'
-    relocate 'de.tr7zw', 'com.qualityplus.assistant.lib.de.tr7zw'
-
+    rootProject.relocate_map.each { k, v -> relocate(k, v)}
 
     doLast {
         rootProject.copyJars(archiveFile)

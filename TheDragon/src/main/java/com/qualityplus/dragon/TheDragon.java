@@ -2,6 +2,8 @@ package com.qualityplus.dragon;
 
 import com.qualityplus.assistant.okaeri.OkaeriSilentPlugin;
 import com.qualityplus.dragon.api.box.Box;
+import com.qualityplus.dragon.base.configs.DragonGuardiansFile;
+import com.qualityplus.dragon.base.configs.Inventories;
 import com.qualityplus.dragon.persistance.data.UserData;
 import eu.okaeri.injector.annotation.Inject;
 import eu.okaeri.platform.core.annotation.Scan;
@@ -31,6 +33,27 @@ public final class TheDragon extends OkaeriSilentPlugin {
         box.game().finish();
 
         box.files().saveFiles();
+    }
+
+    @Planned(ExecutionPhase.POST_SETUP)
+    private void preSetupInventories(Box box){
+        Inventories file = box.files().inventories();
+
+        boolean save = false;
+
+        if(file.mainMenuGUIConfig.getWikiTutorialItem() == null) {
+            file.mainMenuGUIConfig.setWikiTutorialItem(box.files().inventories().getBackUpWiki());
+            save = true;
+        }
+
+        if(file.mainMenuGUIConfig.getGuardianSpawnsItem() == null){
+            file.mainMenuGUIConfig.setGuardianSpawnsItem(box.files().inventories().getBackUpGuardianSpawn());
+            save = true;
+        }
+
+        if(save)
+            file.save();
+
     }
 
     @Planned(ExecutionPhase.PRE_SETUP)

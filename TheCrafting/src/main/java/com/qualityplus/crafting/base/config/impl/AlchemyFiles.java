@@ -6,7 +6,8 @@ import eu.okaeri.injector.annotation.Inject;
 import eu.okaeri.platform.core.annotation.Component;
 
 @Component
-public final class AlchemyFiles implements ConfigFiles<Config, RecipesFile, Inventories, Messages, Commands, Categories> {
+public final class AlchemyFiles implements ConfigFiles<Config, RecipesFile, Inventories, Messages, Commands, Categories, BlockedCraftings> {
+    private @Inject BlockedCraftings blockedCraftings;
     private @Inject Inventories inventories;
     private @Inject Categories categories;
     private @Inject RecipesFile recipes;
@@ -45,7 +46,13 @@ public final class AlchemyFiles implements ConfigFiles<Config, RecipesFile, Inve
     }
 
     @Override
+    public BlockedCraftings blockedCraftings() {
+        return blockedCraftings;
+    }
+
+    @Override
     public void reloadFiles() {
+        blockedCraftings.load();
         config.load();
         //recipes.load();
         messages.load();

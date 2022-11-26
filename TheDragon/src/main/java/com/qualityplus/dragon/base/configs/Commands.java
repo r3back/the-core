@@ -4,8 +4,6 @@ import com.qualityplus.assistant.api.commands.details.CommandDetails;
 import eu.okaeri.configs.OkaeriConfig;
 import eu.okaeri.configs.annotation.*;
 import eu.okaeri.platform.core.annotation.Configuration;
-import lombok.Getter;
-import lombok.Setter;
 
 import java.time.Duration;
 import java.util.Collections;
@@ -20,6 +18,7 @@ public final class Commands extends OkaeriConfig {
     public CommandDetails helpCommand = new CommandDetails(Collections.singletonList("help"), "Show all commands", "/TheDragon help", "thedragon.help", true, Duration.ZERO.getSeconds(), true, "thedragon");
     public CommandDetails addCrystalCommand = new CommandDetails(Collections.singletonList("addcrystal"), "Add a dragon crystal to arena", "/TheDragon addcrystal", "thedragon.addcrystal", true, Duration.ZERO.getSeconds(), true, "thedragon");
     public CommandDetails addGuardianCommand = new CommandDetails(Collections.singletonList("addguardian"), "Add a dragon guardian to arena", "/TheDragon addguardian", "thedragon.addguardian", true, Duration.ZERO.getSeconds(), true, "thedragon");
+    public CommandDetails addGuardianSpawnCommand = new CommandDetails(Collections.singletonList("addguardianspawn"), "Add a guardian spawn to arena", "/TheDragon addguardianspawn", "thedragon.addguardianspawn", true, Duration.ZERO.getSeconds(), true, "thedragon");
     public CommandDetails getRemoverToolCommand = new CommandDetails(Collections.singletonList("getremovertool"), "Get Remover's tool", "/TheDragon getremovertool", "thedragon.getremovertool", true, Duration.ZERO.getSeconds(), true, "thedragon");
     public CommandDetails startGameCommand = new CommandDetails(Collections.singletonList("start"), "Start Dragon Event", "/TheDragon start", "thedragon.start", true, Duration.ZERO.getSeconds(), true, "thedragon");
     public CommandDetails setDragonSpawnCommand = new CommandDetails(Collections.singletonList("setdragonspawn"), "Set Dragon spawn during event", "/TheDragon setdragonspawn", "thedragon.setdragonspawn", true, Duration.ZERO.getSeconds(), true, "thedragon");
