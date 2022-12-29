@@ -3,6 +3,7 @@ package com.qualityplus.auction.persistence.data;
 import eu.okaeri.persistence.document.Document;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+
 import java.util.UUID;
 
 @Data @EqualsAndHashCode(callSuper = false)

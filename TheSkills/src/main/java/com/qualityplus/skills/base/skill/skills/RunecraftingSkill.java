@@ -1,17 +1,12 @@
 package com.qualityplus.skills.base.skill.skills;
 
 import com.qualityplus.assistant.api.common.rewards.commands.CommandReward;
-import com.qualityplus.skills.TheSkills;
 import com.qualityplus.skills.base.reward.StatReward;
 import com.qualityplus.skills.base.skill.Skill;
 import com.qualityplus.skills.base.skill.gui.GUIOptions;
-import com.qualityplus.assistant.api.common.rewards.commands.CommandRewards;
-import com.qualityplus.skills.base.reward.StatRewards;
-import com.qualityplus.skills.base.skill.level.SkillLevel;
-import lombok.*;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.EventPriority;
-import org.bukkit.event.block.BlockBreakEvent;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 import java.util.Map;

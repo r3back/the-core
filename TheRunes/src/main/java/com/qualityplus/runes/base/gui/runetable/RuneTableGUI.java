@@ -1,14 +1,15 @@
 package com.qualityplus.runes.base.gui.runetable;
 
+import com.qualityplus.assistant.api.util.BukkitItemUtil;
 import com.qualityplus.assistant.api.util.IPlaceholder;
 import com.qualityplus.assistant.util.inventory.InventoryUtils;
 import com.qualityplus.assistant.util.itemstack.ItemStackUtils;
 import com.qualityplus.assistant.util.placeholder.Placeholder;
 import com.qualityplus.runes.api.box.Box;
 import com.qualityplus.runes.api.session.RuneSession;
+import com.qualityplus.runes.api.session.RuneSession.SessionResult;
 import com.qualityplus.runes.base.gui.ClickHandler;
 import com.qualityplus.runes.base.gui.RuneGUI;
-import com.qualityplus.runes.api.session.RuneSession.SessionResult;
 import com.qualityplus.runes.base.gui.derune.RemoveRuneGUI;
 import com.qualityplus.runes.base.gui.runetable.effect.EffectHandler;
 import com.qualityplus.runes.base.gui.runetable.effect.RuneTableEffectHandler;
@@ -20,7 +21,6 @@ import com.qualityplus.runes.base.session.RemoveSessionImpl;
 import com.qualityplus.runes.util.RuneFinderUtil;
 import lombok.Getter;
 import lombok.Setter;
-import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
@@ -28,7 +28,10 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import java.util.Optional;
 
 public final class RuneTableGUI extends RuneGUI {
     private final EffectHandler<RuneTableGUI> effectHandler;
@@ -86,7 +89,7 @@ public final class RuneTableGUI extends RuneGUI {
 
         }
 
-        if(!ItemStackUtils.isNull(session.getResult()))
+        if(!BukkitItemUtil.isNull(session.getResult()))
             inventory.setItem(config.getCombinedFilledItem().slot, ItemStackUtils.makeItem(config.getCombinedFilledItem(), getPlaceholders(session.getResult()), session.getResult()));
 
 
@@ -94,10 +97,10 @@ public final class RuneTableGUI extends RuneGUI {
             setItem(config.getCombinedErrorItem(), Collections.singletonList(new Placeholder("rune_error", getErrorPlaceholder(answer))));
 
 
-        if(!ItemStackUtils.isNull(session.getItemToSacrifice()))
+        if(!BukkitItemUtil.isNull(session.getItemToSacrifice()))
             inventory.setItem(config.getToSacrificeSlot(), session.getItemToSacrifice());
 
-        if(!ItemStackUtils.isNull(session.getItemToUpgrade()))
+        if(!BukkitItemUtil.isNull(session.getItemToUpgrade()))
             inventory.setItem(config.getToUpgradeSlot(), session.getItemToUpgrade());
 
 
@@ -109,8 +112,8 @@ public final class RuneTableGUI extends RuneGUI {
 
     private List<IPlaceholder> getPlaceholders(ItemStack itemStack){
         return Arrays.asList(
-                new Placeholder("rune_result_item_displayname", ItemStackUtils.getName(itemStack)),
-                new Placeholder("rune_result_item_lore", ItemStackUtils.getItemLore(itemStack))
+                new Placeholder("rune_result_item_displayname", BukkitItemUtil.getName(itemStack)),
+                new Placeholder("rune_result_item_lore", BukkitItemUtil.getItemLore(itemStack))
         );
     }
 
@@ -143,7 +146,7 @@ public final class RuneTableGUI extends RuneGUI {
             effectHandler.setHasBeenClosed(true);
 
             Optional.ofNullable(effectHandler.getResult(player, session))
-                    .filter(itemStack -> !ItemStackUtils.isNull(itemStack))
+                    .filter(itemStack -> !BukkitItemUtil.isNull(itemStack))
                     .ifPresent(itemStack -> player.getInventory().addItem(itemStack));
         }
     }

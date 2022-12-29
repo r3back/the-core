@@ -8,7 +8,6 @@ import com.qualityplus.dragon.api.service.AltarSetupService;
 import com.qualityplus.dragon.base.game.structure.DragonAltarImpl;
 import eu.okaeri.injector.annotation.Inject;
 import eu.okaeri.platform.core.annotation.Component;
-import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;

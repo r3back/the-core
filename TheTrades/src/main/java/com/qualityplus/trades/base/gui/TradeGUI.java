@@ -1,10 +1,10 @@
 package com.qualityplus.trades.base.gui;
 
-import com.qualityplus.trades.api.box.Box;
 import com.qualityplus.assistant.api.util.IPlaceholder;
 import com.qualityplus.assistant.inventory.GUI;
 import com.qualityplus.assistant.inventory.Item;
 import com.qualityplus.assistant.inventory.SimpleGUI;
+import com.qualityplus.trades.api.box.Box;
 
 import java.util.List;
 

@@ -1,7 +1,6 @@
 package com.qualityplus.auction.api.category;
 
 import eu.okaeri.configs.OkaeriConfig;
-import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 

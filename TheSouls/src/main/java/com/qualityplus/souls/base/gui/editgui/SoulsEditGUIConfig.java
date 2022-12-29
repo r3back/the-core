@@ -7,9 +7,6 @@ import eu.okaeri.configs.OkaeriConfig;
 import lombok.Builder;
 import lombok.Getter;
 
-import java.util.List;
-import java.util.Map;
-
 @Getter
 public final class SoulsEditGUIConfig extends OkaeriConfig implements SimpleGUI{
     private final CommonGUI commonGUI;

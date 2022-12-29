@@ -12,7 +12,7 @@ import eu.okaeri.platform.core.annotation.Component;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 
-import java.util.*;
+import java.util.Map;
 
 @Component
 public final class EffectBridgeImpl implements EffectBridge {

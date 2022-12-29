@@ -1,12 +1,11 @@
 package com.qualityplus.crafting.base.gui.craftingtable;
 
 import com.qualityplus.assistant.TheAssistantPlugin;
-import com.qualityplus.assistant.util.itemstack.ItemStackUtils;
+import com.qualityplus.assistant.api.util.BukkitItemUtil;
+import com.qualityplus.assistant.util.inventory.InventoryUtils;
 import com.qualityplus.crafting.api.box.Box;
 import com.qualityplus.crafting.base.gui.CraftingGUI;
 import com.qualityplus.crafting.base.gui.craftingtable.handler.result.TableClickHandler;
-import com.qualityplus.assistant.util.inventory.InventoryUtils;
-import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
@@ -16,7 +15,6 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
 
 public final class CraftingTableGUI extends CraftingGUI {
@@ -34,7 +32,7 @@ public final class CraftingTableGUI extends CraftingGUI {
     public CraftingTableGUI(Box box, Player player) {
         super(box.files().inventories().craftingGui, box);
 
-        this.tableClickHandler = new TableClickHandler(inventory, TheAssistantPlugin.getAPI().getNms().getFakeInventory(player), box, getSlots(box));
+        this.tableClickHandler = new TableClickHandler(inventory, TheAssistantPlugin.getAPI().getNms().createWorkBench(player), box, getSlots(box));
         this.config = box.files().inventories().craftingGui;
 
         tableClickHandler.handleClick(player);
@@ -88,7 +86,7 @@ public final class CraftingTableGUI extends CraftingGUI {
 
         config.getRecipeSlots().stream()
                 .map(slot -> inventory.getItem(slot))
-                .filter(item -> !ItemStackUtils.isNull(item))
+                .filter(item -> !BukkitItemUtil.isNull(item))
                 .forEach(item -> player.getInventory().addItem(item));
     }
 }

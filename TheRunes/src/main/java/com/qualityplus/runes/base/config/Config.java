@@ -6,15 +6,12 @@ import com.qualityplus.assistant.api.gui.LoreWrapper;
 import com.qualityplus.assistant.inventory.Item;
 import com.qualityplus.assistant.util.itemstack.ItemBuilder;
 import com.qualityplus.runes.api.config.RuneTableConfig;
-import com.qualityplus.runes.base.table.effects.RuneTableEffect;
+import com.qualityplus.runes.api.config.RuneTableConfig.RuneItem;
 import eu.okaeri.configs.OkaeriConfig;
 import eu.okaeri.configs.annotation.*;
 import eu.okaeri.platform.core.annotation.Configuration;
-import com.qualityplus.runes.api.config.RuneTableConfig.RuneItem;
 
 import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 @Configuration()

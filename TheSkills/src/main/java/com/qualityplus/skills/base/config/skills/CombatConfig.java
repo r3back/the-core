@@ -8,7 +8,6 @@ import com.qualityplus.assistant.util.number.NumberUtil;
 import com.qualityplus.skills.base.reward.StatReward;
 import com.qualityplus.skills.base.skill.Skill;
 import com.qualityplus.skills.base.skill.gui.GUIOptions;
-import com.qualityplus.skills.base.skill.level.SkillLevel;
 import com.qualityplus.skills.base.skill.skills.CombatSkill;
 import eu.okaeri.configs.OkaeriConfig;
 import eu.okaeri.configs.annotation.Header;
@@ -18,7 +17,6 @@ import eu.okaeri.configs.annotation.Names;
 import eu.okaeri.platform.core.annotation.Configuration;
 import lombok.Getter;
 import lombok.Setter;
-import org.bukkit.Bukkit;
 import org.bukkit.entity.EntityType;
 
 import java.util.*;

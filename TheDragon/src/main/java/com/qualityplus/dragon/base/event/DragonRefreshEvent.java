@@ -3,8 +3,6 @@ package com.qualityplus.dragon.base.event;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
 
-import java.util.Arrays;
-
 public final class DragonRefreshEvent extends Event {
     private static final HandlerList handlers = new HandlerList();
     private final RefreshType refreshType;

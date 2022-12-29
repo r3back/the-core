@@ -3,7 +3,6 @@ package com.qualityplus.skills.base.stat.registry;
 import com.google.common.collect.ImmutableSet;
 import com.qualityplus.skills.api.box.Box;
 import com.qualityplus.skills.api.effect.CommonObject;
-import com.qualityplus.skills.base.skill.Skill;
 import com.qualityplus.skills.base.stat.Stat;
 import eu.okaeri.commons.bukkit.time.MinecraftTimeEquivalent;
 import eu.okaeri.injector.annotation.Inject;

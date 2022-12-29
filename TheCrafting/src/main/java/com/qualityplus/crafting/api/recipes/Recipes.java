@@ -1,21 +1,12 @@
 package com.qualityplus.crafting.api.recipes;
 
-import com.cryptomorin.xseries.XMaterial;
-import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
-import com.qualityplus.assistant.inventory.Item;
-import com.qualityplus.assistant.util.StringUtils;
-import com.qualityplus.assistant.util.itemstack.ItemStackUtils;
 import com.qualityplus.crafting.api.box.Box;
 import com.qualityplus.crafting.base.recipes.CustomRecipe;
 import eu.okaeri.injector.annotation.Inject;
 import eu.okaeri.platform.bukkit.annotation.Delayed;
-import eu.okaeri.platform.core.annotation.Bean;
 import eu.okaeri.platform.core.annotation.Component;
-import org.bukkit.Bukkit;
-import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
-import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;

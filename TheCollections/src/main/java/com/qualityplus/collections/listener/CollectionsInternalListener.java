@@ -5,14 +5,14 @@ import com.qualityplus.assistant.util.StringUtils;
 import com.qualityplus.assistant.util.placeholder.Placeholder;
 import com.qualityplus.assistant.util.placeholder.PlaceholderBuilder;
 import com.qualityplus.assistant.util.sound.SoundUtils;
-import com.qualityplus.collections.base.event.CollectionsUnlockEvent;
-import com.qualityplus.collections.util.CollectionsPlaceholderUtil;
 import com.qualityplus.collections.api.box.Box;
+import com.qualityplus.collections.base.collection.Collection;
 import com.qualityplus.collections.base.config.Config;
 import com.qualityplus.collections.base.event.CollectionsLevelUPEvent;
+import com.qualityplus.collections.base.event.CollectionsUnlockEvent;
 import com.qualityplus.collections.base.event.CollectionsXPGainEvent;
-import com.qualityplus.collections.base.collection.Collection;
 import com.qualityplus.collections.persistance.data.UserData;
+import com.qualityplus.collections.util.CollectionsPlaceholderUtil;
 import eu.okaeri.injector.annotation.Inject;
 import eu.okaeri.platform.core.annotation.Component;
 import org.bukkit.Bukkit;
@@ -21,7 +21,9 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 
-import java.util.*;
+import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 
 @Component
 public final class CollectionsInternalListener implements Listener {

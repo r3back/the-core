@@ -16,8 +16,6 @@ import org.bukkit.entity.Player;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 @Component
 public final class CollectionMenuCommand extends AssistantCommand {

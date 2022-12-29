@@ -1,6 +1,6 @@
 package com.qualityplus.dragon.util;
 
-import com.qualityplus.assistant.util.itemstack.ItemStackUtils;
+import com.qualityplus.assistant.api.util.BukkitItemUtil;
 import de.tr7zw.changeme.nbtapi.NBTItem;
 import lombok.experimental.UtilityClass;
 import org.bukkit.inventory.ItemStack;
@@ -10,13 +10,13 @@ public final class DragonItemStackUtil {
     private static final String ENDER_KEY_TAG = "THEDRAGON_KEY";
 
     public static boolean isEnderKey(ItemStack itemStack){
-        if(ItemStackUtils.isNull(itemStack)) return false;
+        if(BukkitItemUtil.isNull(itemStack)) return false;
 
         return new NBTItem(itemStack).hasKey(ENDER_KEY_TAG);
     }
 
     public static ItemStack createEnderKey(ItemStack itemStack){
-        if(ItemStackUtils.isNull(itemStack)) return null;
+        if(BukkitItemUtil.isNull(itemStack)) return null;
 
         NBTItem nbtItem = new NBTItem(itemStack);
 

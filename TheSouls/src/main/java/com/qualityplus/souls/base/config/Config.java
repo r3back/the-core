@@ -2,9 +2,9 @@ package com.qualityplus.souls.base.config;
 
 import com.cryptomorin.xseries.XMaterial;
 import com.cryptomorin.xseries.XSound;
-import com.qualityplus.assistant.api.gui.LoreWrapper;
 import com.qualityplus.assistant.api.config.ConfigDatabase;
 import com.qualityplus.assistant.api.config.ConfigSound;
+import com.qualityplus.assistant.api.gui.LoreWrapper;
 import com.qualityplus.assistant.inventory.Item;
 import com.qualityplus.assistant.util.itemstack.ItemBuilder;
 import eu.okaeri.configs.OkaeriConfig;

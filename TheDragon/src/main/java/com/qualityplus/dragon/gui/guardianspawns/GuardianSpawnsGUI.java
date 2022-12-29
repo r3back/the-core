@@ -7,7 +7,6 @@ import com.qualityplus.assistant.util.location.LocationUtils;
 import com.qualityplus.assistant.util.placeholder.Placeholder;
 import com.qualityplus.assistant.util.placeholder.PlaceholderBuilder;
 import com.qualityplus.dragon.api.box.Box;
-import com.qualityplus.dragon.api.game.structure.type.DragonCrystal;
 import com.qualityplus.dragon.gui.TheDragonGUI;
 import com.qualityplus.dragon.gui.mainmenu.MainMenuGUI;
 import org.bukkit.Location;
@@ -16,7 +15,6 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;

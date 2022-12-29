@@ -1,5 +1,10 @@
 package com.qualityplus.bank.base.handler;
 
+import com.qualityplus.assistant.TheAssistantPlugin;
+import com.qualityplus.assistant.api.addons.EconomyAddon;
+import com.qualityplus.assistant.api.util.IPlaceholder;
+import com.qualityplus.assistant.util.StringUtils;
+import com.qualityplus.assistant.util.placeholder.Placeholder;
 import com.qualityplus.bank.api.handler.TransactionHandler;
 import com.qualityplus.bank.base.config.BankUpgrades;
 import com.qualityplus.bank.base.config.Messages;
@@ -7,11 +12,6 @@ import com.qualityplus.bank.base.event.BankInteractEvent;
 import com.qualityplus.bank.base.gui.main.BankInterfaceGUI;
 import com.qualityplus.bank.persistence.data.BankData;
 import com.qualityplus.bank.persistence.data.BankTransaction;
-import com.qualityplus.assistant.TheAssistantPlugin;
-import com.qualityplus.assistant.api.addons.EconomyAddon;
-import com.qualityplus.assistant.api.util.IPlaceholder;
-import com.qualityplus.assistant.util.StringUtils;
-import com.qualityplus.assistant.util.placeholder.Placeholder;
 import eu.okaeri.injector.annotation.Inject;
 import eu.okaeri.platform.core.annotation.Component;
 import org.bukkit.Bukkit;

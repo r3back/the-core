@@ -1,6 +1,5 @@
 package com.qualityplus.enchanting.base.enchantment.legacy;
 
-import com.cryptomorin.xseries.XMaterial;
 import com.qualityplus.enchanting.api.enchantment.ProviderType;
 import com.qualityplus.enchanting.api.enchantment.legacy.CoreEnchantLegacy;
 import lombok.Builder;

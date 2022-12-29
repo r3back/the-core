@@ -8,10 +8,8 @@ import com.qualityplus.assistant.util.placeholder.Placeholder;
 import com.qualityplus.enchanting.TheEnchanting;
 import com.qualityplus.enchanting.api.chain.EnchantmentChain;
 import com.qualityplus.enchanting.api.enchantment.ICoreEnchantment;
-
 import com.qualityplus.enchanting.api.session.EnchantmentSession;
 import com.qualityplus.enchanting.base.config.Config;
-import com.qualityplus.enchanting.util.EnchantingAddonsUtil;
 import com.qualityplus.enchanting.util.EnchantingPlaceholderUtil;
 import eu.okaeri.injector.annotation.Inject;
 import eu.okaeri.platform.core.annotation.Component;
@@ -21,7 +19,10 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.EnchantmentStorageMeta;
 import org.bukkit.inventory.meta.ItemMeta;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Component

@@ -4,6 +4,7 @@ import com.qualityplus.assistant.api.util.IPlaceholder;
 import com.qualityplus.assistant.util.StringUtils;
 import com.qualityplus.assistant.util.itemstack.ItemStackUtils;
 import com.qualityplus.assistant.util.placeholder.Placeholder;
+import com.qualityplus.assistant.util.time.Timer;
 import com.qualityplus.auction.api.box.Box;
 import com.qualityplus.auction.base.gui.AuctionGUI;
 import com.qualityplus.auction.base.gui.create.CreateAuctionGUI;
@@ -15,8 +16,10 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.*;
-import com.qualityplus.assistant.util.time.Timer;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public final class AuctionTimeGUI extends AuctionGUI {
     private final Map<Integer, String> timerMap = new HashMap<>();

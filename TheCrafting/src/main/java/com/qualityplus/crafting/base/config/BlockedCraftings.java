@@ -1,10 +1,12 @@
 package com.qualityplus.crafting.base.config;
 
 import com.cryptomorin.xseries.XMaterial;
-import com.qualityplus.assistant.api.gui.LoreWrapper;
 import com.qualityplus.crafting.api.recipes.IRecipe;
 import eu.okaeri.configs.OkaeriConfig;
-import eu.okaeri.configs.annotation.*;
+import eu.okaeri.configs.annotation.Header;
+import eu.okaeri.configs.annotation.NameModifier;
+import eu.okaeri.configs.annotation.NameStrategy;
+import eu.okaeri.configs.annotation.Names;
 import eu.okaeri.platform.core.annotation.Configuration;
 import org.bukkit.inventory.ItemStack;
 

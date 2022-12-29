@@ -9,7 +9,6 @@ import com.qualityplus.souls.api.box.Box;
 import com.qualityplus.souls.api.edition.EditionObject;
 import com.qualityplus.souls.api.edition.SoulEdition;
 import com.qualityplus.souls.base.gui.SoulsGUI;
-import com.qualityplus.souls.base.gui.allsouls.AllSoulsGUI;
 import com.qualityplus.souls.base.gui.editgui.SoulsEditGUI;
 import com.qualityplus.souls.base.soul.Soul;
 import org.bukkit.entity.Player;

@@ -1,5 +1,6 @@
 package com.qualityplus.enchanting.base.gui.enchantmain;
 
+import com.qualityplus.assistant.api.util.BukkitItemUtil;
 import com.qualityplus.assistant.api.util.IPlaceholder;
 import com.qualityplus.assistant.util.inventory.InventoryUtils;
 import com.qualityplus.assistant.util.itemstack.ItemStackUtils;
@@ -15,7 +16,6 @@ import com.qualityplus.enchanting.base.gui.enchantmain.handler.ShiftClickHandler
 import com.qualityplus.enchanting.base.gui.enchantsub.EnchantSubGUI;
 import com.qualityplus.enchanting.util.EnchantingPlaceholderUtil;
 import lombok.Setter;
-import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
@@ -50,7 +50,7 @@ public final class EnchantMainGUI extends EnchantingGUI {
 
 
     private static List<ICoreEnchantment> getEnchantments(ItemStack item){
-        if(ItemStackUtils.isNull(item)) return Collections.emptyList();
+        if(BukkitItemUtil.isNull(item)) return Collections.emptyList();
 
         return CoreEnchants.values().stream()
                 .filter(enchant -> enchant.canEnchantItem(item))
@@ -157,7 +157,7 @@ public final class EnchantMainGUI extends EnchantingGUI {
     public void onInventoryClose(InventoryCloseEvent event) {
         Player player = (Player) event.getPlayer();
 
-        if(ItemStackUtils.isNull(item)) return;
+        if(BukkitItemUtil.isNull(item)) return;
 
         if(!giveItem) return;
 

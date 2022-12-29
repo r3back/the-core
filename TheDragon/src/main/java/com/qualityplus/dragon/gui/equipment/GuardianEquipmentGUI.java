@@ -1,5 +1,6 @@
 package com.qualityplus.dragon.gui.equipment;
 
+import com.qualityplus.assistant.api.util.BukkitItemUtil;
 import com.qualityplus.assistant.util.StringUtils;
 import com.qualityplus.assistant.util.itemstack.ItemStackUtils;
 import com.qualityplus.dragon.api.box.Box;
@@ -45,7 +46,7 @@ public final class GuardianEquipmentGUI extends TheDragonGUI {
         if(!getTarget(event).equals(ClickTarget.INSIDE)) return;
 
         ItemStack itemStack = Optional.ofNullable(event.getCurrentItem())
-                .filter(ItemStackUtils::isNotNull)
+                .filter(BukkitItemUtil::isNotNull)
                 .map(ItemStack::clone)
                 .orElse(null);
 
@@ -89,7 +90,7 @@ public final class GuardianEquipmentGUI extends TheDragonGUI {
 
     private boolean itemMatch(Player player, ItemStack itemStack, String... toMatch){
 
-        String item = ItemStackUtils.getMaterialName(itemStack).toLowerCase();
+        String item = BukkitItemUtil.getMaterialName(itemStack).toLowerCase();
 
         if(Arrays.stream(toMatch).anyMatch(item::contains)) return true;
 

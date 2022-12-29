@@ -1,7 +1,7 @@
 package com.qualityplus.skills.util;
 
 import com.cryptomorin.xseries.XMaterial;
-import com.qualityplus.assistant.api.gui.LoreWrapper;
+import com.qualityplus.assistant.api.util.BukkitItemUtil;
 import com.qualityplus.assistant.api.util.IPlaceholder;
 import com.qualityplus.assistant.inventory.Item;
 import com.qualityplus.assistant.util.StringUtils;
@@ -26,7 +26,7 @@ public final class SkillsItemStackUtil {
                     StringUtils.processMulti(item.displayName, placeholders),
                     StringUtils.processMulti(item.lore, placeholders));
 
-            ItemStackUtils.addCustomModelData(firstProcess, skillGUIOptions.getCustomModelData());
+            BukkitItemUtil.addCustomModelData(firstProcess, skillGUIOptions.getCustomModelData());
 
 
             return ItemStackUtils.getFinalItem(item1, firstProcess, placeholders);

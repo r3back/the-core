@@ -3,14 +3,11 @@ package com.qualityplus.enchanting.api.enchantment.legacy;
 import com.qualityplus.enchanting.api.enchantment.ICoreEnchantment;
 import com.qualityplus.enchanting.api.enchantment.ProviderType;
 import lombok.Getter;
-import org.bukkit.NamespacedKey;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
-import java.security.Provider;
 import java.util.Map;
-import java.util.Random;
 
 @Getter
 public abstract class CoreEnchantLegacy extends Enchantment implements ICoreEnchantment {

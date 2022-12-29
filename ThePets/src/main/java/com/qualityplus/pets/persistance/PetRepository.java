@@ -1,14 +1,11 @@
 package com.qualityplus.pets.persistance;
 
 import com.qualityplus.pets.persistance.data.PetData;
-import com.qualityplus.pets.persistance.data.UserData;
 import eu.okaeri.persistence.document.DocumentPersistence;
 import eu.okaeri.persistence.repository.DocumentRepository;
 import eu.okaeri.persistence.repository.annotation.DocumentCollection;
-import eu.okaeri.persistence.repository.annotation.DocumentIndex;
 import eu.okaeri.persistence.repository.annotation.DocumentPath;
 import eu.okaeri.platform.core.annotation.DependsOn;
-import org.bukkit.OfflinePlayer;
 
 import java.util.Optional;
 import java.util.UUID;

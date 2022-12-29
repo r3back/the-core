@@ -1,10 +1,10 @@
 package com.qualityplus.crafting.base.recipes;
 
 import com.cryptomorin.xseries.XMaterial;
+import com.qualityplus.assistant.api.util.BukkitItemUtil;
 import com.qualityplus.assistant.util.map.MapUtils;
 import com.qualityplus.crafting.api.recipes.IRecipe;
 import com.qualityplus.crafting.api.recipes.Recipes;
-import com.qualityplus.assistant.util.itemstack.ItemStackUtils;
 import eu.okaeri.configs.OkaeriConfig;
 import eu.okaeri.configs.annotation.Exclude;
 import lombok.AllArgsConstructor;
@@ -68,14 +68,14 @@ public final class CustomRecipe extends OkaeriConfig implements IRecipe {
     }
 
     private void registerResult(){
-        this.result = Optional.ofNullable(resultSerialized).map(ItemStackUtils::deserialize).orElse(null);
+        this.result = Optional.ofNullable(resultSerialized).map(BukkitItemUtil::deserialize).orElse(null);
     }
 
     private void registerIngredients(){
         this.ingredients = new HashMap<>();
 
         for(Map.Entry<Integer, String> entry : MapUtils.check(ingredientsSerialized).entrySet()){
-            ingredients.put(entry.getKey(), Optional.ofNullable(entry.getValue()).map(ItemStackUtils::deserialize).orElse(null));
+            ingredients.put(entry.getKey(), Optional.ofNullable(entry.getValue()).map(BukkitItemUtil::deserialize).orElse(null));
         }
     }
 

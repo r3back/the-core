@@ -1,9 +1,9 @@
 package com.qualityplus.skills.persistance.data.user;
 
+import com.qualityplus.assistant.api.common.data.LevellableInteger;
 import com.qualityplus.skills.base.perk.Perk;
 import com.qualityplus.skills.base.perk.registry.Perks;
 import com.qualityplus.skills.persistance.data.user.armor.LevellableArmorData;
-import com.qualityplus.assistant.api.common.data.LevellableInteger;
 import eu.okaeri.persistence.document.Document;
 import lombok.Getter;
 import lombok.Setter;

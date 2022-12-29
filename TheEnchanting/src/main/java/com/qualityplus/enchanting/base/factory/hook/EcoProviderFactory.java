@@ -2,8 +2,8 @@ package com.qualityplus.enchanting.base.factory.hook;
 
 import com.qualityplus.enchanting.api.provider.EnchantmentProvider;
 import com.qualityplus.enchanting.base.hook.EcoHookSettings;
-import com.qualityplus.enchanting.base.provider.VanillaEnchantmentProvider;
 import com.qualityplus.enchanting.base.provider.EcoEnchantmentProvider;
+import com.qualityplus.enchanting.base.provider.VanillaEnchantmentProvider;
 import com.qualityplus.enchanting.util.EnchantingAddonsUtil;
 import eu.okaeri.commons.bukkit.time.MinecraftTimeEquivalent;
 import eu.okaeri.injector.OkaeriInjector;

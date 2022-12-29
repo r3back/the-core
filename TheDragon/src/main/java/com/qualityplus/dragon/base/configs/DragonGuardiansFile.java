@@ -1,9 +1,9 @@
 package com.qualityplus.dragon.base.configs;
 
 import com.qualityplus.dragon.api.game.guardian.Guardian;
-import eu.okaeri.configs.OkaeriConfig;
 import com.qualityplus.dragon.base.game.guardian.DragonGuardian;
 import com.qualityplus.dragon.base.game.guardian.GuardianArmor;
+import eu.okaeri.configs.OkaeriConfig;
 import eu.okaeri.configs.annotation.Header;
 import eu.okaeri.configs.annotation.NameModifier;
 import eu.okaeri.configs.annotation.NameStrategy;

@@ -6,10 +6,9 @@ import com.qualityplus.collections.base.collection.category.CollectionCategory;
 import com.qualityplus.collections.base.collection.gui.GUIOptions;
 import com.qualityplus.collections.gui.CollectionsGUI;
 import com.qualityplus.collections.gui.category.CategoryGUI;
+import com.qualityplus.collections.persistance.data.UserData;
 import com.qualityplus.collections.util.CollectionsItemStackUtil;
 import com.qualityplus.collections.util.CollectionsPlaceholderUtil;
-import com.qualityplus.collections.persistance.data.UserData;
-import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
@@ -17,7 +16,6 @@ import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 public final class MainGUI extends CollectionsGUI {

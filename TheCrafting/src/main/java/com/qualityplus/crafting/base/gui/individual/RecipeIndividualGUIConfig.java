@@ -7,8 +7,6 @@ import eu.okaeri.configs.OkaeriConfig;
 import lombok.Builder;
 import lombok.Getter;
 
-import java.util.List;
-
 @Getter
 public final class RecipeIndividualGUIConfig extends OkaeriConfig implements SimpleGUI{
     private final Item modifyDisplayNameItem;

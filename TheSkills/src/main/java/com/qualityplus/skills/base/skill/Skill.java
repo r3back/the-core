@@ -6,15 +6,20 @@ import com.qualityplus.skills.api.effect.CommonObject;
 import com.qualityplus.skills.api.registry.ListenerRegistrable;
 import com.qualityplus.skills.base.reward.StatReward;
 import com.qualityplus.skills.base.skill.gui.GUIOptions;
-import com.qualityplus.skills.base.skill.level.SkillLevel;
 import com.qualityplus.skills.base.skill.registry.Skills;
 import com.qualityplus.skills.util.SkillsPlayerUtil;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 
-import java.util.*;
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 
 @Data
 @NoArgsConstructor

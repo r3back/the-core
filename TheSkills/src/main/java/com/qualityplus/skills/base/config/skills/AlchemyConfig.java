@@ -3,17 +3,11 @@ package com.qualityplus.skills.base.config.skills;
 import com.cryptomorin.xseries.XMaterial;
 import com.google.common.collect.ImmutableMap;
 import com.qualityplus.assistant.api.common.rewards.commands.CommandReward;
-import com.qualityplus.assistant.util.StringUtils;
 import com.qualityplus.assistant.util.faster.FasterMap;
-import com.qualityplus.assistant.util.math.MathUtils;
 import com.qualityplus.assistant.util.number.NumberUtil;
 import com.qualityplus.skills.base.reward.StatReward;
-import com.qualityplus.skills.base.config.skills.common.SkillsConfig;
 import com.qualityplus.skills.base.skill.Skill;
 import com.qualityplus.skills.base.skill.gui.GUIOptions;
-import com.qualityplus.assistant.api.common.rewards.commands.CommandRewards;
-import com.qualityplus.skills.base.reward.StatRewards;
-import com.qualityplus.skills.base.skill.level.SkillLevel;
 import com.qualityplus.skills.base.skill.skills.AlchemySkill;
 import eu.okaeri.configs.OkaeriConfig;
 import eu.okaeri.configs.annotation.Header;
@@ -23,10 +17,8 @@ import eu.okaeri.configs.annotation.Names;
 import eu.okaeri.platform.core.annotation.Configuration;
 import lombok.Getter;
 import lombok.Setter;
-import org.bukkit.Bukkit;
 
 import java.util.*;
-import java.util.stream.IntStream;
 
 @Getter
 @Setter

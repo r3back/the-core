@@ -1,7 +1,7 @@
 package com.qualityplus.skills.listener;
 
+import com.qualityplus.assistant.api.util.BukkitItemUtil;
 import com.qualityplus.assistant.base.event.ArmorEquipEvent;
-import com.qualityplus.assistant.util.itemstack.ItemStackUtils;
 import com.qualityplus.skills.TheSkills;
 import com.qualityplus.skills.api.box.Box;
 import eu.okaeri.injector.annotation.Inject;
@@ -19,14 +19,14 @@ public final class ArmorStatsListener implements Listener {
     public void onEquip(ArmorEquipEvent e){
         Player player = e.getPlayer();
 
-        if(!ItemStackUtils.isNull(e.getNewArmorPiece()))
+        if(!BukkitItemUtil.isNull(e.getNewArmorPiece()))
             TheSkills.getApi()
                     .getItemStats(e.getNewArmorPiece())
                     .forEach((key, value1) -> box.service().getData(player.getUniqueId())
                     .ifPresent(data -> data.getSkills().addArmor(key.getId(), value1)));
 
 
-        if(!ItemStackUtils.isNull(e.getOldArmorPiece()))
+        if(!BukkitItemUtil.isNull(e.getOldArmorPiece()))
             TheSkills.getApi()
                     .getItemStats(e.getOldArmorPiece())
                     .forEach((key, value1) -> box.service().getData(player.getUniqueId())

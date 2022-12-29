@@ -2,7 +2,8 @@ package com.qualityplus.skills.persistance.data;
 
 import com.qualityplus.skills.persistance.data.user.UserSkills;
 import eu.okaeri.persistence.document.Document;
-import lombok.*;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import java.util.UUID;
 

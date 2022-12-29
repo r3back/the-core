@@ -4,8 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import org.bukkit.inventory.ItemStack;
 
-import java.util.UUID;
-
 public interface RemoveSession {
     ItemStack getItemToRemove();
 

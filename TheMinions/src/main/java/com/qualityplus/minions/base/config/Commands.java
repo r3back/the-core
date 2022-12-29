@@ -2,10 +2,7 @@ package com.qualityplus.minions.base.config;
 
 import com.qualityplus.assistant.api.commands.details.CommandDetails;
 import eu.okaeri.configs.OkaeriConfig;
-import eu.okaeri.configs.annotation.Header;
-import eu.okaeri.configs.annotation.NameModifier;
-import eu.okaeri.configs.annotation.NameStrategy;
-import eu.okaeri.configs.annotation.Names;
+import eu.okaeri.configs.annotation.*;
 import eu.okaeri.platform.core.annotation.Configuration;
 
 import java.time.Duration;
@@ -17,10 +14,15 @@ import java.util.Collections;
 @Header("================================")
 @Names(strategy = NameStrategy.HYPHEN_CASE, modifier = NameModifier.TO_LOWER_CASE)
 public final class Commands extends OkaeriConfig {
-    public CommandDetails reloadCommand = new CommandDetails(Collections.singletonList("reload"), "Reload files", "/TheSouls reload", "thesouls.reload", true, Duration.ZERO.getSeconds(), true, "theminions");
-    public CommandDetails editCommand = new CommandDetails(Collections.singletonList("edit"), "Open souls edit gui", "/TheSouls edit", "thesouls.edit", true, Duration.ZERO.getSeconds(), true, "theminions");
-    public CommandDetails giveSoulCommand = new CommandDetails(Collections.singletonList("givesoul"), "Give Souls to players", "/TheSouls givesoul <player>", "thesouls.givesoul", true, Duration.ZERO.getSeconds(), true, "theminions");
-    public CommandDetails tiaCommand = new CommandDetails(Collections.singletonList("tia"), "Open souls tia gui", "/TheSouls tia", "thesouls.tia", true, Duration.ZERO.getSeconds(), true, "theminions");
-    public CommandDetails helpCommand = new CommandDetails(Collections.singletonList("help"), "Show all commands", "/TheSouls help", "thesouls.help", true, Duration.ZERO.getSeconds(), true, "theminions");
+    public CommandDetails reloadCommand = new CommandDetails(Collections.singletonList("reload"), "Reload files", "/TheMinions reload", "theminions.reload", true, Duration.ZERO.getSeconds(), true, "theminions");
+    public CommandDetails giveMinionCommand = new CommandDetails(Collections.singletonList("giveminion"), "Give Minion to players", "/TheMinions giveminion <player> <id>", "theminions.giveminion", true, Duration.ZERO.getSeconds(), true, "theminions");
+    public CommandDetails giveAutomatedShippingCommand = new CommandDetails(Collections.singletonList("giveautoship"), "Give Automated Shipping to players", "/TheMinions giveautoship <player> <id>", "theminions.giveautoship", true, Duration.ZERO.getSeconds(), true, "theminions");
+    public CommandDetails giveFuelCommand = new CommandDetails(Collections.singletonList("givefuel"), "Give Fuel to players", "/TheMinions givefuel <player> <id>", "theminions.giveautoship", true, Duration.ZERO.getSeconds(), true, "theminions");
+    public CommandDetails giveUpgradeCommand = new CommandDetails(Collections.singletonList("giveupgrade"), "Give Upgrade to players", "/TheMinions giveupgrade <player> <id>", "theminions.giveautoship", true, Duration.ZERO.getSeconds(), true, "theminions");
+
+    public CommandDetails giveSkinCommand = new CommandDetails(Collections.singletonList("giveskin"), "Give minion skins to players", "/TheMinions giveskin <player> <id>", "theminions.giveskin", true, Duration.ZERO.getSeconds(), true, "theminions");
+    public CommandDetails helpCommand = new CommandDetails(Collections.singletonList("help"), "Show all commands", "/TheMinions help", "theminions.help", true, Duration.ZERO.getSeconds(), true, "theminions");
+    @Exclude
+    public CommandDetails testCommand = new CommandDetails(Collections.singletonList("test"), "Test Purpose commands", "/TheMinions test", "theminions.test", true, Duration.ZERO.getSeconds(), true, "theminions");
 
 }

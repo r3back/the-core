@@ -3,7 +3,11 @@ package com.qualityplus.auction.base.service;
 import com.qualityplus.auction.api.service.UserService;
 import com.qualityplus.auction.persistence.data.User;
 import eu.okaeri.platform.core.annotation.Component;
-import java.util.*;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Optional;
+import java.util.UUID;
 
 @Component
 public final class UserServiceImpl implements UserService {

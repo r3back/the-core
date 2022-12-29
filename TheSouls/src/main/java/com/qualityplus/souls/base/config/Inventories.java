@@ -6,7 +6,6 @@ import com.qualityplus.assistant.inventory.background.DefaultBackgrounds;
 import com.qualityplus.assistant.util.itemstack.ItemBuilder;
 import com.qualityplus.souls.base.gui.addcommands.AddCommandsGUIConfig;
 import com.qualityplus.souls.base.gui.addmessages.AddMessagesGUIConfig;
-import com.qualityplus.souls.base.gui.allsouls.AllSoulsGUI;
 import com.qualityplus.souls.base.gui.allsouls.AllSoulsGUIConfig;
 import com.qualityplus.souls.base.gui.confirmdelete.ConfirmDeleteGUIConfig;
 import com.qualityplus.souls.base.gui.editgui.SoulsEditGUIConfig;

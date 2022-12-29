@@ -1,7 +1,7 @@
 package com.qualityplus.bank.persistence.data;
 
-import com.qualityplus.bank.base.gui.main.BankInterfaceGUI.GUIType;
 import com.qualityplus.bank.api.transaction.TransactionType;
+import com.qualityplus.bank.base.gui.main.BankInterfaceGUI.GUIType;
 import eu.okaeri.persistence.document.Document;
 import lombok.Data;
 import lombok.EqualsAndHashCode;

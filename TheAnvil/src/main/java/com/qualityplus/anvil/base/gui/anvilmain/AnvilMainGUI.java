@@ -1,20 +1,21 @@
 package com.qualityplus.anvil.base.gui.anvilmain;
 
-import com.qualityplus.anvil.api.session.AnvilSession;
-import com.qualityplus.anvil.util.AnvilFinderUtil;
-import com.qualityplus.assistant.api.util.IPlaceholder;
-import com.qualityplus.assistant.util.inventory.InventoryUtils;
-import com.qualityplus.assistant.util.itemstack.ItemStackUtils;
 import com.qualityplus.anvil.api.box.Box;
+import com.qualityplus.anvil.api.session.AnvilSession;
+import com.qualityplus.anvil.api.session.AnvilSession.SessionResult;
 import com.qualityplus.anvil.base.gui.AnvilGUI;
 import com.qualityplus.anvil.base.gui.anvilmain.handler.ClickHandler;
 import com.qualityplus.anvil.base.gui.anvilmain.handler.MainClickHandler;
 import com.qualityplus.anvil.base.gui.anvilmain.handler.NormalClickHandler;
 import com.qualityplus.anvil.base.gui.anvilmain.handler.ShiftClickHandler;
+import com.qualityplus.anvil.util.AnvilFinderUtil;
+import com.qualityplus.assistant.api.util.BukkitItemUtil;
+import com.qualityplus.assistant.api.util.IPlaceholder;
+import com.qualityplus.assistant.util.inventory.InventoryUtils;
+import com.qualityplus.assistant.util.itemstack.ItemStackUtils;
 import com.qualityplus.assistant.util.placeholder.Placeholder;
 import lombok.Getter;
 import lombok.Setter;
-import com.qualityplus.anvil.api.session.AnvilSession.SessionResult;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
@@ -22,7 +23,10 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import java.util.Optional;
 
 public final class AnvilMainGUI extends AnvilGUI {
     private @Getter final AnvilMainGUIConfig config;
@@ -90,7 +94,7 @@ public final class AnvilMainGUI extends AnvilGUI {
                     ));
         }
 
-        if(!ItemStackUtils.isNull(session.getResult()))
+        if(!BukkitItemUtil.isNull(session.getResult()))
             inventory.setItem(config.getCombinedFilledItem().slot, ItemStackUtils.makeItem(config.getCombinedFilledItem(), getPlaceholders(session.getResult()), session.getResult()));
 
 
@@ -98,10 +102,10 @@ public final class AnvilMainGUI extends AnvilGUI {
             setItem(config.getCombinedErrorItem(), Collections.singletonList(new Placeholder("anvil_error", getErrorPlaceholder(answer))));
 
 
-        if(!ItemStackUtils.isNull(session.getItemToSacrifice()))
+        if(!BukkitItemUtil.isNull(session.getItemToSacrifice()))
             inventory.setItem(config.getToSacrificeSlot(), session.getItemToSacrifice());
 
-        if(!ItemStackUtils.isNull(session.getItemToUpgrade()))
+        if(!BukkitItemUtil.isNull(session.getItemToUpgrade()))
             inventory.setItem(config.getToUpgradeSlot(), session.getItemToUpgrade());
 
 
@@ -112,8 +116,8 @@ public final class AnvilMainGUI extends AnvilGUI {
 
     private List<IPlaceholder> getPlaceholders(ItemStack itemStack){
         return Arrays.asList(
-                new Placeholder("anvil_result_item_displayname", ItemStackUtils.getName(itemStack)),
-                new Placeholder("anvil_result_item_lore", ItemStackUtils.getItemLore(itemStack))
+                new Placeholder("anvil_result_item_displayname", BukkitItemUtil.getName(itemStack)),
+                new Placeholder("anvil_result_item_lore", BukkitItemUtil.getItemLore(itemStack))
         );
     }
 

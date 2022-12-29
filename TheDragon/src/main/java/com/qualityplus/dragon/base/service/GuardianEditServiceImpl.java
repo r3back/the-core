@@ -1,14 +1,14 @@
 package com.qualityplus.dragon.base.service;
 
-import com.qualityplus.dragon.api.box.Box;
 import com.qualityplus.dragon.api.service.GuardianEditService;
 import com.qualityplus.dragon.base.editmode.GuardianEditMode;
-import eu.okaeri.injector.annotation.Inject;
 import eu.okaeri.platform.core.annotation.Component;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
 
 /**
  * Handles the Editor Mode Data

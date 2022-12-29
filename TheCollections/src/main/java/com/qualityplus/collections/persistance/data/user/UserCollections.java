@@ -1,9 +1,9 @@
 package com.qualityplus.collections.persistance.data.user;
 
+import com.qualityplus.assistant.api.common.data.LevellableInteger;
 import com.qualityplus.assistant.api.common.data.ProgressableData;
 import com.qualityplus.collections.base.collection.Collection;
 import com.qualityplus.collections.base.collection.registry.CollectionsRegistry;
-import com.qualityplus.assistant.api.common.data.LevellableInteger;
 import eu.okaeri.persistence.document.Document;
 import lombok.Getter;
 import lombok.Setter;

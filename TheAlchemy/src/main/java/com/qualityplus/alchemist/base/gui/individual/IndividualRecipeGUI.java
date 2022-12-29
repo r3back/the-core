@@ -4,6 +4,7 @@ import com.qualityplus.alchemist.api.box.Box;
 import com.qualityplus.alchemist.base.gui.AlchemistGUI;
 import com.qualityplus.alchemist.base.gui.recipes.RecipesGUI;
 import com.qualityplus.alchemist.base.gui.select.SelectItemGUI;
+import com.qualityplus.alchemist.base.gui.select.SelectItemGUI.BrewingRecipeItem;
 import com.qualityplus.alchemist.base.recipes.BrewingRecipe;
 import com.qualityplus.alchemist.util.AlchemistPlaceholderUtils;
 import com.qualityplus.assistant.api.util.IPlaceholder;
@@ -12,7 +13,6 @@ import com.qualityplus.assistant.util.itemstack.ItemStackUtils;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
-import com.qualityplus.alchemist.base.gui.select.SelectItemGUI.BrewingRecipeItem;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 

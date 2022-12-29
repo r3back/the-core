@@ -1,7 +1,7 @@
 package com.qualityplus.runes.listener;
 
+import com.qualityplus.assistant.api.util.BukkitItemUtil;
 import com.qualityplus.assistant.util.StringUtils;
-import com.qualityplus.assistant.util.itemstack.ItemStackUtils;
 import com.qualityplus.runes.api.box.Box;
 import com.qualityplus.runes.base.gui.runetable.RuneTableGUI;
 import com.qualityplus.runes.base.session.RuneSessionImpl;
@@ -38,7 +38,7 @@ public final class RuneTableClickAndRemoveListener implements Listener {
 
         ItemStack inHand = player.getItemInHand();
 
-        if (!ItemStackUtils.isNull(inHand) && RunesUtils.hasNBTData(inHand, "runeTableRemover")){
+        if (!BukkitItemUtil.isNull(inHand) && RunesUtils.hasNBTData(inHand, "runeTableRemover")){
 
             if(!player.hasPermission("therunes.remove.table")){
                 player.sendMessage(StringUtils.color(box.files().messages().pluginMessages.noPermission));

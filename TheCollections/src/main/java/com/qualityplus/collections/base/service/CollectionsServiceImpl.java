@@ -2,12 +2,12 @@ package com.qualityplus.collections.base.service;
 
 import com.qualityplus.collections.api.event.CollectionEvent;
 import com.qualityplus.collections.api.service.CollectionsService;
+import com.qualityplus.collections.base.collection.Collection;
 import com.qualityplus.collections.base.event.CollectionsLevelUPEvent;
 import com.qualityplus.collections.base.event.CollectionsUnlockEvent;
 import com.qualityplus.collections.base.event.CollectionsXPGainEvent;
-import com.qualityplus.collections.base.collection.Collection;
-import com.qualityplus.collections.persistance.data.user.UserCollections;
 import com.qualityplus.collections.persistance.data.UserData;
+import com.qualityplus.collections.persistance.data.user.UserCollections;
 import eu.okaeri.platform.core.annotation.Component;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;

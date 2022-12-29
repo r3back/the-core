@@ -6,8 +6,6 @@ import com.qualityplus.assistant.util.itemstack.ItemStackUtils;
 import com.qualityplus.assistant.util.placeholder.Placeholder;
 import com.qualityplus.dragon.api.box.Box;
 import com.qualityplus.dragon.api.game.dragon.TheDragonEntity;
-import com.qualityplus.dragon.api.game.structure.type.DragonCrystal;
-import com.qualityplus.dragon.base.game.dragon.TheDragonEntityImpl;
 import com.qualityplus.dragon.gui.TheDragonGUI;
 import com.qualityplus.dragon.gui.mainmenu.MainMenuGUI;
 import org.bukkit.entity.Player;
@@ -15,11 +13,8 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.jetbrains.annotations.NotNull;
 
-import java.lang.reflect.Array;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public final class DragonsGUI extends TheDragonGUI {
     private final DragonsGUIConfig config;

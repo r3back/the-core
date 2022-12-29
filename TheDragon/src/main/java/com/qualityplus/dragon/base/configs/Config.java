@@ -4,7 +4,6 @@ import com.cryptomorin.xseries.XMaterial;
 import com.qualityplus.assistant.api.config.ConfigDatabase;
 import com.qualityplus.assistant.inventory.Item;
 import com.qualityplus.assistant.util.itemstack.ItemBuilder;
-
 import eu.okaeri.configs.OkaeriConfig;
 import eu.okaeri.configs.annotation.*;
 import eu.okaeri.platform.core.annotation.Configuration;

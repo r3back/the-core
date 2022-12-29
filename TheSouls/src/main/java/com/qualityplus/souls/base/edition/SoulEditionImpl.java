@@ -1,7 +1,6 @@
 package com.qualityplus.souls.base.edition;
 
 import com.qualityplus.assistant.util.StringUtils;
-
 import com.qualityplus.souls.api.box.Box;
 import com.qualityplus.souls.api.edition.EditionObject;
 import com.qualityplus.souls.api.edition.SoulEdition;

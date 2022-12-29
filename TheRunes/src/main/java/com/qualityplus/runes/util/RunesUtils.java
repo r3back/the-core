@@ -1,5 +1,6 @@
 package com.qualityplus.runes.util;
 
+import com.qualityplus.assistant.api.util.BukkitItemUtil;
 import com.qualityplus.assistant.inventory.Item;
 import com.qualityplus.assistant.util.StringUtils;
 import com.qualityplus.assistant.util.itemstack.ItemBuilder;
@@ -13,7 +14,6 @@ import com.qualityplus.runes.base.session.ItemRuneInstanceImpl;
 import com.qualityplus.runes.base.session.RuneInstanceImpl;
 import de.tr7zw.changeme.nbtapi.NBTItem;
 import lombok.experimental.UtilityClass;
-import org.bukkit.Bukkit;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
@@ -31,7 +31,7 @@ public final class RunesUtils {
     private static final String ITEM_STACK_RUNE_LEVEL_KEY = "THE_RUNES_ITEM_STACK_RUNE_LEVEL";
 
     public boolean hasNBTData(ItemStack itemStack, String key){
-        return !ItemStackUtils.isNull(itemStack) && new NBTItem(itemStack).hasKey(key);
+        return !BukkitItemUtil.isNull(itemStack) && new NBTItem(itemStack).hasKey(key);
     }
 
     public boolean isRune(ItemStack itemStack){
@@ -43,7 +43,7 @@ public final class RunesUtils {
     }
 
     public @Nullable RuneInstance getRuneInstance(ItemStack itemStack){
-        if(ItemStackUtils.isNull(itemStack)) return null;
+        if(BukkitItemUtil.isNull(itemStack)) return null;
 
         NBTItem nbtItem = new NBTItem(itemStack);
 
@@ -54,7 +54,7 @@ public final class RunesUtils {
     }
 
     public RuneInstance getRuneItemInstance(ItemStack itemStack){
-        if(ItemStackUtils.isNull(itemStack)) return new ItemRuneInstanceImpl(null, 0);
+        if(BukkitItemUtil.isNull(itemStack)) return new ItemRuneInstanceImpl(null, 0);
 
         NBTItem nbtItem = new NBTItem(itemStack);
 
@@ -88,7 +88,7 @@ public final class RunesUtils {
 
         Rune rune = Runes.getByID(id);
 
-        List<String> lore = new ArrayList<>(ItemStackUtils.getItemLore(itemStack));
+        List<String> lore = new ArrayList<>(BukkitItemUtil.getItemLore(itemStack));
 
         String toRemove = Optional.ofNullable(rune).map(rune1 -> StringUtils.color(rune1.getToAddLore().replace("%rune_level%", MathUtils.toRoman(level)))).orElse(null);
 

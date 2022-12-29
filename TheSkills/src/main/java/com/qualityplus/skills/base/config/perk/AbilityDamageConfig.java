@@ -3,7 +3,6 @@ package com.qualityplus.skills.base.config.perk;
 import com.cryptomorin.xseries.XMaterial;
 import com.qualityplus.skills.base.perk.Perk;
 import com.qualityplus.skills.base.perk.perks.AbilityDamagePerk;
-import com.qualityplus.skills.base.perk.perks.SteelSkinPerk;
 import com.qualityplus.skills.base.skill.gui.GUIOptions;
 import eu.okaeri.configs.OkaeriConfig;
 import eu.okaeri.configs.annotation.Header;

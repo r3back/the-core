@@ -1,7 +1,7 @@
 package com.qualityplus.dragon.api.service;
 
-import com.qualityplus.dragon.api.game.dragon.TheDragonEntity;
 import com.qualityplus.dragon.api.controller.DragonController;
+import com.qualityplus.dragon.api.game.dragon.TheDragonEntity;
 import org.bukkit.entity.EnderDragon;
 
 import java.util.concurrent.CompletableFuture;

@@ -1,23 +1,19 @@
 package com.qualityplus.runes.base.gui.derune;
 
-import com.qualityplus.assistant.api.util.IPlaceholder;
+import com.qualityplus.assistant.api.util.BukkitItemUtil;
 import com.qualityplus.assistant.util.inventory.InventoryUtils;
 import com.qualityplus.assistant.util.itemstack.ItemStackUtils;
 import com.qualityplus.assistant.util.placeholder.Placeholder;
 import com.qualityplus.assistant.util.placeholder.PlaceholderBuilder;
 import com.qualityplus.runes.api.box.Box;
 import com.qualityplus.runes.api.session.RemoveSession;
-import com.qualityplus.runes.api.session.RuneSession;
-import com.qualityplus.runes.api.session.RuneSession.SessionResult;
+import com.qualityplus.runes.api.session.RemoveSession.RemoveSessionResult;
 import com.qualityplus.runes.base.gui.ClickHandler;
 import com.qualityplus.runes.base.gui.RuneGUI;
-import com.qualityplus.runes.api.session.RemoveSession.RemoveSessionResult;
-
 import com.qualityplus.runes.base.gui.derune.handler.RMainClickHandler;
 import com.qualityplus.runes.base.gui.derune.handler.RNormalClickHandler;
 import com.qualityplus.runes.base.gui.derune.handler.RShiftClickHandler;
 import com.qualityplus.runes.base.gui.runetable.RuneTableGUI;
-import com.qualityplus.runes.base.rune.RuneLevel;
 import com.qualityplus.runes.base.session.RuneSessionImpl;
 import com.qualityplus.runes.util.RuneFinderUtil;
 import lombok.Getter;
@@ -26,12 +22,8 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.inventory.Inventory;
-import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
 import java.util.Optional;
 
 public final class RemoveRuneGUI extends RuneGUI {
@@ -67,10 +59,10 @@ public final class RemoveRuneGUI extends RuneGUI {
                 inventory.setItem(config.getClickToRemoveRune().slot, ItemStackUtils.makeItem(config.getClickToRemoveRune()));
             }
 
-            if(!ItemStackUtils.isNull(session.getItemToRemove()))
+            if(!BukkitItemUtil.isNull(session.getItemToRemove()))
                 inventory.setItem(config.getToUpgradeSlot(), ItemStackUtils.makeItem(config.getToRemoveItem(), PlaceholderBuilder
-                        .create(new Placeholder("to_remove_rune_item_displayname", ItemStackUtils.getName(session.getItemToRemove())),
-                                new Placeholder("to_remove_rune_item_lore", ItemStackUtils.getItemLore(session.getItemToRemove())))
+                        .create(new Placeholder("to_remove_rune_item_displayname", BukkitItemUtil.getName(session.getItemToRemove())),
+                                new Placeholder("to_remove_rune_item_lore", BukkitItemUtil.getItemLore(session.getItemToRemove())))
                         .get(), session.getItemToRemove()));
 
         }

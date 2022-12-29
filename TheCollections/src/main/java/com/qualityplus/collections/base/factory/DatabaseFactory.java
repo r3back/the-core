@@ -2,12 +2,10 @@ package com.qualityplus.collections.base.factory;
 
 import com.mongodb.MongoClient;
 import com.mongodb.MongoClientURI;
-import com.qualityplus.assistant.api.database.HikariDatabaseHelper;
-import com.qualityplus.assistant.api.database.UriGetter;
 import com.qualityplus.assistant.api.config.ConfigDatabase;
 import com.qualityplus.assistant.api.config.DatabaseType;
+import com.qualityplus.assistant.api.database.HikariDatabaseHelper;
 import com.qualityplus.collections.base.config.Config;
-import com.zaxxer.hikari.HikariConfig;
 import eu.okaeri.configs.json.simple.JsonSimpleConfigurer;
 import eu.okaeri.configs.yaml.bukkit.serdes.SerdesBukkit;
 import eu.okaeri.injector.annotation.Inject;
@@ -25,8 +23,6 @@ import io.lettuce.core.RedisClient;
 import io.lettuce.core.RedisURI;
 
 import java.io.File;
-import java.util.HashMap;
-import java.util.Map;
 
 @Component
 public final class DatabaseFactory extends HikariDatabaseHelper {

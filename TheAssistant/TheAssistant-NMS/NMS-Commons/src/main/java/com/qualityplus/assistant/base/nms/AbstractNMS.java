@@ -1,19 +1,20 @@
 package com.qualityplus.assistant.base.nms;
 
-import com.google.common.annotations.Beta;
 import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
 import com.qualityplus.assistant.api.nms.NMS;
 import com.qualityplus.assistant.base.event.ActionBarMessageEvent;
+import com.qualityplus.assistant.base.event.ActionBarMessageEvent.ActionBarType;
 import eu.okaeri.commons.bukkit.UnsafeBukkitCommons;
+import org.bukkit.Bukkit;
 import org.bukkit.block.Block;
 import org.bukkit.boss.BossBar;
 import org.bukkit.entity.Player;
-import org.bukkit.Bukkit;
 import org.bukkit.event.Event;
-import com.qualityplus.assistant.base.event.ActionBarMessageEvent.ActionBarType;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
 public abstract class AbstractNMS implements NMS {

@@ -1,9 +1,9 @@
 package com.qualityplus.skills.base.service;
 
 import com.qualityplus.assistant.TheAssistantPlugin;
+import com.qualityplus.assistant.api.config.ConfigActionBar;
 import com.qualityplus.assistant.api.util.IPlaceholder;
 import com.qualityplus.assistant.base.nms.AbstractNMS;
-import com.qualityplus.assistant.api.config.ConfigActionBar;
 import com.qualityplus.assistant.util.StringUtils;
 import com.qualityplus.assistant.util.placeholder.PlaceholderBuilder;
 import com.qualityplus.skills.api.service.ActionBarService;

@@ -1,8 +1,8 @@
 package com.qualityplus.assistant.inventory;
 
+import com.qualityplus.assistant.api.gui.ClickableInventory;
 import com.qualityplus.assistant.api.gui.LoreWrapper;
 import com.qualityplus.assistant.api.util.IPlaceholder;
-import com.qualityplus.assistant.api.gui.ClickableInventory;
 import com.qualityplus.assistant.inventory.background.Background;
 import com.qualityplus.assistant.util.StringUtils;
 import com.qualityplus.assistant.util.inventory.InventoryUtils;
@@ -15,7 +15,6 @@ import org.bukkit.event.inventory.InventoryDragEvent;
 import org.bukkit.event.inventory.InventoryOpenEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
-import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;

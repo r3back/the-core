@@ -1,17 +1,17 @@
 package com.qualityplus.trades.base.config;
 
 import com.cryptomorin.xseries.XMaterial;
-import com.qualityplus.assistant.inventory.Item;
 import com.qualityplus.assistant.util.faster.FasterMap;
 import com.qualityplus.assistant.util.itemstack.ItemBuilder;
 import com.qualityplus.trades.base.trades.PluginTrade;
 import eu.okaeri.configs.OkaeriConfig;
-import eu.okaeri.configs.annotation.*;
+import eu.okaeri.configs.annotation.Header;
+import eu.okaeri.configs.annotation.NameModifier;
+import eu.okaeri.configs.annotation.NameStrategy;
+import eu.okaeri.configs.annotation.Names;
 import eu.okaeri.platform.core.annotation.Configuration;
 import lombok.Getter;
 import lombok.Setter;
-import org.bukkit.Material;
-import org.bukkit.inventory.ItemStack;
 
 import java.util.Arrays;
 import java.util.Collections;

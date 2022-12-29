@@ -34,6 +34,22 @@ public final class RandomSelector<T extends Randomable> {
         return items.get(Math.max(0,i-1));
     }
 
+    public T getRandomModified() {
+        if(items == null) return null;
+
+        if(items.size() == 1){
+            return items.get(0);
+        }
+
+        int index = rand.nextInt((int)totalSum);
+        double sum = 0;
+        int i=0;
+        while(sum < index ) {
+            sum = sum + items.get(i++).getProbability();
+        }
+        return items.get(Math.max(0,i-1));
+    }
+
     @Nullable
     public static <T> T getRandom(Map<T, Double> probabilitiesMap){
         List<EasyRandom<T>> items = probabilitiesMap.keySet().stream()

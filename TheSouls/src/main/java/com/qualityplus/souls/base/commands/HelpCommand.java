@@ -1,7 +1,6 @@
 package com.qualityplus.souls.base.commands;
 
 import com.qualityplus.assistant.TheAssistantPlugin;
-import com.qualityplus.assistant.api.commands.CommandProvider;
 import com.qualityplus.assistant.api.commands.command.AssistantCommand;
 import com.qualityplus.souls.api.box.Box;
 import com.qualityplus.souls.base.config.Messages;

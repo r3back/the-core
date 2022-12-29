@@ -7,9 +7,6 @@ import eu.okaeri.configs.annotation.NameStrategy;
 import eu.okaeri.configs.annotation.Names;
 import eu.okaeri.platform.core.annotation.Configuration;
 
-import java.util.Arrays;
-import java.util.List;
-
 @Configuration(path = "messages.yml")
 @Header("================================")
 @Header("       Messages      ")

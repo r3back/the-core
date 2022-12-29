@@ -1,5 +1,6 @@
 package com.qualityplus.skills.persistance.data.user;
 
+import com.qualityplus.assistant.api.common.data.LevellableInteger;
 import com.qualityplus.assistant.api.common.data.ProgressableData;
 import com.qualityplus.skills.base.perk.Perk;
 import com.qualityplus.skills.base.perk.registry.Perks;
@@ -8,7 +9,6 @@ import com.qualityplus.skills.base.skill.registry.Skills;
 import com.qualityplus.skills.base.stat.Stat;
 import com.qualityplus.skills.base.stat.registry.Stats;
 import com.qualityplus.skills.persistance.data.user.armor.LevellableArmorData;
-import com.qualityplus.assistant.api.common.data.LevellableInteger;
 import eu.okaeri.configs.annotation.Exclude;
 import eu.okaeri.persistence.document.Document;
 import lombok.Getter;

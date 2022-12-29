@@ -1,22 +1,27 @@
 package com.qualityplus.minions.util;
 
+import com.cryptomorin.xseries.XMaterial;
+import com.qualityplus.assistant.api.util.BukkitItemUtil;
 import com.qualityplus.assistant.api.util.IPlaceholder;
 import com.qualityplus.assistant.inventory.Item;
 import com.qualityplus.assistant.util.StringUtils;
+import com.qualityplus.assistant.util.faster.FasterStack;
 import com.qualityplus.assistant.util.itemstack.ItemBuilder;
 import com.qualityplus.assistant.util.itemstack.ItemStackUtils;
 import com.qualityplus.minions.TheMinions;
 import com.qualityplus.minions.base.event.MinionCreateEvent;
-import com.qualityplus.minions.base.minion.Minion;
-import com.qualityplus.minions.base.minion.egg.MinionEgg;
-import com.qualityplus.minions.base.minion.registry.Minions;
+import com.qualityplus.minions.base.minions.minion.Minion;
+import com.qualityplus.minions.base.minions.minion.egg.MinionEgg;
+import com.qualityplus.minions.base.minions.Minions;
+import com.qualityplus.minions.base.minions.minion.skin.MinionSkin;
 import com.qualityplus.minions.persistance.data.MinionData;
 import de.tr7zw.changeme.nbtapi.NBTItem;
 import lombok.experimental.UtilityClass;
 import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
-import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -27,7 +32,8 @@ public class MinionEggUtil {
     private final String PET_UNIQUE_ID_KEY = "PET_UUID_KEY";
 
     public Optional<MinionData> dataFromEgg(ItemStack itemStack){
-        if(ItemStackUtils.isNull(itemStack)) return Optional.empty();
+
+        if(BukkitItemUtil.isNull(itemStack)) return Optional.empty();
 
         NBTItem nbtItem = new NBTItem(itemStack);
 
@@ -42,11 +48,11 @@ public class MinionEggUtil {
         return TheMinions.getApi().getMinionsService().getData(uuid);
     }
 
-    public Optional<ItemStack> createNewEgg(Item item, Minion pet){
+    public Optional<ItemStack> createNewEgg(Player player, Item item, Minion pet){
 
         UUID petUuid = UUID.randomUUID();
 
-        MinionData petData = new MinionData(petUuid, 0, 0D, pet.getId());
+        MinionData petData = new MinionData(petUuid, player.getUniqueId(), 1, pet.getId(), 0, new HashMap<>(), null, null, null, null, null, null);
 
         MinionCreateEvent petCreateEvent = new MinionCreateEvent(petData);
 
@@ -54,52 +60,6 @@ public class MinionEggUtil {
 
         return getItemStack(item, pet, petData);
 
-    }
-
-    private Optional<ItemStack> getItemStack(Item item, Minion pet, MinionData petData){
-        MinionEgg petEgg = pet.getMinionEgg();
-
-        List<IPlaceholder> placeholderList = /*PetPlaceholderUtil.getPetPlaceholders(pet)
-                .with(PetPlaceholderUtil.getPetPlaceholders(petData))
-                .get();*/Collections.emptyList();
-
-        ItemStack itemStack = ItemBuilder.of()
-                .headData(petEgg.getTexture())
-                .displayName(StringUtils.processMulti(item.displayName, placeholderList))
-                .lore(StringUtils.processMulti(item.lore, placeholderList))
-                .material(petEgg.getMaterial())
-                .amount(1)
-                .buildStack();
-
-        NBTItem nbtItem = new NBTItem(itemStack);
-
-        nbtItem.setString(PET_ID_KEY, petEgg.getPetId());
-        nbtItem.setString(PET_UNIQUE_ID_KEY, petData.getUuid().toString());
-
-        return Optional.ofNullable(nbtItem.getItem());
-    }
-
-    private Optional<ItemStack> getItemStack(Item item, Minion pet, UUID petUuid){
-        MinionEgg petEgg = pet.getMinionEgg();
-
-        List<IPlaceholder> placeholderList = /*PetPlaceholderUtil.getPetPlaceholders(pet)
-                .with(PetPlaceholderUtil.getPetPlaceholders(petUuid))
-                .get()*/Collections.emptyList();
-
-        ItemStack itemStack = ItemBuilder.of()
-                .headData(petEgg.getTexture())
-                .displayName(StringUtils.processMulti(item.displayName, placeholderList))
-                .lore(StringUtils.processMulti(item.lore, placeholderList))
-                .material(petEgg.getMaterial())
-                .amount(1)
-                .buildStack();
-
-        NBTItem nbtItem = new NBTItem(itemStack);
-
-        nbtItem.setString(PET_ID_KEY, petEgg.getPetId());
-        nbtItem.setString(PET_UNIQUE_ID_KEY, petUuid.toString());
-
-        return Optional.ofNullable(nbtItem.getItem());
     }
 
     public Optional<ItemStack> createFromExistent(Item item, UUID petUuid){
@@ -115,7 +75,40 @@ public class MinionEggUtil {
     }
 
 
+    private Optional<ItemStack> getItemStack(Item item, Minion pet, MinionData petData){
+        return getItemStack(item, pet, petData.getUuid());
+    }
 
+    private Optional<ItemStack> getItemStack(Item item, Minion minion, UUID petUuid){
+        int level = TheMinions.getApi().getMinionsService()
+                .getData(petUuid)
+                .map(MinionData::getLevel)
+                .orElse(1);
 
+        Optional<MinionSkin> minionSkin = minion.getSkin(level);
+
+        List<IPlaceholder> placeholderList = MinionPlaceholderUtil.getMinionPlaceholders(minion)
+                .with(MinionPlaceholderUtil.getMinionPlaceholders(petUuid))
+                .get();
+
+        Item item1 = ItemBuilder.of(XMaterial.PLAYER_HEAD, 1)
+                .displayName(StringUtils.processMulti(item.displayName, placeholderList))
+                .lore(StringUtils.processMulti(item.lore, placeholderList))
+                .amount(1)
+                .build();
+
+        ItemStack eggIcon = minionSkin
+                .map(MinionSkin::getHelmet)
+                .orElse(FasterStack.fast(XMaterial.PLAYER_HEAD));
+
+        ItemStack itemStack = ItemStackUtils.makeItem(item1, eggIcon.clone());
+
+        NBTItem nbtItem = new NBTItem(itemStack);
+
+        nbtItem.setString(PET_ID_KEY, minion.getId());
+        nbtItem.setString(PET_UNIQUE_ID_KEY, petUuid.toString());
+
+        return Optional.ofNullable(nbtItem.getItem());
+    }
 
 }

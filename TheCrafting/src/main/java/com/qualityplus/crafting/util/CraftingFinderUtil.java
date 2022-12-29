@@ -1,10 +1,10 @@
 package com.qualityplus.crafting.util;
 
+import com.qualityplus.assistant.api.util.BukkitItemUtil;
 import com.qualityplus.assistant.util.inventory.InventoryUtils;
 import com.qualityplus.crafting.api.recipes.IRecipe;
-import com.qualityplus.crafting.base.recipes.CustomRecipe;
 import com.qualityplus.crafting.api.recipes.Recipes;
-import com.qualityplus.assistant.util.itemstack.ItemStackUtils;
+import com.qualityplus.crafting.base.recipes.CustomRecipe;
 import com.qualityplus.crafting.base.recipes.VanillaRecipe;
 import lombok.experimental.UtilityClass;
 import org.bukkit.entity.Player;
@@ -23,7 +23,7 @@ public class CraftingFinderUtil {
         //Trying to get Vanilla -
         ItemStack result = fakeTable.getItem(0);
 
-        if(ItemStackUtils.isNull(result)){
+        if(BukkitItemUtil.isNull(result)){
             for(CustomRecipe recipe : Recipes.values()){
                 Map<Integer, ItemStack> ingredients = recipe.getIngredients();
 
@@ -33,11 +33,11 @@ public class CraftingFinderUtil {
                 for(Map.Entry<Integer, Integer> entry : tableRelationSlots.entrySet()){
                     ItemStack inRecipe = ingredients.getOrDefault(entry.getKey(), null);
 
-                    if(ItemStackUtils.isNull(inRecipe)) continue;
+                    if(BukkitItemUtil.isNull(inRecipe)) continue;
 
                     ItemStack inTable = inventory.getItem(entry.getValue());
 
-                    if(ItemStackUtils.isNull(inTable)) continue;
+                    if(BukkitItemUtil.isNull(inTable)) continue;
 
                     if(!inTable.isSimilar(inRecipe)) continue;
 
@@ -65,7 +65,7 @@ public class CraftingFinderUtil {
 
             //Fake Slot | Special Slot
             for(ItemStack inRecipe : ingredients.values()){
-                if(ItemStackUtils.isNull(inRecipe)) continue;
+                if(BukkitItemUtil.isNull(inRecipe)) continue;
 
                 if(!recipe.hasPermission(player)) continue;
 

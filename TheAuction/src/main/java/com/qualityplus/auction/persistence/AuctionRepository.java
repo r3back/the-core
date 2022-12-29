@@ -8,6 +8,7 @@ import eu.okaeri.persistence.repository.annotation.DocumentCollection;
 import eu.okaeri.persistence.repository.annotation.DocumentIndex;
 import eu.okaeri.persistence.repository.annotation.DocumentPath;
 import eu.okaeri.platform.core.annotation.DependsOn;
+
 import java.util.Optional;
 
 @DependsOn(type = DocumentPersistence.class, name = "persistence")

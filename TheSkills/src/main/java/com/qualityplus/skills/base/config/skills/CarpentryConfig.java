@@ -8,8 +8,6 @@ import com.qualityplus.assistant.util.number.NumberUtil;
 import com.qualityplus.skills.base.reward.StatReward;
 import com.qualityplus.skills.base.skill.Skill;
 import com.qualityplus.skills.base.skill.gui.GUIOptions;
-import com.qualityplus.skills.base.skill.level.SkillLevel;
-import com.qualityplus.skills.base.skill.skills.AlchemySkill;
 import com.qualityplus.skills.base.skill.skills.CarpentrySkill;
 import eu.okaeri.configs.OkaeriConfig;
 import eu.okaeri.configs.annotation.Header;

@@ -1,8 +1,8 @@
 package com.qualityplus.dragon;
 
 import com.qualityplus.assistant.okaeri.OkaeriSilentPlugin;
+import com.qualityplus.dragon.api.TheDragonAPI;
 import com.qualityplus.dragon.api.box.Box;
-import com.qualityplus.dragon.base.configs.DragonGuardiansFile;
 import com.qualityplus.dragon.base.configs.Inventories;
 import com.qualityplus.dragon.persistance.data.UserData;
 import eu.okaeri.injector.annotation.Inject;
@@ -10,7 +10,6 @@ import eu.okaeri.platform.core.annotation.Scan;
 import eu.okaeri.platform.core.plan.ExecutionPhase;
 import eu.okaeri.platform.core.plan.Planned;
 import lombok.Getter;
-import com.qualityplus.dragon.api.TheDragonAPI;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;

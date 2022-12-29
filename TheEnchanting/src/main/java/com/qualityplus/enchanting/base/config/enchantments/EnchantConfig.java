@@ -2,11 +2,9 @@ package com.qualityplus.enchanting.base.config.enchantments;
 
 import eu.okaeri.configs.OkaeriConfig;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
-import java.util.HashMap;
 import java.util.Map;
 
 @Getter

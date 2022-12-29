@@ -1,7 +1,6 @@
 package com.qualityplus.runes.base.factory;
 
 import com.qualityplus.assistant.TheAssistantPlugin;
-import com.qualityplus.assistant.api.dependency.resolver.DependencyResolver;
 import com.qualityplus.runes.api.provider.LevelProvider;
 import com.qualityplus.runes.base.provider.RuneCraftLevelProvider;
 import com.qualityplus.runes.base.provider.XPLevelProvider;

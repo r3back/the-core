@@ -6,8 +6,6 @@ import eu.okaeri.configs.annotation.NameModifier;
 import eu.okaeri.configs.annotation.NameStrategy;
 import eu.okaeri.configs.annotation.Names;
 import eu.okaeri.platform.core.annotation.Configuration;
-import lombok.Getter;
-import lombok.Setter;
 
 @Configuration(path = "messages.yml")
 @Header("================================")

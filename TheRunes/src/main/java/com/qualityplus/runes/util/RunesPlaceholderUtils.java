@@ -1,9 +1,9 @@
 package com.qualityplus.runes.util;
 
 import com.qualityplus.assistant.util.math.MathUtils;
+import com.qualityplus.assistant.util.placeholder.Placeholder;
 import com.qualityplus.assistant.util.placeholder.PlaceholderBuilder;
 import com.qualityplus.runes.base.rune.Rune;
-import com.qualityplus.assistant.util.placeholder.Placeholder;
 import com.qualityplus.runes.base.rune.RuneLevel;
 import lombok.experimental.UtilityClass;
 

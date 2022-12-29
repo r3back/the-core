@@ -2,8 +2,8 @@ package com.qualityplus.auction.base.config;
 
 import com.cryptomorin.xseries.XMaterial;
 import com.google.common.collect.ImmutableMap;
-import com.qualityplus.assistant.api.gui.LoreWrapper;
 import com.qualityplus.assistant.api.config.ConfigDatabase;
+import com.qualityplus.assistant.api.gui.LoreWrapper;
 import com.qualityplus.assistant.util.time.Timer;
 import com.qualityplus.auction.persistence.data.AuctionTime;
 import eu.okaeri.configs.OkaeriConfig;

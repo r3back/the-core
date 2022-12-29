@@ -1,23 +1,20 @@
 package com.qualityplus.dragon.base.events;
 
 import com.qualityplus.assistant.util.StringUtils;
-import com.qualityplus.assistant.util.math.MathUtils;
 import com.qualityplus.dragon.TheDragon;
-import com.qualityplus.dragon.api.box.Box;
 import com.qualityplus.dragon.api.event.DragonGameEvent;
-import com.qualityplus.dragon.api.factory.GuardianFactory;
 import com.qualityplus.dragon.api.game.DragonGame;
 import com.qualityplus.dragon.api.game.guardian.Guardian;
-import com.qualityplus.dragon.api.game.structure.type.DragonSpawn;
-import com.qualityplus.dragon.base.configs.DragonEventsFile;
-import org.bukkit.Bukkit;
-import org.bukkit.Location;
-import org.bukkit.entity.EnderDragon;
-import org.bukkit.entity.Entity;
 import com.qualityplus.dragon.base.configs.DragonEventsFile.GuardianChanceConfig;
 import com.qualityplus.dragon.base.configs.DragonEventsFile.SerializableEvent;
+import org.bukkit.Bukkit;
+import org.bukkit.Location;
+import org.bukkit.entity.Entity;
 
-import java.util.*;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Objects;
+import java.util.Set;
 
 public final class DragonGuardianEvent extends DragonGameEvent {
     private final List<GuardianChanceConfig> guardiansConfig;

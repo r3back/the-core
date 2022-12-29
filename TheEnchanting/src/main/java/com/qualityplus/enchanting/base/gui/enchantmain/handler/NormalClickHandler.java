@@ -1,6 +1,6 @@
 package com.qualityplus.enchanting.base.gui.enchantmain.handler;
 
-import com.qualityplus.assistant.util.itemstack.ItemStackUtils;
+import com.qualityplus.assistant.api.util.BukkitItemUtil;
 import com.qualityplus.enchanting.api.box.Box;
 import com.qualityplus.enchanting.base.gui.enchantmain.EnchantMainGUI;
 import lombok.AllArgsConstructor;
@@ -26,7 +26,7 @@ public final class NormalClickHandler implements ClickHandler{
         final ItemStack copy = Optional.ofNullable(event.getCursor()).map(ItemStack::clone).orElse(null);
         final ItemStack current = Optional.ofNullable(event.getCurrentItem()).map(ItemStack::clone).orElse(null);
 
-        if(ItemStackUtils.isNull(copy)){
+        if(BukkitItemUtil.isNull(copy)){
             //PickUp
             gui.setGiveItem(false);
             event.setCurrentItem(null);

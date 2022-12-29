@@ -1,7 +1,7 @@
 package com.qualityplus.crafting.base.gui.craftingtable.handler.result;
 
+import com.qualityplus.assistant.api.util.BukkitItemUtil;
 import com.qualityplus.assistant.util.inventory.InventoryUtils;
-import com.qualityplus.assistant.util.itemstack.ItemStackUtils;
 import com.qualityplus.crafting.api.box.Box;
 import com.qualityplus.crafting.api.recipes.IRecipe;
 import com.qualityplus.crafting.base.gui.craftingtable.handler.CommonHandler;
@@ -9,7 +9,6 @@ import com.qualityplus.crafting.base.recipes.CustomRecipe;
 import com.qualityplus.crafting.base.recipes.VanillaRecipe;
 import com.qualityplus.crafting.util.CraftingFinderUtil;
 import lombok.AllArgsConstructor;
-import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryView;
@@ -70,9 +69,9 @@ public final class ShiftResultHandler implements CommonHandler {
     private void giveItem(Player player, ItemStack itemStack, int amount){
         if(amount > itemStack.getMaxStackSize())
             for(int i = 0; i<amount; i++)
-                player.getInventory().addItem(ItemStackUtils.getItemWith(itemStack.clone(), 1));
+                player.getInventory().addItem(BukkitItemUtil.getItemWith(itemStack.clone(), 1));
         else
-            player.getInventory().addItem(ItemStackUtils.getItemWith(itemStack.clone(), amount));
+            player.getInventory().addItem(BukkitItemUtil.getItemWith(itemStack.clone(), amount));
 
     }
 
@@ -85,11 +84,11 @@ public final class ShiftResultHandler implements CommonHandler {
         for(Map.Entry<Integer, Integer> entry : tableRelationSlots.entrySet()){
             ItemStack inRecipe = ingredients.getOrDefault(entry.getKey(), null);
 
-            if(ItemStackUtils.isNull(inRecipe)) continue;
+            if(BukkitItemUtil.isNull(inRecipe)) continue;
 
             ItemStack inTable = inventory.getItem(entry.getValue());
 
-            if(ItemStackUtils.isNull(inTable)) continue;
+            if(BukkitItemUtil.isNull(inTable)) continue;
 
             min = Math.min(min, inTable.getAmount() / inRecipe.getAmount());
         }
@@ -104,10 +103,10 @@ public final class ShiftResultHandler implements CommonHandler {
         //Fake Slot | Special Slot
 
         for(ItemStack inInventory : player.getInventory().getContents()){
-            if(ItemStackUtils.isNull(inInventory)) continue;
+            if(BukkitItemUtil.isNull(inInventory)) continue;
 
             for(ItemStack inRecipe : ingredients.values().stream()
-                    .filter(item -> !ItemStackUtils.isNull(item))
+                    .filter(item -> !BukkitItemUtil.isNull(item))
                     .collect(Collectors.toList())){
 
                 if(!inInventory.isSimilar(inRecipe)) continue;
@@ -127,7 +126,7 @@ public final class ShiftResultHandler implements CommonHandler {
         for(Integer value : tableRelationSlots.values()){
             ItemStack itemStack = inventory.getItem(value);
 
-            if(ItemStackUtils.isNull(itemStack)) continue;
+            if(BukkitItemUtil.isNull(itemStack)) continue;
 
             min = Math.min(itemStack.getAmount(), min);
         }
@@ -140,7 +139,7 @@ public final class ShiftResultHandler implements CommonHandler {
         for(Integer value : tableRelationSlots.values()){
             ItemStack itemStack = inventory.getItem(value);
 
-            if(ItemStackUtils.isNull(itemStack)) continue;
+            if(BukkitItemUtil.isNull(itemStack)) continue;
 
             min = Math.max(itemStack.getAmount(), min);
         }
@@ -155,10 +154,10 @@ public final class ShiftResultHandler implements CommonHandler {
         //Fake Slot | Special Slot
 
         for(ItemStack inInventory : player.getInventory().getContents()){
-            if(ItemStackUtils.isNull(inInventory)) continue;
+            if(BukkitItemUtil.isNull(inInventory)) continue;
 
             for(ItemStack inRecipe : ingredients.values().stream()
-                    .filter(item -> !ItemStackUtils.isNull(item))
+                    .filter(item -> !BukkitItemUtil.isNull(item))
                     .collect(Collectors.toList())){
 
                 if(!inInventory.isSimilar(inRecipe)) continue;
@@ -176,7 +175,7 @@ public final class ShiftResultHandler implements CommonHandler {
     private void removeItemsFromInventory(Player player, CustomRecipe recipe){
         recipe.getIngredients().values()
                 .stream()
-                .filter(item -> !ItemStackUtils.isNull(item))
+                .filter(item -> !BukkitItemUtil.isNull(item))
                 .forEach(item -> InventoryUtils.removeItems(player.getInventory(), item, item.getAmount()));
     }
 

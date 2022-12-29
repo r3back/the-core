@@ -3,8 +3,6 @@ package com.qualityplus.dragon.base.service;
 import com.qualityplus.dragon.api.service.UserDBService;
 import com.qualityplus.dragon.persistance.data.UserData;
 import eu.okaeri.platform.core.annotation.Component;
-import org.bukkit.Bukkit;
-import org.bukkit.entity.Player;
 
 import java.util.HashMap;
 import java.util.Map;

@@ -2,27 +2,20 @@ package com.qualityplus.assistant.util.itemstack;
 
 import com.cryptomorin.xseries.XMaterial;
 import com.qualityplus.assistant.api.gui.LoreWrapper;
+import com.qualityplus.assistant.api.util.BukkitItemUtil;
 import com.qualityplus.assistant.api.util.IPlaceholder;
 import com.qualityplus.assistant.inventory.Item;
 import com.qualityplus.assistant.util.StringUtils;
-import com.qualityplus.assistant.util.armor.ArmorType;
 import de.tr7zw.changeme.nbtapi.NBTCompound;
 import de.tr7zw.changeme.nbtapi.NBTItem;
 import de.tr7zw.changeme.nbtapi.NBTListCompound;
 import org.apache.commons.lang.WordUtils;
-import org.bukkit.Bukkit;
-import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.SkullMeta;
-import org.bukkit.util.io.BukkitObjectInputStream;
-import org.bukkit.util.io.BukkitObjectOutputStream;
-import org.jetbrains.annotations.Nullable;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -51,15 +44,6 @@ public final class ItemStackUtils {
     public static ItemStack makeItem(XMaterial material, int amount, String name, List<String> lore) {
         return makeItem(material.parseItem(), amount, name, lore);
     }
-
-    public static boolean isNull(ItemStack itemStack){
-        return (itemStack == null || itemStack.getType() == Material.AIR);
-    }
-
-    public static boolean isNotNull(ItemStack itemStack){
-        return !isNull(itemStack);
-    }
-
 
     public static ItemStack makeItem(Item item) {
         return makeItem(item, LORE_WRAPPER);
@@ -131,21 +115,7 @@ public final class ItemStackUtils {
         return getFinalItem(item, itemstack, placeholders, LORE_WRAPPER);
     }
 
-    public static ItemStack addCustomModelData(ItemStack itemStack, Integer customModelData){
-        if(customModelData == null || XMaterial.getVersion() < 13) return itemStack;
 
-        try {
-            ItemMeta meta = itemStack.getItemMeta();
-
-            meta.setCustomModelData(customModelData);
-
-            itemStack.setItemMeta(meta);
-
-        }catch (Exception ignored){
-        }
-
-        return itemStack;
-    }
 
     public static ItemStack getFinalItem(Item item, ItemStack itemstack, List<IPlaceholder> placeholders, LoreWrapper lineWrapper){
 
@@ -162,7 +132,7 @@ public final class ItemStackUtils {
         if (item.material == XMaterial.PLAYER_HEAD && item.headData != null)
             return parseTexture(itemstack, item);
 
-        return addCustomModelData(itemstack, item.customModelData);
+        return BukkitItemUtil.addCustomModelData(itemstack, item.customModelData);
 
     }
 
@@ -194,7 +164,7 @@ public final class ItemStackUtils {
     }
 
     public static void parseWrappedLore(ItemStack itemStack, LoreWrapper lineWrapper){
-        List<String> lore = getItemLore(itemStack);
+        List<String> lore = BukkitItemUtil.getItemLore(itemStack);
 
         List<String> wrappedLore = new ArrayList<>();
 
@@ -213,87 +183,10 @@ public final class ItemStackUtils {
             wrapped.forEach(loreLine -> wrappedLore.add(StringUtils.color(loreLine)));
         }
 
-        setLore(itemStack, wrappedLore);
+        BukkitItemUtil.setLore(itemStack, wrappedLore);
     }
 
-    public static String getName(ItemStack itemStack){
-        return Optional.ofNullable(itemStack)
-                .map(ItemStack::getItemMeta)
-                .map(ItemMeta::getDisplayName)
-                .orElse(getMaterialName(itemStack));
-    }
 
-    public static String getMaterialName(ItemStack itemStack){
-        if(isNull(itemStack)) return "";
 
-        return WordUtils.capitalize(Optional.ofNullable(itemStack)
-                .map(ItemStack::getType)
-                .map(Material::toString)
-                .orElse("")
-                .replace("_", " ")
-                .toLowerCase());
-    }
 
-    public static List<String> getItemLore(ItemStack item){
-        if(isNull(item)) return Collections.emptyList();
-
-        return Optional.ofNullable(item)
-                .map(ItemStack::getItemMeta)
-                .filter(Objects::nonNull)
-                .map(ItemMeta::getLore)
-                .filter(Objects::nonNull)
-                .orElse(new ArrayList<>());
-    }
-
-    private static void setLore(ItemStack itemStack, List<String> lore){
-        ItemMeta meta = itemStack.getItemMeta();
-
-        Optional.ofNullable(meta).ifPresent(m -> m.setLore(lore));
-
-        Optional.ofNullable(meta).ifPresent(itemStack::setItemMeta);
-
-    }
-
-    public static String serialize(ItemStack itemStack) {
-        try {
-            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-            BukkitObjectOutputStream bukkitObjectOutputStream = new BukkitObjectOutputStream(byteArrayOutputStream);
-            bukkitObjectOutputStream.writeObject(itemStack);
-            bukkitObjectOutputStream.flush();
-
-            return Base64.getEncoder().encodeToString(byteArrayOutputStream.toByteArray());
-        } catch (Exception e) {
-            return "";
-        }
-    }
-
-    public static ItemStack deserialize(String string) {
-        try {
-            ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(Base64.getDecoder().decode(string));
-            BukkitObjectInputStream bukkitObjectInputStream = new BukkitObjectInputStream(byteArrayInputStream);
-            return (ItemStack) bukkitObjectInputStream.readObject();
-        } catch (Exception exception) {
-            return XMaterial.AIR.parseItem();
-        }
-    }
-
-    public static ItemStack getItemWithout(@Nullable ItemStack itemStack, int amountToRemove) {
-        if(itemStack == null || itemStack.getAmount() - amountToRemove <= 0) return null;
-
-        itemStack.setAmount(itemStack.getAmount() - amountToRemove);
-
-        return itemStack;
-    }
-
-    public static ItemStack getItemWithAdd(ItemStack itemStack, int amountToAdd) {
-        itemStack.setAmount(Math.min(itemStack.getMaxStackSize(), itemStack.getAmount() + amountToAdd));
-
-        return itemStack;
-    }
-
-    public static ItemStack getItemWith(ItemStack itemStack, int finalAmount) {
-        itemStack.setAmount(Math.min(itemStack.getMaxStackSize(), finalAmount));
-
-        return itemStack;
-    }
 }

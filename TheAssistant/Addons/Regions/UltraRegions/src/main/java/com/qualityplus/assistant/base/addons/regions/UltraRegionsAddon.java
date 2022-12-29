@@ -1,9 +1,6 @@
 package com.qualityplus.assistant.base.addons.regions;
 
 import com.qualityplus.assistant.api.addons.RegionAddon;
-/*import me.TechsCode.UltraRegions.UltraRegions;
-import me.TechsCode.UltraRegions.selection.XYZ;
-import me.TechsCode.UltraRegions.storage.Region;*/
 import org.bukkit.Location;
 
 import java.util.HashSet;

@@ -1,8 +1,6 @@
 package com.qualityplus.skills.base.config.stat;
 
 import com.cryptomorin.xseries.XMaterial;
-import com.qualityplus.skills.base.perk.Perk;
-import com.qualityplus.skills.base.perk.perks.WizardPerk;
 import com.qualityplus.skills.base.skill.gui.GUIOptions;
 import com.qualityplus.skills.base.stat.Stat;
 import com.qualityplus.skills.base.stat.stats.CritChanceStat;

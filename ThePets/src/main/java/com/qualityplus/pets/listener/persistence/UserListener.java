@@ -1,21 +1,17 @@
 package com.qualityplus.pets.listener.persistence;
 
-import com.qualityplus.assistant.base.event.PlayerKillEvent;
 import com.qualityplus.pets.api.box.Box;
 import com.qualityplus.pets.api.pet.Pets;
 import com.qualityplus.pets.api.pet.entity.PetEntity;
 import com.qualityplus.pets.base.pet.Pet;
-import com.qualityplus.pets.base.pet.entity.ArmorStandPet;
 import com.qualityplus.pets.base.pet.factory.PetEntityFactory;
 import com.qualityplus.pets.base.pet.tracker.PetEntityTracker;
 import com.qualityplus.pets.persistance.UserPetRepository;
 import com.qualityplus.pets.persistance.data.PetData;
 import com.qualityplus.pets.persistance.data.UserData;
 import eu.okaeri.injector.annotation.Inject;
-import eu.okaeri.persistence.document.Document;
 import eu.okaeri.platform.core.annotation.Component;
 import eu.okaeri.tasker.core.Tasker;
-import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -24,7 +20,6 @@ import org.bukkit.event.player.PlayerKickEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 
 import java.util.Optional;
-import java.util.function.Consumer;
 
 @Component
 public final class UserListener implements Listener {

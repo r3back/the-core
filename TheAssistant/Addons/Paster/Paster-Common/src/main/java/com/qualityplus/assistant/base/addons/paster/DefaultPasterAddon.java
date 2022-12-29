@@ -1,8 +1,8 @@
 package com.qualityplus.assistant.base.addons.paster;
 
+import com.qualityplus.assistant.api.addons.PasterAddon;
 import com.qualityplus.assistant.api.addons.paster.schematic.Schematic;
 import com.qualityplus.assistant.api.addons.paster.session.PasterSession;
-import com.qualityplus.assistant.api.addons.PasterAddon;
 import org.bukkit.Location;
 
 import java.util.concurrent.CompletableFuture;

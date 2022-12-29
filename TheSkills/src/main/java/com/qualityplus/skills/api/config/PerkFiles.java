@@ -1,9 +1,6 @@
 package com.qualityplus.skills.api.config;
 
 import com.qualityplus.assistant.api.config.ConfigReloader;
-import com.qualityplus.skills.base.config.common.BaseFile;
-
-import java.util.List;
 
 public interface PerkFiles<AD, BA, CS, EE, FAF, FOF, IL, LM, LP, MM, MF, MS, OP, PM, RF, SP, SK, W, SF, PTM, BC, OM> extends ConfigReloader, AllGetter {
     AD abilityDamage();

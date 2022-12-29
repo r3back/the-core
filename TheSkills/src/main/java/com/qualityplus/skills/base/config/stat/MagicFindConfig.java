@@ -4,7 +4,6 @@ import com.cryptomorin.xseries.XMaterial;
 import com.google.common.collect.ImmutableMap;
 import com.qualityplus.skills.base.skill.gui.GUIOptions;
 import com.qualityplus.skills.base.stat.Stat;
-import com.qualityplus.skills.base.stat.stats.IntelligenceStat;
 import com.qualityplus.skills.base.stat.stats.MagicFindStat;
 import eu.okaeri.configs.OkaeriConfig;
 import eu.okaeri.configs.annotation.Header;

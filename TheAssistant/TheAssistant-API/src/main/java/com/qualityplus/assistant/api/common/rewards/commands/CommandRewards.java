@@ -1,9 +1,10 @@
 package com.qualityplus.assistant.api.common.rewards.commands;
 
-import com.qualityplus.assistant.api.common.rewards.Reward;
 import com.qualityplus.assistant.api.common.rewards.Rewards;
 import eu.okaeri.configs.OkaeriConfig;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.HashMap;
 import java.util.List;

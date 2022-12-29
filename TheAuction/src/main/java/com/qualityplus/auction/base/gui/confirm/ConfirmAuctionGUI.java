@@ -1,18 +1,15 @@
 package com.qualityplus.auction.base.gui.confirm;
 
 import com.qualityplus.assistant.TheAssistantPlugin;
+import com.qualityplus.assistant.api.util.BukkitItemUtil;
 import com.qualityplus.assistant.api.util.IPlaceholder;
 import com.qualityplus.assistant.util.StringUtils;
-import com.qualityplus.assistant.util.inventory.InventoryUtils;
 import com.qualityplus.assistant.util.itemstack.ItemStackUtils;
 import com.qualityplus.assistant.util.placeholder.Placeholder;
 import com.qualityplus.assistant.util.placeholder.PlaceholderBuilder;
 import com.qualityplus.auction.api.box.Box;
 import com.qualityplus.auction.base.gui.AuctionGUI;
 import com.qualityplus.auction.base.gui.all.AllAuctionsGUI;
-import com.qualityplus.auction.base.gui.create.CreateAuctionGUI;
-import com.qualityplus.auction.base.gui.main.MainAuctionGUI;
-import com.qualityplus.auction.base.gui.view.ViewOpener;
 import com.qualityplus.auction.base.searcher.AuctionSearcher;
 import com.qualityplus.auction.persistence.data.AuctionBid;
 import com.qualityplus.auction.persistence.data.AuctionItem;
@@ -97,7 +94,7 @@ public final class ConfirmAuctionGUI extends AuctionGUI {
 
                 List<IPlaceholder> placeholders = Arrays.asList(
                         new Placeholder("auction_owner_name", auctionItem.getOwnerName()),
-                        new Placeholder("auction_item_name", ItemStackUtils.getName(auctionItem.getItemStack()))
+                        new Placeholder("auction_item_name", BukkitItemUtil.getName(auctionItem.getItemStack()))
                 );
 
                 player.sendMessage(StringUtils.processMulti(box.files().messages().auctionMessages.successfullyBought, placeholders));
@@ -135,7 +132,7 @@ public final class ConfirmAuctionGUI extends AuctionGUI {
 
                 List<IPlaceholder> placeholders = Arrays.asList(
                         new Placeholder("bid_amount", auctionPrice),
-                        new Placeholder("auction_item_name", ItemStackUtils.getName(auctionItem.getItemStack()))
+                        new Placeholder("auction_item_name", BukkitItemUtil.getName(auctionItem.getItemStack()))
                 );
 
                 player.sendMessage(StringUtils.processMulti(box.files().messages().auctionMessages.bidPlaced, placeholders));

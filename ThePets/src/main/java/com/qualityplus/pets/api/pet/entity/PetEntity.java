@@ -1,8 +1,5 @@
 package com.qualityplus.pets.api.pet.entity;
 
-import org.bukkit.Location;
-import org.jetbrains.annotations.Nullable;
-
 import java.util.UUID;
 
 public interface PetEntity {

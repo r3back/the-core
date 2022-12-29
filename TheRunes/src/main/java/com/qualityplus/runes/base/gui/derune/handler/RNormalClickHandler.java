@@ -1,16 +1,14 @@
 package com.qualityplus.runes.base.gui.derune.handler;
 
+import com.qualityplus.assistant.api.util.BukkitItemUtil;
 import com.qualityplus.assistant.util.StringUtils;
-import com.qualityplus.assistant.util.itemstack.ItemStackUtils;
 import com.qualityplus.runes.api.box.Box;
 import com.qualityplus.runes.api.session.RemoveSession;
-import com.qualityplus.runes.api.session.RuneSession;
 import com.qualityplus.runes.base.gui.ClickHandler;
 import com.qualityplus.runes.base.gui.derune.RemoveRuneGUI;
 import com.qualityplus.runes.base.session.RemoveSessionImpl;
 import com.qualityplus.runes.util.RunesUtils;
 import lombok.AllArgsConstructor;
-import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
@@ -52,7 +50,7 @@ public final class RNormalClickHandler implements ClickHandler {
 
             player.openInventory(new RemoveRuneGUI(box, new RemoveSessionImpl(copy, false)).getInventory());
 
-            if(ItemStackUtils.isNull(current)) return;
+            if(BukkitItemUtil.isNull(current)) return;
 
             //Set in cursor if there was smth in the clicked slot
             player.setItemOnCursor(current);

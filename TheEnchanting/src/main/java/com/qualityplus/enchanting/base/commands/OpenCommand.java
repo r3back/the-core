@@ -5,7 +5,6 @@ import com.qualityplus.assistant.api.commands.command.AssistantCommand;
 import com.qualityplus.assistant.util.StringUtils;
 import com.qualityplus.enchanting.api.box.Box;
 import com.qualityplus.enchanting.base.gui.enchantmain.EnchantMainGUI;
-import com.qualityplus.enchanting.listener.VanillaTableListener;
 import com.qualityplus.enchanting.util.EnchantingFinderUtil;
 import eu.okaeri.commons.bukkit.time.MinecraftTimeEquivalent;
 import eu.okaeri.injector.annotation.Inject;

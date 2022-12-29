@@ -1,14 +1,13 @@
 package com.qualityplus.bank.base.config;
 
 import com.cryptomorin.xseries.XMaterial;
-import com.qualityplus.assistant.inventory.Item;
+import com.qualityplus.assistant.inventory.CommonGUI;
+import com.qualityplus.assistant.inventory.background.DefaultBackgrounds;
+import com.qualityplus.assistant.util.itemstack.ItemBuilder;
 import com.qualityplus.bank.base.gui.deposit.BankDepositGUIConfig;
 import com.qualityplus.bank.base.gui.main.BankInterfaceGUIConfig;
 import com.qualityplus.bank.base.gui.upgrade.BankUpgradeGUIConfig;
 import com.qualityplus.bank.base.gui.withdraw.BankWithdrawGUIConfig;
-import com.qualityplus.assistant.inventory.CommonGUI;
-import com.qualityplus.assistant.inventory.background.DefaultBackgrounds;
-import com.qualityplus.assistant.util.itemstack.ItemBuilder;
 import eu.okaeri.configs.OkaeriConfig;
 import eu.okaeri.configs.annotation.*;
 import eu.okaeri.platform.core.annotation.Configuration;

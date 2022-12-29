@@ -4,7 +4,6 @@ import com.cryptomorin.xseries.XMaterial;
 import com.qualityplus.skills.base.perk.Perk;
 import com.qualityplus.skills.base.perk.perks.SteelSkinPerk;
 import com.qualityplus.skills.base.skill.gui.GUIOptions;
-import com.qualityplus.skills.base.skill.level.SkillLevel;
 import eu.okaeri.configs.OkaeriConfig;
 import eu.okaeri.configs.annotation.Header;
 import eu.okaeri.configs.annotation.NameModifier;
@@ -14,10 +13,8 @@ import eu.okaeri.platform.core.annotation.Configuration;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-import java.util.Map;
 
 @Getter
 @Setter

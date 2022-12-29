@@ -7,6 +7,10 @@ import eu.okaeri.configs.annotation.NameStrategy;
 import eu.okaeri.configs.annotation.Names;
 import eu.okaeri.platform.core.annotation.Configuration;
 
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
 @Configuration(path = "messages.yml")
 @Header("================================")
 @Header("       Messages      ")
@@ -14,33 +18,47 @@ import eu.okaeri.platform.core.annotation.Configuration;
 @Names(strategy = NameStrategy.HYPHEN_CASE, modifier = NameModifier.TO_LOWER_CASE)
 public final class Messages extends OkaeriConfig {
     public PluginMessages pluginMessages = new PluginMessages();
-    public SoulsMessages minionMessages = new SoulsMessages();
+    public MinionMessages minionMessages = new MinionMessages();
 
-    public class SoulsMessages extends OkaeriConfig {
+    public class MinionMessages extends OkaeriConfig {
         public String invalidMinion = "&cInvalid Minion!";
+        public String invalidAutoShip = "&cInvalid Automated Shipping!";
         public String invalidEgg = "&cInvalid Minion Egg!";
+        public String invalidFuel = "&cInvalid Fuel!";
+        public String invalidSkin = "&cInvalid Skin!";
+        public String invalidUpgrade = "&cInvalid Upgrade!";
+        public String canBeCraftedMinion = "&eClick to view recipe!";
+        public String cantBeCraftedMinion = "&cThis minion can't be crafted!";
+        public String cantBeCraftedMinionMessage = "&cYou can't craft this Minion!";
+        public List<String> upgradeMaxLevelPlaceholder = Collections.singletonList("&aMax Level has been reached!");
+        public List<String> upgradeStatusPlaceholder = Arrays.asList("&7Time Between Actions: %minion_time_between_actions_upgrade%", "&7Max Storage: %minion_max_storage_upgrade%");
 
-        public String soulAlreadyFound = "&dYou have already found that Fairy Soul!";
-        public String soulFound = "&d&lSOUL! &fYou found a &dFairy Soul&f!";
-        public String firstSoulsFound = "&d&lSOUL! &aArchivement Unlocked: &d&lFirst Fairy Soul Found&f!";
-        public String allSoulsFound = "&d&lSOUL! &fCongratulations you found &dAll Souls&f!";
+        public String maxStorageWithDifferencePlaceholder = "&8%minion_max_storage% &8➜ &e%minion_next_level_max_storage%";
+        public String maxStorageWithoutDifferencePlaceholder = "&e%minion_next_level_max_storage%";
+
+        public String timeBetweenWithDifferencePlaceholder = "&8%minion_time_between_actions% &8➜ &a%minion_next_level_time_between_actions%";
+        public String timeBetweenWithoutDifferencePlaceholder = "&a%minion_next_level_time_between_actions%";
+
+        public String canUpgradeNoMaterials = "&cYou need &6%minion_upgrade_material_amount% &cmore %minion_upgrade_material_name%!";
+        public String canUpgradeNoMoney = "&cYou need &6%minion_upgrade_money_amount% &cmore coins!";
+        public String canUpgradeMaxLevel = "&cMax Tier reached!";
+        public String canUpgrade = "&eClick to upgrade!";
 
 
-        public String soulAlreadyPlaced = "&d&lSOULS &f» &cYou already placed a soul there!";
-        public String soulPlaced = "&d&lSOULS &f» &7You successfully placed a soul &dTotal: &5%souls_total%&7!";
-        public String soulRemoved = "&d&lSOULS &f» &7You successfully removed that soul &dTotal: &5%souls_total%&7!";
+        public String upgradeNoMaterialsMessage = "&cYou dont have enough items to craft that tier! You need &6%minion_upgrade_material_amount% &cmore. &7(%minion_upgrade_current_amount%/%minion_upgrade_required_amount%)";
+        public String upgradeNoMoneyMessage = "&cYou need &6%minion_upgrade_money_amount% &cmore coins!";
+        public String upgradeMaxLevelMessage = "&cYou already have the max tier for this minion!";
+        public String upgradeMessage = "&aYou have upgraded your minion to Tier %minion_level_roman%!";
 
-        public String successfullyAddedMessage = "&aSuccessfully added &7%soul_message% &ato the soul messages!";
-        public String successfullyAddedCommand = "&aSuccessfully added &7%soul_command% &ato the soul commands!";
+        public String fuelEndsInFormat = "%days_placeholder% %hours_placeholder% %minutes_placeholder% %seconds_placeholder%";
+        public String fuelHistoryTimeFormat = "%days_placeholder% %hours_placeholder% %minutes_placeholder% %seconds_placeholder% ago";
 
-        public String typeACommand = "&7Type the &acommand &7in the chat to add to the soul commands or type &ccancel &7to exit from edit mode!";
-        public String typeAMessage = "&7Type the &amessage &7in the chat to add to the soul messages or type &ccancel &7to exit from edit mode!";
-
-
-        public String clickToClaim = "&eClick to claim!";
-        public String notEnoughSoulsPlaceholder = "&cYou don't have enough Fairy Souls!";
-        public String notEnoughSoulsMessage = "&cYou don't have enough Fairy Souls!";
-
+        public String days = "%days%d";
+        public String hours = "%hours%h";
+        public String minutes = "%minutes%m";
+        public String seconds = "%seconds%s";
+        public String noTimeFormat = "&b-";
+        public boolean showNoTimeSymbol = true;
     }
 
     public class PluginMessages extends OkaeriConfig {
@@ -55,7 +73,7 @@ public final class Messages extends OkaeriConfig {
         public String mustBeAPlayer = "&cYou must be a player to do that!";
         public String invalidArguments = "&cInvalid Arguments!";
         public String invalidAmount = "&cInvalid Amount!";
-        public String useHelp = "&cUse: /souls help";
+        public String useHelp = "&cUse: /theminions help";
 
         public String helpMessage = "&7%command% - &e%description%";
         public String helpHeader = "      &6&lTheMinions   ";

@@ -2,11 +2,10 @@ package com.qualityplus.pets.base.config;
 
 import com.cryptomorin.xseries.XMaterial;
 import com.cryptomorin.xseries.XSound;
-import com.qualityplus.assistant.api.config.ConfigActionBar;
+import com.qualityplus.assistant.api.config.ConfigDatabase;
 import com.qualityplus.assistant.api.config.ConfigMessages;
 import com.qualityplus.assistant.api.config.ConfigSound;
 import com.qualityplus.assistant.api.gui.LoreWrapper;
-import com.qualityplus.assistant.api.config.ConfigDatabase;
 import com.qualityplus.assistant.inventory.Item;
 import com.qualityplus.assistant.util.itemstack.ItemBuilder;
 import eu.okaeri.configs.OkaeriConfig;
@@ -15,8 +14,6 @@ import eu.okaeri.platform.core.annotation.Configuration;
 import lombok.Getter;
 
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
 
 @Configuration()
 @Header("================================")

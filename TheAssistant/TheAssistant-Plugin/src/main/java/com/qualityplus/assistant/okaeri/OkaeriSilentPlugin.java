@@ -1,9 +1,9 @@
 package com.qualityplus.assistant.okaeri;
 
 import com.qualityplus.assistant.okaeri.commands.SilentCommandSetupTask;
+import com.qualityplus.assistant.okaeri.serdes.SerdesAssistantBukkit;
 import eu.okaeri.configs.serdes.commons.SerdesCommons;
 import eu.okaeri.configs.yaml.bukkit.YamlBukkitConfigurer;
-import eu.okaeri.configs.yaml.bukkit.serdes.SerdesBukkit;
 import eu.okaeri.persistence.document.ConfigurerProvider;
 import eu.okaeri.placeholders.bukkit.BukkitPlaceholders;
 import eu.okaeri.platform.bukkit.OkaeriBukkitPlugin;
@@ -48,7 +48,7 @@ public abstract class OkaeriSilentPlugin extends OkaeriBukkitPlugin {
                 platform.registerInjectable("tasker", BukkitTasker.newPool(platform));
                 platform.registerInjectable("pluginManager", platform.getServer().getPluginManager());
                 platform.registerInjectable("defaultConfigurerProvider", (ConfigurerProvider) YamlBukkitConfigurer::new);
-                platform.registerInjectable("defaultConfigurerSerdes", new Class[]{SerdesCommons.class, SerdesBukkit.class});
+                platform.registerInjectable("defaultConfigurerSerdes", new Class[]{SerdesCommons.class, SerdesAssistantBukkit.class});
                 platform.registerInjectable("defaultPlaceholdersFactory", new SimplePlaceholdersFactory());
                 platform.registerInjectable("i18nLocaleProvider", new PlayerLocaleProvider());
             });

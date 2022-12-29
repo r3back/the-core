@@ -1,6 +1,6 @@
 package com.qualityplus.assistant.util.armor;
 
-import com.qualityplus.assistant.util.itemstack.ItemStackUtils;
+import com.qualityplus.assistant.api.util.BukkitItemUtil;
 import org.bukkit.inventory.ItemStack;
 
 public enum ArmorType {
@@ -12,7 +12,7 @@ public enum ArmorType {
         this.slot = slot;
     }
     public static ArmorType matchType(final ItemStack itemStack) {
-        if (ItemStackUtils.isNull(itemStack)) return null;
+        if (BukkitItemUtil.isNull(itemStack)) return null;
         String type = itemStack.getType().name();
         if (type.endsWith("_HELMET") || type.endsWith("_SKULL") || type.endsWith("_HEAD")) return HELMET;
         else if (type.endsWith("_CHESTPLATE") || type.equals("ELYTRA")) return CHESTPLATE;

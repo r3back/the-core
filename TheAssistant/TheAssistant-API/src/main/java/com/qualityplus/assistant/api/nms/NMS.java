@@ -1,10 +1,10 @@
 package com.qualityplus.assistant.api.nms;
 
+import com.qualityplus.assistant.api.gui.FakeInventory;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import org.bukkit.Location;
 import org.bukkit.block.Block;
-import org.bukkit.boss.BossBar;
 import org.bukkit.entity.EnderDragon;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.InventoryView;
@@ -13,15 +13,17 @@ import org.bukkit.inventory.ItemStack;
 import java.util.List;
 
 public interface NMS {
+    void setBlockAge(Block block, int age);
+    int getAge(Block block);
+    int getMaxAge(Block block);
     void damageBlock(List<Player> player, Block block, int damage);
     void damageBlock(Player player, Block block, int damage);
-
     void sendActionBar(Player player, String message);
-
-    InventoryView getFakeInventory(Player player);
-
+    void removeFakePlayer(FakeInventory fakeInventory);
+    InventoryView createWorkBench(Player player);
+    FakeInventory getFakeInventory(Player player, FakeInventory inventory);
+    FakeInventory getFakeInventory(Player player, int maxSlots);
     ItemStack setDurability(ItemStack itemStack, short durability);
-
     Location getDragonPart(EnderDragon enderDragon, DragonPart dragonPart);
 
     void sendBossBar(Player player, String bossBar);

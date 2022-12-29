@@ -1,12 +1,12 @@
 package com.qualityplus.dragon.base.configs;
 
+import com.qualityplus.dragon.base.game.reward.DragonRewardImpl;
 import eu.okaeri.configs.OkaeriConfig;
 import eu.okaeri.configs.annotation.Header;
 import eu.okaeri.configs.annotation.NameModifier;
 import eu.okaeri.configs.annotation.NameStrategy;
 import eu.okaeri.configs.annotation.Names;
 import eu.okaeri.platform.core.annotation.Configuration;
-import com.qualityplus.dragon.base.game.reward.DragonRewardImpl;
 
 import java.util.Arrays;
 import java.util.HashSet;

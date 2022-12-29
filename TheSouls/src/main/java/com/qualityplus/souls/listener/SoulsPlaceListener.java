@@ -1,26 +1,21 @@
 package com.qualityplus.souls.listener;
 
+import com.qualityplus.assistant.api.util.BukkitItemUtil;
 import com.qualityplus.assistant.util.StringUtils;
-import com.qualityplus.assistant.util.itemstack.ItemStackUtils;
 import com.qualityplus.assistant.util.location.ALocation;
 import com.qualityplus.souls.api.box.Box;
-import com.qualityplus.souls.base.config.Souls;
 import com.qualityplus.souls.base.soul.Soul;
 import de.tr7zw.changeme.nbtapi.NBTItem;
 import eu.okaeri.injector.annotation.Inject;
 import eu.okaeri.platform.core.annotation.Component;
-import org.bukkit.Bukkit;
 import org.bukkit.Location;
-import org.bukkit.Material;
 import org.bukkit.block.Block;
-import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.metadata.FixedMetadataValue;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
@@ -38,7 +33,7 @@ public final class SoulsPlaceListener implements Listener {
 
         ItemStack inHand = player.getItemInHand();
 
-        if (ItemStackUtils.isNull(inHand)) return;
+        if (BukkitItemUtil.isNull(inHand)) return;
 
         if (!isSoul(inHand)) return;
 

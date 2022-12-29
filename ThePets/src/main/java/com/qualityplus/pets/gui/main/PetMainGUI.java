@@ -1,17 +1,14 @@
 package com.qualityplus.pets.gui.main;
 
-import com.cryptomorin.xseries.XMaterial;
 import com.qualityplus.assistant.api.util.IPlaceholder;
 import com.qualityplus.assistant.inventory.Item;
 import com.qualityplus.assistant.util.StringUtils;
-import com.qualityplus.assistant.util.itemstack.ItemBuilder;
 import com.qualityplus.assistant.util.itemstack.ItemStackUtils;
 import com.qualityplus.assistant.util.placeholder.Placeholder;
 import com.qualityplus.pets.api.box.Box;
 import com.qualityplus.pets.api.pet.Pets;
 import com.qualityplus.pets.api.pet.entity.PetEntity;
 import com.qualityplus.pets.api.pet.entity.PetEntity.DeSpawnReason;
-
 import com.qualityplus.pets.base.config.Messages.PetMessages;
 import com.qualityplus.pets.base.pet.Pet;
 import com.qualityplus.pets.base.pet.factory.PetEntityFactory;

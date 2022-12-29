@@ -2,14 +2,13 @@ package com.qualityplus.collections.base.commands;
 
 import com.qualityplus.assistant.TheAssistantPlugin;
 import com.qualityplus.assistant.api.commands.command.AssistantCommand;
+import com.qualityplus.assistant.api.util.BukkitItemUtil;
 import com.qualityplus.assistant.api.util.IPlaceholder;
 import com.qualityplus.assistant.util.StringUtils;
-import com.qualityplus.assistant.util.itemstack.ItemStackUtils;
 import com.qualityplus.assistant.util.placeholder.Placeholder;
 import com.qualityplus.collections.api.box.Box;
 import com.qualityplus.collections.base.collection.Collection;
 import com.qualityplus.collections.base.collection.executor.ExecutorType;
-import com.qualityplus.collections.base.collection.registry.CollectionsRegistry;
 import eu.okaeri.commons.bukkit.time.MinecraftTimeEquivalent;
 import eu.okaeri.injector.annotation.Inject;
 import eu.okaeri.platform.bukkit.annotation.Delayed;
@@ -54,7 +53,7 @@ public final class DropItemCommand extends AssistantCommand {
             }
 
 
-            List<IPlaceholder> placeholders = Arrays.asList(new Placeholder("collection_item_type", ItemStackUtils.getName(itemStack)), new Placeholder("collection_id", id));
+            List<IPlaceholder> placeholders = Arrays.asList(new Placeholder("collection_item_type", BukkitItemUtil.getName(itemStack)), new Placeholder("collection_id", id));
 
             player.sendMessage(StringUtils.processMulti(box.files().messages().collectionsMessages.successfullyDroppedItem, placeholders));
 

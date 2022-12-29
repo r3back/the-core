@@ -22,7 +22,6 @@ public interface MinionsRepository extends DocumentRepository<UUID, MinionData> 
 
         data.setMinionId(petData.getMinionId());
         data.setLevel(petData.getLevel());
-        data.setXp(petData.getXp());
         data.setUuid(petData.getUuid());
 
         return data;

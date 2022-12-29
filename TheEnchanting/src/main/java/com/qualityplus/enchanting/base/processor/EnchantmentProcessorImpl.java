@@ -1,7 +1,6 @@
 package com.qualityplus.enchanting.base.processor;
 
 import com.qualityplus.enchanting.api.chain.EnchantmentChain;
-import com.qualityplus.enchanting.api.enchantment.ICoreEnchantment;
 import com.qualityplus.enchanting.api.processor.EnchantmentProcessor;
 import com.qualityplus.enchanting.api.session.EnchantmentSession;
 import eu.okaeri.injector.annotation.Inject;

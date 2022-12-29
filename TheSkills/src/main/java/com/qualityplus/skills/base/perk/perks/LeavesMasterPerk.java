@@ -1,7 +1,7 @@
 package com.qualityplus.skills.base.perk.perks;
 
 import com.cryptomorin.xseries.XMaterial;
-import com.qualityplus.assistant.util.itemstack.ItemStackUtils;
+import com.qualityplus.assistant.api.util.BukkitItemUtil;
 import com.qualityplus.assistant.util.math.MathUtils;
 import com.qualityplus.skills.base.perk.perks.common.AbstractRandomBlockDropPerk;
 import com.qualityplus.skills.base.skill.gui.GUIOptions;
@@ -31,7 +31,7 @@ public final class LeavesMasterPerk extends AbstractRandomBlockDropPerk {
 
         ItemStack inHand = e.getPlayer().getItemInHand();
 
-        if(ItemStackUtils.isNull(inHand)) return;
+        if(BukkitItemUtil.isNull(inHand)) return;
 
         if(!inHand.getType().equals(XMaterial.SHEARS.parseMaterial())) return;
 
@@ -42,7 +42,7 @@ public final class LeavesMasterPerk extends AbstractRandomBlockDropPerk {
 
         ItemStack toGive = getItem();
 
-        if(ItemStackUtils.isNull(toGive)) return;
+        if(BukkitItemUtil.isNull(toGive)) return;
 
         Block block = e.getClickedBlock();
 

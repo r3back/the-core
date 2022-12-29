@@ -2,7 +2,6 @@ package com.qualityplus.pets.base.config.impl;
 
 import com.qualityplus.pets.api.config.ConfigFiles;
 import com.qualityplus.pets.base.config.*;
-
 import eu.okaeri.injector.annotation.Inject;
 import eu.okaeri.platform.core.annotation.Component;
 

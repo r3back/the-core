@@ -4,7 +4,6 @@ import com.qualityplus.assistant.api.commands.CommandProvider;
 import com.qualityplus.assistant.api.commands.details.CommandDetails;
 import com.qualityplus.assistant.api.commands.setup.event.CommandSetupEvent;
 import com.qualityplus.assistant.api.commands.setup.handler.CommandSetupHandler;
-import eu.okaeri.injector.annotation.Inject;
 import net.md_5.bungee.api.chat.*;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;

@@ -1,8 +1,6 @@
 package com.qualityplus.pets.api.pet;
 
 import com.google.common.collect.ImmutableSet;
-
-
 import com.qualityplus.pets.base.config.pet.PetConfig;
 import com.qualityplus.pets.base.config.pet.Tiger;
 import com.qualityplus.pets.base.pet.Pet;

@@ -6,21 +6,21 @@ import com.qualityplus.assistant.util.itemstack.ItemStackUtils;
 import com.qualityplus.assistant.util.placeholder.Placeholder;
 import com.qualityplus.assistant.util.placeholder.PlaceholderBuilder;
 import com.qualityplus.collections.api.box.Box;
+import com.qualityplus.collections.base.collection.Collection;
 import com.qualityplus.collections.base.collection.category.CollectionCategory;
 import com.qualityplus.collections.gui.CollectionsGUI;
 import com.qualityplus.collections.gui.category.CategoryGUI;
+import com.qualityplus.collections.persistance.data.UserData;
 import com.qualityplus.collections.util.CollectionsItemStackUtil;
 import com.qualityplus.collections.util.CollectionsPlaceholderUtil;
-import com.qualityplus.collections.base.collection.Collection;
-import com.qualityplus.collections.persistance.data.UserData;
-
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.*;
+import java.util.Collections;
+import java.util.List;
 
 public final class CollectionGUI extends CollectionsGUI {
     private final CollectionGUIConfig config;

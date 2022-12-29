@@ -1,7 +1,6 @@
 package com.qualityplus.runes.base.rune.effects.apply;
 
 import com.cryptomorin.xseries.XMaterial;
-import com.qualityplus.assistant.util.StringUtils;
 import com.qualityplus.assistant.util.math.MathUtils;
 import com.qualityplus.assistant.util.random.RandomSelector;
 import com.qualityplus.runes.TheRunes;
@@ -13,15 +12,11 @@ import org.bukkit.Location;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
-import org.bukkit.event.Event;
 import xyz.xenondevs.particle.ParticleBuilder;
-import xyz.xenondevs.particle.ParticleEffect;
 import xyz.xenondevs.particle.data.color.RegularColor;
 
 import java.awt.*;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Random;
 import java.util.stream.Collectors;
 
 public interface ChainEffect {

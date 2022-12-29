@@ -1,7 +1,7 @@
 package com.qualityplus.auction.api.filter.method;
 
-import com.qualityplus.auction.api.filter.type.FilterType;
 import com.qualityplus.auction.api.filter.algorithm.FilterAlgorithm;
+import com.qualityplus.auction.api.filter.type.FilterType;
 import com.qualityplus.auction.persistence.data.AuctionItem;
 import eu.okaeri.configs.OkaeriConfig;
 import eu.okaeri.configs.annotation.Exclude;

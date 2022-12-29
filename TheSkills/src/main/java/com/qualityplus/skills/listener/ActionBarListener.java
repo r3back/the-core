@@ -1,8 +1,8 @@
 package com.qualityplus.skills.listener;
 
 import com.qualityplus.assistant.TheAssistantPlugin;
-import com.qualityplus.assistant.base.event.ActionBarMessageEvent.ActionBarType;
 import com.qualityplus.assistant.base.event.ActionBarMessageEvent;
+import com.qualityplus.assistant.base.event.ActionBarMessageEvent.ActionBarType;
 import com.qualityplus.assistant.base.nms.AbstractNMS;
 import eu.okaeri.platform.core.annotation.Component;
 import org.bukkit.event.EventHandler;

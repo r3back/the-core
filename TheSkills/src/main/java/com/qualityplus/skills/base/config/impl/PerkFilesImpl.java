@@ -1,8 +1,6 @@
 package com.qualityplus.skills.base.config.impl;
 
 import com.qualityplus.skills.api.config.PerkFiles;
-import com.qualityplus.skills.base.config.common.BaseFile;
-import com.qualityplus.skills.base.config.perk.OrbMasterConfig;
 import com.qualityplus.skills.base.config.perk.*;
 import eu.okaeri.configs.OkaeriConfig;
 import eu.okaeri.injector.annotation.Inject;

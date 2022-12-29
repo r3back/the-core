@@ -1,7 +1,6 @@
 package com.qualityplus.pets.api.category;
 
 import com.google.common.collect.ImmutableSet;
-import com.qualityplus.pets.api.box.Box;
 import com.qualityplus.pets.api.pet.category.PetCategory;
 import com.qualityplus.pets.base.config.CategoriesFile;
 import eu.okaeri.injector.annotation.Inject;

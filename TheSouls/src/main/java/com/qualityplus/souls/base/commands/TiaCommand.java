@@ -4,8 +4,6 @@ import com.qualityplus.assistant.TheAssistantPlugin;
 import com.qualityplus.assistant.api.commands.command.AssistantCommand;
 import com.qualityplus.assistant.util.StringUtils;
 import com.qualityplus.souls.api.box.Box;
-import com.qualityplus.souls.api.edition.SoulEdition;
-import com.qualityplus.souls.base.gui.allsouls.AllSoulsGUI;
 import com.qualityplus.souls.base.gui.tia.TiaGUI;
 import eu.okaeri.commons.bukkit.time.MinecraftTimeEquivalent;
 import eu.okaeri.injector.annotation.Inject;

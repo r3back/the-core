@@ -5,31 +5,19 @@ import com.qualityplus.pets.api.ThePetsAPI;
 import com.qualityplus.pets.api.pet.entity.PetEntity;
 import com.qualityplus.pets.api.service.PetService;
 import com.qualityplus.pets.api.service.UserPetService;
-import com.qualityplus.pets.base.config.pet.PetConfig;
 import com.qualityplus.pets.base.pet.tracker.PetEntityTracker;
 import com.qualityplus.pets.persistance.PetRepository;
 import com.qualityplus.pets.persistance.data.PetData;
-import com.qualityplus.pets.persistance.data.UserData;
-import eu.okaeri.configs.ConfigManager;
-import eu.okaeri.configs.serdes.commons.SerdesCommons;
-import eu.okaeri.configs.validator.okaeri.OkaeriValidator;
-import eu.okaeri.configs.yaml.bukkit.YamlBukkitConfigurer;
-import eu.okaeri.configs.yaml.bukkit.serdes.SerdesBukkit;
 import eu.okaeri.injector.annotation.Inject;
 import eu.okaeri.platform.core.annotation.Scan;
 import eu.okaeri.platform.core.plan.ExecutionPhase;
 import eu.okaeri.platform.core.plan.Planned;
-import jdk.jpackage.internal.Log;
 import lombok.Getter;
-import org.bukkit.Bukkit;
-import org.bukkit.entity.Player;
 
-import java.io.File;
-import java.util.*;
+import java.util.Optional;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.util.stream.Collectors;
 
 @Scan(deep = true)
 public final class ThePets extends OkaeriSilentPlugin {

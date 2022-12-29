@@ -1,8 +1,8 @@
 package com.qualityplus.crafting;
 
+import com.qualityplus.assistant.okaeri.OkaeriSilentPlugin;
 import com.qualityplus.crafting.api.TheCraftingAPI;
 import com.qualityplus.crafting.base.config.RecipesFile;
-import com.qualityplus.assistant.okaeri.OkaeriSilentPlugin;
 import eu.okaeri.injector.annotation.Inject;
 import eu.okaeri.platform.core.annotation.Scan;
 import eu.okaeri.platform.core.plan.ExecutionPhase;

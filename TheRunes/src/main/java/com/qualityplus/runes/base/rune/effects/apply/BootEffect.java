@@ -1,7 +1,6 @@
 package com.qualityplus.runes.base.rune.effects.apply;
 
 import com.qualityplus.runes.base.rune.Rune;
-import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;

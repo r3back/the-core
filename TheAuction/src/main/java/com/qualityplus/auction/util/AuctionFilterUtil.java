@@ -5,8 +5,6 @@ import com.qualityplus.auction.base.searcher.AuctionSearcher;
 import com.qualityplus.auction.base.searcher.filters.BinFilter;
 import com.qualityplus.auction.base.searcher.filters.SortFilter;
 import com.qualityplus.auction.base.searcher.filters.StringFilter;
-import lombok.AccessLevel;
-import lombok.NoArgsConstructor;
 import lombok.experimental.UtilityClass;
 
 @UtilityClass

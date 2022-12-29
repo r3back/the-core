@@ -7,7 +7,6 @@ import com.qualityplus.crafting.api.edition.RecipeEdition;
 import com.qualityplus.crafting.base.category.Category;
 import com.qualityplus.crafting.base.gui.CraftingGUI;
 import com.qualityplus.crafting.base.gui.book.sub.RecipeBookSubGUI;
-import com.qualityplus.crafting.base.gui.individual.RecipeIndividualGUI;
 import com.qualityplus.crafting.base.recipes.CustomRecipe;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;

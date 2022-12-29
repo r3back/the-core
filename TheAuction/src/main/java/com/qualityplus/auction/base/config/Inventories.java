@@ -1,7 +1,10 @@
 package com.qualityplus.auction.base.config;
 
 import com.cryptomorin.xseries.XMaterial;
+import com.qualityplus.assistant.inventory.CommonGUI;
 import com.qualityplus.assistant.inventory.background.Background;
+import com.qualityplus.assistant.inventory.background.DefaultBackgrounds;
+import com.qualityplus.assistant.util.itemstack.ItemBuilder;
 import com.qualityplus.auction.base.gui.all.AllAuctionsGUIConfig;
 import com.qualityplus.auction.base.gui.confirm.ConfirmAuctionGUIConfig;
 import com.qualityplus.auction.base.gui.create.CreateAuctionGUIConfig;
@@ -9,16 +12,12 @@ import com.qualityplus.auction.base.gui.main.MainAuctionGUIConfig;
 import com.qualityplus.auction.base.gui.manage.ManageAuctionGUIConfig;
 import com.qualityplus.auction.base.gui.pending.PendingAuctionGUIConfig;
 import com.qualityplus.auction.base.gui.stats.AuctionStatsGUIConfig;
+import com.qualityplus.auction.base.gui.time.AuctionTimeConfigGUI;
 import com.qualityplus.auction.base.gui.view.bin.BinAuctionViewGUIConfig;
 import com.qualityplus.auction.base.gui.view.normal.NormalAuctionViewGUIConfig;
-import com.qualityplus.auction.base.gui.time.AuctionTimeConfigGUI;
-import com.qualityplus.assistant.inventory.CommonGUI;
-import com.qualityplus.assistant.inventory.background.DefaultBackgrounds;
-import com.qualityplus.assistant.util.itemstack.ItemBuilder;
 import eu.okaeri.configs.OkaeriConfig;
 import eu.okaeri.configs.annotation.*;
 import eu.okaeri.platform.core.annotation.Configuration;
-
 
 import java.util.Arrays;
 import java.util.Collections;

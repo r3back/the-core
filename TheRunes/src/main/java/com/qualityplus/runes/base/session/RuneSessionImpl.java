@@ -1,7 +1,7 @@
 package com.qualityplus.runes.base.session;
 
-import com.qualityplus.runes.api.session.RuneSession;
 import com.qualityplus.runes.api.session.RuneInstance;
+import com.qualityplus.runes.api.session.RuneSession;
 import com.qualityplus.runes.util.RuneFinderUtil;
 import lombok.Getter;
 import lombok.Setter;

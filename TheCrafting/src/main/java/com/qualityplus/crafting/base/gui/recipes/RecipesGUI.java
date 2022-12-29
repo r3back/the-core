@@ -1,21 +1,24 @@
 package com.qualityplus.crafting.base.gui.recipes;
 
-import com.qualityplus.crafting.api.box.Box;
-import com.qualityplus.crafting.api.edition.RecipeEdition;
-import com.qualityplus.crafting.base.gui.CraftingGUI;
-import com.qualityplus.crafting.base.gui.individual.RecipeIndividualGUI;
-import com.qualityplus.crafting.base.recipes.CustomRecipe;
-import com.qualityplus.crafting.api.recipes.Recipes;
-import com.qualityplus.crafting.util.CraftingPlaceholderUtils;
 import com.qualityplus.assistant.api.util.IPlaceholder;
 import com.qualityplus.assistant.util.inventory.InventoryUtils;
 import com.qualityplus.assistant.util.itemstack.ItemStackUtils;
+import com.qualityplus.crafting.api.box.Box;
+import com.qualityplus.crafting.api.edition.RecipeEdition;
+import com.qualityplus.crafting.api.recipes.Recipes;
+import com.qualityplus.crafting.base.gui.CraftingGUI;
+import com.qualityplus.crafting.base.gui.individual.RecipeIndividualGUI;
+import com.qualityplus.crafting.base.recipes.CustomRecipe;
+import com.qualityplus.crafting.util.CraftingPlaceholderUtils;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public final class RecipesGUI extends CraftingGUI {
     private final Map<Integer, CustomRecipe> recipeMap = new HashMap<>();

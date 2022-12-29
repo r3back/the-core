@@ -9,6 +9,7 @@ import com.qualityplus.assistant.util.placeholder.Placeholder;
 import com.qualityplus.bank.api.box.Box;
 import com.qualityplus.bank.base.gui.BankGUI;
 import com.qualityplus.bank.base.gui.main.BankInterfaceGUI;
+import com.qualityplus.bank.base.gui.main.BankInterfaceGUI.GUIType;
 import com.qualityplus.bank.base.upgrade.BankUpgrade;
 import com.qualityplus.bank.persistence.data.BankData;
 import com.qualityplus.bank.util.BankItemStackUtils;
@@ -17,7 +18,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.jetbrains.annotations.NotNull;
-import com.qualityplus.bank.base.gui.main.BankInterfaceGUI.GUIType;
 
 import java.util.*;
 

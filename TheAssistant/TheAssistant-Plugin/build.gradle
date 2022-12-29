@@ -11,7 +11,7 @@ repositories {
 
 dependencies {
     compileOnly 'org.spigotmc:spigot-api:1.18.1-R0.1-SNAPSHOT'
-    implementation 'eu.okaeri:okaeri-commons-core:0.2.17'
+    implementation 'eu.okaeri:okaeri-commons-core:0.2.21'
     implementation 'com.github.cryptomorin:XSeries:9.1.0'
     implementation 'com.comphenix.protocol:ProtocolLib:4.7.0'
     implementation 'com.github.InventivetalentDev:BossBarAPI:2.4.3-SNAPSHOT'
@@ -25,9 +25,9 @@ dependencies {
     rootProject.okaeri_dependencies.each { value -> implementation value}
     rootProject.driver_dependencies.each { value -> implementation value}
 
-    implementation 'de.tr7zw:item-nbt-api:2.10.0'
-    implementation 'xyz.xenondevs:particle:1.8.1'
-    implementation 'org.slf4j:slf4j-nop:2.0.4'
+    implementation 'de.tr7zw:item-nbt-api:2.11.0-SNAPSHOT'
+    implementation 'xyz.xenondevs:particle:1.8.3'
+    implementation 'org.slf4j:slf4j-nop:1.7.30'
 }
 
 processResources{
@@ -93,6 +93,7 @@ shadowJar {
         include(project(':TheAssistant:TheAssistant-NMS:NMS-V1_18_R1'))
         include(project(':TheAssistant:TheAssistant-NMS:NMS-V1_18_R2'))
         include(project(':TheAssistant:TheAssistant-NMS:NMS-V1_19_R1'))
+        include(project(':TheAssistant:TheAssistant-NMS:NMS-V1_19_R2'))
 
     }
 

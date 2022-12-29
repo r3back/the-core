@@ -9,7 +9,6 @@ import eu.okaeri.persistence.repository.annotation.DocumentPath;
 import eu.okaeri.platform.core.annotation.DependsOn;
 import org.bukkit.OfflinePlayer;
 
-import javax.xml.crypto.Data;
 import java.util.ArrayList;
 import java.util.Optional;
 import java.util.UUID;

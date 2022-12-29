@@ -2,12 +2,12 @@ package com.qualityplus.dragon.base.controller;
 
 import com.qualityplus.assistant.util.math.MathUtils;
 import com.qualityplus.dragon.TheDragon;
+import com.qualityplus.dragon.api.controller.DragonController;
 import com.qualityplus.dragon.api.game.structure.type.DragonSpawn;
 import com.qualityplus.dragon.base.event.DragonTargetEvent;
+import com.qualityplus.dragon.util.DragonVelocityUtil;
 import lombok.Getter;
 import lombok.Setter;
-import com.qualityplus.dragon.api.controller.DragonController;
-import com.qualityplus.dragon.util.DragonVelocityUtil;
 import org.bukkit.Location;
 import org.bukkit.entity.EnderDragon;
 import org.bukkit.entity.Entity;

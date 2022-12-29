@@ -5,6 +5,7 @@ import com.qualityplus.alchemist.base.event.AlchemistBrewEvent;
 import com.qualityplus.alchemist.base.recipes.BrewingRecipe;
 import com.qualityplus.alchemist.base.stand.StandEffects;
 import com.qualityplus.alchemist.util.AlchemistFinderUtil;
+import com.qualityplus.assistant.api.util.BukkitItemUtil;
 import com.qualityplus.assistant.util.inventory.InventoryUtils;
 import com.qualityplus.assistant.util.itemstack.ItemStackUtils;
 import com.qualityplus.assistant.util.placeholder.Placeholder;
@@ -153,7 +154,7 @@ public final class AlchemistStandManager {
 
         box.files().inventories().standGUIConfig.getInputSlots()
                 .stream()
-                .filter(slot -> !ItemStackUtils.isNull(inventory.getItem(slot)))
+                .filter(slot -> !BukkitItemUtil.isNull(inventory.getItem(slot)))
                 .forEach(i -> {
                     inventory.setItem(i, null);
 
@@ -169,7 +170,7 @@ public final class AlchemistStandManager {
     private ItemStack getItemToPut(BrewingRecipe recipe, Inventory inventory, int slot){
         ItemStack itemStack = inventory.getItem(slot);
 
-        if(ItemStackUtils.isNull(itemStack)) return null;
+        if(BukkitItemUtil.isNull(itemStack)) return null;
 
         int newAmount = itemStack.getAmount() - Optional.ofNullable(recipe.getFuel()).map(ItemStack::getAmount).orElse(1);
 

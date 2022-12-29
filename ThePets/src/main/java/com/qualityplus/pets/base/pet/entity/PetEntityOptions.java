@@ -2,7 +2,10 @@ package com.qualityplus.pets.base.pet.entity;
 
 import com.cryptomorin.xseries.XMaterial;
 import eu.okaeri.configs.OkaeriConfig;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @AllArgsConstructor
 @NoArgsConstructor

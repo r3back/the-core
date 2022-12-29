@@ -3,7 +3,7 @@ package com.qualityplus.skills.base.perk.perks;
 import com.cryptomorin.xseries.XMaterial;
 import com.qualityplus.assistant.TheAssistantPlugin;
 import com.qualityplus.assistant.api.nms.NMS;
-import com.qualityplus.assistant.util.itemstack.ItemStackUtils;
+import com.qualityplus.assistant.api.util.BukkitItemUtil;
 import com.qualityplus.assistant.util.math.MathUtils;
 import com.qualityplus.skills.TheSkills;
 import com.qualityplus.skills.base.perk.Perk;
@@ -43,7 +43,7 @@ public final class RefurbishedPerk extends Perk {
 
         ItemStack inHand = p.getItemInHand();
 
-        if(ItemStackUtils.isNull(inHand)) return;
+        if(BukkitItemUtil.isNull(inHand)) return;
 
         if(!toolList.contains(XMaterial.matchXMaterial(inHand.getType()))) return;
 

@@ -10,7 +10,7 @@ import com.qualityplus.pets.base.pet.level.PetLevel;
 import com.qualityplus.pets.base.pet.potion.PetPotion;
 import com.qualityplus.pets.base.rewards.StatReward;
 import eu.okaeri.configs.OkaeriConfig;
-import eu.okaeri.configs.annotation.*;
+import eu.okaeri.configs.annotation.CustomKey;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -55,47 +55,4 @@ public final class PetConfig extends OkaeriConfig {
                 .petLevels(petLevels)
                 .build();
     }
-
-    private Map<Integer, PetLevel> getPetLevelsMap(){
-        return FasterMap.builder(Integer.class, PetLevel.class)
-                .put(1, PetLevel.builder()
-                        .requiredXp(15)
-                        .petInfoInGUI(Arrays.asList("&8%pet_category_displayname% Pet", "", "&8+&a5 &9☠ Critic Damage",
-                                "&8+&a5 &9☣ Critic Chance",
-                                "",
-                                "&6Fire Resistance Force",
-                                "&fAdds &c10% &fFire resistance",
-                                "&fprovided from a &cmagic potion&f!"))
-                        .petPotions(Collections.singletonList(PetPotion.builder().potion("FIRE_RESISTANCE").level(2).build()))
-                        .statRewards(Arrays.asList(new StatReward("critic_chance", 5), new StatReward("critic_damage", 5)))
-                        .petInfoInMessage(Arrays.asList("&8+&a5 &9☠ Critic Damage",
-                                "&8+&a5 &9☣ Critic Chance",
-                                "",
-                                "&6Fire Resistance Force",
-                                "&fAdds &c+10% &fFire resistance",
-                                "&fprovided from a &cmagic potion&f!"))
-                        .commandRewards(Collections.emptyList())
-                        .build())
-                .put(5, PetLevel.builder()
-                        .requiredXp(25)
-                        .petInfoInGUI(Arrays.asList("&8%pet_category_displayname% Pet", "", "&8+&a10 &9☠ Critic Damage",
-                                "&8+&a10 &9☣ Critic Chance",
-                                "",
-                                "&6Fire Resistance Force",
-                                "&fAdds &c+25% &fFire resistance",
-                                "&fprovided from a &cmagic potion&f!"))
-                        .petPotions(Collections.singletonList(PetPotion.builder().potion("FIRE_RESISTANCE").level(3).build()))
-                        .statRewards(Arrays.asList(new StatReward("critic_chance", 10), new StatReward("critic_damage", 10)))
-                        .petInfoInMessage(Arrays.asList("&8+&a10 &9☠ Critic Damage",
-                                "&8+&a10 &9☣ Critic Chance",
-                                "",
-                                "&6Fire Resistance Force",
-                                "&fAdds &c+25% &fFire resistance",
-                                "&fprovided from a &cmagic potion&f!"))
-                        .commandRewards(Collections.emptyList())
-                        .build())
-                .build();
-
-    }
-
 }

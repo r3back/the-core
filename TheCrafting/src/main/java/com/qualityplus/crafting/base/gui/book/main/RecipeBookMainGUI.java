@@ -8,13 +8,18 @@ import com.qualityplus.crafting.api.recipes.Recipes;
 import com.qualityplus.crafting.base.category.Category;
 import com.qualityplus.crafting.base.gui.CraftingGUI;
 import com.qualityplus.crafting.base.gui.book.sub.RecipeBookSubGUI;
+import com.qualityplus.crafting.base.recipes.CustomRecipe;
 import com.qualityplus.crafting.util.CraftingItemStackUtil;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
+import java.util.stream.Collectors;
 
 
 public final class RecipeBookMainGUI extends CraftingGUI {
@@ -36,7 +41,7 @@ public final class RecipeBookMainGUI extends CraftingGUI {
 
         inventory.setItem(config.getGeneralProgressItem().slot, ItemStackUtils.makeItem(
                 config.getGeneralProgressItem(),
-                getCategoryPlaceholders(Recipes.values().stream().toList())));
+                getCategoryPlaceholders(new ArrayList<>(Recipes.values()))));
 
         for(Category category : box.files().categories().categoryList){
             inventory.setItem(category.getSlot(), CraftingItemStackUtil.makeCategoryItem(

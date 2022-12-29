@@ -1,7 +1,6 @@
 package com.qualityplus.bank.base.commands;
 
 import com.qualityplus.assistant.TheAssistantPlugin;
-import com.qualityplus.assistant.api.commands.CommandProvider;
 import com.qualityplus.assistant.api.commands.command.AssistantCommand;
 import com.qualityplus.bank.api.box.Box;
 import com.qualityplus.bank.base.config.Messages;

@@ -2,9 +2,7 @@ package com.qualityplus.collections.base.config;
 
 import com.cryptomorin.xseries.XMaterial;
 import com.google.common.collect.ImmutableMap;
-import com.qualityplus.assistant.api.common.rewards.Reward;
 import com.qualityplus.assistant.api.common.rewards.commands.CommandReward;
-import com.qualityplus.assistant.api.common.rewards.commands.CommandRewards;
 import com.qualityplus.assistant.util.faster.FasterMap;
 import com.qualityplus.assistant.util.list.ListUtils.ListBuilder;
 import com.qualityplus.collections.base.collection.Collection;
@@ -14,7 +12,6 @@ import com.qualityplus.collections.base.collection.gui.GUIOptions;
 import com.qualityplus.collections.base.collection.rewards.CollectionsCommandRewards;
 import eu.okaeri.configs.OkaeriConfig;
 import eu.okaeri.configs.annotation.*;
-import eu.okaeri.configs.serdes.SerdesRegistry;
 import eu.okaeri.platform.core.annotation.Configuration;
 import lombok.Getter;
 import lombok.Setter;

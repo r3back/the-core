@@ -1,8 +1,8 @@
 package com.qualityplus.crafting.base.gui.modify;
 
+import com.qualityplus.assistant.api.util.BukkitItemUtil;
 import com.qualityplus.assistant.util.StringUtils;
 import com.qualityplus.assistant.util.inventory.InventoryUtils;
-import com.qualityplus.assistant.util.itemstack.ItemStackUtils;
 import com.qualityplus.crafting.api.box.Box;
 import com.qualityplus.crafting.api.edition.RecipeEdition;
 import com.qualityplus.crafting.api.recipes.Recipes;
@@ -73,7 +73,7 @@ public final class ModifyRecipeGUI extends CraftingGUI {
 
                 ItemStack result = inventory.getItem(config.getResultSlot());
 
-                if(ItemStackUtils.isNull(result)){
+                if(BukkitItemUtil.isNull(result)){
                     player.sendMessage(StringUtils.color(box.files().messages().recipeMessages.recipeResultCantBeEmpty));
                     return;
                 }
@@ -81,7 +81,7 @@ public final class ModifyRecipeGUI extends CraftingGUI {
                 player.closeInventory();
 
                 recipe.setIngredientsSerialized(ingredients);
-                recipe.setResultSerialized(ItemStackUtils.serialize(result));
+                recipe.setResultSerialized(BukkitItemUtil.serialize(result));
 
                 player.sendMessage(StringUtils.color(box.files().messages().recipeMessages.recipeSuccessfullyCreated.replace("%crafting_recipe_id%", recipe.getId())));
 
@@ -100,9 +100,9 @@ public final class ModifyRecipeGUI extends CraftingGUI {
         for(int i = 1; i<=config.getRecipeSlots().size(); i++) {
             ItemStack itemStack = inventory.getItem(config.getRecipeSlots().get(i - 1));
 
-            if(ItemStackUtils.isNull(itemStack)) continue;
+            if(BukkitItemUtil.isNull(itemStack)) continue;
 
-            ingredients.put(i, ItemStackUtils.serialize(itemStack));
+            ingredients.put(i, BukkitItemUtil.serialize(itemStack));
         }
         return ingredients;
     }

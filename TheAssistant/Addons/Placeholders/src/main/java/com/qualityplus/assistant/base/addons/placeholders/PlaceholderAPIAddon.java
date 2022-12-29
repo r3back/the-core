@@ -1,15 +1,14 @@
 package com.qualityplus.assistant.base.addons.placeholders;
 
+import com.qualityplus.assistant.api.addons.PlaceholdersAddon;
+import com.qualityplus.assistant.api.addons.registrable.Registrable;
 import com.qualityplus.assistant.api.addons.replacer.PlaceholderReplaceEvent;
 import com.qualityplus.assistant.api.addons.replacer.PlaceholderReplacer;
-import com.qualityplus.assistant.api.addons.registrable.Registrable;
-import me.clip.placeholderapi.expansion.PlaceholderExpansion;
-import com.qualityplus.assistant.api.addons.PlaceholdersAddon;
 import eu.okaeri.injector.annotation.Inject;
-import org.jetbrains.annotations.NotNull;
-
+import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.HashMap;
 import java.util.Map;

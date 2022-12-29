@@ -2,10 +2,10 @@ package com.qualityplus.trades.base.provider;
 
 import com.cryptomorin.xseries.XMaterial;
 import com.qualityplus.assistant.TheAssistantPlugin;
+import com.qualityplus.assistant.api.util.BukkitItemUtil;
 import com.qualityplus.assistant.util.StringUtils;
 import com.qualityplus.assistant.util.inventory.InventoryUtils;
 import com.qualityplus.assistant.util.itemstack.ItemStackUtils;
-import com.qualityplus.trades.api.box.Box;
 import com.qualityplus.trades.api.provider.CheckerProvider;
 import com.qualityplus.trades.api.session.TradeSession;
 import com.qualityplus.trades.base.config.Messages;
@@ -70,7 +70,7 @@ public final class TradesCheckerProvider implements CheckerProvider<TradeSession
         TheAssistantPlugin.getAPI().getAddons().getEconomy().withdrawMoney(player, trade.getPrice() * priceMultiplier);
 
         player.sendMessage(StringUtils.color(messages.tradeMessages.youBought
-                .replace("%trade_result_item_name%", ItemStackUtils.getMaterialName(trade.getResult()))
+                .replace("%trade_result_item_name%", BukkitItemUtil.getMaterialName(trade.getResult()))
                 .replace("%trade_amount%", String.valueOf(toGive))
         ));
 

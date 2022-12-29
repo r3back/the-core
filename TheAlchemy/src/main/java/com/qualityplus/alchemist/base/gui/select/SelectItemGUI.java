@@ -5,7 +5,7 @@ import com.qualityplus.alchemist.api.box.Box;
 import com.qualityplus.alchemist.base.gui.AlchemistGUI;
 import com.qualityplus.alchemist.base.gui.individual.IndividualRecipeGUI;
 import com.qualityplus.alchemist.base.recipes.BrewingRecipe;
-import com.qualityplus.assistant.util.itemstack.ItemStackUtils;
+import com.qualityplus.assistant.api.util.BukkitItemUtil;
 import com.qualityplus.assistant.util.sound.SoundUtils;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
@@ -39,13 +39,13 @@ public final class SelectItemGUI extends AlchemistGUI {
     public void onInventoryClick(InventoryClickEvent e) {
         e.setCancelled(true);
 
-        if(ItemStackUtils.isNull(e.getCurrentItem())) return;
+        if(BukkitItemUtil.isNull(e.getCurrentItem())) return;
 
         Player player = (Player) e.getWhoClicked();
 
         ItemStack itemStack = e.getCurrentItem().clone();
 
-        String parsed = ItemStackUtils.serialize(itemStack);
+        String parsed = BukkitItemUtil.serialize(itemStack);
 
         switch (type) {
             case FUEL:

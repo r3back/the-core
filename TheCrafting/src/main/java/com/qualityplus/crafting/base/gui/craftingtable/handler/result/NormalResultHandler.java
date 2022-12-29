@@ -1,8 +1,7 @@
 package com.qualityplus.crafting.base.gui.craftingtable.handler.result;
 
+import com.qualityplus.assistant.api.util.BukkitItemUtil;
 import com.qualityplus.assistant.util.inventory.InventoryUtils;
-import com.qualityplus.assistant.util.itemstack.ItemStackUtils;
-import com.qualityplus.crafting.TheCrafting;
 import com.qualityplus.crafting.api.box.Box;
 import com.qualityplus.crafting.api.recipes.IRecipe;
 import com.qualityplus.crafting.base.gui.craftingtable.handler.CommonHandler;
@@ -34,7 +33,7 @@ public final class NormalResultHandler implements CommonHandler {
 
         ItemStack cursor = event.getCursor();
 
-        if(ItemStackUtils.isNull(itemStack)) return;
+        if(BukkitItemUtil.isNull(itemStack)) return;
 
         if(isEmptyCrafting(itemStack)) return;
 
@@ -48,10 +47,10 @@ public final class NormalResultHandler implements CommonHandler {
 
         ItemStack result = recipe.getResult().clone();
 
-        if(ItemStackUtils.isNull(cursor)) {
+        if(BukkitItemUtil.isNull(cursor)) {
             player.setItemOnCursor(result);
         }else if(cursor.isSimilar(result)) {
-            player.setItemOnCursor(ItemStackUtils.getItemWithAdd(cursor, result.getAmount()));
+            player.setItemOnCursor(BukkitItemUtil.getItemWithAdd(cursor, result.getAmount()));
         } else
             return;
 
@@ -71,7 +70,7 @@ public final class NormalResultHandler implements CommonHandler {
     private void removeItemsFromInventory(Player player, CustomRecipe recipe){
         recipe.getIngredients().values()
                 .stream()
-                .filter(item -> !ItemStackUtils.isNull(item))
+                .filter(item -> !BukkitItemUtil.isNull(item))
                 .forEach(item -> InventoryUtils.removeItems(player.getInventory(), item, item.getAmount()));
     }
 }

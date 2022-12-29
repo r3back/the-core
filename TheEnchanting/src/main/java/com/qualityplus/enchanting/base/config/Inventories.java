@@ -2,13 +2,12 @@ package com.qualityplus.enchanting.base.config;
 
 import com.cryptomorin.xseries.XMaterial;
 import com.google.common.collect.ImmutableMap;
-import com.qualityplus.enchanting.base.gui.enchantmain.EnchantMainGUIConfig;
 import com.qualityplus.assistant.inventory.CommonGUI;
 import com.qualityplus.assistant.inventory.Item;
 import com.qualityplus.assistant.inventory.background.Background;
 import com.qualityplus.assistant.inventory.background.DefaultBackgrounds;
 import com.qualityplus.assistant.util.itemstack.ItemBuilder;
-import com.qualityplus.enchanting.base.gui.enchantsub.EnchantSubGUI;
+import com.qualityplus.enchanting.base.gui.enchantmain.EnchantMainGUIConfig;
 import com.qualityplus.enchanting.base.gui.enchantsub.EnchantSubGUIConfig;
 import eu.okaeri.configs.OkaeriConfig;
 import eu.okaeri.configs.annotation.*;

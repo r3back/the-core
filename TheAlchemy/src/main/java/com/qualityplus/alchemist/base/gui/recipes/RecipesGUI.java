@@ -1,10 +1,10 @@
 package com.qualityplus.alchemist.base.gui.recipes;
 
 import com.qualityplus.alchemist.api.box.Box;
+import com.qualityplus.alchemist.api.recipes.Recipes;
 import com.qualityplus.alchemist.base.gui.AlchemistGUI;
 import com.qualityplus.alchemist.base.gui.individual.IndividualRecipeGUI;
 import com.qualityplus.alchemist.base.recipes.BrewingRecipe;
-import com.qualityplus.alchemist.api.recipes.Recipes;
 import com.qualityplus.alchemist.util.AlchemistPlaceholderUtils;
 import com.qualityplus.assistant.api.util.IPlaceholder;
 import com.qualityplus.assistant.util.inventory.InventoryUtils;
@@ -14,7 +14,10 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public final class RecipesGUI extends AlchemistGUI {
     private final Map<Integer, BrewingRecipe> recipeMap = new HashMap<>();

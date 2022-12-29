@@ -1,9 +1,8 @@
 package com.qualityplus.runes.base.provider;
 
 import com.qualityplus.runes.api.provider.EffectProvider;
-import com.qualityplus.runes.base.rune.Rune;
 import com.qualityplus.runes.base.rune.EffectBridge;
-import com.qualityplus.runes.base.rune.effects.EffectBridgeImpl;
+import com.qualityplus.runes.base.rune.Rune;
 import eu.okaeri.injector.annotation.Inject;
 import eu.okaeri.platform.core.annotation.Component;
 import org.bukkit.entity.Entity;

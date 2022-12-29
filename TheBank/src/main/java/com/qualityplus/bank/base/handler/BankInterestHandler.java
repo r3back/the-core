@@ -1,9 +1,9 @@
 package com.qualityplus.bank.base.handler;
 
-import com.qualityplus.bank.api.box.Box;
-import com.qualityplus.bank.persistence.data.BankData;
 import com.qualityplus.assistant.util.StringUtils;
 import com.qualityplus.assistant.util.time.Markable;
+import com.qualityplus.bank.api.box.Box;
+import com.qualityplus.bank.persistence.data.BankData;
 import eu.okaeri.commons.bukkit.time.MinecraftTimeEquivalent;
 import eu.okaeri.injector.annotation.Inject;
 import eu.okaeri.platform.bukkit.annotation.Scheduled;

@@ -2,7 +2,6 @@ package com.qualityplus.assistant.base.service;
 
 import com.qualityplus.assistant.api.addons.*;
 import com.qualityplus.assistant.api.service.AddonsService;
-import com.qualityplus.assistant.api.addons.PasterAddon;
 import eu.okaeri.commons.bukkit.time.MinecraftTimeEquivalent;
 import eu.okaeri.injector.annotation.Inject;
 import eu.okaeri.platform.bukkit.annotation.Delayed;

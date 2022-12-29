@@ -1,17 +1,16 @@
 package com.qualityplus.anvil.base.gui.anvilmain.handler;
 
 import com.cryptomorin.xseries.XMaterial;
+import com.qualityplus.anvil.api.box.Box;
 import com.qualityplus.anvil.api.session.AnvilSession;
+import com.qualityplus.anvil.api.session.AnvilSession.SessionResult;
 import com.qualityplus.anvil.base.gui.anvilmain.AnvilMainGUI;
 import com.qualityplus.anvil.base.session.AnvilSessionImpl;
 import com.qualityplus.anvil.util.AnvilFinderUtil;
 import com.qualityplus.assistant.TheAssistantPlugin;
+import com.qualityplus.assistant.api.util.BukkitItemUtil;
 import com.qualityplus.assistant.util.StringUtils;
-import com.qualityplus.assistant.util.itemstack.ItemStackUtils;
-import com.qualityplus.anvil.api.box.Box;
 import lombok.AllArgsConstructor;
-import com.qualityplus.anvil.api.session.AnvilSession.SessionResult;
-import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
@@ -56,7 +55,7 @@ public final class NormalClickHandler implements ClickHandler{
 
         } else if(event.getSlot() == gui.getConfig().getCombinedFilledItem().slot){
 
-            if(ItemStackUtils.isNull(session.getResult())) {
+            if(BukkitItemUtil.isNull(session.getResult())) {
                 event.setCancelled(true);
                 return;
             }
@@ -70,7 +69,7 @@ public final class NormalClickHandler implements ClickHandler{
         }else{
             event.setCancelled(true);
 
-            if(!ItemStackUtils.isNull(session.getResult())) {
+            if(!BukkitItemUtil.isNull(session.getResult())) {
                 player.sendMessage(StringUtils.color(box.files().messages().anvilMessages.thereIsAnItemToPickup));
                 return;
             }
@@ -78,7 +77,7 @@ public final class NormalClickHandler implements ClickHandler{
             final ItemStack copy = Optional.ofNullable(event.getCursor()).map(ItemStack::clone).orElse(null);
             final ItemStack current = Optional.ofNullable(event.getCurrentItem()).map(ItemStack::clone).orElse(null);
 
-            if(ItemStackUtils.isNull(copy)){
+            if(BukkitItemUtil.isNull(copy)){
                 AnvilSession newSession = event.getSlot() == gui.getConfig().getToSacrificeSlot() ?
                         new AnvilSessionImpl(null, session.getItemToUpgrade(), null) :
                         new AnvilSessionImpl(null, null, session.getItemToSacrifice());
@@ -102,7 +101,7 @@ public final class NormalClickHandler implements ClickHandler{
 
                 player.openInventory(new AnvilMainGUI(box, newSession).getInventory());
 
-                if(ItemStackUtils.isNull(current)) return;
+                if(BukkitItemUtil.isNull(current)) return;
 
                 player.setItemOnCursor(current);
 

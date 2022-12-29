@@ -1,14 +1,13 @@
 package com.qualityplus.anvil.base.gui.anvilmain.handler;
 
 import com.cryptomorin.xseries.XMaterial;
+import com.qualityplus.anvil.api.box.Box;
 import com.qualityplus.anvil.api.session.AnvilSession;
 import com.qualityplus.anvil.base.gui.anvilmain.AnvilMainGUI;
 import com.qualityplus.anvil.base.session.AnvilSessionImpl;
+import com.qualityplus.assistant.api.util.BukkitItemUtil;
 import com.qualityplus.assistant.util.StringUtils;
-import com.qualityplus.assistant.util.itemstack.ItemStackUtils;
-import com.qualityplus.anvil.api.box.Box;
 import lombok.AllArgsConstructor;
-import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
@@ -25,7 +24,7 @@ public final class ShiftClickHandler implements ClickHandler{
     public void handle(InventoryClickEvent event){
         Player player = (Player) event.getWhoClicked();
         if(event.getSlot() == gui.getConfig().getCombinedFilledItem().slot) {
-            if (ItemStackUtils.isNull(session.getResult())) {
+            if (BukkitItemUtil.isNull(session.getResult())) {
                 event.setCancelled(true);
                 return;
             }
@@ -41,7 +40,7 @@ public final class ShiftClickHandler implements ClickHandler{
             event.setCancelled(true);
         }else{
 
-            if(!ItemStackUtils.isNull(session.getResult())) {
+            if(!BukkitItemUtil.isNull(session.getResult())) {
                 player.sendMessage(StringUtils.color(box.files().messages().anvilMessages.thereIsAnItemToPickup));
                 event.setCancelled(true);
                 return;
@@ -51,13 +50,13 @@ public final class ShiftClickHandler implements ClickHandler{
             final ItemStack current = Optional.ofNullable(event.getCurrentItem()).map(ItemStack::clone).orElse(null);
 
             if(event.getSlot() == gui.getConfig().getToSacrificeSlot()){
-                if(ItemStackUtils.isNull(copy) && !ItemStackUtils.isNull(current)){
+                if(BukkitItemUtil.isNull(copy) && !BukkitItemUtil.isNull(current)){
                     gui.setGiveItem(false);
                     player.openInventory(new AnvilMainGUI(box, new AnvilSessionImpl(null, session.getItemToUpgrade(), null)).getInventory());
                     player.getInventory().addItem(current);
                 }
             }else{
-                if(ItemStackUtils.isNull(copy) && !ItemStackUtils.isNull(current)){
+                if(BukkitItemUtil.isNull(copy) && !BukkitItemUtil.isNull(current)){
                     gui.setGiveItem(false);
                     player.openInventory(new AnvilMainGUI(box, new AnvilSessionImpl(null, null, session.getItemToSacrifice())).getInventory());
                     player.getInventory().addItem(current);
@@ -76,13 +75,13 @@ public final class ShiftClickHandler implements ClickHandler{
 
         ShiftTarget target = getTarget();
 
-        if(!ItemStackUtils.isNull(session.getResult())) {
+        if(!BukkitItemUtil.isNull(session.getResult())) {
             player.sendMessage(StringUtils.color(box.files().messages().anvilMessages.thereIsAnItemToPickup));
             event.setCancelled(true);
             return;
         }
 
-        if(ItemStackUtils.isNull(session.getItemToSacrifice()) && !ItemStackUtils.isNull(current) && target.equals(ShiftTarget.SACRIFICE)){
+        if(BukkitItemUtil.isNull(session.getItemToSacrifice()) && !BukkitItemUtil.isNull(current) && target.equals(ShiftTarget.SACRIFICE)){
             if(!box.files().config().allowedItems.contains(XMaterial.matchXMaterial(current))) {
                 event.setCancelled(true);
                 return;
@@ -95,7 +94,7 @@ public final class ShiftClickHandler implements ClickHandler{
             player.openInventory(new AnvilMainGUI(box, new AnvilSessionImpl(null, session.getItemToUpgrade(), current)).getInventory());
         }
 
-        if(ItemStackUtils.isNull(session.getItemToUpgrade()) && !ItemStackUtils.isNull(current) && target.equals(ShiftTarget.UPGRADE)){
+        if(BukkitItemUtil.isNull(session.getItemToUpgrade()) && !BukkitItemUtil.isNull(current) && target.equals(ShiftTarget.UPGRADE)){
             if(!box.files().config().allowedItems.contains(XMaterial.matchXMaterial(current))) {
                 event.setCancelled(true);
                 return;
@@ -110,7 +109,7 @@ public final class ShiftClickHandler implements ClickHandler{
     }
 
     private ShiftTarget getTarget(){
-        boolean toUpgradeIsNull = ItemStackUtils.isNull(session.getItemToUpgrade());
+        boolean toUpgradeIsNull = BukkitItemUtil.isNull(session.getItemToUpgrade());
 
         return toUpgradeIsNull ? ShiftTarget.UPGRADE : ShiftTarget.SACRIFICE;
 

@@ -1,17 +1,14 @@
 package com.qualityplus.runes.util;
 
-import com.cryptomorin.xseries.XEnchantment;
-import com.qualityplus.assistant.TheAssistantPlugin;
+import com.qualityplus.assistant.api.util.BukkitItemUtil;
 import com.qualityplus.assistant.util.StringUtils;
-import com.qualityplus.assistant.util.armor.ArmorType;
-import com.qualityplus.assistant.util.itemstack.ItemStackUtils;
 import com.qualityplus.assistant.util.math.MathUtils;
 import com.qualityplus.runes.TheRunes;
 import com.qualityplus.runes.api.box.Box;
 import com.qualityplus.runes.api.session.RemoveSession;
-import com.qualityplus.runes.api.session.RuneSession.*;
-import com.qualityplus.runes.api.session.RuneSession;
 import com.qualityplus.runes.api.session.RuneInstance;
+import com.qualityplus.runes.api.session.RuneSession;
+import com.qualityplus.runes.api.session.RuneSession.SessionResult;
 import com.qualityplus.runes.base.rune.Rune;
 import com.qualityplus.runes.base.rune.RuneLevel;
 import lombok.experimental.UtilityClass;
@@ -22,7 +19,9 @@ import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Optional;
 
 @UtilityClass
 public class RuneFinderUtil {
@@ -35,7 +34,7 @@ public class RuneFinderUtil {
     }
 
     public RemoveSession.RemoveSessionResult getAnswer(RemoveSession session){
-        boolean toUpgradeIsNull = ItemStackUtils.isNull(session.getItemToRemove());
+        boolean toUpgradeIsNull = BukkitItemUtil.isNull(session.getItemToRemove());
 
         if(toUpgradeIsNull) return RemoveSession.RemoveSessionResult.ITEM_IS_NOT_RUNED;
 
@@ -50,8 +49,8 @@ public class RuneFinderUtil {
     public RuneSession.SessionResult getAnswer(RuneSession session){
         Player player = Bukkit.getPlayer(session.getUuid());
 
-        boolean toUpgradeIsNull = ItemStackUtils.isNull(session.getItemToUpgrade());
-        boolean toSacrificeIsNull = ItemStackUtils.isNull(session.getItemToSacrifice());
+        boolean toUpgradeIsNull = BukkitItemUtil.isNull(session.getItemToUpgrade());
+        boolean toSacrificeIsNull = BukkitItemUtil.isNull(session.getItemToSacrifice());
 
         if(toSacrificeIsNull && toUpgradeIsNull) return SessionResult.NOTHING_SET;
 
@@ -135,7 +134,7 @@ public class RuneFinderUtil {
 
             ItemMeta meta = newItem.getItemMeta();
 
-            List<String> lore = ItemStackUtils.getItemLore(newItem);
+            List<String> lore = BukkitItemUtil.getItemLore(newItem);
 
             try {
                 lore.addAll(getAddLore(sessionLevelled.getRune().getToAddLore(), sessionLevelled.getLevel()));

@@ -1,19 +1,16 @@
 package com.qualityplus.enchanting;
 
 import com.cryptomorin.xseries.XEnchantment;
-import com.qualityplus.assistant.util.itemstack.ItemStackUtils;
-import com.qualityplus.enchanting.api.TheEnchantingAPI;
 import com.qualityplus.assistant.okaeri.OkaeriSilentPlugin;
+import com.qualityplus.enchanting.api.TheEnchantingAPI;
 import eu.okaeri.injector.annotation.Inject;
 import eu.okaeri.platform.core.annotation.Scan;
 import eu.okaeri.platform.core.plan.ExecutionPhase;
 import eu.okaeri.platform.core.plan.Planned;
 import lombok.Getter;
-import org.bukkit.Bukkit;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
-import org.bukkit.inventory.ItemStack;
 
 import java.io.File;
 import java.util.Arrays;

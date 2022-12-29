@@ -1,9 +1,9 @@
 package com.qualityplus.crafting.util;
 
-import com.qualityplus.crafting.base.recipes.CustomRecipe;
+import com.qualityplus.assistant.api.util.BukkitItemUtil;
 import com.qualityplus.assistant.api.util.IPlaceholder;
-import com.qualityplus.assistant.util.itemstack.ItemStackUtils;
 import com.qualityplus.assistant.util.placeholder.Placeholder;
+import com.qualityplus.crafting.base.recipes.CustomRecipe;
 import lombok.experimental.UtilityClass;
 
 import java.util.Arrays;
@@ -20,8 +20,8 @@ public class CraftingPlaceholderUtils {
                 new Placeholder("crafting_recipe_page", recipe.getPage()),
                 new Placeholder("crafting_recipe_slot", recipe.getSlot()),
 
-                new Placeholder("crafting_recipe_result_item_displayname", emptyIfNull(ItemStackUtils.getName(recipe.getResult()))),
-                new Placeholder("crafting_recipe_result_item_lore", ItemStackUtils.getItemLore(recipe.getResult()))
+                new Placeholder("crafting_recipe_result_item_displayname", emptyIfNull(BukkitItemUtil.getName(recipe.getResult()))),
+                new Placeholder("crafting_recipe_result_item_lore", BukkitItemUtil.getItemLore(recipe.getResult()))
         );
     }
 

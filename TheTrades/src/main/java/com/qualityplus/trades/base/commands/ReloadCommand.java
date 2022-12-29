@@ -1,11 +1,11 @@
 package com.qualityplus.trades.base.commands;
 
-import com.qualityplus.trades.api.box.Box;
-import com.qualityplus.trades.base.trades.PluginTrade;
-import com.qualityplus.trades.api.recipes.Trades;
 import com.qualityplus.assistant.TheAssistantPlugin;
 import com.qualityplus.assistant.api.commands.command.AssistantCommand;
 import com.qualityplus.assistant.util.StringUtils;
+import com.qualityplus.trades.api.box.Box;
+import com.qualityplus.trades.api.recipes.Trades;
+import com.qualityplus.trades.base.trades.PluginTrade;
 import eu.okaeri.commons.bukkit.time.MinecraftTimeEquivalent;
 import eu.okaeri.injector.annotation.Inject;
 import eu.okaeri.platform.bukkit.annotation.Delayed;

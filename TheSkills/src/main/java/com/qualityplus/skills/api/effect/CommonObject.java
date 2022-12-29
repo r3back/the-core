@@ -2,7 +2,9 @@ package com.qualityplus.skills.api.effect;
 
 import com.qualityplus.assistant.api.util.IPlaceholder;
 import com.qualityplus.skills.base.skill.gui.GUIOptions;
-import lombok.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.bukkit.event.Listener;
 
 import java.util.ArrayList;

@@ -6,6 +6,7 @@ import org.bukkit.OfflinePlayer;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -24,5 +25,9 @@ public class PlayerUtils {
 
     public List<String> parseWithName(List<String> list, Player player){
         return list.stream().map(line -> line.replace("%player%", player.getName())).collect(Collectors.toList());
+    }
+
+    public List<Player> all(){
+        return new ArrayList<>(Bukkit.getOnlinePlayers());
     }
 }

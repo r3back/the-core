@@ -1,10 +1,10 @@
 package com.qualityplus.skills.base.stat.stats;
 
 import com.cryptomorin.xseries.XMaterial;
+import com.qualityplus.assistant.api.util.BukkitItemUtil;
 import com.qualityplus.assistant.api.util.IPlaceholder;
 import com.qualityplus.assistant.base.event.PlayerKillEvent;
 import com.qualityplus.assistant.util.StringUtils;
-import com.qualityplus.assistant.util.itemstack.ItemStackUtils;
 import com.qualityplus.assistant.util.math.MathUtils;
 import com.qualityplus.assistant.util.placeholder.Placeholder;
 import com.qualityplus.assistant.util.placeholder.PlaceholderBuilder;
@@ -13,7 +13,10 @@ import com.qualityplus.skills.base.event.MagicFindEvent;
 import com.qualityplus.skills.base.skill.gui.GUIOptions;
 import com.qualityplus.skills.base.stat.Stat;
 import com.qualityplus.skills.util.SkillsPlayerUtil;
-import lombok.*;
+import lombok.Builder;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -53,7 +56,7 @@ public final class MagicFindStat extends Stat {
                 .map(XMaterial::parseItem)
                 .orElse(null);
 
-        if(ItemStackUtils.isNull(toGive)) return;
+        if(BukkitItemUtil.isNull(toGive)) return;
 
         final MagicFindEvent event = new MagicFindEvent(e.getPlayer(), this, toGive, e.getKilled().getLocation());
 

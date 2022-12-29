@@ -1,9 +1,9 @@
 package com.qualityplus.assistant.base.addons.placeholders;
 
+import be.maximvdw.placeholderapi.PlaceholderAPI;
 import com.qualityplus.assistant.api.addons.PlaceholdersAddon;
 import com.qualityplus.assistant.api.addons.replacer.PlaceholderReplaceEvent;
 import com.qualityplus.assistant.api.addons.replacer.PlaceholderReplacer;
-import be.maximvdw.placeholderapi.PlaceholderAPI;
 import eu.okaeri.injector.annotation.Inject;
 import org.bukkit.plugin.Plugin;
 

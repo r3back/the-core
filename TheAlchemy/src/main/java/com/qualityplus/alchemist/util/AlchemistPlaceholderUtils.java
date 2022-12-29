@@ -1,8 +1,8 @@
 package com.qualityplus.alchemist.util;
 
 import com.qualityplus.alchemist.base.recipes.BrewingRecipe;
+import com.qualityplus.assistant.api.util.BukkitItemUtil;
 import com.qualityplus.assistant.api.util.IPlaceholder;
-import com.qualityplus.assistant.util.itemstack.ItemStackUtils;
 import com.qualityplus.assistant.util.placeholder.Placeholder;
 import lombok.experimental.UtilityClass;
 
@@ -18,14 +18,14 @@ public class AlchemistPlaceholderUtils {
                 new Placeholder("alchemist_recipe_id", recipe.getId()),
                 new Placeholder("alchemist_recipe_permission", recipe.getRecipePermission()),
                 new Placeholder("alchemist_recipe_duration", recipe.getTimer().getAmount()),
-                new Placeholder("alchemist_recipe_fuel_item_displayname", emptyIfNull(ItemStackUtils.getName(recipe.getFuel()))),
-                new Placeholder("alchemist_recipe_fuel_item_lore", ItemStackUtils.getItemLore(recipe.getFuel())),
+                new Placeholder("alchemist_recipe_fuel_item_displayname", emptyIfNull(BukkitItemUtil.getName(recipe.getFuel()))),
+                new Placeholder("alchemist_recipe_fuel_item_lore", BukkitItemUtil.getItemLore(recipe.getFuel())),
 
-                new Placeholder("alchemist_recipe_output_item_displayname", emptyIfNull(ItemStackUtils.getName(recipe.getOutPut()))),
-                new Placeholder("alchemist_recipe_output_item_lore", ItemStackUtils.getItemLore(recipe.getOutPut())),
+                new Placeholder("alchemist_recipe_output_item_displayname", emptyIfNull(BukkitItemUtil.getName(recipe.getOutPut()))),
+                new Placeholder("alchemist_recipe_output_item_lore", BukkitItemUtil.getItemLore(recipe.getOutPut())),
 
-                new Placeholder("alchemist_recipe_input_item_displayname", emptyIfNull(ItemStackUtils.getName(recipe.getInput()))),
-                new Placeholder("alchemist_recipe_input_item_lore", ItemStackUtils.getItemLore(recipe.getInput()))
+                new Placeholder("alchemist_recipe_input_item_displayname", emptyIfNull(BukkitItemUtil.getName(recipe.getInput()))),
+                new Placeholder("alchemist_recipe_input_item_lore", BukkitItemUtil.getItemLore(recipe.getInput()))
         );
     }
 

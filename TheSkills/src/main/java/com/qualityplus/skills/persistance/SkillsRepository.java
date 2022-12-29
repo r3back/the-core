@@ -7,8 +7,6 @@ import eu.okaeri.persistence.repository.annotation.DocumentCollection;
 import eu.okaeri.persistence.repository.annotation.DocumentIndex;
 import eu.okaeri.persistence.repository.annotation.DocumentPath;
 import eu.okaeri.platform.core.annotation.DependsOn;
-import org.bukkit.Bukkit;
-import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 
 import java.util.Optional;

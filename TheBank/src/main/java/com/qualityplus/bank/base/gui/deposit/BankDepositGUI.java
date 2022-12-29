@@ -1,24 +1,24 @@
 package com.qualityplus.bank.base.gui.deposit;
 
+import com.qualityplus.assistant.TheAssistantPlugin;
+import com.qualityplus.assistant.api.event.SignCompletedEvent;
+import com.qualityplus.assistant.api.util.IPlaceholder;
 import com.qualityplus.assistant.base.dependency.UsualDependencies;
+import com.qualityplus.assistant.inventory.SignGUI;
+import com.qualityplus.assistant.util.inventory.InventoryUtils;
+import com.qualityplus.assistant.util.placeholder.Placeholder;
 import com.qualityplus.bank.api.box.Box;
 import com.qualityplus.bank.api.transaction.TransactionType;
 import com.qualityplus.bank.base.gui.BankGUI;
 import com.qualityplus.bank.base.gui.main.BankInterfaceGUI;
+import com.qualityplus.bank.base.gui.main.BankInterfaceGUI.GUIType;
 import com.qualityplus.bank.persistence.data.BankData;
 import com.qualityplus.bank.persistence.data.BankTransaction;
-import com.qualityplus.assistant.TheAssistantPlugin;
-import com.qualityplus.assistant.api.event.SignCompletedEvent;
-import com.qualityplus.assistant.api.util.IPlaceholder;
-import com.qualityplus.assistant.inventory.SignGUI;
-import com.qualityplus.assistant.util.inventory.InventoryUtils;
-import com.qualityplus.assistant.util.placeholder.Placeholder;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.jetbrains.annotations.NotNull;
-import com.qualityplus.bank.base.gui.main.BankInterfaceGUI.GUIType;
 
 import java.util.Arrays;
 import java.util.List;

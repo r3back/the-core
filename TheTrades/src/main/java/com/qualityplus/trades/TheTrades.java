@@ -1,9 +1,9 @@
 package com.qualityplus.trades;
 
+import com.qualityplus.assistant.okaeri.OkaeriSilentPlugin;
 import com.qualityplus.trades.api.TheTradesAPI;
 import com.qualityplus.trades.api.recipes.Trades;
 import com.qualityplus.trades.base.config.TradesFile;
-import com.qualityplus.assistant.okaeri.OkaeriSilentPlugin;
 import eu.okaeri.injector.annotation.Inject;
 import eu.okaeri.platform.core.annotation.Register;
 import eu.okaeri.platform.core.annotation.Scan;

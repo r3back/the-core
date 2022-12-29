@@ -1,12 +1,10 @@
 package com.qualityplus.collections.base.commands;
 
-import com.cryptomorin.xseries.XMaterial;
 import com.qualityplus.assistant.TheAssistantPlugin;
 import com.qualityplus.assistant.api.commands.command.AssistantCommand;
+import com.qualityplus.assistant.api.util.BukkitItemUtil;
 import com.qualityplus.assistant.api.util.IPlaceholder;
 import com.qualityplus.assistant.util.StringUtils;
-import com.qualityplus.assistant.util.itemstack.ItemBuilder;
-import com.qualityplus.assistant.util.itemstack.ItemStackUtils;
 import com.qualityplus.assistant.util.placeholder.Placeholder;
 import com.qualityplus.collections.api.box.Box;
 import com.qualityplus.collections.base.collection.Collection;
@@ -16,11 +14,9 @@ import eu.okaeri.injector.annotation.Inject;
 import eu.okaeri.platform.bukkit.annotation.Delayed;
 import eu.okaeri.platform.core.annotation.Component;
 import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -47,7 +43,7 @@ public final class SetItemToCollectionCommand extends AssistantCommand {
             Item item2 = player.getWorld().spawn(player.getLocation().clone().add(-5, 0, -5), Item.class);
             item2.setItemStack(XMaterial.IRON_INGOT.parseItem());*/
 
-            if(ItemStackUtils.isNull(itemStack)){
+            if(BukkitItemUtil.isNull(itemStack)){
                 player.sendMessage(StringUtils.color(box.files().messages().collectionsMessages.invalidItem));
 
                 return false;
@@ -66,7 +62,7 @@ public final class SetItemToCollectionCommand extends AssistantCommand {
 
             CollectionsRegistry.reloadCollections(box);
 
-            List<IPlaceholder> placeholders = Arrays.asList(new Placeholder("collection_item_type", ItemStackUtils.getName(itemStack)), new Placeholder("collection_id", id));
+            List<IPlaceholder> placeholders = Arrays.asList(new Placeholder("collection_item_type", BukkitItemUtil.getName(itemStack)), new Placeholder("collection_id", id));
 
             player.sendMessage(StringUtils.processMulti(box.files().messages().collectionsMessages.successfullyChangedItem, placeholders));
 

@@ -1,13 +1,13 @@
 package com.qualityplus.trades.base.config;
 
 import com.cryptomorin.xseries.XMaterial;
-import com.qualityplus.assistant.inventory.Item;
-import com.qualityplus.assistant.util.faster.FasterMap;
-import com.qualityplus.trades.base.gui.trades.TradesGUIConfig;
-import com.qualityplus.trades.base.gui.options.TradeOptionsGUIConfig;
 import com.qualityplus.assistant.inventory.CommonGUI;
+import com.qualityplus.assistant.inventory.Item;
 import com.qualityplus.assistant.inventory.background.DefaultBackgrounds;
+import com.qualityplus.assistant.util.faster.FasterMap;
 import com.qualityplus.assistant.util.itemstack.ItemBuilder;
+import com.qualityplus.trades.base.gui.options.TradeOptionsGUIConfig;
+import com.qualityplus.trades.base.gui.trades.TradesGUIConfig;
 import eu.okaeri.configs.OkaeriConfig;
 import eu.okaeri.configs.annotation.*;
 import eu.okaeri.platform.core.annotation.Configuration;

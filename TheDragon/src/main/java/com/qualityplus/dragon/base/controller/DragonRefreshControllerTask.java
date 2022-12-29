@@ -1,14 +1,12 @@
 package com.qualityplus.dragon.base.controller;
 
 import com.qualityplus.dragon.base.event.DragonRefreshEvent;
-import eu.okaeri.commons.bukkit.time.MinecraftTimeEquivalent;
+import com.qualityplus.dragon.base.event.DragonRefreshEvent.RefreshType;
 import eu.okaeri.injector.annotation.Inject;
 import eu.okaeri.platform.bukkit.annotation.Scheduled;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
-import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;
-import com.qualityplus.dragon.base.event.DragonRefreshEvent.RefreshType;
 
 import java.util.Arrays;
 

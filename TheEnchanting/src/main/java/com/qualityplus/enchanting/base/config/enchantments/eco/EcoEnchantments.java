@@ -3,9 +3,16 @@ package com.qualityplus.enchanting.base.config.enchantments.eco;
 import com.google.common.collect.ImmutableMap;
 import com.qualityplus.enchanting.base.config.enchantments.EnchantConfig;
 import eu.okaeri.configs.OkaeriConfig;
-import eu.okaeri.configs.annotation.*;
+import eu.okaeri.configs.annotation.Header;
+import eu.okaeri.configs.annotation.NameModifier;
+import eu.okaeri.configs.annotation.NameStrategy;
+import eu.okaeri.configs.annotation.Names;
 import eu.okaeri.platform.core.annotation.Configuration;
-import java.util.*;
+
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @Configuration(path = "enchantments/eco_enchantments.yml")
 @Header("================================")

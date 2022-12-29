@@ -1,24 +1,22 @@
 package com.qualityplus.anvil.util;
 
 import com.qualityplus.anvil.api.session.AnvilSession;
-import com.qualityplus.assistant.util.itemstack.ItemStackUtils;
+import com.qualityplus.anvil.api.session.AnvilSession.SessionResult;
+import com.qualityplus.assistant.api.util.BukkitItemUtil;
 import com.qualityplus.enchanting.TheEnchanting;
 import com.qualityplus.enchanting.api.enchantment.ICoreEnchantment;
 import com.qualityplus.enchanting.base.session.EnchantmentSessionImpl;
 import lombok.experimental.UtilityClass;
-import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.EnchantmentStorageMeta;
 import org.bukkit.inventory.meta.ItemMeta;
-import com.qualityplus.anvil.api.session.AnvilSession.SessionResult;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
-import java.util.stream.DoubleStream;
 
 @UtilityClass
 public class AnvilFinderUtil {
@@ -31,8 +29,8 @@ public class AnvilFinderUtil {
     }
 
     public SessionResult getAnswer(AnvilSession session){
-        boolean toUpgradeIsNull = ItemStackUtils.isNull(session.getItemToUpgrade());
-        boolean toSacrificeIsNull = ItemStackUtils.isNull(session.getItemToSacrifice());
+        boolean toUpgradeIsNull = BukkitItemUtil.isNull(session.getItemToUpgrade());
+        boolean toSacrificeIsNull = BukkitItemUtil.isNull(session.getItemToSacrifice());
 
         if(toSacrificeIsNull && toUpgradeIsNull) return SessionResult.NOTHING_SET;
 

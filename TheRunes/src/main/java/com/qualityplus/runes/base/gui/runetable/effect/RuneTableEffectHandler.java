@@ -1,5 +1,6 @@
 package com.qualityplus.runes.base.gui.runetable.effect;
 
+import com.qualityplus.assistant.api.util.BukkitItemUtil;
 import com.qualityplus.assistant.api.util.IPlaceholder;
 import com.qualityplus.assistant.util.StringUtils;
 import com.qualityplus.assistant.util.inventory.InventoryUtils;
@@ -85,8 +86,8 @@ public final class RuneTableEffectHandler implements EffectHandler<RuneTableGUI>
 
         List<IPlaceholder> placeholders = Arrays.asList(
                 new Placeholder("rune_session_xp", xp),
-                new Placeholder("rune_to_sacrifice_displayname", ItemStackUtils.getName(session.getItemToSacrifice())),
-                new Placeholder("rune_session_result_displayname", ItemStackUtils.getName(session.getItemToSacrifice())));
+                new Placeholder("rune_to_sacrifice_displayname", BukkitItemUtil.getName(session.getItemToSacrifice())),
+                new Placeholder("rune_session_result_displayname", BukkitItemUtil.getName(session.getItemToSacrifice())));
 
         player.sendMessage(StringUtils.processMulti(bothRunes ? box.files().messages().runeMessages.addedXpFusing : box.files().messages().runeMessages.addedXpApplying, placeholders));
 

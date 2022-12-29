@@ -5,7 +5,6 @@ import com.qualityplus.pets.api.pet.entity.PetEntity;
 import com.qualityplus.pets.base.pet.Pet;
 import com.qualityplus.pets.persistance.data.UserData;
 
-import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 import java.util.UUID;

@@ -1,11 +1,11 @@
 package com.qualityplus.dragon.api.service;
 
 import com.qualityplus.assistant.api.addons.paster.session.PasterSession;
+import com.qualityplus.dragon.api.exception.InvalidSpawnException;
 import com.qualityplus.dragon.api.game.structure.GameStructure;
 import com.qualityplus.dragon.api.game.structure.type.DragonAltar;
 import com.qualityplus.dragon.api.game.structure.type.DragonCrystal;
 import com.qualityplus.dragon.api.game.structure.type.DragonSpawn;
-import com.qualityplus.dragon.api.exception.InvalidSpawnException;
 import org.bukkit.Location;
 import org.bukkit.entity.Entity;
 

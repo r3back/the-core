@@ -1,11 +1,11 @@
 package com.qualityplus.runes.base.gui.options;
 
 import com.qualityplus.assistant.api.util.IPlaceholder;
+import com.qualityplus.assistant.util.inventory.InventoryUtils;
 import com.qualityplus.assistant.util.itemstack.ItemStackUtils;
+import com.qualityplus.runes.api.box.Box;
 import com.qualityplus.runes.api.recipes.Runes;
 import com.qualityplus.runes.base.gui.RuneGUI;
-import com.qualityplus.runes.api.box.Box;
-import com.qualityplus.assistant.util.inventory.InventoryUtils;
 import com.qualityplus.runes.base.rune.Rune;
 import com.qualityplus.runes.util.RunesPlaceholderUtils;
 import com.qualityplus.runes.util.RunesUtils;
@@ -14,7 +14,10 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public final class AllRunesGUI extends RuneGUI {
     private final Map<Integer, Rune> slotsAndRune = new HashMap<>();

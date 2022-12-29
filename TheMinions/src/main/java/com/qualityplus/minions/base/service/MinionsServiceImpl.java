@@ -4,10 +4,7 @@ import com.qualityplus.minions.api.service.MinionsService;
 import com.qualityplus.minions.persistance.data.MinionData;
 import eu.okaeri.platform.core.annotation.Component;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Optional;
-import java.util.UUID;
+import java.util.*;
 
 @Component
 public final class MinionsServiceImpl implements MinionsService {
@@ -26,5 +23,10 @@ public final class MinionsServiceImpl implements MinionsService {
     @Override
     public void removeData(MinionData data) {
         dataMap.remove(data.getUuid());
+    }
+
+    @Override
+    public List<UUID> getAllKeys() {
+        return new ArrayList<>(dataMap.keySet());
     }
 }

@@ -1,8 +1,9 @@
 package com.qualityplus.skills.base.reward;
 
-import com.qualityplus.assistant.api.common.rewards.Reward;
 import com.qualityplus.assistant.api.common.rewards.Rewards;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.HashMap;
 import java.util.List;

@@ -15,10 +15,10 @@ def copyJars =  {
     }
 }
 
-def okaeri_dependencies = ['eu.okaeri:okaeri-platform-bukkit:0.4.0-preview54',
-                           'eu.okaeri:okaeri-configs-json-simple:4.0.0-beta2',
-                           'eu.okaeri:okaeri-persistence-redis:1.5.10',
-                           'eu.okaeri:okaeri-persistence-jdbc:1.5.10',
+def okaeri_dependencies = ['eu.okaeri:okaeri-platform-bukkit:0.4.0-preview.72',
+                           'eu.okaeri:okaeri-configs-json-simple:4.0.1',
+                           'eu.okaeri:okaeri-persistence-redis:1.5.12',
+                           'eu.okaeri:okaeri-persistence-jdbc:1.5.12',
                            'eu.okaeri:okaeri-persistence-mongo:1.5.12'] as HashSet
 
 def driver_dependencies = ['com.zaxxer:HikariCP:4.0.3',

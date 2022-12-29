@@ -1,6 +1,7 @@
 package com.qualityplus.enchanting.base.gui.enchantsub;
 
 import com.qualityplus.assistant.TheAssistantPlugin;
+import com.qualityplus.assistant.api.util.BukkitItemUtil;
 import com.qualityplus.assistant.api.util.IPlaceholder;
 import com.qualityplus.assistant.util.StringUtils;
 import com.qualityplus.assistant.util.inventory.InventoryUtils;
@@ -124,7 +125,7 @@ public final class EnchantSubGUI extends EnchantingGUI {
 
             List<IPlaceholder> placeholders = PlaceholderBuilder.create(EnchantingPlaceholderUtil.getEnchantPlaceholders(enchantment, level))
                     .with(new Placeholder("enchanting_enchant_level_roman", MathUtils.toRoman(level)))
-                    .with(new Placeholder("enchanting_item_name", ItemStackUtils.getName(itemStack)))
+                    .with(new Placeholder("enchanting_item_name", BukkitItemUtil.getName(itemStack)))
                     .get();
 
             player.sendMessage(StringUtils.processMulti(message, placeholders));
@@ -155,7 +156,7 @@ public final class EnchantSubGUI extends EnchantingGUI {
     public void onInventoryClose(InventoryCloseEvent event) {
         Player player = (Player) event.getPlayer();
 
-        if(ItemStackUtils.isNull(item)) return;
+        if(BukkitItemUtil.isNull(item)) return;
 
         if(!giveItem) return;
 

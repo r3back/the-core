@@ -4,9 +4,7 @@ import com.qualityplus.auction.api.service.AuctionService;
 import com.qualityplus.auction.persistence.data.AuctionHouse;
 import com.qualityplus.auction.persistence.data.AuctionItem;
 import eu.okaeri.platform.core.annotation.Component;
-import org.bukkit.Bukkit;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;

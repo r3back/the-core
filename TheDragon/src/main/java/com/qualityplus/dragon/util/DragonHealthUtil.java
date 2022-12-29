@@ -1,7 +1,6 @@
 package com.qualityplus.dragon.util;
 
 import lombok.experimental.UtilityClass;
-import org.bukkit.Bukkit;
 
 @UtilityClass
 public class DragonHealthUtil {

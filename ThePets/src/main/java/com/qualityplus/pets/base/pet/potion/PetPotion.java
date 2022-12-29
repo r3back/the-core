@@ -1,6 +1,5 @@
 package com.qualityplus.pets.base.pet.potion;
 
-import com.qualityplus.assistant.api.common.rewards.Reward;
 import eu.okaeri.configs.OkaeriConfig;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

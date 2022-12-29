@@ -1,7 +1,7 @@
 package com.qualityplus.bank;
 
-import com.qualityplus.bank.api.TheBankAPI;
 import com.qualityplus.assistant.okaeri.OkaeriSilentPlugin;
+import com.qualityplus.bank.api.TheBankAPI;
 import com.qualityplus.bank.api.box.Box;
 import com.qualityplus.bank.persistence.data.BankData;
 import eu.okaeri.injector.annotation.Inject;

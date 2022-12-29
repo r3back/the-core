@@ -1,11 +1,11 @@
 package com.qualityplus.crafting.base.commands;
 
-import com.qualityplus.crafting.api.box.Box;
-import com.qualityplus.crafting.base.recipes.CustomRecipe;
-import com.qualityplus.crafting.api.recipes.Recipes;
 import com.qualityplus.assistant.TheAssistantPlugin;
 import com.qualityplus.assistant.api.commands.command.AssistantCommand;
 import com.qualityplus.assistant.util.StringUtils;
+import com.qualityplus.crafting.api.box.Box;
+import com.qualityplus.crafting.api.recipes.Recipes;
+import com.qualityplus.crafting.base.recipes.CustomRecipe;
 import eu.okaeri.commons.bukkit.time.MinecraftTimeEquivalent;
 import eu.okaeri.injector.annotation.Inject;
 import eu.okaeri.platform.bukkit.annotation.Delayed;

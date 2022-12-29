@@ -1,6 +1,6 @@
 package com.qualityplus.crafting.base.gui.craftingtable.handler;
 
-import com.qualityplus.assistant.util.itemstack.ItemStackUtils;
+import com.qualityplus.assistant.api.util.BukkitItemUtil;
 import com.qualityplus.crafting.base.recipes.CustomRecipe;
 import de.tr7zw.changeme.nbtapi.NBTItem;
 import org.bukkit.inventory.Inventory;
@@ -13,9 +13,9 @@ public interface CommonHandler {
         for(Integer value : tableRelationSlots.values()){
             ItemStack itemStack = inventory.getItem(value);
 
-            if(ItemStackUtils.isNull(itemStack)) continue;
+            if(BukkitItemUtil.isNull(itemStack)) continue;
 
-            inventory.setItem(value, ItemStackUtils.getItemWithout(itemStack, 1));
+            inventory.setItem(value, BukkitItemUtil.getItemWithout(itemStack, 1));
         }
     }
 
@@ -26,11 +26,11 @@ public interface CommonHandler {
         for(Map.Entry<Integer, Integer> entry : tableRelationSlots.entrySet()){
             ItemStack inRecipe = ingredients.getOrDefault(entry.getKey(), null);
 
-            if(ItemStackUtils.isNull(inRecipe)) continue;
+            if(BukkitItemUtil.isNull(inRecipe)) continue;
 
             ItemStack inTable = inventory.getItem(entry.getValue());
 
-            inventory.setItem(entry.getValue(), ItemStackUtils.getItemWithout(inTable, inRecipe.getAmount()));
+            inventory.setItem(entry.getValue(), BukkitItemUtil.getItemWithout(inTable, inRecipe.getAmount()));
         }
     }
 

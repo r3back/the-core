@@ -1,9 +1,9 @@
 package com.qualityplus.runes.base.commands;
 
-import com.qualityplus.runes.api.box.Box;
 import com.qualityplus.assistant.TheAssistantPlugin;
 import com.qualityplus.assistant.api.commands.command.AssistantCommand;
 import com.qualityplus.assistant.util.StringUtils;
+import com.qualityplus.runes.api.box.Box;
 import com.qualityplus.runes.base.gui.runetable.RuneTableGUI;
 import com.qualityplus.runes.base.session.RuneSessionImpl;
 import eu.okaeri.commons.bukkit.time.MinecraftTimeEquivalent;

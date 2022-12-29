@@ -1,10 +1,9 @@
 package com.qualityplus.collections.base.collection.executor;
 
 import com.cryptomorin.xseries.XMaterial;
-import com.qualityplus.assistant.util.itemstack.ItemStackUtils;
+import com.qualityplus.assistant.api.util.BukkitItemUtil;
 import eu.okaeri.configs.OkaeriConfig;
 import eu.okaeri.configs.annotation.Exclude;
-import lombok.Builder;
 import lombok.Getter;
 import org.bukkit.inventory.ItemStack;
 
@@ -24,7 +23,7 @@ public final class CollectionExecutor extends OkaeriConfig {
     }
 
     public ItemStack getItem(){
-        if(item == null) item = ItemStackUtils.deserialize(itemStack);
+        if(item == null) item = BukkitItemUtil.deserialize(itemStack);
 
         return item;
     }
@@ -34,7 +33,7 @@ public final class CollectionExecutor extends OkaeriConfig {
     }
 
     public static CollectionExecutor ofItemStack(ItemStack itemStack){
-        return new CollectionExecutor(ExecutorType.BY_PICK_UP_ITEM_STACK, null, ItemStackUtils.serialize(itemStack));
+        return new CollectionExecutor(ExecutorType.BY_PICK_UP_ITEM_STACK, null, BukkitItemUtil.serialize(itemStack));
     }
 
 }

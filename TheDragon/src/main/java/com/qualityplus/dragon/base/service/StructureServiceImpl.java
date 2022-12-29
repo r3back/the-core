@@ -1,13 +1,13 @@
 package com.qualityplus.dragon.base.service;
 
 import com.qualityplus.assistant.api.addons.paster.session.PasterSession;
-import com.qualityplus.dragon.api.service.StructureService;
+import com.qualityplus.dragon.api.exception.InvalidSpawnException;
+import com.qualityplus.dragon.api.game.structure.GameStructure;
+import com.qualityplus.dragon.api.game.structure.GameStructures;
 import com.qualityplus.dragon.api.game.structure.type.DragonAltar;
 import com.qualityplus.dragon.api.game.structure.type.DragonCrystal;
 import com.qualityplus.dragon.api.game.structure.type.DragonSpawn;
-import com.qualityplus.dragon.api.game.structure.GameStructures;
-import com.qualityplus.dragon.api.game.structure.GameStructure;
-import com.qualityplus.dragon.api.exception.InvalidSpawnException;
+import com.qualityplus.dragon.api.service.StructureService;
 import eu.okaeri.injector.annotation.Inject;
 import eu.okaeri.platform.core.annotation.Component;
 import org.bukkit.Location;

@@ -1,13 +1,10 @@
 package com.qualityplus.assistant.util.placeholder;
 
 import com.qualityplus.assistant.api.util.IPlaceholder;
-import com.qualityplus.assistant.util.StringUtils;
 import com.qualityplus.assistant.util.math.MathUtils;
-import org.bukkit.Bukkit;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
 
 public final class Placeholder implements IPlaceholder {
     private final String key;

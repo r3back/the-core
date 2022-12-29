@@ -1,10 +1,10 @@
 package com.qualityplus.pets.util;
 
+import com.qualityplus.assistant.api.util.BukkitItemUtil;
 import com.qualityplus.assistant.api.util.IPlaceholder;
 import com.qualityplus.assistant.inventory.Item;
 import com.qualityplus.assistant.util.StringUtils;
 import com.qualityplus.assistant.util.itemstack.ItemBuilder;
-import com.qualityplus.assistant.util.itemstack.ItemStackUtils;
 import com.qualityplus.pets.ThePets;
 import com.qualityplus.pets.api.pet.Pets;
 import com.qualityplus.pets.base.event.PetCreateEvent;
@@ -26,7 +26,7 @@ public class PetEggUtil {
     private final String PET_UNIQUE_ID_KEY = "PET_UUID_KEY";
 
     public Optional<PetData> dataFromEgg(ItemStack itemStack){
-        if(ItemStackUtils.isNull(itemStack)) return Optional.empty();
+        if(BukkitItemUtil.isNull(itemStack)) return Optional.empty();
 
         NBTItem nbtItem = new NBTItem(itemStack);
 

@@ -1,7 +1,7 @@
 package com.qualityplus.auction;
 
-import com.qualityplus.auction.api.TheAuctionAPI;
 import com.qualityplus.assistant.okaeri.OkaeriSilentPlugin;
+import com.qualityplus.auction.api.TheAuctionAPI;
 import com.qualityplus.auction.api.box.Box;
 import com.qualityplus.auction.base.gui.AuctionGUI;
 import com.qualityplus.auction.persistence.data.AuctionHouse;

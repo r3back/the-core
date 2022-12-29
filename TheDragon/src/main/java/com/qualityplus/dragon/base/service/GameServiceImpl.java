@@ -6,9 +6,7 @@ import com.qualityplus.dragon.api.event.SwitchableEvents;
 import com.qualityplus.dragon.api.game.part.GameCountdown;
 import com.qualityplus.dragon.api.game.part.GameEventSwitch;
 import com.qualityplus.dragon.api.game.part.GameExplosion;
-import com.qualityplus.dragon.api.service.DragonService;
 import com.qualityplus.dragon.api.service.GameService;
-import com.qualityplus.dragon.api.service.StructureService;
 import eu.okaeri.injector.annotation.Inject;
 import eu.okaeri.platform.core.annotation.Component;
 

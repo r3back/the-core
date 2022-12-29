@@ -1,6 +1,7 @@
 package com.qualityplus.auction.base.gui.view.normal;
 
 import com.qualityplus.assistant.TheAssistantPlugin;
+import com.qualityplus.assistant.api.util.BukkitItemUtil;
 import com.qualityplus.assistant.api.util.IPlaceholder;
 import com.qualityplus.assistant.base.dependency.UsualDependencies;
 import com.qualityplus.assistant.inventory.SignGUI;
@@ -137,7 +138,7 @@ public final class NormalAuctionViewGUI extends AuctionGUI {
             double topPrice = getTopPrice();
 
             List<IPlaceholder> placeholders = Arrays.asList(
-                    new Placeholder("auction_item_name", ItemStackUtils.getName(auctionItem.getItemStack())),
+                    new Placeholder("auction_item_name", BukkitItemUtil.getName(auctionItem.getItemStack())),
                     new Placeholder("auction_buyer_name", PlayerUtils.getPlayerName(auctionItem.getWhoBought())),
                     new Placeholder("auction_top_bid", topPrice)
             );
@@ -159,13 +160,12 @@ public final class NormalAuctionViewGUI extends AuctionGUI {
                 player.getInventory().addItem(auctionItem.getItemStack().clone());
                 player.sendMessage(StringUtils.color(box.files().messages().auctionMessages.claimedAuctionItem
                         .replace("%auction_owner_name%", auctionItem.getOwnerName())
-                        .replace("%auction_item_name%", ItemStackUtils.getName(auctionItem.getItemStack()))
+                        .replace("%auction_item_name%", BukkitItemUtil.getName(auctionItem.getItemStack()))
                 ));
             }else{
                 double ownBid = auctionItem.getBids()
                         .stream().map(AuctionBid::getBidAmount)
                         .max(Comparator.comparingDouble(auctionItem -> auctionItem))
-                        .stream().findFirst()
                         .orElse(0D);
 
                 List<IPlaceholder> placeholders = Arrays.asList(
@@ -256,8 +256,8 @@ public final class NormalAuctionViewGUI extends AuctionGUI {
         return Arrays.asList(
                 new Placeholder("auction_owner_name", PlayerUtils.getPlayerName(uuid)),
                 new Placeholder("auction_status", getStatusPlaceholder(auctionItem)),
-                new Placeholder("auction_item_name", ItemStackUtils.getName(auctionItem.getItemStack())),
-                new Placeholder("auction_item_lore", ItemStackUtils.getItemLore(auctionItem.getItemStack())),
+                new Placeholder("auction_item_name", BukkitItemUtil.getName(auctionItem.getItemStack())),
+                new Placeholder("auction_item_lore", BukkitItemUtil.getItemLore(auctionItem.getItemStack())),
                 new Placeholder("auction_bids_amount", auctionItem.getBidsWithoutOwner().size()),
                 new Placeholder("auction_bid_history", getHistoryPlaceholders(auctionItem)),
                 new Placeholder("auction_can_submit", canSubmit),
@@ -301,8 +301,6 @@ public final class NormalAuctionViewGUI extends AuctionGUI {
         return auctionItem.getBids()
                 .stream()
                 .max(Comparator.comparingDouble(AuctionBid::getBidAmount))
-                .filter(auctionItem -> auctionItem.getBidder().equals(uuid))
-                .stream()
-                .findFirst();
+                .filter(auctionItem -> auctionItem.getBidder().equals(uuid));
     }
 }

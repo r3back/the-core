@@ -7,7 +7,9 @@ import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Entity;
 import org.bukkit.inventory.ItemStack;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Optional;
+import java.util.UUID;
 
 public final class ArmorStandPet extends MinecraftPet {
     private ArmorStand armorStand;

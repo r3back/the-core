@@ -1,6 +1,5 @@
 package com.qualityplus.skills.listener;
 
-import com.qualityplus.assistant.util.StringUtils;
 import com.qualityplus.skills.api.box.Box;
 import com.qualityplus.skills.persistance.SkillsRepository;
 import com.qualityplus.skills.persistance.data.UserData;
@@ -8,12 +7,9 @@ import eu.okaeri.injector.annotation.Inject;
 import eu.okaeri.persistence.document.Document;
 import eu.okaeri.platform.core.annotation.Component;
 import eu.okaeri.tasker.core.Tasker;
-import org.bukkit.Bukkit;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.player.AsyncPlayerPreLoginEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
-import org.bukkit.event.player.PlayerKickEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 
 import java.util.Optional;

@@ -3,7 +3,6 @@ package com.qualityplus.alchemist.base.commands;
 import com.qualityplus.alchemist.api.box.Box;
 import com.qualityplus.alchemist.base.config.Messages;
 import com.qualityplus.assistant.TheAssistantPlugin;
-import com.qualityplus.assistant.api.commands.CommandProvider;
 import com.qualityplus.assistant.api.commands.command.AssistantCommand;
 import eu.okaeri.commons.bukkit.time.MinecraftTimeEquivalent;
 import eu.okaeri.injector.annotation.Inject;

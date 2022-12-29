@@ -3,19 +3,17 @@ package com.qualityplus.dragon.base.game;
 import com.qualityplus.assistant.api.addons.paster.session.PasterSession;
 import com.qualityplus.dragon.TheDragon;
 import com.qualityplus.dragon.api.TheDragonAPI;
+import com.qualityplus.dragon.api.exception.InvalidSpawnException;
 import com.qualityplus.dragon.api.exception.check.NoSpawnException;
 import com.qualityplus.dragon.api.exception.check.NoStructureException;
 import com.qualityplus.dragon.api.game.DragonGame;
-import com.qualityplus.dragon.api.exception.InvalidSpawnException;
 import com.qualityplus.dragon.api.game.structure.type.DragonSpawn;
 import com.qualityplus.dragon.api.service.StructureService;
 import eu.okaeri.injector.annotation.Inject;
 import eu.okaeri.platform.core.annotation.Component;
 import eu.okaeri.tasker.core.Tasker;
 import lombok.Getter;
-import org.bukkit.Bukkit;
 
-import java.util.Optional;
 import java.util.logging.Logger;
 
 /**

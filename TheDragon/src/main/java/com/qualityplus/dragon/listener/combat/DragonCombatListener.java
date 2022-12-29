@@ -7,7 +7,6 @@ import com.qualityplus.dragon.base.game.dragon.TheDragonEntityImpl;
 import com.qualityplus.dragon.util.DragonHealthUtil;
 import eu.okaeri.injector.annotation.Inject;
 import eu.okaeri.platform.core.annotation.Component;
-import org.bukkit.Bukkit;
 import org.bukkit.EntityEffect;
 import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;

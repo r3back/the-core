@@ -1,7 +1,7 @@
 package com.qualityplus.skills.listener;
 
-import com.qualityplus.assistant.api.util.IPlaceholder;
 import com.qualityplus.assistant.api.config.ConfigActionBar;
+import com.qualityplus.assistant.api.util.IPlaceholder;
 import com.qualityplus.assistant.util.StringUtils;
 import com.qualityplus.assistant.util.placeholder.Placeholder;
 import com.qualityplus.assistant.util.placeholder.PlaceholderBuilder;

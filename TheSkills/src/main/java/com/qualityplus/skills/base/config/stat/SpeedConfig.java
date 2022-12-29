@@ -3,7 +3,6 @@ package com.qualityplus.skills.base.config.stat;
 import com.cryptomorin.xseries.XMaterial;
 import com.qualityplus.skills.base.skill.gui.GUIOptions;
 import com.qualityplus.skills.base.stat.Stat;
-import com.qualityplus.skills.base.stat.stats.PetLuckStat;
 import com.qualityplus.skills.base.stat.stats.SpeedStat;
 import eu.okaeri.configs.OkaeriConfig;
 import eu.okaeri.configs.annotation.Header;
@@ -14,7 +13,6 @@ import eu.okaeri.platform.core.annotation.Configuration;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 

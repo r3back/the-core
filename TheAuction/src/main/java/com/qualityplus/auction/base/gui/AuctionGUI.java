@@ -1,17 +1,17 @@
 package com.qualityplus.auction.base.gui;
 
+import com.qualityplus.assistant.api.util.BukkitItemUtil;
+import com.qualityplus.assistant.api.util.IPlaceholder;
+import com.qualityplus.assistant.inventory.GUI;
+import com.qualityplus.assistant.inventory.Item;
+import com.qualityplus.assistant.inventory.SimpleGUI;
 import com.qualityplus.assistant.util.StringUtils;
-import com.qualityplus.assistant.util.itemstack.ItemStackUtils;
 import com.qualityplus.assistant.util.placeholder.Placeholder;
 import com.qualityplus.assistant.util.placeholder.PlaceholderBuilder;
 import com.qualityplus.assistant.util.player.PlayerUtils;
 import com.qualityplus.assistant.util.time.RemainingTime;
 import com.qualityplus.assistant.util.time.TimeUtils;
 import com.qualityplus.auction.api.box.Box;
-import com.qualityplus.assistant.api.util.IPlaceholder;
-import com.qualityplus.assistant.inventory.GUI;
-import com.qualityplus.assistant.inventory.Item;
-import com.qualityplus.assistant.inventory.SimpleGUI;
 import com.qualityplus.auction.persistence.data.AuctionBid;
 import com.qualityplus.auction.persistence.data.AuctionItem;
 
@@ -52,8 +52,8 @@ public abstract class AuctionGUI extends GUI {
     }
 
     protected List<IPlaceholder> getAuctionItemPlaceholders(AuctionItem auctionItem){
-        return PlaceholderBuilder.create(new Placeholder("auction_item_name", ItemStackUtils.getName(auctionItem.getItemStack())),
-                new Placeholder("auction_item_lore", ItemStackUtils.getItemLore(auctionItem.getItemStack())),
+        return PlaceholderBuilder.create(new Placeholder("auction_item_name", BukkitItemUtil.getName(auctionItem.getItemStack())),
+                new Placeholder("auction_item_lore", BukkitItemUtil.getItemLore(auctionItem.getItemStack())),
                 new Placeholder("auction_owner_name", auctionItem.getOwnerName()),
                 new Placeholder("auction_bids_amount", auctionItem.getBidsWithoutOwner().size()),
                 new Placeholder("auction_status", getStatusPlaceholder(auctionItem)))

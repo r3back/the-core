@@ -6,8 +6,6 @@ import com.qualityplus.assistant.inventory.SimpleGUI;
 import eu.okaeri.configs.OkaeriConfig;
 import lombok.Builder;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 public final class MainAuctionGUIConfig extends OkaeriConfig implements SimpleGUI {
     public @Getter CommonGUI commonGUI;

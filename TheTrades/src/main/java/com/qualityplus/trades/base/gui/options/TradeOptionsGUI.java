@@ -2,6 +2,7 @@ package com.qualityplus.trades.base.gui.options;
 
 import com.qualityplus.assistant.inventory.Item;
 import com.qualityplus.assistant.util.StringUtils;
+import com.qualityplus.assistant.util.inventory.InventoryUtils;
 import com.qualityplus.assistant.util.itemstack.ItemStackUtils;
 import com.qualityplus.trades.api.box.Box;
 import com.qualityplus.trades.api.session.TradeSession;
@@ -9,7 +10,6 @@ import com.qualityplus.trades.base.gui.TradeGUI;
 import com.qualityplus.trades.base.gui.trades.TradesGUI;
 import com.qualityplus.trades.base.trades.PluginTrade;
 import com.qualityplus.trades.util.TradePlaceholderUtils;
-import com.qualityplus.assistant.util.inventory.InventoryUtils;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;

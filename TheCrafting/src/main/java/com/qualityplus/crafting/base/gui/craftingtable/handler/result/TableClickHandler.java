@@ -1,5 +1,6 @@
 package com.qualityplus.crafting.base.gui.craftingtable.handler.result;
 
+import com.qualityplus.assistant.api.util.BukkitItemUtil;
 import com.qualityplus.assistant.util.inventory.InventoryUtils;
 import com.qualityplus.assistant.util.itemstack.ItemStackUtils;
 import com.qualityplus.assistant.util.placeholder.Placeholder;
@@ -107,8 +108,8 @@ public final class TableClickHandler {
 
         if(recipe != null){
             PlaceholderBuilder placeholderList = PlaceholderBuilder.create(
-                    new Placeholder("crafting_recipe_result_item_displayname", ItemStackUtils.getName(recipe.getResult())),
-                    new Placeholder("crafting_recipe_result_item_lore", ItemStackUtils.getItemLore(recipe.getResult()))
+                    new Placeholder("crafting_recipe_result_item_displayname", BukkitItemUtil.getName(recipe.getResult())),
+                    new Placeholder("crafting_recipe_result_item_lore", BukkitItemUtil.getItemLore(recipe.getResult()))
             );
 
             if(box.files().blockedCraftings().isBlocked(recipe)){

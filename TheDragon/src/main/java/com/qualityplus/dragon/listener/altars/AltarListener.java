@@ -1,19 +1,18 @@
 package com.qualityplus.dragon.listener.altars;
 
+import com.qualityplus.assistant.api.util.BukkitItemUtil;
 import com.qualityplus.assistant.api.util.IPlaceholder;
 import com.qualityplus.assistant.util.StringUtils;
-import com.qualityplus.assistant.util.itemstack.ItemStackUtils;
 import com.qualityplus.assistant.util.placeholder.Placeholder;
 import com.qualityplus.dragon.api.box.Box;
 import com.qualityplus.dragon.api.exception.check.NoSpawnException;
 import com.qualityplus.dragon.api.exception.check.NoStructureException;
+import com.qualityplus.dragon.api.game.structure.type.DragonAltar;
 import com.qualityplus.dragon.api.service.AltarSetupService;
 import com.qualityplus.dragon.util.DragonItemStackUtil;
 import de.tr7zw.changeme.nbtapi.NBTItem;
-import com.qualityplus.dragon.api.game.structure.type.DragonAltar;
 import eu.okaeri.injector.annotation.Inject;
 import eu.okaeri.platform.core.annotation.Component;
-import lombok.Getter;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.EnderCrystal;
@@ -109,7 +108,7 @@ public final class AltarListener implements Listener {
         if(!gameCanStart(player))
             return;
 
-        player.setItemInHand(ItemStackUtils.getItemWithout(itemStack, 1));
+        player.setItemInHand(BukkitItemUtil.getItemWithout(itemStack, 1));
 
         altar.ifPresent(dragonAltar -> dragonAltar.setEnderKey(true));
 

@@ -1,10 +1,11 @@
 package com.qualityplus.enchanting.base.gui;
 
-import com.qualityplus.enchanting.api.box.Box;
 import com.qualityplus.assistant.api.util.IPlaceholder;
 import com.qualityplus.assistant.inventory.GUI;
 import com.qualityplus.assistant.inventory.Item;
 import com.qualityplus.assistant.inventory.SimpleGUI;
+import com.qualityplus.enchanting.api.box.Box;
+
 import java.util.List;
 import java.util.UUID;
 

@@ -1,13 +1,12 @@
 package com.qualityplus.runes.listener;
 
+import com.qualityplus.assistant.api.util.BukkitItemUtil;
 import com.qualityplus.assistant.base.event.PlayerKillEvent;
-import com.qualityplus.assistant.util.itemstack.ItemStackUtils;
 import com.qualityplus.runes.api.provider.EffectProvider;
 import com.qualityplus.runes.api.session.RuneInstance;
 import com.qualityplus.runes.util.RunesUtils;
 import eu.okaeri.injector.annotation.Inject;
 import eu.okaeri.platform.core.annotation.Component;
-import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -24,7 +23,7 @@ public final class WeaponUseListener implements Listener {
 
         ItemStack inHand = player.getItemInHand();
 
-        if(ItemStackUtils.isNull(inHand)) return;
+        if(BukkitItemUtil.isNull(inHand)) return;
 
         String mat = inHand.getType().toString();
 
@@ -45,7 +44,7 @@ public final class WeaponUseListener implements Listener {
 
         ItemStack inHand = player.getItemInHand();
 
-        if(ItemStackUtils.isNull(inHand)) return;
+        if(BukkitItemUtil.isNull(inHand)) return;
 
         RuneInstance runeInstance = RunesUtils.getRuneItemInstance(inHand);
 

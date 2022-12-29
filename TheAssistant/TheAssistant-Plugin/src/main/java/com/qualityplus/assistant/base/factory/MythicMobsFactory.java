@@ -19,8 +19,18 @@ public final class MythicMobsFactory {
     @Bean
     public MythicMobsAddon configureMythicMobs() {
         if(resolver.isPlugin("MythicMobs"))
-            return injector.createInstance(MythicMobsAddonImpl.class);
+            return tryToCreateAddon();
         else
             return injector.createInstance(DefaultMythicMobsAddon.class);
+    }
+
+    private MythicMobsAddon tryToCreateAddon(){
+        try {
+            Class.forName("io.lumine.mythic.bukkit.BukkitAPIHelper");
+
+            return injector.createInstance(MythicMobsAddonImpl.class);
+        }catch (Exception e){
+            return injector.createInstance(DefaultMythicMobsAddon.class);
+        }
     }
 }

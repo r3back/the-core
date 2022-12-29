@@ -1,7 +1,7 @@
 package com.qualityplus.runes.base.gui.runetable.handler;
 
+import com.qualityplus.assistant.api.util.BukkitItemUtil;
 import com.qualityplus.assistant.util.StringUtils;
-import com.qualityplus.assistant.util.itemstack.ItemStackUtils;
 import com.qualityplus.runes.api.box.Box;
 import com.qualityplus.runes.api.session.RuneSession;
 import com.qualityplus.runes.base.gui.ClickHandler;
@@ -47,7 +47,7 @@ public final class NormalClickHandler implements ClickHandler {
 
 
         } else if(event.getSlot() == gui.getConfig().getCombinedFilledItem().slot){
-            if(ItemStackUtils.isNull(session.getResult())) {
+            if(BukkitItemUtil.isNull(session.getResult())) {
                 event.setCancelled(true);
                 return;
             }
@@ -65,7 +65,7 @@ public final class NormalClickHandler implements ClickHandler {
                 return;
 
 
-            if(!ItemStackUtils.isNull(session.getResult())) {
+            if(!BukkitItemUtil.isNull(session.getResult())) {
                 player.sendMessage(StringUtils.color(box.files().messages().runeMessages.thereIsAnItemToPickup));
                 return;
             }
@@ -73,7 +73,7 @@ public final class NormalClickHandler implements ClickHandler {
             final ItemStack copy = Optional.ofNullable(event.getCursor()).map(ItemStack::clone).orElse(null);
             final ItemStack current = Optional.ofNullable(event.getCurrentItem()).map(ItemStack::clone).orElse(null);
 
-            if(ItemStackUtils.isNull(copy)){
+            if(BukkitItemUtil.isNull(copy)){
                 RuneSession newSession = event.getSlot() == gui.getConfig().getToSacrificeSlot() ?
                         new RuneSessionImpl(player.getUniqueId(), null, session.getItemToUpgrade(), null, null) :
                         new RuneSessionImpl(player.getUniqueId(), null, null, session.getItemToSacrifice(), RunesUtils.getRuneInstance(session.getItemToSacrifice()));

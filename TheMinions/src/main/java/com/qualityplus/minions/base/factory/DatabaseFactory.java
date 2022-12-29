@@ -2,9 +2,9 @@ package com.qualityplus.minions.base.factory;
 
 import com.mongodb.MongoClient;
 import com.mongodb.MongoClientURI;
-import com.qualityplus.assistant.api.database.HikariDatabaseHelper;
 import com.qualityplus.assistant.api.config.ConfigDatabase;
 import com.qualityplus.assistant.api.config.DatabaseType;
+import com.qualityplus.assistant.api.database.HikariDatabaseHelper;
 import com.qualityplus.minions.base.config.Config;
 import eu.okaeri.configs.json.simple.JsonSimpleConfigurer;
 import eu.okaeri.configs.yaml.bukkit.serdes.SerdesBukkit;
@@ -35,13 +35,13 @@ public final class DatabaseFactory extends HikariDatabaseHelper {
         } catch (Exception ignored) {}
 
 
-        PersistencePath basePath = PersistencePath.of("soulsDb");
+        PersistencePath basePath = PersistencePath.of("minionsDb");
 
         ConfigDatabase db = config.configDatabase;
 
         DatabaseType backend = db.type;
 
-        String h2Uri = "jdbc:h2:file:./plugins/TheSouls/storage/storage;MODE=MYSQL;DATABASE_TO_LOWER=TRUE";
+        String h2Uri = "jdbc:h2:file:./plugins/TheMinions/storage/storage;MODE=MYSQL;DATABASE_TO_LOWER=TRUE";
 
         switch (backend) {
             case FLAT:
@@ -51,7 +51,7 @@ public final class DatabaseFactory extends HikariDatabaseHelper {
             case MYSQL:
                 return new DocumentPersistence(new JdbcPersistence(basePath, getMysqlHikari(db)), JsonSimpleConfigurer::new, new SerdesBukkit());
             case H2:
-                return new DocumentPersistence(new H2Persistence(basePath, getH2Hikari("TheSouls")), JsonSimpleConfigurer::new, new SerdesBukkit());
+                return new DocumentPersistence(new H2Persistence(basePath, getH2Hikari("TheMinions")), JsonSimpleConfigurer::new, new SerdesBukkit());
             case REDIS:
                 return new DocumentPersistence(new RedisPersistence(basePath, RedisClient.create(RedisURI.create(getUri(db)))), JsonSimpleConfigurer::new, new SerdesBukkit());
             case MONGODB:

@@ -1,14 +1,10 @@
 package com.qualityplus.auction.base.commands;
 
-import com.qualityplus.auction.api.box.Box;
 import com.qualityplus.assistant.TheAssistantPlugin;
 import com.qualityplus.assistant.api.commands.command.AssistantCommand;
 import com.qualityplus.assistant.util.StringUtils;
+import com.qualityplus.auction.api.box.Box;
 import com.qualityplus.auction.base.gui.main.MainAuctionGUI;
-import com.qualityplus.auction.base.searcher.AuctionSearcher;
-import com.qualityplus.auction.base.searcher.filters.BinFilter;
-import com.qualityplus.auction.base.searcher.filters.SortFilter;
-import com.qualityplus.auction.base.searcher.filters.StringFilter;
 import com.qualityplus.auction.util.AuctionFilterUtil;
 import eu.okaeri.commons.bukkit.time.MinecraftTimeEquivalent;
 import eu.okaeri.injector.annotation.Inject;

@@ -1,20 +1,19 @@
 package com.qualityplus.trades.util;
 
 import com.cryptomorin.xseries.XMaterial;
+import com.qualityplus.assistant.api.util.BukkitItemUtil;
+import com.qualityplus.assistant.api.util.IPlaceholder;
 import com.qualityplus.assistant.util.StringUtils;
 import com.qualityplus.assistant.util.itemstack.ItemStackUtils;
 import com.qualityplus.assistant.util.math.MathUtils;
+import com.qualityplus.assistant.util.placeholder.Placeholder;
 import com.qualityplus.assistant.util.placeholder.PlaceholderBuilder;
 import com.qualityplus.trades.api.box.Box;
 import com.qualityplus.trades.base.config.Messages;
 import com.qualityplus.trades.base.trades.PluginTrade;
-import com.qualityplus.assistant.api.util.IPlaceholder;
-import com.qualityplus.assistant.util.placeholder.Placeholder;
 import lombok.experimental.UtilityClass;
-import org.bukkit.Bukkit;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -59,7 +58,7 @@ public class TradePlaceholderUtils {
                 int resultAmount = trade.getResult().getAmount();
 
                 for(Map.Entry<XMaterial, Integer> itemCost : trade.getItemCost().entrySet()){
-                    String name = ItemStackUtils.getMaterialName(itemCost.getKey().parseItem());
+                    String name = BukkitItemUtil.getMaterialName(itemCost.getKey().parseItem());
 
                     int toMultiply = itemCost.getValue() / resultAmount;
 

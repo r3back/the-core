@@ -1,7 +1,6 @@
 package com.qualityplus.crafting.base.commands;
 
 import com.qualityplus.assistant.TheAssistantPlugin;
-import com.qualityplus.assistant.api.commands.CommandProvider;
 import com.qualityplus.assistant.api.commands.command.AssistantCommand;
 import com.qualityplus.crafting.api.box.Box;
 import com.qualityplus.crafting.base.config.Messages;

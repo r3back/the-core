@@ -3,7 +3,6 @@ package com.qualityplus.pets.base.commands;
 import com.qualityplus.assistant.TheAssistantPlugin;
 import com.qualityplus.assistant.api.commands.command.AssistantCommand;
 import com.qualityplus.assistant.util.StringUtils;
-import com.qualityplus.pets.ThePets;
 import com.qualityplus.pets.api.box.Box;
 import com.qualityplus.pets.api.pet.Pets;
 import com.qualityplus.pets.base.config.pet.Tiger;
@@ -16,7 +15,6 @@ import org.bukkit.entity.Player;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.logging.Logger;
 
 @Component
 public final class ReloadCommand extends AssistantCommand {

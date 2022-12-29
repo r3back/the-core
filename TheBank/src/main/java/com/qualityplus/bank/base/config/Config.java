@@ -1,8 +1,8 @@
 package com.qualityplus.bank.base.config;
 
 import com.cryptomorin.xseries.XMaterial;
-import com.qualityplus.assistant.api.gui.LoreWrapper;
 import com.qualityplus.assistant.api.config.ConfigDatabase;
+import com.qualityplus.assistant.api.gui.LoreWrapper;
 import com.qualityplus.assistant.inventory.Item;
 import com.qualityplus.assistant.util.itemstack.ItemBuilder;
 import com.qualityplus.assistant.util.time.Timer;

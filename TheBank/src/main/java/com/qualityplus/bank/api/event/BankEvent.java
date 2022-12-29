@@ -1,7 +1,7 @@
 package com.qualityplus.bank.api.event;
 
-import com.qualityplus.bank.persistence.data.BankTransaction;
 import com.qualityplus.assistant.api.event.PlayerHelperEvent;
+import com.qualityplus.bank.persistence.data.BankTransaction;
 import lombok.Getter;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;

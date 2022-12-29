@@ -1,7 +1,7 @@
 package com.qualityplus.bank.listener;
 
+import com.qualityplus.assistant.api.util.BukkitItemUtil;
 import com.qualityplus.assistant.util.StringUtils;
-import com.qualityplus.assistant.util.itemstack.ItemStackUtils;
 import com.qualityplus.assistant.util.time.Markable;
 import com.qualityplus.assistant.util.time.RemainingTime;
 import com.qualityplus.assistant.util.time.TimeUtils;
@@ -31,7 +31,7 @@ public final class PersonalBankListener implements Listener {
 
         ItemStack inHand = player.getItemInHand();
 
-        if(ItemStackUtils.isNull(inHand)) return;
+        if(BukkitItemUtil.isNull(inHand)) return;
 
         if(isPersonalBank(inHand)) e.setCancelled(true);
 
@@ -45,7 +45,7 @@ public final class PersonalBankListener implements Listener {
 
         ItemStack inHand = player.getItemInHand();
 
-        if(ItemStackUtils.isNull(inHand)) return;
+        if(BukkitItemUtil.isNull(inHand)) return;
 
         if(!isPersonalBank(inHand)) return;
 

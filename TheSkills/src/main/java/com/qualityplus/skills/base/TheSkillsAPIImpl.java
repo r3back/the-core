@@ -1,6 +1,6 @@
 package com.qualityplus.skills.base;
 
-import com.qualityplus.assistant.util.itemstack.ItemStackUtils;
+import com.qualityplus.assistant.api.util.BukkitItemUtil;
 import com.qualityplus.skills.api.TheSkillsAPI;
 import com.qualityplus.skills.api.service.SkillsService;
 import com.qualityplus.skills.base.stat.Stat;
@@ -13,7 +13,6 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.Plugin;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -26,7 +25,7 @@ public final class TheSkillsAPIImpl implements TheSkillsAPI {
 
     @Override
     public ItemStack setItemStats(ItemStack itemStack, Map<Stat, Integer> stats) {
-        if(ItemStackUtils.isNull(itemStack)) return itemStack;
+        if(BukkitItemUtil.isNull(itemStack)) return itemStack;
 
         NBTItem item = new NBTItem(itemStack);
 
@@ -37,7 +36,7 @@ public final class TheSkillsAPIImpl implements TheSkillsAPI {
 
     @Override
     public Map<Stat, Integer> getItemStats(ItemStack itemStack) {
-        if(ItemStackUtils.isNull(itemStack)) return new HashMap<>();
+        if(BukkitItemUtil.isNull(itemStack)) return new HashMap<>();
 
         NBTItem item = new NBTItem(itemStack);
 

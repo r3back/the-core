@@ -1,6 +1,7 @@
 package com.qualityplus.auction.base.gui.create;
 
 import com.qualityplus.assistant.TheAssistantPlugin;
+import com.qualityplus.assistant.api.util.BukkitItemUtil;
 import com.qualityplus.assistant.api.util.IPlaceholder;
 import com.qualityplus.assistant.base.dependency.UsualDependencies;
 import com.qualityplus.assistant.inventory.SignGUI;
@@ -8,15 +9,13 @@ import com.qualityplus.assistant.util.StringUtils;
 import com.qualityplus.assistant.util.itemstack.ItemStackUtils;
 import com.qualityplus.assistant.util.placeholder.Placeholder;
 import com.qualityplus.assistant.util.time.Markable;
+import com.qualityplus.assistant.util.time.Timer;
 import com.qualityplus.auction.api.box.Box;
 import com.qualityplus.auction.base.gui.AuctionGUI;
-import com.qualityplus.auction.base.gui.all.AllAuctionsGUI;
 import com.qualityplus.auction.base.gui.main.MainAuctionGUI;
-import com.qualityplus.auction.base.gui.view.ViewOpener;
-import com.qualityplus.auction.base.gui.view.normal.NormalAuctionViewGUI;
 import com.qualityplus.auction.base.gui.time.AuctionTimeGUI;
+import com.qualityplus.auction.base.gui.view.ViewOpener;
 import com.qualityplus.auction.base.searcher.AuctionSearcher;
-import com.qualityplus.auction.base.searcher.filters.StringFilter;
 import com.qualityplus.auction.persistence.data.AuctionBid;
 import com.qualityplus.auction.persistence.data.AuctionItem;
 import com.qualityplus.auction.persistence.data.User;
@@ -27,7 +26,6 @@ import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.*;
-import com.qualityplus.assistant.util.time.Timer;
 
 public final class CreateAuctionGUI extends AuctionGUI {
     private final CreateAuctionGUIConfig config;
@@ -114,7 +112,7 @@ public final class CreateAuctionGUI extends AuctionGUI {
         if(getTarget(e).equals(ClickTarget.PLAYER)){
             ItemStack itemStack = e.getCurrentItem();
 
-            if(ItemStackUtils.isNull(itemStack))
+            if(BukkitItemUtil.isNull(itemStack))
                 return;
 
             Optional.ofNullable(auctionItem.getItemStack()).ifPresent(item -> player.getInventory().addItem(item));
@@ -167,7 +165,7 @@ public final class CreateAuctionGUI extends AuctionGUI {
                 //Remove Fees money
                 TheAssistantPlugin.getAPI().getAddons().getEconomy().withdrawMoney(player, fees);
 
-                String name = ItemStackUtils.getName(auctionItem.getItemStack());
+                String name = BukkitItemUtil.getName(auctionItem.getItemStack());
 
                 player.sendMessage(StringUtils.color(box.files().messages().auctionMessages.auctionStarted.replace("%auction_item_name%", name)));
 
@@ -178,7 +176,7 @@ public final class CreateAuctionGUI extends AuctionGUI {
                 user.ifPresent(user1 -> user1.getAuctionStats().setMoneySpentOnFees(user1.getAuctionStats().getMoneySpentOnFees() + fees));
 
             }else if(isItem(slot, config.currentItemFilled)){
-                if(ItemStackUtils.isNull(auctionItem.getItemStack())) return;
+                if(BukkitItemUtil.isNull(auctionItem.getItemStack())) return;
 
                 ItemStack toGive = auctionItem.getItemStack().clone();
 
@@ -231,8 +229,8 @@ public final class CreateAuctionGUI extends AuctionGUI {
         int creationPrice = (int) (percentage + timeFee);
 
         return Arrays.asList(
-                new Placeholder("auction_item_name", ItemStackUtils.getName(auctionItem.getItemStack())),
-                new Placeholder("auction_item_lore", ItemStackUtils.getItemLore(auctionItem.getItemStack())),
+                new Placeholder("auction_item_name", BukkitItemUtil.getName(auctionItem.getItemStack())),
+                new Placeholder("auction_item_lore", BukkitItemUtil.getItemLore(auctionItem.getItemStack())),
                 new Placeholder("auction_creation_price", creationPrice),
                 new Placeholder("auction_fee", percentage),
                 new Placeholder("auction_duration_fee", timeFee),

@@ -7,9 +7,9 @@ import com.qualityplus.enchanting.base.config.enchantments.advanced.AdvancedEnch
 import eu.okaeri.injector.annotation.Inject;
 import eu.okaeri.platform.bukkit.annotation.Delayed;
 import eu.okaeri.platform.core.annotation.Component;
-import java.util.logging.Logger;
 
 import java.util.List;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 @Component

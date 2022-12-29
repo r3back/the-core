@@ -3,14 +3,10 @@ package com.qualityplus.assistant.base.factory;
 import com.cryptomorin.xseries.XMaterial;
 import com.qualityplus.assistant.api.addons.RegionAddon;
 import com.qualityplus.assistant.api.dependency.resolver.DependencyResolver;
-import com.qualityplus.assistant.base.addons.regions.DefaultRegionsAddon;
-import com.qualityplus.assistant.base.addons.regions.ResidenceAddon;
-import com.qualityplus.assistant.base.addons.regions.UltraRegionsAddon;
-import com.qualityplus.assistant.base.addons.regions.WG7Addon;
+import com.qualityplus.assistant.base.addons.regions.*;
 import eu.okaeri.injector.OkaeriInjector;
 import eu.okaeri.injector.annotation.Inject;
 import eu.okaeri.platform.core.annotation.Bean;
-import com.qualityplus.assistant.base.addons.regions.WG6Addon;
 import eu.okaeri.platform.core.annotation.Component;
 
 @Component

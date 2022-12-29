@@ -1,7 +1,6 @@
 package com.qualityplus.pets.base.config.pet;
 
 import com.cryptomorin.xseries.XMaterial;
-import com.google.common.collect.ImmutableMap;
 import com.qualityplus.assistant.api.common.rewards.commands.CommandRewards;
 import com.qualityplus.assistant.util.faster.FasterMap;
 import com.qualityplus.pets.base.pet.Pet;
@@ -19,7 +18,10 @@ import eu.okaeri.configs.annotation.Names;
 import eu.okaeri.platform.core.annotation.Configuration;
 import lombok.Getter;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 
 @Getter
 @Configuration(path = "pets/tiger_pet.yml")

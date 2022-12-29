@@ -1,10 +1,9 @@
 package com.qualityplus.enchanting.base.gui.enchantmain.handler;
 
-import com.qualityplus.assistant.util.itemstack.ItemStackUtils;
+import com.qualityplus.assistant.api.util.BukkitItemUtil;
 import com.qualityplus.enchanting.api.box.Box;
 import com.qualityplus.enchanting.base.gui.enchantmain.EnchantMainGUI;
 import lombok.AllArgsConstructor;
-import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
@@ -26,7 +25,7 @@ public final class ShiftClickHandler implements ClickHandler{
         final ItemStack copy = Optional.ofNullable(event.getCursor()).map(ItemStack::clone).orElse(null);
         final ItemStack current = Optional.ofNullable(event.getCurrentItem()).map(ItemStack::clone).orElse(null);
 
-        if(ItemStackUtils.isNull(copy) && !ItemStackUtils.isNull(current)){
+        if(BukkitItemUtil.isNull(copy) && !BukkitItemUtil.isNull(current)){
             //event.setCurrentItem(null);
             gui.setGiveItem(false);
             player.openInventory(new EnchantMainGUI(box, page, bookShelf, null).getInventory());
@@ -40,7 +39,7 @@ public final class ShiftClickHandler implements ClickHandler{
 
         final ItemStack current = Optional.ofNullable(event.getCurrentItem()).map(ItemStack::clone).orElse(null);
 
-        if(ItemStackUtils.isNull(item) && !ItemStackUtils.isNull(current)){
+        if(BukkitItemUtil.isNull(item) && !BukkitItemUtil.isNull(current)){
             gui.setGiveItem(false);
 
             event.setCurrentItem(null);

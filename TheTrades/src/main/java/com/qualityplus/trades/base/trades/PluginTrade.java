@@ -7,7 +7,6 @@ import com.qualityplus.assistant.permissionable.Permissionable;
 import com.qualityplus.assistant.util.itemstack.ItemStackUtils;
 import com.qualityplus.trades.api.recipes.Trades;
 import eu.okaeri.configs.OkaeriConfig;
-import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;

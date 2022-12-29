@@ -9,14 +9,17 @@ import com.qualityplus.dragon.api.game.part.GameEnd;
 import com.qualityplus.dragon.api.game.ranking.GameRanking;
 import com.qualityplus.dragon.api.game.reward.DragonReward;
 import com.qualityplus.dragon.api.service.UserDBService;
-import com.qualityplus.dragon.base.configs.Messages;
 import com.qualityplus.dragon.base.configs.DragonRewardsFile;
+import com.qualityplus.dragon.base.configs.Messages;
 import com.qualityplus.dragon.base.game.player.EventPlayer;
 import eu.okaeri.injector.annotation.Inject;
 import eu.okaeri.platform.core.annotation.Component;
 import org.bukkit.Bukkit;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Optional;
 
 @Component
 public final class GameEndImpl implements GameEnd {

@@ -7,8 +7,6 @@ import eu.okaeri.configs.OkaeriConfig;
 import lombok.Builder;
 import lombok.Getter;
 
-import java.util.List;
-
 @Getter
 public final class AllSoulsGUIConfig extends OkaeriConfig implements SimpleGUI{
     private final CommonGUI commonGUI;

@@ -1,13 +1,11 @@
 package com.qualityplus.anvil.util;
 
+import com.qualityplus.assistant.api.util.IPlaceholder;
+import com.qualityplus.assistant.util.placeholder.Placeholder;
 import com.qualityplus.assistant.util.placeholder.PlaceholderBuilder;
 import com.qualityplus.enchanting.api.enchantment.ICoreEnchantment;
-import com.qualityplus.assistant.api.util.IPlaceholder;
-import com.qualityplus.assistant.util.itemstack.ItemStackUtils;
-import com.qualityplus.assistant.util.placeholder.Placeholder;
 import lombok.experimental.UtilityClass;
 
-import java.util.Arrays;
 import java.util.List;
 
 @UtilityClass

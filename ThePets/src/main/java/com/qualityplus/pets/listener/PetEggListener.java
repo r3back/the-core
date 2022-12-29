@@ -1,9 +1,7 @@
 package com.qualityplus.pets.listener;
 
-import com.qualityplus.assistant.api.util.IPlaceholder;
+import com.qualityplus.assistant.api.util.BukkitItemUtil;
 import com.qualityplus.assistant.util.StringUtils;
-import com.qualityplus.assistant.util.itemstack.ItemStackUtils;
-import com.qualityplus.assistant.util.placeholder.Placeholder;
 import com.qualityplus.assistant.util.placeholder.PlaceholderBuilder;
 import com.qualityplus.pets.api.box.Box;
 import com.qualityplus.pets.persistance.data.PetData;
@@ -18,7 +16,6 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 
-import java.util.List;
 import java.util.Optional;
 
 @Component
@@ -38,7 +35,7 @@ public final class PetEggListener implements Listener {
 
         event.setCancelled(true);
 
-        player.setItemInHand(ItemStackUtils.getItemWithout(inHand, 1));
+        player.setItemInHand(BukkitItemUtil.getItemWithout(inHand, 1));
 
         box.service()
                 .getData(player.getUniqueId())

@@ -2,13 +2,12 @@ package com.qualityplus.runes.base.config;
 
 import com.cryptomorin.xseries.XMaterial;
 import com.google.common.collect.ImmutableMap;
+import com.qualityplus.assistant.inventory.CommonGUI;
 import com.qualityplus.assistant.inventory.Item;
 import com.qualityplus.assistant.inventory.background.Background;
-import com.qualityplus.runes.base.gui.derune.RemoveRuneGUIConfig;
-import com.qualityplus.runes.base.gui.options.AllRunesGUI;
-import com.qualityplus.assistant.inventory.CommonGUI;
 import com.qualityplus.assistant.inventory.background.DefaultBackgrounds;
 import com.qualityplus.assistant.util.itemstack.ItemBuilder;
+import com.qualityplus.runes.base.gui.derune.RemoveRuneGUIConfig;
 import com.qualityplus.runes.base.gui.options.AllRunesGUIConfig;
 import com.qualityplus.runes.base.gui.runetable.RuneTableGUIConfig;
 import com.qualityplus.runes.base.table.effects.RuneTableEffect;

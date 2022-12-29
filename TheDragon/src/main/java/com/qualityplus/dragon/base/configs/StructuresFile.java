@@ -1,6 +1,10 @@
 package com.qualityplus.dragon.base.configs;
 
 import com.qualityplus.assistant.util.list.ListUtils;
+import com.qualityplus.dragon.api.game.structure.GameStructure;
+import com.qualityplus.dragon.api.game.structure.type.DragonAltar;
+import com.qualityplus.dragon.api.game.structure.type.DragonCrystal;
+import com.qualityplus.dragon.api.game.structure.type.DragonSpawn;
 import com.qualityplus.dragon.base.game.structure.DragonAltarImpl;
 import com.qualityplus.dragon.base.game.structure.DragonCrystalImpl;
 import com.qualityplus.dragon.base.game.structure.DragonSpawnImpl;
@@ -10,10 +14,6 @@ import eu.okaeri.configs.annotation.NameModifier;
 import eu.okaeri.configs.annotation.NameStrategy;
 import eu.okaeri.configs.annotation.Names;
 import eu.okaeri.platform.core.annotation.Configuration;
-import com.qualityplus.dragon.api.game.structure.GameStructure;
-import com.qualityplus.dragon.api.game.structure.type.DragonAltar;
-import com.qualityplus.dragon.api.game.structure.type.DragonCrystal;
-import com.qualityplus.dragon.api.game.structure.type.DragonSpawn;
 
 import java.util.ArrayList;
 import java.util.Collections;

@@ -2,7 +2,10 @@ package com.qualityplus.assistant.api.common.rewards.commands;
 
 import com.qualityplus.assistant.api.common.rewards.Reward;
 import eu.okaeri.configs.OkaeriConfig;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 

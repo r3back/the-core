@@ -3,7 +3,6 @@ package com.qualityplus.auction.base.gui.pending;
 import com.qualityplus.assistant.util.itemstack.ItemStackUtils;
 import com.qualityplus.auction.api.box.Box;
 import com.qualityplus.auction.base.gui.AuctionGUI;
-import com.qualityplus.auction.base.gui.create.CreateAuctionGUI;
 import com.qualityplus.auction.base.gui.main.MainAuctionGUI;
 import com.qualityplus.auction.base.gui.view.ViewOpener;
 import com.qualityplus.auction.base.searcher.AuctionSearcher;

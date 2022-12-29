@@ -2,7 +2,6 @@ package com.qualityplus.pets.base.pet.entity;
 
 import com.qualityplus.assistant.api.util.IPlaceholder;
 import com.qualityplus.assistant.util.StringUtils;
-import com.qualityplus.assistant.util.itemstack.ItemBuilder;
 import com.qualityplus.assistant.util.math.MathUtils;
 import com.qualityplus.assistant.util.placeholder.Placeholder;
 import com.qualityplus.pets.ThePets;

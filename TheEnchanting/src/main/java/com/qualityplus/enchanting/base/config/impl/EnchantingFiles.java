@@ -1,7 +1,10 @@
 package com.qualityplus.enchanting.base.config.impl;
 
 import com.qualityplus.enchanting.api.config.ConfigFiles;
-import com.qualityplus.enchanting.base.config.*;
+import com.qualityplus.enchanting.base.config.Commands;
+import com.qualityplus.enchanting.base.config.Config;
+import com.qualityplus.enchanting.base.config.Inventories;
+import com.qualityplus.enchanting.base.config.Messages;
 import eu.okaeri.injector.annotation.Inject;
 import eu.okaeri.platform.core.annotation.Component;
 

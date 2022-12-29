@@ -5,9 +5,6 @@ import com.qualityplus.assistant.inventory.GUI;
 import com.qualityplus.assistant.inventory.Item;
 import com.qualityplus.assistant.inventory.SimpleGUI;
 import com.qualityplus.dragon.api.box.Box;
-import org.bukkit.event.inventory.InventoryClickEvent;
-import org.bukkit.event.inventory.InventoryCloseEvent;
-import org.bukkit.inventory.InventoryHolder;
 
 import java.util.List;
 import java.util.UUID;

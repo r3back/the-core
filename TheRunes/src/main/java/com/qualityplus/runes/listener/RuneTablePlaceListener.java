@@ -1,11 +1,10 @@
 package com.qualityplus.runes.listener;
 
-import com.qualityplus.assistant.util.itemstack.ItemStackUtils;
+import com.qualityplus.assistant.api.util.BukkitItemUtil;
 import com.qualityplus.runes.api.box.Box;
 import com.qualityplus.runes.util.RunesUtils;
 import eu.okaeri.injector.annotation.Inject;
 import eu.okaeri.platform.core.annotation.Component;
-import org.bukkit.Bukkit;
 import org.bukkit.block.Block;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Entity;
@@ -13,7 +12,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
-import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityExplodeEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
@@ -30,7 +28,7 @@ public final class RuneTablePlaceListener implements Listener {
 
         ItemStack inHand = player.getItemInHand();
 
-        if (ItemStackUtils.isNull(inHand)) return;
+        if (BukkitItemUtil.isNull(inHand)) return;
 
         Block block = e.getClickedBlock();
 
@@ -42,7 +40,7 @@ public final class RuneTablePlaceListener implements Listener {
             try {
                 if(!box.files().config().removeRuneTableFromInventoryOnPlace) return;
 
-                player.setItemInHand(ItemStackUtils.getItemWithout(inHand, 1));
+                player.setItemInHand(BukkitItemUtil.getItemWithout(inHand, 1));
             }catch (Exception ex){
 
             }
@@ -56,7 +54,7 @@ public final class RuneTablePlaceListener implements Listener {
 
         ItemStack inHand = player.getItemInHand();
 
-        if (ItemStackUtils.isNull(inHand)) return;
+        if (BukkitItemUtil.isNull(inHand)) return;
 
         if (!RunesUtils.isRune(inHand)) return;
 

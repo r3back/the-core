@@ -1,7 +1,13 @@
 package com.qualityplus.bank.base.gui.main;
 
+import com.qualityplus.assistant.api.util.IPlaceholder;
 import com.qualityplus.assistant.util.StringUtils;
+import com.qualityplus.assistant.util.inventory.InventoryUtils;
+import com.qualityplus.assistant.util.placeholder.Placeholder;
 import com.qualityplus.assistant.util.placeholder.PlaceholderBuilder;
+import com.qualityplus.assistant.util.time.Markable;
+import com.qualityplus.assistant.util.time.RemainingTime;
+import com.qualityplus.assistant.util.time.TimeUtils;
 import com.qualityplus.bank.api.box.Box;
 import com.qualityplus.bank.api.transaction.TransactionType;
 import com.qualityplus.bank.base.config.Messages;
@@ -12,12 +18,6 @@ import com.qualityplus.bank.base.gui.withdraw.BankWithdrawGUI;
 import com.qualityplus.bank.base.upgrade.BankUpgrade;
 import com.qualityplus.bank.persistence.data.BankData;
 import com.qualityplus.bank.persistence.data.BankTransaction;
-import com.qualityplus.assistant.api.util.IPlaceholder;
-import com.qualityplus.assistant.util.inventory.InventoryUtils;
-import com.qualityplus.assistant.util.placeholder.Placeholder;
-import com.qualityplus.assistant.util.time.Markable;
-import com.qualityplus.assistant.util.time.RemainingTime;
-import com.qualityplus.assistant.util.time.TimeUtils;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;

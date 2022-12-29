@@ -1,10 +1,8 @@
 package com.qualityplus.skills.base.config.stat;
 
 import com.cryptomorin.xseries.XMaterial;
-import com.google.common.collect.ImmutableMap;
 import com.qualityplus.skills.base.skill.gui.GUIOptions;
 import com.qualityplus.skills.base.stat.Stat;
-import com.qualityplus.skills.base.stat.stats.MagicFindStat;
 import com.qualityplus.skills.base.stat.stats.PetLuckStat;
 import eu.okaeri.configs.OkaeriConfig;
 import eu.okaeri.configs.annotation.Header;

@@ -1,0 +1,21 @@
+package com.qualityplus.minions.base.minions.entity.factory;
+
+import com.qualityplus.minions.api.minion.MinionEntity;
+import com.qualityplus.minions.base.minions.entity.type.CropBreakMinion;
+import com.qualityplus.minions.base.minions.minion.Minion;
+import com.qualityplus.minions.base.minions.entity.type.BlockBreakMinion;
+import com.qualityplus.minions.base.minions.minion.MinionType;
+import lombok.experimental.UtilityClass;
+
+import java.util.UUID;
+
+@UtilityClass
+public class MinionEntityFactory {
+    public MinionEntity create(UUID petUniqueId, UUID owner, Minion minion){
+        if(minion.getType().equals(MinionType.BLOCK_BREAK)){
+            return BlockBreakMinion.create(petUniqueId, owner, minion);
+        }else{
+            return CropBreakMinion.create(petUniqueId, owner, minion);
+        }
+    }
+}

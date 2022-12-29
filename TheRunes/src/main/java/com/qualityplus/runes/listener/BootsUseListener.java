@@ -1,6 +1,6 @@
 package com.qualityplus.runes.listener;
 
-import com.qualityplus.assistant.util.itemstack.ItemStackUtils;
+import com.qualityplus.assistant.api.util.BukkitItemUtil;
 import com.qualityplus.runes.api.provider.EffectProvider;
 import com.qualityplus.runes.api.session.RuneInstance;
 import com.qualityplus.runes.util.RunesUtils;
@@ -22,7 +22,7 @@ public final class BootsUseListener implements Listener {
 
         ItemStack boots = player.getInventory().getBoots();
 
-        if(ItemStackUtils.isNull(boots)) return;
+        if(BukkitItemUtil.isNull(boots)) return;
 
         RuneInstance runeInstance = RunesUtils.getRuneItemInstance(boots);
 

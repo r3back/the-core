@@ -1,10 +1,10 @@
 package com.qualityplus.assistant.base.factory;
 
 import com.cryptomorin.xseries.XMaterial;
-import com.qualityplus.assistant.base.addons.paster.DefaultPasterAddon;
-import com.qualityplus.assistant.base.addons.paster.WorldEdit6;
 import com.qualityplus.assistant.api.addons.PasterAddon;
 import com.qualityplus.assistant.api.dependency.resolver.DependencyResolver;
+import com.qualityplus.assistant.base.addons.paster.DefaultPasterAddon;
+import com.qualityplus.assistant.base.addons.paster.WorldEdit6;
 import com.qualityplus.assistant.base.addons.paster.WorldEdit7;
 import eu.okaeri.injector.OkaeriInjector;
 import eu.okaeri.injector.annotation.Inject;

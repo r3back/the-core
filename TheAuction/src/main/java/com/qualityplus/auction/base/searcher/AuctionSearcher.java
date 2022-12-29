@@ -1,7 +1,7 @@
 package com.qualityplus.auction.base.searcher;
 
 import com.cryptomorin.xseries.XMaterial;
-import com.qualityplus.assistant.util.itemstack.ItemStackUtils;
+import com.qualityplus.assistant.api.util.BukkitItemUtil;
 import com.qualityplus.assistant.util.math.MathUtils;
 import com.qualityplus.auction.api.box.Box;
 import com.qualityplus.auction.api.category.AuctionCategory;
@@ -11,12 +11,13 @@ import com.qualityplus.auction.base.searcher.filters.CategoryFilter;
 import com.qualityplus.auction.base.searcher.filters.SortFilter;
 import com.qualityplus.auction.base.searcher.filters.StringFilter;
 import com.qualityplus.auction.persistence.data.AuctionItem;
-import eu.okaeri.injector.OkaeriInjector;
-import eu.okaeri.injector.annotation.Inject;
 import lombok.Builder;
 import lombok.Getter;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
@@ -61,9 +62,9 @@ public final class AuctionSearcher implements Searcher<AuctionItem> {
     private Predicate<AuctionItem> stringFilter(){
         if(stringFilter == null || stringFilter.getToSearch() == null) return auctionItem -> true;
 
-        return auctionItem -> ItemStackUtils.getItemLore(auctionItem.getItemStack()).contains(stringFilter.getToSearch()) ||
-                              ItemStackUtils.getName(auctionItem.getItemStack()).equalsIgnoreCase(stringFilter.getToSearch()) ||
-                              ItemStackUtils.getName(auctionItem.getItemStack()).contains(stringFilter.getToSearch());
+        return auctionItem -> BukkitItemUtil.getItemLore(auctionItem.getItemStack()).contains(stringFilter.getToSearch()) ||
+                              BukkitItemUtil.getName(auctionItem.getItemStack()).equalsIgnoreCase(stringFilter.getToSearch()) ||
+                              BukkitItemUtil.getName(auctionItem.getItemStack()).contains(stringFilter.getToSearch());
     }
 
     private Predicate<AuctionItem> binFilter(){

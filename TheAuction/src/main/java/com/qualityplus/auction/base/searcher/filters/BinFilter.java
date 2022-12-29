@@ -1,8 +1,6 @@
 package com.qualityplus.auction.base.searcher.filters;
 
 import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.Getter;
 
 import java.util.Arrays;
 

@@ -2,9 +2,9 @@ package com.qualityplus.trades.base.event;
 
 import com.qualityplus.trades.api.event.TradeEvent;
 import com.qualityplus.trades.base.trades.PluginTrade;
+import lombok.Getter;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
-import lombok.Getter;
 
 @Getter
 public final class PlayerTradeEvent extends TradeEvent {

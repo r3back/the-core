@@ -2,7 +2,10 @@ package com.qualityplus.skills.base.skill.gui;
 
 import com.cryptomorin.xseries.XMaterial;
 import eu.okaeri.configs.OkaeriConfig;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 

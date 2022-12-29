@@ -13,6 +13,7 @@ import eu.okaeri.platform.core.annotation.Component;
 import org.bukkit.Location;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+
 import java.util.List;
 
 @Component

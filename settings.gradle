@@ -37,7 +37,9 @@ include (
         'TheAssistant:TheAssistant-NMS:NMS-V1_17_R1',
         'TheAssistant:TheAssistant-NMS:NMS-V1_18_R1',
         'TheAssistant:TheAssistant-NMS:NMS-V1_18_R2',
-        'TheAssistant:TheAssistant-NMS:NMS-V1_19_R1'
+        'TheAssistant:TheAssistant-NMS:NMS-V1_19_R1',
+        'TheAssistant:TheAssistant-NMS:NMS-V1_19_R2'
+
 
 
 )

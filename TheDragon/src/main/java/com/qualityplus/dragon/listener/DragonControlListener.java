@@ -3,10 +3,10 @@ package com.qualityplus.dragon.listener;
 import com.qualityplus.dragon.api.box.Box;
 import com.qualityplus.dragon.api.controller.DragonController;
 import com.qualityplus.dragon.base.event.DragonRefreshEvent;
+import com.qualityplus.dragon.base.event.DragonRefreshEvent.RefreshType;
 import com.qualityplus.dragon.util.DragonVelocityUtil;
 import eu.okaeri.injector.annotation.Inject;
 import eu.okaeri.platform.core.annotation.Component;
-import org.bukkit.Bukkit;
 import org.bukkit.EntityEffect;
 import org.bukkit.entity.EnderDragon;
 import org.bukkit.entity.Player;
@@ -14,7 +14,6 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityTargetEvent;
-import com.qualityplus.dragon.base.event.DragonRefreshEvent.RefreshType;
 
 @Component
 public final class DragonControlListener implements Listener {

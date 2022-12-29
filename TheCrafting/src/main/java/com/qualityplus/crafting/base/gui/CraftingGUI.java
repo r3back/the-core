@@ -1,14 +1,14 @@
 package com.qualityplus.crafting.base.gui;
 
-import com.qualityplus.assistant.util.actionbar.ActionBarUtils;
-import com.qualityplus.assistant.util.itemstack.ItemStackUtils;
-import com.qualityplus.assistant.util.placeholder.Placeholder;
-import com.qualityplus.assistant.util.placeholder.PlaceholderBuilder;
-import com.qualityplus.crafting.api.box.Box;
+import com.qualityplus.assistant.api.util.BukkitItemUtil;
 import com.qualityplus.assistant.api.util.IPlaceholder;
 import com.qualityplus.assistant.inventory.GUI;
 import com.qualityplus.assistant.inventory.Item;
 import com.qualityplus.assistant.inventory.SimpleGUI;
+import com.qualityplus.assistant.util.actionbar.ActionBarUtils;
+import com.qualityplus.assistant.util.placeholder.Placeholder;
+import com.qualityplus.assistant.util.placeholder.PlaceholderBuilder;
+import com.qualityplus.crafting.api.box.Box;
 import com.qualityplus.crafting.base.category.Category;
 import com.qualityplus.crafting.base.recipes.CustomRecipe;
 import org.bukkit.Bukkit;
@@ -43,7 +43,7 @@ public abstract class CraftingGUI extends GUI {
 
     protected void setRecipeItems(CustomRecipe recipe, List<Integer> recipeSlots, int resultSlot){
         recipe.getIngredients().entrySet().stream()
-                .filter(entry -> !ItemStackUtils.isNull(entry.getValue()))
+                .filter(entry -> !BukkitItemUtil.isNull(entry.getValue()))
                 .forEach(entry -> inventory.setItem(recipeSlots.get(entry.getKey() - 1), entry.getValue()));
 
         inventory.setItem(resultSlot, recipe.getResult());

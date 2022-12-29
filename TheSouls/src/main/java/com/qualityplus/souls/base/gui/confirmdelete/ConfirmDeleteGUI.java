@@ -2,8 +2,6 @@ package com.qualityplus.souls.base.gui.confirmdelete;
 
 import com.qualityplus.assistant.util.StringUtils;
 import com.qualityplus.assistant.util.inventory.InventoryUtils;
-import com.qualityplus.assistant.util.itemstack.ItemStackUtils;
-import com.qualityplus.assistant.util.placeholder.PlaceholderBuilder;
 import com.qualityplus.souls.api.box.Box;
 import com.qualityplus.souls.api.edition.SoulEdition;
 import com.qualityplus.souls.base.gui.SoulsGUI;
@@ -13,11 +11,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.jetbrains.annotations.NotNull;
-
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
 
 public final class ConfirmDeleteGUI extends SoulsGUI {
     private final ConfirmDeleteGUIConfig config;

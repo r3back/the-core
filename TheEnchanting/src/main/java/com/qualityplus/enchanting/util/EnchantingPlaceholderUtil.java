@@ -1,9 +1,9 @@
 package com.qualityplus.enchanting.util;
 
-import com.qualityplus.assistant.util.placeholder.PlaceholderBuilder;
-import com.qualityplus.enchanting.api.enchantment.ICoreEnchantment;
 import com.qualityplus.assistant.api.util.IPlaceholder;
 import com.qualityplus.assistant.util.placeholder.Placeholder;
+import com.qualityplus.assistant.util.placeholder.PlaceholderBuilder;
+import com.qualityplus.enchanting.api.enchantment.ICoreEnchantment;
 import lombok.experimental.UtilityClass;
 
 import java.util.List;

@@ -3,12 +3,11 @@ package com.qualityplus.pets.base.pet.egg;
 import com.cryptomorin.xseries.XMaterial;
 import com.qualityplus.assistant.util.StringUtils;
 import com.qualityplus.assistant.util.placeholder.Placeholder;
-import com.qualityplus.assistant.util.placeholder.PlaceholderBuilder;
 import eu.okaeri.configs.OkaeriConfig;
-import lombok.*;
-
-import java.util.Collections;
-import java.util.List;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @Builder

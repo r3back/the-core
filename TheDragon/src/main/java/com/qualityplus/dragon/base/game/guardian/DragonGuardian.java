@@ -1,5 +1,6 @@
 package com.qualityplus.dragon.base.game.guardian;
 
+import com.qualityplus.assistant.api.util.BukkitItemUtil;
 import com.qualityplus.assistant.util.StringUtils;
 import com.qualityplus.assistant.util.itemstack.ItemStackUtils;
 import com.qualityplus.dragon.api.game.guardian.Guardian;
@@ -49,11 +50,11 @@ public final class DragonGuardian extends OkaeriConfig implements Guardian {
         EntityEquipment equipment = guardian.getEquipment();
 
         if (equipment != null) {
-            if(ItemStackUtils.isNotNull(guardianArmor.getWeapon())) equipment.setItemInMainHand(guardianArmor.getWeapon());
-            if(ItemStackUtils.isNotNull(guardianArmor.getHelmet())) equipment.setHelmet(guardianArmor.getHelmet());
-            if(ItemStackUtils.isNotNull(guardianArmor.getChestplate())) equipment.setChestplate(guardianArmor.getChestplate());
-            if(ItemStackUtils.isNotNull(guardianArmor.getLeggings())) equipment.setLeggings(guardianArmor.getLeggings());
-            if(ItemStackUtils.isNotNull(guardianArmor.getBoots())) equipment.setBoots(guardianArmor.getBoots());
+            if(BukkitItemUtil.isNotNull(guardianArmor.getWeapon())) equipment.setItemInMainHand(guardianArmor.getWeapon());
+            if(BukkitItemUtil.isNotNull(guardianArmor.getHelmet())) equipment.setHelmet(guardianArmor.getHelmet());
+            if(BukkitItemUtil.isNotNull(guardianArmor.getChestplate())) equipment.setChestplate(guardianArmor.getChestplate());
+            if(BukkitItemUtil.isNotNull(guardianArmor.getLeggings())) equipment.setLeggings(guardianArmor.getLeggings());
+            if(BukkitItemUtil.isNotNull(guardianArmor.getBoots())) equipment.setBoots(guardianArmor.getBoots());
         }
 
         return guardian;

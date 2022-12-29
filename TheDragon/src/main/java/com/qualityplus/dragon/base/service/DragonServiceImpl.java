@@ -1,17 +1,17 @@
 package com.qualityplus.dragon.base.service;
 
 import com.qualityplus.dragon.TheDragon;
-import com.qualityplus.dragon.api.game.dragon.TheDragonEntity;
+import com.qualityplus.dragon.api.controller.DragonController;
 import com.qualityplus.dragon.api.factory.DragonFactory;
 import com.qualityplus.dragon.api.game.DragonGame;
-import com.qualityplus.dragon.api.service.DragonService;
+import com.qualityplus.dragon.api.game.dragon.TheDragonEntity;
 import com.qualityplus.dragon.api.game.structure.type.DragonSpawn;
+import com.qualityplus.dragon.api.service.DragonService;
 import com.qualityplus.dragon.base.configs.DragonsFile;
+import com.qualityplus.dragon.base.controller.DragonControllerImpl;
 import eu.okaeri.injector.annotation.Inject;
 import eu.okaeri.platform.core.annotation.Component;
 import lombok.Getter;
-import com.qualityplus.dragon.api.controller.DragonController;
-import com.qualityplus.dragon.base.controller.DragonControllerImpl;
 import org.bukkit.entity.EnderDragon;
 
 import java.util.Optional;

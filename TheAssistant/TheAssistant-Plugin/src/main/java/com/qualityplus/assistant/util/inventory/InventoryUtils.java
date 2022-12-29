@@ -1,14 +1,12 @@
 package com.qualityplus.assistant.util.inventory;
 
+import com.qualityplus.assistant.api.util.BukkitItemUtil;
 import com.qualityplus.assistant.inventory.background.Background;
 import com.qualityplus.assistant.util.itemstack.ItemStackUtils;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
-import org.bukkit.Bukkit;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
-
-import java.util.List;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public final class InventoryUtils {
@@ -59,7 +57,7 @@ public final class InventoryUtils {
     }
 
     public static void addItems(Inventory inventory, ItemStack stack, int amount){
-        if(ItemStackUtils.isNull(stack)) return;
+        if(BukkitItemUtil.isNull(stack)) return;
 
         ItemStack toAdd = stack.clone();
 
@@ -73,7 +71,7 @@ public final class InventoryUtils {
     public static void removeItems(Inventory inventory, ItemStack stack){
         int amount = stack.getAmount();
 
-        ItemStack modified = ItemStackUtils.getItemWithout(stack, amount);
+        ItemStack modified = BukkitItemUtil.getItemWithout(stack, amount);
 
         removeItems(inventory, modified, amount);
     }

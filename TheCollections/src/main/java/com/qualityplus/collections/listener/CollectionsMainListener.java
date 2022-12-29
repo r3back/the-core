@@ -1,14 +1,11 @@
 package com.qualityplus.collections.listener;
 
 import com.cryptomorin.xseries.XMaterial;
-import com.qualityplus.assistant.util.itemstack.ItemStackUtils;
-import com.qualityplus.assistant.util.placeholder.Placeholder;
 import com.qualityplus.collections.TheCollections;
 import com.qualityplus.collections.api.service.AntiExploitService;
 import com.qualityplus.collections.api.service.CollectionsService;
 import com.qualityplus.collections.base.collection.Collection;
 import com.qualityplus.collections.base.collection.registry.CollectionsRegistry;
-import com.qualityplus.collections.util.CollectionsItemStackUtil;
 import eu.okaeri.injector.annotation.Inject;
 import eu.okaeri.platform.core.annotation.Component;
 import org.bukkit.Bukkit;

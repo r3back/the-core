@@ -1,7 +1,7 @@
 package com.qualityplus.bank.base.commands.provider;
 
-import com.qualityplus.bank.api.box.Box;
 import com.qualityplus.assistant.api.commands.LabelProvider;
+import com.qualityplus.bank.api.box.Box;
 import eu.okaeri.commons.bukkit.time.MinecraftTimeEquivalent;
 import eu.okaeri.injector.annotation.Inject;
 import eu.okaeri.platform.bukkit.annotation.Delayed;

@@ -35,6 +35,10 @@ public final class MathUtils {
         FORMAT.put(0, "0");
     }
 
+    public static double getPercentage(final double number, final double percentage){
+        return (percentage * number) / 100;
+    }
+
     public static double sinCalc(final double a) {
         float f = (float) a;
         return SIN_FORMAT[(int) (f * 10430.378F) & '\uffff'];
