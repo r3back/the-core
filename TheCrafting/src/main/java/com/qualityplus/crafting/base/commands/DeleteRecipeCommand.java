@@ -35,7 +35,7 @@ public final class DeleteRecipeCommand extends AssistantCommand {
                 return false;
             }
 
-            box.files().recipes().brewingRecipes.remove(exist);
+            box.files().recipes().craftingRecipes.remove(exist);
 
             player.sendMessage(StringUtils.color(box.files().messages().recipeMessages.successfullyDeletedRecipe));
         }else{

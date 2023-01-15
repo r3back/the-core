@@ -1,7 +1,8 @@
-package com.qualityplus.alchemist.base.commands;
+package com.qualityplus.anvil.base.commands;
 
-import com.qualityplus.alchemist.api.box.Box;
-import com.qualityplus.alchemist.base.gui.brewing.AlchemistStandGUI;
+import com.qualityplus.anvil.api.box.Box;
+import com.qualityplus.anvil.base.gui.anvilmain.AnvilMainGUI;
+import com.qualityplus.anvil.base.session.AnvilSessionImpl;
 import com.qualityplus.assistant.TheAssistantPlugin;
 import com.qualityplus.assistant.api.commands.command.AssistantCommand;
 import com.qualityplus.assistant.util.StringUtils;
@@ -16,7 +17,7 @@ import java.util.Collections;
 import java.util.List;
 
 @Component
-public final class OpenCommand extends AssistantCommand {
+public final class OpenAnvilCommand extends AssistantCommand {
     private @Inject Box box;
 
     @Override
@@ -25,14 +26,12 @@ public final class OpenCommand extends AssistantCommand {
         String mustBeAPlayer = StringUtils.color(box.files().messages().pluginMessages.mustBeAPlayer.replace("%usage%", syntax));
         String invalidPlayer = StringUtils.color(box.files().messages().pluginMessages.invalidPlayer.replace("%usage%", syntax));
 
-        Player player = (Player) sender;
-
-        return openInventory(args, sender, new AlchemistStandGUI(box, player.getLocation()), syntaxMsg, mustBeAPlayer, invalidPlayer);
+        return openInventory(args, sender, new AnvilMainGUI(box, new AnvilSessionImpl(null, null, null)), syntaxMsg, mustBeAPlayer, invalidPlayer);
     }
 
     @Override
     public List<String> onTabComplete(CommandSender commandSender, org.bukkit.command.Command command, String label, String[] args) {
-        return Collections.emptyList();
+        return args.length == 2 ? null : Collections.emptyList();
     }
 
     @Delayed(time = MinecraftTimeEquivalent.SECOND)

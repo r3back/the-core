@@ -1,10 +1,11 @@
-package com.qualityplus.alchemist.base.commands;
+package com.qualityplus.crafting.base.commands;
 
-import com.qualityplus.alchemist.api.box.Box;
-import com.qualityplus.alchemist.base.gui.recipes.RecipesGUI;
 import com.qualityplus.assistant.TheAssistantPlugin;
 import com.qualityplus.assistant.api.commands.command.AssistantCommand;
 import com.qualityplus.assistant.util.StringUtils;
+import com.qualityplus.crafting.api.box.Box;
+import com.qualityplus.crafting.api.edition.RecipeEdition;
+import com.qualityplus.crafting.base.gui.recipes.RecipesGUI;
 import eu.okaeri.commons.bukkit.time.MinecraftTimeEquivalent;
 import eu.okaeri.injector.annotation.Inject;
 import eu.okaeri.platform.bukkit.annotation.Delayed;
@@ -16,19 +17,17 @@ import java.util.Collections;
 import java.util.List;
 
 @Component
-public final class RecipesCommand extends AssistantCommand {
+public final class OpenRecipesCommand extends AssistantCommand {
+    private @Inject RecipeEdition edition;
     private @Inject Box box;
 
     @Override
     public boolean execute(CommandSender sender, String[] args) {
-        Player player = (Player) sender;
+        String syntaxMsg = StringUtils.color(box.files().messages().pluginMessages.useSyntax.replace("%usage%", syntax));
+        String mustBeAPlayer = StringUtils.color(box.files().messages().pluginMessages.mustBeAPlayer.replace("%usage%", syntax));
+        String invalidPlayer = StringUtils.color(box.files().messages().pluginMessages.invalidPlayer.replace("%usage%", syntax));
 
-        if(args.length == 1)
-            player.openInventory(new RecipesGUI(box, 1).getInventory());
-        else
-            player.sendMessage(StringUtils.color(box.files().messages().pluginMessages.useSyntax.replace("%usage%", syntax)));
-
-        return false;
+        return openInventory(args, sender, new RecipesGUI(box, 1, edition), syntaxMsg, mustBeAPlayer, invalidPlayer);
     }
 
     @Override

@@ -21,6 +21,12 @@ public final class ArmorStandTracker {
         TRACKED_ENTITIES.remove(armorStand.getUniqueId());
     }
 
+    @ApiStatus.Internal
+    public static void unregisterEntity(@NotNull final UUID armorStand) {
+        TRACKED_ENTITIES.remove(armorStand);
+    }
+
+
     @NotNull
     public static Optional<MinionEntity> getByID(@NotNull final UUID id) {
         return Optional.ofNullable(TRACKED_ENTITIES.get(id));

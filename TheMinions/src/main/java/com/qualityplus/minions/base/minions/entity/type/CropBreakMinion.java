@@ -20,22 +20,22 @@ import java.util.Optional;
 import java.util.UUID;
 
 public final class CropBreakMinion extends ArmorStandMinion {
-    private CropBreakMinion(UUID minionUniqueId, UUID owner, Minion minion) {
-        super(minionUniqueId, owner, minion);
+    private CropBreakMinion(UUID minionUniqueId, UUID owner, Minion minion, boolean loaded) {
+        super(minionUniqueId, owner, minion, loaded);
     }
 
-    public static CropBreakMinion create(UUID minionUniqueId, UUID owner, Minion minion){
-        return new CropBreakMinion(minionUniqueId, owner, minion);
+    public static CropBreakMinion create(UUID minionUniqueId, UUID owner, Minion minion, boolean loaded){
+        return new CropBreakMinion(minionUniqueId, owner, minion, loaded);
     }
 
     @Override
     protected void checkBlockAfterRotate(Block block){
-        ArmorStand entity = armorStand.getEntity();
-
-        if(!cropHasMaxLevel(block))
-            PlaceAnimation.run(entity, () -> doIfBlockIfNull(block));
-        else
-            BreakAnimation.run(entity, getCropBlock(block), () -> doIfBlockIsNotNull(block));
+        armorStand.manipulateEntity(entity -> {
+            if(!cropHasMaxLevel(block))
+                PlaceAnimation.start(() -> doIfBlockIfNull(block), entity);
+            else
+                BreakAnimation.start(() -> doIfBlockIsNotNull(block), entity, getCropBlock(block));
+        });
     }
 
     @Override

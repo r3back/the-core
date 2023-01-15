@@ -5,9 +5,11 @@ import com.qualityplus.assistant.api.commands.details.CommandDetails;
 import com.qualityplus.assistant.api.commands.setup.event.CommandSetupEvent;
 import com.qualityplus.assistant.api.commands.setup.handler.CommandSetupHandler;
 import net.md_5.bungee.api.chat.*;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.InventoryHolder;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -40,6 +42,34 @@ public abstract class AssistantCommand extends CommandDetails {
         super.enabled = commandDetails.enabled;
         super.aliases = commandDetails.aliases;
         super.syntax = commandDetails.syntax;
+    }
+
+
+    protected boolean openInventory(String[] args, CommandSender sender, InventoryHolder gui, String useSyntax, String mustBeAPlayer, String invalidPlayer){
+        if(args.length != 1 && args.length != 2){
+            sender.sendMessage(useSyntax);
+            return false;
+        }
+
+        if(args.length == 1 && !(sender instanceof Player)){
+            sender.sendMessage(mustBeAPlayer);
+            return false;
+        }
+
+        Player player = (Player) sender;
+
+        if(args.length == 2){
+            player = Bukkit.getPlayer(args[1]);
+        }
+
+        if(player == null || !player.isOnline()){
+            sender.sendMessage(invalidPlayer);
+            return false;
+        }
+
+        player.openInventory(gui.getInventory());
+
+        return true;
     }
 
 

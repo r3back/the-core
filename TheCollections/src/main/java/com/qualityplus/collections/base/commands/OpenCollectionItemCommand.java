@@ -4,8 +4,9 @@ import com.qualityplus.assistant.TheAssistantPlugin;
 import com.qualityplus.assistant.api.commands.command.AssistantCommand;
 import com.qualityplus.assistant.util.StringUtils;
 import com.qualityplus.collections.api.box.Box;
-import com.qualityplus.collections.base.collection.category.CollectionCategory;
-import com.qualityplus.collections.gui.category.CategoryGUI;
+import com.qualityplus.collections.base.collection.Collection;
+import com.qualityplus.collections.base.collection.registry.CollectionsRegistry;
+import com.qualityplus.collections.gui.collection.CollectionGUI;
 import eu.okaeri.commons.bukkit.time.MinecraftTimeEquivalent;
 import eu.okaeri.injector.annotation.Inject;
 import eu.okaeri.platform.bukkit.annotation.Delayed;
@@ -15,11 +16,9 @@ import org.bukkit.entity.Player;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Component
-public final class CategoryMenuCommand extends AssistantCommand {
+public final class OpenCollectionItemCommand extends AssistantCommand {
     private @Inject Box box;
 
     @Override
@@ -27,14 +26,19 @@ public final class CategoryMenuCommand extends AssistantCommand {
         if(args.length == 2) {
             Player player = (Player) sender;
 
-            Optional<CollectionCategory> category = box.files().categories().getById(args[1]);
+            Collection collection = CollectionsRegistry.getByID(args[1]);
 
-            if(!category.isPresent()){
-                player.sendMessage(StringUtils.color(box.files().messages().collectionsMessages.invalidCategory));
+            if(collection == null){
+                player.sendMessage(StringUtils.color(box.files().messages().collectionsMessages.invalidCollection));
                 return false;
             }
 
-            player.openInventory(new CategoryGUI(box, player, category.get()).getInventory());
+            if(!collection.isEnabled()){
+                player.sendMessage(StringUtils.color(box.files().messages().collectionsMessages.collectionIsDisabled));
+                return false;
+            }
+
+            player.openInventory(new CollectionGUI(box, player, collection).getInventory());
         }else
             sender.sendMessage(StringUtils.color(box.files().messages().pluginMessages.useSyntax.replace("%usage%", syntax)));
         return true;
@@ -42,11 +46,11 @@ public final class CategoryMenuCommand extends AssistantCommand {
 
     @Override
     public List<String> onTabComplete(CommandSender commandSender, org.bukkit.command.Command command, String label, String[] args) {
-        return args.length == 2 ? box.files().categories().collectionCategories.stream().map(CollectionCategory::getId).collect(Collectors.toList()) : Collections.emptyList();
+        return Collections.emptyList();
     }
 
     @Delayed(time = MinecraftTimeEquivalent.SECOND)
     public void register(@Inject Box box){
-        TheAssistantPlugin.getAPI().getCommandProvider().registerCommand(this, e -> e.getCommand().setDetails(box.files().commands().categoryMenuCommand));
+        TheAssistantPlugin.getAPI().getCommandProvider().registerCommand(this, e -> e.getCommand().setDetails(box.files().commands().collectionMenuCommand));
     }
 }

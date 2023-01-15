@@ -53,6 +53,10 @@ public final class Messages extends OkaeriConfig {
         public String fuelEndsInFormat = "%days_placeholder% %hours_placeholder% %minutes_placeholder% %seconds_placeholder%";
         public String fuelHistoryTimeFormat = "%days_placeholder% %hours_placeholder% %minutes_placeholder% %seconds_placeholder% ago";
 
+        public String pickUpMinion = "&aYou picked up a minion! You currently have %minions_placed_amount% out of a maximum of %minions_max_amount_to_place% minions placed.";
+        public String youPlacedAMinion = "&bYou placed a minion! (%minions_placed_amount%/%minions_max_amount_to_place%)";
+        public String youCanOnlyPlaceAMaxOf = "&cYou can only can place a max of %minions_max_amount_to_place% minions!";
+
         public String days = "%days%d";
         public String hours = "%hours%h";
         public String minutes = "%minutes%m";

@@ -4,6 +4,7 @@ import com.qualityplus.assistant.TheAssistantPlugin;
 import com.qualityplus.assistant.api.commands.command.AssistantCommand;
 import com.qualityplus.assistant.util.StringUtils;
 import com.qualityplus.runes.api.box.Box;
+import com.qualityplus.runes.base.gui.options.AllRunesGUI;
 import com.qualityplus.runes.base.gui.runetable.RuneTableGUI;
 import com.qualityplus.runes.base.session.RuneSessionImpl;
 import eu.okaeri.commons.bukkit.time.MinecraftTimeEquivalent;
@@ -17,19 +18,16 @@ import java.util.Collections;
 import java.util.List;
 
 @Component
-public final class OpenCommand extends AssistantCommand {
+public final class OpenRunesCommand extends AssistantCommand {
     private @Inject Box box;
 
     @Override
     public boolean execute(CommandSender sender, String[] args) {
-        Player player = (Player) sender;
+        String syntaxMsg = StringUtils.color(box.files().messages().pluginMessages.useSyntax.replace("%usage%", syntax));
+        String mustBeAPlayer = StringUtils.color(box.files().messages().pluginMessages.mustBeAPlayer.replace("%usage%", syntax));
+        String invalidPlayer = StringUtils.color(box.files().messages().pluginMessages.invalidPlayer.replace("%usage%", syntax));
 
-        if(args.length == 1)
-            player.openInventory(new RuneTableGUI(box, new RuneSessionImpl(player.getUniqueId(), null, null, null, null)).getInventory());
-        else
-            player.sendMessage(StringUtils.color(box.files().messages().pluginMessages.useSyntax.replace("%usage%", syntax)));
-
-        return false;
+        return openInventory(args, sender, new AllRunesGUI(box, 1), syntaxMsg, mustBeAPlayer, invalidPlayer);
     }
 
     @Override
@@ -39,6 +37,6 @@ public final class OpenCommand extends AssistantCommand {
 
     @Delayed(time = MinecraftTimeEquivalent.SECOND)
     public void register(@Inject Box box){
-        TheAssistantPlugin.getAPI().getCommandProvider().registerCommand(this, e -> e.getCommand().setDetails(box.files().commands().openCommand));
+        TheAssistantPlugin.getAPI().getCommandProvider().registerCommand(this, e -> e.getCommand().setDetails(box.files().commands().runesCommand));
     }
 }

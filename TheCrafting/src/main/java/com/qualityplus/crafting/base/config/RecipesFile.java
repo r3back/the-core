@@ -22,10 +22,10 @@ import java.util.List;
 @Header("================================")
 @Names(strategy = NameStrategy.HYPHEN_CASE, modifier = NameModifier.TO_LOWER_CASE)
 public final class RecipesFile extends OkaeriConfig {
-    public List<CustomRecipe> brewingRecipes = new ArrayList<>();
+    public List<CustomRecipe> craftingRecipes = new ArrayList<>();
 
     public void saveRecipes(){
-        brewingRecipes = new ArrayList<>(Recipes.values());
+        craftingRecipes = new ArrayList<>(Recipes.values());
         save();
     }
 }

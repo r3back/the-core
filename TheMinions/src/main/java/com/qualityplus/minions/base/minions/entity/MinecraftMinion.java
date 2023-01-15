@@ -1,6 +1,5 @@
 package com.qualityplus.minions.base.minions.entity;
 
-import com.qualityplus.assistant.api.gui.FakeInventory;
 import com.qualityplus.minions.api.minion.MinionEntity;
 import com.qualityplus.minions.base.minions.entity.state.MinionState;
 import com.qualityplus.minions.base.minions.minion.Minion;
@@ -17,15 +16,17 @@ public abstract class MinecraftMinion implements MinionEntity {
 
     protected final Minion minion;
 
-    protected MinecraftMinion(UUID minionUniqueId, UUID owner, Minion minion) {
-        this.state = new MinionState(minionUniqueId, owner);
+    protected MinecraftMinion(UUID minionUniqueId, UUID owner, Minion minion, boolean loaded) {
+        this.state = new MinionState(minionUniqueId, owner, loaded);
 
         this.minion = minion;
         this.handlers = new MinionHandlersImpl(this, minion);
     }
 
     @Override
-    public void spawn(Location location) {
+    public void spawn(Location location, boolean load) {
+        state.setSpawn(location);
+
         MinionEntityTracker.registerNewEntity(this);
     }
 

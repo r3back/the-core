@@ -46,7 +46,7 @@ public final class MinionSkin extends OkaeriConfig {
     }
 
     public void apply(ArmorStandHandler handler){
-        apply(handler.getEntity());
+        Optional.ofNullable(handler).ifPresent(armorStandHandler -> armorStandHandler.manipulateEntity(this::apply));
     }
 
     public void apply(ArmorStand entity){

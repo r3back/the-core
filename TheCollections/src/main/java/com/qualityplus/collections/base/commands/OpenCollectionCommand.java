@@ -1,10 +1,10 @@
-package com.qualityplus.skills.base.commands;
+package com.qualityplus.collections.base.commands;
 
 import com.qualityplus.assistant.TheAssistantPlugin;
 import com.qualityplus.assistant.api.commands.command.AssistantCommand;
 import com.qualityplus.assistant.util.StringUtils;
-import com.qualityplus.skills.api.box.Box;
-import com.qualityplus.skills.gui.main.MainGUI;
+import com.qualityplus.collections.api.box.Box;
+import com.qualityplus.collections.gui.main.MainGUI;
 import eu.okaeri.commons.bukkit.time.MinecraftTimeEquivalent;
 import eu.okaeri.injector.annotation.Inject;
 import eu.okaeri.platform.bukkit.annotation.Delayed;
@@ -16,7 +16,7 @@ import java.util.Collections;
 import java.util.List;
 
 @Component
-public final class MainMenuCommand extends AssistantCommand {
+public final class OpenCollectionCommand extends AssistantCommand {
     private @Inject Box box;
 
     @Override
@@ -26,7 +26,7 @@ public final class MainMenuCommand extends AssistantCommand {
 
             player.openInventory(new MainGUI(box, player).getInventory());
         }else
-            sender.sendMessage(StringUtils.color(box.files().messages().pluginMessages.useSyntax));
+            sender.sendMessage(StringUtils.color(box.files().messages().pluginMessages.useSyntax.replace("%usage%", syntax)));
         return true;
     }
 

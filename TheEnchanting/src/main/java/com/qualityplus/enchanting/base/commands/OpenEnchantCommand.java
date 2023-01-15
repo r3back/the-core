@@ -17,19 +17,18 @@ import java.util.Collections;
 import java.util.List;
 
 @Component
-public final class OpenCommand extends AssistantCommand {
+public final class OpenEnchantCommand extends AssistantCommand {
     private @Inject Box box;
 
     @Override
     public boolean execute(CommandSender sender, String[] args) {
+        String syntaxMsg = StringUtils.color(box.files().messages().pluginMessages.useSyntax.replace("%usage%", syntax));
+        String mustBeAPlayer = StringUtils.color(box.files().messages().pluginMessages.mustBeAPlayer.replace("%usage%", syntax));
+        String invalidPlayer = StringUtils.color(box.files().messages().pluginMessages.invalidPlayer.replace("%usage%", syntax));
+
         Player player = (Player) sender;
 
-        if(args.length == 1){
-            player.openInventory(new EnchantMainGUI(box, 1, EnchantingFinderUtil.getBookShelfPower(player), null).getInventory());
-        }else{
-            player.sendMessage(StringUtils.color(box.files().messages().pluginMessages.useSyntax.replace("%usage%", syntax)));
-        }
-        return false;
+        return openInventory(args, sender, new EnchantMainGUI(box, 1, EnchantingFinderUtil.getBookShelfPower(player), null), syntaxMsg, mustBeAPlayer, invalidPlayer);
     }
 
     @Override

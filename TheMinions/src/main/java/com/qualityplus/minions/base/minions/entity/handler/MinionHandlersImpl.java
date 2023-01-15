@@ -16,7 +16,7 @@ public final class MinionHandlersImpl implements MinionHandlers {
 
     public MinionHandlersImpl(MinionEntity entity, Minion minion) {
         this.animationHandler = new AnimationHandlerImpl(entity.getMinionUniqueId(), minion);
-        this.layoutHandler = new LayoutHandlerImpl(entity.getMinionUniqueId(), minion);
+        this.layoutHandler = new LayoutHandlerImpl(entity, minion);
         this.fuelHandler = new FuelHandlerImpl(entity.getMinionUniqueId());
         this.sellHandler = new SellHandlerImpl(entity, minion);
         this.storageHandler = new StorageHandlerImpl(entity, minion);

@@ -22,7 +22,6 @@ import java.util.function.Consumer;
 
 public final class ArmorStandHandlerImpl implements ArmorStandHandler {
     private TheHologram hologram;
-    @Getter
     private ArmorStand entity;
     private Location spawn;
 
@@ -49,11 +48,22 @@ public final class ArmorStandHandlerImpl implements ArmorStandHandler {
     }
 
     @Override
+    public Location getLocation() {
+        return Optional.ofNullable(entity)
+                .map(Entity::getLocation)
+                .map(Location::clone)
+                .orElse(null);
+    }
+
+    @Override
     public void removeEntity() {
+
         Optional.ofNullable(entity)
                 .filter(ArmorStandUtil::entityIsValid)
                 .ifPresent(e -> {
-                    ArmorStandTracker.unregisterEntity(e);
+                    final UUID uuid = e.getUniqueId();
+                    ArmorStandTracker.unregisterEntity(uuid);
+                    //Bukkit.getConsoleSender().sendMessage("REMOVING ENTITY");
                     e.remove();
                 });
 
@@ -95,7 +105,9 @@ public final class ArmorStandHandlerImpl implements ArmorStandHandler {
     }
 
     @Override
-    public void manipulateArmorStand(Consumer<ArmorStand> consumer) {
+    public void manipulateEntity(Consumer<ArmorStand> consumer) {
+        if(!entityIsValid()) return;
+
         consumer.accept(entity);
     }
 }

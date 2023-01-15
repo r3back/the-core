@@ -6,5 +6,5 @@ import org.bukkit.entity.ArmorStand;
 import java.util.concurrent.CompletableFuture;
 
 public interface AnimationHandler {
-    CompletableFuture<Block> getBlockToRotate(ArmorStand armorStand);
+    CompletableFuture<Block> getBlockToRotate(ArmorStandHandler armorStand);
 }

@@ -9,28 +9,28 @@ import com.qualityplus.minions.base.minions.entity.ArmorStandMinion;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.ArmorStand;
+import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.*;
 
 public final class BlockBreakMinion extends ArmorStandMinion {
-    private BlockBreakMinion(UUID minionUniqueId, UUID owner, Minion minion) {
-        super(minionUniqueId, owner, minion);
+
+    private BlockBreakMinion(UUID minionUniqueId, UUID owner, Minion minion, boolean loaded) {
+        super(minionUniqueId, owner, minion, loaded);
     }
 
-    public static BlockBreakMinion create(UUID minionUniqueId, UUID owner, Minion minion){
-        return new BlockBreakMinion(minionUniqueId, owner, minion);
+    public static BlockBreakMinion create(UUID minionUniqueId, UUID owner, Minion minion, boolean loaded){
+        return new BlockBreakMinion(minionUniqueId, owner, minion, loaded);
     }
 
     @Override
-    protected void checkBlockAfterRotate(Block block){
-        Material material = minion.getMinionLayout().getToReplaceBlock().parseMaterial();
+    protected void checkBlockAfterRotate(Block block) {
+        if (!state.isLoaded()) {
+            addItemsToMinionInventory();
+            return;
+        }
 
-        ArmorStand entity = armorStand.getEntity();
-
-        if(BlockUtils.isNull(block) || !block.getType().equals(material))
-            PlaceAnimation.run(entity, () -> doIfBlockIfNull(block));
-        else
-            BreakAnimation.run(entity, block, () -> doIfBlockIsNotNull(block));
+        armorStand.manipulateEntity(entity -> handleAnimationCallBack(entity, block));
     }
 
     @Override
@@ -49,6 +49,16 @@ public final class BlockBreakMinion extends ArmorStandMinion {
         addItemsToMinionInventory();
 
         teleportBack();
+    }
+
+    private void handleAnimationCallBack(ArmorStand entity, Block block){
+        Material material = minion.getMinionLayout().getToReplaceBlock().parseMaterial();
+
+        if (BlockUtils.isNull(block) || !block.getType().equals(material))
+            this.breakingAnimation = PlaceAnimation.start(() -> doIfBlockIfNull(block), entity);
+        else
+            this.breakingAnimation = BreakAnimation.start(() -> doIfBlockIsNotNull(block), entity, block);
+
     }
 
 }

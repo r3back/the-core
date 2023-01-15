@@ -11,11 +11,11 @@ import java.util.UUID;
 
 @UtilityClass
 public class MinionEntityFactory {
-    public MinionEntity create(UUID petUniqueId, UUID owner, Minion minion){
+    public MinionEntity create(UUID petUniqueId, UUID owner, Minion minion, boolean loaded){
         if(minion.getType().equals(MinionType.BLOCK_BREAK)){
-            return BlockBreakMinion.create(petUniqueId, owner, minion);
+            return BlockBreakMinion.create(petUniqueId, owner, minion, loaded);
         }else{
-            return CropBreakMinion.create(petUniqueId, owner, minion);
+            return CropBreakMinion.create(petUniqueId, owner, minion, loaded);
         }
     }
 }

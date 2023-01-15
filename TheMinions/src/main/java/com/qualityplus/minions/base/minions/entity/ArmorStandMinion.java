@@ -18,28 +18,50 @@ import org.bukkit.block.Block;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.event.Listener;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.EulerAngle;
 
 import java.util.*;
-import java.util.concurrent.CompletableFuture;
 import java.util.stream.Collectors;
 
 public abstract class ArmorStandMinion extends MinecraftMinion implements Listener {
 
     protected final ArmorStandHandler armorStand;
+    protected BukkitRunnable breakingAnimation;
+    protected BukkitRunnable startAnimation;
 
-    protected ArmorStandMinion(UUID minionUniqueId, UUID owner, Minion pet) {
-        super(minionUniqueId, owner, pet);
+    protected ArmorStandMinion(UUID minionUniqueId, UUID owner, Minion pet, boolean loaded) {
+        super(minionUniqueId, owner, pet, loaded);
 
         this.armorStand = new ArmorStandHandlerImpl();
     }
 
     @Override
-    public void spawn(Location location) {
-        super.spawn(location);
-
-        Optional.ofNullable(location)
+    public void load(){
+        Optional.ofNullable(state.getSpawn())
                 .ifPresent(this::createArmorStand);
+
+        state.setLoaded(true);
+
+    }
+
+    @Override
+    public void unload(){
+
+        Optional.ofNullable(armorStand)
+                .ifPresent(ArmorStandHandler::removeEntity);
+
+        Optional.ofNullable(breakingAnimation).ifPresent(BukkitRunnable::cancel);
+        Optional.ofNullable(startAnimation).ifPresent(BukkitRunnable::cancel);
+
+        state.setLoaded(false);
+    }
+
+    @Override
+    public void spawn(Location location, boolean load) {
+        super.spawn(location, load);
+
+        if(load) load();
 
         updateInventory();
 
@@ -48,9 +70,9 @@ public abstract class ArmorStandMinion extends MinecraftMinion implements Listen
 
     @Override
     public void deSpawn(DeSpawnReason deSpawnReason) {
-        super.deSpawn(deSpawnReason);
+        unload();
 
-        this.armorStand.removeEntity();
+        super.deSpawn(deSpawnReason);
 
         if(!deSpawnReason.equals(DeSpawnReason.PLAYER_DE_SPAWN_PET)) return;
 
@@ -178,8 +200,10 @@ public abstract class ArmorStandMinion extends MinecraftMinion implements Listen
         state.setLastActionTime(System.currentTimeMillis());
 
         Bukkit.getScheduler().runTaskLater(TheMinions.getInstance(), () -> {
-            armorStand.manipulateArmorStand(entity -> entity.setHeadPose(new EulerAngle(0, 0, 0)));
-            armorStand.teleportToSpawn();
+            if(state.isLoaded()){
+                armorStand.manipulateEntity(entity -> entity.setHeadPose(new EulerAngle(0, 0, 0)));
+                armorStand.teleportToSpawn();
+            }
         }, 15);
 
 
@@ -187,9 +211,13 @@ public abstract class ArmorStandMinion extends MinecraftMinion implements Listen
     }
 
     private void rotateToBlock() {
-        handlers.getAnimationHandler()
-                .getBlockToRotate(armorStand.getEntity())
-                .thenAccept(this::checkBlockAfterRotate);
+        if(state.isLoaded()){
+            handlers.getAnimationHandler()
+                    .getBlockToRotate(armorStand)
+                    .thenAccept(this::checkBlockAfterRotate);
+        }else{
+            checkBlockAfterRotate(null);
+        }
     }
 
 
@@ -201,16 +229,17 @@ public abstract class ArmorStandMinion extends MinecraftMinion implements Listen
     private void handlePostCreation(ArmorStand armorStand){
         updateSkin();
 
-        StartAnimation.run(armorStand, () -> Bukkit.getScheduler().runTaskLater(TheMinions.getInstance(), () -> state.setBreaking(false), 20));
+        startAnimation = StartAnimation.start(() -> Bukkit.getScheduler().runTaskLater(TheMinions.getInstance(), () -> state.setBreaking(false), 20), armorStand);
     }
 
     private void updateStatus(){
-
         MinionStorageState storageState = handlers.getStorageHandler().getMinionStorageState();
 
         state.setStorageState(storageState);
 
-        boolean hasInvalidLayout = handlers.getLayoutHandler().hasInvalidLayout(armorStand.getEntity());
+        //TODO save state in database if its removed
+
+        boolean hasInvalidLayout = state.isLoaded() ? handlers.getLayoutHandler().hasInvalidLayout(armorStand) : false;
         boolean hasFullStorage = storageState.isHasFullStorage();
 
         state.setStatus(hasInvalidLayout ? MinionStatus.INVALID_LAYOUT : hasFullStorage ? MinionStatus.STORAGE_FULL : MinionStatus.IDEAL_LAYOUT);

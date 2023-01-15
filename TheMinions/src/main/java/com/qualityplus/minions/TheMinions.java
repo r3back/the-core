@@ -2,15 +2,20 @@ package com.qualityplus.minions;
 
 import com.qualityplus.assistant.okaeri.OkaeriSilentPlugin;
 import com.qualityplus.minions.api.TheMinionsAPI;
+import com.qualityplus.minions.api.box.Box;
 import com.qualityplus.minions.api.minion.MinionEntity;
 import com.qualityplus.minions.api.service.MinionsService;
+import com.qualityplus.minions.base.config.Messages;
 import com.qualityplus.minions.base.gui.main.MainMinionGUI;
 import com.qualityplus.minions.base.minions.minion.Minion;
 import com.qualityplus.minions.base.minions.entity.factory.MinionEntityFactory;
 import com.qualityplus.minions.base.minions.Minions;
 import com.qualityplus.minions.base.minions.entity.tracker.MinionEntityTracker;
+import com.qualityplus.minions.base.minions.minion.layout.LayoutType;
 import com.qualityplus.minions.persistance.MinionsRepository;
 import com.qualityplus.minions.persistance.data.MinionData;
+import com.qualityplus.minions.persistance.data.UserData;
+import com.qualityplus.minions.util.MinionAnimationUtil;
 import eu.okaeri.injector.annotation.Inject;
 import eu.okaeri.persistence.document.Document;
 import eu.okaeri.platform.bukkit.annotation.Delayed;
@@ -19,10 +24,15 @@ import eu.okaeri.platform.core.plan.ExecutionPhase;
 import eu.okaeri.platform.core.plan.Planned;
 import lombok.Getter;
 import org.bukkit.Bukkit;
+import org.bukkit.Location;
+import org.bukkit.entity.Player;
 import org.bukkit.inventory.InventoryHolder;
+import org.bukkit.util.Vector;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
+import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.logging.Logger;
 
@@ -47,7 +57,15 @@ public final class TheMinions extends OkaeriSilentPlugin {
     }
 
     @Planned(ExecutionPhase.PRE_SHUTDOWN)
-    private void whenStop(@Inject Logger logger, @Inject MinionsService minionsService) {
+    private void whenStopSaveUsers(Box box){
+        Bukkit.getOnlinePlayers()
+                .stream()
+                .map(Player::getUniqueId)
+                .forEach(uuid -> box.getUserService().getData(uuid).ifPresent(UserData::save));
+    }
+
+    @Planned(ExecutionPhase.PRE_SHUTDOWN)
+    private void whenStopSaveMinions(@Inject Logger logger, @Inject MinionsService minionsService) {
         AtomicInteger countDown = new AtomicInteger(0);
 
         for (MinionEntity minionEntity : MinionEntityTracker.values()) {
@@ -61,6 +79,26 @@ public final class TheMinions extends OkaeriSilentPlugin {
         logger.info(String.format("Plugin has saved %s minions to database!", countDown.get()));
     }
 
+    @Planned(ExecutionPhase.POST_STARTUP)
+    private void whenStartFixMessages(@Inject Messages messages) {
+        boolean save = false;
+        if(messages.minionMessages.pickUpMinion == null) {
+            save = true;
+            messages.minionMessages.pickUpMinion = "&aYou picked up a minion! You currently have %minions_placed_amount% out of a maximum of %minions_max_amount_to_place% minions placed.";
+        }
+        if(messages.minionMessages.youPlacedAMinion == null) {
+            save = true;
+            messages.minionMessages.youPlacedAMinion = "&bYou placed a minion! (%minions_placed_amount%/%minions_max_amount_to_place%)";
+        }
+        if(messages.minionMessages.youCanOnlyPlaceAMaxOf == null){
+            save = true;
+            messages.minionMessages.youCanOnlyPlaceAMaxOf = "&cYou can only can place a max of %minions_max_amount_to_place% minions!";
+        }
+
+        if(save)
+            messages.save();
+    }
+
 
 
     @Delayed(time = 5)
@@ -72,20 +110,49 @@ public final class TheMinions extends OkaeriSilentPlugin {
         allData.forEach(data -> {
             if(data.getLocation() != null) {
 
-                Minion minion = Minions.getByID(data.getMinionId());
+                loadChunk(data.getLocation()).thenRun(() -> {
+                    Minion minion = Minions.getByID(data.getMinionId());
 
-                if(minion == null){
-                    logger.warning("Failed to load minion " + data.getMinionId());
-                    return;
-                }
+                    if(minion == null){
+                        logger.warning("Failed to load minion " + data.getMinionId());
+                        return;
+                    }
 
-                service.addData(data);
+                    service.addData(data);
 
-                MinionEntity entity = MinionEntityFactory.create(data.getUuid(), data.getOwner(), minion);
+                    MinionEntity entity = MinionEntityFactory.create(data.getUuid(), data.getOwner(), minion, false);
 
-                entity.spawn(data.getLocation());
+                    entity.spawn(data.getLocation(), false);
+                });
+
             }
 
         });
+    }
+
+    private CompletableFuture<Void> loadChunk(Location spawn){
+        CompletableFuture<Void> future = new CompletableFuture<>();
+
+        Bukkit.getScheduler().runTask(this, () -> {
+            if(!spawn.getChunk().isLoaded()){
+                spawn.getChunk().load();
+            }
+
+            List<Vector> vectors =  MinionAnimationUtil.getThree();
+
+            Location location = spawn.clone()
+                    .subtract(new Vector(0, 1, 0));
+
+            for (Vector vector : vectors) {
+                Location newLocation = location.clone().add(vector);
+
+                if(newLocation.getChunk().isLoaded()) continue;
+
+                newLocation.getChunk().load();
+            }
+            future.complete(null);
+        });
+
+        return future;
     }
 }

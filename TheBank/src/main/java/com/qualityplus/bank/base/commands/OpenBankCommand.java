@@ -1,10 +1,10 @@
-package com.qualityplus.alchemist.base.commands;
+package com.qualityplus.bank.base.commands;
 
-import com.qualityplus.alchemist.api.box.Box;
-import com.qualityplus.alchemist.base.gui.brewing.AlchemistStandGUI;
 import com.qualityplus.assistant.TheAssistantPlugin;
 import com.qualityplus.assistant.api.commands.command.AssistantCommand;
 import com.qualityplus.assistant.util.StringUtils;
+import com.qualityplus.bank.api.box.Box;
+import com.qualityplus.bank.base.gui.main.BankInterfaceGUI;
 import eu.okaeri.commons.bukkit.time.MinecraftTimeEquivalent;
 import eu.okaeri.injector.annotation.Inject;
 import eu.okaeri.platform.bukkit.annotation.Delayed;
@@ -16,7 +16,7 @@ import java.util.Collections;
 import java.util.List;
 
 @Component
-public final class OpenCommand extends AssistantCommand {
+public final class OpenBankCommand extends AssistantCommand {
     private @Inject Box box;
 
     @Override
@@ -27,16 +27,16 @@ public final class OpenCommand extends AssistantCommand {
 
         Player player = (Player) sender;
 
-        return openInventory(args, sender, new AlchemistStandGUI(box, player.getLocation()), syntaxMsg, mustBeAPlayer, invalidPlayer);
+        return openInventory(args, sender, new BankInterfaceGUI(box, player, BankInterfaceGUI.GUIType.GENERAL), syntaxMsg, mustBeAPlayer, invalidPlayer);
     }
 
     @Override
     public List<String> onTabComplete(CommandSender commandSender, org.bukkit.command.Command command, String label, String[] args) {
-        return Collections.emptyList();
+        return args.length == 2 ? null : Collections.emptyList();
     }
 
     @Delayed(time = MinecraftTimeEquivalent.SECOND)
     public void register(@Inject Box box){
-        TheAssistantPlugin.getAPI().getCommandProvider().registerCommand(this, e -> e.getCommand().setDetails(box.files().commands().openCommand));
+        TheAssistantPlugin.getAPI().getCommandProvider().registerCommand(this, e -> e.getCommand().setDetails(box.files().commands().bankCommand));
     }
 }

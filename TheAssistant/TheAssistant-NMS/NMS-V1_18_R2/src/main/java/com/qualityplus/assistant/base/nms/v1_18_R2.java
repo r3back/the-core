@@ -124,7 +124,6 @@ public final class v1_18_R2 extends AbstractNMS{
     public FakeInventory getFakeInventory(Player player, int maxSlots) {
         Inventory inventory = FakeInventoryFactory.getInventoryWithSize(maxSlots);
 
-
         return getInventory(inventory, maxSlots);
     }
 

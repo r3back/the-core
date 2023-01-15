@@ -11,12 +11,15 @@ import org.bukkit.inventory.ItemStack;
 import java.util.Collection;
 
 public interface MinionEntity extends LevelGetter, DataGetter, MinionItemsGetter {
+    void load();
+    void unload();
+
     MinionState getState();
     void tick();
 
     Collection<ItemStack> pickUpAllItems();
 
-    void spawn(Location location);
+    void spawn(Location location, boolean load);
     void deSpawn(DeSpawnReason reason);
 
     void updateSkin();
