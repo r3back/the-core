@@ -4,7 +4,7 @@ import com.qualityplus.assistant.TheAssistantPlugin;
 import com.qualityplus.assistant.api.commands.command.AssistantCommand;
 import com.qualityplus.assistant.util.StringUtils;
 import com.qualityplus.pets.api.box.Box;
-import com.qualityplus.pets.gui.main.PetMainGUI;
+import com.qualityplus.pets.base.gui.main.PetMainGUI;
 import eu.okaeri.commons.bukkit.time.MinecraftTimeEquivalent;
 import eu.okaeri.injector.annotation.Inject;
 import eu.okaeri.platform.bukkit.annotation.Delayed;

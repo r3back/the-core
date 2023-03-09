@@ -14,4 +14,5 @@ public final class MinionMob extends OkaeriConfig {
     private EntityType entityType;
     private boolean isFromMythicMobs;
     private String id;
+    private int mythicMobsLevel;
 }

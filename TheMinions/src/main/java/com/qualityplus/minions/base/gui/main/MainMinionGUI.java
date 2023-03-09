@@ -61,37 +61,42 @@ public final class MainMinionGUI extends MinionGUI {
     public void onInventoryClick(InventoryClickEvent event) {
         Player player = (Player) event.getWhoClicked();
 
-        if(!getTarget(event).equals(ClickTarget.INSIDE)) return;
+        ClickTarget target = getTarget(event);
 
-        event.setCancelled(true);
+        if(target.equals(ClickTarget.INSIDE)){
+            event.setCancelled(true);
 
-        int slot = event.getSlot();
+            int slot = event.getSlot();
 
-        if(isItem(slot, config.getCloseGUI())) {
-            player.closeInventory();
-        }else if(isItem(slot, config.getPickUpMinion())){
-            new PickUpMinionClickHandler().handle(event, minionEntity, box);
-        }else if(isItem(slot, config.getQuickUpgradeItem())){
-            new QuickUpgradeClickHandler().handle(event, minionEntity, box);
-        }else if(isItem(slot, config.getCollectAllItem())){
-            minionEntity.pickUpAllItems()
-                    .stream()
-                    .filter(Objects::nonNull)
-                    .forEach(item -> player.getInventory().addItem(item));
+            if(isItem(slot, config.getCloseGUI())) {
+                player.closeInventory();
+            }else if(isItem(slot, config.getPickUpMinion())){
+                new PickUpMinionClickHandler().handle(event, minionEntity, box);
+            }else if(isItem(slot, config.getQuickUpgradeItem())){
+                new QuickUpgradeClickHandler().handle(event, minionEntity, box);
+            }else if(isItem(slot, config.getCollectAllItem())){
+                minionEntity.pickUpAllItems()
+                        .stream()
+                        .filter(Objects::nonNull)
+                        .forEach(item -> player.getInventory().addItem(item));
 
-            addItems();
-        }else if(isItem(slot, config.getAutomatedShippingPlacedItem())){
-            new AutoShipClickHandler().handle(event, minionEntity, box);
-        }else if(isItem(slot, config.getFuelPlacedItem())){
-            new FuelClickHandler().handle(event, minionEntity, box);
-        }else if(isItem(slot, config.getFirstUpgradeEmptyItem()) || isItem(slot, config.getSecondUpgradeEmptyItem())){
-            new UpgradeClickHandler().handle(event, minionEntity, box);
-        }else if(isItem(slot, config.getIdealLayoutItem())){
-            player.openInventory(new LayoutGUI(box, minionEntity).getInventory());
-        }else if(isItem(slot, config.getMinionTierItem())){
-            player.openInventory(new MinionsRecipesGUI(box, minionEntity).getInventory());
-        }else if(isItem(slot, config.getMinionSkinEmptyItem())){
-            new MinionSkinClickHandler().handle(event, minionEntity, box);
+                addItems();
+            }else if(isItem(slot, config.getAutomatedShippingPlacedItem())){
+                new AutoShipClickHandler().handle(event, minionEntity, box);
+            }else if(isItem(slot, config.getFuelPlacedItem())){
+                new FuelClickHandler().handle(event, minionEntity, box);
+            }else if(isItem(slot, config.getFirstUpgradeEmptyItem()) || isItem(slot, config.getSecondUpgradeEmptyItem())){
+                new UpgradeClickHandler().handle(event, minionEntity, box);
+            }else if(isItem(slot, config.getIdealLayoutItem())){
+                player.openInventory(new LayoutGUI(box, minionEntity).getInventory());
+            }else if(isItem(slot, config.getMinionTierItem())){
+                player.openInventory(new MinionsRecipesGUI(box, minionEntity).getInventory());
+            }else if(isItem(slot, config.getMinionSkinEmptyItem())){
+                new MinionSkinClickHandler().handle(event, minionEntity, box);
+            }
+        }else if(target.equals(ClickTarget.PLAYER)){
+            event.setCancelled(true);
         }
+
     }
 }

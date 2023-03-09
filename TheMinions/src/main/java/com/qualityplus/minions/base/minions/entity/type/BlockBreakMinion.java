@@ -44,6 +44,11 @@ public final class BlockBreakMinion extends ArmorStandMinion<Block> {
 
     @Override
     public void doIfItsNotNull(Block block){
+        if(block == null || block.getType().equals(Material.AIR)){
+            teleportBack();
+            return;
+        }
+
         BlockUtils.setBlock(block, XMaterial.AIR);
 
         addItemsToMinionInventory();

@@ -1,4 +1,4 @@
-package com.qualityplus.pets.gui.sub;
+package com.qualityplus.pets.base.gui.sub;
 
 import com.qualityplus.assistant.api.util.IPlaceholder;
 import com.qualityplus.assistant.inventory.Item;
@@ -10,8 +10,8 @@ import com.qualityplus.pets.api.box.Box;
 import com.qualityplus.pets.api.pet.Pets;
 import com.qualityplus.pets.base.pet.Pet;
 import com.qualityplus.pets.base.pet.egg.PetEgg;
-import com.qualityplus.pets.gui.PetsGUI;
-import com.qualityplus.pets.gui.main.PetMainGUI;
+import com.qualityplus.pets.base.gui.PetsGUI;
+import com.qualityplus.pets.base.gui.main.PetMainGUI;
 import com.qualityplus.pets.persistance.data.PetData;
 import com.qualityplus.pets.persistance.data.inside.InventoryPet;
 import com.qualityplus.pets.util.PetPlaceholderUtil;

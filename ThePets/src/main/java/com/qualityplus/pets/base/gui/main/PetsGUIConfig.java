@@ -1,4 +1,4 @@
-package com.qualityplus.pets.gui.sub;
+package com.qualityplus.pets.base.gui.main;
 
 import com.qualityplus.assistant.inventory.CommonGUI;
 import com.qualityplus.assistant.inventory.Item;
@@ -13,18 +13,14 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
-public final class PetLevelsGUIConfig extends OkaeriConfig implements SimpleGUI {
+public final class PetsGUIConfig extends OkaeriConfig implements SimpleGUI {
     private CommonGUI commonGUI;
-    private Item inProgressItem;
-    private Item unlockedItem;
-    private Item lockedItem;
-
-    private Item previousPage;
-    private Item nextPage;
-
-    private Item goBack;
-
-    private List<Integer> levelSlots;
-
     private Item petItem;
+    private Item petMenuInfoItem;
+    private Item convertPetToItemEnabled;
+    private Item convertPetToItemDisabled;
+    private Item hidePetsEnabled;
+    private Item hidePetsDisabled;
+    private List<Integer> slots;
+    private Item customGoBackItem;
 }
