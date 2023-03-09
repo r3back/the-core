@@ -1,4 +1,4 @@
-package com.qualityplus.pets.gui;
+package com.qualityplus.pets.base.gui;
 
 import com.cryptomorin.xseries.XMaterial;
 import com.qualityplus.assistant.api.util.IPlaceholder;

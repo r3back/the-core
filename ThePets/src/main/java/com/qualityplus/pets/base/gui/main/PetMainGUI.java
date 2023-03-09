@@ -1,4 +1,4 @@
-package com.qualityplus.pets.gui.main;
+package com.qualityplus.pets.base.gui.main;
 
 import com.qualityplus.assistant.api.util.IPlaceholder;
 import com.qualityplus.assistant.inventory.Item;
@@ -10,11 +10,11 @@ import com.qualityplus.pets.api.pet.Pets;
 import com.qualityplus.pets.api.pet.entity.PetEntity;
 import com.qualityplus.pets.api.pet.entity.PetEntity.DeSpawnReason;
 import com.qualityplus.pets.base.config.Messages.PetMessages;
+import com.qualityplus.pets.base.gui.PetsGUI;
+import com.qualityplus.pets.base.gui.sub.PetLevelsGUI;
 import com.qualityplus.pets.base.pet.Pet;
 import com.qualityplus.pets.base.pet.factory.PetEntityFactory;
 import com.qualityplus.pets.base.pet.tracker.PetEntityTracker;
-import com.qualityplus.pets.gui.PetsGUI;
-import com.qualityplus.pets.gui.sub.PetLevelsGUI;
 import com.qualityplus.pets.persistance.data.PetData;
 import com.qualityplus.pets.persistance.data.UserData;
 import com.qualityplus.pets.persistance.data.inside.InventoryPet;

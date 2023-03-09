@@ -53,7 +53,9 @@ public final class GiveMinionCommand extends AssistantCommand {
             toGive.getInventory().addItem(petEgg.get());
 
         }else{
-            sender.sendMessage(StringUtils.color(box.files().messages().pluginMessages.useSyntax.replace("%usage%", syntax)));
+            String message = box.files().messages().pluginMessages.useSyntax.replace("%usage%", syntax);
+
+            sender.sendMessage(StringUtils.color(message));
         }
         return false;
     }
