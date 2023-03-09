@@ -9,8 +9,7 @@ import com.qualityplus.minions.api.minion.MinionEntity;
 import com.qualityplus.minions.base.minions.entity.message.RandomMessage;
 import com.qualityplus.minions.base.minions.entity.state.MinionState;
 import com.qualityplus.minions.base.minions.entity.status.MinionStatus;
-import com.qualityplus.minions.base.minions.entity.tracker.ArmorStandTracker;
-import lombok.Getter;
+import com.qualityplus.minions.base.minions.entity.tracker.MinionArmorStandTracker;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.ArmorStand;
@@ -34,7 +33,7 @@ public final class ArmorStandHandlerImpl implements ArmorStandHandler {
         Bukkit.getScheduler().runTask(TheMinions.getInstance(), () -> {
             this.entity = ArmorStandUtil.createDefault(spawn);
 
-            ArmorStandTracker.registerNewEntity(entity, minionEntity);
+            MinionArmorStandTracker.registerNewEntity(entity, minionEntity);
 
             future.complete(entity);
         });
@@ -62,7 +61,7 @@ public final class ArmorStandHandlerImpl implements ArmorStandHandler {
                 .filter(ArmorStandUtil::entityIsValid)
                 .ifPresent(e -> {
                     final UUID uuid = e.getUniqueId();
-                    ArmorStandTracker.unregisterEntity(uuid);
+                    MinionArmorStandTracker.unregisterEntity(uuid);
                     //Bukkit.getConsoleSender().sendMessage("REMOVING ENTITY");
                     e.remove();
                 });
@@ -95,9 +94,12 @@ public final class ArmorStandHandlerImpl implements ArmorStandHandler {
 
         //TODO check this with a future or boolean
         Bukkit.getScheduler().runTask(TheMinions.getInstance(), () -> {
-            hologram = Optional.ofNullable(hologram)
-                    .map(holoExists -> hologram.rename(msg))
-                    .orElse(TheHologram.create(msg, spawn.clone()));
+
+            if(hologram == null){
+                hologram = TheHologram.create(msg, spawn.clone());
+            }else{
+                hologram.rename(msg);
+            }
         });
 
 

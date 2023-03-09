@@ -14,6 +14,7 @@ import java.util.stream.Stream;
 @Getter
 @Component
 public final class AddonsServiceImpl implements AddonsService {
+    private @Inject WorldManagerAddon worldManager;
     private @Inject PlaceholdersAddon placeholders;
     private @Inject MythicMobsAddon mythicMobs;
     private @Inject MMOItemsAddon mmoItems;
@@ -24,7 +25,7 @@ public final class AddonsServiceImpl implements AddonsService {
 
     @Delayed(time = MinecraftTimeEquivalent.SECOND / 20, async = true)
     public void showAddons(@Inject Logger logger){
-        Stream.of(placeholders, mmoItems, economy, regions, paster, npc, mythicMobs)
+        Stream.of(placeholders, mmoItems, economy, regions, paster, npc, mythicMobs, worldManager)
                 .filter(dependency -> dependency.getAddonName() != null)
                 .forEach(plugin -> logger.info("Successfully hooked into " + plugin.getAddonName() + "!"));
     }

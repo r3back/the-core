@@ -1,5 +1,6 @@
 package com.qualityplus.collections.gui.collection;
 
+import com.qualityplus.assistant.api.common.rewards.commands.CommandReward;
 import com.qualityplus.assistant.inventory.Item;
 import com.qualityplus.assistant.util.StringUtils;
 import com.qualityplus.assistant.util.itemstack.ItemStackUtils;
@@ -20,9 +21,12 @@ import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public final class CollectionGUI extends CollectionsGUI {
+    private final Map<Integer, Integer> levelsMap = new HashMap<>();
     private final CollectionGUIConfig config;
     private final Collection collection;
 
@@ -64,6 +68,7 @@ public final class CollectionGUI extends CollectionsGUI {
 
             inventory.setItem(slot, getItem(item, data, collection, count));
 
+            levelsMap.put(slot, count);
         }
 
         String category = box.files().categories().getById(collection.getCategory()).map(CollectionCategory::getDisplayName).orElse("");
@@ -96,6 +101,18 @@ public final class CollectionGUI extends CollectionsGUI {
             player.closeInventory();
         }else if(isItem(slot, config.getGoBack())){
             box.files().categories().getById(collection.getCategory()).ifPresent(category -> player.openInventory(new CategoryGUI(box, player, category).getInventory()));
+        }else if(levelsMap.containsKey(slot)){
+            Integer level = levelsMap.getOrDefault(slot, null);
+
+            if(level == null) return;
+
+            CommandReward reward = collection.getGuiCommand(level);
+
+            if(reward == null) return;
+
+            player.closeInventory();
+
+            reward.execute(player);
         }
     }
 }

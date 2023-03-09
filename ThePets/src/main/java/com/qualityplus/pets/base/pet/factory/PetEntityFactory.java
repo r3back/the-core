@@ -15,6 +15,6 @@ public final class PetEntityFactory {
         if(petEgg.getPetModelEngine().isUseModelEngine())
             return ModelEnginePet.create(petUniqueId, owner, pet);
         else
-            return ArmorStandPet.create(petUniqueId, owner, pet);
+            return ArmorStandPet.create(petUniqueId, owner, pet, true);
     }
 }

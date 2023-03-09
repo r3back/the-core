@@ -1,7 +1,7 @@
 package com.qualityplus.minions.listener;
 
 import com.qualityplus.minions.api.minion.MinionEntity;
-import com.qualityplus.minions.base.minions.entity.tracker.ArmorStandTracker;
+import com.qualityplus.minions.base.minions.entity.tracker.MinionArmorStandTracker;
 import eu.okaeri.platform.core.annotation.Component;
 import org.bukkit.Location;
 import org.bukkit.block.Block;
@@ -30,7 +30,7 @@ public final class MinionDamageListener implements Listener {
 
         ArmorStand armorStand = (ArmorStand)e.getEntity();
 
-        Optional<MinionEntity> entity = ArmorStandTracker.getByID(armorStand.getUniqueId());
+        Optional<MinionEntity> entity = MinionArmorStandTracker.getByID(armorStand.getUniqueId());
 
         if(!entity.isPresent()) return;
 
@@ -64,6 +64,6 @@ public final class MinionDamageListener implements Listener {
         Collection<Entity> entities = location.getWorld().getNearbyEntities(location, 2.0D, 2.0D, 2.0D);
 
         return entities.stream()
-                .anyMatch(entity -> entity instanceof ArmorStand && ArmorStandTracker.getByID(entity.getUniqueId()).isPresent());
+                .anyMatch(entity -> entity instanceof ArmorStand && MinionArmorStandTracker.getByID(entity.getUniqueId()).isPresent());
     }
 }

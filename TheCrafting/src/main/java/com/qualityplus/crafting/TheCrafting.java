@@ -2,6 +2,7 @@ package com.qualityplus.crafting;
 
 import com.qualityplus.assistant.api.util.BukkitItemUtil;
 import com.qualityplus.assistant.okaeri.OkaeriSilentPlugin;
+import com.qualityplus.assistant.util.StringUtils;
 import com.qualityplus.assistant.util.itemstack.ItemStackUtils;
 import com.qualityplus.crafting.api.TheCraftingAPI;
 import com.qualityplus.crafting.base.config.RecipesFile;
@@ -61,16 +62,21 @@ public final class TheCrafting extends OkaeriSilentPlugin {
 
                 Map<Integer, String> ingredients = new HashMap<>();
 
-                for(int i = 0; i <= 9; i++){
+                for(int i = 1; i <= 10; i++){
+
                     if(!customConfig.contains("recipes." + id + "." + i)) continue;
+
+                    //printIf(id, i + " | " + "A ");
 
                     ItemStack item = customConfig.getItemStack("recipes." + id + "." + i);
 
                     if(BukkitItemUtil.isNull(item)) continue;
+                    //printIf(id, i + " | " + "B ");
 
-                    ingredients.put(i, BukkitItemUtil.serialize(item));
+                    ingredients.put(i+ 1, BukkitItemUtil.serialize(item));
 
                 }
+
 
                 CustomRecipe customRecipe = CustomRecipe.builder()
                         .displayName(displayName)
@@ -98,5 +104,11 @@ public final class TheCrafting extends OkaeriSilentPlugin {
             logger.warning("Error trying to fix corrupt file!");
             e.printStackTrace();
         }
+    }
+
+    private void printIf(String id, String toPrint){
+        if(!id.equals("blobfish_hat")) return;
+
+        Bukkit.getConsoleSender().sendMessage(toPrint);
     }*/
 }

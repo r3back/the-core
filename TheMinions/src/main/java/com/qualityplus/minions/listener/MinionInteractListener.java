@@ -3,8 +3,7 @@ package com.qualityplus.minions.listener;
 import com.qualityplus.minions.api.box.Box;
 import com.qualityplus.minions.api.minion.MinionEntity;
 import com.qualityplus.minions.base.gui.main.MainMinionGUI;
-import com.qualityplus.minions.base.minions.entity.tracker.ArmorStandTracker;
-import com.qualityplus.minions.base.minions.entity.tracker.MinionEntityTracker;
+import com.qualityplus.minions.base.minions.entity.tracker.MinionArmorStandTracker;
 import eu.okaeri.injector.annotation.Inject;
 import eu.okaeri.platform.core.annotation.Component;
 import org.bukkit.entity.ArmorStand;
@@ -16,7 +15,6 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.player.PlayerInteractAtEntityEvent;
 
 import java.util.Optional;
-import java.util.UUID;
 
 @Component
 public final class MinionInteractListener implements Listener {
@@ -29,7 +27,7 @@ public final class MinionInteractListener implements Listener {
 
         Player player = event.getPlayer();
 
-        Optional<MinionEntity> armorStand = ArmorStandTracker.getByID(event.getRightClicked().getUniqueId());
+        Optional<MinionEntity> armorStand = MinionArmorStandTracker.getByID(event.getRightClicked().getUniqueId());
 
         if(!armorStand.isPresent()) return;
 
@@ -44,7 +42,7 @@ public final class MinionInteractListener implements Listener {
 
         if(!(entity instanceof ArmorStand)) return;
 
-        Optional<MinionEntity> minionEntity = ArmorStandTracker.getByID(entity.getUniqueId());
+        Optional<MinionEntity> minionEntity = MinionArmorStandTracker.getByID(entity.getUniqueId());
 
         if(!minionEntity.isPresent()) return;
 

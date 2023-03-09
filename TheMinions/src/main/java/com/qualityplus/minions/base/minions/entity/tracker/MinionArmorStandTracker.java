@@ -7,7 +7,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.*;
 
-public final class ArmorStandTracker {
+public final class MinionArmorStandTracker {
     private static final Map<UUID, MinionEntity> TRACKED_ENTITIES = new HashMap<>();
 
     @ApiStatus.Internal

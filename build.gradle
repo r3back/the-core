@@ -53,7 +53,7 @@ def relocate_map = ['com.cryptomorin.xseries': 'com.qualityplus.assistant.lib.co
                     'com.mongodb': 'com.qualityplus.assistant.lib.com.mongodb'] as HashMap
 
 group = 'com.qualityplus.core'
-version = '1.0.0'
+version = '3.2.0'
 project.ext.copyJars = copyJars
 project.ext.relocate_map = relocate_map
 project.ext.okaeri_dependencies = okaeri_dependencies
@@ -91,6 +91,10 @@ subprojects {
         maven { url 'https://repo.codemc.org/repository/maven-public/' }
 
         maven { url 'https://jitpack.io' }
+
+        //SlimeWorld
+        maven { url 'https://repo.rapture.pw/repository/maven-snapshots/'}
+        maven { url 'https://repo.rapture.pw/repository/maven-releases/'}
     }
 
     dependencies {

@@ -1,5 +1,7 @@
 package com.qualityplus.pets.api.pet.entity;
 
+import org.bukkit.Location;
+
 import java.util.UUID;
 
 public interface PetEntity {
@@ -11,6 +13,11 @@ public interface PetEntity {
     void deSpawn(DeSpawnReason reason);
     void update();
     void prepareToLevelUp();
+
+    Location getSpawn();
+
+    void load();
+    void unload();
 
 
     public static enum DeSpawnReason{

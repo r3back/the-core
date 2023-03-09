@@ -56,6 +56,21 @@ public final class ModelEnginePet extends MinecraftPet{
         super.removeStats();
     }
 
+    @Override
+    public Location getSpawn() {
+        return getNextLocation();
+    }
+
+    @Override
+    public void load() {
+
+    }
+
+    @Override
+    public void unload() {
+
+    }
+
 
     @Override
     public void followOwner() {

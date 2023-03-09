@@ -63,6 +63,17 @@ public final class Skins extends OkaeriConfig {
             .put("snow_minion_8", getSnowMinion(8))
             .put("snow_minion_9", getSnowMinion(9))
 
+
+            .put("cow_minion_1", getCowMinion(1))
+            .put("cow_minion_2", getCowMinion(2))
+            .put("cow_minion_3", getCowMinion(3))
+            .put("cow_minion_4", getCowMinion(4))
+            .put("cow_minion_5", getCowMinion(5))
+            .put("cow_minion_6", getCowMinion(6))
+            .put("cow_minion_7", getCowMinion( 7))
+            .put("cow_minion_8", getCowMinion(8))
+            .put("cow_minion_9", getCowMinion(9))
+
             .build();
 
 
@@ -167,6 +178,32 @@ public final class Skins extends OkaeriConfig {
                 .leggings(FasterStack.fastWithColor(XMaterial.LEATHER_LEGGINGS, Color.WHITE))
                 .boots(FasterStack.fastWithColor(XMaterial.LEATHER_BOOTS, Color.WHITE))
                 .inHand(FasterStack.fast(XMaterial.DIAMOND_SHOVEL, 1))
+                .build();
+    }
+
+    private static MinionSkin getCowMinion(int level){
+        Map<Integer, String> dataWithLevel = FasterMap.builder(Integer.class, String.class)
+                .put(1, "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjRmZjBmNThjMmYyY2RjNzQyMzQwYTdhNzFlYjEzYmU5MjhiZmY2M2FmZjgzMzAwMmE0N2I3NDZiOTZiNDQ4OCJ9fX0=")
+                .put(2, "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYjFjMDEwODIzNjgyZWRkZmQyNzdiODQ4MjVkODk3MjNjNjc1NDFkZjcyMTZhYTI3M2I5N2Y1YjZjMjRhNjg1MCJ9fX0=")
+                .put(3, "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvODdlYzlhNDU1NWQ0NDcyOGVhNTQ0NzFmYzU4NjcyMjZkMTZhZDFkNTljMzk1ZTc3ZjU5MjY5ZmUyMzI0MmM1YSJ9fX0=")
+                .put(4, "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYjk5ZjkzMjY0YWU4MzQyYzkzOWQyYjFlY2IxOGNlYjUzMjI2ZWI0ODM3OGMxYjAwYzg2N2E5MjNlOThmNTJkYyJ9fX0=")
+                .put(5, "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMmU3MDhkYzIzYzQzOTlhNjE3OWVlMmY0OWYzMWQ2YzRmOTg0YzRkMmE1ZTUyMzc5YzgxNTJkOTlhYzczMDJkNCJ9fX0=")
+                .put(6, "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNTA5NTRmYjk2YzNmNmM5ZDgzM2IyZTQwYjgzNTI2NTU0YWNlNmU0ZDJhMTIxYjAxYzY0N2Q5OGNlOWUyZDZmMiJ9fX0=")
+                .put(7, "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvN2VjNGEyOTA0MDIxMjE4ZGFkODI5NTQzNTAxYzI1OGE1MGRhNThiMWRiMjZkOWE5YWIzOWJjM2YyNzU5Mjg5OCJ9fX0=")
+                .put(8, "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvM2YxODk5NjQ0ZDA5ZDY0OTE1YzgxN2FjZTQzYjE3Y2Y5YzRhOWQxNDAxMjQzOGJmOTdmNmIxN2IwZmZiY2RlMiJ9fX0=")
+                .put(9, "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZDdmOWIxMDk1NDI4YWRlNDE1MjY0ZDk5MmJjNGUyOTNlNmMxOTc0YTcyYTA0YTlmYTMyMDA3NDg0MDdiODRkMCJ9fX0=")
+                .build();
+
+
+        return MinionSkin.builder()
+                .displayName("Cow Minion " + MathUtils.toRoman(level))
+                .helmet(ItemBuilder.of(XMaterial.PLAYER_HEAD, 1, "", Collections.emptyList())
+                        .headData(dataWithLevel.get(level))
+                        .buildStack())
+                .chestplate(FasterStack.fastWithColor(XMaterial.LEATHER_CHESTPLATE, Color.MAROON))
+                .leggings(FasterStack.fastWithColor(XMaterial.LEATHER_LEGGINGS, Color.WHITE))
+                .boots(FasterStack.fastWithColor(XMaterial.LEATHER_BOOTS, Color.MAROON))
+                .inHand(FasterStack.fast(XMaterial.DIAMOND_SWORD, 1))
                 .build();
     }
 }

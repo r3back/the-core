@@ -26,6 +26,6 @@ public final class BlockBreakListener implements Listener {
 
         if(!spawnedPet.isPresent()) return;
 
-        box.petService().addXp(spawnedPet.get(), 2);
+        box.petService().addXp(spawnedPet.get(), Math.max(box.files().config().petXpToGiveBlockBreakAmount, 1));
     }
 }

@@ -13,6 +13,7 @@ import com.qualityplus.pets.base.event.PetLevelUPEvent;
 import com.qualityplus.pets.base.pet.Pet;
 import com.qualityplus.pets.base.pet.tracker.PetEntityTracker;
 import com.qualityplus.pets.persistance.data.PetData;
+import com.qualityplus.pets.util.PetPlaceholderUtil;
 import eu.okaeri.injector.annotation.Inject;
 import eu.okaeri.platform.core.annotation.Component;
 import org.bukkit.Bukkit;
@@ -50,9 +51,9 @@ public final class PetsInternalListener implements Listener {
                .forEach(reward -> reward.execute(player));
 
 
-            PlaceholderBuilder builder = /*data
+            PlaceholderBuilder builder = PetPlaceholderUtil.getPetPlaceholders(entity.get().getPetUniqueId())/*data
                     .map(dat -> PetPlaceholderUtil.getPetPlaceholders(dat, pet))
-                    .orElse(PlaceholderBuilder.create());*/PlaceholderBuilder.empty();
+                    .orElse(PlaceholderBuilder.create());*/;
 
             List<IPlaceholder> placeholders = builder
                     .with(new Placeholder("pet_info_message", StringUtils.processMulti(pet.getPetCachedMessage(event.getNewLevel() + 1), builder.get())))
