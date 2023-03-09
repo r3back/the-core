@@ -1,11 +1,15 @@
 package com.qualityplus.pets.base.pet.entity;
 
+import com.qualityplus.assistant.util.armorstand.ArmorStandUtil;
 import com.qualityplus.assistant.util.itemstack.ItemBuilder;
 import com.qualityplus.pets.base.pet.Pet;
+import com.qualityplus.pets.base.pet.entity.tracket.PetArmorStandTracker;
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Entity;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.ArrayList;
 import java.util.Optional;
@@ -13,30 +17,54 @@ import java.util.UUID;
 
 public final class ArmorStandPet extends MinecraftPet {
     private ArmorStand armorStand;
+    private boolean loaded;
 
-    private ArmorStandPet(UUID petUniqueId, UUID owner, Pet pet) {
+    private ArmorStandPet(UUID petUniqueId, UUID owner, Pet pet, boolean loaded) {
         super(petUniqueId, owner, pet);
+
+        this.loaded = loaded;
     }
 
-    public static ArmorStandPet create(UUID petUniqueId, UUID owner, Pet pet){
-        return new ArmorStandPet(petUniqueId, owner, pet);
+    public static ArmorStandPet create(UUID petUniqueId, UUID owner, Pet pet, boolean loaded){
+        return new ArmorStandPet(petUniqueId, owner, pet, loaded);
+    }
+
+    @Override
+    public void load(){
+        Optional.ofNullable(getNextLocation())
+                .ifPresent(this::createArmorStand);
+
+        loaded = true;
+    }
+
+    @Override
+    public void unload(){
+        Optional.ofNullable(armorStand)
+                .filter(ArmorStandUtil::entityIsValid)
+                .ifPresent(e -> {
+                    final UUID uuid = e.getUniqueId();
+                    PetArmorStandTracker.unregisterEntity(uuid);
+                    e.remove();
+                });
+
+        loaded = false;
     }
 
     @Override
     public void spawn() {
         super.spawn();
 
-        Optional.ofNullable(getNextLocation())
-                .ifPresent(this::createArmorStand);
+        if(loaded){
+            Optional.ofNullable(getNextLocation())
+                    .ifPresent(this::createArmorStand);
+        }
     }
 
     @Override
     public void deSpawn(DeSpawnReason deSpawnReason) {
         super.deSpawn(deSpawnReason);
 
-        Optional.ofNullable(armorStand)
-                .filter(ArmorStandPet::entityIsValid)
-                .ifPresent(Entity::remove);
+        unload();
     }
 
     @Override
@@ -52,6 +80,11 @@ public final class ArmorStandPet extends MinecraftPet {
         super.removeStats();
     }
 
+    @Override
+    public Location getSpawn() {
+        return getNextLocation();
+    }
+
 
     @Override
     public void followOwner() {
@@ -64,10 +97,27 @@ public final class ArmorStandPet extends MinecraftPet {
         return armorStand != null && !armorStand.isDead();
     }
 
-    protected void teleportNotNull(Location location){
+    private void teleportNotNull(Location location){
         if(!entityIsValid(armorStand)) return;
 
-        armorStand.teleport(location);
+        if(location == null) return;
+
+        Optional.ofNullable(armorStand).ifPresent(a -> {
+            if(a == null){
+                return;
+            }
+
+            if(a.isDead()){
+                return;
+            }
+
+            if(!a.getLocation().getChunk().isLoaded()){
+                return;
+            }
+
+            a.teleport(location);
+
+        });
     }
 
     private void createArmorStand(Location location){
@@ -81,6 +131,8 @@ public final class ArmorStandPet extends MinecraftPet {
         armorStand.setCollidable(false);
         armorStand.setCustomNameVisible(true);
         armorStand.setHelmet(getItemStack());
+
+        PetArmorStandTracker.registerNewEntity(armorStand, this);
 
         update();
     }

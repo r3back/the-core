@@ -1,11 +1,9 @@
 package com.qualityplus.minions.base.minions;
 
 import com.google.common.collect.ImmutableSet;
+import com.qualityplus.assistant.okaeri.serdes.SerdesAssistantBukkit;
 import com.qualityplus.minions.TheMinions;
-import com.qualityplus.minions.base.config.minions.DiamondMinion;
-import com.qualityplus.minions.base.config.minions.MinionConfig;
-import com.qualityplus.minions.base.config.minions.SnowMinion;
-import com.qualityplus.minions.base.config.minions.WheatMinion;
+import com.qualityplus.minions.base.config.minions.*;
 import com.qualityplus.minions.base.minions.minion.Minion;
 import eu.okaeri.configs.ConfigManager;
 import eu.okaeri.configs.validator.okaeri.OkaeriValidator;
@@ -54,10 +52,11 @@ public final class Minions {
     }
 
     @Delayed(time = 1)
-    public static void reloadMinions(@Inject SnowMinion snowMinion, @Inject DiamondMinion diamondMinion, @Inject WheatMinion wheatMinion){
+    public static void reloadMinions(@Inject SnowMinion snowMinion, @Inject DiamondMinion diamondMinion, @Inject WheatMinion wheatMinion, @Inject CowMinion cowMinion){
         registerNewMinion(diamondMinion.getMinion());
         registerNewMinion(wheatMinion.getMinion());
         registerNewMinion(snowMinion.getMinion());
+        registerNewMinion(cowMinion.getMinion());
 
         loadMinionsConfig().forEach(Minions::registerNewMinion);
     }
@@ -84,6 +83,7 @@ public final class Minions {
         try {
             MinionConfig minionConfig = ConfigManager.create(MinionConfig.class, (it) -> {
                 it.withConfigurer(new OkaeriValidator(new YamlBukkitConfigurer()));
+                it.withSerdesPack(new SerdesAssistantBukkit());
                 it.withBindFile(file);
                 it.load(true);
             });

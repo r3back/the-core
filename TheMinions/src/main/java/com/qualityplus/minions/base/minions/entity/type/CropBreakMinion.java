@@ -19,7 +19,7 @@ import org.bukkit.util.Vector;
 import java.util.Optional;
 import java.util.UUID;
 
-public final class CropBreakMinion extends ArmorStandMinion {
+public final class CropBreakMinion extends ArmorStandMinion<Block> {
     private CropBreakMinion(UUID minionUniqueId, UUID owner, Minion minion, boolean loaded) {
         super(minionUniqueId, owner, minion, loaded);
     }
@@ -32,14 +32,14 @@ public final class CropBreakMinion extends ArmorStandMinion {
     protected void checkBlockAfterRotate(Block block){
         armorStand.manipulateEntity(entity -> {
             if(!cropHasMaxLevel(block))
-                PlaceAnimation.start(() -> doIfBlockIfNull(block), entity);
+                PlaceAnimation.start(() -> doIfItsNull(block), entity);
             else
-                BreakAnimation.start(() -> doIfBlockIsNotNull(block), entity, getCropBlock(block));
+                BreakAnimation.start(() -> doIfItsNotNull(block), entity, getCropBlock(block));
         });
     }
 
     @Override
-    public void doIfBlockIfNull(Block block){
+    public void doIfItsNull(Block block){
         XMaterial material = minion.getMinionLayout().getToReplaceBlock();
         XMaterial crop = minion.getMinionLayout().getToReplaceCrop();
 
@@ -65,7 +65,7 @@ public final class CropBreakMinion extends ArmorStandMinion {
     }
 
     @Override
-    public void doIfBlockIsNotNull(Block block){
+    public void doIfItsNotNull(Block block){
         Block toPlace = getCropBlock(block);
 
         BlockUtils.setBlock(toPlace, XMaterial.AIR);

@@ -9,10 +9,13 @@ import com.qualityplus.minions.base.minions.minion.layout.MinionLayout;
 import com.qualityplus.minions.base.minions.minion.level.MinionLevel;
 import com.qualityplus.minions.base.minions.minion.update.MinionSettings;
 import eu.okaeri.configs.OkaeriConfig;
+import eu.okaeri.configs.annotation.CustomKey;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.bukkit.Bukkit;
+
 import java.util.List;
 import java.util.Map;
 
@@ -22,14 +25,21 @@ import java.util.Map;
 @AllArgsConstructor
 public final class MinionConfig extends OkaeriConfig {
     public String id;
+    @CustomKey("display-name")
     public String displayName;
     public MinionType type;
+    @CustomKey("minion-entity-options")
     public MinionEntityOptions minionEntityOptions;
+    @CustomKey("minion-layout")
     public MinionLayout minionLayout;
+    @CustomKey("minion-egg")
     public MinionEgg minionEgg;
+    @CustomKey("minion-levels")
     public Map<Integer, MinionLevel> minionLevels;
     public List<String> description;
+    @CustomKey("layout-gu-isettings")
     public LayoutGUISettings layoutGUISettings;
+    @CustomKey("minion-settings")
     public MinionSettings minionSettings;
 
 

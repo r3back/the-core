@@ -1,16 +1,22 @@
 package com.qualityplus.minions.base.handler;
 
 import com.qualityplus.assistant.util.armorstand.ArmorStandUtil;
+import com.qualityplus.assistant.util.math.MathUtils;
 import com.qualityplus.assistant.util.random.RandomSelector;
 import com.qualityplus.minions.api.handler.AnimationHandler;
 import com.qualityplus.minions.api.handler.ArmorStandHandler;
 import com.qualityplus.minions.base.minions.entity.getter.LayoutGetter;
+import com.qualityplus.minions.base.minions.entity.mob.MinionMobEntity;
 import com.qualityplus.minions.base.minions.minion.Minion;
 import com.qualityplus.minions.base.minions.minion.layout.LayoutType;
+import com.qualityplus.minions.base.minions.minion.mob.MinionMob;
 import com.qualityplus.minions.util.MinionAnimationUtil;
 import lombok.AllArgsConstructor;
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.block.Block;
+import org.bukkit.entity.ArmorStand;
+import org.bukkit.entity.Entity;
 import org.bukkit.util.EulerAngle;
 import org.bukkit.util.Vector;
 
@@ -58,6 +64,63 @@ public final class AnimationHandlerImpl implements AnimationHandler, LayoutGette
         future.complete(newLocation.getBlock());
 
         return future;
+    }
+
+    @Override
+    public CompletableFuture<MinionMobEntity> getEntityToRotate(ArmorStandHandler handler) {
+        CompletableFuture<MinionMobEntity> future = new CompletableFuture<>();
+
+        //handler.manipulateEntity(armorStand1 -> armorStand1.setHeadPose(new EulerAngle(-24.5, 0, 0)));
+
+        Location location = Optional.ofNullable(handler)
+                .map(ArmorStandHandler::getLocation)
+                .filter(Objects::nonNull)
+                .orElse(null);
+
+        if(location == null){
+            future.complete(MinionMobEntity.builder().build());
+            return future;
+        }
+
+        Entity entity = getNearEntity(location);
+
+        int random = MathUtils.randomUpTo(100);
+
+        if(entity == null || random > 50) {
+            double x = MathUtils.randomBetween(1, 2);
+            double z = MathUtils.randomBetween(1, 2);
+
+            Location newLocation = location.clone()
+                    .add(x, 0, z);
+
+            handler.manipulateEntity(armorStand -> ArmorStandUtil.rotate(armorStand, newLocation));
+
+            future.complete(MinionMobEntity.builder().location(newLocation).build());
+            return future;
+        }
+
+        Vector vector = entity.getLocation().getDirection().normalize();
+
+        Location newLocation = location.clone().add(vector);
+
+        handler.manipulateEntity(armorStand -> ArmorStandUtil.rotate(armorStand, newLocation));
+
+        future.complete(MinionMobEntity.builder().entity(entity).build());
+
+        return future;
+    }
+
+    private Entity getNearEntity(Location location){
+        MinionMob minionMob = minion.getMinionLayout().getMinionMob();
+
+        try {
+            return location.getWorld().getNearbyEntities(location, 2,2,2).stream()
+                    .filter(entity -> entity.getType().equals(minionMob.getEntityType()))
+                    .findFirst()
+                    .orElse(null);
+        }catch (Exception e){
+            return null;
+        }
     }
 
     @Override

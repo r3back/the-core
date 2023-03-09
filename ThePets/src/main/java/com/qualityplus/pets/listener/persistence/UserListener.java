@@ -1,5 +1,6 @@
 package com.qualityplus.pets.listener.persistence;
 
+import com.qualityplus.pets.ThePets;
 import com.qualityplus.pets.api.box.Box;
 import com.qualityplus.pets.api.pet.Pets;
 import com.qualityplus.pets.api.pet.entity.PetEntity;
@@ -10,20 +11,25 @@ import com.qualityplus.pets.persistance.UserPetRepository;
 import com.qualityplus.pets.persistance.data.PetData;
 import com.qualityplus.pets.persistance.data.UserData;
 import eu.okaeri.injector.annotation.Inject;
+import eu.okaeri.persistence.document.Document;
 import eu.okaeri.platform.core.annotation.Component;
 import eu.okaeri.tasker.core.Tasker;
+import lombok.Data;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerKickEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
+import org.bukkit.plugin.Plugin;
 
 import java.util.Optional;
 
 @Component
 public final class UserListener implements Listener {
     private @Inject UserPetRepository repository;
+    private @Inject Plugin plugin;
     private @Inject Tasker tasker;
     private @Inject Box box;
 
@@ -51,6 +57,9 @@ public final class UserListener implements Listener {
         Optional<UserData> data = box.service().getData(player.getUniqueId());
 
         data.ifPresent(this::deSpawnPetItWasSpawned);
+
+        Bukkit.getScheduler().runTaskAsynchronously(plugin, () -> data.ifPresent(Document::save));
+
     }
 
     private void loadPetIfWasSpawned(UserData data){
@@ -77,5 +86,9 @@ public final class UserListener implements Listener {
         if(!petEntity.isPresent()) return;
 
         petEntity.get().deSpawn(PetEntity.DeSpawnReason.SERVER_TURNED_OFF);
+
+        Bukkit.getScheduler().runTaskAsynchronously(plugin, () -> petData.ifPresent(petData1 -> petData1.save()));
+
+
     }
 }

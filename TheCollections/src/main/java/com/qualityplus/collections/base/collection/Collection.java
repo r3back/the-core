@@ -11,6 +11,7 @@ import lombok.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -31,11 +32,12 @@ public final class Collection extends OkaeriConfig {
     private Map<Integer, List<String>> collectionsInfoGUI;
     private Map<Integer, List<String>> collectionsInfoMessage;
     private CollectionExecutor collectionExecutor;
+    private Map<Integer, CommandReward> guiCommandsPerLevel;
 
     @Builder
     public Collection(String id, boolean enabled, String displayName, List<String> description, int maxLevel, CollectionsCommandRewards commandRewards, GUIOptions guiOptions,
                       Map<Integer, Double> xpRequirements, Map<Integer, List<String>> collectionsInfoGUI, Map<Integer, List<String>> collectionsInfoMessage,
-                      String category, CollectionExecutor collectionExecutor) {
+                      String category, CollectionExecutor collectionExecutor, Map<Integer, CommandReward> guiCommandsPerLevel) {
         this.id = id;
         this.enabled = enabled;
         this.maxLevel = maxLevel;
@@ -47,6 +49,7 @@ public final class Collection extends OkaeriConfig {
         this.xpRequirements = xpRequirements;
         this.collectionExecutor = collectionExecutor;
         this.collectionsInfoGUI = collectionsInfoGUI;
+        this.guiCommandsPerLevel = guiCommandsPerLevel;
         this.collectionsInfoMessage = collectionsInfoMessage;
     }
 
@@ -101,6 +104,12 @@ public final class Collection extends OkaeriConfig {
 
     public double getLevelRequirement(int level){
         return xpRequirements.getOrDefault(level, 1D);
+    }
+
+    public CommandReward getGuiCommand(int level){
+        return Optional.ofNullable(guiCommandsPerLevel)
+                .map(map -> map.getOrDefault(level, null))
+                .orElse(null);
     }
 
     public enum MessageType{

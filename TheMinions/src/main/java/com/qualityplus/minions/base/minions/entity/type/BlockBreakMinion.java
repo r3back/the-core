@@ -13,7 +13,7 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.*;
 
-public final class BlockBreakMinion extends ArmorStandMinion {
+public final class BlockBreakMinion extends ArmorStandMinion<Block> {
 
     private BlockBreakMinion(UUID minionUniqueId, UUID owner, Minion minion, boolean loaded) {
         super(minionUniqueId, owner, minion, loaded);
@@ -34,7 +34,7 @@ public final class BlockBreakMinion extends ArmorStandMinion {
     }
 
     @Override
-    public void doIfBlockIfNull(Block block){
+    public void doIfItsNull(Block block){
         XMaterial material = minion.getMinionLayout().getToReplaceBlock();
 
         BlockUtils.setBlock(block, material);
@@ -43,7 +43,7 @@ public final class BlockBreakMinion extends ArmorStandMinion {
     }
 
     @Override
-    public void doIfBlockIsNotNull(Block block){
+    public void doIfItsNotNull(Block block){
         BlockUtils.setBlock(block, XMaterial.AIR);
 
         addItemsToMinionInventory();
@@ -55,9 +55,9 @@ public final class BlockBreakMinion extends ArmorStandMinion {
         Material material = minion.getMinionLayout().getToReplaceBlock().parseMaterial();
 
         if (BlockUtils.isNull(block) || !block.getType().equals(material))
-            this.breakingAnimation = PlaceAnimation.start(() -> doIfBlockIfNull(block), entity);
+            this.breakingAnimation = PlaceAnimation.start(() -> doIfItsNull(block), entity);
         else
-            this.breakingAnimation = BreakAnimation.start(() -> doIfBlockIsNotNull(block), entity, block);
+            this.breakingAnimation = BreakAnimation.start(() -> doIfItsNotNull(block), entity, block);
 
     }
 

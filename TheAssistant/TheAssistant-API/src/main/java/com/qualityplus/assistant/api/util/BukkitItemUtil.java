@@ -112,9 +112,14 @@ public class BukkitItemUtil {
 
 
     public static String getName(ItemStack itemStack){
-        return Optional.ofNullable(itemStack)
+
+        String displayName = Optional.ofNullable(itemStack)
                 .map(ItemStack::getItemMeta)
                 .map(ItemMeta::getDisplayName)
+                .filter(name -> name != null && !name.isEmpty())
+                .orElse(null);
+
+        return Optional.ofNullable(displayName)
                 .orElse(getMaterialName(itemStack));
     }
 

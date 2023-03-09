@@ -8,14 +8,17 @@ import com.qualityplus.minions.TheMinions;
 import com.qualityplus.minions.api.handler.ArmorStandHandler;
 import com.qualityplus.minions.base.config.Skins;
 import com.qualityplus.minions.base.handler.ArmorStandHandlerImpl;
+import com.qualityplus.minions.base.minions.entity.mob.MinionMobEntity;
 import com.qualityplus.minions.base.minions.minion.Minion;
 import com.qualityplus.minions.base.minions.animations.StartAnimation;
 import com.qualityplus.minions.base.minions.entity.status.MinionStatus;
+import com.qualityplus.minions.base.minions.minion.MinionType;
 import com.qualityplus.minions.persistance.data.MinionData;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.block.Block;
 import org.bukkit.entity.ArmorStand;
+import org.bukkit.entity.Entity;
 import org.bukkit.event.Listener;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.scheduler.BukkitRunnable;
@@ -24,7 +27,7 @@ import org.bukkit.util.EulerAngle;
 import java.util.*;
 import java.util.stream.Collectors;
 
-public abstract class ArmorStandMinion extends MinecraftMinion implements Listener {
+public abstract class ArmorStandMinion<T> extends MinecraftMinion implements Listener {
 
     protected final ArmorStandHandler armorStand;
     protected BukkitRunnable breakingAnimation;
@@ -190,11 +193,13 @@ public abstract class ArmorStandMinion extends MinecraftMinion implements Listen
         handlers.getSellHandler().sellIfItsPossible();
     }
 
-    protected abstract void checkBlockAfterRotate(Block block);
+    protected void checkBlockAfterRotate(Block block){}
 
-    protected abstract void doIfBlockIfNull(Block block);
+    protected void checkEntityAfterRotate(MinionMobEntity entity){}
 
-    protected abstract void doIfBlockIsNotNull(Block block);
+    protected void doIfItsNull(T toCheck){}
+
+    protected void doIfItsNotNull(T toCheck){}
 
     protected void teleportBack(){
         state.setLastActionTime(System.currentTimeMillis());
@@ -212,11 +217,21 @@ public abstract class ArmorStandMinion extends MinecraftMinion implements Listen
 
     private void rotateToBlock() {
         if(state.isLoaded()){
-            handlers.getAnimationHandler()
-                    .getBlockToRotate(armorStand)
-                    .thenAccept(this::checkBlockAfterRotate);
+            if(minion.getType().equals(MinionType.MOB_KILLER)){
+                handlers.getAnimationHandler()
+                        .getEntityToRotate(armorStand)
+                        .thenAccept(this::checkEntityAfterRotate);
+            }else{
+                handlers.getAnimationHandler()
+                        .getBlockToRotate(armorStand)
+                        .thenAccept(this::checkBlockAfterRotate);
+            }
         }else{
-            checkBlockAfterRotate(null);
+            if(minion.getType().equals(MinionType.MOB_KILLER)) {
+                checkEntityAfterRotate(null);
+            }else{
+                checkBlockAfterRotate(null);
+            }
         }
     }
 

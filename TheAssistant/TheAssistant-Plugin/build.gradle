@@ -61,6 +61,7 @@ shadowJar {
 
         include(project(':TheAssistant:TheAssistant-API'))
         include(project(':TheAssistant:Addons'))
+        include(project(':TheAssistant:Addons:World-Manager'))
         include(project(':TheAssistant:Addons:Commons'))
         include(project(':TheAssistant:Addons:Economy'))
         include(project(':TheAssistant:Addons:NPC'))

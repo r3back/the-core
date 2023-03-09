@@ -13,6 +13,8 @@ include (
         'TheAssistant:Addons:NPC',
         'TheAssistant:Addons:Placeholders',
 
+        'TheAssistant:Addons:World-Manager',
+
         'TheAssistant:Addons:Regions',
         'TheAssistant:Addons:Paster',
         'TheAssistant:Addons:Paster:Paster-Common',

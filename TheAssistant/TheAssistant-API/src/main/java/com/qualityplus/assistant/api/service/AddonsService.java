@@ -3,6 +3,8 @@ package com.qualityplus.assistant.api.service;
 import com.qualityplus.assistant.api.addons.*;
 
 public interface AddonsService {
+    WorldManagerAddon getWorldManager();
+
     PlaceholdersAddon getPlaceholders();
 
     MythicMobsAddon getMythicMobs();

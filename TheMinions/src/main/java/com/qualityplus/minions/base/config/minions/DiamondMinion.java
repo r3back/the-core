@@ -72,7 +72,7 @@ public final class DiamondMinion extends OkaeriConfig {
             .build();
     private final MinionSettings minionSettings = MinionSettings.builder()
             .baseItem(ItemSettings.builder()
-                    .itemsToGive(Collections.singletonList(FasterStack.fast(XMaterial.DIAMOND, 1)))
+                    .itemsToGive(Collections.singletonList(FasterStack.fast(XMaterial.DIAMOND, 4)))
                     .requiredItemsToCreate(Collections.emptyMap())
                     .build())
             .upgradeSettings(FasterMap.builder(String.class, UpgradeSettings.class)

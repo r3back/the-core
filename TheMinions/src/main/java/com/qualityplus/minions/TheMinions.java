@@ -1,5 +1,8 @@
 package com.qualityplus.minions;
 
+import com.qualityplus.assistant.TheAssistantPlugin;
+import com.qualityplus.assistant.api.addons.WorldManagerAddon;
+import com.qualityplus.assistant.api.addons.response.ChunkCheckResponse;
 import com.qualityplus.assistant.okaeri.OkaeriSilentPlugin;
 import com.qualityplus.minions.api.TheMinionsAPI;
 import com.qualityplus.minions.api.box.Box;
@@ -122,7 +125,8 @@ public final class TheMinions extends OkaeriSilentPlugin {
 
                     MinionEntity entity = MinionEntityFactory.create(data.getUuid(), data.getOwner(), minion, false);
 
-                    entity.spawn(data.getLocation(), false);
+                    entity.spawn(data.getLocation(), true);
+
                 });
 
             }
@@ -133,24 +137,31 @@ public final class TheMinions extends OkaeriSilentPlugin {
     private CompletableFuture<Void> loadChunk(Location spawn){
         CompletableFuture<Void> future = new CompletableFuture<>();
 
+        WorldManagerAddon addon = TheAssistantPlugin.getAPI().getAddons().getWorldManager();
+
         Bukkit.getScheduler().runTask(this, () -> {
-            if(!spawn.getChunk().isLoaded()){
-                spawn.getChunk().load();
-            }
+            addon.chunksAreLoaded(spawn).thenAccept(response -> {
 
-            List<Vector> vectors =  MinionAnimationUtil.getThree();
+                if(!response.isCanBeLoaded()) return;
 
-            Location location = spawn.clone()
-                    .subtract(new Vector(0, 1, 0));
+                if(!response.isAreLoaded()){
+                    addon.loadChunks(spawn);
+                }
 
-            for (Vector vector : vectors) {
-                Location newLocation = location.clone().add(vector);
+                List<Vector> vectors =  MinionAnimationUtil.getThree();
 
-                if(newLocation.getChunk().isLoaded()) continue;
+                Location location = spawn.clone()
+                        .subtract(new Vector(0, 1, 0));
 
-                newLocation.getChunk().load();
-            }
-            future.complete(null);
+                for (Vector vector : vectors) {
+                    Location newLocation = location.clone().add(vector);
+
+                    if(newLocation.getChunk().isLoaded()) continue;
+
+                    newLocation.getChunk().load();
+                }
+                future.complete(null);
+            });
         });
 
         return future;

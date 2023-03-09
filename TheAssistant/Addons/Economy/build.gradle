@@ -15,4 +15,7 @@ dependencies {
 
     compileOnly project(':TheAssistant:TheAssistant-API')
     compileOnly project(':TheAssistant:Addons:Commons')
+
+    //Required for RoyaleEconomy
+    compileOnly fileTree(dir: '/libs', include: ['*.jar'])
 }

@@ -31,6 +31,9 @@ public final class Config extends OkaeriConfig {
     @Comment("- REDIS")
     public ConfigDatabase configDatabase = new ConfigDatabase();
 
+    public int petXpToGiveBlockBreakAmount = 2;
+    public int petXpToGiveSkillAmount = 2;
+
     @Comment("- wrapLength = After how many characters in a lore you want")
     @Comment("               to separate it.")
     @Comment("- wrapStart = After line is separated what character do you")
@@ -54,7 +57,7 @@ public final class Config extends OkaeriConfig {
         public ConfigSound sound = new ConfigSound(XSound.ENTITY_EXPERIENCE_ORB_PICKUP, true, 0.2f, 1f);
         public ConfigMessages message = new ConfigMessages(Arrays.asList(
                 "&3&l▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬",
-                "&c&b&lPET LEVEL UP &3%skill_displayname% %skill_level_roman%",
+                "&c&b&lPET LEVEL UP &3%pet_egg_displayname% %pet_level_roman%",
                 "&c  ",
                 "&c&a&lREWARDS",
                 "",

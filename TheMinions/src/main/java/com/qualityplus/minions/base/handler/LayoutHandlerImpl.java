@@ -50,7 +50,8 @@ public final class LayoutHandlerImpl implements LayoutHandler, LayoutGetter {
         for (Vector vector : vectors) {
             Location newLocation = location.clone().add(vector);
 
-            if(!newLocation.getChunk().isLoaded()) return false;
+            if(!minionEntity.getState().isLoaded()) return false;
+            //if(!newLocation.getChunk().isLoaded()) return false;
 
             Block block = newLocation.getBlock();
 

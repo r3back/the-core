@@ -167,6 +167,8 @@ public final class CollectionsFile extends OkaeriConfig {
                 .collectionsInfoGUI(getInfo())
                 .collectionsInfoMessage(FasterMap.listBuilder(Integer.class, String.class).build())
                 .category(category)
+                .guiCommandsPerLevel(ImmutableMap.<Integer, CommandReward>builder()
+                        .put(1, new CommandReward(CommandReward.CommandExecutor.PLAYER, "thecrafting preview reward_recipe")).build())
                 .collectionExecutor(CollectionExecutor.ofMaterial(executor));
     }
 
