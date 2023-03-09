@@ -68,6 +68,11 @@ public final class CropBreakMinion extends ArmorStandMinion<Block> {
     public void doIfItsNotNull(Block block){
         Block toPlace = getCropBlock(block);
 
+        if(toPlace == null || toPlace.getType().equals(Material.AIR)){
+            teleportBack();
+            return;
+        }
+
         BlockUtils.setBlock(toPlace, XMaterial.AIR);
 
         addItemsToMinionInventory();
