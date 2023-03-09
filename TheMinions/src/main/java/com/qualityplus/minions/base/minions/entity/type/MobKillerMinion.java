@@ -1,6 +1,7 @@
 package com.qualityplus.minions.base.minions.entity.type;
 
 import com.cryptomorin.xseries.XMaterial;
+import com.qualityplus.assistant.TheAssistantPlugin;
 import com.qualityplus.assistant.util.block.BlockUtils;
 import com.qualityplus.assistant.util.math.MathUtils;
 import com.qualityplus.minions.api.handler.ArmorStandHandler;
@@ -48,12 +49,16 @@ public final class MobKillerMinion extends ArmorStandMinion<MinionMobEntity> {
         try {
             MinionMob minionMob = minion.getMinionLayout().getMinionMob();
 
-            if(minionMob.getEntityType() == null) return;
-
             Location location = entity.getLocation();
 
             if(location != null){
-                location.getWorld().spawnEntity(location, minionMob.getEntityType());
+                if(minionMob.isFromMythicMobs()){
+                    TheAssistantPlugin.getAPI().getAddons().getMythicMobs().spawn(minionMob.getId(), location, minionMob.getMythicMobsLevel());
+                }else{
+                    if(minionMob.getEntityType() == null) return;
+
+                    location.getWorld().spawnEntity(location, minionMob.getEntityType());
+                }
             }
 
         }catch (Exception e){
