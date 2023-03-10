@@ -2,9 +2,13 @@ package com.qualityplus.minions.base.config.impl;
 
 import com.qualityplus.minions.api.config.ConfigFiles;
 import com.qualityplus.minions.base.config.*;
+import com.qualityplus.minions.base.config.minions.CowMinion;
+import com.qualityplus.minions.base.config.minions.DiamondMinion;
+import com.qualityplus.minions.base.config.minions.SnowMinion;
 import com.qualityplus.minions.base.config.upgrades.AutomatedShippingUpgrades;
 import com.qualityplus.minions.base.config.upgrades.FuelUpgrades;
 import com.qualityplus.minions.base.config.upgrades.NormalUpgrades;
+import com.qualityplus.minions.base.minions.entity.type.CropBreakMinion;
 import eu.okaeri.injector.annotation.Inject;
 import eu.okaeri.platform.core.annotation.Component;
 import lombok.Getter;
@@ -20,6 +24,11 @@ public final class MinionFiles implements ConfigFiles<Config, Inventories, Messa
     private @Inject Messages messages;
     private @Inject Commands commands;
     private @Inject Config config;
+    private @Inject DiamondMinion diamondMinion;
+    private @Inject CropBreakMinion cropBreakMinion;
+    private @Inject SnowMinion snowMinion;
+    private @Inject CowMinion cowMinion;
+
 
     @Override
     public Config config() {
@@ -66,5 +75,9 @@ public final class MinionFiles implements ConfigFiles<Config, Inventories, Messa
         messages.load();
         inventories.load();
         commands.load();
+        diamondMinion.load();
+        cropBreakMinion.load();
+        snowMinion.load();
+        cowMinion.load();
     }
 }
