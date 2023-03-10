@@ -9,6 +9,7 @@ import com.qualityplus.minions.base.config.upgrades.AutomatedShippingUpgrades;
 import com.qualityplus.minions.base.config.upgrades.FuelUpgrades;
 import com.qualityplus.minions.base.config.upgrades.NormalUpgrades;
 import com.qualityplus.minions.base.minions.entity.type.CropBreakMinion;
+import eu.okaeri.configs.OkaeriConfig;
 import eu.okaeri.injector.annotation.Inject;
 import eu.okaeri.platform.core.annotation.Component;
 import lombok.Getter;
@@ -24,10 +25,11 @@ public final class MinionFiles implements ConfigFiles<Config, Inventories, Messa
     private @Inject Messages messages;
     private @Inject Commands commands;
     private @Inject Config config;
-    private @Inject DiamondMinion diamondMinion;
-    private @Inject CropBreakMinion cropBreakMinion;
-    private @Inject SnowMinion snowMinion;
-    private @Inject CowMinion cowMinion;
+    @Inject DiamondMinion diamondMinion;
+    @Inject CropBreakMinion cropBreakMinion;
+    @Inject SnowMinion snowMinion;
+    @Inject CowMinion cowMinion;
+
 
     @Override
     public CowMinion cowMinion() {return cowMinion;}
