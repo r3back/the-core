@@ -8,6 +8,7 @@ import com.qualityplus.assistant.inventory.background.Background;
 import com.qualityplus.assistant.inventory.background.DefaultBackgrounds;
 import com.qualityplus.assistant.util.faster.FasterMap;
 import com.qualityplus.assistant.util.itemstack.ItemBuilder;
+import com.qualityplus.minions.base.gui.changeitem.ChangeItemGUIConfig;
 import com.qualityplus.minions.base.gui.layout.LayoutGUIConfig;
 import com.qualityplus.minions.base.gui.main.MainMinionGUIConfig;
 import com.qualityplus.minions.base.gui.preview.MinionRecipePreviewGUIConfig;
@@ -92,6 +93,25 @@ public final class Inventories extends OkaeriConfig implements DefaultBackground
 
             .goBack(ItemBuilder.of(XMaterial.ARROW,  48, 1, "&aGo Back", Collections.singletonList("&7To %minion_egg_displayname% %minion_level_roman%")).build())
             .build();
+
+    @CustomKey("changeItemGUIConfig")
+    public ChangeItemGUIConfig changeItemGUIConfig = ChangeItemGUIConfig.builder()
+            .commonGUI(new CommonGUI(
+                    "&8Confirm Item change",
+                    36,
+                    getBackGroundFiller(),
+                    ItemBuilder.of(XMaterial.BARRIER,  36, 1, "&cClose", Arrays.asList("", "&e» &7Click to close")).enabled(false).build()
+            ))
+
+            .oldItem(ItemBuilder.of(XMaterial.STONE,  11, 1, "&a%old_item_displayname%", Arrays.asList("%old_item_lore%", "", "&e————————————————————", "&6This is the old item")).build())
+            .newItem(ItemBuilder.of(XMaterial.STONE,  15, 1, "&a%new_item_displayname%", Arrays.asList("%new_item_lore%", "", "&e————————————————————", "&6This is the new item")).build())
+            .redItem(ItemBuilder.of(XMaterial.RED_STAINED_GLASS_PANE,  12, 1, "&c»", Collections.emptyList()).build())
+            .yellowItem(ItemBuilder.of(XMaterial.YELLOW_STAINED_GLASS_PANE,  13, 1, "&e»", Collections.emptyList()).build())
+            .greenItem(ItemBuilder.of(XMaterial.LIME_STAINED_GLASS_PANE,  14, 1, "&a»", Collections.emptyList()).build())
+            .confirmItem(ItemBuilder.of(XMaterial.LIME_STAINED_GLASS_PANE,  31, 1, "&aConfirm", Arrays.asList("", "&e» &7Click to confirm")).build())
+
+            .build();
+
 
     @CustomKey("recipePreviewGUIConfig")
     public MinionRecipePreviewGUIConfig recipePreviewGUIConfig = MinionRecipePreviewGUIConfig.builder()

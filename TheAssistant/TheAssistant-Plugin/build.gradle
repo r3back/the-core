@@ -95,6 +95,7 @@ shadowJar {
         include(project(':TheAssistant:TheAssistant-NMS:NMS-V1_18_R2'))
         include(project(':TheAssistant:TheAssistant-NMS:NMS-V1_19_R1'))
         include(project(':TheAssistant:TheAssistant-NMS:NMS-V1_19_R2'))
+        include(project(':TheAssistant:TheAssistant-NMS:NMS-V1_19_R3'))
 
     }
 

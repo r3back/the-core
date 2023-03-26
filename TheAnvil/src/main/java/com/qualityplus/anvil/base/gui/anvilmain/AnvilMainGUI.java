@@ -11,22 +11,26 @@ import com.qualityplus.anvil.base.gui.anvilmain.handler.ShiftClickHandler;
 import com.qualityplus.anvil.util.AnvilFinderUtil;
 import com.qualityplus.assistant.api.util.BukkitItemUtil;
 import com.qualityplus.assistant.api.util.IPlaceholder;
+import com.qualityplus.assistant.util.StringUtils;
 import com.qualityplus.assistant.util.inventory.InventoryUtils;
 import com.qualityplus.assistant.util.itemstack.ItemStackUtils;
+import com.qualityplus.assistant.util.map.MapUtils;
 import com.qualityplus.assistant.util.placeholder.Placeholder;
+import com.qualityplus.assistant.util.placeholder.PlaceholderBuilder;
 import lombok.Getter;
 import lombok.Setter;
+import org.bukkit.Bukkit;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.EnchantmentStorageMeta;
+import org.bukkit.inventory.meta.ItemMeta;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 public final class AnvilMainGUI extends AnvilGUI {
     private @Getter final AnvilMainGUIConfig config;
@@ -84,14 +88,18 @@ public final class AnvilMainGUI extends AnvilGUI {
         if(answer.equals(SessionResult.BOTH_ITEMS_SET)) {
             ItemStack newItem = AnvilFinderUtil.getFinalItem(session);
             //Final Item
-            inventory.setItem(config.getCombinedFilledItem().slot, ItemStackUtils.makeItem(config.getCombinedFilledItem(), getPlaceholders(newItem), newItem));
+
+            ItemStack newItemInInv = ItemStackUtils.makeItem(config.getCombinedFilledItem(), getPlaceholders(newItem), newItem, false, false);
+
+
+            inventory.setItem(config.getCombinedFilledItem().slot, newItemInInv);
+
             config.getReadyToCombineSlots().forEach(slot -> inventory.setItem(slot, ItemStackUtils.makeItem(config.getReadyToCombineItem())));
             //Anvil
             setItem(config.getCombineFilledItem(), Arrays.asList(
-                    new Placeholder("anvil_enchant_exp_cost", box.files().messages().anvilPlaceholders.experienceCost.replace("%enchanting_enchant_exp_cost_amount%", String.valueOf(AnvilFinderUtil.getLevelsCost(session)))),
-                    new Placeholder("anvil_enchant_money_cost", box.files().messages().anvilPlaceholders.moneyCost.replace("%enchanting_enchant_money_cost_amount%", String.valueOf(AnvilFinderUtil.getMoneyCost(session))))
-
-                    ));
+                    new Placeholder("anvil_enchant_exp_cost", getParsed(box.files().messages().anvilPlaceholders.experienceCost)),
+                    new Placeholder("anvil_enchant_money_cost", getParsed(box.files().messages().anvilPlaceholders.moneyCost))
+            ));
         }
 
         if(!BukkitItemUtil.isNull(session.getResult()))
@@ -112,6 +120,19 @@ public final class AnvilMainGUI extends AnvilGUI {
         setItem(config.getCloseGUI());
 
         return inventory;
+    }
+    protected Map<Enchantment, Integer> getEnchantments(ItemStack itemStack) {
+        ItemMeta meta = itemStack.getItemMeta();
+
+        return meta instanceof EnchantmentStorageMeta ? new HashMap<>(((EnchantmentStorageMeta) meta).getStoredEnchants()): MapUtils.check(new HashMap<>(meta.getEnchants()));
+    }
+    private String getParsed(String msg){
+        List<IPlaceholder> placeholders = PlaceholderBuilder.create(
+                        new Placeholder("enchanting_enchant_exp_cost_amount", AnvilFinderUtil.getLevelsCost(session)),
+                        new Placeholder("enchanting_enchant_money_cost_amount", AnvilFinderUtil.getMoneyCost(session))
+        ).get();
+
+        return StringUtils.processMulti(msg, placeholders);
     }
 
     private List<IPlaceholder> getPlaceholders(ItemStack itemStack){

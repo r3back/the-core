@@ -26,13 +26,14 @@ public final class ItemStackUtils {
     }
 
 
-    public static ItemStack makeItem(ItemStack item, int amount, String name, List<String> lore) {
+    public static ItemStack makeItem(ItemStack item, int amount, String name, List<String> lore, boolean hideEnchants) {
         if (item == null)
             return null;
         item.setAmount(amount);
         ItemMeta m = item.getItemMeta();
         m.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-        m.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+        if(hideEnchants)
+            m.addItemFlags(ItemFlag.HIDE_ENCHANTS);
 
         if(lore != null && lore.size() > 0)
             m.setLore(StringUtils.color(lore));
@@ -42,7 +43,7 @@ public final class ItemStackUtils {
     }
 
     public static ItemStack makeItem(XMaterial material, int amount, String name, List<String> lore) {
-        return makeItem(material.parseItem(), amount, name, lore);
+        return makeItem(material.parseItem(), amount, name, lore, true);
     }
 
     public static ItemStack makeItem(Item item) {
@@ -61,8 +62,26 @@ public final class ItemStackUtils {
         return makeItem(item, placeholders, LORE_WRAPPER, itemStack);
     }
 
+    public static ItemStack makeItem(Item item, List<IPlaceholder> placeholders, ItemStack itemStack, boolean useItemStackAmount, boolean hideEnchantments) {
+        return makeItem(item, placeholders, LORE_WRAPPER, itemStack, useItemStackAmount, hideEnchantments);
+    }
+
     public static ItemStack makeItem(Item item, List<IPlaceholder> placeholders, ItemStack itemStack, boolean useItemStackAmount) {
         return makeItem(item, placeholders, LORE_WRAPPER, itemStack, useItemStackAmount);
+    }
+
+    public static ItemStack showEnchantments(ItemStack itemStack, boolean show){
+        ItemMeta meta = itemStack.getItemMeta();
+
+        if(show){
+            Optional.ofNullable(meta).ifPresent(m -> m.removeItemFlags(ItemFlag.HIDE_ENCHANTS));
+        }else {
+            Optional.ofNullable(meta).ifPresent(m -> m.addItemFlags(ItemFlag.HIDE_ENCHANTS));
+        }
+
+        itemStack.setItemMeta(meta);
+
+        return itemStack;
     }
 
     public static ItemStack makeItem(Item item, LoreWrapper lineWrapper) {
@@ -89,7 +108,7 @@ public final class ItemStackUtils {
 
     public static ItemStack makeItem(Item item, List<IPlaceholder> placeholders, LoreWrapper lineWrapper, ItemStack itemStack) {
         try {
-            ItemStack itemstack = makeItem(itemStack.clone(), itemStack.getAmount(), StringUtils.processMulti(item.displayName, placeholders), StringUtils.processMulti(item.lore, placeholders));
+            ItemStack itemstack = makeItem(itemStack.clone(), itemStack.getAmount(), StringUtils.processMulti(item.displayName, placeholders), StringUtils.processMulti(item.lore, placeholders), true);
 
             return getFinalItem(item, itemstack, placeholders, lineWrapper);
         } catch (Exception e) {
@@ -102,7 +121,20 @@ public final class ItemStackUtils {
         try {
             int amount = useItemStackAmount ? itemStack.getAmount() : item.amount;
 
-            ItemStack itemstack = makeItem(itemStack.clone(), amount, StringUtils.processMulti(item.displayName, placeholders), StringUtils.processMulti(item.lore, placeholders));
+            ItemStack itemstack = makeItem(itemStack.clone(), amount, StringUtils.processMulti(item.displayName, placeholders), StringUtils.processMulti(item.lore, placeholders), true);
+
+            return getFinalItem(item, itemstack, placeholders, lineWrapper);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return makeItem(XMaterial.STONE, item.amount, StringUtils.processMulti(item.displayName, placeholders), StringUtils.processMulti(item.lore, placeholders));
+        }
+    }
+
+    public static ItemStack makeItem(Item item, List<IPlaceholder> placeholders, LoreWrapper lineWrapper, ItemStack itemStack, boolean useItemStackAmount, boolean hideEnchants) {
+        try {
+            int amount = useItemStackAmount ? itemStack.getAmount() : item.amount;
+
+            ItemStack itemstack = makeItem(itemStack.clone(), amount, StringUtils.processMulti(item.displayName, placeholders), StringUtils.processMulti(item.lore, placeholders), hideEnchants);
 
             return getFinalItem(item, itemstack, placeholders, lineWrapper);
         } catch (Exception e) {

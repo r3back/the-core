@@ -1,13 +1,17 @@
 package com.qualityplus.anvil.base.config;
 
+import com.cryptomorin.xseries.XEnchantment;
 import com.cryptomorin.xseries.XMaterial;
+import com.qualityplus.anvil.base.requirement.VanillaEnchantRequirement;
 import com.qualityplus.assistant.api.gui.LoreWrapper;
+import com.qualityplus.assistant.util.faster.FasterMap;
 import eu.okaeri.configs.OkaeriConfig;
 import eu.okaeri.configs.annotation.*;
 import eu.okaeri.platform.core.annotation.Configuration;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @Configuration()
 @Header("================================")
@@ -25,6 +29,20 @@ public final class Config extends OkaeriConfig {
     @Comment("              want to start the new line with.")
     public LoreWrapper loreWrapper = new LoreWrapper(40, "&7");
     public List<XMaterial> allowedItems = getMaterials();
+
+
+    @Comment("Required levels when TheEnchanting is")
+    @Comment("disabled.")
+    public Map<XEnchantment, VanillaEnchantRequirement> requiredLevelsForVanilla = FasterMap.builder(XEnchantment.class, VanillaEnchantRequirement.class)
+            .put(XEnchantment.DAMAGE_ALL, VanillaEnchantRequirement.builder()
+                    .requiredLevelsToEnchant(FasterMap.builder(Integer.class, Integer.class)
+                            .put(2, 4)
+                            .put(3, 6)
+                            .put(4, 8)
+                            .put(5, 10)
+                            .build())
+                    .build())
+            .build();
 
     private List<XMaterial> getMaterials(){
         List<XMaterial> allowed = new ArrayList<>();

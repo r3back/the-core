@@ -104,6 +104,7 @@ public final class CowMinion extends OkaeriConfig {
                 .minionUpdateSettings(minionSettings)
                 .description(description)
                 .layoutGUISettings(layoutGUISettings)
+                .minionConfig(this)
                 .build();
     }
 

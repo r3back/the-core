@@ -6,4 +6,4 @@ api-version: 1.13
 authors: [QualityPlus]
 load: POSTWORLD
 loadbefore: [SkinsRestorer, ajLeaderboards]
-softdepend: [MythicMobs, Vault, TokenManager, PlayerPoints, WorldEdit, WorldGuard, UltraRegions, Residence, ProtocolLib, PlaceholderAPI, MVdWPlaceholderAPI]
+softdepend: [MythicMobs, Vault, TokenManager, PlayerPoints, WorldEdit, WorldGuard, UltraRegions, Residence, ProtocolLib, PlaceholderAPI, MVdWPlaceholderAPI, SlimeWorldManager]

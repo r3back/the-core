@@ -100,6 +100,7 @@ public final class DiamondMinion extends OkaeriConfig {
                 .minionUpdateSettings(minionSettings)
                 .description(description)
                 .layoutGUISettings(layoutGUISettings)
+                .minionConfig(this)
                 .build();
     }
 

@@ -25,4 +25,18 @@ public final class ItemSettings extends OkaeriConfig {
                 .map(ItemStack::clone)
                 .collect(Collectors.toList());
     }
+
+    public ItemStack getRequiredItemsToCreateSingle(){
+        for(Map.Entry<Integer, ItemStack> entry : requiredItemsToCreate.entrySet()){
+            if(BukkitItemUtil.isNull(entry.getValue())) continue;
+
+            ItemStack itemStack = entry.getValue().clone();
+
+            itemStack.setAmount(entry.getKey());
+
+            return itemStack;
+        }
+
+        return null;
+    }
 }

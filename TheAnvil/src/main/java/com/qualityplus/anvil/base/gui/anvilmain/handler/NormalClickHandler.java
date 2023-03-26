@@ -35,17 +35,17 @@ public final class NormalClickHandler implements ClickHandler{
             if(!sessionResult.equals(SessionResult.BOTH_ITEMS_SET)) return;
 
             if(AnvilFinderUtil.dontHavePermission(session, player)){
-                player.sendMessage(box.files().messages().anvilMessages.youDontHaveEnoughPermissions);
+                player.sendMessage(StringUtils.color(box.files().messages().anvilMessages.youDontHaveEnoughPermissions));
                 return;
             }
 
             if(AnvilFinderUtil.getMoneyCost(session) > TheAssistantPlugin.getAPI().getAddons().getEconomy().getMoney(player)){
-                player.sendMessage(box.files().messages().anvilMessages.youDontHaveEnoughMoney);
+                player.sendMessage(StringUtils.color(box.files().messages().anvilMessages.youDontHaveEnoughMoney));
                 return;
             }
 
             if(AnvilFinderUtil.getLevelsCost(session) > player.getLevel()){
-                player.sendMessage(box.files().messages().anvilMessages.youDontHaveEnoughLevels);
+                player.sendMessage(StringUtils.color(box.files().messages().anvilMessages.youDontHaveEnoughLevels));
                 return;
             }
 

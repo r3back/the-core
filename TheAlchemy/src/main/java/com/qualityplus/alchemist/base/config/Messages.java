@@ -15,6 +15,11 @@ import eu.okaeri.platform.core.annotation.Configuration;
 public final class Messages extends OkaeriConfig {
     public PluginMessages pluginMessages = new PluginMessages();
     public RecipeMessages recipeMessages = new RecipeMessages();
+    public StandMessages standMessages = new StandMessages();
+
+    public class StandMessages extends OkaeriConfig {
+        public String alreadyInUse = "&cYou can't open that Brewing stand it's being used by %player%!";
+    }
 
     public class RecipeMessages extends OkaeriConfig{
         public String recipeAlreadyExist = "&cThat Recipe already exists!";

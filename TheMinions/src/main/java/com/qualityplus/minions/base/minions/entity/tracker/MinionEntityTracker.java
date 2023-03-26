@@ -19,13 +19,13 @@ public final class MinionEntityTracker {
     public static final Map<UUID, MinionEntity> TRACKED_ENTITIES = new HashMap<>();
 
     @ApiStatus.Internal
-    public static void registerNewEntity(@NotNull final MinionEntity petEntity) {
-        TRACKED_ENTITIES.put(petEntity.getMinionUniqueId(), petEntity);
+    public static void registerNewEntity(@NotNull final MinionEntity minionEntity) {
+        TRACKED_ENTITIES.put(minionEntity.getMinionUniqueId(), minionEntity);
     }
 
     @ApiStatus.Internal
-    public static void unregisterEntity(@NotNull final MinionEntity petEntity) {
-        TRACKED_ENTITIES.remove(petEntity.getMinionUniqueId());
+    public static void unregisterEntity(@NotNull final MinionEntity minionEntity) {
+        TRACKED_ENTITIES.remove(minionEntity.getMinionUniqueId());
     }
 
     @NotNull

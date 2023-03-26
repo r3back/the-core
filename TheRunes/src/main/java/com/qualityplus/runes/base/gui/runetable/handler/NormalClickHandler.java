@@ -11,6 +11,7 @@ import com.qualityplus.runes.base.session.RuneSessionImpl;
 import com.qualityplus.runes.util.RuneFinderUtil;
 import com.qualityplus.runes.util.RunesUtils;
 import lombok.AllArgsConstructor;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
@@ -74,6 +75,7 @@ public final class NormalClickHandler implements ClickHandler {
             final ItemStack current = Optional.ofNullable(event.getCurrentItem()).map(ItemStack::clone).orElse(null);
 
             if(BukkitItemUtil.isNull(copy)){
+
                 RuneSession newSession = event.getSlot() == gui.getConfig().getToSacrificeSlot() ?
                         new RuneSessionImpl(player.getUniqueId(), null, session.getItemToUpgrade(), null, null) :
                         new RuneSessionImpl(player.getUniqueId(), null, null, session.getItemToSacrifice(), RunesUtils.getRuneInstance(session.getItemToSacrifice()));
@@ -84,6 +86,11 @@ public final class NormalClickHandler implements ClickHandler {
                 player.openInventory(new RuneTableGUI(box, newSession).getInventory());
                 player.setItemOnCursor(current);
             }else{
+
+                if(!BukkitItemUtil.isNull(current)){
+                    event.setCancelled(true);
+                    return;
+                }
 
                 RuneSession newSession = event.getSlot() == gui.getConfig().getToSacrificeSlot() ?
                         new RuneSessionImpl(player.getUniqueId(), null, session.getItemToUpgrade(), copy, RunesUtils.getRuneInstance(copy)) :

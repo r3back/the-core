@@ -13,21 +13,39 @@ import org.bukkit.ChatColor;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 @UtilityClass
 public final class StringUtils {
+    private static final Pattern PATTERN = Pattern.compile("#[a-fA-F0-9]{6}");
+
     public static String unColor(String string) {
         return ChatColor.stripColor(string);
     }
 
     public static String color(String string) {
-        return ChatColor.translateAlternateColorCodes('&', string);
+        String hexMessage = hexColor(string);
+
+        return ChatColor.translateAlternateColorCodes('&', hexMessage);
     }
 
     public static List<String> color(List<String> strings) {
         return strings.stream().map(StringUtils::color).collect(Collectors.toList());
+    }
+
+    public static String hexColor(String message) {
+        Matcher matcher = PATTERN.matcher(message);
+
+        while (matcher.find()) {
+            String color = message.substring(matcher.start(), matcher.end());
+            message = message.replace(color, "" + net.md_5.bungee.api.ChatColor.of(color));
+            matcher = PATTERN.matcher(message);
+        }
+
+        return ChatColor.translateAlternateColorCodes('&', message);
     }
 
     public static List<String> intStream(int from, int to){

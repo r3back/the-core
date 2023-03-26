@@ -47,7 +47,7 @@ import java.util.stream.Collectors;
 
 public final class v1_19_R2 extends AbstractNMS{
     private @Getter @Inject Plugin plugin;
-    private int players = 0;
+    private final int players = 0;
 
     @Override
     public void setBlockAge(Block block, int age) {

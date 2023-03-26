@@ -100,6 +100,7 @@ public final class SnowMinion extends OkaeriConfig {
                 .minionUpdateSettings(minionSettings)
                 .description(description)
                 .layoutGUISettings(layoutGUISettings)
+                .minionConfig(this)
                 .build();
     }
 

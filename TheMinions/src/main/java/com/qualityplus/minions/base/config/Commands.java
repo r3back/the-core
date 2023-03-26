@@ -25,4 +25,9 @@ public final class Commands extends OkaeriConfig {
     @Exclude
     public CommandDetails testCommand = new CommandDetails(Collections.singletonList("test"), "Test Purpose commands", "/TheMinions test", "theminions.test", true, Duration.ZERO.getSeconds(), true, "theminions");
 
+
+    public CommandDetails setUpgradeItemToGiveCommand = new CommandDetails(Collections.singletonList("setupgradeitemtogive"), "Set the item that a upgrade will give for specific minion", "/TheMinions setupgradeitemtogive <minion> <upgrade>", "theminions.setupgradeitemtogive", true, Duration.ZERO.getSeconds(), true, "theminions");
+    public CommandDetails setUpgradeRequiredItemCommand = new CommandDetails(Collections.singletonList("setupgraderequireditem"), "Set the item that a upgrade requires to create a new item", "/TheMinions setupgraderequireditem <minion> <upgrade>", "theminions.setupgraderequireditem", true, Duration.ZERO.getSeconds(), true, "theminions");
+    public CommandDetails setDropItemCommand = new CommandDetails(Collections.singletonList("setdropitem"), "Set the item that a minion will drop", "/TheMinions setdropitem <minion>", "theminions.setdropitem", true, Duration.ZERO.getSeconds(), true, "theminions");
+
 }

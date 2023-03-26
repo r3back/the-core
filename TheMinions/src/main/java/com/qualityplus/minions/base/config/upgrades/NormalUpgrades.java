@@ -16,6 +16,7 @@ import eu.okaeri.platform.core.annotation.Configuration;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Map;
+import java.util.Optional;
 
 @Configuration(path = "/upgrades/normal_upgrades.yml")
 @Header("================================")
@@ -70,4 +71,8 @@ public final class NormalUpgrades extends OkaeriConfig {
 
                     .build())
             .build();
+
+    public MinionUpgrade getById(final String id) {
+        return normalUpgrades.getOrDefault(id, null);
+    }
 }

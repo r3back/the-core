@@ -16,10 +16,7 @@ import eu.okaeri.injector.annotation.Inject;
 import eu.okaeri.platform.core.annotation.Component;
 import org.bukkit.Bukkit;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Component
 public final class GameEndImpl implements GameEnd {
@@ -46,15 +43,12 @@ public final class GameEndImpl implements GameEnd {
 
         TheDragonEntity theDragonEntity = TheDragon.getApi().getDragonService().getActiveDragon();
 
-        Optional<DragonReward> reward = getRewardByDamage(player);
-
         List<IPlaceholder> placeholders = Arrays.asList(
                 new Placeholder("thedragon_player_reward_xp", theDragonEntity.getXp()),
                 new Placeholder("player", player.getName()));
 
-        if(!reward.isPresent()) return;
-
-        reward.get().getCommands().forEach(command -> Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), StringUtils.processMulti(command, placeholders)));
+        getRewardByDamage(player).ifPresent(r -> executeCommands(r.getCommands(), placeholders));
+        getSpecificRewardByDamage(theDragonEntity, player).ifPresent(r -> executeCommands(r.getCommands(), placeholders));
     }
 
 
@@ -66,5 +60,18 @@ public final class GameEndImpl implements GameEnd {
                 .findFirst();
     }
 
+    private Optional<DragonReward> getSpecificRewardByDamage(TheDragonEntity entity, EventPlayer eventPlayer){
 
+        if(rewards.rewardsPerEachDragon == null) return Optional.empty();
+
+        List<DragonReward> dragonRewards = new ArrayList<>(rewards.rewardsPerEachDragon.getOrDefault(entity.getId(), Collections.emptyList()));
+        dragonRewards.sort((o1, o2) -> o2.getDamageDone() - o1.getDamageDone());
+        return dragonRewards.stream()
+                .filter(dragonReward -> eventPlayer.getDamage() >= dragonReward.getDamageDone())
+                .findFirst();
+    }
+
+    private void executeCommands(List<String> commands, List<IPlaceholder> placeholders){
+        commands.forEach(command -> Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), StringUtils.processMulti(command, placeholders)));
+    }
 }

@@ -11,6 +11,7 @@ import com.qualityplus.assistant.util.itemstack.ItemStackUtils;
 import com.qualityplus.assistant.util.placeholder.Placeholder;
 import com.qualityplus.assistant.util.time.Markable;
 import com.qualityplus.assistant.util.time.RemainingTime;
+import lombok.Getter;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -26,7 +27,7 @@ public final class AlchemistStandManager {
     private final Map<UUID, Integer> tasksMap = new HashMap<>();
 
     private final Inventory inventory;
-
+    @Getter
     private final Location location;
 
     private final Box box;

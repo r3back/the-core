@@ -27,7 +27,7 @@ public final class OpenCommand extends AssistantCommand {
 
         Player player = (Player) sender;
 
-        return openInventory(args, sender, new AlchemistStandGUI(box, player.getLocation()), syntaxMsg, mustBeAPlayer, invalidPlayer);
+        return openInventory(args, sender, new AlchemistStandGUI(box, player.getLocation(), null), syntaxMsg, mustBeAPlayer, invalidPlayer);
     }
 
     @Override

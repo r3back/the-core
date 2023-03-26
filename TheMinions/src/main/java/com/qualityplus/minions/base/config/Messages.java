@@ -20,7 +20,9 @@ public final class Messages extends OkaeriConfig {
     public PluginMessages pluginMessages = new PluginMessages();
     public MinionMessages minionMessages = new MinionMessages();
 
+
     public class MinionMessages extends OkaeriConfig {
+        public String invalidItem = "&cInvalid Item!";
         public String invalidMinion = "&cInvalid Minion!";
         public String invalidAutoShip = "&cInvalid Automated Shipping!";
         public String invalidEgg = "&cInvalid Minion Egg!";

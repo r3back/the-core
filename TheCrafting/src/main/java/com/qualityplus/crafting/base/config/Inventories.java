@@ -151,7 +151,7 @@ public final class Inventories extends OkaeriConfig implements DefaultBackground
                     ItemBuilder.of(XMaterial.BARRIER,  49, 1, "&cClose", Arrays.asList("", "&e» &7Click to close")).build()
             ))
             .lockedItem(ItemBuilder.of(XMaterial.GRAY_DYE,  4, 1, "&c???", Collections.singletonList("&7Locked Recipe")).build())
-            .lockedItem(ItemBuilder.of(XMaterial.GRAY_DYE,  4, 1, "%crafting_recipe_result_item_displayname%", Arrays.asList("%crafting_recipe_result_item_lore%", "", "&eClick to view recipe")).build())
+            .unlockedItem(ItemBuilder.of(XMaterial.GRAY_DYE,  4, 1, "%crafting_recipe_result_item_displayname%", Arrays.asList("%crafting_recipe_result_item_lore%", "", "&eClick to view recipe")).build())
 
             .categoryItem(ItemBuilder.of(XMaterial.STONE, 4, 1, "&a%category_recipe_displayname% Recipes", Arrays.asList("&7View all of the &a%category_recipe_displayname% Recipes",
                     "&7that you have unlocked!",

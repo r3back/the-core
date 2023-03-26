@@ -16,10 +16,10 @@ public final class MinionFiles implements ConfigFiles<Config, Inventories, Messa
     private @Inject NormalUpgrades normalUpgrades;
     private @Inject FuelUpgrades fuelUpgrades;
     private @Inject Inventories inventories;
-    private @Inject Skins skins;
     private @Inject Messages messages;
     private @Inject Commands commands;
     private @Inject Config config;
+    private @Inject Skins skins;
 
     @Override
     public Config config() {

@@ -98,6 +98,7 @@ public final class WheatMinion extends OkaeriConfig {
                 .minionUpdateSettings(minionSettings)
                 .description(description)
                 .layoutGUISettings(layoutGUISettings)
+                .minionConfig(this)
                 .build();
     }
 

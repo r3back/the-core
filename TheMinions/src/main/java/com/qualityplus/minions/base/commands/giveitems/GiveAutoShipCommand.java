@@ -1,4 +1,4 @@
-package com.qualityplus.minions.base.commands;
+package com.qualityplus.minions.base.commands.giveitems;
 
 import com.qualityplus.assistant.TheAssistantPlugin;
 import com.qualityplus.assistant.api.commands.command.AssistantCommand;

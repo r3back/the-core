@@ -29,6 +29,6 @@ public final class MinionArmorStandTracker {
 
     @NotNull
     public static Optional<MinionEntity> getByID(@NotNull final UUID id) {
-        return Optional.ofNullable(TRACKED_ENTITIES.get(id));
+        return Optional.ofNullable(TRACKED_ENTITIES.getOrDefault(id, null));
     }
 }

@@ -41,15 +41,18 @@ public abstract class ArmorStandMinion<T> extends MinecraftMinion implements Lis
 
     @Override
     public void load(){
+        //if(state.isLoaded()) return;
+        state.setLoaded(true);
+
         Optional.ofNullable(state.getSpawn())
                 .ifPresent(this::createArmorStand);
 
-        state.setLoaded(true);
 
     }
 
     @Override
     public void unload(){
+        state.setLoaded(false);
 
         Optional.ofNullable(armorStand)
                 .ifPresent(ArmorStandHandler::removeEntity);
@@ -57,7 +60,6 @@ public abstract class ArmorStandMinion<T> extends MinecraftMinion implements Lis
         Optional.ofNullable(breakingAnimation).ifPresent(BukkitRunnable::cancel);
         Optional.ofNullable(startAnimation).ifPresent(BukkitRunnable::cancel);
 
-        state.setLoaded(false);
     }
 
     @Override
@@ -237,6 +239,7 @@ public abstract class ArmorStandMinion<T> extends MinecraftMinion implements Lis
 
 
     private void createArmorStand(Location location){
+
         armorStand.createEntity(this, location)
                         .thenAccept(this::handlePostCreation);
     }

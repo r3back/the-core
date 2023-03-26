@@ -1,5 +1,6 @@
 package com.qualityplus.minions;
 
+import com.cryptomorin.xseries.XMaterial;
 import com.qualityplus.assistant.TheAssistantPlugin;
 import com.qualityplus.assistant.api.addons.WorldManagerAddon;
 import com.qualityplus.assistant.api.addons.response.ChunkCheckResponse;
@@ -15,10 +16,13 @@ import com.qualityplus.minions.base.minions.entity.factory.MinionEntityFactory;
 import com.qualityplus.minions.base.minions.Minions;
 import com.qualityplus.minions.base.minions.entity.tracker.MinionEntityTracker;
 import com.qualityplus.minions.base.minions.minion.layout.LayoutType;
+import com.qualityplus.minions.listener.chunk.ChunkListenerLegacy;
+import com.qualityplus.minions.listener.chunk.ChunkListenerNewest;
 import com.qualityplus.minions.persistance.MinionsRepository;
 import com.qualityplus.minions.persistance.data.MinionData;
 import com.qualityplus.minions.persistance.data.UserData;
 import com.qualityplus.minions.util.MinionAnimationUtil;
+import eu.okaeri.injector.OkaeriInjector;
 import eu.okaeri.injector.annotation.Inject;
 import eu.okaeri.persistence.document.Document;
 import eu.okaeri.platform.bukkit.annotation.Delayed;
@@ -57,6 +61,15 @@ public final class TheMinions extends OkaeriSilentPlugin {
                 .filter(inventoryHolder -> inventoryHolder instanceof MainMinionGUI)
                 .ifPresent(inventoryHolder -> ((MainMinionGUI) inventoryHolder).addItems())
         ),0, 1);
+    }
+
+    @Planned(ExecutionPhase.PRE_STARTUP)
+    private void preStartup(@Inject("injector") OkaeriInjector injector) {
+        if (XMaterial.getVersion() >= 17) {
+            Bukkit.getPluginManager().registerEvents(injector.createInstance(ChunkListenerNewest.class), this);
+        } else {
+            Bukkit.getPluginManager().registerEvents(injector.createInstance(ChunkListenerLegacy.class), this);
+        }
     }
 
     @Planned(ExecutionPhase.PRE_SHUTDOWN)
@@ -111,15 +124,18 @@ public final class TheMinions extends OkaeriSilentPlugin {
         logger.info(String.format("Plugin has loaded %s minions from database!", allData.size()));
 
         allData.forEach(data -> {
+
             if(data.getLocation() != null) {
 
                 loadChunk(data.getLocation()).thenRun(() -> {
+
                     Minion minion = Minions.getByID(data.getMinionId());
 
                     if(minion == null){
                         logger.warning("Failed to load minion " + data.getMinionId());
                         return;
                     }
+                    logger.warning("Loaded Minion with id " + data.getMinionId());
 
                     service.addData(data);
 
@@ -140,6 +156,7 @@ public final class TheMinions extends OkaeriSilentPlugin {
         WorldManagerAddon addon = TheAssistantPlugin.getAPI().getAddons().getWorldManager();
 
         Bukkit.getScheduler().runTask(this, () -> {
+
             addon.chunksAreLoaded(spawn).thenAccept(response -> {
 
                 if(!response.isCanBeLoaded()) return;

@@ -8,12 +8,12 @@ import eu.okaeri.platform.core.annotation.Component;
 import org.bukkit.plugin.Plugin;
 
 @Component
-public final class EnchantingBox implements Box {
-    private @Inject ConfigFiles<Config, RecipesFile, Inventories, Messages, Commands> files;
+public final class AnvilBox implements Box {
+    private @Inject ConfigFiles<Config, Inventories, Messages, Commands> files;
     private @Inject Plugin plugin;
 
     @Override
-    public ConfigFiles<Config, RecipesFile, Inventories, Messages, Commands> files() {
+    public ConfigFiles<Config, Inventories, Messages, Commands> files() {
         return files;
     }
 
