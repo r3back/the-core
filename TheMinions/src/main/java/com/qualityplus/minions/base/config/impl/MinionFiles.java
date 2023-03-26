@@ -5,6 +5,7 @@ import com.qualityplus.minions.base.config.*;
 import com.qualityplus.minions.base.config.minions.CowMinion;
 import com.qualityplus.minions.base.config.minions.DiamondMinion;
 import com.qualityplus.minions.base.config.minions.SnowMinion;
+import com.qualityplus.minions.base.config.minions.WheatMinion;
 import com.qualityplus.minions.base.config.upgrades.AutomatedShippingUpgrades;
 import com.qualityplus.minions.base.config.upgrades.FuelUpgrades;
 import com.qualityplus.minions.base.config.upgrades.NormalUpgrades;
@@ -14,7 +15,6 @@ import eu.okaeri.platform.core.annotation.Component;
 import lombok.Getter;
 
 @Component
-@Getter
 public final class MinionFiles implements ConfigFiles<Config, Inventories, Messages, Commands, Skins, AutomatedShippingUpgrades, FuelUpgrades, NormalUpgrades> {
     private @Inject AutomatedShippingUpgrades autoSell;
     private @Inject NormalUpgrades normalUpgrades;
@@ -25,7 +25,7 @@ public final class MinionFiles implements ConfigFiles<Config, Inventories, Messa
     private @Inject Commands commands;
     private @Inject Config config;
     private @Inject DiamondMinion diamondMinion;
-    private @Inject CropBreakMinion cropBreakMinion;
+    private @Inject WheatMinion cropBreakMinion;
     private @Inject SnowMinion snowMinion;
     private @Inject CowMinion cowMinion;
 
@@ -36,8 +36,13 @@ public final class MinionFiles implements ConfigFiles<Config, Inventories, Messa
     }
 
     @Override
-    public Skins souls() {
+    public Skins skins() {
         return skins;
+    }
+
+    @Override
+    public AutomatedShippingUpgrades getAutoSell() {
+        return autoSell;
     }
 
     @Override

@@ -5,7 +5,6 @@ import com.qualityplus.assistant.api.commands.command.AssistantCommand;
 import com.qualityplus.assistant.util.StringUtils;
 import com.qualityplus.minions.api.box.Box;
 import com.qualityplus.minions.base.minions.minion.skin.MinionSkin;
-import com.qualityplus.minions.base.minions.minion.upgrade.MinionFuelUpgrade;
 import eu.okaeri.commons.bukkit.time.MinecraftTimeEquivalent;
 import eu.okaeri.injector.annotation.Inject;
 import eu.okaeri.platform.bukkit.annotation.Delayed;
@@ -28,7 +27,7 @@ public final class GiveSkinCommand extends AssistantCommand {
         if(args.length == 3){
             Player toGive = Bukkit.getPlayer(args[1]);
 
-            MinionSkin skin = box.files().souls().minionSkins.getOrDefault(args[2], null);
+            MinionSkin skin = box.files().skins().minionSkins.getOrDefault(args[2], null);
 
             if(toGive == null){
                 sender.sendMessage(StringUtils.color(box.files().messages().pluginMessages.invalidPlayer));
@@ -51,7 +50,7 @@ public final class GiveSkinCommand extends AssistantCommand {
     @Override
     public List<String> onTabComplete(CommandSender commandSender, org.bukkit.command.Command command, String label, String[] args) {
         return args.length == 2 ? null : args.length == 3 ?
-                new ArrayList<>(box.files().souls().minionSkins.keySet()) : Collections.emptyList();
+                new ArrayList<>(box.files().skins().minionSkins.keySet()) : Collections.emptyList();
     }
 
     @Delayed(time = MinecraftTimeEquivalent.SECOND)

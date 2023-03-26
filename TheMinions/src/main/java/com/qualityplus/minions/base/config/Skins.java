@@ -78,7 +78,7 @@ public final class Skins extends OkaeriConfig {
 
 
     public static Optional<MinionSkin> getSkin(String skin){
-        Skins skins = TheMinions.getApi().getConfigFiles().souls();
+        Skins skins = TheMinions.getApi().getConfigFiles().skins();
         return Optional.ofNullable(skins.minionSkins.getOrDefault(skin, null));
     }
 

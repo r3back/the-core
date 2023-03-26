@@ -7,7 +7,7 @@ public interface ConfigFiles<C, I, M, CMD, S, AS, FU, U> extends ConfigReloader 
     I inventories();
     M messages();
     CMD commands();
-    S souls();
+    S skins();
     AS getAutoSell();
     FU fuelUpgrades();
     U upgrades();
