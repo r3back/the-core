@@ -25,6 +25,7 @@ public final class Messages extends OkaeriConfig {
 
         public String addedAmount = "&aYou added &2%amount% &alevels of &2%object% &ato &2%player%&a!, new level is &2%new_level%";
         public String removedAmount = "&aYou removed &2%amount% &alevels of &2%object% &ato &2%player%&a!, new level is &2%new_level%";
+        public String successfullyResetStatsAndSkills = "&aYou successfully have reset stats for &2%player%&a!";
 
     }
 
