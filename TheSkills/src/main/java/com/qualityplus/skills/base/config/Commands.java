@@ -31,5 +31,6 @@ public final class Commands extends OkaeriConfig {
     public CommandDetails statsCommand = new CommandDetails(Collections.singletonList("stats"), "Stats Menu Command", "/TheSkills stats", "theskills.stats", true, Duration.ZERO.getSeconds(), true, "theskills");
     public CommandDetails perksCommand = new CommandDetails(Collections.singletonList("perks"), "Perks Menu Command", "/TheSkills perks", "theskills.perks", true, Duration.ZERO.getSeconds(), true, "theskills");
     public CommandDetails helpCommand = new CommandDetails(Collections.singletonList("help"), "Show all commands", "/TheSkills help", "theskills.help", true, Duration.ZERO.getSeconds(), true, "theskills");
+    public CommandDetails resetCommand = new CommandDetails(Collections.singletonList("reset"), "Reset Skills and Stats", "/TheSkills reset <player>", "theskills.reset", true, Duration.ZERO.getSeconds(), true, "theskills");
 
 }

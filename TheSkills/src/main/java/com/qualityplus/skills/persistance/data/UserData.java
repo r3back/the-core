@@ -12,4 +12,11 @@ public final class UserData extends Document {
     private UUID uuid;
     private String name;
     private UserSkills skills = new UserSkills();
+
+    public void resetData(){
+        skills.getXp().clear();
+        skills.getLevel().clear();
+
+        skills.fillIfEmpty();
+    }
 }
