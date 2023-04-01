@@ -50,6 +50,8 @@ public final class RecipeEditionImpl implements RecipeEdition, Listener {
 
         if(message == null) return;
 
+        event.setCancelled(true);
+
         if(!message.equalsIgnoreCase("cancel") && !message.equalsIgnoreCase("exit")){
             List<IPlaceholder> placeholder = CraftingPlaceholderUtils.getRecipePlaceholders(editionObject.getRecipe());
 
@@ -65,13 +67,15 @@ public final class RecipeEditionImpl implements RecipeEdition, Listener {
                 editionObject.getRecipe().setDisplayName(message);
 
             String toSend = editionObject.getType() == EditionType.PERMISSION ? box.files().messages().recipeMessages.successfullySetPermission :
-                            editionObject.getType() == EditionType.DISPLAY_NAME ? box.files().messages().recipeMessages.successfullySetDisplayName :
+                    editionObject.getType() == EditionType.DISPLAY_NAME ? box.files().messages().recipeMessages.successfullySetDisplayName :
                             editionObject.getType() == EditionType.SLOT ? box.files().messages().recipeMessages.successfullySetSlot :
-                            editionObject.getType() == EditionType.PAGE ? box.files().messages().recipeMessages.successfullySetPage :
-                            box.files().messages().recipeMessages.successfullySetCategory;
+                                    editionObject.getType() == EditionType.PAGE ? box.files().messages().recipeMessages.successfullySetPage :
+                                            box.files().messages().recipeMessages.successfullySetCategory;
 
             player.sendMessage(StringUtils.processMulti(toSend, placeholder));
         }
+
+        removeEditMode(player.getUniqueId());
 
         Bukkit.getScheduler().runTask(box.plugin(), () -> player.openInventory(new RecipeIndividualGUI(box, editionObject.getRecipe(), this).getInventory()));
     }
