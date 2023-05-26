@@ -1,6 +1,7 @@
 package com.qualityplus.skills.api.effect;
 
 import com.qualityplus.assistant.api.util.IPlaceholder;
+import com.qualityplus.skills.api.listener.ExtraListener;
 import com.qualityplus.skills.base.skill.gui.GUIOptions;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,7 +22,7 @@ public abstract class CommonObject {
     protected List<String> description;
     protected GUIOptions guiOptions;
     protected final List<Listener> registeredListeners = new ArrayList<>();
-    protected final List<Class<? extends Listener>> extraListeners = new ArrayList<>();
+    protected final List<Class<? extends ExtraListener>> extraListeners = new ArrayList<>();
 
     protected @Getter @Setter double initialAmount;
 

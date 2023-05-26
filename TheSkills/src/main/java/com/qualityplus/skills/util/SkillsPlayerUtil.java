@@ -1,6 +1,7 @@
 package com.qualityplus.skills.util;
 
 import lombok.experimental.UtilityClass;
+import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
 
@@ -15,6 +16,8 @@ public final class SkillsPlayerUtil {
 
         for(double i = 1.5D; i<10D; i+=0.5D)
             if(player.hasPermission("theskills.xp.multiplier." + i)) multiplier = Math.max(multiplier, i);
+
+
 
         return multiplier;
     }

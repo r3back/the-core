@@ -13,12 +13,14 @@ import java.util.UUID;
 @Getter
 @Setter
 public final class EventPlayer implements GamePlayer {
+    private PlayerStatus status;
+    private final String name;
     private final UUID uuid;
     private double damage;
-    private final String name;
 
-    public EventPlayer(UUID uuid, double damage){
+    public EventPlayer(final UUID uuid, final double damage, final PlayerStatus status){
         this.uuid = uuid;
+        this.status = status;
         this.damage = damage;
         this.name = Bukkit.getOfflinePlayer(uuid).getName();
     }
@@ -51,5 +53,17 @@ public final class EventPlayer implements GamePlayer {
     @Override
     public void sendMessage(List<String> message) {
         message.forEach(this::sendMessage);
+    }
+
+    public void switchStatus() {
+        if (this.status == PlayerStatus.ACTIVE) {
+            this.status = PlayerStatus.INACTIVE;
+        } else {
+            this.status = PlayerStatus.ACTIVE;
+        }
+    }
+
+    public boolean isActive() {
+        return this.status == PlayerStatus.ACTIVE;
     }
 }

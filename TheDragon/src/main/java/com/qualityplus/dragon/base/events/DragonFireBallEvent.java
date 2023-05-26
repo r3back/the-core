@@ -10,6 +10,7 @@ import com.qualityplus.dragon.base.handler.ParticleHandlerImpl;
 import com.qualityplus.dragon.base.handler.ProjectileHandlerImpl;
 import org.bukkit.Bukkit;
 import xyz.xenondevs.particle.ParticleEffect;
+import com.qualityplus.dragon.api.handler.ProjectileHandler.ProjectileType;
 
 public final class DragonFireBallEvent extends DragonGameEvent {
     private final ProjectileHandler projectileEvent;
@@ -26,21 +27,26 @@ public final class DragonFireBallEvent extends DragonGameEvent {
     }
 
     @Override
-    public void start(DragonGame dragonGame) {
-        time = 0;
-        task = Bukkit.getScheduler().runTaskTimerAsynchronously(TheDragon.getApi().getPlugin(), () -> {
-            move(dragonGame);
-            //Cancelling Event
-            if(time >= duration)
-                finish();
-            else
+    public void start(final DragonGame dragonGame) {
+        this.time = 0;
+
+        this.task = Bukkit.getScheduler().runTaskTimerAsynchronously(TheDragon.getApi().getPlugin(), () -> {
+
+            this.move(dragonGame);
+
+            if (this.time >= this.duration) {
+                //Cancelling Event
+                this.finish();
+            } else if(this.time % this.repeat == 0) {
                 //Check Event
-                if(time % repeat == 0)
-                    projectileEvent.shoot(ProjectileHandler.ProjectileType.DRAGONBALL, damage, amount, dragonGame);
+                this.projectileEvent.shoot(ProjectileType.DRAGONBALL, this.damage, this.amount, dragonGame);
+            }
 
-            if(particle) particleEvent.spell(dragonGame, ParticleEffect.SPELL_WITCH);
+            if(this.particle) {
+                this.particleEvent.spell(dragonGame, ParticleEffect.SPELL_WITCH);
+            }
 
-            time+=1;
+            this.time+=1;
         }, 0, 20);
     }
 }

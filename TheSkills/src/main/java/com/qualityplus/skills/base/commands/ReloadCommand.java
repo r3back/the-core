@@ -5,6 +5,7 @@ import com.qualityplus.assistant.api.commands.command.AssistantCommand;
 import com.qualityplus.assistant.util.StringUtils;
 import com.qualityplus.skills.TheSkills;
 import com.qualityplus.skills.api.box.Box;
+import com.qualityplus.skills.api.provider.MinionsProvider;
 import com.qualityplus.skills.base.skill.registry.Skills;
 import eu.okaeri.commons.bukkit.time.MinecraftTimeEquivalent;
 import eu.okaeri.injector.annotation.Inject;
@@ -17,8 +18,9 @@ import java.util.List;
 
 @Component
 public final class ReloadCommand extends AssistantCommand {
-    private @Inject Box box;
+    private @Inject MinionsProvider minionsProvider;
     private @Inject TheSkills theSkills;
+    private @Inject Box box;
 
     @Override
     public boolean execute(CommandSender sender, String[] args) {
@@ -29,7 +31,7 @@ public final class ReloadCommand extends AssistantCommand {
 
             box.skillFiles().reloadFiles();
 
-            Skills.reloadSkills(box);
+            Skills.reloadSkills(box, minionsProvider);
 
             TheAssistantPlugin.getAPI().getCommandProvider().reloadCommands();
         }else

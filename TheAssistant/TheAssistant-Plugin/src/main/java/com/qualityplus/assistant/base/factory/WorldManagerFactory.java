@@ -20,11 +20,23 @@ public final class WorldManagerFactory {
 
     @Bean
     public WorldManagerAddon configureSlimeWorldManager() {
-        if(resolver.isPlugin("SlimeWorldManager")) {
+        if(resolver.isPlugin("SlimeWorldManager") && classExists()) {
             WorldManagerAddon addon = injector.createInstance(SlimeWorldAddon.class);
             addon.setup();
             return addon;
         }else
             return injector.createInstance(DefaultWorldManagerAddon.class);
+    }
+
+    private boolean classExists() {
+        try {
+            Class.forName("com.grinderwolf.swm.api.world.properties.SlimePropertyMap");
+            Class.forName("com.grinderwolf.swm.api.world.SlimeWorld");
+            Class.forName("com.grinderwolf.swm.api.loaders.SlimeLoader");
+
+            return true;
+        }catch (Exception e) {
+            return false;
+        }
     }
 }

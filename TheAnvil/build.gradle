@@ -12,7 +12,7 @@ dependencies {
     compileOnly 'com.zaxxer:HikariCP:4.0.3'
 
     //XMaterial
-    compileOnly 'com.github.cryptomorin:XSeries:9.1.0'
+    compileOnly 'com.github.cryptomorin:XSeries:9.2.0'
 
     //NBT API
     compileOnly 'de.tr7zw:item-nbt-api:2.11.0-SNAPSHOT'

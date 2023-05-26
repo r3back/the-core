@@ -8,46 +8,49 @@ import com.qualityplus.dragon.TheDragon;
 import com.qualityplus.dragon.api.TheDragonAPI;
 import com.qualityplus.dragon.api.game.DragonGame;
 import com.qualityplus.dragon.api.game.dragon.TheDragonEntity;
-import com.qualityplus.dragon.api.game.structure.type.DragonSpawn;
 import com.qualityplus.dragon.api.service.BossBarService;
 import com.qualityplus.dragon.base.configs.Messages;
-import com.qualityplus.dragon.base.game.player.EventPlayer;
 import eu.okaeri.injector.annotation.Inject;
 import eu.okaeri.platform.core.annotation.Component;
 import org.bukkit.Bukkit;
-import org.bukkit.Location;
-import org.bukkit.entity.Player;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
+/**
+ * Implementation of {@link BossBarService}
+ */
 @Component
 public final class BossBarServiceImpl implements BossBarService {
+    private static final int DRAGON_RADIUS_AROUND = 100;
     private @Inject DragonGame dragonGame;
     private @Inject Messages messages;
-
     private Integer task;
 
     @Override
-    public void start(){
-        addTargetPlayers();
-        task = Bukkit.getScheduler().scheduleAsyncRepeatingTask(TheDragon.getApi().getPlugin(), () -> {
-            if (dragonGame.isActive())
-                sendBossBar();
-        }, 20, 20);
+    public void startBossBar(){
+        this.task = Bukkit.getScheduler().scheduleAsyncRepeatingTask(TheDragon.getApi().getPlugin(), this::handleBossBar, 20, 20);
     }
 
     @Override
-    public void stop(){
-        if(task != null) Bukkit.getScheduler().cancelTask(task);
+    public void stopBossBar(){
+        Optional.ofNullable(this.task).ifPresent(Bukkit.getScheduler()::cancelTask);
 
         TheAssistantPlugin.getAPI().getNms().sendBossBar(null, null);
+    }
+
+    private void handleBossBar() {
+        if (this.dragonGame.isActive()) {
+            return;
+        }
+
+        sendBossBar();
     }
 
     private void sendBossBar(){
         TheDragonAPI api = TheDragon.getApi();
 
         TheDragonEntity theDragonEntity = api.getDragonService().getActiveDragon();
+
         int remaining = Optional.ofNullable(api.getGameService().getSwitchableEvent())
                 .map(switchableEvent -> switchableEvent.getCurrentEvent().getRemainingTime())
                 .orElse(0);
@@ -58,26 +61,10 @@ public final class BossBarServiceImpl implements BossBarService {
                 new Placeholder("thedragon_dragon_health", theDragonEntity.getHealth()),
                 new Placeholder("thedragon_next_event_remaining_time", remaining));
 
-        String message = StringUtils.processMulti(messages.gameMessages.gameEventBossBar, placeholders);
+        final String message = StringUtils.processMulti(messages.gameMessages.gameEventBossBar, placeholders);
 
-        TheDragon.getApi().getUserService().getUsers().stream()
-                .map(EventPlayer::getPlayer)
-                .filter(Objects::nonNull)
+        dragonGame.getPlayers()
                 .forEach(player -> TheAssistantPlugin.getAPI().getNms().sendBossBar(player, message));
-    }
-
-    private void addTargetPlayers(){
-        Optional<DragonSpawn> spawn = TheDragon.getApi().getStructureService().getSpawn();
-        if(!spawn.isPresent()) return;
-        getNearby(spawn.get().getLocation())
-                .forEach(player -> TheDragon.getApi().getUserService().getUsers().add(new EventPlayer(player.getUniqueId(), 0)));
-    }
-
-    private Collection<Player> getNearby(Location location){
-        return location.getWorld().getNearbyEntities(location, 100, 100, 100).stream()
-                .filter(en -> en instanceof Player)
-                .map(entity -> (Player) entity)
-                .collect(Collectors.toList());
     }
 }
 

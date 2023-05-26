@@ -1,6 +1,7 @@
 package com.qualityplus.bank.base.service;
 
-import com.qualityplus.bank.api.handler.TransactionHandler;
+import com.qualityplus.bank.api.handler.TransactionGateway;
+import com.qualityplus.bank.api.response.TrxResponse;
 import com.qualityplus.bank.api.service.BankService;
 import com.qualityplus.bank.persistence.data.BankData;
 import com.qualityplus.bank.persistence.data.BankTransaction;
@@ -16,25 +17,25 @@ import java.util.UUID;
 @Component
 public final class BankServiceImpl implements BankService {
     private final Map<UUID, BankData> dataMap = new HashMap<>();
-    private @Inject TransactionHandler service;
+    private @Inject TransactionGateway gateway;
 
     @Override
-    public Optional<BankData> getData(UUID uuid) {
-        return Optional.ofNullable(dataMap.getOrDefault(uuid, null));
+    public Optional<BankData> getData(final UUID uuid) {
+        return Optional.ofNullable(this.dataMap.getOrDefault(uuid, null));
     }
 
     @Override
-    public void addData(BankData data) {
-        dataMap.put(data.getUuid(), data);
+    public void addData(final BankData data) {
+        this.dataMap.put(data.getUuid(), data);
     }
 
     @Override
-    public void removeData(BankData data) {
-        dataMap.remove(data.getUuid());
+    public void removeData(final BankData data) {
+        this.dataMap.remove(data.getUuid());
     }
 
     @Override
-    public void handleTransaction(Player player, BankTransaction transaction) {
-        service.handleTransaction(player, getData(player.getUniqueId()).orElse(new BankData()), transaction);
+    public Optional<TrxResponse> handleTransaction(final Player player, final BankTransaction transaction, final boolean sendMessages) {
+        return getData(player.getUniqueId()).flatMap(data -> this.gateway.handle(data, transaction, sendMessages));
     }
 }

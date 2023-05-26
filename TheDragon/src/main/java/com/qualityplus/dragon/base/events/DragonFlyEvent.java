@@ -7,27 +7,22 @@ import com.qualityplus.dragon.base.configs.DragonEventsFile;
 import org.bukkit.Bukkit;
 
 public final class DragonFlyEvent extends DragonGameEvent {
-
-    public DragonFlyEvent(DragonEventsFile.SerializableEvent event) {
+    public DragonFlyEvent(final DragonEventsFile.SerializableEvent event) {
         super(event.generalSettings.secondsDuration, event.generalSettings.repeatEventAfterSeconds, event.generalSettings.dragonSpeedAmplifier, event.generalSettings.keepDragonAFK);
     }
 
     @Override
-    public void start(DragonGame dragonGame) {
-        time = 0;
-        task = Bukkit.getScheduler().runTaskTimerAsynchronously(TheDragon.getApi().getPlugin(), () -> {
-            //Cancelling Event
-            if(time >= duration)
+    public void start(final DragonGame dragonGame) {
+        this.time = 0;
+
+        this.task = Bukkit.getScheduler().runTaskTimerAsynchronously(TheDragon.getApi().getPlugin(), () -> {
+
+            if (this.time >= this.duration) {
+                //Cancelling Event
                 finish();
-            else
-                //Check Event
-                if(time % repeat == 0)
-                    manageDragon();
-            time++;
+            }
+
+            this.time++;
         }, 0, 20);
-    }
-
-    private void manageDragon(){
-
     }
 }

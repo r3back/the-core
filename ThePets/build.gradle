@@ -11,7 +11,7 @@ dependencies {
     compileOnly project(':TheSkills')
     compileOnly 'org.spigotmc:spigot-api:1.18.1-R0.1-SNAPSHOT'
     compileOnly 'xyz.xenondevs:particle:1.8.1'
-    compileOnly 'com.github.cryptomorin:XSeries:9.1.0'
+    compileOnly 'com.github.cryptomorin:XSeries:9.2.0'
     compileOnly 'com.ticxo.modelengine:api:R3.0.1'
     compileOnly 'com.github.Archy-X:AureliumSkills:Beta1.3.11'
     compileOnly 'de.tr7zw:item-nbt-api:2.11.0-SNAPSHOT'

@@ -4,7 +4,7 @@ project.version = '1.0.0'
 dependencies {
     compileOnly 'eu.okaeri:okaeri-persistence-mongo:1.5.12'
     compileOnly 'com.zaxxer:HikariCP:4.0.3'
-    compileOnly 'com.github.cryptomorin:XSeries:9.1.0'
+    compileOnly 'com.github.cryptomorin:XSeries:9.2.0'
     compileOnly 'org.spigotmc:spigot-api:1.18-R0.1-SNAPSHOT'
     implementation 'eu.okaeri:okaeri-platform-bukkit:0.4.0-preview.72'
 

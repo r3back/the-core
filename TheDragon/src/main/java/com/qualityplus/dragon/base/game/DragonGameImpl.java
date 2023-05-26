@@ -9,19 +9,26 @@ import com.qualityplus.dragon.api.exception.check.NoStructureException;
 import com.qualityplus.dragon.api.game.DragonGame;
 import com.qualityplus.dragon.api.game.structure.type.DragonSpawn;
 import com.qualityplus.dragon.api.service.StructureService;
+import com.qualityplus.dragon.base.game.player.EventPlayer;
 import eu.okaeri.injector.annotation.Inject;
 import eu.okaeri.platform.core.annotation.Component;
 import eu.okaeri.tasker.core.Tasker;
 import lombok.Getter;
+import org.bukkit.entity.Player;
 
+import java.util.List;
+import java.util.Objects;
+import java.util.function.Predicate;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 /**
  * Handles the whole Dragon Game
  */
-@Getter
+
 @Component
 public final class DragonGameImpl implements DragonGame {
+    @Getter
     private boolean active = false;
     private @Inject Logger logger;
     private @Inject Tasker tasker;
@@ -63,7 +70,7 @@ public final class DragonGameImpl implements DragonGame {
             api.getDragonService().killDragon()
                     .thenRun(api.getStructureService()::deSpawnCrystals)
                     .thenRun(api.getUserService()::sendFinishMessage)
-                    .thenRun(api.getUserService()::stopBossBar)
+                    .thenRun(api.getBossBarService()::stopBossBar)
                     .thenRun(api.getUserService()::resetData)
                     .thenRun(api.getGameService()::stopSwitching);
 
@@ -72,19 +79,41 @@ public final class DragonGameImpl implements DragonGame {
 
     @Override
     public boolean canStart() throws NoSpawnException, NoStructureException {
-        StructureService service = TheDragon.getApi().getStructureService();
+        final StructureService service = TheDragon.getApi().getStructureService();
 
-        DragonSpawn spawn = service.getSpawn().get();
+        final DragonSpawn spawn = service.getSpawn().orElse(null);
 
-        if(spawn == null || spawn.getLocation() == null) throw new NoSpawnException();
+        if (spawn == null || spawn.getLocation() == null) {
+            throw new NoSpawnException();
+        }
 
-        if(!service.schematicExist()) throw new NoStructureException();
+        if (!service.schematicExist()) {
+            throw new NoStructureException();
+        }
 
         return true;
     }
 
-    private void runGame(PasterSession session){
-        TheDragonAPI api = TheDragon.getApi();
+    @Override
+    public List<Player> getPlayers() {
+        return getPlayers(player -> true);
+    }
+
+    @Override
+    public List<Player> getPlayers(Predicate<EventPlayer> filter) {
+        final TheDragonAPI api = TheDragon.getApi();
+
+        return api.getUserService()
+                .getUsers()
+                .stream()
+                .filter(filter)
+                .map(EventPlayer::getPlayer)
+                .filter(Objects::nonNull)
+                .collect(Collectors.toList());
+    }
+
+    private void runGame(final PasterSession session){
+        final TheDragonAPI api = TheDragon.getApi();
 
         api.getStructureService().clearAltars();
         api.getStructureService().spawnCrystals();
@@ -93,15 +122,15 @@ public final class DragonGameImpl implements DragonGame {
         api.getGameService()
                 .startCountdown()
                 .thenRun(() -> api.getGameService().makeBlockExplosion(session)
-                .thenRun(this::startFinalPhase));
+                .thenRun(this::startGame));
 
     }
 
-    private void startFinalPhase(){
-        TheDragonAPI api = TheDragon.getApi();
+    private void startGame(){
+        final TheDragonAPI api = TheDragon.getApi();
 
+        api.getBossBarService().startBossBar();
         api.getDragonService().spawnDragon();
-        api.getUserService().startBossBar();
         api.getGameService().switchEvents();
     }
 }

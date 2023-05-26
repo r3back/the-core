@@ -2,18 +2,24 @@ package com.qualityplus.skills.base.skill.registry;
 
 import com.google.common.collect.ImmutableSet;
 import com.qualityplus.skills.api.box.Box;
+import com.qualityplus.skills.api.listener.ExtraListener;
+import com.qualityplus.skills.api.provider.MinionsProvider;
 import com.qualityplus.skills.base.skill.Skill;
+import com.qualityplus.skills.base.skill.skills.blockbreak.BlockBreakSkill;
 import eu.okaeri.commons.bukkit.time.MinecraftTimeEquivalent;
 import eu.okaeri.injector.annotation.Inject;
 import eu.okaeri.platform.bukkit.annotation.Delayed;
+import eu.okaeri.platform.core.annotation.Bean;
 import eu.okaeri.platform.core.annotation.Component;
 import org.bukkit.NamespacedKey;
+import org.bukkit.block.Block;
 import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
@@ -21,6 +27,7 @@ import java.util.stream.Stream;
 
 @Component
 public final class Skills {
+    private static final String REGISTERED_SKILLS_MESSAGE = "Registered %s Skills!";
     private static final Map<String, Skill> SKILL_REGISTRY = new HashMap<>();
 
     @ApiStatus.Internal
@@ -38,6 +45,7 @@ public final class Skills {
         return SKILL_REGISTRY.get(key.getKey());
     }
 
+
     public static Set<Skill> values() {
         return ImmutableSet.copyOf(SKILL_REGISTRY.values());
     }
@@ -47,7 +55,7 @@ public final class Skills {
     }
 
     @Delayed(time = MinecraftTimeEquivalent.SECOND, async = true)
-    public static void reloadSkills(@Inject Box box) {
+    public static void reloadSkills(@Inject Box box, @Inject MinionsProvider provider) {
         values().forEach(Skill::unregisterListeners);
 
         Stream.of(box.skillFiles().dungeoneering().getSkill(),
@@ -63,13 +71,24 @@ public final class Skills {
                         box.skillFiles().mining().getSkill(),
                         box.skillFiles().taming().getSkill())
                 .filter(Skill::isEnabled)
-                .forEach(skill -> {
-                    skill.register();
-                    skill.registerListeners(box);
-                });
+                .forEach(Skill::register);
 
-        box.log().info("Registered " + values().size() + " Skills!");
+        Skills.registerListeners(box, provider);
+
+        box.log().info(String.format(REGISTERED_SKILLS_MESSAGE, values().size()));
 
     }
 
+    private static void registerListeners(Box box, MinionsProvider provider) {
+        for (Skill skill : SKILL_REGISTRY.values()) {
+
+            if (skill instanceof BlockBreakSkill) {
+                Optional<Class<? extends ExtraListener>> listener = provider.getExtraListener();
+
+                listener.ifPresent(skill::addExtraListener);
+            }
+
+            skill.registerListeners(box);
+        }
+    }
 }

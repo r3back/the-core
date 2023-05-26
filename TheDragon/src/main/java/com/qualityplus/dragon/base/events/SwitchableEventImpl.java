@@ -5,32 +5,44 @@ import com.qualityplus.dragon.api.event.SwitchableEvents;
 import lombok.RequiredArgsConstructor;
 
 import java.util.Map;
+import java.util.Optional;
 
 @RequiredArgsConstructor
 public final class SwitchableEventImpl implements SwitchableEvents {
     private final Map<Integer, DragonGameEvent> events;
     private DragonGameEvent currentEvent;
 
+    @Override
     public DragonGameEvent getNext(){
-        if(currentEvent == null){
-            currentEvent = events.getOrDefault(1, null);
+        if(this.currentEvent == null){
+            this.currentEvent = this.events.getOrDefault(1, null);
         }else{
-            Integer next = getCurrentPosEvent();
-            if(next != null){
-                next++;
-                currentEvent = events.containsKey(next) ? events.get(next) : events.getOrDefault(1, null);
-            }
+            final Optional<Integer> next = getCurrentPosEvent();
+
+            next.ifPresent(this::setupNextEvent);
         }
-        return currentEvent;
+        return this.currentEvent;
     }
 
+    @Override
     public DragonGameEvent getCurrentEvent(){
         return currentEvent;
     }
 
-    private Integer getCurrentPosEvent(){
-        for(Integer integer : events.keySet())
-            if(events.get(integer) == currentEvent) return integer;
-        return null;
+    private Optional<Integer> getCurrentPosEvent(){
+        return events.keySet()
+                .stream()
+                .filter(value -> this.events.get(value) == currentEvent)
+                .findFirst();
+    }
+
+    private void setupNextEvent(final Integer currentEvent) {
+        final int newValue = currentEvent + 1;
+
+        if (this.events.containsKey(newValue)) {
+            this.currentEvent = this.events.get(newValue);
+        } else {
+            this.currentEvent = this.events.getOrDefault(1, null);
+        }
     }
 }

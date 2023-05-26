@@ -74,6 +74,11 @@ public final class FarmingConfig extends OkaeriConfig implements SkillFile {
                         .put(XMaterial.CARROTS, 4D)
                         .put(XMaterial.POTATOES, 5D)
                         .build())
+                .minionXpRewards(ImmutableMap.<XMaterial, Double>builder()
+                        .put(XMaterial.WHEAT, 2D)
+                        .put(XMaterial.CARROTS, 4D)
+                        .put(XMaterial.POTATOES, 5D)
+                        .build())
                 .build();
     }
 

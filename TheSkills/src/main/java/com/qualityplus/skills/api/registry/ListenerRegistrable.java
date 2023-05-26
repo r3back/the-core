@@ -1,6 +1,8 @@
 package com.qualityplus.skills.api.registry;
 
 import com.qualityplus.skills.api.box.Box;
+import com.qualityplus.skills.api.listener.ExtraListener;
+import com.qualityplus.skills.base.skill.Skill;
 import org.bukkit.Bukkit;
 import org.bukkit.event.HandlerList;
 import org.bukkit.event.Listener;
@@ -9,7 +11,7 @@ import java.util.List;
 import java.util.Objects;
 
 public interface ListenerRegistrable extends Listener{
-    List<Class<? extends Listener>> getExtraListeners();
+    List<Class<? extends ExtraListener>> getExtraListeners();
     List<Listener> getRegisteredListeners();
 
     default void registerListeners(Box box){
@@ -17,8 +19,10 @@ public interface ListenerRegistrable extends Listener{
 
         getRegisteredListeners().add(this);
 
-        for(Class<? extends Listener> listener : getExtraListeners()){
-            Listener instance = box.inject().createInstance(listener);
+        for(Class<? extends ExtraListener> listener : getExtraListeners()){
+            ExtraListener instance = box.inject().createInstance(listener);
+
+            instance.applySkill((Skill) this);
 
             Bukkit.getPluginManager().registerEvents(instance, box.plugin());
 
@@ -32,5 +36,5 @@ public interface ListenerRegistrable extends Listener{
         getRegisteredListeners().clear();
     }
 
-    void addExtraListener(Class<? extends Listener> listener);
+    void addExtraListener(Class<? extends ExtraListener> listener);
 }

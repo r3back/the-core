@@ -4,6 +4,7 @@ import com.qualityplus.assistant.api.util.IPlaceholder;
 import com.qualityplus.assistant.util.inventory.InventoryUtils;
 import com.qualityplus.minions.api.box.Box;
 import com.qualityplus.minions.api.minion.MinionEntity;
+import com.qualityplus.minions.base.event.PlayerPickUpMinionItemsEvent;
 import com.qualityplus.minions.base.gui.MinionGUI;
 import com.qualityplus.minions.base.gui.layout.LayoutGUI;
 import com.qualityplus.minions.base.gui.main.handler.click.*;
@@ -12,11 +13,15 @@ import com.qualityplus.minions.base.gui.main.setup.PlaceholdersSetup;
 import com.qualityplus.minions.base.gui.main.setup.items.AllItemsSetup;
 import com.qualityplus.minions.base.gui.main.setup.placeholders.UpgradePlaceholdersSetup;
 import com.qualityplus.minions.base.gui.recipes.MinionsRecipesGUI;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
+import org.bukkit.event.Event;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -77,10 +82,7 @@ public final class MainMinionGUI extends MinionGUI {
         } else if (isItem(slot, config.getQuickUpgradeItem())) {
             new QuickUpgradeClickHandler().handle(event, minionEntity, box);
         } else if (isItem(slot, config.getCollectAllItem())) {
-            minionEntity.pickUpAllItems()
-                    .stream()
-                    .filter(Objects::nonNull)
-                    .forEach(item -> player.getInventory().addItem(item));
+            new PickUpItemsClickHandler().handle(event, minionEntity, box);
 
             addItems();
         } else if (isItem(slot, config.getAutomatedShippingPlacedItem())) {
@@ -96,7 +98,5 @@ public final class MainMinionGUI extends MinionGUI {
         } else if (isItem(slot, config.getMinionSkinEmptyItem())) {
             new MinionSkinClickHandler().handle(event, minionEntity, box);
         }
-
-
     }
 }

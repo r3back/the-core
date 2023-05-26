@@ -77,6 +77,18 @@ public final class MiningConfig extends OkaeriConfig implements SkillFile {
                         .put(XMaterial.DIAMOND_ORE, 2D)
                         .put(XMaterial.REDSTONE_ORE, 2D)
                         .build())
+                .minionXpRewards(ImmutableMap.<XMaterial, Double>builder()
+                        .put(XMaterial.COAL_ORE, 2D)
+                        .put(XMaterial.IRON_ORE, 2D)
+                        .put(XMaterial.STONE, 2D)
+                        .put(XMaterial.COBBLESTONE, 2D)
+                        .put(XMaterial.DIAMOND_ORE, 2D)
+                        .put(XMaterial.REDSTONE_ORE, 2D)
+                        .put(XMaterial.COAL, 2D)
+                        .put(XMaterial.IRON_INGOT, 2D)
+                        .put(XMaterial.DIAMOND, 2D)
+                        .put(XMaterial.REDSTONE, 2D)
+                        .build())
                 .build();
     }
 

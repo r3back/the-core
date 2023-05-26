@@ -17,7 +17,7 @@ public final class TheTrades extends OkaeriSilentPlugin {
     private static @Inject @Getter TheTradesAPI api;
 
     @Planned(ExecutionPhase.PRE_SHUTDOWN)
-    private void saveOnShutdown(@Inject TradesFile recipesFile) {
+    private void saveOnShutdown(@Inject final TradesFile recipesFile) {
         recipesFile.save();
     }
 }

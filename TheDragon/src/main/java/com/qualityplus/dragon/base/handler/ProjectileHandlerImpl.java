@@ -16,34 +16,40 @@ import org.bukkit.metadata.FixedMetadataValue;
 import org.bukkit.util.Vector;
 
 import java.util.List;
-import java.util.Objects;
-import java.util.stream.Collectors;
 
 public final class ProjectileHandlerImpl implements ProjectileHandler {
     @Override
-    public void shoot(ProjectileType projectile, double damage, double amount, DragonGame dragonGame){
-        List<Player> players = TheDragon.getApi().getUserService().getUsers().stream()
-                .map(EventPlayer::getPlayer)
-                .filter(Objects::nonNull)
-                .collect(Collectors.toList());
+    public void shoot(ProjectileType projectile, double damage, double amount, final DragonGame dragonGame){
+        final List<Player> players = dragonGame.getPlayers(EventPlayer::isActive);
 
-        if(players.isEmpty() || amount < 1) return;
-        int perPlayer = (int) (amount / players.size());
-        Bukkit.getScheduler().runTask(TheDragon.getApi().getPlugin(), () ->{
-            for(Player pl : players){
-                if(pl == null) continue;
-                for(int i = 0; i<perPlayer; i++)
-                    shoot(pl, projectile, damage, i, dragonGame);
-            }
-        });
+        if(players.isEmpty() || amount < 1) {
+            return;
+        }
+
+        final int perPlayer = (int) (amount / players.size());
+
+        Bukkit.getScheduler().runTask(TheDragon.getApi().getPlugin(),
+                () -> players.forEach(player -> this.shootPlayer(player, projectile, perPlayer, damage, dragonGame))
+        );
+    }
+
+    private void shootPlayer(final Player player, final ProjectileType projectile,
+                             final int perPlayer, final double damage, final DragonGame game) {
+
+        for (int i = 0; i<perPlayer; i++) {
+            shoot(player, projectile, damage, i, game);
+        }
     }
 
 
     private void shoot(Player player, ProjectileType projectile, double damage, int i, DragonGame dragonGame) {
         Bukkit.getScheduler().runTaskLater(TheDragon.getApi().getPlugin(), () -> {
             if (dragonGame.isActive() && player != null && player.isOnline()) {
-                EnderDragon enderDragon = TheDragon.getApi().getDragonService().getActiveEnderDragon();
-                if(enderDragon == null) return;
+                final EnderDragon enderDragon = TheDragon.getApi().getDragonService().getActiveEnderDragon();
+
+                if(enderDragon == null) {
+                    return;
+                }
 
                 Location dragonLoc = TheAssistantPlugin.getAPI()
                         .getNms()

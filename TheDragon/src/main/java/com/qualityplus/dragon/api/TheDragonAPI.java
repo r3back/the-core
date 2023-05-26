@@ -7,6 +7,7 @@ public interface TheDragonAPI {
     GuardianEditService getGuardianEditService();
     StructureService getStructureService();
     GuardianService getGuardianService();
+    BossBarService getBossBarService();
     DragonService getDragonService();
     GameService getGameService();
     UserService getUserService();
