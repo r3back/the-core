@@ -13,5 +13,5 @@ public interface ParticleHandler {
      * @param dragonGame The Dragon Game
      * @param particle   EnumParticle particle type
      */
-    void spell(DragonGame dragonGame, ParticleEffect particle);
+    public void spell(final DragonGame dragonGame, final ParticleEffect particle);
 }

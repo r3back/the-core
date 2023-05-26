@@ -15,6 +15,9 @@ import eu.okaeri.injector.annotation.Inject;
 import eu.okaeri.platform.bukkit.annotation.Delayed;
 import eu.okaeri.platform.core.annotation.Component;
 
+import java.util.Optional;
+import java.util.stream.Stream;
+
 @Component
 public final class PlaceholdersRegistry {
     @Delayed(time = MinecraftTimeEquivalent.SECOND * 5)
@@ -22,21 +25,33 @@ public final class PlaceholdersRegistry {
         PlaceholdersAddon addon = TheAssistantPlugin.getAPI().getAddons().getPlaceholders();
 
         for(Skill skill : Skills.values()){
+            addon.registerPlaceholders("skill_" + skill.getId() + "_displayname",
+                    e -> skill.getDisplayName());
             addon.registerPlaceholders("skill_" + skill.getId() + "_xp",
                     e -> String.valueOf(service.getData(e.getPlayer().getUniqueId()).map(data -> data.getSkills().getXp(skill.getId())).orElse(0D)));
             addon.registerPlaceholders("skill_" + skill.getId() + "_level",
                     e -> String.valueOf(service.getData(e.getPlayer().getUniqueId()).map(data -> data.getSkills().getLevel(skill.getId())).orElse(0)));
         }
 
-        for(Perk perk : Perks.values())
+        for(Perk perk : Perks.values()) {
+            addon.registerPlaceholders("perk_" + perk.getId() + "_displayname",
+                    e -> perk.getDisplayName());
+
             addon.registerPlaceholders("perk_" + perk.getId() + "_level",
                     e -> String.valueOf(service.getData(e.getPlayer().getUniqueId()).map(data -> data.getSkills().getLevel(perk.getId())).orElse(0)));
+        }
 
-        for(Stat stat : Stats.values())
+        for(Stat stat : Stats.values()) {
+            addon.registerPlaceholders("stat_" + stat.getId() + "_displayname",
+                    e -> stat.getDisplayName());
+
             addon.registerPlaceholders("stat_" + stat.getId() + "_level",
                     e -> String.valueOf(service.getData(e.getPlayer().getUniqueId()).map(data -> data.getSkills().getLevel(stat.getId())).orElse(0)));
+        }
 
-
-        if(addon instanceof Registrable) ((Registrable) addon).registerAddon();
+        Stream.of(addon)
+                .filter(a -> a instanceof Registrable)
+                .map(a -> (Registrable) a)
+                .forEach(Registrable::registerAddon);
     }
 }

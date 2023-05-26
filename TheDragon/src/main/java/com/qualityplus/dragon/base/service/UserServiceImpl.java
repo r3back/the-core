@@ -1,5 +1,6 @@
 package com.qualityplus.dragon.base.service;
 
+import com.google.common.collect.ImmutableList;
 import com.qualityplus.dragon.api.game.part.GameEnd;
 import com.qualityplus.dragon.api.service.BossBarService;
 import com.qualityplus.dragon.api.service.UserService;
@@ -18,7 +19,6 @@ import java.util.UUID;
 public final class UserServiceImpl implements UserService {
     //private final ReplyHandler<Player, String> messageHandler;
     private final List<EventPlayer> eventUsers = new ArrayList<>();
-    private @Inject BossBarService bossBarManager;
     private @Inject GameEnd gameEnd;
     @Getter
     private UUID last;
@@ -32,17 +32,17 @@ public final class UserServiceImpl implements UserService {
 
     @Override
     public void sendMessage(List<String> message) {
-        eventUsers.forEach(user -> sendMessage(user, message));
+        this.eventUsers.forEach(user -> sendMessage(user, message));
     }
 
     @Override
     public void resetData() {
-        eventUsers.clear();
+        this.eventUsers.clear();
     }
 
     @Override
     public void addPlayerDamage(Player player, double damage) {
-        eventUsers.stream()
+        this.eventUsers.stream()
                 .filter(eventUser -> eventUser.getUuid().equals(player.getUniqueId()))
                 .findFirst()
                 .ifPresent(eventUser -> eventUser.addDamage(damage));
@@ -50,7 +50,7 @@ public final class UserServiceImpl implements UserService {
 
     @Override
     public void removePlayersDamage(double damage) {
-        eventUsers.forEach(eventUser -> eventUser.removeDamage(damage));
+        this.eventUsers.forEach(eventUser -> eventUser.removeDamage(damage));
     }
 
     @Override
@@ -59,27 +59,30 @@ public final class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void startBossBar() {
-        bossBarManager.start();
+    public ImmutableList<EventPlayer> getUsers() {
+        return ImmutableList.copyOf(this.eventUsers);
     }
 
     @Override
-    public void stopBossBar() {
-        bossBarManager.stop();
+    public void addPlayer(final EventPlayer player) {
+        this.eventUsers.add(player);
     }
 
     @Override
-    public List<EventPlayer> getUsers() {
-        return eventUsers;
+    public void removePlayer(final EventPlayer player) {
+        this.getByUUID(player.getUuid())
+                .ifPresent(this.eventUsers::remove);
     }
 
     @Override
     public Optional<EventPlayer> getByUUID(UUID uuid) {
-        return eventUsers.stream().filter(eventPlayer -> eventPlayer.getUuid().equals(uuid)).findFirst();
+        return this.eventUsers.stream()
+                .filter(eventPlayer -> eventPlayer.getUuid().equals(uuid))
+                .findFirst();
     }
 
     @Override
     public void sendFinishMessage() {
-        gameEnd.sendFinishMessage();
+        this.gameEnd.sendFinishMessage();
     }
 }

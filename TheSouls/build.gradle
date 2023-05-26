@@ -4,7 +4,7 @@ plugins {
 
 dependencies {
     compileOnly 'org.spigotmc:spigot-api:1.18.1-R0.1-SNAPSHOT'
-    compileOnly 'com.github.cryptomorin:XSeries:9.1.0'
+    compileOnly 'com.github.cryptomorin:XSeries:9.2.0'
     compileOnly 'de.tr7zw:item-nbt-api:2.11.0-SNAPSHOT'
 
     rootProject.assistant_dependencies.each { value -> compileOnly project(value)}

@@ -31,27 +31,28 @@ public final class DragonNormalFireBallEvent extends DragonGameEvent {
 
     @Override
     public void start(DragonGame dragonGame) {
-        Plugin plugin = TheDragon.getApi().getPlugin();
-        time = 0;
+        final Plugin plugin = TheDragon.getApi().getPlugin();
 
-        task = Bukkit.getScheduler().runTaskTimerAsynchronously(plugin, () -> {
-            move(dragonGame);
+        this.time = 0;
+
+        this.task = Bukkit.getScheduler().runTaskTimerAsynchronously(plugin, () -> {
+            this.move(dragonGame);
+
             //Cancelling Event
-            if(time >= duration)
-                finish();
-            else
-                //Check Event
-                if(time % repeat == 0)
-                    projectileEvent.shoot(ProjectileType.FIREBALL, fireballDamage, fireballsPerSecond, dragonGame);
+            if (this.time >= this.duration) {
+                this.finish();
+            } else if (this.time % this.repeat == 0) {
+                this.projectileEvent.shoot(ProjectileType.FIREBALL, fireballDamage, fireballsPerSecond, dragonGame);
+            }
 
-            if(showParticle) {
+            if(this.showParticle) {
                 /**
                  * TODO
                  */
-                particleEvent.spell(dragonGame, ParticleEffect.FLAME);
+                this.particleEvent.spell(dragonGame, ParticleEffect.FLAME);
             }
 
-            time+=1;
+            this.time += 1;
         }, 0, 20);
     }
 }

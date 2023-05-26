@@ -1,8 +1,10 @@
 package com.qualityplus.minions.base.handler;
 
+import com.cryptomorin.xseries.XMaterial;
 import com.qualityplus.assistant.util.armorstand.ArmorStandUtil;
 import com.qualityplus.assistant.util.math.MathUtils;
 import com.qualityplus.assistant.util.random.RandomSelector;
+import com.qualityplus.minions.TheMinions;
 import com.qualityplus.minions.api.handler.AnimationHandler;
 import com.qualityplus.minions.api.handler.ArmorStandHandler;
 import com.qualityplus.minions.base.minions.entity.getter.LayoutGetter;
@@ -15,15 +17,14 @@ import lombok.AllArgsConstructor;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.block.Block;
+import org.bukkit.block.BlockFace;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Entity;
+import org.bukkit.scheduler.BukkitScheduler;
 import org.bukkit.util.EulerAngle;
 import org.bukkit.util.Vector;
 
-import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
-import java.util.UUID;
+import java.util.*;
 import java.util.concurrent.CompletableFuture;
 
 @AllArgsConstructor
@@ -66,6 +67,19 @@ public final class AnimationHandlerImpl implements AnimationHandler, LayoutGette
         return future;
     }
 
+    private void moveTo(final ArmorStand armorStand, Location newLocation, Entity entity) {
+        double x = (armorStand.getLocation().getX() - newLocation.getX());
+        double y = (armorStand.getLocation().getY() - newLocation.getY());
+        double z = (armorStand.getLocation().getZ() - newLocation.getZ());
+
+        float yaw = (float) ((Math.atan2(z, x) * 180) / Math.PI);
+        float pitch = (float) ((Math.atan2(y, x) * 180) / Math.PI);
+
+        armorStand.getLocation().setYaw(yaw);
+        armorStand.getLocation().setPitch(pitch);
+        //armorStand.setVelocity(entity.getLocation().getDirection());
+    }
+
     @Override
     public CompletableFuture<MinionMobEntity> getEntityToRotate(ArmorStandHandler handler) {
         CompletableFuture<MinionMobEntity> future = new CompletableFuture<>();
@@ -82,50 +96,72 @@ public final class AnimationHandlerImpl implements AnimationHandler, LayoutGette
             return future;
         }
 
-        Entity entity = getNearEntity(location);
+        getNearEntity(location).thenAccept(entity -> {
+            int random = MathUtils.randomUpTo(100);
 
-        int random = MathUtils.randomUpTo(100);
+            if(entity == null || random > 50) {
+                double x = MathUtils.randomBetween(1, 2);
+                double z = MathUtils.randomBetween(1, 2);
 
-        if(entity == null || random > 50) {
-            double x = MathUtils.randomBetween(1, 2);
-            double z = MathUtils.randomBetween(1, 2);
+                Location newLocation = location.clone()
+                        .add(x, 0, z);
 
-            Location newLocation = location.clone()
-                    .add(x, 0, z);
+                handler.manipulateEntity(armorStand -> ArmorStandUtil.rotate(armorStand, newLocation));
 
-            handler.manipulateEntity(armorStand -> ArmorStandUtil.rotate(armorStand, newLocation));
+                future.complete(MinionMobEntity.builder().location(newLocation).build());
+                return;
+            }
 
-            future.complete(MinionMobEntity.builder().location(newLocation).build());
-            return future;
-        }
+            Location block = entity.getLocation().getBlock().getRelative(BlockFace.DOWN).getLocation().clone();
 
-        Vector vector = entity.getLocation().getDirection().normalize();
+            //Vector vector = block.getDirection().normalize();
 
-        Location newLocation = location.clone().add(vector);
+            //Location newLocation = location.clone().add(vector);
 
-        handler.manipulateEntity(armorStand -> ArmorStandUtil.rotate(armorStand, newLocation));
+            handler.manipulateEntity(armorStand -> ArmorStandUtil.rotate(armorStand, block));
 
-        future.complete(MinionMobEntity.builder().entity(entity).build());
+            future.complete(MinionMobEntity.builder().entity(entity).build());
+        });
+
+
 
         return future;
     }
 
-    private Entity getNearEntity(Location location){
+    private CompletableFuture<Entity> getNearEntity(Location location){
+        CompletableFuture<Entity> future = new CompletableFuture<>();
         MinionMob minionMob = minion.getMinionLayout().getMinionMob();
 
         try {
-            return location.getWorld().getNearbyEntities(location, 2,2,2).stream()
-                    .filter(entity -> entity.getType().equals(minionMob.getEntityType()))
-                    .findFirst()
-                    .orElse(null);
-        }catch (Exception e){
-            return null;
+            //TODO Check if this is necesarie maybe it's not necesarie to check for primary thread
+            // and in terms of optimization is better to don't have it
+            if (Bukkit.getServer().isPrimaryThread()) {
+                run(location, future, minionMob);
+            } else {
+                Bukkit.getScheduler().runTask(TheMinions.getInstance(), () -> run(location, future, minionMob));
+            }
+
+        } catch (Exception e){
+            future.complete(null);
         }
+
+        return future;
     }
 
     @Override
     public UUID getMinionUniqueId() {
         return minionUniqueId;
+    }
+
+    // TODO CHANGE NAME AND OPTIMIZE THIS CALL
+    private void run(final Location location, final CompletableFuture<Entity> future, final MinionMob minionMob) {
+        final Collection<Entity> entities = Optional.ofNullable(location.getWorld())
+                .map(world -> world.getNearbyEntities(location, 2, 2, 2))
+                .orElse(Collections.emptyList());
+
+        future.complete(entities.stream()
+                .filter(entity -> entity.getType().equals(minionMob.getEntityType()))
+                .findFirst().orElse(null));
     }
 
             /*TODO SUGAR MINION

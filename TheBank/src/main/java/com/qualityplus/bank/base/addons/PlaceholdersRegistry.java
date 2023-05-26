@@ -10,6 +10,8 @@ import eu.okaeri.injector.annotation.Inject;
 import eu.okaeri.platform.bukkit.annotation.Delayed;
 import eu.okaeri.platform.core.annotation.Component;
 
+import java.util.stream.Stream;
+
 @Component
 public final class PlaceholdersRegistry {
     @Delayed(time = MinecraftTimeEquivalent.SECOND * 5)
@@ -25,6 +27,9 @@ public final class PlaceholdersRegistry {
         addon.registerPlaceholders("bank_current_profile_id",
                 e -> service.getData(e.getPlayer().getUniqueId()).map(BankData::getBankUpgrade).orElse(""));
 
-        if(addon instanceof Registrable) ((Registrable) addon).registerAddon();
+        Stream.of(addon)
+                .filter(a -> a instanceof Registrable)
+                .map(a -> (Registrable) a)
+                .forEach(Registrable::registerAddon);
     }
 }

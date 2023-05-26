@@ -12,7 +12,7 @@ repositories {
 dependencies {
     compileOnly 'org.spigotmc:spigot-api:1.18.1-R0.1-SNAPSHOT'
     implementation 'eu.okaeri:okaeri-commons-core:0.2.21'
-    implementation 'com.github.cryptomorin:XSeries:9.1.0'
+    implementation 'com.github.cryptomorin:XSeries:9.2.0'
     implementation 'com.comphenix.protocol:ProtocolLib:4.7.0'
     implementation 'com.github.InventivetalentDev:BossBarAPI:2.4.3-SNAPSHOT'
 

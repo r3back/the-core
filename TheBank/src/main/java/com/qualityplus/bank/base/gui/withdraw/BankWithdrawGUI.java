@@ -89,13 +89,13 @@ public final class BankWithdrawGUI extends BankGUI {
         }else if(isItem(slot, config.getGoBack())){
             player.openInventory(new BankInterfaceGUI(box, player, type).getInventory());
         }else if(isItem(slot, config.getWithdrawAll())){
-            box.service().handleTransaction(player, new BankTransaction(getData().getMoney(), TransactionType.WITHDRAW, type));
+            box.service().handleTransaction(player, new BankTransaction(getData().getMoney(), TransactionType.WITHDRAW, type), true);
             player.openInventory(new BankWithdrawGUI(box, player, type).getInventory());
         }else if(isItem(slot, config.getWithdrawHalf())){
-            box.service().handleTransaction(player, new BankTransaction(getHalf(getData()), TransactionType.WITHDRAW, type));
+            box.service().handleTransaction(player, new BankTransaction(getHalf(getData()), TransactionType.WITHDRAW, type), true);
             player.openInventory(new BankWithdrawGUI(box, player, type).getInventory());
         }else if(isItem(slot, config.getWithDrawCustomPercentage())){
-            box.service().handleTransaction(player, new BankTransaction(getCustomPercentage(getData()), TransactionType.WITHDRAW, type));
+            box.service().handleTransaction(player, new BankTransaction(getCustomPercentage(getData()), TransactionType.WITHDRAW, type), true);
             player.openInventory(new BankWithdrawGUI(box, player, type).getInventory());
         }else if(isItem(slot, config.getWithdrawAmount())){
             if(UsualDependencies.isProtocolLib()){
@@ -114,14 +114,17 @@ public final class BankWithdrawGUI extends BankGUI {
     }
 
     private void handleWithdraw(SignCompletedEvent event){
-        Player player = event.getPlayer();
+        final Player player = event.getPlayer();
 
         int value = 0;
+
         try {
             value = Integer.parseInt(event.getLines().get(0));
-        }catch (NumberFormatException ignored){}
+        } catch (final NumberFormatException ignored) {
 
-        box.service().handleTransaction(player, new BankTransaction(Math.max(0, value), TransactionType.WITHDRAW, type));
+        }
+
+        box.service().handleTransaction(player, new BankTransaction(Math.max(0, value), TransactionType.WITHDRAW, type), true);
 
         Bukkit.getScheduler().runTaskLater(box.plugin(), () -> player.openInventory(new BankWithdrawGUI(box, player, type).getInventory()), 3);
     }

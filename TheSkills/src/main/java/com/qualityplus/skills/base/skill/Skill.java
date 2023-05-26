@@ -3,15 +3,15 @@ package com.qualityplus.skills.base.skill;
 import com.cryptomorin.xseries.XMaterial;
 import com.qualityplus.assistant.api.common.rewards.commands.CommandReward;
 import com.qualityplus.skills.api.effect.CommonObject;
+import com.qualityplus.skills.api.listener.ExtraListener;
 import com.qualityplus.skills.api.registry.ListenerRegistrable;
 import com.qualityplus.skills.base.reward.StatReward;
 import com.qualityplus.skills.base.skill.gui.GUIOptions;
 import com.qualityplus.skills.base.skill.registry.Skills;
+import com.qualityplus.skills.base.skill.skills.blockbreak.BlockBreakResponse;
 import com.qualityplus.skills.util.SkillsPlayerUtil;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
@@ -51,7 +51,7 @@ public abstract class Skill extends CommonObject implements ListenerRegistrable 
     }
 
     @Override
-    public void addExtraListener(Class<? extends Listener> listener){
+    public void addExtraListener(Class<? extends ExtraListener> listener){
         extraListeners.add(listener);
     }
 
@@ -94,14 +94,15 @@ public abstract class Skill extends CommonObject implements ListenerRegistrable 
         return getMap(xpRequirements, level);
     }
 
-    protected double getBlockBreakEventXp(BlockBreakEvent e, Map<XMaterial, Double> rewards){
-        Player player = e.getPlayer();
+    public Optional<BlockBreakResponse> getBlockBreakEventXp(final XMaterial material, final Map<XMaterial, Double> rewards){
+        double xp = rewards.getOrDefault(material, 0D);
 
-        if(!SkillsPlayerUtil.isInSurvival(player)) return 0D;
+        if(xp <= 0) return Optional.empty();
 
-        XMaterial material = XMaterial.matchXMaterial(e.getBlock().getType());
-
-        return rewards.getOrDefault(material, 0D);
+        return Optional.of(BlockBreakResponse.builder()
+                        .xp(xp)
+                        .build());
     }
+
 
 }

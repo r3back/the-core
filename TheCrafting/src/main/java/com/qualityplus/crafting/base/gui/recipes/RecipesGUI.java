@@ -24,12 +24,11 @@ public final class RecipesGUI extends CraftingGUI {
     private final Map<Integer, CustomRecipe> recipeMap = new HashMap<>();
     private final RecipesGUIConfig config;
     private final RecipeEdition edition;
-    private final int maxPerPage = 43;
-    private final boolean hasNext;
 
     public RecipesGUI(Box box, int page, RecipeEdition edition) {
         super(box.files().inventories().recipesGUIConfig, box);
 
+        this.maxPerPage = 43;
         this.hasNext = Recipes.values().size() > maxPerPage * page;
         this.config = box.files().inventories().recipesGUIConfig;
         this.edition = edition;

@@ -12,11 +12,10 @@ import org.bukkit.block.Block;
 import org.bukkit.entity.FallingBlock;
 import org.bukkit.util.Vector;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ThreadLocalRandom;
+import java.util.function.Consumer;
 
 @Component
 public final class GameExplosionImpl implements GameExplosion {
@@ -27,7 +26,7 @@ public final class GameExplosionImpl implements GameExplosion {
     private @Inject Tasker tasker;
 
     @Override
-    public CompletableFuture<Void> makeBlockExplosion(PasterSession session) {
+    public CompletableFuture<Void> makeBlockExplosion(final PasterSession session) {
         this.future = new CompletableFuture<>();
 
         spawnFallingBlocks(session).thenRun(this::clearBlocks);
@@ -38,23 +37,24 @@ public final class GameExplosionImpl implements GameExplosion {
     private CompletableFuture<Void> spawnFallingBlocks(PasterSession session){
         CompletableFuture<Void> future1 = new CompletableFuture<>();
 
-        /*tasker.newChain()
-                        .sync(() -> spawnIndividualBlocks(session))
-                        .acceptSync((Consumer<Object>) value -> future1.complete(null))
-                        .execute();*/
-
-        scheduler.runSync(() -> {
-            Optional.ofNullable(session).ifPresent(s -> s.getAllBlocks().forEach(this::spawnIndividualBlock));
-
-            future1.complete(null);
-        });
+        tasker.newChain()
+                        .sync(() -> spawnBlocks(session))
+                        .acceptSync((Consumer<Void>) value -> future1.complete(null))
+                        .execute();
 
         return future1;
     }
 
+    private Void spawnBlocks(final PasterSession session){
+        Optional.ofNullable(session)
+                .map(PasterSession::getAllBlocks)
+                .orElse(Collections.emptyList())
+                .forEach(this::spawnIndividualBlock);
 
+        return null;
+    }
 
-    private void spawnIndividualBlock(Block block){
+    private void spawnIndividualBlock(final Block block){
         Material material = block.getType();
 
         byte data = block.getData();

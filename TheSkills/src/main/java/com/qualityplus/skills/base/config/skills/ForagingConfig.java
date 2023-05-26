@@ -76,6 +76,14 @@ public final class ForagingConfig extends OkaeriConfig implements SkillFile {
                         .put(XMaterial.JUNGLE_LOG, 2D)
                         .put(XMaterial.SPRUCE_LOG, 2D)
                         .build())
+                .minionXpRewards(ImmutableMap.<XMaterial, Double>builder()
+                        .put(XMaterial.OAK_LOG, 2D)
+                        .put(XMaterial.ACACIA_LOG, 2D)
+                        .put(XMaterial.BIRCH_LOG, 2D)
+                        .put(XMaterial.DARK_OAK_LOG, 2D)
+                        .put(XMaterial.JUNGLE_LOG, 2D)
+                        .put(XMaterial.SPRUCE_LOG, 2D)
+                        .build())
                 .build();
     }
 

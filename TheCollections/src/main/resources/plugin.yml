@@ -6,6 +6,7 @@ api-version: 1.13
 authors: [QualityPlus]
 load: POSTWORLD
 depend: [TheAssistant]
+softdepend: [TheMinions]
 commands:
   thecollections:
     aliases: ["collections", "cl"]

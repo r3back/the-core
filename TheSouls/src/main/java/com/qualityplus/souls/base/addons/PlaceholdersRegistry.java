@@ -12,6 +12,7 @@ import eu.okaeri.platform.bukkit.annotation.Delayed;
 import eu.okaeri.platform.core.annotation.Component;
 
 import java.util.List;
+import java.util.stream.Stream;
 
 @Component
 public final class PlaceholdersRegistry {
@@ -28,6 +29,9 @@ public final class PlaceholdersRegistry {
         addon.registerPlaceholders("souls_user_tia_amount",
                 e -> String.valueOf(service.getData(e.getPlayer().getUniqueId()).map(SoulsData::getTiaSoulsCollected).map(List::size).orElse(0)));
 
-        if(addon instanceof Registrable) ((Registrable) addon).registerAddon();
+        Stream.of(addon)
+                .filter(a -> a instanceof Registrable)
+                .map(a -> (Registrable) a)
+                .forEach(Registrable::registerAddon);
     }
 }

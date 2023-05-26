@@ -23,37 +23,46 @@ public final class DragonLightningEvent extends DragonGameEvent {
 
     @Override
     public void start(DragonGame dragonGame) {
-        time = 0;
-        task = Bukkit.getScheduler().runTaskTimerAsynchronously(TheDragon.getApi().getPlugin(), () -> {
-            //Cancelling Event
-            if(time >= duration)
+        this.time = 0;
+
+        this.task = Bukkit.getScheduler().runTaskTimerAsynchronously(TheDragon.getApi().getPlugin(), () -> {
+
+            if (this.time >= this.duration) {
+                //Cancelling Event
                 finish();
-            else
+            }else if (this.time % this.repeat == 0) {
                 //Check Event
-                if(time % repeat == 0)
-                    manageDragon(dragonGame);
-            time+=1;
+                this.manageDragon(dragonGame);
+            }
+
+            this.time+=1;
         }, 0, 20);
     }
 
-    private void manageDragon(DragonGame dragonGame){
-        makeLightnings(dragonGame);
-    }
-
-    private void makeLightnings(DragonGame dragonGame){
-        TheDragon.getApi().getUserService().getUsers().stream()
-                .map(EventPlayer::getPlayer)
-                .filter(Objects::nonNull)
-                .forEach(player -> makeLightning(player, dragonGame));
+    private void manageDragon(final DragonGame dragonGame){
+        dragonGame.getPlayers(EventPlayer::isActive).forEach(player -> makeLightning(player, dragonGame));
     }
 
 
-    private void makeLightning(Player player, DragonGame dragonGame) {
-        Bukkit.getScheduler().runTask(TheDragon.getApi().getPlugin(), () -> {
-            if(dragonGame.isActive() && player != null && player.isOnline()) {
-                LightningStrike ls = player.getLocation().getWorld().strikeLightning(player.getLocation());
-                ls.setMetadata("LightningStrike", new FixedMetadataValue(TheDragon.getApi().getPlugin(), this.lightningDamage));
-            }
-        });
+    private void makeLightning(final Player player, final DragonGame dragonGame) {
+        Bukkit.getScheduler().runTask(TheDragon.getApi().getPlugin(), () -> this.strikePlayer(player, dragonGame));
+    }
+
+    private void strikePlayer(final Player player, final DragonGame dragonGame) {
+        if (!dragonGame.isActive()) {
+            return;
+        }
+
+        if (!isValidPlayer(player)) {
+            return;
+        }
+
+        LightningStrike ls = player.getLocation().getWorld().strikeLightning(player.getLocation());
+
+        ls.setMetadata("LightningStrike", new FixedMetadataValue(TheDragon.getApi().getPlugin(), this.lightningDamage));
+    }
+
+    private boolean isValidPlayer(final Player player) {
+        return player != null && player.isOnline();
     }
 }

@@ -6,6 +6,7 @@ import com.qualityplus.assistant.util.placeholder.Placeholder;
 import com.qualityplus.assistant.util.placeholder.PlaceholderBuilder;
 import com.qualityplus.skills.TheSkills;
 import com.qualityplus.skills.api.effect.CommonObject;
+import com.qualityplus.skills.api.listener.ExtraListener;
 import com.qualityplus.skills.api.registry.ListenerRegistrable;
 import com.qualityplus.skills.base.perk.registry.Perks;
 import com.qualityplus.skills.base.skill.gui.GUIOptions;
@@ -21,7 +22,7 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
-public abstract class Perk extends CommonObject implements Listener, ListenerRegistrable {
+public abstract class Perk extends CommonObject implements ListenerRegistrable {
     protected double chancePerLevel;
 
     public Perk(String id, boolean enabled, String displayName, List<String> description, GUIOptions skillGUIOptions, double initialAmount, double chancePerLevel) {
@@ -51,7 +52,7 @@ public abstract class Perk extends CommonObject implements Listener, ListenerReg
     }
 
     @Override
-    public void addExtraListener(Class<? extends Listener> listener){
+    public void addExtraListener(Class<? extends ExtraListener> listener){
         extraListeners.add(listener);
     }
 

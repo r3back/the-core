@@ -2,6 +2,7 @@ package com.qualityplus.skills.base.stat;
 
 import com.qualityplus.skills.TheSkills;
 import com.qualityplus.skills.api.effect.CommonObject;
+import com.qualityplus.skills.api.listener.ExtraListener;
 import com.qualityplus.skills.api.registry.ListenerRegistrable;
 import com.qualityplus.skills.base.skill.gui.GUIOptions;
 import com.qualityplus.skills.base.stat.registry.Stats;
@@ -24,7 +25,7 @@ public abstract class Stat extends CommonObject implements ListenerRegistrable {
     }
 
     @Override
-    public void addExtraListener(Class<? extends Listener> listener){
+    public void addExtraListener(Class<? extends ExtraListener> listener){
         extraListeners.add(listener);
     }
 
