@@ -41,7 +41,7 @@ public final class TheCoreCommandProvider implements CommandProvider<AssistantCo
 
             if(list == null) break;
 
-            list.sort(Comparator.comparing(command -> command.aliases.get(0)));
+            list.sort(Comparator.comparing(command -> command.getAliases().get(0)));
         }
     }
 
@@ -49,14 +49,14 @@ public final class TheCoreCommandProvider implements CommandProvider<AssistantCo
     public void registerCommand(AssistantCommand command, CommandSetupHandler<AssistantCommand> commandSetupHandler) {
         command.setup(commandSetupHandler);
 
-        Optional<LabelProvider> provider = getLabelProvider(command.labelProvider);
+        Optional<LabelProvider> provider = getLabelProvider(command.getLabelProvider());
 
         if(!provider.isPresent()){
-            logger.warning(String.format("Error Registering " + command.labelProvider + " %s", command.aliases.get(0)));
+            logger.warning(String.format("Error Registering " + command.getLabelProvider() + " %s", command.getAliases().get(0)));
             return;
         }
 
-        registerBukkitCommand(provider.get(), command.labelProvider);
+        registerBukkitCommand(provider.get(), command.getLabelProvider());
 
         String label = provider.get().getLabel();
 
@@ -65,7 +65,7 @@ public final class TheCoreCommandProvider implements CommandProvider<AssistantCo
 
     @Override
     public void unregisterCommand(AssistantCommand command) {
-        getLabelProvider(command.labelProvider).ifPresent(labelProvider -> commands.get(labelProvider.getLabel()).remove(command));
+        getLabelProvider(command.getLabelProvider()).ifPresent(labelProvider -> commands.get(labelProvider.getLabel()).remove(command));
     }
 
     @Override
@@ -86,16 +86,16 @@ public final class TheCoreCommandProvider implements CommandProvider<AssistantCo
         }
 
         for (AssistantCommand command : getCommandsByLabel(cmd.getName())) {
-            if (!(command.aliases.contains(args[0]) && command.enabled))
+            if (!(command.getAliases().contains(args[0]) && command.isEnabled()))
                 continue;
 
-            if (command.onlyForPlayers && !(commandSender instanceof Player)) {
+            if (command.isOnlyForPlayers() && !(commandSender instanceof Player)) {
                 commandSender.sendMessage(StringUtils.color(labelProvider.map(LabelProvider::getOnlyForPlayersMessage).orElse("")));
                 return false;
             }
 
-            if (!(commandSender.hasPermission(command.permission) || command.permission
-                    .equalsIgnoreCase("") || command.permission
+            if (!(commandSender.hasPermission(command.getPermission()) || command.getPermission()
+                    .equalsIgnoreCase("") || command.getPermission()
                     .equalsIgnoreCase("thecore."))) {
                 commandSender.sendMessage(StringUtils.color(labelProvider.map(LabelProvider::getNoPermissionMessage).orElse("")));
                 return false;
@@ -116,10 +116,10 @@ public final class TheCoreCommandProvider implements CommandProvider<AssistantCo
         if (args.length == 1) {
             List<String> result = new ArrayList<>();
             for (AssistantCommand command : getCommandsByLabel(cmd.getName())) {
-                for (String alias : command.aliases) {
+                for (String alias : command.getAliases()) {
                     if (alias.toLowerCase().startsWith(args[0].toLowerCase()) && (
-                            command.enabled && (commandSender.hasPermission(command.permission)
-                                    || command.permission.equalsIgnoreCase("") || command.permission
+                            command.isEnabled() && (commandSender.hasPermission(command.getPermission())
+                                    || command.getPermission().equalsIgnoreCase("") || command.getPermission()
                                     .equalsIgnoreCase("thecore.")))) {
                         result.add(alias);
                     }
@@ -129,9 +129,9 @@ public final class TheCoreCommandProvider implements CommandProvider<AssistantCo
         }
 
         for (AssistantCommand command : getCommandsByLabel(cmd.getName())) {
-            if (command.aliases.contains(args[0]) && (command.enabled && (
-                    commandSender.hasPermission(command.permission) || command.permission.equalsIgnoreCase("")
-                            || command.permission.equalsIgnoreCase("thecore.")))) {
+            if (command.getAliases().contains(args[0]) && (command.isEnabled() && (
+                    commandSender.hasPermission(command.getPermission()) || command.getPermission().equalsIgnoreCase("")
+                            || command.getPermission().equalsIgnoreCase("thecore.")))) {
                 return command.onTabComplete(commandSender, cmd, label, args);
             }
         }

@@ -6,12 +6,19 @@ import eu.okaeri.configs.OkaeriConfig;
 import lombok.Builder;
 import lombok.Getter;
 
+/**
+ * Select Item GUI Configuration
+ */
 @Getter
 public final class SelectItemGUIConfig extends OkaeriConfig implements SimpleGUI {
     private final CommonGUI commonGUI;
 
+    /**
+     *
+     * @param commonGUI {@link CommonGUI}
+     */
     @Builder
-    public SelectItemGUIConfig(CommonGUI commonGUI) {
+    public SelectItemGUIConfig(final CommonGUI commonGUI) {
         this.commonGUI = commonGUI;
     }
 }

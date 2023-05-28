@@ -8,6 +8,9 @@ import org.bukkit.Location;
 
 import java.util.UUID;
 
+/**
+ * Implementation of {@link StandSession}
+ */
 @Data
 @Builder
 @AllArgsConstructor

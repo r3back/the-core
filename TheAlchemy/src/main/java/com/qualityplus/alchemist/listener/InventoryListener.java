@@ -9,33 +9,60 @@ import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.event.inventory.InventoryDragEvent;
 import org.bukkit.event.inventory.InventoryOpenEvent;
 
+/**
+ * Inventory Listener
+ */
 @Component
 public final class InventoryListener implements Listener {
+    /**
+     *
+     * @param event {@link InventoryClickEvent}
+     */
     @EventHandler
-    public void onInventoryClick(InventoryClickEvent event) {
-        if (event.getClickedInventory() != null && event.getInventory().getHolder() != null)
-            if (event.getInventory().getHolder() instanceof AlchemistGUI)
+    public void onInventoryClick(final InventoryClickEvent event) {
+        if (event.getClickedInventory() != null && event.getInventory().getHolder() != null) {
+            if (event.getInventory().getHolder() instanceof AlchemistGUI) {
                 ((AlchemistGUI) event.getInventory().getHolder()).onInventoryClick(event);
+            }
+        }
     }
 
+    /**
+     *
+     * @param event {@link InventoryCloseEvent}
+     */
     @EventHandler
-    public void onInventoryClose(InventoryCloseEvent event) {
-        if (event.getInventory().getHolder() != null)
-            if (event.getInventory().getHolder() instanceof AlchemistGUI)
+    public void onInventoryClose(final InventoryCloseEvent event) {
+        if (event.getInventory().getHolder() != null) {
+            if (event.getInventory().getHolder() instanceof AlchemistGUI) {
                 ((AlchemistGUI) event.getInventory().getHolder()).onInventoryClose(event);
+            }
+        }
     }
 
+    /**
+     *
+     * @param event {@link InventoryOpenEvent}
+     */
     @EventHandler
-    public void onInventoryOpen(InventoryOpenEvent event) {
-        if (event.getInventory().getHolder() != null)
-            if (event.getInventory().getHolder() instanceof AlchemistGUI)
+    public void onInventoryOpen(final InventoryOpenEvent event) {
+        if (event.getInventory().getHolder() != null) {
+            if (event.getInventory().getHolder() instanceof AlchemistGUI) {
                 ((AlchemistGUI) event.getInventory().getHolder()).onInventoryOpen(event);
+            }
+        }
     }
 
+    /**
+     *
+     * @param event {@link InventoryDragEvent}
+     */
     @EventHandler
-    public void onInventoryOpen(InventoryDragEvent event) {
-        if (event.getInventory().getHolder() != null)
-            if (event.getInventory().getHolder() instanceof AlchemistGUI)
+    public void onInventoryOpen(final InventoryDragEvent event) {
+        if (event.getInventory().getHolder() != null) {
+            if (event.getInventory().getHolder() instanceof AlchemistGUI) {
                 ((AlchemistGUI) event.getInventory().getHolder()).onInventoryDrag(event);
+            }
+        }
     }
 }

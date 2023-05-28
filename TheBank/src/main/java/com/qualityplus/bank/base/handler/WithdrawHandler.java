@@ -20,7 +20,7 @@ public final class WithdrawHandler implements TrxHandler {
         final BankData bankData = request.getBankData();
         final BankTransaction transaction = request.getTransaction();
 
-        EconomyAddon economy = TheAssistantPlugin.getAPI().getAddons().getEconomy();
+        final EconomyAddon economy = TheAssistantPlugin.getAPI().getAddons().getEconomy();
 
         double bankMoney = bankData.getMoney();
 

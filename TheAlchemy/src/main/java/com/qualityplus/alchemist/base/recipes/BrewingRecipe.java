@@ -13,10 +13,13 @@ import org.bukkit.inventory.ItemStack;
 
 import java.util.Optional;
 
-@AllArgsConstructor
+/**
+ * Brewing Recipe
+ */
 @Getter
 @Setter
 @Builder
+@AllArgsConstructor
 public final class BrewingRecipe extends OkaeriConfig {
     private String id;
     private String displayName;
@@ -33,7 +36,19 @@ public final class BrewingRecipe extends OkaeriConfig {
     @Exclude
     private ItemStack fuelItem;
 
-    public BrewingRecipe(String id, String displayName, String description, Timer timer, ItemStack input, ItemStack outPut, ItemStack fuel, String recipePermission) {
+    /**
+     *
+     * @param id               Recipe's Id
+     * @param displayName      Recipe's Display name
+     * @param description      Recipe's description
+     * @param timer            {@link Timer}
+     * @param input            {@link ItemStack}
+     * @param outPut           {@link ItemStack}
+     * @param fuel             {@link ItemStack}
+     * @param recipePermission Recipes permission
+     */
+    public BrewingRecipe(final String id, final String displayName, final String description, final Timer timer, final ItemStack input,
+                         final ItemStack outPut, final ItemStack fuel, final String recipePermission) {
         this.id = id;
         this.displayName = displayName;
         this.description = description;
@@ -44,53 +59,89 @@ public final class BrewingRecipe extends OkaeriConfig {
         this.recipePermission = recipePermission;
     }
 
+    /**
+     * Retrieves input item
+     *
+     * @return {@link ItemStack}
+     */
     public ItemStack getInput() {
-        if(inputItem == null) registerInput();
-        return getCopy(inputItem);
+        if (this.inputItem == null) {
+            this.registerInput();
+        }
+        return getCopy(this.inputItem);
     }
 
+    /**
+     * Retrieves output item
+     *
+     * @return {@link ItemStack}
+     */
     public ItemStack getOutPut() {
-        if(outPutItem == null) registerOutput();
-        return getCopy(outPutItem);
+        if (this.outPutItem == null) {
+            this.registerOutput();
+        }
+        return getCopy(this.outPutItem);
     }
 
+    /**
+     * Retrieves fuel item
+     *
+     * @return {@link ItemStack}
+     */
     public ItemStack getFuel() {
-        if(fuelItem == null) registerFuel();
-        return getCopy(fuelItem);
+        if (this.fuelItem == null) {
+            this.registerFuel();
+        }
+        return this.getCopy(this.fuelItem);
     }
 
-    public void setInput(String input) {
+    /**
+     *
+     * @param input Input item as text
+     */
+    public void setInput(final String input) {
         this.input = input;
-        registerInput();
+        this.registerInput();
     }
 
-    public void setOutPut(String outPut) {
+    /**
+     *
+     * @param outPut Output item as text
+     */
+    public void setOutPut(final String outPut) {
         this.outPut = outPut;
-        registerOutput();
+        this.registerOutput();
     }
 
-    public void setFuel(String fuel) {
+    /**
+     *
+     * @param fuel Fuel item as text
+     */
+    public void setFuel(final String fuel) {
         this.fuel = fuel;
         registerFuel();
     }
 
-    private void registerInput(){
-        this.inputItem = Optional.ofNullable(input).map(BukkitItemUtil::deserialize).orElse(null);
+    private void registerInput() {
+        this.inputItem = Optional.ofNullable(this.input).map(BukkitItemUtil::deserialize).orElse(null);
     }
 
-    private void registerOutput(){
-        this.outPutItem = Optional.ofNullable(outPut).map(BukkitItemUtil::deserialize).orElse(null);
+    private void registerOutput() {
+        this.outPutItem = Optional.ofNullable(this.outPut).map(BukkitItemUtil::deserialize).orElse(null);
     }
 
-    private void registerFuel(){
-        this.fuelItem = Optional.ofNullable(fuel).map(BukkitItemUtil::deserialize).orElse(null);
+    private void registerFuel() {
+        this.fuelItem = Optional.ofNullable(this.fuel).map(BukkitItemUtil::deserialize).orElse(null);
     }
 
-    private ItemStack getCopy(ItemStack itemStack){
+    private ItemStack getCopy(final ItemStack itemStack) {
         return Optional.ofNullable(itemStack).map(ItemStack::clone).orElse(null);
     }
 
-    public void register(){
+    /**
+     * Registers recipe
+     */
+    public void register() {
         Recipes.registerNewRecipe(this);
     }
 }

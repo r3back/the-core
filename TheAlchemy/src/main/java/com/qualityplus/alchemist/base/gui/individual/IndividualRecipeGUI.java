@@ -8,6 +8,7 @@ import com.qualityplus.alchemist.base.gui.select.SelectItemGUI.BrewingRecipeItem
 import com.qualityplus.alchemist.base.recipes.BrewingRecipe;
 import com.qualityplus.alchemist.util.AlchemistPlaceholderUtils;
 import com.qualityplus.assistant.api.util.IPlaceholder;
+import com.qualityplus.assistant.inventory.Item;
 import com.qualityplus.assistant.util.inventory.InventoryUtils;
 import com.qualityplus.assistant.util.itemstack.ItemStackUtils;
 import org.bukkit.entity.Player;
@@ -19,92 +20,107 @@ import org.jetbrains.annotations.NotNull;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Individual Recipes GUI
+ */
 public final class IndividualRecipeGUI extends AlchemistGUI {
     private final IndividualRecipeGUIConfig config;
     private final BrewingRecipe brewingRecipe;
 
-    public IndividualRecipeGUI(Box box, BrewingRecipe brewingRecipe) {
-        super(box.files().inventories().individualRecipeGUIConfig, box);
+    /**
+     *
+     * @param box           {@link Box}
+     * @param brewingRecipe {@link BrewingRecipe}
+     */
+    public IndividualRecipeGUI(final Box box, final BrewingRecipe brewingRecipe) {
+        super(box.getFiles().inventories().getIndividualRecipeGUIConfig(), box);
 
-        this.config = box.files().inventories().individualRecipeGUIConfig;
+        this.config = box.getFiles().inventories().getIndividualRecipeGUIConfig();
         this.brewingRecipe = brewingRecipe;
     }
 
     @Override
     public @NotNull Inventory getInventory() {
-        InventoryUtils.fillInventory(inventory, config.getBackground());
+        InventoryUtils.fillInventory(this.inventory, this.config.getBackground());
 
-        List<IPlaceholder> placeholders = AlchemistPlaceholderUtils.getRecipePlaceholders(brewingRecipe);
+        final List<IPlaceholder> placeholders = AlchemistPlaceholderUtils.getRecipePlaceholders(this.brewingRecipe);
 
-        setItem(config.getDurationItem(), placeholders);
+        setItem(this.config.getDurationItem(), placeholders);
 
-        setItem(config.getInfoItem(), placeholders);
+        setItem(this.config.getInfoItem(), placeholders);
 
-        inventory.setItem(config.getFuelItem().slot, ItemStackUtils.makeItem(config.getFuelItem(), placeholders, getIfNull(brewingRecipe.getFuel())));
-        inventory.setItem(config.getOutputItem().slot, ItemStackUtils.makeItem(config.getOutputItem(), placeholders, getIfNull(brewingRecipe.getOutPut())));
-        inventory.setItem(config.getInputItem().slot, ItemStackUtils.makeItem(config.getInputItem(), placeholders, getIfNull(brewingRecipe.getInput())));
+        final Item fuel = this.config.getFuelItem();
+        final Item output = this.config.getOutputItem();
+        final Item input = this.config.getInputItem();
 
-        setItem(config.getCloseGUI());
+        this.inventory.setItem(fuel.slot, ItemStackUtils.makeItem(fuel, placeholders, getIfNull(this.brewingRecipe.getFuel())));
+        this.inventory.setItem(output.slot, ItemStackUtils.makeItem(output, placeholders, getIfNull(this.brewingRecipe.getOutPut())));
+        this.inventory.setItem(input.slot, ItemStackUtils.makeItem(input, placeholders, getIfNull(this.brewingRecipe.getInput())));
 
-        setItem(config.getBackPage());
+        setItem(this.config.getCloseGUI());
 
-        return inventory;
+        setItem(this.config.getBackPage());
+
+        return this.inventory;
     }
 
-    private ItemStack getIfNull(ItemStack itemStack){
-        return Optional.ofNullable(itemStack).orElse(config.getEmptyItem().parseItem());
+    private ItemStack getIfNull(final ItemStack itemStack) {
+        return Optional.ofNullable(itemStack).orElse(this.config.getEmptyItem().parseItem());
     }
 
     @Override
-    public void onInventoryClick(InventoryClickEvent event) {
+    public void onInventoryClick(final InventoryClickEvent event) {
         event.setCancelled(true);
 
-        if(!getTarget(event).equals(ClickTarget.INSIDE)) return;
+        if (!getTarget(event).equals(ClickTarget.INSIDE)) {
+            return;
+        }
 
-        Player player = (Player) event.getWhoClicked();
+        final Player player = (Player) event.getWhoClicked();
 
-        int slot = event.getSlot();
+        final int slot = event.getSlot();
 
-        if(isItem(slot, config.getCloseGUI())){
+        if (isItem(slot, this.config.getCloseGUI())) {
             player.closeInventory();
-        }else if(isItem(slot, config.getInputItem())){
-            if(event.isLeftClick())
-                player.openInventory(new SelectItemGUI(box, brewingRecipe, player.getInventory().getContents(), BrewingRecipeItem.INPUT).getInventory());
-            else{
-                brewingRecipe.setInput(null);
+        } else if (isItem(slot, this.config.getInputItem())) {
+            if (event.isLeftClick()) {
+                player.openInventory(new SelectItemGUI(box, this.brewingRecipe, player.getInventory().getContents(), BrewingRecipeItem.INPUT).getInventory());
+            } else {
+                this.brewingRecipe.setInput(null);
                 reopen(player);
             }
-        }else if(isItem(slot, config.getFuelItem())){
-            if(event.isLeftClick())
-                player.openInventory(new SelectItemGUI(box, brewingRecipe, player.getInventory().getContents(), BrewingRecipeItem.FUEL).getInventory());
-            else{
-                brewingRecipe.setFuel(null);
+        } else if (isItem(slot, this.config.getFuelItem())) {
+            if (event.isLeftClick()) {
+                player.openInventory(new SelectItemGUI(box, this.brewingRecipe, player.getInventory().getContents(), BrewingRecipeItem.FUEL).getInventory());
+            } else {
+                this.brewingRecipe.setFuel(null);
                 reopen(player);
             }
-        }else if(isItem(slot, config.getOutputItem())){
-            if(event.isLeftClick())
-                player.openInventory(new SelectItemGUI(box, brewingRecipe, player.getInventory().getContents(), BrewingRecipeItem.OUTPUT).getInventory());
-            else{
-                brewingRecipe.setOutPut(null);
+        } else if (isItem(slot, this.config.getOutputItem())) {
+            if (event.isLeftClick()) {
+                player.openInventory(new SelectItemGUI(box, this.brewingRecipe, player.getInventory().getContents(), BrewingRecipeItem.OUTPUT).getInventory());
+            } else {
+                this.brewingRecipe.setOutPut(null);
                 reopen(player);
             }
-        }else if(isItem(slot, config.getDurationItem())){
-            int toChange = event.isShiftClick() ? 5 : 1;
+        } else if (isItem(slot, this.config.getDurationItem())) {
+            final int toChange = event.isShiftClick() ? 5 : 1;
 
-            int duration = brewingRecipe.getTimer().getAmount();
+            final int duration = this.brewingRecipe.getTimer().getAmount();
 
-            if(event.isLeftClick())
-                brewingRecipe.getTimer().setAmount(Math.max(0, duration + toChange));
-            else if(event.isRightClick())
-                brewingRecipe.getTimer().setAmount(Math.max(0, duration - toChange));
+            if (event.isLeftClick()) {
+                this.brewingRecipe.getTimer().setAmount(Math.max(0, duration + toChange));
+            } else if (event.isRightClick()) {
+                this.brewingRecipe.getTimer().setAmount(Math.max(0, duration - toChange));
+            }
 
-            player.openInventory(new IndividualRecipeGUI(box, brewingRecipe).getInventory());
-        }else if(isItem(slot, config.getBackPage())){
-            player.openInventory(new RecipesGUI(box, 1).getInventory());
+            player.openInventory(new IndividualRecipeGUI(this.box, this.brewingRecipe).getInventory());
+        } else if (isItem(slot, this.config.getBackPage())) {
+            player.openInventory(new RecipesGUI(this.box, 1).getInventory());
         }
     }
 
-    private void reopen(Player player){
-        player.openInventory(new IndividualRecipeGUI(box, brewingRecipe).getInventory());
+    private void reopen(final Player player) {
+        player.openInventory(new IndividualRecipeGUI(this.box, this.brewingRecipe).getInventory());
     }
 }

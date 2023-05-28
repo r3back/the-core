@@ -11,13 +11,21 @@ import eu.okaeri.platform.core.plan.ExecutionPhase;
 import eu.okaeri.platform.core.plan.Planned;
 import lombok.Getter;
 
+/**
+ * Main class
+ */
 @Register(Recipes.class)
 @Scan(deep = true)
 public final class TheAlchemist extends OkaeriSilentPlugin {
     private static @Inject @Getter TheAlchemistAPI api;
 
+    /**
+     * Save all recipes when server shutdown
+     *
+     * @param recipesFile {@link RecipesFile}
+     */
     @Planned(ExecutionPhase.PRE_SHUTDOWN)
-    private void saveOnShutdown(@Inject RecipesFile recipesFile) {
+    private void saveOnShutdown(@Inject final RecipesFile recipesFile) {
         recipesFile.save();
     }
 }

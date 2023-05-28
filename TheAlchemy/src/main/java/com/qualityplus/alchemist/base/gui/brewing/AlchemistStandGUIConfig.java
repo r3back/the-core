@@ -10,6 +10,9 @@ import lombok.Getter;
 
 import java.util.List;
 
+/**
+ * Alchemist Stand GUI Configuration
+ */
 @Getter
 public final class AlchemistStandGUIConfig extends OkaeriConfig implements SimpleGUI {
     private final CommonGUI commonGUI;
@@ -19,8 +22,18 @@ public final class AlchemistStandGUIConfig extends OkaeriConfig implements Simpl
     private final Integer fuelSlot;
     private final StandEffects standEffects;
 
+    /**
+     *
+     * @param commonGUI       {@link CommonGUI}
+     * @param emptyItem       {@link Item}
+     * @param inputSlots      List of {@link Integer}
+     * @param fuelSlot        Fuel slot
+     * @param decorationSlots List of {@link Integer}
+     * @param standEffects    {@link StandEffects}
+     */
     @Builder
-    public AlchemistStandGUIConfig(CommonGUI commonGUI, Item emptyItem, List<Integer> inputSlots, Integer fuelSlot, List<Integer> decorationSlots, StandEffects standEffects) {
+    public AlchemistStandGUIConfig(final CommonGUI commonGUI, final Item emptyItem, final List<Integer> inputSlots, final Integer fuelSlot,
+                                   final List<Integer> decorationSlots, final StandEffects standEffects) {
         this.fuelSlot = fuelSlot;
         this.commonGUI = commonGUI;
         this.inputSlots = inputSlots;

@@ -24,12 +24,13 @@ public final class CreateRecipeCommand extends AssistantCommand {
     private @Inject Box box;
 
     @Override
-    public boolean execute(CommandSender sender, String[] args) {
-        Player player = (Player) sender;
-        if(args.length == 2){
-            CustomRecipe exist = Recipes.getByID(args[1]);
+    public boolean execute(final CommandSender sender, final String[] args) {
+        final Player player = (Player) sender;
 
-            if(exist != null){
+        if (args.length == 2) {
+            final CustomRecipe exist = Recipes.getByID(args[1]);
+
+            if (exist != null) {
                 player.sendMessage(StringUtils.color(box.files().messages().recipeMessages.recipeAlreadyExist));
                 return false;
             }
@@ -39,7 +40,7 @@ public final class CreateRecipeCommand extends AssistantCommand {
                     .displayName(args[1])
                     .recipePermission(args[1] + ".permission")
                     .build(), edition).getInventory());
-        }else{
+        } else {
             player.sendMessage(StringUtils.color(box.files().messages().pluginMessages.useSyntax.replace("%usage%", syntax)));
         }
         return false;

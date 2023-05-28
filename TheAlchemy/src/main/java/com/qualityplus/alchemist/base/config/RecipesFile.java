@@ -13,6 +13,9 @@ import lombok.Setter;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Recipes file representation
+ */
 @Getter
 @Setter
 @Configuration(path = "recipes.yml")
@@ -21,5 +24,5 @@ import java.util.List;
 @Header("================================")
 @Names(strategy = NameStrategy.HYPHEN_CASE, modifier = NameModifier.TO_LOWER_CASE)
 public final class RecipesFile extends OkaeriConfig {
-    public List<BrewingRecipe> brewingRecipes = new ArrayList<>();
+    private List<BrewingRecipe> brewingRecipes = new ArrayList<>();
 }

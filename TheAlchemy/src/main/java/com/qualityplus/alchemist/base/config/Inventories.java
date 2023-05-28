@@ -14,7 +14,11 @@ import com.qualityplus.assistant.inventory.background.Background;
 import com.qualityplus.assistant.inventory.background.DefaultBackgrounds;
 import com.qualityplus.assistant.util.itemstack.ItemBuilder;
 import eu.okaeri.configs.OkaeriConfig;
-import eu.okaeri.configs.annotation.*;
+import eu.okaeri.configs.annotation.CustomKey;
+import eu.okaeri.configs.annotation.Header;
+import eu.okaeri.configs.annotation.NameModifier;
+import eu.okaeri.configs.annotation.NameStrategy;
+import eu.okaeri.configs.annotation.Names;
 import eu.okaeri.platform.core.annotation.Configuration;
 import lombok.Getter;
 import lombok.Setter;
@@ -23,6 +27,9 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * Inventories file representation
+ */
 @Getter
 @Setter
 @Configuration(path = "inventories.yml")
@@ -32,20 +39,23 @@ import java.util.List;
 @Names(strategy = NameStrategy.HYPHEN_CASE, modifier = NameModifier.TO_LOWER_CASE)
 public final class Inventories extends OkaeriConfig implements DefaultBackgrounds {
     @CustomKey("recipesGUIConfig")
-    public RecipesGUIConfig recipesGUIConfig = RecipesGUIConfig.builder()
+    private RecipesGUIConfig recipesGUIConfig = RecipesGUIConfig.builder()
             .commonGUI(new CommonGUI(
                     "Recipes",
                     54,
                     getBackGroundFiller(),
                     ItemBuilder.of(XMaterial.BARRIER,  49, 1, "&cClose", Arrays.asList("", "&e» &7Click to close")).build()
             ))
-            .recipeItem(ItemBuilder.of(XMaterial.LINGERING_POTION, 1, "&e#%alchemist_recipe_id%", Arrays.asList("", "&e» &7Click to edit this recipe")).build())
+            .recipeItem(ItemBuilder.of(XMaterial.LINGERING_POTION, 1)
+                    .title("&e#%alchemist_recipe_id%")
+                    .lore(Arrays.asList("", "&e» &7Click to edit this recipe"))
+                    .build())
             .nextPage(ItemBuilder.of(XMaterial.BOOK, 52, 1, "&7Next Page", Collections.emptyList()).enabled(true).build())
             .previousPage(ItemBuilder.of(XMaterial.BOOK, 46, 1, "&7Back Page", Collections.emptyList()).enabled(true).build())
             .build();
 
     @CustomKey("standGUIConfig")
-    public AlchemistStandGUIConfig standGUIConfig = AlchemistStandGUIConfig.builder()
+    private AlchemistStandGUIConfig standGUIConfig = AlchemistStandGUIConfig.builder()
             .commonGUI(new CommonGUI(
                     "Brewing Stand",
                     54,
@@ -95,12 +105,12 @@ public final class Inventories extends OkaeriConfig implements DefaultBackground
                     .build()
 
             ))
-            .inputSlots(Arrays.asList(38,40,42))
+            .inputSlots(Arrays.asList(38, 40, 42))
             .fuelSlot(13)
             .build();
 
     @CustomKey("selectItemGUIConfig")
-    public SelectItemGUIConfig selectItemGUIConfig = SelectItemGUIConfig.builder()
+    private SelectItemGUIConfig selectItemGUIConfig = SelectItemGUIConfig.builder()
             .commonGUI(new CommonGUI(
                     "Select an Item",
                     54,
@@ -108,7 +118,7 @@ public final class Inventories extends OkaeriConfig implements DefaultBackground
                     ItemBuilder.of(XMaterial.BARRIER,  49, 1, "&cClose", Arrays.asList("", "&e» &7Click to close")).build()
             )).build();
 
-    public IndividualRecipeGUIConfig individualRecipeGUIConfig = IndividualRecipeGUIConfig.builder()
+    private IndividualRecipeGUIConfig individualRecipeGUIConfig = IndividualRecipeGUIConfig.builder()
             .commonGUI(new CommonGUI(
                     "Edit Recipe",
                     54,
@@ -160,59 +170,67 @@ public final class Inventories extends OkaeriConfig implements DefaultBackground
             .build();
 
     private Background getStandBackground() {
+        final XMaterial black = XMaterial.BLACK_STAINED_GLASS_PANE;
+        final XMaterial blue = XMaterial.LIGHT_BLUE_STAINED_GLASS_PANE;
+
+        final String blueTitle = "&7Place Water Bottles or Potions";
+        final List<String> blueDescription = Collections.singletonList("&7below to brew.");
+
+        final Item blackPane = ItemBuilder.of(black, 1, " ", Collections.emptyList()).build();
+        final Item placeWaterBottles = ItemBuilder.of(blue, 1, blueTitle, blueDescription).build();
+
         return new Background(ImmutableMap.<Integer, Item>builder()
-                .put(0, ItemBuilder.of(XMaterial.BLACK_STAINED_GLASS_PANE, 1, " ", Collections.emptyList()).build())
-                .put(1, ItemBuilder.of(XMaterial.BLACK_STAINED_GLASS_PANE, 1, " ", Collections.emptyList()).build())
-                .put(2, ItemBuilder.of(XMaterial.BLACK_STAINED_GLASS_PANE, 1, " ", Collections.emptyList()).build())
-                .put(3, ItemBuilder.of(XMaterial.BLACK_STAINED_GLASS_PANE, 1, " ", Collections.emptyList()).build())
-                .put(4, ItemBuilder.of(XMaterial.BLACK_STAINED_GLASS_PANE, 1, " ", Collections.emptyList()).build())
-                .put(5, ItemBuilder.of(XMaterial.BLACK_STAINED_GLASS_PANE, 1, " ", Collections.emptyList()).build())
-                .put(6, ItemBuilder.of(XMaterial.BLACK_STAINED_GLASS_PANE, 1, " ", Collections.emptyList()).build())
-                .put(7, ItemBuilder.of(XMaterial.BLACK_STAINED_GLASS_PANE, 1, " ", Collections.emptyList()).build())
-                .put(8, ItemBuilder.of(XMaterial.BLACK_STAINED_GLASS_PANE, 1, " ", Collections.emptyList()).build())
-                .put(9, ItemBuilder.of(XMaterial.BLACK_STAINED_GLASS_PANE, 1, " ", Collections.emptyList()).build())
-                .put(10, ItemBuilder.of(XMaterial.BLACK_STAINED_GLASS_PANE, 1, " ", Collections.emptyList()).build())
-                .put(11, ItemBuilder.of(XMaterial.BLACK_STAINED_GLASS_PANE, 1, " ", Collections.emptyList()).build())
-                .put(12, ItemBuilder.of(XMaterial.BLACK_STAINED_GLASS_PANE, 1, " ", Collections.emptyList()).build())
-                .put(14, ItemBuilder.of(XMaterial.BLACK_STAINED_GLASS_PANE, 1, " ", Collections.emptyList()).build())
-                .put(15, ItemBuilder.of(XMaterial.BLACK_STAINED_GLASS_PANE, 1, " ", Collections.emptyList()).build())
-                .put(16, ItemBuilder.of(XMaterial.BLACK_STAINED_GLASS_PANE, 1, " ", Collections.emptyList()).build())
-                .put(17, ItemBuilder.of(XMaterial.BLACK_STAINED_GLASS_PANE, 1, " ", Collections.emptyList()).build())
-                .put(18, ItemBuilder.of(XMaterial.BLACK_STAINED_GLASS_PANE, 1, " ", Collections.emptyList()).build())
-                .put(19, ItemBuilder.of(XMaterial.BLACK_STAINED_GLASS_PANE, 1, " ", Collections.emptyList()).build())
+                .put(0, blackPane)
+                .put(1, blackPane)
+                .put(2, blackPane)
+                .put(3, blackPane)
+                .put(4, blackPane)
+                .put(5, blackPane)
+                .put(6, blackPane)
+                .put(7, blackPane)
+                .put(8, blackPane)
+                .put(9, blackPane)
+                .put(10, blackPane)
+                .put(11, blackPane)
+                .put(12, blackPane)
+                .put(14, blackPane)
+                .put(15, blackPane)
+                .put(16, blackPane)
+                .put(17, blackPane)
+                .put(18, blackPane)
+                .put(19, blackPane)
 
+                .put(20, placeWaterBottles)
+                .put(21, placeWaterBottles)
+                .put(22, placeWaterBottles)
+                .put(23, placeWaterBottles)
+                .put(24, placeWaterBottles)
+                .put(29, placeWaterBottles)
+                .put(31, placeWaterBottles)
+                .put(33, placeWaterBottles)
 
-                .put(20, ItemBuilder.of(XMaterial.LIGHT_BLUE_STAINED_GLASS_PANE, 1, "&7Place Water Bottles or Potions", Collections.singletonList("&7below to brew.")).build())
-                .put(21, ItemBuilder.of(XMaterial.LIGHT_BLUE_STAINED_GLASS_PANE, 1, "&7Place Water Bottles or Potions", Collections.singletonList("&7below to brew.")).build())
-                .put(22, ItemBuilder.of(XMaterial.LIGHT_BLUE_STAINED_GLASS_PANE, 1, "&7Place Water Bottles or Potions", Collections.singletonList("&7below to brew.")).build())
-                .put(23, ItemBuilder.of(XMaterial.LIGHT_BLUE_STAINED_GLASS_PANE, 1, "&7Place Water Bottles or Potions", Collections.singletonList("&7below to brew.")).build())
-                .put(24, ItemBuilder.of(XMaterial.LIGHT_BLUE_STAINED_GLASS_PANE, 1, "&7Place Water Bottles or Potions", Collections.singletonList("&7below to brew.")).build())
-                .put(29, ItemBuilder.of(XMaterial.LIGHT_BLUE_STAINED_GLASS_PANE, 1, "&7Place Water Bottles or Potions", Collections.singletonList("&7below to brew.")).build())
-                .put(31, ItemBuilder.of(XMaterial.LIGHT_BLUE_STAINED_GLASS_PANE, 1, "&7Place Water Bottles or Potions", Collections.singletonList("&7below to brew.")).build())
-                .put(33, ItemBuilder.of(XMaterial.LIGHT_BLUE_STAINED_GLASS_PANE, 1, "&7Place Water Bottles or Potions", Collections.singletonList("&7below to brew.")).build())
-
-                .put(25, ItemBuilder.of(XMaterial.BLACK_STAINED_GLASS_PANE, 1, " ", Collections.emptyList()).build())
-                .put(26, ItemBuilder.of(XMaterial.BLACK_STAINED_GLASS_PANE, 1, " ", Collections.emptyList()).build())
-                .put(27, ItemBuilder.of(XMaterial.BLACK_STAINED_GLASS_PANE, 1, " ", Collections.emptyList()).build())
-                .put(28, ItemBuilder.of(XMaterial.BLACK_STAINED_GLASS_PANE, 1, " ", Collections.emptyList()).build())
-                .put(30, ItemBuilder.of(XMaterial.BLACK_STAINED_GLASS_PANE, 1, " ", Collections.emptyList()).build())
-                .put(32, ItemBuilder.of(XMaterial.BLACK_STAINED_GLASS_PANE, 1, " ", Collections.emptyList()).build())
-                .put(34, ItemBuilder.of(XMaterial.BLACK_STAINED_GLASS_PANE, 1, " ", Collections.emptyList()).build())
-                .put(35, ItemBuilder.of(XMaterial.BLACK_STAINED_GLASS_PANE, 1, " ", Collections.emptyList()).build())
-                .put(36, ItemBuilder.of(XMaterial.BLACK_STAINED_GLASS_PANE, 1, " ", Collections.emptyList()).build())
-                .put(37, ItemBuilder.of(XMaterial.BLACK_STAINED_GLASS_PANE, 1, " ", Collections.emptyList()).build())
-                .put(39, ItemBuilder.of(XMaterial.BLACK_STAINED_GLASS_PANE, 1, " ", Collections.emptyList()).build())
-                .put(41, ItemBuilder.of(XMaterial.BLACK_STAINED_GLASS_PANE, 1, " ", Collections.emptyList()).build())
-                .put(43, ItemBuilder.of(XMaterial.BLACK_STAINED_GLASS_PANE, 1, " ", Collections.emptyList()).build())
-                .put(44, ItemBuilder.of(XMaterial.BLACK_STAINED_GLASS_PANE, 1, " ", Collections.emptyList()).build())
-                .put(45, ItemBuilder.of(XMaterial.BLACK_STAINED_GLASS_PANE, 1, " ", Collections.emptyList()).build())
-                .put(46, ItemBuilder.of(XMaterial.BLACK_STAINED_GLASS_PANE, 1, " ", Collections.emptyList()).build())
-                .put(47, ItemBuilder.of(XMaterial.BLACK_STAINED_GLASS_PANE, 1, " ", Collections.emptyList()).build())
-                .put(48, ItemBuilder.of(XMaterial.BLACK_STAINED_GLASS_PANE, 1, " ", Collections.emptyList()).build())
-                .put(50, ItemBuilder.of(XMaterial.BLACK_STAINED_GLASS_PANE, 1, " ", Collections.emptyList()).build())
-                .put(51, ItemBuilder.of(XMaterial.BLACK_STAINED_GLASS_PANE, 1, " ", Collections.emptyList()).build())
-                .put(52, ItemBuilder.of(XMaterial.BLACK_STAINED_GLASS_PANE, 1, " ", Collections.emptyList()).build())
-                .put(53, ItemBuilder.of(XMaterial.BLACK_STAINED_GLASS_PANE, 1, " ", Collections.emptyList()).build())
+                .put(25, blackPane)
+                .put(26, blackPane)
+                .put(27, blackPane)
+                .put(28, blackPane)
+                .put(30, blackPane)
+                .put(32, blackPane)
+                .put(34, blackPane)
+                .put(35, blackPane)
+                .put(36, blackPane)
+                .put(37, blackPane)
+                .put(39, blackPane)
+                .put(41, blackPane)
+                .put(43, blackPane)
+                .put(44, blackPane)
+                .put(45, blackPane)
+                .put(46, blackPane)
+                .put(47, blackPane)
+                .put(48, blackPane)
+                .put(50, blackPane)
+                .put(51, blackPane)
+                .put(52, blackPane)
+                .put(53, blackPane)
                 .build());
     }
 }

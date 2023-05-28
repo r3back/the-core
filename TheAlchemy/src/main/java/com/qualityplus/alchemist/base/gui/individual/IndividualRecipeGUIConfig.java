@@ -8,6 +8,9 @@ import eu.okaeri.configs.OkaeriConfig;
 import lombok.Builder;
 import lombok.Getter;
 
+/**
+ * Individual Recipe GUI Configuration
+ */
 @Getter
 public final class IndividualRecipeGUIConfig extends OkaeriConfig implements SimpleGUI {
     private final CommonGUI commonGUI;
@@ -19,8 +22,20 @@ public final class IndividualRecipeGUIConfig extends OkaeriConfig implements Sim
     private final XMaterial emptyItem;
     private final Item backPage;
 
+    /**
+     *
+     * @param commonGUI    {@link CommonGUI}
+     * @param durationItem {@link Item}
+     * @param infoItem     {@link Item}
+     * @param fuelItem     {@link Item}
+     * @param outputItem   {@link Item}
+     * @param inputItem    {@link Item}
+     * @param emptyItem    {@link XMaterial}
+     * @param backPage     {@link Item}
+     */
     @Builder
-    public IndividualRecipeGUIConfig(CommonGUI commonGUI, Item durationItem, Item infoItem, Item fuelItem, Item outputItem, Item inputItem, XMaterial emptyItem, Item backPage) {
+    public IndividualRecipeGUIConfig(final CommonGUI commonGUI, final Item durationItem, final Item infoItem, final Item fuelItem, final Item outputItem,
+                                     final Item inputItem, final XMaterial emptyItem, final Item backPage) {
         this.commonGUI = commonGUI;
         this.durationItem = durationItem;
         this.infoItem = infoItem;

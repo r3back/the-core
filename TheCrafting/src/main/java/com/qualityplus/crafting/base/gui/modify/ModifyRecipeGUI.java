@@ -64,14 +64,14 @@ public final class ModifyRecipeGUI extends CraftingGUI {
             if(isItem(slot, config.getCloseGUI())){
                 player.closeInventory();
             }else if(isItem(slot, config.getSaveRecipe())){
-                Map<Integer, String> ingredients = getIngredients();
+                final Map<Integer, String> ingredients = getIngredients();
 
                 if(ingredients.size() <= 0){
                     player.sendMessage(StringUtils.color(box.files().messages().recipeMessages.recipeIngredientsCantBeEmpty));
                     return;
                 }
 
-                ItemStack result = inventory.getItem(config.getResultSlot());
+                final ItemStack result = inventory.getItem(config.getResultSlot());
 
                 if(BukkitItemUtil.isNull(result)){
                     player.sendMessage(StringUtils.color(box.files().messages().recipeMessages.recipeResultCantBeEmpty));

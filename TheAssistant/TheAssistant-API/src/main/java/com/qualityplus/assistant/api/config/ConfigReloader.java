@@ -4,10 +4,21 @@ import eu.okaeri.configs.OkaeriConfig;
 
 import java.util.Arrays;
 
+/**
+ * Config files reloader
+ */
 public interface ConfigReloader{
-    void reloadFiles();
+    /**
+     * Reload all files
+     */
+    public void reloadFiles();
 
-    default void reloadAll(OkaeriConfig... files){
+    /**
+     * Reload specific files
+     *
+     * @param files {@link OkaeriConfig} files to be reloaded
+     */
+    public default void reloadAll(OkaeriConfig... files){
         Arrays.stream(files).forEach(OkaeriConfig::load);
     }
 }
