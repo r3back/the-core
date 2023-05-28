@@ -1,6 +1,5 @@
 plugins {
     id 'com.github.johnrengelman.shadow'
-    id 'checkstyle'
 }
 
 dependencies {
@@ -25,24 +24,15 @@ dependencies {
 
 }
 
+
 processResources{
     filesMatching('plugin.yml') {
         expand 'version': version
     }
 }
 
-checkstyle {
-
-    toolVersion = '8.20'
-    configFile = file('../config/checkstyle/checkstyle.xml')
-    ignoreFailures = false
-    showViolations = true
-    showViolations = true
-    maxWarnings = 0
-    sourceSets = [sourceSets.main]
-}
-
 shadowJar {
+
     archiveFileName = 'TheAlchemist.jar'
 
     dependencies {
