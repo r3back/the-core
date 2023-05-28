@@ -7,7 +7,7 @@ defaultTasks 'build'
 
 def copyJars =  {
     file -> {
-        def dir = 'C:/Users/andre/OneDrive/Desktop/TEST'
+        def dir = System.getenv("SAVE_FOLDER")
         mkdir dir
         copy {
             into dir
@@ -61,8 +61,25 @@ project.ext.okaeri_dependencies = okaeri_dependencies
 project.ext.driver_dependencies = driver_dependencies
 project.ext.assistant_dependencies = assistant_dependencies
 
+/*def configureCheckstyleForSubproject(subproject) {
+    subproject.plugins.withId('java') {
+        apply plugin: 'checkstyle'
+    }
+
+    subproject.checkstyle {
+        toolVersion = '8.20'
+        configFile = file('/config/checkstyle/checkstyle.xml')
+        ignoreFailures = false
+        showViolations = true
+        showViolations = true
+        maxWarnings = 0
+        sourceSets = [sourceSets.main]
+    }
+}*/
+
 subprojects {
     apply plugin: 'java'
+    //apply plugin: 'checkstyle'
     apply plugin: 'maven-publish'
 
     sourceCompatibility = 1.8
@@ -75,6 +92,8 @@ subprojects {
     jar {
         from '../LICENSE.txt'
     }
+
+    //configureCheckstyleForSubproject(it)
 
     repositories {
         mavenCentral()
