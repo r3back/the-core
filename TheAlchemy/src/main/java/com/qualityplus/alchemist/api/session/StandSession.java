@@ -4,8 +4,21 @@ import org.bukkit.Location;
 
 import java.util.UUID;
 
+/**
+ * Stand session
+ */
 public interface StandSession {
-    Location getLocation();
+    /**
+     * Retrieves session location
+     *
+     * @return {@link Location}
+     */
+    public Location getLocation();
 
-    UUID getPlayer();
+    /**
+     * Retrieves player's session uuid
+     *
+     * @return {@link UUID}
+     */
+    public UUID getPlayer();
 }

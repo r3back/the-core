@@ -8,26 +8,51 @@ import com.qualityplus.assistant.inventory.SimpleGUI;
 
 import java.util.List;
 
+/**
+ * Abstract Alchemist GUI
+ */
 public abstract class AlchemistGUI extends GUI {
     protected final Box box;
 
-    public AlchemistGUI(int size, String title, Box box) {
+    /**
+     *
+     * @param size  Inventory's size
+     * @param title Inventory's title
+     * @param box   {@link Box}
+     */
+    public AlchemistGUI(final int size, final String title, final Box box) {
         super(size, title);
 
         this.box = box;
     }
 
-    public AlchemistGUI(SimpleGUI simpleGUI, Box box) {
+    /**
+     *
+     * @param simpleGUI {@link SimpleGUI}
+     * @param box       {@link Box}
+     */
+    public AlchemistGUI(final SimpleGUI simpleGUI, final Box box) {
         super(simpleGUI);
 
         this.box = box;
     }
 
-    public void setItem(Item item) {
-        setItem(item, box.files().config().loreWrapper);
+    /**
+     * Set item in inventory
+     *
+     * @param item {@link Item}
+     */
+    public void setItem(final Item item) {
+        this.setItem(item, this.box.getFiles().config().getLoreWrapper());
     }
 
-    public void setItem(Item item, List<IPlaceholder> placeholderList) {
-        setItem(item, placeholderList, box.files().config().loreWrapper);
+    /**
+     * Set item with parsed placeholders in inventory
+     *
+     * @param item            {@link Item}
+     * @param placeholderList List of {@link IPlaceholder}
+     */
+    public void setItem(final Item item, final List<IPlaceholder> placeholderList) {
+        this.setItem(item, placeholderList, this.box.getFiles().config().getLoreWrapper());
     }
 }

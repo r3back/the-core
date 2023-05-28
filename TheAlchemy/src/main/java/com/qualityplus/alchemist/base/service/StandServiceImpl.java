@@ -11,23 +11,26 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
+/**
+ * Implementation of {@link StandService}
+ */
 @Component
 public final class StandServiceImpl implements StandService {
     private final List<StandSession> openedStands = new ArrayList<>();
 
     @Override
-    public void addSession(UUID uuid, Location location) {
-        openedStands.add(new StandSessionImpl(location, uuid));
+    public void addSession(final UUID uuid, final Location location) {
+        this.openedStands.add(new StandSessionImpl(location, uuid));
     }
 
     @Override
-    public void removeSession(Location location) {
-        getSession(location).ifPresent(openedStands::remove);
+    public void removeSession(final Location location) {
+        getSession(location).ifPresent(this.openedStands::remove);
     }
 
     @Override
-    public Optional<StandSession> getSession(Location location) {
-        return openedStands.stream()
+    public Optional<StandSession> getSession(final Location location) {
+        return this.openedStands.stream()
                 .filter(loc -> loc.getLocation().equals(location))
                 .findFirst();
     }

@@ -6,45 +6,66 @@ import eu.okaeri.configs.annotation.NameModifier;
 import eu.okaeri.configs.annotation.NameStrategy;
 import eu.okaeri.configs.annotation.Names;
 import eu.okaeri.platform.core.annotation.Configuration;
+import lombok.Getter;
+import lombok.Setter;
 
+/**
+ * Messages file representation
+ */
+@Getter
+@Setter
 @Configuration(path = "messages.yml")
 @Header("================================")
 @Header("       Messages      ")
 @Header("================================")
 @Names(strategy = NameStrategy.HYPHEN_CASE, modifier = NameModifier.TO_LOWER_CASE)
 public final class Messages extends OkaeriConfig {
-    public PluginMessages pluginMessages = new PluginMessages();
-    public RecipeMessages recipeMessages = new RecipeMessages();
-    public StandMessages standMessages = new StandMessages();
+    private PluginMessages pluginMessages = new PluginMessages();
+    private RecipeMessages recipeMessages = new RecipeMessages();
+    private StandMessages standMessages = new StandMessages();
 
+    /**
+     * Messages related to brewing stand
+     */
+    @Getter
+    @Setter
     public class StandMessages extends OkaeriConfig {
-        public String alreadyInUse = "&cYou can't open that Brewing stand it's being used by %player%!";
+        private String alreadyInUse = "&cYou can't open that Brewing stand it's being used by %player%!";
     }
 
-    public class RecipeMessages extends OkaeriConfig{
-        public String recipeAlreadyExist = "&cThat Recipe already exists!";
-        public String recipeDoesntExist = "&cThat Recipe doesn't exists!";
-        public String defaultDescription = "&7Default Description...";
-        public String successfullyDeletedRecipe = "&7That recipe has been successfully deleted!";
+    /**
+     * Messages related to recipes
+     */
+    @Getter
+    @Setter
+    public class RecipeMessages extends OkaeriConfig {
+        private String recipeAlreadyExist = "&cThat Recipe already exists!";
+        private String recipeDoesntExist = "&cThat Recipe doesn't exists!";
+        private String defaultDescription = "&7Default Description...";
+        private String successfullyDeletedRecipe = "&7That recipe has been successfully deleted!";
     }
 
+    /**
+     * Messages for plugin in general
+     */
+    @Getter
+    @Setter
     public class PluginMessages extends OkaeriConfig {
-        public String successfullyReloaded = "&aPlugin has been reloaded successfully!";
-        public String invalidPlayer = "&cInvalid Player!";
-        public String useSyntax = "&cUsage: %usage%!";
+        private String successfullyReloaded = "&aPlugin has been reloaded successfully!";
+        private String invalidPlayer = "&cInvalid Player!";
+        private String useSyntax = "&cUsage: %usage%!";
+        private String noPermission = "&ecYou don't have permission to do that!";
+        private String unknownCommand = "&cUnknown command!";
+        private String mustBeAPlayer = "&cYou must be a player to do that!";
+        private String invalidArguments = "&cInvalid Arguments!";
+        private String invalidAmount = "&cInvalid Amount!";
+        private String useHelp = "&cUse: /alchemist help";
 
-        public String noPermission = "&ecYou don't have permission to do that!";
-        public String unknownCommand = "&cUnknown command!";
-        public String mustBeAPlayer = "&cYou must be a player to do that!";
-        public String invalidArguments = "&cInvalid Arguments!";
-        public String invalidAmount = "&cInvalid Amount!";
-        public String useHelp = "&cUse: /alchemist help";
-
-        public String helpMessage = "&7%command% - &e%description%";
-        public String helpHeader = "      &6&lTheAlchemist   ";
-        public String helpfooter = "&e<< &6Page %page% of %maxpage% &e>>";
-        public String previousPage = "<<";
-        public String nextPage = ">>";
-        public String helpPageHoverMessage = "Click to go to page %page%";
+        private String helpMessage = "&7%command% - &e%description%";
+        private String helpHeader = "      &6&lTheAlchemist   ";
+        private String helpfooter = "&e<< &6Page %page% of %maxpage% &e>>";
+        private String previousPage = "<<";
+        private String nextPage = ">>";
+        private String helpPageHoverMessage = "Click to go to page %page%";
     }
 }

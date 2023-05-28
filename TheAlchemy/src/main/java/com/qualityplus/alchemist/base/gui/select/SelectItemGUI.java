@@ -13,13 +13,23 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
+/**
+ * Select Item GUI
+ */
 public final class SelectItemGUI extends AlchemistGUI {
     private final BrewingRecipeItem type;
     private final ItemStack[] itemStacks;
     private final BrewingRecipe recipe;
 
-    public SelectItemGUI(Box box, BrewingRecipe recipe, ItemStack[] itemStacks, BrewingRecipeItem type) {
-        super(box.files().inventories().selectItemGUIConfig, box);
+    /**
+     *
+     * @param box        {@link Box}
+     * @param recipe     {@link BrewingRecipe}
+     * @param itemStacks Array of {@link ItemStack}
+     * @param type       {@link BrewingRecipeItem}
+     */
+    public SelectItemGUI(final Box box, final BrewingRecipe recipe, final ItemStack[] itemStacks, final BrewingRecipeItem type) {
+        super(box.getFiles().inventories().getSelectItemGUIConfig(), box);
 
         this.itemStacks = itemStacks;
         this.recipe = recipe;
@@ -30,43 +40,60 @@ public final class SelectItemGUI extends AlchemistGUI {
     @Override
     public Inventory getInventory() {
 
-        inventory.setContents(itemStacks);
+        this.inventory.setContents(this.itemStacks);
 
-        return inventory;
+        return this.inventory;
     }
 
     @Override
-    public void onInventoryClick(InventoryClickEvent e) {
+    public void onInventoryClick(final InventoryClickEvent e) {
         e.setCancelled(true);
 
-        if(BukkitItemUtil.isNull(e.getCurrentItem())) return;
+        if (BukkitItemUtil.isNull(e.getCurrentItem())) {
+            return;
+        }
 
-        Player player = (Player) e.getWhoClicked();
+        final Player player = (Player) e.getWhoClicked();
 
-        ItemStack itemStack = e.getCurrentItem().clone();
+        final ItemStack itemStack = e.getCurrentItem().clone();
 
-        String parsed = BukkitItemUtil.serialize(itemStack);
+        final String parsed = BukkitItemUtil.serialize(itemStack);
 
-        switch (type) {
+        switch (this.type) {
             case FUEL:
-                recipe.setFuel(parsed);
+                this.recipe.setFuel(parsed);
                 break;
             case INPUT:
-                recipe.setInput(parsed);
+                this.recipe.setInput(parsed);
                 break;
             case OUTPUT:
-                recipe.setOutPut(parsed);
+                this.recipe.setOutPut(parsed);
+                break;
+            default:
                 break;
         }
 
         SoundUtils.playSound(player, XSound.ENTITY_EXPERIENCE_ORB_PICKUP);
 
-        player.openInventory(new IndividualRecipeGUI(box, recipe).getInventory());
+        player.openInventory(new IndividualRecipeGUI(this.box, this.recipe).getInventory());
     }
 
-    public enum BrewingRecipeItem{
+
+    /**
+     * Brewing Stand item types
+     */
+    public enum BrewingRecipeItem {
+        /**
+         * Represents the fuel item
+         */
         FUEL,
+        /**
+         * Represents the output item
+         */
         OUTPUT,
-        INPUT
+        /**
+         * Represents the input item
+         */
+        INPUT;
     }
 }

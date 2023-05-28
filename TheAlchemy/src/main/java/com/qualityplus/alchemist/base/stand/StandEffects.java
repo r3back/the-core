@@ -8,6 +8,9 @@ import lombok.Setter;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Stand animations
+ */
 @Getter
 @Setter
 @AllArgsConstructor

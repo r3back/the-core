@@ -19,35 +19,43 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Recipes GUI
+ */
 public final class RecipesGUI extends AlchemistGUI {
     private final Map<Integer, BrewingRecipe> recipeMap = new HashMap<>();
     private final RecipesGUIConfig config;
 
-    public RecipesGUI(Box box, int page) {
-        super(box.files().inventories().recipesGUIConfig, box);
+    /**
+     *
+     * @param box  {@link Box}
+     * @param page Gui Page number
+     */
+    public RecipesGUI(final Box box, final int page) {
+        super(box.getFiles().inventories().getRecipesGUIConfig(), box);
 
         this.maxPerPage = 43;
         this.hasNext = Recipes.values().size() > maxPerPage * page;
-        this.config = box.files().inventories().recipesGUIConfig;
+        this.config = box.getFiles().inventories().getRecipesGUIConfig();
         this.page = page;
     }
 
     @Override
     public @NotNull Inventory getInventory() {
-        InventoryUtils.fillInventory(inventory, config.getBackground());
+        InventoryUtils.fillInventory(this.inventory, this.config.getBackground());
 
-        List<BrewingRecipe> recipes = new ArrayList<>(Recipes.values());
+        final List<BrewingRecipe> recipes = new ArrayList<>(Recipes.values());
 
         try {
             int slot = 0;
-            int i = maxPerPage * (page - 1);
-            if(recipes.size() > 0){
-                while (slot < maxPerPage) {
+            int i = this.maxPerPage * (this.page - 1);
+            if (recipes.size() > 0) {
+                while (slot < this.maxPerPage) {
                     if (recipes.size() > i && i >= 0) {
-                        BrewingRecipe recipe = recipes.get(i);
-                        List<IPlaceholder> placeholders = AlchemistPlaceholderUtils.getRecipePlaceholders(recipe);
-                        inventory.setItem(slot, ItemStackUtils.makeItem(config.getRecipeItem(), placeholders));
-                        recipeMap.put(slot, recipe);
+                        final BrewingRecipe recipe = recipes.get(i);
+                        final List<IPlaceholder> placeholders = AlchemistPlaceholderUtils.getRecipePlaceholders(recipe);
+                        this.inventory.setItem(slot, ItemStackUtils.makeItem(this.config.getRecipeItem(), placeholders));
+                        this.recipeMap.put(slot, recipe);
                         slot++;
                         i++;
                         continue;
@@ -55,39 +63,47 @@ public final class RecipesGUI extends AlchemistGUI {
                     slot++;
                 }
             }
-        }catch (Exception e){
+        } catch (final IndexOutOfBoundsException e) {
             e.printStackTrace();
         }
 
-        if(page > 1) setItem(config.getPreviousPage());
+        if (this.page > 1) {
+            setItem(this.config.getPreviousPage());
+        }
 
-        if(hasNext) setItem(config.getNextPage());
+        if (this.hasNext) {
+            setItem(this.config.getNextPage());
+        }
 
-        setItem(config.getCloseGUI());
+        setItem(this.config.getCloseGUI());
 
-        return inventory;
+        return this.inventory;
     }
 
     @Override
-    public void onInventoryClick(InventoryClickEvent event) {
+    public void onInventoryClick(final InventoryClickEvent event) {
         event.setCancelled(true);
 
-        if(!getTarget(event).equals(ClickTarget.INSIDE)) return;
+        if (!getTarget(event).equals(ClickTarget.INSIDE)) {
+            return;
+        }
 
-        int slot = event.getSlot();
+        final int slot = event.getSlot();
 
-        Player player = (Player) event.getWhoClicked();
+        final Player player = (Player) event.getWhoClicked();
 
-        if(isItem(slot, config.getCloseGUI())){
+        if (isItem(slot, this.config.getCloseGUI())) {
             player.closeInventory();
-        }else if(isItem(slot, config.getNextPage()) && hasNext){
-            player.openInventory(new RecipesGUI(box, page + 1).getInventory());
-        }else if(isItem(slot, config.getPreviousPage()) && page > 1){
-            player.openInventory(new RecipesGUI(box, page - 1).getInventory());
-        }else if(recipeMap.containsKey(slot)){
-            BrewingRecipe recipe = recipeMap.get(slot);
+        } else if (isItem(slot, this.config.getNextPage()) && this.hasNext) {
+            player.openInventory(new RecipesGUI(this.box, this.page + 1).getInventory());
+        } else if (isItem(slot, this.config.getPreviousPage()) && this.page > 1) {
+            player.openInventory(new RecipesGUI(this.box, this.page - 1).getInventory());
+        } else if (this.recipeMap.containsKey(slot)) {
+            final BrewingRecipe recipe = this.recipeMap.get(slot);
 
-            if(recipe == null) return;
+            if (recipe == null) {
+                return;
+            }
 
             player.openInventory(new IndividualRecipeGUI(box, recipe).getInventory());
         }

@@ -7,15 +7,25 @@ import eu.okaeri.configs.OkaeriConfig;
 import lombok.Builder;
 import lombok.Getter;
 
+/**
+ * Recipes GUI Configuration
+ */
 @Getter
-public final class RecipesGUIConfig extends OkaeriConfig implements SimpleGUI{
+public final class RecipesGUIConfig extends OkaeriConfig implements SimpleGUI {
     private final CommonGUI commonGUI;
     private final Item recipeItem;
     private final Item previousPage;
     private final Item nextPage;
 
+    /**
+     *
+     * @param commonGUI    {@link CommonGUI}
+     * @param recipeItem   {@link Item}
+     * @param previousPage {@link Item}
+     * @param nextPage     {@link Item}
+     */
     @Builder
-    public RecipesGUIConfig(CommonGUI commonGUI, Item recipeItem, Item previousPage, Item nextPage) {
+    public RecipesGUIConfig(final CommonGUI commonGUI, final Item recipeItem, final Item previousPage, final Item nextPage) {
         this.commonGUI = commonGUI;
         this.recipeItem = recipeItem;
         this.previousPage = previousPage;

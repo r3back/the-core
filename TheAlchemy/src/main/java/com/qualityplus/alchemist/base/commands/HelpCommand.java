@@ -8,29 +8,52 @@ import eu.okaeri.commons.bukkit.time.MinecraftTimeEquivalent;
 import eu.okaeri.injector.annotation.Inject;
 import eu.okaeri.platform.bukkit.annotation.Delayed;
 import eu.okaeri.platform.core.annotation.Component;
+import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * Command to get all commands usages
+ */
 @Component
 public final class HelpCommand extends AssistantCommand {
     private @Inject Box box;
 
     @Override
-    public boolean execute(CommandSender sender, String[] args) {
-        Messages.PluginMessages msg = box.files().messages().pluginMessages;
-        sendHelpCommands(sender, args, TheAssistantPlugin.getAPI().getCommandProvider(), msg.helpHeader, msg.helpMessage, msg.helpfooter, msg.nextPage, msg.previousPage, msg.helpPageHoverMessage);
+    public boolean execute(final CommandSender sender, final String[] args) {
+        final Messages.PluginMessages msg = this.box.getFiles().messages().getPluginMessages();
+
+        this.sendHelpCommands(
+                sender,
+                args,
+                TheAssistantPlugin.getAPI().getCommandProvider(),
+                msg.getHelpHeader(),
+                msg.getHelpMessage(),
+                msg.getHelpfooter(),
+                msg.getNextPage(),
+                msg.getPreviousPage(),
+                msg.getHelpPageHoverMessage()
+        );
+
         return true;
     }
 
     @Override
-    public List<String> onTabComplete(CommandSender commandSender, org.bukkit.command.Command command, String label, String[] args) {
+    public List<String> onTabComplete(final CommandSender commandSender, final Command command, final String label, final String[] args) {
         return Collections.emptyList();
     }
 
+    /**
+     * Register command
+     *
+     * @param box {@link Box}
+     */
     @Delayed(time = MinecraftTimeEquivalent.SECOND)
-    public void register(@Inject Box box){
-        TheAssistantPlugin.getAPI().getCommandProvider().registerCommand(this, e -> e.getCommand().setDetails(box.files().commands().helpCommand));
+    public void register(@Inject final Box box) {
+        TheAssistantPlugin.getAPI()
+                .getCommandProvider()
+                .registerCommand(this, e -> e.getCommand().setDetails(box.getFiles().commands().getHelpCommand()));
     }
 }

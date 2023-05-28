@@ -23,24 +23,37 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Brewing stand listener
+ */
 @Component
 public final class VanillaStandListener implements Listener {
     private @Inject StandService standService;
     private @Inject Box box;
 
+    /**
+     *
+     * @param e {@link PlayerInteractEvent}
+     */
     @EventHandler
     public void onOpenBrewingStand(final PlayerInteractEvent e) {
-        if (e.getAction() != Action.RIGHT_CLICK_BLOCK) return;
+        if (e.getAction() != Action.RIGHT_CLICK_BLOCK) {
+            return;
+        }
 
         final Block bl = e.getClickedBlock();
 
-        if (bl == null || bl.getType() != Material.BREWING_STAND) return;
+        if (bl == null || bl.getType() != Material.BREWING_STAND) {
+            return;
+        }
 
-        if (!box.files().config().openAsVanillaBrewingStand) return;
+        if (!this.box.getFiles().config().isOpenAsVanillaBrewingStand()) {
+            return;
+        }
 
         final Location location = bl.getLocation();
 
-        final Optional<StandSession> session = standService.getSession(location);
+        final Optional<StandSession> session = this.standService.getSession(location);
 
         final Player player = e.getPlayer();
 
@@ -54,14 +67,14 @@ public final class VanillaStandListener implements Listener {
                     .with(new Placeholder("player", using))
                     .get();
 
-            player.sendMessage(StringUtils.processMulti(box.files().messages().standMessages.alreadyInUse, placeholders));
+            player.sendMessage(StringUtils.processMulti(this.box.getFiles().messages().getStandMessages().getAlreadyInUse(), placeholders));
             return;
         }
 
         e.setCancelled(true);
 
-        standService.addSession(player.getUniqueId(), location);
+        this.standService.addSession(player.getUniqueId(), location);
 
-        player.openInventory(new AlchemistStandGUI(box, location, standService).getInventory());
+        player.openInventory(new AlchemistStandGUI(this.box, location, this.standService).getInventory());
     }
 }

@@ -2,23 +2,24 @@ package com.qualityplus.alchemist.base.box;
 
 import com.qualityplus.alchemist.api.box.Box;
 import com.qualityplus.alchemist.api.config.ConfigFiles;
-import com.qualityplus.alchemist.base.config.*;
+import com.qualityplus.alchemist.base.config.Commands;
+import com.qualityplus.alchemist.base.config.Config;
+import com.qualityplus.alchemist.base.config.Inventories;
+import com.qualityplus.alchemist.base.config.Messages;
+import com.qualityplus.alchemist.base.config.RecipesFile;
 import eu.okaeri.injector.annotation.Inject;
 import eu.okaeri.platform.core.annotation.Component;
+import lombok.Getter;
 import org.bukkit.plugin.Plugin;
 
+/**
+ * Implementation of {@link Box}
+ */
+@Getter
 @Component
 public final class AlchemyBox implements Box {
-    private @Inject ConfigFiles<Config, RecipesFile, Inventories, Messages, Commands> files;
-    private @Inject Plugin plugin;
-
-    @Override
-    public ConfigFiles<Config, RecipesFile, Inventories, Messages, Commands> files() {
-        return files;
-    }
-
-    @Override
-    public Plugin plugin() {
-        return plugin;
-    }
+    @Inject
+    private ConfigFiles<Config, RecipesFile, Inventories, Messages, Commands> files;
+    @Inject
+    private Plugin plugin;
 }
