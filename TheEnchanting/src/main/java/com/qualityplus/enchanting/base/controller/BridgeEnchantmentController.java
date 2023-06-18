@@ -2,7 +2,7 @@ package com.qualityplus.enchanting.base.controller;
 
 import com.qualityplus.enchanting.api.enchantment.ICoreEnchantment;
 import com.qualityplus.enchanting.api.handler.EnchantmentController;
-import eu.okaeri.injector.annotation.Inject;
+
 import eu.okaeri.platform.core.annotation.Component;
 import org.bukkit.inventory.ItemStack;
 

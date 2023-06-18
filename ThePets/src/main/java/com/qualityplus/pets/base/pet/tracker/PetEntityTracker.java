@@ -4,7 +4,7 @@ import com.google.common.collect.ImmutableSet;
 import com.qualityplus.pets.api.pet.entity.PetEntity;
 import com.qualityplus.pets.api.service.PetFollowService;
 import com.qualityplus.pets.api.service.PetParticleService;
-import eu.okaeri.injector.annotation.Inject;
+
 import eu.okaeri.platform.bukkit.annotation.Scheduled;
 import eu.okaeri.platform.core.annotation.Component;
 import org.jetbrains.annotations.ApiStatus;

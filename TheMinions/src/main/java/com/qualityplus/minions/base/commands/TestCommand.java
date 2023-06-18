@@ -5,13 +5,13 @@ import com.qualityplus.assistant.TheAssistantPlugin;
 import com.qualityplus.assistant.api.commands.command.AssistantCommand;
 import com.qualityplus.assistant.api.gui.FakeInventory;
 import com.qualityplus.assistant.util.StringUtils;
-import com.qualityplus.assistant.util.faster.FasterMap;
+import com.qualityplus.assistant.util.faster.FastMap;
 import com.qualityplus.assistant.util.faster.FasterStack;
 import com.qualityplus.minions.TheMinions;
 import com.qualityplus.minions.api.box.Box;
 import com.qualityplus.minions.base.minions.entity.tracker.MinionEntityTracker;
 import eu.okaeri.commons.bukkit.time.MinecraftTimeEquivalent;
-import eu.okaeri.injector.annotation.Inject;
+
 import eu.okaeri.platform.bukkit.annotation.Delayed;
 import eu.okaeri.platform.core.annotation.Component;
 import org.bukkit.command.CommandSender;
@@ -37,7 +37,7 @@ public final class TestCommand extends AssistantCommand {
             //fakeInventory.getInventory().addItem(FasterStack.fast(XMaterial.COAL, 22));
             //fakeInventory.getInventory().addItem(FasterStack.fast(XMaterial.COAL, 22));
 
-            /*fakeInventory.setItems(FasterMap.builder(Integer.class, ItemStack.class)
+            /*fakeInventory.setItems(FastMap.builder(Integer.class, ItemStack.class)
                     .put(0, FasterStack.fast(XMaterial.DIAMOND, 64))
                     .put(1, FasterStack.fast(XMaterial.COAL, 2))
                     .put(2, FasterStack.fast(XMaterial.DIAMOND, 3))

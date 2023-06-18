@@ -3,7 +3,7 @@ package com.qualityplus.runes.api.recipes;
 import com.google.common.collect.ImmutableSet;
 import com.qualityplus.runes.api.box.Box;
 import com.qualityplus.runes.base.rune.Rune;
-import eu.okaeri.injector.annotation.Inject;
+
 import eu.okaeri.platform.bukkit.annotation.Delayed;
 import eu.okaeri.platform.core.annotation.Component;
 import org.bukkit.NamespacedKey;

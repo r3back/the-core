@@ -1,12 +1,12 @@
 package com.qualityplus.trades.base.service;
 
+import com.qualityplus.assistant.lib.eu.okaeri.injector.annotation.Inject;
+import com.qualityplus.assistant.lib.eu.okaeri.platform.core.annotation.Component;
 import com.qualityplus.trades.api.provider.CheckerProvider;
 import com.qualityplus.trades.api.service.TradesService;
 import com.qualityplus.trades.api.session.TradeSession;
 import com.qualityplus.trades.base.session.TradeSessionImpl;
 import com.qualityplus.trades.base.trades.PluginTrade;
-import eu.okaeri.injector.annotation.Inject;
-import eu.okaeri.platform.core.annotation.Component;
 import org.bukkit.entity.Player;
 
 @Component

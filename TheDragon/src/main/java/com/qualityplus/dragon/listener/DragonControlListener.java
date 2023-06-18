@@ -5,7 +5,7 @@ import com.qualityplus.dragon.api.controller.DragonController;
 import com.qualityplus.dragon.base.event.DragonRefreshEvent;
 import com.qualityplus.dragon.base.event.DragonRefreshEvent.RefreshType;
 import com.qualityplus.dragon.util.DragonVelocityUtil;
-import eu.okaeri.injector.annotation.Inject;
+
 import eu.okaeri.platform.core.annotation.Component;
 import org.bukkit.EntityEffect;
 import org.bukkit.entity.EnderDragon;

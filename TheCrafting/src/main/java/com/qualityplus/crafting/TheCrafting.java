@@ -6,7 +6,7 @@ import com.qualityplus.assistant.util.itemstack.ItemBuilder;
 import com.qualityplus.crafting.api.TheCraftingAPI;
 import com.qualityplus.crafting.base.config.Inventories;
 import com.qualityplus.crafting.base.config.RecipesFile;
-import eu.okaeri.injector.annotation.Inject;
+
 import eu.okaeri.platform.core.annotation.Scan;
 import eu.okaeri.platform.core.plan.ExecutionPhase;
 import eu.okaeri.platform.core.plan.Planned;

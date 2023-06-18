@@ -1,7 +1,7 @@
 package com.qualityplus.minions.base.config;
 
 import com.cryptomorin.xseries.XMaterial;
-import com.qualityplus.assistant.util.faster.FasterMap;
+import com.qualityplus.assistant.util.faster.FastMap;
 import com.qualityplus.assistant.util.faster.FasterStack;
 import com.qualityplus.assistant.util.itemstack.ItemBuilder;
 import com.qualityplus.assistant.util.math.MathUtils;
@@ -25,7 +25,7 @@ import java.util.Optional;
 @Header("================================")
 @Names(strategy = NameStrategy.HYPHEN_CASE, modifier = NameModifier.TO_LOWER_CASE)
 public final class Skins extends OkaeriConfig {
-    public Map<String, MinionSkin> minionSkins = FasterMap.builder(String.class, MinionSkin.class)
+    public Map<String, MinionSkin> minionSkins = FastMap.builder(String.class, MinionSkin.class)
             .put("grinch_skin", getGrinchSkin())
 
             .put("wheat_minion_1", getWheatMinion("Wheat Skin I", 1))
@@ -99,7 +99,7 @@ public final class Skins extends OkaeriConfig {
     }
 
     private static MinionSkin getWheatMinion(String displayName, int level){
-        Map<Integer, String> dataWithLevel = FasterMap.builder(Integer.class, String.class)
+        Map<Integer, String> dataWithLevel = FastMap.builder(Integer.class, String.class)
                 .put(1, "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNmNkZWYyNTI0ZTA2MjU0NzBlYmRmYTUyZDJlMGUzM2ZiOWJjYjI1NjgyZGUwOWZiNjljZWY5NmM5OWZjYTEyZiJ9fX0=")
                 .put(2, "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMWI5OWUwODFiMTg4NzdhNzQ2MmIwYjRlMDk2ODZhOTQ0ZDk2NTliNzRmNmM5NTFlM2ZiMDYxMWMxZjJhOGFkYiJ9fX0=")
                 .put(3, "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZDNlNmZmYTY1M2VkZjQxODYxYjhkOWQyNDg4NDM0ZDg3NTY5NDM2ZjdmYTljNmQ2OGFhYTUwOTE2MDRiYjI0In19fQ==")
@@ -127,7 +127,7 @@ public final class Skins extends OkaeriConfig {
     }
 
     private static MinionSkin getDiamondSkin(String displayName, int level){
-        Map<Integer, String> dataWithLevel = FasterMap.builder(Integer.class, String.class)
+        Map<Integer, String> dataWithLevel = FastMap.builder(Integer.class, String.class)
                 .put(1, "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZmRiMDA4MDY4ODIzODQ0ZDEyOWVmZDgzOWM4MzA2NTBkOThlZWE4MTA0Y2YyYjMyNmE5YmU3ZGZiMTdhYjk5ZCJ9fX0=")
                 .put(2, "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZjJkMjA0ZjNiNGJiNGRjMzdhMDk0OWY1ODc3ODg0ODlhMWNkMTQ4ODIxYTEwN2FiMDU3NTgyY2VjMWJjZDEwMyJ9fX0=")
                 .put(3, "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYWI4YjQzYjMzZWI5OGIzZjhlOGZjYmZiMTE5MjliNzM2YTU2ZDcwMDE2M2RmNGUwZGNkYTIxYzM5N2Q4MWM3MSJ9fX0=")
@@ -156,7 +156,7 @@ public final class Skins extends OkaeriConfig {
     }
 
     private static MinionSkin getSnowMinion(int level){
-        Map<Integer, String> dataWithLevel = FasterMap.builder(Integer.class, String.class)
+        Map<Integer, String> dataWithLevel = FastMap.builder(Integer.class, String.class)
                 .put(1, "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZjZkMTgwNjg0YzM1MjFjOWZjODk0NzhiYTQ0MDVhZTljZTQ5N2RhODEyNGZhMGRhNWEwMTI2NDMxYzRiNzhjMyJ9fX0=")
                 .put(2, "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjk5MjFiYWI1NGFmMTQwNDgxYzAxNmE1OWE4MTliMzY5NjY3YTRlNGZiMmYyNDQ5Y2VlYmY3Yzg5N2VkNTg4ZSJ9fX0=")
                 .put(3, "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNGUxMzg2MmQxZDBjNTJkMjcyZWNlMTA5ZTkyM2FmNjJhZWRlYmIxM2I1NmM0NzA4NWY0MTc1MmE1ZDRkNTllMiJ9fX0=")
@@ -182,7 +182,7 @@ public final class Skins extends OkaeriConfig {
     }
 
     private static MinionSkin getCowMinion(int level){
-        Map<Integer, String> dataWithLevel = FasterMap.builder(Integer.class, String.class)
+        Map<Integer, String> dataWithLevel = FastMap.builder(Integer.class, String.class)
                 .put(1, "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjRmZjBmNThjMmYyY2RjNzQyMzQwYTdhNzFlYjEzYmU5MjhiZmY2M2FmZjgzMzAwMmE0N2I3NDZiOTZiNDQ4OCJ9fX0=")
                 .put(2, "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYjFjMDEwODIzNjgyZWRkZmQyNzdiODQ4MjVkODk3MjNjNjc1NDFkZjcyMTZhYTI3M2I5N2Y1YjZjMjRhNjg1MCJ9fX0=")
                 .put(3, "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvODdlYzlhNDU1NWQ0NDcyOGVhNTQ0NzFmYzU4NjcyMjZkMTZhZDFkNTljMzk1ZTc3ZjU5MjY5ZmUyMzI0MmM1YSJ9fX0=")

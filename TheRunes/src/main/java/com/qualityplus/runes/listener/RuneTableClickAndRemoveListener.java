@@ -6,7 +6,7 @@ import com.qualityplus.runes.api.box.Box;
 import com.qualityplus.runes.base.gui.runetable.RuneTableGUI;
 import com.qualityplus.runes.base.session.RuneSessionImpl;
 import com.qualityplus.runes.util.RunesUtils;
-import eu.okaeri.injector.annotation.Inject;
+
 import eu.okaeri.platform.core.annotation.Component;
 import org.bukkit.Location;
 import org.bukkit.entity.ArmorStand;

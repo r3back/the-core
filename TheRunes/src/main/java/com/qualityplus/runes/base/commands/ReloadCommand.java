@@ -6,7 +6,7 @@ import com.qualityplus.assistant.util.StringUtils;
 import com.qualityplus.runes.api.box.Box;
 import com.qualityplus.runes.api.recipes.Runes;
 import eu.okaeri.commons.bukkit.time.MinecraftTimeEquivalent;
-import eu.okaeri.injector.annotation.Inject;
+
 import eu.okaeri.platform.bukkit.annotation.Delayed;
 import eu.okaeri.platform.core.annotation.Component;
 import org.bukkit.command.CommandSender;

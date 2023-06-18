@@ -2,7 +2,7 @@ package com.qualityplus.souls.base.config.impl;
 
 import com.qualityplus.souls.api.config.ConfigFiles;
 import com.qualityplus.souls.base.config.*;
-import eu.okaeri.injector.annotation.Inject;
+
 import eu.okaeri.platform.core.annotation.Component;
 
 @Component

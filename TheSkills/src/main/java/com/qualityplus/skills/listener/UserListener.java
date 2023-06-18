@@ -3,7 +3,7 @@ package com.qualityplus.skills.listener;
 import com.qualityplus.skills.api.box.Box;
 import com.qualityplus.skills.persistance.SkillsRepository;
 import com.qualityplus.skills.persistance.data.UserData;
-import eu.okaeri.injector.annotation.Inject;
+
 import eu.okaeri.persistence.document.Document;
 import eu.okaeri.platform.core.annotation.Component;
 import eu.okaeri.tasker.core.Tasker;

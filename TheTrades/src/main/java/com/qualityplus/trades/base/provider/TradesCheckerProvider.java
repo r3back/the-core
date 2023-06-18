@@ -10,7 +10,7 @@ import com.qualityplus.trades.api.provider.CheckerProvider;
 import com.qualityplus.trades.api.session.TradeSession;
 import com.qualityplus.trades.base.config.Messages;
 import com.qualityplus.trades.base.trades.PluginTrade;
-import eu.okaeri.injector.annotation.Inject;
+
 import eu.okaeri.platform.core.annotation.Component;
 import org.bukkit.entity.Player;
 

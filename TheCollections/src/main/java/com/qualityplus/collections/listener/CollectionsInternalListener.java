@@ -13,7 +13,7 @@ import com.qualityplus.collections.base.event.CollectionsUnlockEvent;
 import com.qualityplus.collections.base.event.CollectionsXPGainEvent;
 import com.qualityplus.collections.persistance.data.UserData;
 import com.qualityplus.collections.util.CollectionsPlaceholderUtil;
-import eu.okaeri.injector.annotation.Inject;
+
 import eu.okaeri.platform.core.annotation.Component;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;

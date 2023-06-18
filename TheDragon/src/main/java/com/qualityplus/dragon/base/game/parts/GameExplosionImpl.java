@@ -3,7 +3,7 @@ package com.qualityplus.dragon.base.game.parts;
 import com.qualityplus.assistant.api.addons.paster.session.PasterSession;
 import com.qualityplus.dragon.api.game.part.GameExplosion;
 import com.qualityplus.dragon.base.configs.Config;
-import eu.okaeri.injector.annotation.Inject;
+
 import eu.okaeri.platform.bukkit.scheduler.PlatformScheduler;
 import eu.okaeri.platform.core.annotation.Component;
 import eu.okaeri.tasker.core.Tasker;

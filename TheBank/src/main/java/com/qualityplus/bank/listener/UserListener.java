@@ -3,7 +3,7 @@ package com.qualityplus.bank.listener;
 import com.qualityplus.bank.api.box.Box;
 import com.qualityplus.bank.base.upgrade.BankUpgrade;
 import com.qualityplus.bank.persistence.data.BankData;
-import eu.okaeri.injector.annotation.Inject;
+
 import eu.okaeri.persistence.document.Document;
 import eu.okaeri.platform.core.annotation.Component;
 import eu.okaeri.tasker.core.Tasker;

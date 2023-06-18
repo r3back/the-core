@@ -10,7 +10,7 @@ import com.qualityplus.minions.base.config.upgrades.AutomatedShippingUpgrades;
 import com.qualityplus.minions.base.config.upgrades.FuelUpgrades;
 import com.qualityplus.minions.base.config.upgrades.NormalUpgrades;
 import com.qualityplus.minions.base.minions.entity.type.CropBreakMinion;
-import eu.okaeri.injector.annotation.Inject;
+
 import eu.okaeri.platform.core.annotation.Component;
 import lombok.Getter;
 

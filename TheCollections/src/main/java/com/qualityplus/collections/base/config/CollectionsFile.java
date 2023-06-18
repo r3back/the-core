@@ -3,7 +3,7 @@ package com.qualityplus.collections.base.config;
 import com.cryptomorin.xseries.XMaterial;
 import com.google.common.collect.ImmutableMap;
 import com.qualityplus.assistant.api.common.rewards.commands.CommandReward;
-import com.qualityplus.assistant.util.faster.FasterMap;
+import com.qualityplus.assistant.util.faster.FastMap;
 import com.qualityplus.assistant.util.list.ListUtils.ListBuilder;
 import com.qualityplus.collections.base.collection.Collection;
 import com.qualityplus.collections.base.collection.category.Categories;
@@ -159,13 +159,13 @@ public final class CollectionsFile extends OkaeriConfig {
                 .displayName(displayName)
                 .maxLevel(9)
                 .guiOptions(GUIOptions.builder().build())
-                .commandRewards(new CollectionsCommandRewards(FasterMap.listBuilder(Integer.class, CommandReward.class)
+                .commandRewards(new CollectionsCommandRewards(FastMap.listBuilder(Integer.class, CommandReward.class)
                         .put(1, Collections.singletonList(new CommandReward(CommandReward.CommandExecutor.CONSOLE, "lp user %player% permission set example.permission.1 true")))
                         .put(2, Collections.singletonList(new CommandReward(CommandReward.CommandExecutor.CONSOLE, "lp user %player% permission set example.permission.2 true")))
                         .build()))
                 .xpRequirements(getRequirements())
                 .collectionsInfoGUI(getInfo())
-                .collectionsInfoMessage(FasterMap.listBuilder(Integer.class, String.class).build())
+                .collectionsInfoMessage(FastMap.listBuilder(Integer.class, String.class).build())
                 .category(category)
                 .guiCommandsPerLevel(ImmutableMap.<Integer, CommandReward>builder()
                         .put(1, new CommandReward(CommandReward.CommandExecutor.PLAYER, "thecrafting preview reward_recipe")).build())

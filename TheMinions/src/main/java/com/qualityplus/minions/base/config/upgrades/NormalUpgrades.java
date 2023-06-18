@@ -2,7 +2,7 @@ package com.qualityplus.minions.base.config.upgrades;
 
 import com.cryptomorin.xseries.XMaterial;
 import com.qualityplus.assistant.inventory.Item;
-import com.qualityplus.assistant.util.faster.FasterMap;
+import com.qualityplus.assistant.util.faster.FastMap;
 import com.qualityplus.assistant.util.time.Timer;
 import com.qualityplus.minions.base.minions.minion.upgrade.MinionFuelUpgrade;
 import com.qualityplus.minions.base.minions.minion.upgrade.MinionUpgrade;
@@ -28,7 +28,7 @@ import java.util.Optional;
 @Header("================================")
 @Names(strategy = NameStrategy.HYPHEN_CASE, modifier = NameModifier.TO_LOWER_CASE)
 public final class NormalUpgrades extends OkaeriConfig {
-    public Map<String, MinionUpgrade> normalUpgrades = FasterMap.builder(String.class, MinionUpgrade.class)
+    public Map<String, MinionUpgrade> normalUpgrades = FastMap.builder(String.class, MinionUpgrade.class)
             .put("minion_expander", MinionUpgrade.builder()
                     .id("minion_expander")
                     .displayName("&9Minion Expander")

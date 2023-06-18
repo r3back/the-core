@@ -4,7 +4,7 @@ import com.qualityplus.pets.api.box.Box;
 import com.qualityplus.pets.persistance.data.PetData;
 import com.qualityplus.pets.persistance.data.UserData;
 import com.qualityplus.skills.base.event.SkillsXPGainEvent;
-import eu.okaeri.injector.annotation.Inject;
+
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;

@@ -1,12 +1,12 @@
 package com.qualityplus.trades.base.trades;
 
-import com.cryptomorin.xseries.XMaterial;
 import com.qualityplus.assistant.inventory.Item;
+import com.qualityplus.assistant.lib.com.cryptomorin.xseries.XMaterial;
+import com.qualityplus.assistant.lib.eu.okaeri.configs.OkaeriConfig;
 import com.qualityplus.assistant.payable.ItemPayable;
 import com.qualityplus.assistant.permissionable.Permissionable;
 import com.qualityplus.assistant.util.itemstack.ItemStackUtils;
 import com.qualityplus.trades.api.recipes.Trades;
-import eu.okaeri.configs.OkaeriConfig;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;

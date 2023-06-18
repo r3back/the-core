@@ -13,7 +13,7 @@ import com.qualityplus.dragon.api.game.part.GameCountdown;
 import com.qualityplus.dragon.api.game.structure.type.DragonSpawn;
 import com.qualityplus.dragon.base.configs.Config;
 import com.qualityplus.dragon.base.configs.Messages;
-import eu.okaeri.injector.annotation.Inject;
+
 import eu.okaeri.platform.core.annotation.Component;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;

@@ -4,7 +4,7 @@ import com.qualityplus.skills.api.TheSkillsAPI;
 import com.qualityplus.skills.api.box.Box;
 import com.qualityplus.skills.converter.TheSkillsConverterPlugin;
 import com.qualityplus.skills.persistance.data.UserData;
-import eu.okaeri.injector.annotation.Inject;
+
 import eu.okaeri.platform.core.annotation.Scan;
 import eu.okaeri.platform.core.plan.ExecutionPhase;
 import eu.okaeri.platform.core.plan.Planned;

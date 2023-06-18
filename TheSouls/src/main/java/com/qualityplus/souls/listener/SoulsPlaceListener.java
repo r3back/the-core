@@ -1,13 +1,8 @@
 package com.qualityplus.souls.listener;
 
-import com.qualityplus.assistant.api.util.BukkitItemUtil;
-import com.qualityplus.assistant.util.StringUtils;
-import com.qualityplus.assistant.util.location.ALocation;
 import com.qualityplus.souls.api.box.Box;
 import com.qualityplus.souls.base.soul.Soul;
-import de.tr7zw.changeme.nbtapi.NBTItem;
-import eu.okaeri.injector.annotation.Inject;
-import eu.okaeri.platform.core.annotation.Component;
+
 import org.bukkit.Location;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;

@@ -5,7 +5,7 @@ import com.qualityplus.souls.api.TheSoulsAPI;
 import com.qualityplus.souls.api.box.Box;
 import com.qualityplus.souls.base.soul.Soul;
 import com.qualityplus.souls.persistance.data.SoulsData;
-import eu.okaeri.injector.annotation.Inject;
+
 import eu.okaeri.platform.core.annotation.Scan;
 import eu.okaeri.platform.core.plan.ExecutionPhase;
 import eu.okaeri.platform.core.plan.Planned;

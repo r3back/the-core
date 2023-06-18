@@ -1,7 +1,7 @@
 package com.qualityplus.minions.base.config.minions;
 
 import com.cryptomorin.xseries.XMaterial;
-import com.qualityplus.assistant.util.faster.FasterMap;
+import com.qualityplus.assistant.util.faster.FastMap;
 import com.qualityplus.assistant.util.faster.FasterStack;
 import com.qualityplus.assistant.util.itemstack.ItemBuilder;
 import com.qualityplus.assistant.util.time.Timer;
@@ -73,12 +73,12 @@ public final class WheatMinion extends OkaeriConfig {
                     .itemsToGive(Collections.singletonList(FasterStack.fast(XMaterial.WHEAT, 1)))
                     .requiredItemsToCreate(Collections.emptyMap())
                     .build())
-            .upgradeSettings(FasterMap.builder(String.class, UpgradeSettings.class)
+            .upgradeSettings(FastMap.builder(String.class, UpgradeSettings.class)
                     .put("super_compactor_3000", UpgradeSettings.builder()
                             .sellPrice(20)
                             .itemSettings(ItemSettings.builder()
                                     .itemsToGive(Collections.singletonList(FasterStack.fast(XMaterial.HAY_BLOCK, 1)))
-                                    .requiredItemsToCreate(FasterMap.builder(Integer.class, ItemStack.class)
+                                    .requiredItemsToCreate(FastMap.builder(Integer.class, ItemStack.class)
                                             .put(2, FasterStack.fast(XMaterial.WHEAT, 1))
                                             .build())
                                     .build())
@@ -103,7 +103,7 @@ public final class WheatMinion extends OkaeriConfig {
     }
 
     private Map<Integer, MinionLevel> getMinionLevels(){
-        return FasterMap.builder(Integer.class, MinionLevel.class)
+        return FastMap.builder(Integer.class, MinionLevel.class)
                 .put(1, MinionLevel.builder()
                         .matRequirement(MatRequirement.builder()
                                 .requiredMaterial(XMaterial.WHEAT)

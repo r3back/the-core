@@ -12,7 +12,7 @@ import com.qualityplus.skills.base.config.Config;
 import com.qualityplus.skills.persistance.data.UserData;
 import com.qualityplus.skills.util.SkillsPlaceholderUtil;
 import com.qualityplus.skills.util.SkillsPlayerUtil;
-import eu.okaeri.injector.annotation.Inject;
+
 import eu.okaeri.platform.bukkit.annotation.Scheduled;
 import eu.okaeri.platform.core.annotation.Component;
 import org.bukkit.Bukkit;

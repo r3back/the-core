@@ -5,7 +5,7 @@ import com.qualityplus.assistant.api.dependency.resolver.DependencyResolver;
 import com.qualityplus.skills.api.listener.ExtraListener;
 import com.qualityplus.skills.listener.minion.TheMinionsListener;
 import eu.okaeri.injector.OkaeriInjector;
-import eu.okaeri.injector.annotation.Inject;
+
 import eu.okaeri.platform.core.annotation.Bean;
 import eu.okaeri.platform.core.annotation.Component;
 import org.bukkit.plugin.Plugin;

@@ -2,7 +2,7 @@ package com.qualityplus.dragon.base;
 
 import com.qualityplus.dragon.api.TheDragonAPI;
 import com.qualityplus.dragon.api.service.*;
-import eu.okaeri.injector.annotation.Inject;
+
 import eu.okaeri.platform.core.annotation.Component;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

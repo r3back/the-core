@@ -7,7 +7,7 @@ import com.qualityplus.enchanting.api.enchantment.ICoreEnchantment;
 import com.qualityplus.enchanting.api.processor.EnchantmentProcessor;
 import com.qualityplus.enchanting.api.provider.EnchantmentProvider;
 import com.qualityplus.enchanting.api.session.EnchantmentSession;
-import eu.okaeri.injector.annotation.Inject;
+
 import eu.okaeri.platform.core.annotation.Component;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemStack;

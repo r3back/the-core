@@ -3,7 +3,7 @@ package com.qualityplus.collections.listener;
 import com.qualityplus.collections.api.box.Box;
 import com.qualityplus.collections.persistance.CollectionsRepository;
 import com.qualityplus.collections.persistance.data.UserData;
-import eu.okaeri.injector.annotation.Inject;
+
 import eu.okaeri.persistence.document.Document;
 import eu.okaeri.platform.core.annotation.Component;
 import eu.okaeri.tasker.core.Tasker;

@@ -3,7 +3,7 @@ package com.qualityplus.pets.listener.persistence;
 import com.qualityplus.pets.api.box.Box;
 import com.qualityplus.pets.base.event.PetCreateEvent;
 import com.qualityplus.pets.persistance.PetRepository;
-import eu.okaeri.injector.annotation.Inject;
+
 import eu.okaeri.platform.core.annotation.Component;
 import eu.okaeri.tasker.core.Tasker;
 import org.bukkit.event.EventHandler;

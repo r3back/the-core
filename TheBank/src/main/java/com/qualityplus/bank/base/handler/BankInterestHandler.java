@@ -11,7 +11,7 @@ import com.qualityplus.bank.base.gui.main.BankInterfaceGUI;
 import com.qualityplus.bank.persistence.data.BankData;
 import com.qualityplus.bank.persistence.data.BankTransaction;
 import eu.okaeri.commons.bukkit.time.MinecraftTimeEquivalent;
-import eu.okaeri.injector.annotation.Inject;
+
 import eu.okaeri.platform.bukkit.annotation.Scheduled;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;

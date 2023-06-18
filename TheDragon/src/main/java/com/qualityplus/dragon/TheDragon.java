@@ -5,7 +5,7 @@ import com.qualityplus.dragon.api.TheDragonAPI;
 import com.qualityplus.dragon.api.box.Box;
 import com.qualityplus.dragon.base.configs.Inventories;
 import com.qualityplus.dragon.persistance.data.UserData;
-import eu.okaeri.injector.annotation.Inject;
+
 import eu.okaeri.platform.core.annotation.Scan;
 import eu.okaeri.platform.core.plan.ExecutionPhase;
 import eu.okaeri.platform.core.plan.Planned;

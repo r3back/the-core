@@ -6,7 +6,7 @@ import com.qualityplus.auction.api.box.Box;
 import com.qualityplus.auction.base.gui.AuctionGUI;
 import com.qualityplus.auction.persistence.data.AuctionHouse;
 import com.qualityplus.auction.persistence.data.User;
-import eu.okaeri.injector.annotation.Inject;
+
 import eu.okaeri.platform.core.annotation.Scan;
 import eu.okaeri.platform.core.plan.ExecutionPhase;
 import eu.okaeri.platform.core.plan.Planned;

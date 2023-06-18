@@ -4,7 +4,7 @@ import com.qualityplus.assistant.okaeri.OkaeriSilentPlugin;
 import com.qualityplus.runes.api.TheRunesAPI;
 import com.qualityplus.runes.api.recipes.Runes;
 import com.qualityplus.runes.base.config.RunesFile;
-import eu.okaeri.injector.annotation.Inject;
+
 import eu.okaeri.platform.core.annotation.Register;
 import eu.okaeri.platform.core.annotation.Scan;
 import eu.okaeri.platform.core.plan.ExecutionPhase;

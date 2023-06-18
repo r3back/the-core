@@ -1,7 +1,7 @@
 package com.qualityplus.minions.base.config.minions;
 
 import com.cryptomorin.xseries.XMaterial;
-import com.qualityplus.assistant.util.faster.FasterMap;
+import com.qualityplus.assistant.util.faster.FastMap;
 import com.qualityplus.assistant.util.faster.FasterStack;
 import com.qualityplus.assistant.util.itemstack.ItemBuilder;
 import com.qualityplus.assistant.util.time.Timer;
@@ -79,7 +79,7 @@ public final class TestMinion extends OkaeriConfig {
                     .itemsToGive(Collections.singletonList(FasterStack.fast(XMaterial.DIAMOND, 4)))
                     .requiredItemsToCreate(Collections.emptyMap())
                     .build())
-            .upgradeSettings(FasterMap.builder(String.class, UpgradeSettings.class)
+            .upgradeSettings(FastMap.builder(String.class, UpgradeSettings.class)
                     .put("super_compactor_6000", UpgradeSettings.builder()
                             .sellPrice(20)
                             .itemSettings(ItemSettings.builder()
@@ -87,7 +87,7 @@ public final class TestMinion extends OkaeriConfig {
                                                     .enchanted(true)
                                                     .buildStack()))
 
-                                    .requiredItemsToCreate(FasterMap.builder(Integer.class, ItemStack.class)
+                                    .requiredItemsToCreate(FastMap.builder(Integer.class, ItemStack.class)
                                             .put(2, ItemBuilder.of(XMaterial.DIAMOND, 1, "&8Epic Diamond", Arrays.asList("", "&9&dEPIC"))
                                                     .enchanted(true)
                                                     .buildStack())
@@ -113,7 +113,7 @@ public final class TestMinion extends OkaeriConfig {
     }
 
     private Map<Integer, MinionLevel> getMinionLevels(){
-        return FasterMap.builder(Integer.class, MinionLevel.class)
+        return FastMap.builder(Integer.class, MinionLevel.class)
                 .put(1, MinionLevel.builder()
                         .matRequirement(MatRequirement.builder()
                                 .requiredMaterial(XMaterial.DIAMOND)

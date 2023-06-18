@@ -6,7 +6,7 @@ import com.qualityplus.assistant.inventory.CommonGUI;
 import com.qualityplus.assistant.inventory.Item;
 import com.qualityplus.assistant.inventory.background.Background;
 import com.qualityplus.assistant.inventory.background.DefaultBackgrounds;
-import com.qualityplus.assistant.util.faster.FasterMap;
+import com.qualityplus.assistant.util.faster.FastMap;
 import com.qualityplus.assistant.util.itemstack.ItemBuilder;
 import com.qualityplus.minions.base.gui.changeitem.ChangeItemGUIConfig;
 import com.qualityplus.minions.base.gui.layout.LayoutGUIConfig;
@@ -134,7 +134,7 @@ public final class Inventories extends OkaeriConfig implements DefaultBackground
                     getBackGroundFiller(),
                     ItemBuilder.of(XMaterial.BARRIER,  49, 1, "&cClose", Arrays.asList("", "&e» &7Click to close")).enabled(true).build()
             ))
-            .levelSlotsMap(FasterMap.builder(Integer.class, Integer.class)
+            .levelSlotsMap(FastMap.builder(Integer.class, Integer.class)
                     .put(11, 1)
                     .put(12, 2)
                     .put(13, 3)

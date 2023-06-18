@@ -11,14 +11,8 @@ dependencies {
     compileOnly project(':TheSkills')
     compileOnly 'org.spigotmc:spigot-api:1.18.1-R0.1-SNAPSHOT'
     compileOnly 'xyz.xenondevs:particle:1.8.1'
-    compileOnly 'com.github.cryptomorin:XSeries:9.2.0'
     compileOnly 'com.ticxo.modelengine:api:R3.0.1'
     compileOnly 'com.github.Archy-X:AureliumSkills:Beta1.3.11'
-    compileOnly 'de.tr7zw:item-nbt-api:2.11.0-SNAPSHOT'
-
-    rootProject.assistant_dependencies.each { value -> compileOnly project(value)}
-    rootProject.driver_dependencies.each { value -> compileOnly value}
-    rootProject.okaeri_dependencies.each { value -> compileOnly value}
 
     compileOnly fileTree(dir: '/libs', include: ['*.jar'])
 }
@@ -35,8 +29,6 @@ shadowJar {
     dependencies {
         exclude(dependency('org.jetbrains:.*'))
     }
-
-    rootProject.relocate_map.each { k, v -> relocate(k, v)}
 
     doLast {
         rootProject.copyJars(archiveFile)

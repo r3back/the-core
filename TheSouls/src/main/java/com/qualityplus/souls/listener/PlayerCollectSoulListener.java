@@ -5,7 +5,7 @@ import com.qualityplus.assistant.util.sound.SoundUtils;
 import com.qualityplus.souls.api.box.Box;
 import com.qualityplus.souls.base.soul.Soul;
 import com.qualityplus.souls.persistance.data.SoulsData;
-import eu.okaeri.injector.annotation.Inject;
+
 import eu.okaeri.platform.core.annotation.Component;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.ArmorStand;

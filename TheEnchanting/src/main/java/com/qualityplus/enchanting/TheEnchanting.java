@@ -3,7 +3,7 @@ package com.qualityplus.enchanting;
 import com.cryptomorin.xseries.XEnchantment;
 import com.qualityplus.assistant.okaeri.OkaeriSilentPlugin;
 import com.qualityplus.enchanting.api.TheEnchantingAPI;
-import eu.okaeri.injector.annotation.Inject;
+
 import eu.okaeri.platform.core.annotation.Scan;
 import eu.okaeri.platform.core.plan.ExecutionPhase;
 import eu.okaeri.platform.core.plan.Planned;

@@ -5,7 +5,7 @@ import com.qualityplus.pets.api.skills.SkillDependency;
 import com.qualityplus.pets.base.skills.AureliumSkillsPlugin;
 import com.qualityplus.pets.base.skills.EmptySkillsPlugin;
 import com.qualityplus.pets.base.skills.TheSkillsPlugin;
-import eu.okaeri.injector.annotation.Inject;
+
 import eu.okaeri.platform.core.annotation.Bean;
 import eu.okaeri.platform.core.annotation.Component;
 

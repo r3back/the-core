@@ -3,7 +3,7 @@ package com.qualityplus.dragon.base.service;
 import com.qualityplus.assistant.util.random.RandomSelector;
 import com.qualityplus.dragon.api.service.GuardianSpawnFactory;
 import com.qualityplus.dragon.base.configs.DragonGuardiansFile;
-import eu.okaeri.injector.annotation.Inject;
+
 import eu.okaeri.platform.core.annotation.Component;
 import org.bukkit.Location;
 

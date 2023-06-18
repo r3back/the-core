@@ -1,7 +1,7 @@
 package com.qualityplus.pets.base.config.pet;
 
 import com.qualityplus.assistant.api.common.rewards.commands.CommandRewards;
-import com.qualityplus.assistant.util.faster.FasterMap;
+import com.qualityplus.assistant.util.faster.FastMap;
 import com.qualityplus.pets.base.pet.Pet;
 import com.qualityplus.pets.base.pet.egg.PetEgg;
 import com.qualityplus.pets.base.pet.egg.PetModelEngine;

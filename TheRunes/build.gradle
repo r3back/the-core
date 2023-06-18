@@ -3,14 +3,8 @@ plugins {
 }
 
 dependencies {
-    rootProject.assistant_dependencies.each { value -> compileOnly project(value)}
-    rootProject.driver_dependencies.each { value -> compileOnly value}
-    rootProject.okaeri_dependencies.each { value -> compileOnly value}
-
     compileOnly project(':TheSkills')
     compileOnly 'org.spigotmc:spigot-api:1.18.1-R0.1-SNAPSHOT'
-    compileOnly 'com.github.cryptomorin:XSeries:9.2.0'
-    compileOnly 'de.tr7zw:item-nbt-api:2.11.0-SNAPSHOT'
     compileOnly 'xyz.xenondevs:particle:1.8.1'
 
     [':TheRunes:TheRunes-NMS', ':TheRunes:TheRunes-NMS:TheRunes-Legacy', ':TheRunes:TheRunes-NMS:TheRunes-Newest'].forEach(value -> implementation project(value))
@@ -31,8 +25,6 @@ shadowJar {
     dependencies {
         exclude(dependency('org.jetbrains:.*'))
     }
-
-    rootProject.relocate_map.each { k, v -> relocate(k, v)}
 
     doLast {
         rootProject.copyJars(archiveFile)

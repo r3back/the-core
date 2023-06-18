@@ -5,7 +5,7 @@ import com.qualityplus.auction.persistence.data.AuctionBid;
 import com.qualityplus.auction.persistence.data.AuctionItem;
 import com.qualityplus.auction.persistence.data.User;
 import eu.okaeri.commons.bukkit.time.MinecraftTimeEquivalent;
-import eu.okaeri.injector.annotation.Inject;
+
 import eu.okaeri.platform.bukkit.annotation.Scheduled;
 
 import java.util.Comparator;

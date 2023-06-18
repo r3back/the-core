@@ -4,7 +4,7 @@ import com.cryptomorin.xseries.XMaterial;
 import com.qualityplus.enchanting.api.box.Box;
 import com.qualityplus.enchanting.base.gui.enchantmain.EnchantMainGUI;
 import com.qualityplus.enchanting.util.EnchantingFinderUtil;
-import eu.okaeri.injector.annotation.Inject;
+
 import eu.okaeri.platform.core.annotation.Component;
 import org.bukkit.block.Block;
 import org.bukkit.event.EventHandler;

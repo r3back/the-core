@@ -5,7 +5,7 @@ import com.qualityplus.enchanting.base.provider.AEProvider;
 import com.qualityplus.enchanting.base.provider.VanillaEnchantmentProvider;
 import com.qualityplus.enchanting.util.EnchantingAddonsUtil;
 import eu.okaeri.injector.OkaeriInjector;
-import eu.okaeri.injector.annotation.Inject;
+
 import eu.okaeri.platform.core.annotation.Bean;
 import eu.okaeri.platform.core.annotation.Component;
 

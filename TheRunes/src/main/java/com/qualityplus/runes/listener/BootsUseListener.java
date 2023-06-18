@@ -4,7 +4,7 @@ import com.qualityplus.assistant.api.util.BukkitItemUtil;
 import com.qualityplus.runes.api.provider.EffectProvider;
 import com.qualityplus.runes.api.session.RuneInstance;
 import com.qualityplus.runes.util.RunesUtils;
-import eu.okaeri.injector.annotation.Inject;
+
 import eu.okaeri.platform.core.annotation.Component;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;

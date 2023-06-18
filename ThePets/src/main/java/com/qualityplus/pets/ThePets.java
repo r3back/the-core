@@ -8,7 +8,7 @@ import com.qualityplus.pets.api.service.UserPetService;
 import com.qualityplus.pets.base.pet.tracker.PetEntityTracker;
 import com.qualityplus.pets.persistance.PetRepository;
 import com.qualityplus.pets.persistance.data.PetData;
-import eu.okaeri.injector.annotation.Inject;
+
 import eu.okaeri.platform.core.annotation.Scan;
 import eu.okaeri.platform.core.plan.ExecutionPhase;
 import eu.okaeri.platform.core.plan.Planned;

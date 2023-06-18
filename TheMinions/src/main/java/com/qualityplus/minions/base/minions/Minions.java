@@ -8,7 +8,7 @@ import com.qualityplus.minions.base.minions.minion.Minion;
 import eu.okaeri.configs.ConfigManager;
 import eu.okaeri.configs.validator.okaeri.OkaeriValidator;
 import eu.okaeri.configs.yaml.bukkit.YamlBukkitConfigurer;
-import eu.okaeri.injector.annotation.Inject;
+
 import eu.okaeri.platform.bukkit.annotation.Delayed;
 import eu.okaeri.platform.core.annotation.Component;
 import org.bukkit.NamespacedKey;

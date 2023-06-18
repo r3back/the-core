@@ -3,7 +3,7 @@ package com.qualityplus.skills.base.config.impl;
 import com.qualityplus.skills.api.config.PerkFiles;
 import com.qualityplus.skills.base.config.perk.*;
 import eu.okaeri.configs.OkaeriConfig;
-import eu.okaeri.injector.annotation.Inject;
+
 import eu.okaeri.platform.core.annotation.Component;
 
 import java.util.Arrays;

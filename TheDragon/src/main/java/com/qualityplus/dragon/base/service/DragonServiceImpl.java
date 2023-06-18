@@ -9,7 +9,7 @@ import com.qualityplus.dragon.api.game.structure.type.DragonSpawn;
 import com.qualityplus.dragon.api.service.DragonService;
 import com.qualityplus.dragon.base.configs.DragonsFile;
 import com.qualityplus.dragon.base.controller.DragonControllerImpl;
-import eu.okaeri.injector.annotation.Inject;
+
 import eu.okaeri.platform.core.annotation.Component;
 import lombok.Getter;
 import org.bukkit.entity.EnderDragon;

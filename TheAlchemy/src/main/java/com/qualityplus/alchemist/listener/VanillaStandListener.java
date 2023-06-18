@@ -9,7 +9,7 @@ import com.qualityplus.assistant.util.StringUtils;
 import com.qualityplus.assistant.util.placeholder.Placeholder;
 import com.qualityplus.assistant.util.placeholder.PlaceholderBuilder;
 import com.qualityplus.assistant.util.player.PlayerUtils;
-import eu.okaeri.injector.annotation.Inject;
+
 import eu.okaeri.platform.core.annotation.Component;
 import org.bukkit.Location;
 import org.bukkit.Material;

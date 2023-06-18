@@ -4,7 +4,7 @@ import com.qualityplus.minions.api.box.Box;
 import com.qualityplus.minions.api.minion.MinionEntity;
 import com.qualityplus.minions.base.gui.main.MainMinionGUI;
 import com.qualityplus.minions.base.minions.entity.tracker.MinionArmorStandTracker;
-import eu.okaeri.injector.annotation.Inject;
+
 import eu.okaeri.platform.core.annotation.Component;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Entity;

@@ -2,7 +2,7 @@ package com.qualityplus.souls.listener;
 
 import com.qualityplus.souls.api.box.Box;
 import com.qualityplus.souls.persistance.data.SoulsData;
-import eu.okaeri.injector.annotation.Inject;
+
 import eu.okaeri.persistence.document.Document;
 import eu.okaeri.platform.core.annotation.Component;
 import eu.okaeri.tasker.core.Tasker;

@@ -12,7 +12,7 @@ import com.qualityplus.dragon.api.service.UserDBService;
 import com.qualityplus.dragon.base.configs.DragonRewardsFile;
 import com.qualityplus.dragon.base.configs.Messages;
 import com.qualityplus.dragon.base.game.player.EventPlayer;
-import eu.okaeri.injector.annotation.Inject;
+
 import eu.okaeri.platform.core.annotation.Component;
 import org.bukkit.Bukkit;
 

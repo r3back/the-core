@@ -5,7 +5,7 @@ import com.qualityplus.bank.api.response.TrxResponse;
 import com.qualityplus.bank.api.service.BankService;
 import com.qualityplus.bank.persistence.data.BankData;
 import com.qualityplus.bank.persistence.data.BankTransaction;
-import eu.okaeri.injector.annotation.Inject;
+
 import eu.okaeri.platform.core.annotation.Component;
 import org.bukkit.entity.Player;
 

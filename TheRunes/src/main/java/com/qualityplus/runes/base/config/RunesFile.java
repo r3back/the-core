@@ -1,7 +1,7 @@
 package com.qualityplus.runes.base.config;
 
 import com.cryptomorin.xseries.XMaterial;
-import com.qualityplus.assistant.util.faster.FasterMap;
+import com.qualityplus.assistant.util.faster.FastMap;
 import com.qualityplus.assistant.util.particle.ParticleColor;
 import com.qualityplus.runes.api.config.RuneTableConfig.RuneItem;
 import com.qualityplus.runes.base.rune.Rune;
@@ -244,7 +244,7 @@ public final class RunesFile extends OkaeriConfig {
     );
 
     private Map<Integer, RuneLevel> defaultMap(){
-        return FasterMap.builder(Integer.class, RuneLevel.class)
+        return FastMap.builder(Integer.class, RuneLevel.class)
                 .put(1, new RuneLevel(1, 80, 1))
                 .put(2, new RuneLevel(2, 70, 2))
                 .put(3, new RuneLevel(3, 60, 3))

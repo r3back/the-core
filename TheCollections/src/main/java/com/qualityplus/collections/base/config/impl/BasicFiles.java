@@ -2,7 +2,7 @@ package com.qualityplus.collections.base.config.impl;
 
 import com.qualityplus.collections.api.config.ConfigFiles;
 import com.qualityplus.collections.base.config.*;
-import eu.okaeri.injector.annotation.Inject;
+
 import eu.okaeri.platform.core.annotation.Component;
 
 @Component

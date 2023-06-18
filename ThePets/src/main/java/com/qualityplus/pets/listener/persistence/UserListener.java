@@ -10,7 +10,7 @@ import com.qualityplus.pets.base.pet.tracker.PetEntityTracker;
 import com.qualityplus.pets.persistance.UserPetRepository;
 import com.qualityplus.pets.persistance.data.PetData;
 import com.qualityplus.pets.persistance.data.UserData;
-import eu.okaeri.injector.annotation.Inject;
+
 import eu.okaeri.persistence.document.Document;
 import eu.okaeri.platform.core.annotation.Component;
 import eu.okaeri.tasker.core.Tasker;

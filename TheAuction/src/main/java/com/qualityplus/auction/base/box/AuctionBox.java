@@ -7,7 +7,7 @@ import com.qualityplus.auction.api.service.UserService;
 import com.qualityplus.auction.base.config.*;
 import com.qualityplus.auction.persistence.UserRepository;
 import com.qualityplus.auction.persistence.data.User;
-import eu.okaeri.injector.annotation.Inject;
+
 import eu.okaeri.platform.core.annotation.Component;
 import org.bukkit.plugin.Plugin;
 

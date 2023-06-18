@@ -2,7 +2,7 @@ package com.qualityplus.minions.base.minions.entity.scheduler;
 
 import com.cryptomorin.xseries.XMaterial;
 import com.qualityplus.minions.base.minions.entity.tracker.MinionEntityTracker;
-import eu.okaeri.injector.annotation.Inject;
+
 import eu.okaeri.platform.bukkit.annotation.Scheduled;
 import eu.okaeri.platform.core.annotation.Component;
 import org.bukkit.Bukkit;

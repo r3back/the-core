@@ -2,7 +2,7 @@ package com.qualityplus.dragon.base.configs.implementations;
 
 import com.qualityplus.dragon.api.config.ConfigFiles;
 import com.qualityplus.dragon.base.configs.*;
-import eu.okaeri.injector.annotation.Inject;
+
 import eu.okaeri.platform.core.annotation.Component;
 
 @Component

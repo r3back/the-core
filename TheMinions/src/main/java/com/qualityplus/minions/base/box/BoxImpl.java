@@ -8,7 +8,7 @@ import com.qualityplus.minions.base.config.*;
 import com.qualityplus.minions.base.config.upgrades.AutomatedShippingUpgrades;
 import com.qualityplus.minions.base.config.upgrades.FuelUpgrades;
 import com.qualityplus.minions.base.config.upgrades.NormalUpgrades;
-import eu.okaeri.injector.annotation.Inject;
+
 import eu.okaeri.platform.core.annotation.Component;
 import lombok.Getter;
 import org.bukkit.plugin.Plugin;

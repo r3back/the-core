@@ -2,7 +2,7 @@ package com.qualityplus.minions.base.config.upgrades;
 
 import com.cryptomorin.xseries.XMaterial;
 import com.qualityplus.assistant.inventory.Item;
-import com.qualityplus.assistant.util.faster.FasterMap;
+import com.qualityplus.assistant.util.faster.FastMap;
 import com.qualityplus.assistant.util.time.Timer;
 import com.qualityplus.minions.base.minions.minion.upgrade.MinionFuelUpgrade;
 import eu.okaeri.configs.OkaeriConfig;
@@ -26,7 +26,7 @@ import java.util.Map;
 @Header("================================")
 @Names(strategy = NameStrategy.HYPHEN_CASE, modifier = NameModifier.TO_LOWER_CASE)
 public final class FuelUpgrades extends OkaeriConfig {
-    public Map<String, MinionFuelUpgrade> fuelUpgrades = FasterMap.builder(String.class, MinionFuelUpgrade.class)
+    public Map<String, MinionFuelUpgrade> fuelUpgrades = FastMap.builder(String.class, MinionFuelUpgrade.class)
             .put("enchanted_coal", MinionFuelUpgrade.builder()
                     .id("enchanted_coal")
                     .displayName("&aEnchanted Coal")

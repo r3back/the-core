@@ -10,7 +10,7 @@ import com.qualityplus.bank.base.config.Messages;
 import com.qualityplus.bank.base.gui.main.BankInterfaceGUI;
 import com.qualityplus.bank.persistence.data.BankData;
 import de.tr7zw.changeme.nbtapi.NBTItem;
-import eu.okaeri.injector.annotation.Inject;
+
 import eu.okaeri.platform.core.annotation.Component;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;

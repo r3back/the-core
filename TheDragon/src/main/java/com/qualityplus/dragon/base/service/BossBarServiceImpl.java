@@ -10,7 +10,7 @@ import com.qualityplus.dragon.api.game.DragonGame;
 import com.qualityplus.dragon.api.game.dragon.TheDragonEntity;
 import com.qualityplus.dragon.api.service.BossBarService;
 import com.qualityplus.dragon.base.configs.Messages;
-import eu.okaeri.injector.annotation.Inject;
+
 import eu.okaeri.platform.core.annotation.Component;
 import org.bukkit.Bukkit;
 

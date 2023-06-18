@@ -8,7 +8,7 @@ import com.qualityplus.pets.persistance.data.PetData;
 import com.qualityplus.pets.persistance.data.UserData;
 import com.qualityplus.pets.util.PetEggUtil;
 import com.qualityplus.pets.util.PetPlaceholderUtil;
-import eu.okaeri.injector.annotation.Inject;
+
 import eu.okaeri.platform.core.annotation.Component;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;

@@ -8,7 +8,7 @@ import com.qualityplus.dragon.api.game.structure.type.DragonAltar;
 import com.qualityplus.dragon.api.game.structure.type.DragonCrystal;
 import com.qualityplus.dragon.api.game.structure.type.DragonSpawn;
 import com.qualityplus.dragon.api.service.StructureService;
-import eu.okaeri.injector.annotation.Inject;
+
 import eu.okaeri.platform.core.annotation.Component;
 import org.bukkit.Location;
 import org.bukkit.entity.Entity;

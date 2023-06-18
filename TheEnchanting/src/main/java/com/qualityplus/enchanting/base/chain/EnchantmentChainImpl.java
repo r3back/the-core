@@ -11,7 +11,7 @@ import com.qualityplus.enchanting.api.enchantment.ICoreEnchantment;
 import com.qualityplus.enchanting.api.session.EnchantmentSession;
 import com.qualityplus.enchanting.base.config.Config;
 import com.qualityplus.enchanting.util.EnchantingPlaceholderUtil;
-import eu.okaeri.injector.annotation.Inject;
+
 import eu.okaeri.platform.core.annotation.Component;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemFlag;

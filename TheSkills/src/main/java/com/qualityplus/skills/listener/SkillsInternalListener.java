@@ -13,7 +13,7 @@ import com.qualityplus.skills.base.event.SkillsXPGainEvent;
 import com.qualityplus.skills.base.skill.Skill;
 import com.qualityplus.skills.persistance.data.UserData;
 import com.qualityplus.skills.util.SkillsPlaceholderUtil;
-import eu.okaeri.injector.annotation.Inject;
+
 import eu.okaeri.platform.core.annotation.Component;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;

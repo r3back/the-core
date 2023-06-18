@@ -5,7 +5,7 @@ import com.qualityplus.minions.api.recipe.provider.RecipeProvider;
 import com.qualityplus.minions.base.recipe.provider.EmptyRecipeProviderImpl;
 import com.qualityplus.minions.base.recipe.provider.TheCraftingRecipeProvider;
 import eu.okaeri.injector.OkaeriInjector;
-import eu.okaeri.injector.annotation.Inject;
+
 import eu.okaeri.platform.core.annotation.Bean;
 import eu.okaeri.platform.core.annotation.Component;
 

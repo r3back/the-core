@@ -2,7 +2,7 @@ package com.qualityplus.skills.base.config.skills;
 
 import com.cryptomorin.xseries.XMaterial;
 import com.qualityplus.assistant.api.common.rewards.commands.CommandReward;
-import com.qualityplus.assistant.util.faster.FasterMap;
+import com.qualityplus.assistant.util.faster.FastMap;
 import com.qualityplus.assistant.util.number.NumberUtil;
 import com.qualityplus.skills.base.reward.StatReward;
 import com.qualityplus.skills.base.skill.Skill;
@@ -65,7 +65,7 @@ public final class RunecraftingConfig extends OkaeriConfig implements SkillFile 
     }
 
     private Map<Integer, List<String>> getInfo(){
-        return FasterMap.listBuilder(Integer.class, String.class)
+        return FastMap.listBuilder(Integer.class, String.class)
                 .put(1, Arrays.asList("&7Your Stats:",
                         "&8» &7Access to Level &5%skill_level_number% &7Runes"))
                 .put(10, Arrays.asList("&7Your Stats:",

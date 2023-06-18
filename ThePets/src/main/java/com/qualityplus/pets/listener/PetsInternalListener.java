@@ -14,7 +14,7 @@ import com.qualityplus.pets.base.pet.Pet;
 import com.qualityplus.pets.base.pet.tracker.PetEntityTracker;
 import com.qualityplus.pets.persistance.data.PetData;
 import com.qualityplus.pets.util.PetPlaceholderUtil;
-import eu.okaeri.injector.annotation.Inject;
+
 import eu.okaeri.platform.core.annotation.Component;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;

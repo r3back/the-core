@@ -3,7 +3,7 @@ package com.qualityplus.skills.base.config.skills;
 import com.cryptomorin.xseries.XMaterial;
 import com.google.common.collect.ImmutableMap;
 import com.qualityplus.assistant.api.common.rewards.commands.CommandReward;
-import com.qualityplus.assistant.util.faster.FasterMap;
+import com.qualityplus.assistant.util.faster.FastMap;
 import com.qualityplus.assistant.util.number.NumberUtil;
 import com.qualityplus.skills.base.reward.StatReward;
 import com.qualityplus.skills.base.skill.Skill;
@@ -82,7 +82,7 @@ public final class EnchantingConfig extends OkaeriConfig implements SkillFile {
 
 
     private Map<Integer, List<String>> getInfo(){
-        return FasterMap.listBuilder(Integer.class, String.class)
+        return FastMap.listBuilder(Integer.class, String.class)
                 .put(1, Arrays.asList("&7Abilities To Upgrade:",
                         "&8» &f+1 %skill_intelligence_displayname%",
                         "&8» &f+1 %skill_defense_displayname%",
@@ -105,7 +105,7 @@ public final class EnchantingConfig extends OkaeriConfig implements SkillFile {
     }
 
     private Map<Integer, List<StatReward>> getRewards(){
-        return FasterMap.listBuilder(Integer.class, StatReward.class)
+        return FastMap.listBuilder(Integer.class, StatReward.class)
                 .put(1, Arrays.asList(new StatReward("intelligence", 1), new StatReward("defense", 1), new StatReward("enchantment_master", 1), new StatReward("orb_master", 1)))
                 .put(10, Arrays.asList(new StatReward("intelligence", 2), new StatReward("defense", 2), new StatReward("enchantment_master", 1), new StatReward("orb_master", 1)))
                 .build();

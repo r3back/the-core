@@ -9,7 +9,7 @@ import com.qualityplus.crafting.api.recipes.Recipes;
 import com.qualityplus.crafting.base.gui.preview.RecipePreviewGUI;
 import com.qualityplus.crafting.base.recipes.CustomRecipe;
 import eu.okaeri.commons.bukkit.time.MinecraftTimeEquivalent;
-import eu.okaeri.injector.annotation.Inject;
+
 import eu.okaeri.platform.bukkit.annotation.Delayed;
 import eu.okaeri.platform.core.annotation.Component;
 import org.bukkit.command.CommandSender;

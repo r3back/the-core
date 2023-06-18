@@ -14,7 +14,7 @@ import com.qualityplus.dragon.api.game.structure.type.DragonSpawn;
 import com.qualityplus.dragon.api.service.SchematicService;
 import com.qualityplus.dragon.base.configs.Config;
 import com.qualityplus.dragon.base.configs.StructuresFile;
-import eu.okaeri.injector.annotation.Inject;
+
 import eu.okaeri.platform.core.annotation.Component;
 import org.bukkit.Location;
 import org.bukkit.entity.Entity;

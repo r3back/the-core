@@ -1,6 +1,6 @@
 package com.qualityplus.dragon.base.configs;
 
-import com.qualityplus.assistant.util.faster.FasterMap;
+import com.qualityplus.assistant.util.faster.FastMap;
 import com.qualityplus.dragon.base.game.reward.DragonRewardImpl;
 import eu.okaeri.configs.OkaeriConfig;
 import eu.okaeri.configs.annotation.Header;
@@ -32,7 +32,7 @@ public final class DragonRewardsFile extends OkaeriConfig {
                     .build()
             ));
 
-    public Map<String, List<DragonRewardImpl>> rewardsPerEachDragon = FasterMap.listBuilder(String.class, DragonRewardImpl.class)
+    public Map<String, List<DragonRewardImpl>> rewardsPerEachDragon = FastMap.listBuilder(String.class, DragonRewardImpl.class)
             .put("ancient_dragon", Collections.singletonList(DragonRewardImpl.builder()
                     .commands(Arrays.asList("eco give %player% 75", "xp give %player% %thedragon_player_reward_xp%"))
                     .damageDone(50)

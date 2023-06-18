@@ -13,7 +13,7 @@ import com.qualityplus.minions.base.minions.Minions;
 import com.qualityplus.minions.base.minions.minion.Minion;
 import com.qualityplus.minions.base.minions.minion.upgrade.MinionUpgrade;
 import eu.okaeri.commons.bukkit.time.MinecraftTimeEquivalent;
-import eu.okaeri.injector.annotation.Inject;
+
 import eu.okaeri.platform.bukkit.annotation.Delayed;
 import eu.okaeri.platform.core.annotation.Component;
 import org.bukkit.command.CommandSender;

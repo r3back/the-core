@@ -1,11 +1,10 @@
 package com.qualityplus.trades.util;
 
-import com.cryptomorin.xseries.XMaterial;
 import com.qualityplus.assistant.api.util.BukkitItemUtil;
 import com.qualityplus.assistant.api.util.IPlaceholder;
+import com.qualityplus.assistant.api.util.MathUtil;
+import com.qualityplus.assistant.lib.com.cryptomorin.xseries.XMaterial;
 import com.qualityplus.assistant.util.StringUtils;
-import com.qualityplus.assistant.util.itemstack.ItemStackUtils;
-import com.qualityplus.assistant.util.math.MathUtils;
 import com.qualityplus.assistant.util.placeholder.Placeholder;
 import com.qualityplus.assistant.util.placeholder.PlaceholderBuilder;
 import com.qualityplus.trades.api.box.Box;
@@ -51,7 +50,7 @@ public class TradePlaceholderUtils {
                 if(trade.getPrice() > 0) {
                     int toMultiply = multiplier == 0 ? 1 : multiplier;
 
-                    finalList.add(box.files().messages().tradeMessages.moneyCostFormat.replace("%trade_money_price%", MathUtils.round(trade.getPrice() * toMultiply)));
+                    finalList.add(box.files().messages().tradeMessages.moneyCostFormat.replace("%trade_money_price%", MathUtil.round(trade.getPrice() * toMultiply)));
                 }
 
 

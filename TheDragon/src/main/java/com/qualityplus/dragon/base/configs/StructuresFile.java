@@ -1,5 +1,6 @@
 package com.qualityplus.dragon.base.configs;
 
+import com.qualityplus.assistant.util.list.ListBuilder;
 import com.qualityplus.assistant.util.list.ListUtils;
 import com.qualityplus.dragon.api.game.structure.GameStructure;
 import com.qualityplus.dragon.api.game.structure.type.DragonAltar;
@@ -32,7 +33,8 @@ public final class StructuresFile extends OkaeriConfig {
 
 
     public List<GameStructure> getStructures(){
-        return ListUtils.ListBuilder.of(parseToSuperClass(altars))
+        return new ListBuilder<GameStructure>()
+                .with(parseToSuperClass(altars))
                 .with(parseToSuperClass(crystals))
                 .with(parseToSuperClass(Collections.singletonList(dragonSpawn)))
                 .get();

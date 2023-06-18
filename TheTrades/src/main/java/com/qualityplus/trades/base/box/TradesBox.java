@@ -1,11 +1,15 @@
 package com.qualityplus.trades.base.box;
 
+import com.qualityplus.assistant.lib.eu.okaeri.injector.annotation.Inject;
+import com.qualityplus.assistant.lib.eu.okaeri.platform.core.annotation.Component;
 import com.qualityplus.trades.api.box.Box;
 import com.qualityplus.trades.api.config.ConfigFiles;
 import com.qualityplus.trades.api.service.TradesService;
-import com.qualityplus.trades.base.config.*;
-import eu.okaeri.injector.annotation.Inject;
-import eu.okaeri.platform.core.annotation.Component;
+import com.qualityplus.trades.base.config.Commands;
+import com.qualityplus.trades.base.config.Config;
+import com.qualityplus.trades.base.config.Inventories;
+import com.qualityplus.trades.base.config.Messages;
+import com.qualityplus.trades.base.config.TradesFile;
 import org.bukkit.plugin.Plugin;
 
 @Component

@@ -17,7 +17,7 @@ import com.qualityplus.minions.persistance.data.MinionData;
 import com.qualityplus.minions.persistance.data.UserData;
 import com.qualityplus.minions.util.MinionEggUtil;
 import com.qualityplus.minions.util.MinionPlayerUtil;
-import eu.okaeri.injector.annotation.Inject;
+
 import eu.okaeri.platform.core.annotation.Component;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;

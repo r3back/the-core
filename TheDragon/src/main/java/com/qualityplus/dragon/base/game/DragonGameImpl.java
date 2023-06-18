@@ -10,7 +10,7 @@ import com.qualityplus.dragon.api.game.DragonGame;
 import com.qualityplus.dragon.api.game.structure.type.DragonSpawn;
 import com.qualityplus.dragon.api.service.StructureService;
 import com.qualityplus.dragon.base.game.player.EventPlayer;
-import eu.okaeri.injector.annotation.Inject;
+
 import eu.okaeri.platform.core.annotation.Component;
 import eu.okaeri.tasker.core.Tasker;
 import lombok.Getter;

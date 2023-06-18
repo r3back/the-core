@@ -2,7 +2,7 @@ package com.qualityplus.crafting.base.config.impl;
 
 import com.qualityplus.crafting.api.config.ConfigFiles;
 import com.qualityplus.crafting.base.config.*;
-import eu.okaeri.injector.annotation.Inject;
+
 import eu.okaeri.platform.core.annotation.Component;
 
 @Component

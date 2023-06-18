@@ -3,7 +3,7 @@ package com.qualityplus.skills.base.config.skills;
 import com.cryptomorin.xseries.XMaterial;
 import com.google.common.collect.ImmutableMap;
 import com.qualityplus.assistant.api.common.rewards.commands.CommandReward;
-import com.qualityplus.assistant.util.faster.FasterMap;
+import com.qualityplus.assistant.util.faster.FastMap;
 import com.qualityplus.assistant.util.number.NumberUtil;
 import com.qualityplus.skills.base.reward.StatReward;
 import com.qualityplus.skills.base.skill.Skill;
@@ -77,7 +77,7 @@ public final class CarpentryConfig extends OkaeriConfig implements SkillFile {
     }
 
     private Map<Integer, List<String>> getInfo(){
-        return FasterMap.listBuilder(Integer.class, String.class)
+        return FastMap.listBuilder(Integer.class, String.class)
                 .put(1, Arrays.asList("&7Abilities To Upgrade:",
                         "&8» &f+1 %skill_strength_displayname%",
                         "&8» &f+1 %skill_critic_chance_displayname%",
@@ -100,7 +100,7 @@ public final class CarpentryConfig extends OkaeriConfig implements SkillFile {
     }
 
     private Map<Integer, List<StatReward>> getRewards(){
-        return FasterMap.listBuilder(Integer.class, StatReward.class)
+        return FastMap.listBuilder(Integer.class, StatReward.class)
                 .put(1, Arrays.asList(new StatReward("strength", 1), new StatReward("crit_chance", 1), new StatReward("refurbished", 1), new StatReward("medicine_man", 1)))
                 .put(10, Arrays.asList(new StatReward("strength", 2), new StatReward("crit_chance", 2), new StatReward("refurbished", 1), new StatReward("medicine_man", 1)))
                 .build();

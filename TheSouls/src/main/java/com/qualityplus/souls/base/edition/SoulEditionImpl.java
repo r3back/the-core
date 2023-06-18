@@ -7,7 +7,7 @@ import com.qualityplus.souls.api.edition.SoulEdition;
 import com.qualityplus.souls.base.gui.SoulsGUI;
 import com.qualityplus.souls.base.gui.addcommands.AddCommandsGUI;
 import com.qualityplus.souls.base.gui.addmessages.AddMessagesGUI;
-import eu.okaeri.injector.annotation.Inject;
+
 import eu.okaeri.platform.core.annotation.Component;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;

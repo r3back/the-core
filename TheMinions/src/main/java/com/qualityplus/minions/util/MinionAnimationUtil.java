@@ -1,7 +1,7 @@
 package com.qualityplus.minions.util;
 
 import com.google.common.collect.ImmutableMap;
-import com.qualityplus.assistant.util.faster.FasterMap;
+import com.qualityplus.assistant.util.faster.FastMap;
 import com.qualityplus.minions.util.vector.VectorSection;
 import lombok.experimental.UtilityClass;
 import org.bukkit.util.EulerAngle;
@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 @UtilityClass
 public class MinionAnimationUtil {
     static {
-        AXIS_POSITIONS = FasterMap.builder(Integer.class, VectorSection.class)
+        AXIS_POSITIONS = FastMap.builder(Integer.class, VectorSection.class)
                 .put(1, new VectorSection(new Vector(0, 0, 1), new Vector(0, 0, 2), new Vector(0, 0, 3)))
                 .put(2, new VectorSection(new Vector(1, 0, 1), new Vector(1, 0, 2), new Vector(1, 0, 3)))
                 .put(3, new VectorSection(new Vector(2, 0, 1), new Vector(2, 0, 2), new Vector(2, 0, 3)))
@@ -34,7 +34,7 @@ public class MinionAnimationUtil {
                 .put(16, new VectorSection(new Vector(-1, 0, 1), new Vector(-1, 0, 2), new Vector(-1, 0, 3)))
                 .build();
 
-        SUGAR_WATER_POSITIONS = FasterMap.builder(Integer.class, VectorSection.class)
+        SUGAR_WATER_POSITIONS = FastMap.builder(Integer.class, VectorSection.class)
                 .put(1, new VectorSection(new Vector(0, 0, 2)))
                 .put(3, new VectorSection(new Vector(2, 0, 1)))
                 .put(7, new VectorSection(new Vector(2, 0, -1)))

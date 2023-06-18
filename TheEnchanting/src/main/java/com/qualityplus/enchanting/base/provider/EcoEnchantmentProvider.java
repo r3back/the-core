@@ -8,7 +8,7 @@ import com.qualityplus.enchanting.base.config.enchantments.eco.EcoEnchantments;
 import com.qualityplus.enchanting.base.factory.VanillaEnchantmentFactory;
 import com.willfp.ecoenchants.enchants.EcoEnchant;
 import com.willfp.ecoenchants.enchants.EcoEnchants;
-import eu.okaeri.injector.annotation.Inject;
+
 
 import java.util.HashMap;
 import java.util.List;

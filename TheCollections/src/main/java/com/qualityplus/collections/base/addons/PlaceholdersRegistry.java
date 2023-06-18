@@ -7,7 +7,7 @@ import com.qualityplus.collections.api.service.CollectionsService;
 import com.qualityplus.collections.base.collection.Collection;
 import com.qualityplus.collections.base.collection.registry.CollectionsRegistry;
 import eu.okaeri.commons.bukkit.time.MinecraftTimeEquivalent;
-import eu.okaeri.injector.annotation.Inject;
+
 import eu.okaeri.platform.bukkit.annotation.Delayed;
 import eu.okaeri.platform.core.annotation.Component;
 

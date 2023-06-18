@@ -15,7 +15,7 @@ import com.qualityplus.dragon.api.service.GamePlayerCheckService;
 import com.qualityplus.dragon.base.configs.Messages;
 import com.qualityplus.dragon.base.game.player.EventPlayer;
 import com.qualityplus.dragon.base.game.player.PlayerStatus;
-import eu.okaeri.injector.annotation.Inject;
+
 import eu.okaeri.platform.core.annotation.Component;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;

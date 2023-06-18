@@ -2,7 +2,7 @@ package com.qualityplus.auction.listener;
 
 import com.qualityplus.auction.api.box.Box;
 import com.qualityplus.auction.persistence.data.User;
-import eu.okaeri.injector.annotation.Inject;
+
 import eu.okaeri.persistence.document.Document;
 import eu.okaeri.platform.core.annotation.Component;
 import eu.okaeri.tasker.core.Tasker;

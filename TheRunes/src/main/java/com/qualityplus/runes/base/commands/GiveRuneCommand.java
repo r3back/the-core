@@ -8,7 +8,7 @@ import com.qualityplus.runes.api.recipes.Runes;
 import com.qualityplus.runes.base.rune.Rune;
 import com.qualityplus.runes.util.RunesUtils;
 import eu.okaeri.commons.bukkit.time.MinecraftTimeEquivalent;
-import eu.okaeri.injector.annotation.Inject;
+
 import eu.okaeri.platform.bukkit.annotation.Delayed;
 import eu.okaeri.platform.core.annotation.Component;
 import org.bukkit.Bukkit;

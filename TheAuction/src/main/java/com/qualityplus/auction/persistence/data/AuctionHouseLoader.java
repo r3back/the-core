@@ -4,7 +4,7 @@ import com.qualityplus.auction.api.service.AuctionService;
 import com.qualityplus.auction.persistence.AuctionRepository;
 import eu.okaeri.commands.bukkit.annotation.Async;
 import eu.okaeri.commons.bukkit.time.MinecraftTimeEquivalent;
-import eu.okaeri.injector.annotation.Inject;
+
 import eu.okaeri.platform.bukkit.annotation.Delayed;
 import eu.okaeri.platform.core.annotation.Component;
 import eu.okaeri.platform.core.plan.ExecutionPhase;

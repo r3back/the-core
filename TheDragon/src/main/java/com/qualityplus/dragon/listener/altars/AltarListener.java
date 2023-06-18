@@ -11,7 +11,7 @@ import com.qualityplus.dragon.api.game.structure.type.DragonAltar;
 import com.qualityplus.dragon.api.service.AltarSetupService;
 import com.qualityplus.dragon.util.DragonItemStackUtil;
 import de.tr7zw.changeme.nbtapi.NBTItem;
-import eu.okaeri.injector.annotation.Inject;
+
 import eu.okaeri.platform.core.annotation.Component;
 import org.bukkit.Material;
 import org.bukkit.block.Block;

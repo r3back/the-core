@@ -1,16 +1,20 @@
 package com.qualityplus.trades.base.config;
 
-import com.cryptomorin.xseries.XMaterial;
 import com.qualityplus.assistant.inventory.CommonGUI;
 import com.qualityplus.assistant.inventory.Item;
 import com.qualityplus.assistant.inventory.background.DefaultBackgrounds;
-import com.qualityplus.assistant.util.faster.FasterMap;
+import com.qualityplus.assistant.lib.com.cryptomorin.xseries.XMaterial;
+import com.qualityplus.assistant.lib.eu.okaeri.configs.OkaeriConfig;
+import com.qualityplus.assistant.lib.eu.okaeri.configs.annotation.CustomKey;
+import com.qualityplus.assistant.lib.eu.okaeri.configs.annotation.Header;
+import com.qualityplus.assistant.lib.eu.okaeri.configs.annotation.NameModifier;
+import com.qualityplus.assistant.lib.eu.okaeri.configs.annotation.NameStrategy;
+import com.qualityplus.assistant.lib.eu.okaeri.configs.annotation.Names;
+import com.qualityplus.assistant.lib.eu.okaeri.platform.core.annotation.Configuration;
+import com.qualityplus.assistant.util.faster.FastMap;
 import com.qualityplus.assistant.util.itemstack.ItemBuilder;
 import com.qualityplus.trades.base.gui.options.TradeOptionsGUIConfig;
 import com.qualityplus.trades.base.gui.trades.TradesGUIConfig;
-import eu.okaeri.configs.OkaeriConfig;
-import eu.okaeri.configs.annotation.*;
-import eu.okaeri.platform.core.annotation.Configuration;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -55,7 +59,7 @@ public final class Inventories extends OkaeriConfig implements DefaultBackground
                     ItemBuilder.of(XMaterial.BARRIER,  49, 1, "&cClose", Arrays.asList("", "&e» &7Click to close")).build()
             ))
             .goBack(ItemBuilder.of(XMaterial.ARROW,  48, 1, "&eGo Back", Arrays.asList("", "&e» &7Click to go back")).build())
-            .itemsAndAmountToTrade(FasterMap.builder(Integer.class, Item.class)
+            .itemsAndAmountToTrade(FastMap.builder(Integer.class, Item.class)
                     .put(1, ItemBuilder.of(XMaterial.STONE, 20, 1, "&f%trade_id% &8x1", Arrays.asList("", "%trade_description%", "", "%trade_cost%", "", "&eClick to purchase!")).build())
                     .put(5, ItemBuilder.of(XMaterial.STONE, 21, 5, "&f%trade_id% &8x5", Arrays.asList("", "%trade_description%", "", "%trade_cost%", "", "&eClick to purchase!")).build())
                     .put(10, ItemBuilder.of(XMaterial.STONE, 22, 10, "&f%trade_id% &8x10", Arrays.asList("", "%trade_description%", "", "%trade_cost%", "", "&eClick to purchase!")).build())

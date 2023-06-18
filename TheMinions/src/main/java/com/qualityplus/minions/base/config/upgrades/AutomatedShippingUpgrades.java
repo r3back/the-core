@@ -2,7 +2,7 @@ package com.qualityplus.minions.base.config.upgrades;
 
 import com.cryptomorin.xseries.XMaterial;
 import com.qualityplus.assistant.inventory.Item;
-import com.qualityplus.assistant.util.faster.FasterMap;
+import com.qualityplus.assistant.util.faster.FastMap;
 import com.qualityplus.minions.base.minions.minion.upgrade.MinionAutoShipping;
 import eu.okaeri.configs.OkaeriConfig;
 import eu.okaeri.configs.annotation.Header;
@@ -21,7 +21,7 @@ import java.util.Map;
 @Header("================================")
 @Names(strategy = NameStrategy.HYPHEN_CASE, modifier = NameModifier.TO_LOWER_CASE)
 public final class AutomatedShippingUpgrades extends OkaeriConfig {
-    public Map<String, MinionAutoShipping> automatedShippingUpgrades = FasterMap.builder(String.class, MinionAutoShipping.class)
+    public Map<String, MinionAutoShipping> automatedShippingUpgrades = FastMap.builder(String.class, MinionAutoShipping.class)
             .put("budget_hopper", MinionAutoShipping.builder()
                     .id("budget_hopper")
                     .displayName("&aBudget Hopper")

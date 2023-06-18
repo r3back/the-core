@@ -2,7 +2,7 @@ package com.qualityplus.dragon.base.controller;
 
 import com.qualityplus.dragon.base.event.DragonRefreshEvent;
 import com.qualityplus.dragon.base.event.DragonRefreshEvent.RefreshType;
-import eu.okaeri.injector.annotation.Inject;
+
 import eu.okaeri.platform.bukkit.annotation.Scheduled;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;

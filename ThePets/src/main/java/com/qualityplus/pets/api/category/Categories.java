@@ -3,7 +3,7 @@ package com.qualityplus.pets.api.category;
 import com.google.common.collect.ImmutableSet;
 import com.qualityplus.pets.api.pet.category.PetCategory;
 import com.qualityplus.pets.base.config.CategoriesFile;
-import eu.okaeri.injector.annotation.Inject;
+
 import eu.okaeri.platform.bukkit.annotation.Delayed;
 import eu.okaeri.platform.core.annotation.Component;
 import org.bukkit.NamespacedKey;

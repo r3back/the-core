@@ -7,7 +7,7 @@ import com.qualityplus.skills.api.provider.MinionsProvider;
 import com.qualityplus.skills.base.skill.Skill;
 import com.qualityplus.skills.base.skill.skills.blockbreak.BlockBreakSkill;
 import eu.okaeri.commons.bukkit.time.MinecraftTimeEquivalent;
-import eu.okaeri.injector.annotation.Inject;
+
 import eu.okaeri.platform.bukkit.annotation.Delayed;
 import eu.okaeri.platform.core.annotation.Bean;
 import eu.okaeri.platform.core.annotation.Component;

@@ -7,7 +7,7 @@ import com.qualityplus.enchanting.base.provider.VanillaEnchantmentProvider;
 import com.qualityplus.enchanting.util.EnchantingAddonsUtil;
 import eu.okaeri.commons.bukkit.time.MinecraftTimeEquivalent;
 import eu.okaeri.injector.OkaeriInjector;
-import eu.okaeri.injector.annotation.Inject;
+
 import eu.okaeri.platform.bukkit.annotation.Delayed;
 import eu.okaeri.platform.core.annotation.Bean;
 import eu.okaeri.platform.core.annotation.Component;

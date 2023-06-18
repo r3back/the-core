@@ -23,7 +23,7 @@ import com.qualityplus.minions.persistance.data.MinionData;
 import com.qualityplus.minions.persistance.data.UserData;
 import com.qualityplus.minions.util.MinionAnimationUtil;
 import eu.okaeri.injector.OkaeriInjector;
-import eu.okaeri.injector.annotation.Inject;
+
 import eu.okaeri.persistence.document.Document;
 import eu.okaeri.platform.bukkit.annotation.Delayed;
 import eu.okaeri.platform.core.annotation.Scan;

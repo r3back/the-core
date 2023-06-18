@@ -2,7 +2,7 @@ package com.qualityplus.minions.base.minions.entity.tracker;
 
 import com.google.common.collect.ImmutableSet;
 import com.qualityplus.minions.api.minion.MinionEntity;
-import eu.okaeri.injector.annotation.Inject;
+
 import eu.okaeri.platform.bukkit.annotation.Scheduled;
 import eu.okaeri.platform.core.annotation.Component;
 import org.jetbrains.annotations.ApiStatus;

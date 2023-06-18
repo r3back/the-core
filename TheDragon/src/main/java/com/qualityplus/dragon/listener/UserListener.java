@@ -3,7 +3,7 @@ package com.qualityplus.dragon.listener;
 import com.qualityplus.dragon.api.service.UserDBService;
 import com.qualityplus.dragon.persistance.DragonRepository;
 import com.qualityplus.dragon.persistance.data.UserData;
-import eu.okaeri.injector.annotation.Inject;
+
 import eu.okaeri.persistence.document.Document;
 import eu.okaeri.platform.core.annotation.Component;
 import eu.okaeri.tasker.core.Tasker;

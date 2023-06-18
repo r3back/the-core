@@ -8,7 +8,7 @@ import com.qualityplus.assistant.api.database.HikariDatabaseHelper;
 import com.qualityplus.bank.base.config.Config;
 import eu.okaeri.configs.json.simple.JsonSimpleConfigurer;
 import eu.okaeri.configs.yaml.bukkit.serdes.SerdesBukkit;
-import eu.okaeri.injector.annotation.Inject;
+
 import eu.okaeri.persistence.PersistencePath;
 import eu.okaeri.persistence.document.DocumentPersistence;
 import eu.okaeri.persistence.jdbc.H2Persistence;

@@ -4,7 +4,7 @@ import com.qualityplus.enchanting.api.enchantment.CoreEnchants;
 import com.qualityplus.enchanting.api.enchantment.ICoreEnchantment;
 import com.qualityplus.enchanting.api.provider.EnchantmentProvider;
 import com.qualityplus.enchanting.base.config.enchantments.advanced.AdvancedEnchantments;
-import eu.okaeri.injector.annotation.Inject;
+
 import eu.okaeri.platform.bukkit.annotation.Delayed;
 import eu.okaeri.platform.core.annotation.Component;
 

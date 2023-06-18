@@ -8,7 +8,7 @@ import com.qualityplus.crafting.api.edition.EditionObject;
 import com.qualityplus.crafting.api.edition.RecipeEdition;
 import com.qualityplus.crafting.base.gui.individual.RecipeIndividualGUI;
 import com.qualityplus.crafting.util.CraftingPlaceholderUtils;
-import eu.okaeri.injector.annotation.Inject;
+
 import eu.okaeri.platform.core.annotation.Component;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;

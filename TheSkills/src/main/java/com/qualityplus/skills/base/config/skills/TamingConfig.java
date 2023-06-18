@@ -2,7 +2,7 @@ package com.qualityplus.skills.base.config.skills;
 
 import com.cryptomorin.xseries.XMaterial;
 import com.qualityplus.assistant.api.common.rewards.commands.CommandReward;
-import com.qualityplus.assistant.util.faster.FasterMap;
+import com.qualityplus.assistant.util.faster.FastMap;
 import com.qualityplus.assistant.util.number.NumberUtil;
 import com.qualityplus.skills.base.reward.StatReward;
 import com.qualityplus.skills.base.skill.Skill;
@@ -65,7 +65,7 @@ public final class TamingConfig extends OkaeriConfig implements SkillFile {
     }
 
     private Map<Integer, List<String>> getInfo(){
-        return FasterMap.listBuilder(Integer.class, String.class)
+        return FastMap.listBuilder(Integer.class, String.class)
                 .put(1, Arrays.asList("&7Abilities To Upgrade:",
                         "&8» &f+1 %skill_ferocity_displayname%",
                         "&8» &f+1 %skill_pet_luck_displayname%"))
@@ -76,7 +76,7 @@ public final class TamingConfig extends OkaeriConfig implements SkillFile {
     }
 
     private Map<Integer, List<StatReward>> getRewards(){
-        return FasterMap.listBuilder(Integer.class, StatReward.class)
+        return FastMap.listBuilder(Integer.class, StatReward.class)
                 .put(1, Arrays.asList(new StatReward("ferocity", 1), new StatReward("pet_luck", 1)))
                 .put(10, Arrays.asList(new StatReward("ferocity", 2), new StatReward("pet_luck", 2)))
                 .build();

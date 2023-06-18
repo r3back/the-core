@@ -2,7 +2,7 @@ package com.qualityplus.pets.base.config.pet;
 
 import com.cryptomorin.xseries.XMaterial;
 import com.qualityplus.assistant.api.common.rewards.commands.CommandRewards;
-import com.qualityplus.assistant.util.faster.FasterMap;
+import com.qualityplus.assistant.util.faster.FastMap;
 import com.qualityplus.pets.base.pet.Pet;
 import com.qualityplus.pets.base.pet.egg.PetEgg;
 import com.qualityplus.pets.base.pet.egg.PetModelEngine;
@@ -61,7 +61,7 @@ public final class Tiger extends OkaeriConfig {
     }
 
     private Map<Integer, PetLevel> getPetLevelsMap(){
-        return FasterMap.builder(Integer.class, PetLevel.class)
+        return FastMap.builder(Integer.class, PetLevel.class)
                 .put(1, PetLevel.builder()
                         .requiredXp(15)
                         .petInfoInGUI(Arrays.asList("&8%pet_category_displayname% Pet", "", "&8+&a5 &9☠ Critic Damage",

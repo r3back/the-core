@@ -4,7 +4,7 @@ import com.qualityplus.assistant.okaeri.OkaeriSilentPlugin;
 import com.qualityplus.collections.api.TheCollectionsAPI;
 import com.qualityplus.collections.api.box.Box;
 import com.qualityplus.collections.persistance.data.UserData;
-import eu.okaeri.injector.annotation.Inject;
+
 import eu.okaeri.platform.core.annotation.Scan;
 import eu.okaeri.platform.core.plan.ExecutionPhase;
 import eu.okaeri.platform.core.plan.Planned;

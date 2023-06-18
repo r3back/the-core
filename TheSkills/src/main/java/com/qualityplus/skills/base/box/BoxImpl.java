@@ -16,7 +16,7 @@ import com.qualityplus.skills.base.config.skills.*;
 import com.qualityplus.skills.base.config.stat.*;
 import com.qualityplus.skills.persistance.SkillsRepository;
 import eu.okaeri.injector.OkaeriInjector;
-import eu.okaeri.injector.annotation.Inject;
+
 import eu.okaeri.platform.core.annotation.Component;
 import org.bukkit.plugin.Plugin;
 

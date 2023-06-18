@@ -5,7 +5,7 @@ import com.qualityplus.skills.base.config.Commands;
 import com.qualityplus.skills.base.config.Config;
 import com.qualityplus.skills.base.config.Inventories;
 import com.qualityplus.skills.base.config.Messages;
-import eu.okaeri.injector.annotation.Inject;
+
 import eu.okaeri.platform.core.annotation.Component;
 
 @Component

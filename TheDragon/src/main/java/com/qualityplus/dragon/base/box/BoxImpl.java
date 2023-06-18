@@ -8,7 +8,7 @@ import com.qualityplus.dragon.api.service.StructureService;
 import com.qualityplus.dragon.api.service.UserDBService;
 import com.qualityplus.dragon.api.service.UserService;
 import com.qualityplus.dragon.base.configs.*;
-import eu.okaeri.injector.annotation.Inject;
+
 import eu.okaeri.platform.core.annotation.Component;
 import org.bukkit.plugin.Plugin;
 

@@ -5,7 +5,7 @@ import com.qualityplus.enchanting.api.provider.EnchantmentProvider;
 import com.qualityplus.enchanting.base.config.enchantments.EnchantConfig;
 import com.qualityplus.enchanting.base.config.enchantments.advanced.AdvancedEnchantments;
 import com.qualityplus.enchanting.base.factory.AEEnchantmentFactory;
-import eu.okaeri.injector.annotation.Inject;
+
 import net.advancedplugins.ae.api.AEAPI;
 import net.advancedplugins.ae.enchanthandler.enchantments.AdvancedEnchantment;
 

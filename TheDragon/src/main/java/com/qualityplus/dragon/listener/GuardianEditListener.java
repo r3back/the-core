@@ -7,7 +7,7 @@ import com.qualityplus.dragon.base.editmode.GuardianEditMode;
 import com.qualityplus.dragon.base.game.guardian.DragonGuardian;
 import com.qualityplus.dragon.base.service.GuardianEditServiceImpl.EditType;
 import com.qualityplus.dragon.gui.guardian.GuardianGUI;
-import eu.okaeri.injector.annotation.Inject;
+
 import eu.okaeri.platform.bukkit.scheduler.PlatformScheduler;
 import eu.okaeri.platform.core.annotation.Component;
 import org.bukkit.entity.EntityType;

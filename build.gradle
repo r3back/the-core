@@ -16,66 +16,10 @@ def copyJars =  {
     }
 }
 
-def okaeri_dependencies = ['eu.okaeri:okaeri-platform-bukkit:0.4.0-preview.72',
-                           'eu.okaeri:okaeri-configs-json-simple:4.0.1',
-                           'eu.okaeri:okaeri-persistence-redis:1.5.12',
-                           'eu.okaeri:okaeri-persistence-jdbc:1.5.12',
-                           'eu.okaeri:okaeri-persistence-mongo:1.5.12'] as HashSet
-
-def driver_dependencies = ['com.zaxxer:HikariCP:4.0.3',
-                           'org.mariadb.jdbc:mariadb-java-client:2.7.3',
-                           'com.h2database:h2:2.1.214',
-                           'mysql:mysql-connector-java:8.0.27',
-                           'org.mongodb:mongodb-driver-sync:4.6.1'] as HashSet
-
-def assistant_dependencies = [':TheAssistant:TheAssistant-Plugin',
-                              ':TheAssistant:TheAssistant-API',
-                              ':TheAssistant:Addons:Commons',
-                              ':TheAssistant:TheAssistant-NMS:NMS-Commons'] as HashSet
-
-
-def relocate_map = ['com.cryptomorin.xseries': 'com.qualityplus.assistant.lib.com.cryptomorin.xseries',
-                    'i18n-platform-commands': 'com.qualityplus.assistant.lib.i18n-platform-commands',
-                    'eu.okaeri': 'com.qualityplus.assistant.lib.eu.okaeri',
-                    'com.zaxxer.hikari': 'com.qualityplus.assistant.lib.com.zaxxer.hikari',
-                    'io.netty': 'com.qualityplus.assistant.lib.io.netty',
-                    'org.json.simple': 'com.qualityplus.assistant.lib.org.json.simple',
-                    'org.reactivestreams': 'com.qualityplus.assistant.lib.org.reactivestreams',
-                    'reactor': 'com.qualityplus.assistant.lib.reactor',
-                    'org.slf4j': 'com.qualityplus.assistant.lib.org.slf4j',
-                    'org.h2': 'com.qualityplus.assistant.lib.org.h2',
-                    'org.mariadb.jdbc': 'com.qualityplus.assistant.lib.org.mariadb.jdbc',
-                    'org.intellij.lang.annotations': 'com.qualityplus.assistant.lib.org.intellij.lang.annotations',
-                    'org.inventivetalent': 'com.qualityplus.assistant.lib.org.inventivetalent',
-                    'xyz.xenondevs.particle': 'com.qualityplus.assistant.lib.xyz.xenondevs.particle',
-                    'org.jetbrains.annotations': 'com.qualityplus.assistant.lib.org.jetbrains.annotations',
-                    'de.tr7zw': 'com.qualityplus.assistant.lib.de.tr7zw',
-                    'com.mysql': 'com.qualityplus.assistant.lib.com.mysql',
-                    'com.mongodb': 'com.qualityplus.assistant.lib.com.mongodb'] as HashMap
 
 group = 'com.qualityplus.core'
 version = '3.2.0'
 project.ext.copyJars = copyJars
-project.ext.relocate_map = relocate_map
-project.ext.okaeri_dependencies = okaeri_dependencies
-project.ext.driver_dependencies = driver_dependencies
-project.ext.assistant_dependencies = assistant_dependencies
-
-/*def configureCheckstyleForSubproject(subproject) {
-    subproject.plugins.withId('java') {
-        apply plugin: 'checkstyle'
-    }
-
-    subproject.checkstyle {
-        toolVersion = '8.20'
-        configFile = file('/config/checkstyle/checkstyle.xml')
-        ignoreFailures = false
-        showViolations = true
-        showViolations = true
-        maxWarnings = 0
-        sourceSets = [sourceSets.main]
-    }
-}*/
 
 subprojects {
     apply plugin: 'java'
@@ -97,30 +41,16 @@ subprojects {
 
     repositories {
         mavenCentral()
-        //NMS Repo
-        maven { url 'https://repo.rosewooddev.io/repository/public/' }
-
-        maven { url 'https://libraries.minecraft.net/' }
-        //Spigot API Repo
-        maven { url 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/' }
-        //Paper
-        maven { url 'https://papermc.io/repo/repository/maven-public/' }
-        //Okaeri
-        maven { url 'https://storehouse.okaeri.eu/repository/maven-public/' }
-        //NBT API
-        maven { url 'https://repo.codemc.org/repository/maven-public/' }
 
         maven { url 'https://jitpack.io' }
-
-        //SlimeWorld
-        maven { url 'https://repo.rapture.pw/repository/maven-snapshots/'}
-        maven { url 'https://repo.rapture.pw/repository/maven-releases/'}
     }
 
     dependencies {
         implementation("org.jetbrains:annotations:22.0.0")
 
         compileOnly("org.projectlombok:lombok:1.18.22")
+
+        compileOnly 'com.github.r3back:the-assistant:3.2.1'
 
         // Enable lombok annotation processing
         annotationProcessor("org.projectlombok:lombok:1.18.22")

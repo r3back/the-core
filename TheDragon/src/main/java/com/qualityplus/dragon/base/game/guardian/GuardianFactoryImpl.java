@@ -4,7 +4,7 @@ import com.qualityplus.dragon.api.factory.GuardianFactory;
 import com.qualityplus.dragon.api.game.guardian.Guardian;
 import com.qualityplus.dragon.base.configs.DragonEventsFile.GuardianChanceConfig;
 import com.qualityplus.dragon.base.configs.DragonGuardiansFile;
-import eu.okaeri.injector.annotation.Inject;
+
 import eu.okaeri.platform.core.annotation.Component;
 import lombok.AllArgsConstructor;
 

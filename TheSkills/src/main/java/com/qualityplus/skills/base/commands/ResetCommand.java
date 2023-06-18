@@ -13,7 +13,7 @@ import com.qualityplus.skills.base.skill.registry.Skills;
 import com.qualityplus.skills.base.stat.registry.Stats;
 import com.qualityplus.skills.persistance.data.UserData;
 import eu.okaeri.commons.bukkit.time.MinecraftTimeEquivalent;
-import eu.okaeri.injector.annotation.Inject;
+
 import eu.okaeri.platform.bukkit.annotation.Delayed;
 import eu.okaeri.platform.core.annotation.Component;
 import org.bukkit.Bukkit;

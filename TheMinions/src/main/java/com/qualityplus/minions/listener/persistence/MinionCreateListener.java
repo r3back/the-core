@@ -3,7 +3,7 @@ package com.qualityplus.minions.listener.persistence;
 import com.qualityplus.minions.api.box.Box;
 import com.qualityplus.minions.base.event.MinionCreateEvent;
 import com.qualityplus.minions.persistance.MinionsRepository;
-import eu.okaeri.injector.annotation.Inject;
+
 import eu.okaeri.platform.core.annotation.Component;
 import eu.okaeri.tasker.core.Tasker;
 import org.bukkit.event.EventHandler;

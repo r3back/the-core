@@ -5,7 +5,7 @@ import com.qualityplus.runes.api.provider.LevelProvider;
 import com.qualityplus.runes.base.provider.RuneCraftLevelProvider;
 import com.qualityplus.runes.base.provider.XPLevelProvider;
 import eu.okaeri.injector.OkaeriInjector;
-import eu.okaeri.injector.annotation.Inject;
+
 import eu.okaeri.platform.core.annotation.Bean;
 import eu.okaeri.platform.core.annotation.Component;
 import org.bukkit.plugin.Plugin;

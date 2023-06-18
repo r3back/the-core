@@ -12,7 +12,7 @@ import com.qualityplus.dragon.base.configs.Config;
 import com.qualityplus.dragon.base.configs.DragonEventsFile;
 import com.qualityplus.dragon.base.configs.Messages;
 import com.qualityplus.dragon.base.events.*;
-import eu.okaeri.injector.annotation.Inject;
+
 import eu.okaeri.platform.core.annotation.Component;
 import lombok.Getter;
 import org.bukkit.Bukkit;
