@@ -1,12 +1,13 @@
 package com.qualityplus.enchanting.base.provider.registry;
 
+import com.qualityplus.assistant.lib.eu.okaeri.injector.annotation.Inject;
 import com.qualityplus.enchanting.api.enchantment.CoreEnchants;
 import com.qualityplus.enchanting.api.enchantment.ICoreEnchantment;
 import com.qualityplus.enchanting.api.provider.EnchantmentProvider;
 import com.qualityplus.enchanting.base.config.enchantments.eco.EcoEnchantments;
-import eu.okaeri.injector.annotation.Inject;
-import eu.okaeri.platform.bukkit.annotation.Delayed;
-import eu.okaeri.platform.core.annotation.Component;
+
+import com.qualityplus.assistant.lib.eu.okaeri.platform.bukkit.annotation.Delayed;
+import com.qualityplus.assistant.lib.eu.okaeri.platform.core.annotation.Component;
 
 import java.util.List;
 import java.util.logging.Logger;

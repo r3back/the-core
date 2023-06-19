@@ -3,7 +3,7 @@ package com.qualityplus.minions.base.minions.animations;
 import com.qualityplus.assistant.TheAssistantPlugin;
 import com.qualityplus.assistant.util.armorstand.ArmorStandUtil;
 import com.qualityplus.assistant.util.player.PlayerUtils;
-import com.qualityplus.assistant.util.time.Timer;
+import com.qualityplus.assistant.util.time.HumanTime;
 import com.qualityplus.minions.TheMinions;
 import com.qualityplus.minions.util.MinionAnimationUtil;
 import com.qualityplus.minions.base.minions.entity.animation.FinishAnimation;
@@ -39,7 +39,7 @@ public final class BreakAnimation extends BukkitRunnable {
         this.armorStand = armorStand;
         this.block = block;
 
-        Timer timer = new Timer(2, Timer.TimeType.SECONDS);
+        HumanTime timer = new HumanTime(2, HumanTime.TimeType.SECONDS);
         long millis = Duration.ofSeconds(timer.getSeconds()).toMillis();
         int toDivide = (int) ((int) millis / (20 * timer.getSeconds()));
 

@@ -3,7 +3,7 @@ package com.qualityplus.auction.base.service;
 import com.qualityplus.auction.api.service.AuctionService;
 import com.qualityplus.auction.persistence.data.AuctionHouse;
 import com.qualityplus.auction.persistence.data.AuctionItem;
-import eu.okaeri.platform.core.annotation.Component;
+import com.qualityplus.assistant.lib.eu.okaeri.platform.core.annotation.Component;
 
 import java.util.List;
 import java.util.Optional;

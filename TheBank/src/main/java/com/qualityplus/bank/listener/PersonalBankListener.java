@@ -1,6 +1,7 @@
 package com.qualityplus.bank.listener;
 
 import com.qualityplus.assistant.api.util.BukkitItemUtil;
+import com.qualityplus.assistant.lib.eu.okaeri.injector.annotation.Inject;
 import com.qualityplus.assistant.util.StringUtils;
 import com.qualityplus.assistant.util.time.Markable;
 import com.qualityplus.assistant.util.time.RemainingTime;
@@ -9,9 +10,9 @@ import com.qualityplus.bank.api.box.Box;
 import com.qualityplus.bank.base.config.Messages;
 import com.qualityplus.bank.base.gui.main.BankInterfaceGUI;
 import com.qualityplus.bank.persistence.data.BankData;
-import de.tr7zw.changeme.nbtapi.NBTItem;
-import eu.okaeri.injector.annotation.Inject;
-import eu.okaeri.platform.core.annotation.Component;
+import com.qualityplus.assistant.lib.de.tr7zw.changeme.nbtapi.NBTItem;
+
+import com.qualityplus.assistant.lib.eu.okaeri.platform.core.annotation.Component;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;

@@ -2,7 +2,7 @@ package com.qualityplus.auction.base.service;
 
 import com.qualityplus.auction.api.service.UserService;
 import com.qualityplus.auction.persistence.data.User;
-import eu.okaeri.platform.core.annotation.Component;
+import com.qualityplus.assistant.lib.eu.okaeri.platform.core.annotation.Component;
 
 import java.util.HashMap;
 import java.util.Map;

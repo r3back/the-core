@@ -1,9 +1,10 @@
 package com.qualityplus.bank.base.gui.withdraw;
 
 import com.qualityplus.assistant.api.event.SignCompletedEvent;
+import com.qualityplus.assistant.api.sign.SignGUI;
 import com.qualityplus.assistant.api.util.IPlaceholder;
-import com.qualityplus.assistant.base.dependency.UsualDependencies;
-import com.qualityplus.assistant.inventory.SignGUI;
+import com.qualityplus.assistant.base.dependency.ProtocolLibDependency;
+import com.qualityplus.assistant.inventory.SignGUIImpl;
 import com.qualityplus.assistant.util.inventory.InventoryUtils;
 import com.qualityplus.assistant.util.placeholder.Placeholder;
 import com.qualityplus.bank.api.box.Box;
@@ -98,8 +99,8 @@ public final class BankWithdrawGUI extends BankGUI {
             box.service().handleTransaction(player, new BankTransaction(getCustomPercentage(getData()), TransactionType.WITHDRAW, type), true);
             player.openInventory(new BankWithdrawGUI(box, player, type).getInventory());
         }else if(isItem(slot, config.getWithdrawAmount())){
-            if(UsualDependencies.isProtocolLib()){
-                SignGUI.builder()
+            if(ProtocolLibDependency.isProtocolLib()){
+                SignGUIImpl.builder()
                         .action(this::handleWithdraw)
                         .withLines(box.files().messages().bankMessages.enterAmountToWithdraw)
                         .uuid(player.getUniqueId())

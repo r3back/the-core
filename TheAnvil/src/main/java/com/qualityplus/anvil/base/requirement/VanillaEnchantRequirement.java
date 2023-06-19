@@ -1,6 +1,6 @@
 package com.qualityplus.anvil.base.requirement;
 
-import eu.okaeri.configs.OkaeriConfig;
+import com.qualityplus.assistant.lib.eu.okaeri.configs.OkaeriConfig;
 import lombok.*;
 
 import java.util.Map;

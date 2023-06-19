@@ -3,8 +3,8 @@ package com.qualityplus.auction.base.gui.view.normal;
 import com.qualityplus.assistant.TheAssistantPlugin;
 import com.qualityplus.assistant.api.util.BukkitItemUtil;
 import com.qualityplus.assistant.api.util.IPlaceholder;
-import com.qualityplus.assistant.base.dependency.UsualDependencies;
-import com.qualityplus.assistant.inventory.SignGUI;
+import com.qualityplus.assistant.base.dependency.ProtocolLibDependency;
+import com.qualityplus.assistant.inventory.SignGUIImpl;
 import com.qualityplus.assistant.util.StringUtils;
 import com.qualityplus.assistant.util.itemstack.ItemStackUtils;
 import com.qualityplus.assistant.util.placeholder.Placeholder;
@@ -208,8 +208,8 @@ public final class NormalAuctionViewGUI extends AuctionGUI {
         }else if(isItem(slot, config.bidAmount) && !isOwnAuction() && canSubmit()){
             player.closeInventory();
 
-            if(UsualDependencies.isProtocolLib()){
-                SignGUI.builder()
+            if(ProtocolLibDependency.isProtocolLib()){
+                SignGUIImpl.builder()
                         .action(event1 -> changeBid(event1.getPlayer(), event1.getLines().get(0)))
                         .withLines(box.files().messages().auctionMessages.submitBid)
                         .uuid(player.getUniqueId())

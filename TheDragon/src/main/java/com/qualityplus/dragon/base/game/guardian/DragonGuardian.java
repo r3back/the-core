@@ -4,7 +4,7 @@ import com.qualityplus.assistant.api.util.BukkitItemUtil;
 import com.qualityplus.assistant.util.StringUtils;
 import com.qualityplus.assistant.util.itemstack.ItemStackUtils;
 import com.qualityplus.dragon.api.game.guardian.Guardian;
-import eu.okaeri.configs.OkaeriConfig;
+import com.qualityplus.assistant.lib.eu.okaeri.configs.OkaeriConfig;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;

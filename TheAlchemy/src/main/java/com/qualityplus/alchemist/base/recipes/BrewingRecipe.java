@@ -2,9 +2,9 @@ package com.qualityplus.alchemist.base.recipes;
 
 import com.qualityplus.alchemist.api.recipes.Recipes;
 import com.qualityplus.assistant.api.util.BukkitItemUtil;
-import com.qualityplus.assistant.util.time.Timer;
-import eu.okaeri.configs.OkaeriConfig;
-import eu.okaeri.configs.annotation.Exclude;
+import com.qualityplus.assistant.lib.eu.okaeri.configs.annotation.Exclude;
+import com.qualityplus.assistant.util.time.HumanTime;
+import com.qualityplus.assistant.lib.eu.okaeri.configs.OkaeriConfig;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -24,7 +24,7 @@ public final class BrewingRecipe extends OkaeriConfig {
     private String id;
     private String displayName;
     private String description;
-    private Timer timer;
+    private HumanTime timer;
     private String input;
     private String outPut;
     private String fuel;
@@ -41,13 +41,13 @@ public final class BrewingRecipe extends OkaeriConfig {
      * @param id               Recipe's Id
      * @param displayName      Recipe's Display name
      * @param description      Recipe's description
-     * @param timer            {@link Timer}
+     * @param timer            {@link HumanTime}
      * @param input            {@link ItemStack}
      * @param outPut           {@link ItemStack}
      * @param fuel             {@link ItemStack}
      * @param recipePermission Recipes permission
      */
-    public BrewingRecipe(final String id, final String displayName, final String description, final Timer timer, final ItemStack input,
+    public BrewingRecipe(final String id, final String displayName, final String description, final HumanTime timer, final ItemStack input,
                          final ItemStack outPut, final ItemStack fuel, final String recipePermission) {
         this.id = id;
         this.displayName = displayName;

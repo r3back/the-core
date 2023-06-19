@@ -1,5 +1,6 @@
 package com.qualityplus.dragon.base.configs;
 
+import com.qualityplus.assistant.util.list.ListBuilder;
 import com.qualityplus.assistant.util.list.ListUtils;
 import com.qualityplus.dragon.api.game.structure.GameStructure;
 import com.qualityplus.dragon.api.game.structure.type.DragonAltar;
@@ -8,12 +9,12 @@ import com.qualityplus.dragon.api.game.structure.type.DragonSpawn;
 import com.qualityplus.dragon.base.game.structure.DragonAltarImpl;
 import com.qualityplus.dragon.base.game.structure.DragonCrystalImpl;
 import com.qualityplus.dragon.base.game.structure.DragonSpawnImpl;
-import eu.okaeri.configs.OkaeriConfig;
-import eu.okaeri.configs.annotation.Header;
-import eu.okaeri.configs.annotation.NameModifier;
-import eu.okaeri.configs.annotation.NameStrategy;
-import eu.okaeri.configs.annotation.Names;
-import eu.okaeri.platform.core.annotation.Configuration;
+import com.qualityplus.assistant.lib.eu.okaeri.configs.OkaeriConfig;
+import com.qualityplus.assistant.lib.eu.okaeri.configs.annotation.Header;
+import com.qualityplus.assistant.lib.eu.okaeri.configs.annotation.NameModifier;
+import com.qualityplus.assistant.lib.eu.okaeri.configs.annotation.NameStrategy;
+import com.qualityplus.assistant.lib.eu.okaeri.configs.annotation.Names;
+import com.qualityplus.assistant.lib.eu.okaeri.platform.core.annotation.Configuration;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -32,7 +33,8 @@ public final class StructuresFile extends OkaeriConfig {
 
 
     public List<GameStructure> getStructures(){
-        return ListUtils.ListBuilder.of(parseToSuperClass(altars))
+        return new ListBuilder<GameStructure>()
+                .with(parseToSuperClass(altars))
                 .with(parseToSuperClass(crystals))
                 .with(parseToSuperClass(Collections.singletonList(dragonSpawn)))
                 .get();

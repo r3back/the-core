@@ -1,8 +1,8 @@
 package com.qualityplus.pets.base.config.pet;
 
-import com.cryptomorin.xseries.XMaterial;
+import com.qualityplus.assistant.lib.com.cryptomorin.xseries.XMaterial;
 import com.qualityplus.assistant.api.common.rewards.commands.CommandRewards;
-import com.qualityplus.assistant.util.faster.FasterMap;
+import com.qualityplus.assistant.util.faster.FastMap;
 import com.qualityplus.pets.base.pet.Pet;
 import com.qualityplus.pets.base.pet.egg.PetEgg;
 import com.qualityplus.pets.base.pet.egg.PetModelEngine;
@@ -10,12 +10,12 @@ import com.qualityplus.pets.base.pet.entity.PetEntityOptions;
 import com.qualityplus.pets.base.pet.level.PetLevel;
 import com.qualityplus.pets.base.pet.potion.PetPotion;
 import com.qualityplus.pets.base.rewards.StatReward;
-import eu.okaeri.configs.OkaeriConfig;
-import eu.okaeri.configs.annotation.Header;
-import eu.okaeri.configs.annotation.NameModifier;
-import eu.okaeri.configs.annotation.NameStrategy;
-import eu.okaeri.configs.annotation.Names;
-import eu.okaeri.platform.core.annotation.Configuration;
+import com.qualityplus.assistant.lib.eu.okaeri.configs.OkaeriConfig;
+import com.qualityplus.assistant.lib.eu.okaeri.configs.annotation.Header;
+import com.qualityplus.assistant.lib.eu.okaeri.configs.annotation.NameModifier;
+import com.qualityplus.assistant.lib.eu.okaeri.configs.annotation.NameStrategy;
+import com.qualityplus.assistant.lib.eu.okaeri.configs.annotation.Names;
+import com.qualityplus.assistant.lib.eu.okaeri.platform.core.annotation.Configuration;
 import lombok.Getter;
 
 import java.util.Arrays;
@@ -61,7 +61,7 @@ public final class Tiger extends OkaeriConfig {
     }
 
     private Map<Integer, PetLevel> getPetLevelsMap(){
-        return FasterMap.builder(Integer.class, PetLevel.class)
+        return FastMap.builder(Integer.class, PetLevel.class)
                 .put(1, PetLevel.builder()
                         .requiredXp(15)
                         .petInfoInGUI(Arrays.asList("&8%pet_category_displayname% Pet", "", "&8+&a5 &9☠ Critic Damage",

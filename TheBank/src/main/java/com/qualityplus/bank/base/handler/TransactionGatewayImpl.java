@@ -1,6 +1,7 @@
 package com.qualityplus.bank.base.handler;
 
 import com.qualityplus.assistant.api.util.IPlaceholder;
+import com.qualityplus.assistant.lib.eu.okaeri.injector.annotation.Inject;
 import com.qualityplus.assistant.util.StringUtils;
 import com.qualityplus.assistant.util.placeholder.Placeholder;
 import com.qualityplus.bank.api.handler.TrxHandler;
@@ -15,8 +16,8 @@ import com.qualityplus.bank.base.exception.ZeroMoneyException;
 import com.qualityplus.bank.persistence.data.BankData;
 import com.qualityplus.bank.persistence.data.BankTransaction;
 import com.qualityplus.bank.util.BankMessageUtil;
-import eu.okaeri.injector.annotation.Inject;
-import eu.okaeri.platform.core.annotation.Component;
+
+import com.qualityplus.assistant.lib.eu.okaeri.platform.core.annotation.Component;
 import org.bukkit.Bukkit;
 
 import java.util.Arrays;

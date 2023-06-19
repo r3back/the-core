@@ -1,6 +1,6 @@
 package com.qualityplus.enchanting.util;
 
-import com.cryptomorin.xseries.XMaterial;
+import com.qualityplus.assistant.lib.com.cryptomorin.xseries.XMaterial;
 import com.qualityplus.assistant.util.block.BlockUtils;
 import lombok.experimental.UtilityClass;
 import org.bukkit.Location;

@@ -1,7 +1,7 @@
 package com.qualityplus.skills.base.perk.perks;
 
 import com.qualityplus.assistant.base.event.PlayerKillEvent;
-import com.qualityplus.assistant.util.math.MathUtils;
+import com.qualityplus.assistant.util.random.RandomUtil;
 import com.qualityplus.skills.TheSkills;
 import com.qualityplus.skills.base.perk.Perk;
 import com.qualityplus.skills.base.skill.gui.GUIOptions;
@@ -36,7 +36,7 @@ public final class OrbMasterPerk extends Perk {
 
         Player player = e.getPlayer();
 
-        if (MathUtils.randomBetween(0.0, 100.0) >= chancePerLevel * getStat(player))
+        if (RandomUtil.randomBetween(0.0, 100.0) >= chancePerLevel * getStat(player))
             return;
 
         ExperienceOrb orb = player.getWorld().spawn(player.getLocation(), ExperienceOrb.class);

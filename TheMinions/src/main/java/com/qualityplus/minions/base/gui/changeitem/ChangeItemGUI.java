@@ -1,13 +1,13 @@
 package com.qualityplus.minions.base.gui.changeitem;
 
-import com.cryptomorin.xseries.XMaterial;
+import com.qualityplus.assistant.lib.com.cryptomorin.xseries.XMaterial;
 import com.qualityplus.assistant.api.util.BukkitItemUtil;
 import com.qualityplus.assistant.api.util.IPlaceholder;
 import com.qualityplus.assistant.inventory.CommonGUI;
 import com.qualityplus.assistant.inventory.Item;
 import com.qualityplus.assistant.inventory.background.Background;
 import com.qualityplus.assistant.util.StringUtils;
-import com.qualityplus.assistant.util.faster.FasterMap;
+import com.qualityplus.assistant.util.faster.FastMap;
 import com.qualityplus.assistant.util.inventory.InventoryUtils;
 import com.qualityplus.assistant.util.itemstack.ItemBuilder;
 import com.qualityplus.assistant.util.itemstack.ItemStackUtils;
@@ -128,7 +128,7 @@ public final class ChangeItemGUI extends MinionGUI {
             if(changeItemRequest.is(ChangeItem.UPGRADE_ITEM_REQUIRED_ITEM)) {
                 upgradeSettings.get(upgrade.getId())
                         .getItemSettings()
-                        .setRequiredItemsToCreate(FasterMap.builder(Integer.class, ItemStack.class)
+                        .setRequiredItemsToCreate(FastMap.builder(Integer.class, ItemStack.class)
                                 .put(newItem.getAmount(), newItem)
                                 .build());
 

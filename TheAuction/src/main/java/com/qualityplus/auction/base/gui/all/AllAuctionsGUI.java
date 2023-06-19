@@ -1,8 +1,8 @@
 package com.qualityplus.auction.base.gui.all;
 
 import com.qualityplus.assistant.api.util.IPlaceholder;
-import com.qualityplus.assistant.base.dependency.UsualDependencies;
-import com.qualityplus.assistant.inventory.SignGUI;
+import com.qualityplus.assistant.base.dependency.ProtocolLibDependency;
+import com.qualityplus.assistant.inventory.SignGUIImpl;
 import com.qualityplus.assistant.util.inventory.InventoryUtils;
 import com.qualityplus.assistant.util.itemstack.ItemStackUtils;
 import com.qualityplus.assistant.util.placeholder.Placeholder;
@@ -207,8 +207,8 @@ public final class AllAuctionsGUI extends AuctionGUI {
             }
             player.closeInventory();
 
-            if(UsualDependencies.isProtocolLib()){
-                SignGUI.builder()
+            if(ProtocolLibDependency.isProtocolLib()){
+                SignGUIImpl.builder()
                         .plugin(box.plugin())
                         .uuid(player.getUniqueId())
                         .withLines(box.files().messages().auctionMessages.enterQuery)

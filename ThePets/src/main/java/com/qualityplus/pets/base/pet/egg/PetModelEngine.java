@@ -1,6 +1,6 @@
 package com.qualityplus.pets.base.pet.egg;
 
-import eu.okaeri.configs.OkaeriConfig;
+import com.qualityplus.assistant.lib.eu.okaeri.configs.OkaeriConfig;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

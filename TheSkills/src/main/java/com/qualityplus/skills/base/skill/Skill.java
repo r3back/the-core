@@ -1,6 +1,6 @@
 package com.qualityplus.skills.base.skill;
 
-import com.cryptomorin.xseries.XMaterial;
+import com.qualityplus.assistant.lib.com.cryptomorin.xseries.XMaterial;
 import com.qualityplus.assistant.api.common.rewards.commands.CommandReward;
 import com.qualityplus.skills.api.effect.CommonObject;
 import com.qualityplus.skills.api.listener.ExtraListener;

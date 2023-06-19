@@ -1,5 +1,6 @@
 package com.qualityplus.auction.base.box;
 
+import com.qualityplus.assistant.lib.eu.okaeri.injector.annotation.Inject;
 import com.qualityplus.auction.api.box.Box;
 import com.qualityplus.auction.api.config.ConfigFiles;
 import com.qualityplus.auction.api.service.AuctionService;
@@ -7,8 +8,8 @@ import com.qualityplus.auction.api.service.UserService;
 import com.qualityplus.auction.base.config.*;
 import com.qualityplus.auction.persistence.UserRepository;
 import com.qualityplus.auction.persistence.data.User;
-import eu.okaeri.injector.annotation.Inject;
-import eu.okaeri.platform.core.annotation.Component;
+
+import com.qualityplus.assistant.lib.eu.okaeri.platform.core.annotation.Component;
 import org.bukkit.plugin.Plugin;
 
 import java.util.Optional;

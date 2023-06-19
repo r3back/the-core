@@ -6,7 +6,7 @@ import com.qualityplus.assistant.api.util.IPlaceholder;
 import com.qualityplus.assistant.util.StringUtils;
 import com.qualityplus.assistant.util.inventory.InventoryUtils;
 import com.qualityplus.assistant.util.itemstack.ItemStackUtils;
-import com.qualityplus.assistant.util.math.MathUtils;
+import com.qualityplus.assistant.util.number.NumberUtil;
 import com.qualityplus.assistant.util.placeholder.Placeholder;
 import com.qualityplus.assistant.util.placeholder.PlaceholderBuilder;
 import com.qualityplus.enchanting.TheEnchanting;
@@ -61,7 +61,7 @@ public final class EnchantSubGUI extends EnchantingGUI {
             List<IPlaceholder> placeholders = EnchantingPlaceholderUtil.getEnchantPlaceholders(enchantment, level);
 
             inventory.setItem(slot, ItemStackUtils.makeItem(config.getEnchantItem(), PlaceholderBuilder.create(placeholders)
-                    .with(new Placeholder("enchanting_enchant_level_to_enchant_roman", MathUtils.toRoman(level)))
+                    .with(new Placeholder("enchanting_enchant_level_to_enchant_roman", NumberUtil.toRoman(level)))
                     .with(new Placeholder("enchanting_enchant_level_to_enchant_number", level))
                     .with(getWarnings(level))
                     .with(getEnchantingCost(level))
@@ -124,7 +124,7 @@ public final class EnchantSubGUI extends EnchantingGUI {
             String message = isRemoveEnchant ? box.files().messages().enchantingMessages.enchantRemoved : box.files().messages().enchantingMessages.enchantApplied;
 
             List<IPlaceholder> placeholders = PlaceholderBuilder.create(EnchantingPlaceholderUtil.getEnchantPlaceholders(enchantment, level))
-                    .with(new Placeholder("enchanting_enchant_level_roman", MathUtils.toRoman(level)))
+                    .with(new Placeholder("enchanting_enchant_level_roman", NumberUtil.toRoman(level)))
                     .with(new Placeholder("enchanting_item_name", BukkitItemUtil.getName(itemStack)))
                     .get();
 

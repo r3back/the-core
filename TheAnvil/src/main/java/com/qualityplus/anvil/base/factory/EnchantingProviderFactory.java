@@ -4,9 +4,9 @@ import com.qualityplus.anvil.api.provider.EnchantmentProvider;
 import com.qualityplus.anvil.base.provider.TheEnchantingProvider;
 import com.qualityplus.anvil.base.provider.VanillaEnchantingProvider;
 import com.qualityplus.assistant.TheAssistantPlugin;
-import eu.okaeri.injector.annotation.Inject;
-import eu.okaeri.platform.core.annotation.Bean;
-import eu.okaeri.platform.core.annotation.Component;
+import com.qualityplus.assistant.lib.eu.okaeri.injector.annotation.Inject;
+import com.qualityplus.assistant.lib.eu.okaeri.platform.core.annotation.Bean;
+import com.qualityplus.assistant.lib.eu.okaeri.platform.core.annotation.Component;
 
 import java.util.logging.Logger;
 

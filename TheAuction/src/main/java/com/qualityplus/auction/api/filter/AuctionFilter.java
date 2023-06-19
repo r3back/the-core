@@ -3,7 +3,7 @@ package com.qualityplus.auction.api.filter;
 import com.qualityplus.auction.api.filter.algorithm.FilterAlgorithm;
 import com.qualityplus.auction.api.filter.method.FilterMethod;
 import com.qualityplus.auction.persistence.data.AuctionItem;
-import eu.okaeri.configs.OkaeriConfig;
+import com.qualityplus.assistant.lib.eu.okaeri.configs.OkaeriConfig;
 import lombok.Data;
 
 import java.util.HashMap;

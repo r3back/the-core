@@ -1,5 +1,6 @@
 package com.qualityplus.dragon.base.game.parts;
 
+import com.qualityplus.assistant.lib.eu.okaeri.injector.annotation.Inject;
 import com.qualityplus.assistant.util.StringUtils;
 import com.qualityplus.assistant.util.placeholder.Placeholder;
 import com.qualityplus.dragon.TheDragon;
@@ -12,8 +13,8 @@ import com.qualityplus.dragon.base.configs.Config;
 import com.qualityplus.dragon.base.configs.DragonEventsFile;
 import com.qualityplus.dragon.base.configs.Messages;
 import com.qualityplus.dragon.base.events.*;
-import eu.okaeri.injector.annotation.Inject;
-import eu.okaeri.platform.core.annotation.Component;
+
+import com.qualityplus.assistant.lib.eu.okaeri.platform.core.annotation.Component;
 import lombok.Getter;
 import org.bukkit.Bukkit;
 

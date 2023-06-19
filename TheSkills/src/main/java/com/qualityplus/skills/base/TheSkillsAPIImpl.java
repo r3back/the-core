@@ -1,13 +1,14 @@
 package com.qualityplus.skills.base;
 
 import com.qualityplus.assistant.api.util.BukkitItemUtil;
+import com.qualityplus.assistant.lib.de.tr7zw.changeme.nbtapi.NBTItem;
+import com.qualityplus.assistant.lib.eu.okaeri.injector.annotation.Inject;
 import com.qualityplus.skills.api.TheSkillsAPI;
 import com.qualityplus.skills.api.service.SkillsService;
 import com.qualityplus.skills.base.stat.Stat;
 import com.qualityplus.skills.base.stat.registry.Stats;
-import de.tr7zw.changeme.nbtapi.NBTItem;
-import eu.okaeri.injector.annotation.Inject;
-import eu.okaeri.platform.core.annotation.Component;
+
+import com.qualityplus.assistant.lib.eu.okaeri.platform.core.annotation.Component;
 import lombok.Getter;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.Plugin;

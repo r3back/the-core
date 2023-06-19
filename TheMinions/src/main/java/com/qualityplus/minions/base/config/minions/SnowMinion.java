@@ -1,10 +1,10 @@
 package com.qualityplus.minions.base.config.minions;
 
-import com.cryptomorin.xseries.XMaterial;
-import com.qualityplus.assistant.util.faster.FasterMap;
-import com.qualityplus.assistant.util.faster.FasterStack;
+import com.qualityplus.assistant.lib.com.cryptomorin.xseries.XMaterial;
+import com.qualityplus.assistant.util.faster.FastMap;
+import com.qualityplus.assistant.util.faster.FastStack;
 import com.qualityplus.assistant.util.itemstack.ItemBuilder;
-import com.qualityplus.assistant.util.time.Timer;
+import com.qualityplus.assistant.util.time.HumanTime;
 import com.qualityplus.minions.base.minions.entity.MinionEntityOptions;
 import com.qualityplus.minions.base.minions.minion.Minion;
 import com.qualityplus.minions.base.minions.minion.MinionType;
@@ -18,12 +18,12 @@ import com.qualityplus.minions.base.minions.minion.level.MinionLevel;
 import com.qualityplus.minions.base.minions.minion.update.MinionSettings;
 import com.qualityplus.minions.base.minions.minion.update.item.ItemSettings;
 import com.qualityplus.minions.base.minions.minion.update.item.UpgradeSettings;
-import eu.okaeri.configs.OkaeriConfig;
-import eu.okaeri.configs.annotation.Header;
-import eu.okaeri.configs.annotation.NameModifier;
-import eu.okaeri.configs.annotation.NameStrategy;
-import eu.okaeri.configs.annotation.Names;
-import eu.okaeri.platform.core.annotation.Configuration;
+import com.qualityplus.assistant.lib.eu.okaeri.configs.OkaeriConfig;
+import com.qualityplus.assistant.lib.eu.okaeri.configs.annotation.Header;
+import com.qualityplus.assistant.lib.eu.okaeri.configs.annotation.NameModifier;
+import com.qualityplus.assistant.lib.eu.okaeri.configs.annotation.NameStrategy;
+import com.qualityplus.assistant.lib.eu.okaeri.configs.annotation.Names;
+import com.qualityplus.assistant.lib.eu.okaeri.platform.core.annotation.Configuration;
 import lombok.Getter;
 import lombok.Setter;
 import org.bukkit.inventory.ItemStack;
@@ -71,16 +71,16 @@ public final class SnowMinion extends OkaeriConfig {
             .build();
     public MinionSettings minionSettings = MinionSettings.builder()
             .baseItem(ItemSettings.builder()
-                    .itemsToGive(Collections.singletonList(FasterStack.fast(XMaterial.SNOWBALL, 1)))
+                    .itemsToGive(Collections.singletonList(FastStack.fast(XMaterial.SNOWBALL, 1)))
                     .requiredItemsToCreate(Collections.emptyMap())
                     .build())
-            .upgradeSettings(FasterMap.builder(String.class, UpgradeSettings.class)
+            .upgradeSettings(FastMap.builder(String.class, UpgradeSettings.class)
                     .put("super_compactor_3000", UpgradeSettings.builder()
                             .sellPrice(20)
                             .itemSettings(ItemSettings.builder()
-                                    .itemsToGive(Collections.singletonList(FasterStack.fast(XMaterial.SNOW_BLOCK, 1)))
-                                    .requiredItemsToCreate(FasterMap.builder(Integer.class, ItemStack.class)
-                                            .put(2, FasterStack.fast(XMaterial.SNOWBALL, 1))
+                                    .itemsToGive(Collections.singletonList(FastStack.fast(XMaterial.SNOW_BLOCK, 1)))
+                                    .requiredItemsToCreate(FastMap.builder(Integer.class, ItemStack.class)
+                                            .put(2, FastStack.fast(XMaterial.SNOWBALL, 1))
                                             .build())
                                     .build())
                             .build())
@@ -105,13 +105,13 @@ public final class SnowMinion extends OkaeriConfig {
     }
 
     private Map<Integer, MinionLevel> getMinionLevels(){
-        return FasterMap.builder(Integer.class, MinionLevel.class)
+        return FastMap.builder(Integer.class, MinionLevel.class)
                 .put(1, MinionLevel.builder()
                         .matRequirement(MatRequirement.builder()
                                 .requiredMaterial(XMaterial.SNOWBALL)
                                 .requiredMaterialAmount(64)
                                 .build())
-                        .executeActionsTime(new Timer(125, Timer.TimeType.SECONDS))
+                        .executeActionsTime(new HumanTime(125, HumanTime.TimeType.SECONDS))
                         .maxStorage(1)
                         .minionSkin("snow_minion_1")
                         .build())
@@ -120,7 +120,7 @@ public final class SnowMinion extends OkaeriConfig {
                                 .requiredMaterial(XMaterial.SNOWBALL)
                                 .requiredMaterialAmount(128)
                                 .build())
-                        .executeActionsTime(new Timer(120, Timer.TimeType.SECONDS))
+                        .executeActionsTime(new HumanTime(120, HumanTime.TimeType.SECONDS))
                         .maxStorage(2)
                         .minionSkin("snow_minion_2")
                         .build())
@@ -129,7 +129,7 @@ public final class SnowMinion extends OkaeriConfig {
                                 .requiredMaterial(XMaterial.SNOWBALL)
                                 .requiredMaterialAmount(128)
                                 .build())
-                        .executeActionsTime(new Timer(115, Timer.TimeType.SECONDS))
+                        .executeActionsTime(new HumanTime(115, HumanTime.TimeType.SECONDS))
                         .maxStorage(3)
                         .minionSkin("snow_minion_3")
                         .build())
@@ -138,7 +138,7 @@ public final class SnowMinion extends OkaeriConfig {
                                 .requiredMaterial(XMaterial.SNOWBALL)
                                 .requiredMaterialAmount(128)
                                 .build())
-                        .executeActionsTime(new Timer(110, Timer.TimeType.SECONDS))
+                        .executeActionsTime(new HumanTime(110, HumanTime.TimeType.SECONDS))
                         .maxStorage(3)
                         .minionSkin("snow_minion_4")
                         .build())
@@ -147,7 +147,7 @@ public final class SnowMinion extends OkaeriConfig {
                                 .requiredMaterial(XMaterial.SNOWBALL)
                                 .requiredMaterialAmount(128)
                                 .build())
-                        .executeActionsTime(new Timer(105, Timer.TimeType.SECONDS))
+                        .executeActionsTime(new HumanTime(105, HumanTime.TimeType.SECONDS))
                         .maxStorage(3)
                         .minionSkin("snow_minion_5")
                         .build())
@@ -156,7 +156,7 @@ public final class SnowMinion extends OkaeriConfig {
                                 .requiredMaterial(XMaterial.SNOWBALL)
                                 .requiredMaterialAmount(128)
                                 .build())
-                        .executeActionsTime(new Timer(100, Timer.TimeType.SECONDS))
+                        .executeActionsTime(new HumanTime(100, HumanTime.TimeType.SECONDS))
                         .maxStorage(3)
                         .minionSkin("snow_minion_6")
                         .build())
@@ -165,7 +165,7 @@ public final class SnowMinion extends OkaeriConfig {
                                 .requiredMaterial(XMaterial.SNOWBALL)
                                 .requiredMaterialAmount(128)
                                 .build())
-                        .executeActionsTime(new Timer(90, Timer.TimeType.SECONDS))
+                        .executeActionsTime(new HumanTime(90, HumanTime.TimeType.SECONDS))
                         .maxStorage(3)
                         .minionSkin("snow_minion_7")
                         .build())
@@ -174,7 +174,7 @@ public final class SnowMinion extends OkaeriConfig {
                                 .requiredMaterial(XMaterial.SNOWBALL)
                                 .requiredMaterialAmount(128)
                                 .build())
-                        .executeActionsTime(new Timer(85, Timer.TimeType.SECONDS))
+                        .executeActionsTime(new HumanTime(85, HumanTime.TimeType.SECONDS))
                         .maxStorage(3)
                         .minionSkin("snow_minion_8")
                         .build())
@@ -183,7 +183,7 @@ public final class SnowMinion extends OkaeriConfig {
                                 .requiredMaterial(XMaterial.SNOWBALL)
                                 .requiredMaterialAmount(128)
                                 .build())
-                        .executeActionsTime(new Timer(80, Timer.TimeType.SECONDS))
+                        .executeActionsTime(new HumanTime(80, HumanTime.TimeType.SECONDS))
                         .maxStorage(3)
                         .minionSkin("snow_minion_9")
                         .build())
@@ -192,7 +192,7 @@ public final class SnowMinion extends OkaeriConfig {
                                 .requiredMaterial(XMaterial.SNOWBALL)
                                 .requiredMaterialAmount(128)
                                 .build())
-                        .executeActionsTime(new Timer(75, Timer.TimeType.SECONDS))
+                        .executeActionsTime(new HumanTime(75, HumanTime.TimeType.SECONDS))
                         .maxStorage(3)
                         .minionSkin("snow_minion_10")
                         .build())
@@ -201,7 +201,7 @@ public final class SnowMinion extends OkaeriConfig {
                                 .requiredMaterial(XMaterial.SNOWBALL)
                                 .requiredMaterialAmount(128)
                                 .build())
-                        .executeActionsTime(new Timer(65, Timer.TimeType.SECONDS))
+                        .executeActionsTime(new HumanTime(65, HumanTime.TimeType.SECONDS))
                         .maxStorage(3)
                         .minionSkin("snow_minion_11")
                         .build())

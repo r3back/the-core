@@ -2,8 +2,8 @@ package com.qualityplus.anvil.base.config.impl;
 
 import com.qualityplus.anvil.api.config.ConfigFiles;
 import com.qualityplus.anvil.base.config.*;
-import eu.okaeri.injector.annotation.Inject;
-import eu.okaeri.platform.core.annotation.Component;
+import com.qualityplus.assistant.lib.eu.okaeri.injector.annotation.Inject;
+import com.qualityplus.assistant.lib.eu.okaeri.platform.core.annotation.Component;
 
 @Component
 public final class AnvilFiles implements ConfigFiles<Config, Inventories, Messages, Commands> {

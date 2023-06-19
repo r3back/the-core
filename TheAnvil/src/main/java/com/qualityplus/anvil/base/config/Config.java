@@ -1,13 +1,17 @@
 package com.qualityplus.anvil.base.config;
 
-import com.cryptomorin.xseries.XEnchantment;
-import com.cryptomorin.xseries.XMaterial;
 import com.qualityplus.anvil.base.requirement.VanillaEnchantRequirement;
 import com.qualityplus.assistant.api.gui.LoreWrapper;
-import com.qualityplus.assistant.util.faster.FasterMap;
-import eu.okaeri.configs.OkaeriConfig;
-import eu.okaeri.configs.annotation.*;
-import eu.okaeri.platform.core.annotation.Configuration;
+import com.qualityplus.assistant.lib.com.cryptomorin.xseries.XEnchantment;
+import com.qualityplus.assistant.lib.com.cryptomorin.xseries.XMaterial;
+import com.qualityplus.assistant.lib.eu.okaeri.configs.OkaeriConfig;
+import com.qualityplus.assistant.lib.eu.okaeri.configs.annotation.Comment;
+import com.qualityplus.assistant.lib.eu.okaeri.configs.annotation.Header;
+import com.qualityplus.assistant.lib.eu.okaeri.configs.annotation.NameModifier;
+import com.qualityplus.assistant.lib.eu.okaeri.configs.annotation.NameStrategy;
+import com.qualityplus.assistant.lib.eu.okaeri.configs.annotation.Names;
+import com.qualityplus.assistant.lib.eu.okaeri.platform.core.annotation.Configuration;
+import com.qualityplus.assistant.util.faster.FastMap;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,9 +37,9 @@ public final class Config extends OkaeriConfig {
 
     @Comment("Required levels when TheEnchanting is")
     @Comment("disabled.")
-    public Map<XEnchantment, VanillaEnchantRequirement> requiredLevelsForVanilla = FasterMap.builder(XEnchantment.class, VanillaEnchantRequirement.class)
+    public Map<XEnchantment, VanillaEnchantRequirement> requiredLevelsForVanilla = FastMap.builder(XEnchantment.class, VanillaEnchantRequirement.class)
             .put(XEnchantment.DAMAGE_ALL, VanillaEnchantRequirement.builder()
-                    .requiredLevelsToEnchant(FasterMap.builder(Integer.class, Integer.class)
+                    .requiredLevelsToEnchant(FastMap.builder(Integer.class, Integer.class)
                             .put(2, 4)
                             .put(3, 6)
                             .put(4, 8)

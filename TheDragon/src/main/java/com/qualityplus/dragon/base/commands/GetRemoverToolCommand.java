@@ -1,15 +1,16 @@
 package com.qualityplus.dragon.base.commands;
 
-import com.cryptomorin.xseries.XMaterial;
+import com.qualityplus.assistant.lib.com.cryptomorin.xseries.XMaterial;
 import com.qualityplus.assistant.TheAssistantPlugin;
 import com.qualityplus.assistant.api.commands.command.AssistantCommand;
+import com.qualityplus.assistant.lib.eu.okaeri.injector.annotation.Inject;
 import com.qualityplus.assistant.util.StringUtils;
 import com.qualityplus.dragon.api.box.Box;
-import de.tr7zw.changeme.nbtapi.NBTItem;
-import eu.okaeri.commons.bukkit.time.MinecraftTimeEquivalent;
-import eu.okaeri.injector.annotation.Inject;
-import eu.okaeri.platform.bukkit.annotation.Delayed;
-import eu.okaeri.platform.core.annotation.Component;
+import com.qualityplus.assistant.lib.de.tr7zw.changeme.nbtapi.NBTItem;
+import com.qualityplus.assistant.lib.eu.okaeri.commons.bukkit.time.MinecraftTimeEquivalent;;
+
+import com.qualityplus.assistant.lib.eu.okaeri.platform.bukkit.annotation.Delayed;
+import com.qualityplus.assistant.lib.eu.okaeri.platform.core.annotation.Component;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;

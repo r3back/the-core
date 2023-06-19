@@ -6,7 +6,7 @@ import com.qualityplus.assistant.util.itemstack.ItemStackUtils;
 import com.qualityplus.assistant.util.placeholder.Placeholder;
 import com.qualityplus.assistant.util.placeholder.PlaceholderBuilder;
 import com.qualityplus.minions.util.MinionUpgradeUtil;
-import eu.okaeri.configs.OkaeriConfig;
+import com.qualityplus.assistant.lib.eu.okaeri.configs.OkaeriConfig;
 import lombok.*;
 import org.bukkit.inventory.ItemStack;
 

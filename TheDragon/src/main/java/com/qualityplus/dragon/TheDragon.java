@@ -1,14 +1,15 @@
 package com.qualityplus.dragon;
 
+import com.qualityplus.assistant.lib.eu.okaeri.injector.annotation.Inject;
 import com.qualityplus.assistant.okaeri.OkaeriSilentPlugin;
 import com.qualityplus.dragon.api.TheDragonAPI;
 import com.qualityplus.dragon.api.box.Box;
 import com.qualityplus.dragon.base.configs.Inventories;
 import com.qualityplus.dragon.persistance.data.UserData;
-import eu.okaeri.injector.annotation.Inject;
-import eu.okaeri.platform.core.annotation.Scan;
-import eu.okaeri.platform.core.plan.ExecutionPhase;
-import eu.okaeri.platform.core.plan.Planned;
+
+import com.qualityplus.assistant.lib.eu.okaeri.platform.core.annotation.Scan;
+import com.qualityplus.assistant.lib.eu.okaeri.platform.core.plan.ExecutionPhase;
+import com.qualityplus.assistant.lib.eu.okaeri.platform.core.plan.Planned;
 import lombok.Getter;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -20,7 +21,8 @@ import java.util.logging.Logger;
 
 @Scan(deep = true)
 public final class TheDragon extends OkaeriSilentPlugin {
-    private static @Inject @Getter TheDragonAPI api;
+    private static @Inject
+    @Getter TheDragonAPI api;
 
     @Planned(ExecutionPhase.PRE_SHUTDOWN)
     private void whenStop(Box box){

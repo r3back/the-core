@@ -1,8 +1,8 @@
 package com.qualityplus.auction.api.category;
 
-import com.cryptomorin.xseries.XMaterial;
+import com.qualityplus.assistant.lib.com.cryptomorin.xseries.XMaterial;
 import com.qualityplus.auction.api.gui.GUIDisplayItem;
-import eu.okaeri.configs.OkaeriConfig;
+import com.qualityplus.assistant.lib.eu.okaeri.configs.OkaeriConfig;
 import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;

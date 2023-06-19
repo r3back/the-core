@@ -1,7 +1,7 @@
 package com.qualityplus.collections.persistance.data;
 
 import com.qualityplus.collections.persistance.data.user.UserCollections;
-import eu.okaeri.persistence.document.Document;
+import com.qualityplus.assistant.lib.eu.okaeri.persistence.document.Document;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 

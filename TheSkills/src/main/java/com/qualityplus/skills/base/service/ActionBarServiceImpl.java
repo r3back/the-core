@@ -4,6 +4,7 @@ import com.qualityplus.assistant.TheAssistantPlugin;
 import com.qualityplus.assistant.api.config.ConfigActionBar;
 import com.qualityplus.assistant.api.util.IPlaceholder;
 import com.qualityplus.assistant.base.nms.AbstractNMS;
+import com.qualityplus.assistant.lib.eu.okaeri.injector.annotation.Inject;
 import com.qualityplus.assistant.util.StringUtils;
 import com.qualityplus.assistant.util.placeholder.PlaceholderBuilder;
 import com.qualityplus.skills.api.service.ActionBarService;
@@ -12,9 +13,9 @@ import com.qualityplus.skills.base.config.Config;
 import com.qualityplus.skills.persistance.data.UserData;
 import com.qualityplus.skills.util.SkillsPlaceholderUtil;
 import com.qualityplus.skills.util.SkillsPlayerUtil;
-import eu.okaeri.injector.annotation.Inject;
-import eu.okaeri.platform.bukkit.annotation.Scheduled;
-import eu.okaeri.platform.core.annotation.Component;
+
+import com.qualityplus.assistant.lib.eu.okaeri.platform.bukkit.annotation.Scheduled;
+import com.qualityplus.assistant.lib.eu.okaeri.platform.core.annotation.Component;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 

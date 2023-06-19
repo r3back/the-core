@@ -2,7 +2,7 @@ package com.qualityplus.skills.base.perk.perks;
 
 import com.qualityplus.assistant.api.util.IPlaceholder;
 import com.qualityplus.assistant.util.StringUtils;
-import com.qualityplus.assistant.util.math.MathUtils;
+import com.qualityplus.assistant.util.number.NumberUtil;
 import com.qualityplus.assistant.util.placeholder.Placeholder;
 import com.qualityplus.assistant.util.placeholder.PlaceholderBuilder;
 import com.qualityplus.skills.base.perk.Perk;
@@ -30,7 +30,7 @@ public final class BonusAttackSpeedPerk extends Perk {
     @Override
     public List<String> getFormattedDescription(int level) {
         List<IPlaceholder> placeholders = PlaceholderBuilder.create()
-                .with(new Placeholder("level_number", level), new Placeholder("level_roman", MathUtils.toRoman(level)))
+                .with(new Placeholder("level_number", level), new Placeholder("level_roman", NumberUtil.toRoman(level)))
                 .with(new Placeholder("percent", chancePerLevel * level))
                 .get();
         return StringUtils.processMulti(description, placeholders);

@@ -2,7 +2,7 @@ package com.qualityplus.runes.base.rune;
 
 import com.qualityplus.runes.api.config.RuneTableConfig.RuneItem;
 import com.qualityplus.runes.api.recipes.Runes;
-import eu.okaeri.configs.OkaeriConfig;
+import com.qualityplus.assistant.lib.eu.okaeri.configs.OkaeriConfig;
 import lombok.Builder;
 import lombok.Getter;
 

@@ -1,6 +1,6 @@
 package com.qualityplus.minions.base.minions.minion.mob;
 
-import eu.okaeri.configs.OkaeriConfig;
+import com.qualityplus.assistant.lib.eu.okaeri.configs.OkaeriConfig;
 import lombok.*;
 import org.bukkit.entity.EntityType;
 

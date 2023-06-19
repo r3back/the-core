@@ -1,9 +1,10 @@
 package com.qualityplus.runes.base.config.impl;
 
+import com.qualityplus.assistant.lib.eu.okaeri.injector.annotation.Inject;
 import com.qualityplus.runes.api.config.ConfigFiles;
 import com.qualityplus.runes.base.config.*;
-import eu.okaeri.injector.annotation.Inject;
-import eu.okaeri.platform.core.annotation.Component;
+
+import com.qualityplus.assistant.lib.eu.okaeri.platform.core.annotation.Component;
 
 @Component
 public final class RunesFiles implements ConfigFiles<Config, RunesFile, Inventories, Messages, Commands> {

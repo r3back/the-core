@@ -2,7 +2,7 @@ package com.qualityplus.dragon.base.service;
 
 import com.qualityplus.dragon.api.service.GuardianEditService;
 import com.qualityplus.dragon.base.editmode.GuardianEditMode;
-import eu.okaeri.platform.core.annotation.Component;
+import com.qualityplus.assistant.lib.eu.okaeri.platform.core.annotation.Component;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 

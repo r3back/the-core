@@ -1,7 +1,7 @@
 package com.qualityplus.collections.base.collection.gui;
 
-import com.cryptomorin.xseries.XMaterial;
-import eu.okaeri.configs.OkaeriConfig;
+import com.qualityplus.assistant.lib.com.cryptomorin.xseries.XMaterial;
+import com.qualityplus.assistant.lib.eu.okaeri.configs.OkaeriConfig;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

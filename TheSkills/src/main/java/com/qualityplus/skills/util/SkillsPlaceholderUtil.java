@@ -2,7 +2,7 @@ package com.qualityplus.skills.util;
 
 import com.qualityplus.assistant.api.util.IPlaceholder;
 import com.qualityplus.assistant.util.actionbar.ActionBarUtils;
-import com.qualityplus.assistant.util.math.MathUtils;
+import com.qualityplus.assistant.util.number.NumberUtil;
 import com.qualityplus.assistant.util.placeholder.Placeholder;
 import com.qualityplus.assistant.util.placeholder.PlaceholderBuilder;
 import com.qualityplus.skills.api.effect.CommonObject;
@@ -35,7 +35,7 @@ public class SkillsPlaceholderUtil {
         return Arrays.asList(
                 new Placeholder("skill_displayname", skill.getDisplayName()),
                 new Placeholder("skill_description", skill.getDescription()),
-                new Placeholder("skill_level_roman", MathUtils.toRoman(level)),
+                new Placeholder("skill_level_roman", NumberUtil.toRoman(level)),
                 new Placeholder("skill_level_number", level),
                 new Placeholder("skill_level_progress", percentage),
                 new Placeholder("skill_action_bar", ActionBarUtils.getReplacedBar(percentage)),
@@ -99,7 +99,7 @@ public class SkillsPlaceholderUtil {
     private static List<IPlaceholder> getCommonPlaceholders(CommonObject object, int level){
         List<IPlaceholder> placeholders = new ArrayList<>();
         placeholders.add(new Placeholder("skill_level_" + object.getId() + "_number", level));
-        placeholders.add(new Placeholder("skill_level_" + object.getId() + "_roman", MathUtils.toRoman(level)));
+        placeholders.add(new Placeholder("skill_level_" + object.getId() + "_roman", NumberUtil.toRoman(level)));
         placeholders.add(new Placeholder("skill_" + object.getId() + "_displayname", object.getDisplayName()));
         placeholders.add(new Placeholder("skill_" + object.getId() + "_description", object.getFormattedDescription(level)));
         return placeholders;
@@ -107,8 +107,8 @@ public class SkillsPlaceholderUtil {
 
     public static PlaceholderBuilder getHealthPlaceholders(Player player){
         return PlaceholderBuilder.create()
-                .with(new Placeholder("player_max_health", MathUtils.toInt(player.getMaxHealth())))
-                .with(new Placeholder("player_health", MathUtils.toInt(player.getHealth())));
+                .with(new Placeholder("player_max_health", NumberUtil.toInt(player.getMaxHealth())))
+                .with(new Placeholder("player_health", NumberUtil.toInt(player.getHealth())));
     }
 
     public static PlaceholderBuilder getAllPlaceholders(UserData userData, Skill skill){

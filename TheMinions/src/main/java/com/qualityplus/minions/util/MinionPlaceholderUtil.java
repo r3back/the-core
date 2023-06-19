@@ -1,9 +1,9 @@
 package com.qualityplus.minions.util;
 
-import com.qualityplus.assistant.util.math.MathUtils;
+import com.qualityplus.assistant.util.number.NumberUtil;
 import com.qualityplus.assistant.util.placeholder.Placeholder;
 import com.qualityplus.assistant.util.placeholder.PlaceholderBuilder;
-import com.qualityplus.assistant.util.time.Timer;
+import com.qualityplus.assistant.util.time.HumanTime;
 import com.qualityplus.minions.TheMinions;
 import com.qualityplus.minions.base.minions.minion.Minion;
 import com.qualityplus.minions.base.minions.Minions;
@@ -61,7 +61,7 @@ public class MinionPlaceholderUtil {
 
         return PlaceholderBuilder.create(
                 new Placeholder("minion_level_number", level),
-                new Placeholder("minion_level_roman", MathUtils.toRoman(level)),
+                new Placeholder("minion_level_roman", NumberUtil.toRoman(level)),
                 new Placeholder("minion_resources_generated", resourcesGenerated),
                 new Placeholder("minion_max_storage", pet.map(p -> p.getMaxStorageForInv(level)).orElse(1)),
                 new Placeholder("minion_time_between_actions", getSeconds(petData, pet, level) )
@@ -70,7 +70,10 @@ public class MinionPlaceholderUtil {
 
     @SuppressWarnings("all")
     private double getSeconds(Optional<MinionData> petData, Optional<Minion> pet, int level){
-        double mainTime = pet.map(p -> p.getTimer(level)).map(Timer::getSeconds).map(Double::valueOf).orElse(1D);
+        double mainTime = pet.map(p -> p.getTimer(level))
+                .map(HumanTime::getSeconds)
+                .map(Double::valueOf)
+                .orElse(1D);
         double fuelReduction = petData.map(data -> data.getFuelReductionSeconds(mainTime)).orElse(0D);
         double upgradeReduction = petData.map(data -> data.getUpgradesReductionSeconds(mainTime)).orElse(0D);
 

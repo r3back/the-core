@@ -1,16 +1,17 @@
 package com.qualityplus.skills.base.skill.registry;
 
 import com.google.common.collect.ImmutableSet;
+import com.qualityplus.assistant.lib.eu.okaeri.injector.annotation.Inject;
 import com.qualityplus.skills.api.box.Box;
 import com.qualityplus.skills.api.listener.ExtraListener;
 import com.qualityplus.skills.api.provider.MinionsProvider;
 import com.qualityplus.skills.base.skill.Skill;
 import com.qualityplus.skills.base.skill.skills.blockbreak.BlockBreakSkill;
-import eu.okaeri.commons.bukkit.time.MinecraftTimeEquivalent;
-import eu.okaeri.injector.annotation.Inject;
-import eu.okaeri.platform.bukkit.annotation.Delayed;
-import eu.okaeri.platform.core.annotation.Bean;
-import eu.okaeri.platform.core.annotation.Component;
+import com.qualityplus.assistant.lib.eu.okaeri.commons.bukkit.time.MinecraftTimeEquivalent;;
+
+import com.qualityplus.assistant.lib.eu.okaeri.platform.bukkit.annotation.Delayed;
+import com.qualityplus.assistant.lib.eu.okaeri.platform.core.annotation.Bean;
+import com.qualityplus.assistant.lib.eu.okaeri.platform.core.annotation.Component;
 import org.bukkit.NamespacedKey;
 import org.bukkit.block.Block;
 import org.jetbrains.annotations.ApiStatus;

@@ -1,6 +1,6 @@
 package com.qualityplus.runes.util;
 
-import com.qualityplus.assistant.util.math.MathUtils;
+import com.qualityplus.assistant.util.number.NumberUtil;
 import com.qualityplus.assistant.util.placeholder.Placeholder;
 import com.qualityplus.assistant.util.placeholder.PlaceholderBuilder;
 import com.qualityplus.runes.base.rune.Rune;
@@ -26,7 +26,7 @@ public class RunesPlaceholderUtils {
         double successChance = Optional.ofNullable(runeLevel).map(RuneLevel::getSuccessChance).orElse(1d);
 
         return getRecipePlaceholders(rune)
-                .with(new Placeholder("rune_level", MathUtils.toRoman(level)), new Placeholder("rune_required_level", requiredLevel), new Placeholder("rune_success_chance", successChance));
+                .with(new Placeholder("rune_level", NumberUtil.toRoman(level)), new Placeholder("rune_required_level", requiredLevel), new Placeholder("rune_success_chance", successChance));
     }
 
 }

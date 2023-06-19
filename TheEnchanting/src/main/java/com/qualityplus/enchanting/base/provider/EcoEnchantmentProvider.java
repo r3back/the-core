@@ -1,5 +1,6 @@
 package com.qualityplus.enchanting.base.provider;
 
+import com.qualityplus.assistant.lib.eu.okaeri.injector.annotation.Inject;
 import com.qualityplus.enchanting.api.enchantment.ICoreEnchantment;
 import com.qualityplus.enchanting.api.enchantment.ProviderType;
 import com.qualityplus.enchanting.api.provider.EnchantmentProvider;
@@ -8,7 +9,7 @@ import com.qualityplus.enchanting.base.config.enchantments.eco.EcoEnchantments;
 import com.qualityplus.enchanting.base.factory.VanillaEnchantmentFactory;
 import com.willfp.ecoenchants.enchants.EcoEnchant;
 import com.willfp.ecoenchants.enchants.EcoEnchants;
-import eu.okaeri.injector.annotation.Inject;
+
 
 import java.util.HashMap;
 import java.util.List;

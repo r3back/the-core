@@ -1,12 +1,13 @@
 package com.qualityplus.minions.listener.persistence;
 
+import com.qualityplus.assistant.lib.eu.okaeri.injector.annotation.Inject;
 import com.qualityplus.minions.api.box.Box;
 import com.qualityplus.minions.persistance.UserRepository;
 import com.qualityplus.minions.persistance.data.UserData;
-import eu.okaeri.injector.annotation.Inject;
-import eu.okaeri.persistence.document.Document;
-import eu.okaeri.platform.core.annotation.Component;
-import eu.okaeri.tasker.core.Tasker;
+
+import com.qualityplus.assistant.lib.eu.okaeri.persistence.document.Document;
+import com.qualityplus.assistant.lib.eu.okaeri.platform.core.annotation.Component;
+import com.qualityplus.assistant.lib.eu.okaeri.tasker.core.Tasker;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;

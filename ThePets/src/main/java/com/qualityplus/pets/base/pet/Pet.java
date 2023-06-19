@@ -6,7 +6,7 @@ import com.qualityplus.pets.base.pet.entity.PetEntityOptions;
 import com.qualityplus.pets.base.pet.level.PetLevel;
 import com.qualityplus.pets.base.pet.potion.PetPotion;
 import com.qualityplus.pets.base.rewards.StatReward;
-import eu.okaeri.configs.OkaeriConfig;
+import com.qualityplus.assistant.lib.eu.okaeri.configs.OkaeriConfig;
 import lombok.*;
 
 import java.util.Collections;

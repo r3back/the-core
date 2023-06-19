@@ -1,7 +1,7 @@
 package com.qualityplus.skills.base.perk.perks;
 
-import com.cryptomorin.xseries.XMaterial;
-import com.qualityplus.assistant.util.math.MathUtils;
+import com.qualityplus.assistant.lib.com.cryptomorin.xseries.XMaterial;
+import com.qualityplus.assistant.util.random.RandomUtil;
 import com.qualityplus.skills.base.perk.Perk;
 import com.qualityplus.skills.base.skill.gui.GUIOptions;
 import lombok.Builder;
@@ -32,7 +32,7 @@ public final class CoalPolisherMasterPerk extends Perk {
 
         Player p = e.getPlayer();
 
-        if (MathUtils.randomBetween(0.0, 100.0) >= chancePerLevel * getStat(p))
+        if (RandomUtil.randomBetween(0.0, 100.0) >= chancePerLevel * getStat(p))
             return;
 
         e.setDropItems(false);

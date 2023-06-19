@@ -1,6 +1,5 @@
 package com.qualityplus.anvil.base.gui.anvilmain.handler;
 
-import com.cryptomorin.xseries.XMaterial;
 import com.qualityplus.anvil.api.box.Box;
 import com.qualityplus.anvil.api.session.AnvilSession;
 import com.qualityplus.anvil.api.session.AnvilSession.SessionResult;
@@ -9,6 +8,7 @@ import com.qualityplus.anvil.base.session.AnvilSessionImpl;
 import com.qualityplus.anvil.util.AnvilFinderUtil;
 import com.qualityplus.assistant.TheAssistantPlugin;
 import com.qualityplus.assistant.api.util.BukkitItemUtil;
+import com.qualityplus.assistant.lib.com.cryptomorin.xseries.XMaterial;
 import com.qualityplus.assistant.util.StringUtils;
 import lombok.AllArgsConstructor;
 import org.bukkit.entity.Player;

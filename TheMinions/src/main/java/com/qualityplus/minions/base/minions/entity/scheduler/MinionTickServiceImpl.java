@@ -1,7 +1,7 @@
 package com.qualityplus.minions.base.minions.entity.scheduler;
 
 import com.qualityplus.minions.api.minion.MinionEntity;
-import eu.okaeri.platform.core.annotation.Component;
+import com.qualityplus.assistant.lib.eu.okaeri.platform.core.annotation.Component;
 
 import java.util.Map;
 import java.util.UUID;

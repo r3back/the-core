@@ -2,6 +2,7 @@ package com.qualityplus.dragon.base.service;
 
 import com.qualityplus.assistant.TheAssistantPlugin;
 import com.qualityplus.assistant.api.util.IPlaceholder;
+import com.qualityplus.assistant.lib.eu.okaeri.injector.annotation.Inject;
 import com.qualityplus.assistant.util.StringUtils;
 import com.qualityplus.assistant.util.placeholder.Placeholder;
 import com.qualityplus.dragon.TheDragon;
@@ -15,8 +16,8 @@ import com.qualityplus.dragon.api.service.GamePlayerCheckService;
 import com.qualityplus.dragon.base.configs.Messages;
 import com.qualityplus.dragon.base.game.player.EventPlayer;
 import com.qualityplus.dragon.base.game.player.PlayerStatus;
-import eu.okaeri.injector.annotation.Inject;
-import eu.okaeri.platform.core.annotation.Component;
+
+import com.qualityplus.assistant.lib.eu.okaeri.platform.core.annotation.Component;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.World;

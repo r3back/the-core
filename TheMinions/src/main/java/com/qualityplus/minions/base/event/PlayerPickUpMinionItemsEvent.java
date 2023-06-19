@@ -1,6 +1,6 @@
 package com.qualityplus.minions.base.event;
 
-import com.qualityplus.assistant.api.event.PlayerHelperEvent;
+import com.qualityplus.assistant.api.event.PlayerAssistantEvent;
 import com.qualityplus.minions.api.minion.MinionEntity;
 import lombok.Getter;
 import org.bukkit.entity.Player;
@@ -13,7 +13,7 @@ import java.util.List;
  * PlayerPickUpMinionItemsEvent
  */
 @Getter
-public final class PlayerPickUpMinionItemsEvent extends PlayerHelperEvent {
+public final class PlayerPickUpMinionItemsEvent extends PlayerAssistantEvent {
     private final MinionEntity minionEntity;
     private final List<ItemStack> items;
 

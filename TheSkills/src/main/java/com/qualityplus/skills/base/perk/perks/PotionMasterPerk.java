@@ -1,6 +1,6 @@
 package com.qualityplus.skills.base.perk.perks;
 
-import com.qualityplus.assistant.util.math.MathUtils;
+import com.qualityplus.assistant.util.random.RandomUtil;
 import com.qualityplus.skills.base.perk.perks.common.AbstractPotionPerk;
 import com.qualityplus.skills.base.skill.gui.GUIOptions;
 import lombok.Builder;
@@ -32,7 +32,7 @@ public final class PotionMasterPerk extends AbstractPotionPerk {
 
         Player player = e.getPlayer();
 
-        if(MathUtils.randomBetween(0.0, 100.0) >= getChancePerLevel() * getStat(player)) return;
+        if(RandomUtil.randomBetween(0.0, 100.0) >= getChancePerLevel() * getStat(player)) return;
 
         PotionEffect effect = getPotion(getStat(player), e.getItem());
 

@@ -1,6 +1,6 @@
 package com.qualityplus.pets.listener.persistence;
 
-import com.qualityplus.pets.ThePets;
+import com.qualityplus.assistant.lib.eu.okaeri.injector.annotation.Inject;
 import com.qualityplus.pets.api.box.Box;
 import com.qualityplus.pets.api.pet.Pets;
 import com.qualityplus.pets.api.pet.entity.PetEntity;
@@ -10,10 +10,10 @@ import com.qualityplus.pets.base.pet.tracker.PetEntityTracker;
 import com.qualityplus.pets.persistance.UserPetRepository;
 import com.qualityplus.pets.persistance.data.PetData;
 import com.qualityplus.pets.persistance.data.UserData;
-import eu.okaeri.injector.annotation.Inject;
-import eu.okaeri.persistence.document.Document;
-import eu.okaeri.platform.core.annotation.Component;
-import eu.okaeri.tasker.core.Tasker;
+
+import com.qualityplus.assistant.lib.eu.okaeri.persistence.document.Document;
+import com.qualityplus.assistant.lib.eu.okaeri.platform.core.annotation.Component;
+import com.qualityplus.assistant.lib.eu.okaeri.tasker.core.Tasker;
 import lombok.Data;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;

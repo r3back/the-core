@@ -1,6 +1,6 @@
 package com.qualityplus.auction.util;
 
-import com.cryptomorin.xseries.XMaterial;
+import com.qualityplus.assistant.lib.com.cryptomorin.xseries.XMaterial;
 import com.qualityplus.assistant.api.gui.LoreWrapper;
 import com.qualityplus.assistant.api.util.IPlaceholder;
 import com.qualityplus.assistant.inventory.Item;

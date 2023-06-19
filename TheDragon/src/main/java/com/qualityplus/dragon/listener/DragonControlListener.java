@@ -1,12 +1,13 @@
 package com.qualityplus.dragon.listener;
 
+import com.qualityplus.assistant.lib.eu.okaeri.injector.annotation.Inject;
 import com.qualityplus.dragon.api.box.Box;
 import com.qualityplus.dragon.api.controller.DragonController;
 import com.qualityplus.dragon.base.event.DragonRefreshEvent;
 import com.qualityplus.dragon.base.event.DragonRefreshEvent.RefreshType;
 import com.qualityplus.dragon.util.DragonVelocityUtil;
-import eu.okaeri.injector.annotation.Inject;
-import eu.okaeri.platform.core.annotation.Component;
+
+import com.qualityplus.assistant.lib.eu.okaeri.platform.core.annotation.Component;
 import org.bukkit.EntityEffect;
 import org.bukkit.entity.EnderDragon;
 import org.bukkit.entity.Player;

@@ -1,10 +1,11 @@
 package com.qualityplus.enchanting.base.processor;
 
+import com.qualityplus.assistant.lib.eu.okaeri.injector.annotation.Inject;
 import com.qualityplus.enchanting.api.chain.EnchantmentChain;
 import com.qualityplus.enchanting.api.processor.EnchantmentProcessor;
 import com.qualityplus.enchanting.api.session.EnchantmentSession;
-import eu.okaeri.injector.annotation.Inject;
-import eu.okaeri.platform.core.annotation.Component;
+
+import com.qualityplus.assistant.lib.eu.okaeri.platform.core.annotation.Component;
 import org.bukkit.inventory.ItemStack;
 
 @Component

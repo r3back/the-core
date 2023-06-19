@@ -1,16 +1,16 @@
 package com.qualityplus.minions.base.config.upgrades;
 
-import com.cryptomorin.xseries.XMaterial;
+import com.qualityplus.assistant.lib.com.cryptomorin.xseries.XMaterial;
 import com.qualityplus.assistant.inventory.Item;
-import com.qualityplus.assistant.util.faster.FasterMap;
-import com.qualityplus.assistant.util.time.Timer;
+import com.qualityplus.assistant.util.faster.FastMap;
+import com.qualityplus.assistant.util.time.HumanTime;
 import com.qualityplus.minions.base.minions.minion.upgrade.MinionFuelUpgrade;
-import eu.okaeri.configs.OkaeriConfig;
-import eu.okaeri.configs.annotation.Header;
-import eu.okaeri.configs.annotation.NameModifier;
-import eu.okaeri.configs.annotation.NameStrategy;
-import eu.okaeri.configs.annotation.Names;
-import eu.okaeri.platform.core.annotation.Configuration;
+import com.qualityplus.assistant.lib.eu.okaeri.configs.OkaeriConfig;
+import com.qualityplus.assistant.lib.eu.okaeri.configs.annotation.Header;
+import com.qualityplus.assistant.lib.eu.okaeri.configs.annotation.NameModifier;
+import com.qualityplus.assistant.lib.eu.okaeri.configs.annotation.NameStrategy;
+import com.qualityplus.assistant.lib.eu.okaeri.configs.annotation.Names;
+import com.qualityplus.assistant.lib.eu.okaeri.platform.core.annotation.Configuration;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -26,7 +26,7 @@ import java.util.Map;
 @Header("================================")
 @Names(strategy = NameStrategy.HYPHEN_CASE, modifier = NameModifier.TO_LOWER_CASE)
 public final class FuelUpgrades extends OkaeriConfig {
-    public Map<String, MinionFuelUpgrade> fuelUpgrades = FasterMap.builder(String.class, MinionFuelUpgrade.class)
+    public Map<String, MinionFuelUpgrade> fuelUpgrades = FastMap.builder(String.class, MinionFuelUpgrade.class)
             .put("enchanted_coal", MinionFuelUpgrade.builder()
                     .id("enchanted_coal")
                     .displayName("&aEnchanted Coal")
@@ -37,7 +37,7 @@ public final class FuelUpgrades extends OkaeriConfig {
                             .material(XMaterial.COAL)
                             .build())
                     .percentageOfSecondsToRemove(40)
-                    .timer(new Timer(30, Timer.TimeType.SECONDS))
+                    .timer(new HumanTime(30, HumanTime.TimeType.SECONDS))
                     .description(Arrays.asList(
                             "&7Increases the speed of",
                             "&7your minion by &a%minion_upgrade_percentage_seconds%%",

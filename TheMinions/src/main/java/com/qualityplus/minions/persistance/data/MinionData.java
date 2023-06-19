@@ -1,6 +1,6 @@
 package com.qualityplus.minions.persistance.data;
 
-import com.qualityplus.assistant.util.math.MathUtils;
+import com.qualityplus.assistant.api.util.MathUtil;
 import com.qualityplus.minions.TheMinions;
 import com.qualityplus.minions.base.gui.main.handler.click.UpgradeSlot;
 import com.qualityplus.minions.base.minions.minion.upgrade.MinionFuelUpgrade;
@@ -9,7 +9,7 @@ import com.qualityplus.minions.persistance.data.upgrade.AutomatedShippingEntity;
 import com.qualityplus.minions.persistance.data.upgrade.FuelEntity;
 import com.qualityplus.minions.persistance.data.upgrade.SkinEntity;
 import com.qualityplus.minions.persistance.data.upgrade.UpgradeEntity;
-import eu.okaeri.persistence.document.Document;
+import com.qualityplus.assistant.lib.eu.okaeri.persistence.document.Document;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -75,7 +75,7 @@ public final class MinionData extends Document {
                 .fuelUpgrades.getOrDefault(fuel.getId(), null);
 
         return Optional.ofNullable(fuelConfig)
-                .map(f -> MathUtils.getPercentage(time, f.getPercentageOfSecondsToRemove()))
+                .map(f -> MathUtil.getPercentage(time, f.getPercentageOfSecondsToRemove()))
                 .orElse(0D);
     }
 
@@ -88,7 +88,7 @@ public final class MinionData extends Document {
                 .fuelUpgrades.getOrDefault(fuel.getId(), null);
 
         return Optional.ofNullable(fuelConfig)
-                .map(f -> (long)MathUtils.getPercentage(time, f.getPercentageOfSecondsToRemove()))
+                .map(f -> (long)MathUtil.getPercentage(time, f.getPercentageOfSecondsToRemove()))
                 .orElse(0L);
     }
 
@@ -143,7 +143,7 @@ public final class MinionData extends Document {
                 .normalUpgrades.getOrDefault(entity.getId(), null);
 
         return Optional.ofNullable(minionUpgrade)
-                .map(f -> (long)MathUtils.getPercentage(time, f.getPercentageOfSecondsToRemove()))
+                .map(f -> (long)MathUtil.getPercentage(time, f.getPercentageOfSecondsToRemove()))
                 .orElse(0L);
     }
 
@@ -156,7 +156,7 @@ public final class MinionData extends Document {
                 .normalUpgrades.getOrDefault(entity.getId(), null);
 
         return Optional.ofNullable(fuelConfig)
-                .map(f -> MathUtils.getPercentage(time, f.getPercentageOfSecondsToRemove()))
+                .map(f -> MathUtil.getPercentage(time, f.getPercentageOfSecondsToRemove()))
                 .orElse(0D);
     }
 }

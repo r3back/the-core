@@ -1,9 +1,10 @@
 package com.qualityplus.pets.listener;
 
+import com.qualityplus.assistant.lib.eu.okaeri.injector.annotation.Inject;
 import com.qualityplus.pets.api.box.Box;
 import com.qualityplus.pets.persistance.data.PetData;
 import com.qualityplus.pets.persistance.data.UserData;
-import eu.okaeri.injector.annotation.Inject;
+
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;

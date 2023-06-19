@@ -4,13 +4,8 @@ plugins {
 
 dependencies {
     compileOnly 'org.spigotmc:spigot-api:1.18.1-R0.1-SNAPSHOT'
-    compileOnly 'com.github.cryptomorin:XSeries:9.2.0'
 
-    rootProject.assistant_dependencies.each { value -> compileOnly project(value)}
-    rootProject.driver_dependencies.each { value -> compileOnly value}
-    rootProject.okaeri_dependencies.each { value -> compileOnly value}
-
-    compileOnly fileTree(dir: '/libs', include: ['*.jar'])
+    compileOnly 'com.google.guava:guava:31.0.1-jre'
 
 }
 
@@ -26,8 +21,6 @@ shadowJar {
     dependencies {
         exclude(dependency('org.jetbrains:.*'))
     }
-
-    rootProject.relocate_map.each { k, v -> relocate(k, v)}
 
     doLast {
         rootProject.copyJars(archiveFile)

@@ -6,7 +6,7 @@ import com.qualityplus.minions.persistance.data.upgrade.AutomatedShippingEntity;
 import com.qualityplus.minions.persistance.data.upgrade.FuelEntity;
 import com.qualityplus.minions.persistance.data.upgrade.SkinEntity;
 import com.qualityplus.minions.persistance.data.upgrade.UpgradeEntity;
-import de.tr7zw.changeme.nbtapi.NBTItem;
+import com.qualityplus.assistant.lib.de.tr7zw.changeme.nbtapi.NBTItem;
 import lombok.experimental.UtilityClass;
 import org.bukkit.inventory.ItemStack;
 

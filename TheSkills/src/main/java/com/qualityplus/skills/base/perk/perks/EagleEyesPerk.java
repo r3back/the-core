@@ -1,8 +1,8 @@
 package com.qualityplus.skills.base.perk.perks;
 
-import com.cryptomorin.xseries.XPotion;
 import com.qualityplus.assistant.base.event.PlayerDamagedByEntityEvent;
-import com.qualityplus.assistant.util.math.MathUtils;
+import com.qualityplus.assistant.lib.com.cryptomorin.xseries.XPotion;
+import com.qualityplus.assistant.util.random.RandomUtil;
 import com.qualityplus.skills.base.perk.perks.common.AbstractPotionPerk;
 import com.qualityplus.skills.base.skill.gui.GUIOptions;
 import lombok.Builder;
@@ -26,7 +26,7 @@ public final class EagleEyesPerk extends AbstractPotionPerk {
     public void handlePerk(PlayerDamagedByEntityEvent e) {
         Player p = e.getPlayer();
 
-        if (MathUtils.randomBetween(0.0, 100.0) >= getChancePerLevel() * getStat(p))
+        if (RandomUtil.randomBetween(0.0, 100.0) >= getChancePerLevel() * getStat(p))
             return;
 
         Optional.of(XPotion.NIGHT_VISION)

@@ -3,8 +3,8 @@ package com.qualityplus.minions.listener.chunk;
 import com.qualityplus.minions.api.minion.MinionEntity;
 import com.qualityplus.minions.base.minions.entity.tracker.MinionArmorStandTracker;
 import com.qualityplus.minions.base.minions.entity.tracker.MinionEntityTracker;
-import eu.okaeri.injector.annotation.Inject;
-import eu.okaeri.platform.core.annotation.Component;
+
+import com.qualityplus.assistant.lib.eu.okaeri.platform.core.annotation.Component;
 import org.bukkit.Bukkit;
 import org.bukkit.Chunk;
 import org.bukkit.ChunkSnapshot;

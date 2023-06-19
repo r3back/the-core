@@ -1,17 +1,17 @@
 package com.qualityplus.dragon.base.configs;
 
-import com.qualityplus.assistant.util.faster.FasterMap;
+import com.qualityplus.assistant.util.faster.FastMap;
 import com.qualityplus.dragon.api.event.DragonGameEvent;
 import com.qualityplus.dragon.base.events.DragonFireBallEvent;
 import com.qualityplus.dragon.base.events.DragonGuardianEvent;
 import com.qualityplus.dragon.base.events.DragonLightningEvent;
 import com.qualityplus.dragon.base.events.DragonNormalFireBallEvent;
-import eu.okaeri.configs.OkaeriConfig;
-import eu.okaeri.configs.annotation.Header;
-import eu.okaeri.configs.annotation.NameModifier;
-import eu.okaeri.configs.annotation.NameStrategy;
-import eu.okaeri.configs.annotation.Names;
-import eu.okaeri.platform.core.annotation.Configuration;
+import com.qualityplus.assistant.lib.eu.okaeri.configs.OkaeriConfig;
+import com.qualityplus.assistant.lib.eu.okaeri.configs.annotation.Header;
+import com.qualityplus.assistant.lib.eu.okaeri.configs.annotation.NameModifier;
+import com.qualityplus.assistant.lib.eu.okaeri.configs.annotation.NameStrategy;
+import com.qualityplus.assistant.lib.eu.okaeri.configs.annotation.Names;
+import com.qualityplus.assistant.lib.eu.okaeri.platform.core.annotation.Configuration;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -28,8 +28,8 @@ import java.util.Map;
 @Header("================================")
 @Names(strategy = NameStrategy.HYPHEN_CASE, modifier = NameModifier.TO_LOWER_CASE)
 public final class DragonEventsFile extends OkaeriConfig {
-    public Map<String, SelfDragonEvents> events = FasterMap.builder(String.class, SelfDragonEvents.class)
-            .put("ancient_dragon", new SelfDragonEvents(FasterMap.builder(Integer.class, SerializableEvent.class)
+    public Map<String, SelfDragonEvents> events = FastMap.builder(String.class, SelfDragonEvents.class)
+            .put("ancient_dragon", new SelfDragonEvents(FastMap.builder(Integer.class, SerializableEvent.class)
                     .put(1, SerializableEvent.builder()
                             .generalSettings(new EventConfig(EventType.DRAGON_FIREBALLS, 10, false, 0, 5))
                             .dragonFireballSettings(new DragonFireballsConfig())

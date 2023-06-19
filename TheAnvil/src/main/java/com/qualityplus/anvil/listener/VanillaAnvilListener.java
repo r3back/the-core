@@ -1,12 +1,12 @@
 package com.qualityplus.anvil.listener;
 
-import com.cryptomorin.xseries.XMaterial;
 import com.qualityplus.anvil.api.box.Box;
 import com.qualityplus.anvil.base.gui.anvilmain.AnvilMainGUI;
 import com.qualityplus.anvil.base.session.AnvilSessionImpl;
+import com.qualityplus.assistant.lib.com.cryptomorin.xseries.XMaterial;
+import com.qualityplus.assistant.lib.eu.okaeri.injector.annotation.Inject;
+import com.qualityplus.assistant.lib.eu.okaeri.platform.core.annotation.Component;
 import com.qualityplus.assistant.util.block.BlockUtils;
-import eu.okaeri.injector.annotation.Inject;
-import eu.okaeri.platform.core.annotation.Component;
 import org.bukkit.block.Block;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;

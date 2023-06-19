@@ -4,7 +4,7 @@ import com.qualityplus.auction.TheAuction;
 import com.qualityplus.auction.api.filter.AuctionFilter;
 import com.qualityplus.auction.api.searcher.Searcher;
 import com.qualityplus.auction.persistence.data.AuctionItem;
-import eu.okaeri.platform.core.annotation.Component;
+import com.qualityplus.assistant.lib.eu.okaeri.platform.core.annotation.Component;
 import lombok.RequiredArgsConstructor;
 
 import java.util.List;

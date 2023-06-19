@@ -3,7 +3,7 @@ package com.qualityplus.dragon.base.game.structure;
 import com.qualityplus.assistant.util.StringUtils;
 import com.qualityplus.dragon.TheDragon;
 import com.qualityplus.dragon.api.game.structure.type.DragonCrystal;
-import eu.okaeri.configs.OkaeriConfig;
+import com.qualityplus.assistant.lib.eu.okaeri.configs.OkaeriConfig;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.bukkit.Bukkit;

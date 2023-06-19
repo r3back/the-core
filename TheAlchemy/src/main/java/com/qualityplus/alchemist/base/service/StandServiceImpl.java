@@ -3,7 +3,7 @@ package com.qualityplus.alchemist.base.service;
 import com.qualityplus.alchemist.api.service.StandService;
 import com.qualityplus.alchemist.api.session.StandSession;
 import com.qualityplus.alchemist.base.session.StandSessionImpl;
-import eu.okaeri.platform.core.annotation.Component;
+import com.qualityplus.assistant.lib.eu.okaeri.platform.core.annotation.Component;
 import org.bukkit.Location;
 
 import java.util.ArrayList;

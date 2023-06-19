@@ -1,15 +1,15 @@
 package com.qualityplus.trades.base.config;
 
-import com.cryptomorin.xseries.XMaterial;
-import com.qualityplus.assistant.util.faster.FasterMap;
+import com.qualityplus.assistant.lib.com.cryptomorin.xseries.XMaterial;
+import com.qualityplus.assistant.lib.eu.okaeri.configs.OkaeriConfig;
+import com.qualityplus.assistant.lib.eu.okaeri.configs.annotation.Header;
+import com.qualityplus.assistant.lib.eu.okaeri.configs.annotation.NameModifier;
+import com.qualityplus.assistant.lib.eu.okaeri.configs.annotation.NameStrategy;
+import com.qualityplus.assistant.lib.eu.okaeri.configs.annotation.Names;
+import com.qualityplus.assistant.lib.eu.okaeri.platform.core.annotation.Configuration;
+import com.qualityplus.assistant.util.faster.FastMap;
 import com.qualityplus.assistant.util.itemstack.ItemBuilder;
 import com.qualityplus.trades.base.trades.PluginTrade;
-import eu.okaeri.configs.OkaeriConfig;
-import eu.okaeri.configs.annotation.Header;
-import eu.okaeri.configs.annotation.NameModifier;
-import eu.okaeri.configs.annotation.NameStrategy;
-import eu.okaeri.configs.annotation.Names;
-import eu.okaeri.platform.core.annotation.Configuration;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -27,7 +27,7 @@ import java.util.List;
 public final class TradesFile extends OkaeriConfig {
     public List<PluginTrade> pluginTrades = Arrays.asList(
             PluginTrade.builder()
-                    .itemCost(FasterMap.builder(XMaterial.class, Integer.class)
+                    .itemCost(FastMap.builder(XMaterial.class, Integer.class)
                             .put(XMaterial.OAK_WOOD, 1)
                             .build())
                     .description(Collections.singletonList("&f&lCOMMON"))
@@ -40,7 +40,7 @@ public final class TradesFile extends OkaeriConfig {
                     .page(1)
                     .build(),
             PluginTrade.builder()
-                    .itemCost(FasterMap.builder(XMaterial.class, Integer.class)
+                    .itemCost(FastMap.builder(XMaterial.class, Integer.class)
                             .put(XMaterial.DIRT, 4)
                             .build())
                     .description(Collections.singletonList("&f&lCOMMON"))
@@ -53,7 +53,7 @@ public final class TradesFile extends OkaeriConfig {
                     .page(1)
                     .build(),
             PluginTrade.builder()
-                    .itemCost(FasterMap.builder(XMaterial.class, Integer.class)
+                    .itemCost(FastMap.builder(XMaterial.class, Integer.class)
                             .put(XMaterial.WHEAT_SEEDS, 8)
                             .build())
                     .description(Collections.singletonList("&f&lCOMMON"))
@@ -66,7 +66,7 @@ public final class TradesFile extends OkaeriConfig {
                     .page(1)
                     .build(),
             PluginTrade.builder()
-                    .itemCost(FasterMap.builder(XMaterial.class, Integer.class)
+                    .itemCost(FastMap.builder(XMaterial.class, Integer.class)
                             .put(XMaterial.WHEAT_SEEDS, 12)
                             .build())
                     .description(Collections.singletonList("&f&lCOMMON"))
@@ -79,7 +79,7 @@ public final class TradesFile extends OkaeriConfig {
                     .page(1)
                     .build(),
             PluginTrade.builder()
-                    .itemCost(FasterMap.builder(XMaterial.class, Integer.class)
+                    .itemCost(FastMap.builder(XMaterial.class, Integer.class)
                             .put(XMaterial.OAK_SAPLING, 1)
                             .build())
                     .description(Collections.singletonList("&f&lCOMMON"))
@@ -92,7 +92,7 @@ public final class TradesFile extends OkaeriConfig {
                     .page(1)
                     .build(),
             PluginTrade.builder()
-                    .itemCost(FasterMap.builder(XMaterial.class, Integer.class)
+                    .itemCost(FastMap.builder(XMaterial.class, Integer.class)
                             .put(XMaterial.SPRUCE_SAPLING, 1)
                             .build())
                     .description(Collections.singletonList("&f&lCOMMON"))
@@ -105,7 +105,7 @@ public final class TradesFile extends OkaeriConfig {
                     .page(1)
                     .build(),
             PluginTrade.builder()
-                    .itemCost(FasterMap.builder(XMaterial.class, Integer.class)
+                    .itemCost(FastMap.builder(XMaterial.class, Integer.class)
                             .put(XMaterial.BIRCH_SAPLING, 1)
                             .build())
                     .description(Collections.singletonList("&f&lCOMMON"))
@@ -118,7 +118,7 @@ public final class TradesFile extends OkaeriConfig {
                     .page(1)
                     .build(),
             PluginTrade.builder()
-                    .itemCost(FasterMap.builder(XMaterial.class, Integer.class)
+                    .itemCost(FastMap.builder(XMaterial.class, Integer.class)
                             .put(XMaterial.JUNGLE_SAPLING, 1)
                             .build())
                     .description(Collections.singletonList("&f&lCOMMON"))
@@ -131,7 +131,7 @@ public final class TradesFile extends OkaeriConfig {
                     .page(1)
                     .build(),
             PluginTrade.builder()
-                    .itemCost(FasterMap.builder(XMaterial.class, Integer.class)
+                    .itemCost(FastMap.builder(XMaterial.class, Integer.class)
                             .put(XMaterial.JUNGLE_LEAVES, 5)
                             .build())
                     .description(Collections.singletonList("&f&lCOMMON"))
@@ -144,7 +144,7 @@ public final class TradesFile extends OkaeriConfig {
                     .page(1)
                     .build(),
             PluginTrade.builder()
-                    .itemCost(FasterMap.builder(XMaterial.class, Integer.class)
+                    .itemCost(FastMap.builder(XMaterial.class, Integer.class)
                             .put(XMaterial.ACACIA_SAPLING, 1)
                             .build())
                     .description(Collections.singletonList("&f&lCOMMON"))
@@ -157,7 +157,7 @@ public final class TradesFile extends OkaeriConfig {
                     .page(1)
                     .build(),
             PluginTrade.builder()
-                    .itemCost(FasterMap.builder(XMaterial.class, Integer.class)
+                    .itemCost(FastMap.builder(XMaterial.class, Integer.class)
                             .put(XMaterial.DARK_OAK_SAPLING, 1)
                             .build())
                     .description(Collections.singletonList("&f&lCOMMON"))
@@ -170,7 +170,7 @@ public final class TradesFile extends OkaeriConfig {
                     .page(1)
                     .build(),
             PluginTrade.builder()
-                    .itemCost(FasterMap.builder(XMaterial.class, Integer.class)
+                    .itemCost(FastMap.builder(XMaterial.class, Integer.class)
                             .put(XMaterial.DIRT, 8)
                             .build())
                     .description(Collections.singletonList("&f&lCOMMON"))
@@ -183,7 +183,7 @@ public final class TradesFile extends OkaeriConfig {
                     .page(1)
                     .build(),
             PluginTrade.builder()
-                    .itemCost(FasterMap.builder(XMaterial.class, Integer.class)
+                    .itemCost(FastMap.builder(XMaterial.class, Integer.class)
                             .put(XMaterial.DIRT, 8)
                             .build())
                     .description(Collections.singletonList("&f&lCOMMON"))
@@ -196,7 +196,7 @@ public final class TradesFile extends OkaeriConfig {
                     .page(1)
                     .build(),
             PluginTrade.builder()
-                    .itemCost(FasterMap.builder(XMaterial.class, Integer.class)
+                    .itemCost(FastMap.builder(XMaterial.class, Integer.class)
                             .put(XMaterial.DIRT, 8)
                             .build())
                     .description(Collections.singletonList("&f&lCOMMON"))
@@ -209,7 +209,7 @@ public final class TradesFile extends OkaeriConfig {
                     .page(1)
                     .build(),
             PluginTrade.builder()
-                    .itemCost(FasterMap.builder(XMaterial.class, Integer.class)
+                    .itemCost(FastMap.builder(XMaterial.class, Integer.class)
                             .put(XMaterial.DIRT, 8)
                             .build())
                     .description(Collections.singletonList("&f&lCOMMON"))
@@ -222,7 +222,7 @@ public final class TradesFile extends OkaeriConfig {
                     .page(1)
                     .build(),
             PluginTrade.builder()
-                    .itemCost(FasterMap.builder(XMaterial.class, Integer.class)
+                    .itemCost(FastMap.builder(XMaterial.class, Integer.class)
                             .build())
                     .description(Collections.singletonList("&f&lCOMMON"))
                     .displayName("&fWater Bucket")
@@ -234,7 +234,7 @@ public final class TradesFile extends OkaeriConfig {
                     .page(1)
                     .build(),
             PluginTrade.builder()
-                    .itemCost(FasterMap.builder(XMaterial.class, Integer.class)
+                    .itemCost(FastMap.builder(XMaterial.class, Integer.class)
                             .build())
                     .description(Collections.singletonList("&f&lCOMMON"))
                     .displayName("&fLava Bucket")
@@ -246,7 +246,7 @@ public final class TradesFile extends OkaeriConfig {
                     .page(1)
                     .build(),
             PluginTrade.builder()
-                    .itemCost(FasterMap.builder(XMaterial.class, Integer.class)
+                    .itemCost(FastMap.builder(XMaterial.class, Integer.class)
                             .build())
                     .description(Collections.singletonList("&f&lCOMMON"))
                     .displayName("&fMilk Bucket")
@@ -258,7 +258,7 @@ public final class TradesFile extends OkaeriConfig {
                     .page(1)
                     .build(),
             PluginTrade.builder()
-                    .itemCost(FasterMap.builder(XMaterial.class, Integer.class)
+                    .itemCost(FastMap.builder(XMaterial.class, Integer.class)
                             .put(XMaterial.SAND, 1)
                             .build())
                     .description(Collections.singletonList("&f&lCOMMON"))
@@ -271,7 +271,7 @@ public final class TradesFile extends OkaeriConfig {
                     .page(1)
                     .build(),
             PluginTrade.builder()
-                    .itemCost(FasterMap.builder(XMaterial.class, Integer.class)
+                    .itemCost(FastMap.builder(XMaterial.class, Integer.class)
                             .put(XMaterial.SAND, 2)
                             .put(XMaterial.FERMENTED_SPIDER_EYE, 1)
                             .build())
@@ -285,7 +285,7 @@ public final class TradesFile extends OkaeriConfig {
                     .page(1)
                     .build(),
             PluginTrade.builder()
-                    .itemCost(FasterMap.builder(XMaterial.class, Integer.class)
+                    .itemCost(FastMap.builder(XMaterial.class, Integer.class)
                             .put(XMaterial.DIRT, 1)
                             .put(XMaterial.RED_MUSHROOM, 1)
                             .put(XMaterial.BROWN_MUSHROOM, 1)
@@ -300,7 +300,7 @@ public final class TradesFile extends OkaeriConfig {
                     .page(1)
                     .build(),
             PluginTrade.builder()
-                    .itemCost(FasterMap.builder(XMaterial.class, Integer.class)
+                    .itemCost(FastMap.builder(XMaterial.class, Integer.class)
                             .put(XMaterial.NETHERRACK, 1)
                             .build())
                     .description(Collections.singletonList("&f&lCOMMON"))
@@ -313,7 +313,7 @@ public final class TradesFile extends OkaeriConfig {
                     .page(1)
                     .build(),
             PluginTrade.builder()
-                    .itemCost(FasterMap.builder(XMaterial.class, Integer.class)
+                    .itemCost(FastMap.builder(XMaterial.class, Integer.class)
                             .put(XMaterial.WET_SPONGE, 1)
                             .build())
                     .description(Collections.singletonList("&f&lCOMMON"))

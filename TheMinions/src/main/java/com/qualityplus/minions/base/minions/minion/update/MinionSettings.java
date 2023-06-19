@@ -1,9 +1,9 @@
 package com.qualityplus.minions.base.minions.minion.update;
 
+import com.qualityplus.assistant.lib.eu.okaeri.configs.annotation.Comment;
 import com.qualityplus.minions.base.minions.minion.update.item.ItemSettings;
 import com.qualityplus.minions.base.minions.minion.update.item.UpgradeSettings;
-import eu.okaeri.configs.OkaeriConfig;
-import eu.okaeri.configs.annotation.Comment;
+import com.qualityplus.assistant.lib.eu.okaeri.configs.OkaeriConfig;
 import lombok.*;
 
 import java.util.List;

@@ -3,22 +3,7 @@ plugins {
 }
 
 dependencies {
-    compileOnly project(':TheAssistant:TheAssistant-Plugin')
-    compileOnly project(':TheAssistant:TheAssistant-API')
-    compileOnly project(':TheAssistant:Addons:Commons')
-    compileOnly project(':TheAssistant:TheAssistant-NMS:NMS-Commons')
-
     compileOnly 'org.spigotmc:spigot-api:1.18.1-R0.1-SNAPSHOT'
-    compileOnly 'com.zaxxer:HikariCP:4.0.3'
-
-    //XMaterial
-    compileOnly 'com.github.cryptomorin:XSeries:9.2.0'
-
-    //Okaeri
-    compileOnly 'eu.okaeri:okaeri-platform-bukkit:0.4.0-preview54'
-    compileOnly 'eu.okaeri:okaeri-configs-json-simple:4.0.0-beta2'
-    compileOnly 'eu.okaeri:okaeri-persistence-redis:1.5.10'
-    compileOnly 'eu.okaeri:okaeri-persistence-jdbc:1.5.10'
 
     compileOnly fileTree(dir: '/libs', include: ['*.jar'])
 
@@ -38,8 +23,6 @@ shadowJar {
     dependencies {
         exclude(dependency('org.jetbrains:.*'))
     }
-
-    rootProject.relocate_map.each { k, v -> relocate(k, v)}
 
     doLast {
         rootProject.copyJars(archiveFile)

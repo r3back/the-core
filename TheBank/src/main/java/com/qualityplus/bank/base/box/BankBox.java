@@ -1,12 +1,13 @@
 package com.qualityplus.bank.base.box;
 
+import com.qualityplus.assistant.lib.eu.okaeri.injector.annotation.Inject;
 import com.qualityplus.bank.api.box.Box;
 import com.qualityplus.bank.api.config.ConfigFiles;
 import com.qualityplus.bank.api.service.BankService;
 import com.qualityplus.bank.base.config.*;
 import com.qualityplus.bank.persistence.BankRepository;
-import eu.okaeri.injector.annotation.Inject;
-import eu.okaeri.platform.core.annotation.Component;
+
+import com.qualityplus.assistant.lib.eu.okaeri.platform.core.annotation.Component;
 import org.bukkit.plugin.Plugin;
 
 @Component

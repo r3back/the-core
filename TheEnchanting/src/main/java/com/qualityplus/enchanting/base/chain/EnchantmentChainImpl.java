@@ -1,9 +1,10 @@
 package com.qualityplus.enchanting.base.chain;
 
 import com.google.common.collect.Lists;
+import com.qualityplus.assistant.lib.eu.okaeri.injector.annotation.Inject;
 import com.qualityplus.assistant.util.StringUtils;
 import com.qualityplus.assistant.util.itemstack.ItemStackUtils;
-import com.qualityplus.assistant.util.math.MathUtils;
+import com.qualityplus.assistant.util.number.NumberUtil;
 import com.qualityplus.assistant.util.placeholder.Placeholder;
 import com.qualityplus.enchanting.TheEnchanting;
 import com.qualityplus.enchanting.api.chain.EnchantmentChain;
@@ -11,8 +12,8 @@ import com.qualityplus.enchanting.api.enchantment.ICoreEnchantment;
 import com.qualityplus.enchanting.api.session.EnchantmentSession;
 import com.qualityplus.enchanting.base.config.Config;
 import com.qualityplus.enchanting.util.EnchantingPlaceholderUtil;
-import eu.okaeri.injector.annotation.Inject;
-import eu.okaeri.platform.core.annotation.Component;
+
+import com.qualityplus.assistant.lib.eu.okaeri.platform.core.annotation.Component;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
@@ -174,7 +175,7 @@ public final class EnchantmentChainImpl implements EnchantmentChain {
 
         enchantments.forEach((key, value) -> lore.addAll(
                 StringUtils.processMulti(config.enchantmentsDisplay.enchantmentFormat, EnchantingPlaceholderUtil.getEnchantBuilder(key, value)
-                        .with(new Placeholder("enchanting_enchant_level_roman", MathUtils.toRoman(value)))
+                        .with(new Placeholder("enchanting_enchant_level_roman", NumberUtil.toRoman(value)))
                         .with(new Placeholder("enchanting_enchant_level_number", value))
                         .get())
         ));
@@ -192,7 +193,7 @@ public final class EnchantmentChainImpl implements EnchantmentChain {
                 .stream()
                 .filter(entry -> entry.getKey().isVanilla())
                 .map(entry -> StringUtils.processMulti(config.enchantmentsDisplay.enchantmentShrinkFormat, EnchantingPlaceholderUtil.getEnchantBuilder(entry.getKey(), entry.getValue())
-                        .with(new Placeholder("enchanting_enchant_level_roman", MathUtils.toRoman(entry.getValue())))
+                        .with(new Placeholder("enchanting_enchant_level_roman", NumberUtil.toRoman(entry.getValue())))
                         .with(new Placeholder("enchanting_enchant_level_number", entry.getValue()))
                         .get()))
                 .collect(Collectors.toList());

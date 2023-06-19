@@ -1,6 +1,6 @@
 package com.qualityplus.runes.util;
 
-import com.cryptomorin.xseries.XMaterial;
+import com.qualityplus.assistant.lib.com.cryptomorin.xseries.XMaterial;
 import com.qualityplus.runes.api.enchantment.legacy.RuneEnchantLegacy;
 import com.qualityplus.runes.api.enchantment.newest.RuneEnchantNewest;
 import lombok.experimental.UtilityClass;

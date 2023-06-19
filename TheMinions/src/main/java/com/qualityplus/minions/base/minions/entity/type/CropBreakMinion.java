@@ -1,7 +1,7 @@
 package com.qualityplus.minions.base.minions.entity.type;
 
-import com.cryptomorin.xseries.XBlock;
-import com.cryptomorin.xseries.XMaterial;
+import com.qualityplus.assistant.lib.com.cryptomorin.xseries.XBlock;
+import com.qualityplus.assistant.lib.com.cryptomorin.xseries.XMaterial;
 import com.qualityplus.assistant.TheAssistantPlugin;
 import com.qualityplus.assistant.api.util.CropUtil;
 import com.qualityplus.assistant.util.block.BlockUtils;

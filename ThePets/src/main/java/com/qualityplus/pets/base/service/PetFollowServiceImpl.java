@@ -2,7 +2,7 @@ package com.qualityplus.pets.base.service;
 
 import com.qualityplus.pets.api.pet.entity.PetEntity;
 import com.qualityplus.pets.api.service.PetFollowService;
-import eu.okaeri.platform.core.annotation.Component;
+import com.qualityplus.assistant.lib.eu.okaeri.platform.core.annotation.Component;
 
 import java.util.Map;
 import java.util.UUID;

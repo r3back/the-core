@@ -1,14 +1,12 @@
 package com.qualityplus.anvil.base.provider;
 
-import com.cryptomorin.xseries.XEnchantment;
-import com.qualityplus.anvil.api.provider.EnchantmentProvider;
 import com.qualityplus.anvil.api.session.AnvilSession;
 import com.qualityplus.anvil.base.config.Config;
 import com.qualityplus.anvil.base.requirement.VanillaEnchantRequirement;
-import com.qualityplus.assistant.api.util.BukkitItemUtil;
-import com.qualityplus.assistant.util.faster.FasterMap;
+import com.qualityplus.assistant.lib.com.cryptomorin.xseries.XEnchantment;
+import com.qualityplus.assistant.lib.eu.okaeri.injector.annotation.Inject;
+import com.qualityplus.assistant.util.faster.FastMap;
 import com.qualityplus.assistant.util.map.MapUtils;
-import eu.okaeri.injector.annotation.Inject;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -62,7 +60,7 @@ public final class VanillaEnchantingProvider extends CommonEnchantmentProvider {
 
     @Override
     public double getLevelsCost(AnvilSession session) {
-        Map<Integer, Integer> levelsReference = FasterMap.builder(Integer.class, Integer.class)
+        Map<Integer, Integer> levelsReference = FastMap.builder(Integer.class, Integer.class)
                 .put(1, 2)
                 .put(2, 4)
                 .put(3, 6)

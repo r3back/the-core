@@ -4,4 +4,4 @@ project.version = '1.0.0'
 dependencies {
     compileOnly 'org.spigotmc:spigot-api:1.18.1-R0.1-SNAPSHOT'
     compileOnly project(':TheEnchanting:TheEnchanting-NMS')
-    compileOnly 'com.github.cryptomorin:XSeries:9.2.0'}
+}

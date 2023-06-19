@@ -1,12 +1,12 @@
 package com.qualityplus.souls.persistance;
 
 import com.qualityplus.souls.persistance.data.SoulsData;
-import eu.okaeri.persistence.document.DocumentPersistence;
-import eu.okaeri.persistence.repository.DocumentRepository;
-import eu.okaeri.persistence.repository.annotation.DocumentCollection;
-import eu.okaeri.persistence.repository.annotation.DocumentIndex;
-import eu.okaeri.persistence.repository.annotation.DocumentPath;
-import eu.okaeri.platform.core.annotation.DependsOn;
+import com.qualityplus.assistant.lib.eu.okaeri.persistence.document.DocumentPersistence;
+import com.qualityplus.assistant.lib.eu.okaeri.persistence.repository.DocumentRepository;
+import com.qualityplus.assistant.lib.eu.okaeri.persistence.repository.annotation.DocumentCollection;
+import com.qualityplus.assistant.lib.eu.okaeri.persistence.repository.annotation.DocumentIndex;
+import com.qualityplus.assistant.lib.eu.okaeri.persistence.repository.annotation.DocumentPath;
+import com.qualityplus.assistant.lib.eu.okaeri.platform.core.annotation.DependsOn;
 import org.bukkit.OfflinePlayer;
 
 import java.util.ArrayList;

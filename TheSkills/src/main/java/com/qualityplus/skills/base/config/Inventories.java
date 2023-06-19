@@ -1,15 +1,19 @@
 package com.qualityplus.skills.base.config;
 
-import com.cryptomorin.xseries.XMaterial;
+import com.qualityplus.assistant.lib.com.cryptomorin.xseries.XMaterial;
 import com.qualityplus.assistant.inventory.CommonGUI;
 import com.qualityplus.assistant.inventory.background.DefaultBackgrounds;
+import com.qualityplus.assistant.lib.eu.okaeri.configs.annotation.CustomKey;
+import com.qualityplus.assistant.lib.eu.okaeri.configs.annotation.Header;
+import com.qualityplus.assistant.lib.eu.okaeri.configs.annotation.NameModifier;
+import com.qualityplus.assistant.lib.eu.okaeri.configs.annotation.NameStrategy;
+import com.qualityplus.assistant.lib.eu.okaeri.configs.annotation.Names;
 import com.qualityplus.assistant.util.itemstack.ItemBuilder;
 import com.qualityplus.skills.gui.main.MainGUIConfig;
 import com.qualityplus.skills.gui.stats.StatsAndPerksGUIConfig;
 import com.qualityplus.skills.gui.sub.SubGUIConfig;
-import eu.okaeri.configs.OkaeriConfig;
-import eu.okaeri.configs.annotation.*;
-import eu.okaeri.platform.core.annotation.Configuration;
+import com.qualityplus.assistant.lib.eu.okaeri.configs.OkaeriConfig;
+import com.qualityplus.assistant.lib.eu.okaeri.platform.core.annotation.Configuration;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -92,7 +96,7 @@ public final class Inventories extends OkaeriConfig implements DefaultBackground
             .commonGUI(new CommonGUI(
                     "Your stats",
                     54,
-                    getBackGround3(),
+                    getBackgroundWith6RowsDecoratedAround(),
                     ItemBuilder.of(XMaterial.BARRIER,  49, 1, "&cClose", Arrays.asList("", "&e» &7Click to close")).build()
             ))
             .previousPage(ItemBuilder.of(XMaterial.ARROW,  48, 1, "&aPrevious Page", Arrays.asList("", "&e» &7Click to go previous page.")).build())

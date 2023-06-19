@@ -2,10 +2,11 @@ package com.qualityplus.skills.listener;
 
 import com.qualityplus.assistant.api.util.BukkitItemUtil;
 import com.qualityplus.assistant.base.event.ArmorEquipEvent;
+import com.qualityplus.assistant.lib.eu.okaeri.injector.annotation.Inject;
 import com.qualityplus.skills.TheSkills;
 import com.qualityplus.skills.api.box.Box;
-import eu.okaeri.injector.annotation.Inject;
-import eu.okaeri.platform.core.annotation.Component;
+
+import com.qualityplus.assistant.lib.eu.okaeri.platform.core.annotation.Component;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;

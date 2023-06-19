@@ -1,5 +1,6 @@
 package com.qualityplus.souls.base.edition;
 
+import com.qualityplus.assistant.lib.eu.okaeri.injector.annotation.Inject;
 import com.qualityplus.assistant.util.StringUtils;
 import com.qualityplus.souls.api.box.Box;
 import com.qualityplus.souls.api.edition.EditionObject;
@@ -7,8 +8,8 @@ import com.qualityplus.souls.api.edition.SoulEdition;
 import com.qualityplus.souls.base.gui.SoulsGUI;
 import com.qualityplus.souls.base.gui.addcommands.AddCommandsGUI;
 import com.qualityplus.souls.base.gui.addmessages.AddMessagesGUI;
-import eu.okaeri.injector.annotation.Inject;
-import eu.okaeri.platform.core.annotation.Component;
+
+import com.qualityplus.assistant.lib.eu.okaeri.platform.core.annotation.Component;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;

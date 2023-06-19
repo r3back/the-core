@@ -1,13 +1,14 @@
 package com.qualityplus.runes.listener;
 
 import com.qualityplus.assistant.api.util.BukkitItemUtil;
+import com.qualityplus.assistant.lib.eu.okaeri.injector.annotation.Inject;
 import com.qualityplus.assistant.util.StringUtils;
 import com.qualityplus.runes.api.box.Box;
 import com.qualityplus.runes.base.gui.runetable.RuneTableGUI;
 import com.qualityplus.runes.base.session.RuneSessionImpl;
 import com.qualityplus.runes.util.RunesUtils;
-import eu.okaeri.injector.annotation.Inject;
-import eu.okaeri.platform.core.annotation.Component;
+
+import com.qualityplus.assistant.lib.eu.okaeri.platform.core.annotation.Component;
 import org.bukkit.Location;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Entity;

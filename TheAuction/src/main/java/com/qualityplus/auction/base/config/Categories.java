@@ -1,18 +1,18 @@
 package com.qualityplus.auction.base.config;
 
-import com.cryptomorin.xseries.XMaterial;
+import com.qualityplus.assistant.lib.com.cryptomorin.xseries.XMaterial;
 import com.google.common.collect.ImmutableMap;
 import com.qualityplus.assistant.inventory.Item;
 import com.qualityplus.assistant.inventory.background.Background;
 import com.qualityplus.assistant.util.itemstack.ItemBuilder;
 import com.qualityplus.auction.api.category.AuctionCategory;
 import com.qualityplus.auction.api.gui.GUIDisplayItem;
-import eu.okaeri.configs.OkaeriConfig;
-import eu.okaeri.configs.annotation.Header;
-import eu.okaeri.configs.annotation.NameModifier;
-import eu.okaeri.configs.annotation.NameStrategy;
-import eu.okaeri.configs.annotation.Names;
-import eu.okaeri.platform.core.annotation.Configuration;
+import com.qualityplus.assistant.lib.eu.okaeri.configs.OkaeriConfig;
+import com.qualityplus.assistant.lib.eu.okaeri.configs.annotation.Header;
+import com.qualityplus.assistant.lib.eu.okaeri.configs.annotation.NameModifier;
+import com.qualityplus.assistant.lib.eu.okaeri.configs.annotation.NameStrategy;
+import com.qualityplus.assistant.lib.eu.okaeri.configs.annotation.Names;
+import com.qualityplus.assistant.lib.eu.okaeri.platform.core.annotation.Configuration;
 
 import java.util.*;
 

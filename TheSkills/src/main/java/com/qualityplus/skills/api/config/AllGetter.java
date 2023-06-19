@@ -1,6 +1,6 @@
 package com.qualityplus.skills.api.config;
 
-import eu.okaeri.configs.OkaeriConfig;
+import com.qualityplus.assistant.lib.eu.okaeri.configs.OkaeriConfig;
 
 import java.util.List;
 

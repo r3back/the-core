@@ -3,19 +3,21 @@ package com.qualityplus.skills.base.commands;
 import com.qualityplus.assistant.TheAssistantPlugin;
 import com.qualityplus.assistant.api.commands.command.AssistantCommand;
 import com.qualityplus.assistant.api.util.IPlaceholder;
+import com.qualityplus.assistant.lib.eu.okaeri.injector.annotation.Inject;
 import com.qualityplus.assistant.util.StringUtils;
 import com.qualityplus.assistant.util.list.ListBuilder;
 import com.qualityplus.assistant.util.list.ListUtils;
+import com.qualityplus.assistant.util.number.NumberUtil;
 import com.qualityplus.assistant.util.placeholder.Placeholder;
 import com.qualityplus.skills.api.box.Box;
 import com.qualityplus.skills.api.effect.CommonObject;
 import com.qualityplus.skills.base.skill.registry.Skills;
 import com.qualityplus.skills.base.stat.registry.Stats;
 import com.qualityplus.skills.persistance.data.UserData;
-import eu.okaeri.commons.bukkit.time.MinecraftTimeEquivalent;
-import eu.okaeri.injector.annotation.Inject;
-import eu.okaeri.platform.bukkit.annotation.Delayed;
-import eu.okaeri.platform.core.annotation.Component;
+import com.qualityplus.assistant.lib.eu.okaeri.commons.bukkit.time.MinecraftTimeEquivalent;;
+
+import com.qualityplus.assistant.lib.eu.okaeri.platform.bukkit.annotation.Delayed;
+import com.qualityplus.assistant.lib.eu.okaeri.platform.core.annotation.Component;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -65,7 +67,7 @@ public final class ResetCommand extends AssistantCommand {
                         .with(Stats.values().stream().map(CommonObject::getId).collect(Collectors.toList()))
                         .with(Skills.values().stream().map(CommonObject::getId).collect(Collectors.toList()))
                         .get()
-                : args.length == 4 ? ListUtils.stringSecuence(0, 10) : Collections.emptyList();
+                : args.length == 4 ? NumberUtil.stringSecuence(0, 10) : Collections.emptyList();
     }
 
     @Delayed(time = MinecraftTimeEquivalent.SECOND)

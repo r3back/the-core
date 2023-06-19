@@ -1,6 +1,6 @@
 package com.qualityplus.pets.persistance.data;
 
-import eu.okaeri.persistence.document.Document;
+import com.qualityplus.assistant.lib.eu.okaeri.persistence.document.Document;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;

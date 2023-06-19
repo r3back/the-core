@@ -7,8 +7,9 @@ import com.qualityplus.alchemist.base.config.Config;
 import com.qualityplus.alchemist.base.config.Inventories;
 import com.qualityplus.alchemist.base.config.Messages;
 import com.qualityplus.alchemist.base.config.RecipesFile;
-import eu.okaeri.injector.annotation.Inject;
-import eu.okaeri.platform.core.annotation.Component;
+
+import com.qualityplus.assistant.lib.eu.okaeri.injector.annotation.Inject;
+import com.qualityplus.assistant.lib.eu.okaeri.platform.core.annotation.Component;
 import lombok.Getter;
 import org.bukkit.plugin.Plugin;
 

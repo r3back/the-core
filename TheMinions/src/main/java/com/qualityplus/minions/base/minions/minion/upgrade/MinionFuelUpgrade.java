@@ -5,9 +5,9 @@ import com.qualityplus.assistant.util.StringUtils;
 import com.qualityplus.assistant.util.itemstack.ItemStackUtils;
 import com.qualityplus.assistant.util.placeholder.Placeholder;
 import com.qualityplus.assistant.util.placeholder.PlaceholderBuilder;
-import com.qualityplus.assistant.util.time.Timer;
+import com.qualityplus.assistant.util.time.HumanTime;
 import com.qualityplus.minions.util.MinionUpgradeUtil;
-import eu.okaeri.configs.OkaeriConfig;
+import com.qualityplus.assistant.lib.eu.okaeri.configs.OkaeriConfig;
 import lombok.*;
 import org.bukkit.inventory.ItemStack;
 
@@ -24,7 +24,7 @@ public final class MinionFuelUpgrade extends OkaeriConfig {
     private String displayName;
     private List<String> description;
     private double percentageOfSecondsToRemove;
-    private Timer timer;
+    private HumanTime timer;
 
     public ItemStack getItemStack(long delay, long marked){
         List<String> lore = StringUtils.processMulti(description, new Placeholder("minion_upgrade_percentage_seconds", percentageOfSecondsToRemove).alone());

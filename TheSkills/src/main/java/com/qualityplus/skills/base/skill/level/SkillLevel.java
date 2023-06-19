@@ -2,7 +2,7 @@ package com.qualityplus.skills.base.skill.level;
 
 import com.qualityplus.assistant.api.common.rewards.commands.CommandReward;
 import com.qualityplus.skills.base.reward.StatReward;
-import eu.okaeri.configs.OkaeriConfig;
+import com.qualityplus.assistant.lib.eu.okaeri.configs.OkaeriConfig;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

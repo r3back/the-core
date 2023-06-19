@@ -1,15 +1,19 @@
 package com.qualityplus.runes.base.config;
 
-import com.cryptomorin.xseries.XMaterial;
+import com.qualityplus.assistant.lib.com.cryptomorin.xseries.XMaterial;
 import com.google.common.collect.ImmutableMap;
 import com.qualityplus.assistant.api.gui.LoreWrapper;
 import com.qualityplus.assistant.inventory.Item;
+import com.qualityplus.assistant.lib.eu.okaeri.configs.annotation.Comment;
+import com.qualityplus.assistant.lib.eu.okaeri.configs.annotation.Header;
+import com.qualityplus.assistant.lib.eu.okaeri.configs.annotation.NameModifier;
+import com.qualityplus.assistant.lib.eu.okaeri.configs.annotation.NameStrategy;
+import com.qualityplus.assistant.lib.eu.okaeri.configs.annotation.Names;
 import com.qualityplus.assistant.util.itemstack.ItemBuilder;
 import com.qualityplus.runes.api.config.RuneTableConfig;
 import com.qualityplus.runes.api.config.RuneTableConfig.RuneItem;
-import eu.okaeri.configs.OkaeriConfig;
-import eu.okaeri.configs.annotation.*;
-import eu.okaeri.platform.core.annotation.Configuration;
+import com.qualityplus.assistant.lib.eu.okaeri.configs.OkaeriConfig;
+import com.qualityplus.assistant.lib.eu.okaeri.platform.core.annotation.Configuration;
 
 import java.util.Arrays;
 import java.util.Map;

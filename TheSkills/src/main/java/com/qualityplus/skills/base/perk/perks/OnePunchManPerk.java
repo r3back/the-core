@@ -1,7 +1,7 @@
 package com.qualityplus.skills.base.perk.perks;
 
 import com.qualityplus.assistant.base.event.EntityDamagedByPlayerEvent;
-import com.qualityplus.assistant.util.math.MathUtils;
+import com.qualityplus.assistant.util.random.RandomUtil;
 import com.qualityplus.skills.base.perk.Perk;
 import com.qualityplus.skills.base.skill.gui.GUIOptions;
 import lombok.Builder;
@@ -34,7 +34,7 @@ public final class OnePunchManPerk extends Perk {
 
         if(!canBeUsedWithPlayers && e.getEntity() instanceof Player) return;
 
-        if (MathUtils.randomBetween(0.0, 100.0) >= getChancePerLevel() * getStat(p))
+        if (RandomUtil.randomBetween(0.0, 100.0) >= getChancePerLevel() * getStat(p))
             return;
 
         if(!(e.getEntity() instanceof LivingEntity)) return;

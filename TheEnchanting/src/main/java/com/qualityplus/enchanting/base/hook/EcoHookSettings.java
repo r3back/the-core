@@ -1,8 +1,9 @@
 package com.qualityplus.enchanting.base.hook;
 
+import com.qualityplus.assistant.lib.eu.okaeri.injector.annotation.Inject;
 import com.qualityplus.enchanting.api.settings.EcoWarning;
 import com.qualityplus.enchanting.base.config.Config;
-import eu.okaeri.injector.annotation.Inject;
+
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.Plugin;

@@ -1,7 +1,7 @@
 package com.qualityplus.enchanting.base.config.enchantments.vanilla;
 
-import com.cryptomorin.xseries.XEnchantment;
 import com.google.common.collect.ImmutableMap;
+import com.qualityplus.assistant.lib.com.cryptomorin.xseries.XEnchantment;
 import com.qualityplus.assistant.util.StringUtils;
 import com.qualityplus.assistant.util.map.MapUtils;
 import com.qualityplus.enchanting.api.enchantment.CoreEnchants;
@@ -9,13 +9,13 @@ import com.qualityplus.enchanting.api.enchantment.ICoreEnchantment;
 import com.qualityplus.enchanting.api.enchantment.ProviderType;
 import com.qualityplus.enchanting.base.config.enchantments.EnchantConfig;
 import com.qualityplus.enchanting.base.factory.VanillaEnchantmentFactory;
-import eu.okaeri.configs.OkaeriConfig;
-import eu.okaeri.configs.annotation.Header;
-import eu.okaeri.configs.annotation.NameModifier;
-import eu.okaeri.configs.annotation.NameStrategy;
-import eu.okaeri.configs.annotation.Names;
-import eu.okaeri.platform.bukkit.annotation.Delayed;
-import eu.okaeri.platform.core.annotation.Configuration;
+import com.qualityplus.assistant.lib.eu.okaeri.configs.OkaeriConfig;
+import com.qualityplus.assistant.lib.eu.okaeri.configs.annotation.Header;
+import com.qualityplus.assistant.lib.eu.okaeri.configs.annotation.NameModifier;
+import com.qualityplus.assistant.lib.eu.okaeri.configs.annotation.NameStrategy;
+import com.qualityplus.assistant.lib.eu.okaeri.configs.annotation.Names;
+import com.qualityplus.assistant.lib.eu.okaeri.platform.bukkit.annotation.Delayed;
+import com.qualityplus.assistant.lib.eu.okaeri.platform.core.annotation.Configuration;
 import org.bukkit.Bukkit;
 import org.bukkit.enchantments.Enchantment;
 

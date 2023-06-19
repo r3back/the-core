@@ -1,6 +1,6 @@
 package com.qualityplus.enchanting.base.config.enchantments;
 
-import eu.okaeri.configs.OkaeriConfig;
+import com.qualityplus.assistant.lib.eu.okaeri.configs.OkaeriConfig;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;

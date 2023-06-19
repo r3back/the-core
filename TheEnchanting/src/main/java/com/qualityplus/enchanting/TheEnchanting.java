@@ -1,12 +1,13 @@
 package com.qualityplus.enchanting;
 
-import com.cryptomorin.xseries.XEnchantment;
+import com.qualityplus.assistant.lib.com.cryptomorin.xseries.XEnchantment;
+import com.qualityplus.assistant.lib.eu.okaeri.injector.annotation.Inject;
 import com.qualityplus.assistant.okaeri.OkaeriSilentPlugin;
 import com.qualityplus.enchanting.api.TheEnchantingAPI;
-import eu.okaeri.injector.annotation.Inject;
-import eu.okaeri.platform.core.annotation.Scan;
-import eu.okaeri.platform.core.plan.ExecutionPhase;
-import eu.okaeri.platform.core.plan.Planned;
+
+import com.qualityplus.assistant.lib.eu.okaeri.platform.core.annotation.Scan;
+import com.qualityplus.assistant.lib.eu.okaeri.platform.core.plan.ExecutionPhase;
+import com.qualityplus.assistant.lib.eu.okaeri.platform.core.plan.Planned;
 import lombok.Getter;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -21,7 +22,8 @@ import java.util.logging.Logger;
 
 @Scan(deep = true)
 public final class TheEnchanting extends OkaeriSilentPlugin {
-    private static @Inject @Getter TheEnchantingAPI api;
+    private static @Inject
+    @Getter TheEnchantingAPI api;
 
     @Planned(ExecutionPhase.PRE_SETUP)
     private void preSetupFixVanilla(@Inject Logger logger){

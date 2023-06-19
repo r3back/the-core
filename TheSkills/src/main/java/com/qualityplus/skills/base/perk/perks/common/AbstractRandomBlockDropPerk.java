@@ -1,6 +1,6 @@
 package com.qualityplus.skills.base.perk.perks.common;
 
-import com.cryptomorin.xseries.XMaterial;
+import com.qualityplus.assistant.lib.com.cryptomorin.xseries.XMaterial;
 import com.qualityplus.assistant.util.random.EasyRandom;
 import com.qualityplus.assistant.util.random.RandomSelector;
 import com.qualityplus.skills.base.perk.Perk;
@@ -14,7 +14,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
-
 
 @NoArgsConstructor
 public abstract class AbstractRandomBlockDropPerk extends Perk {

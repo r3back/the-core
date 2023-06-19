@@ -1,10 +1,11 @@
 package com.qualityplus.pets.listener;
 
+import com.qualityplus.assistant.lib.eu.okaeri.injector.annotation.Inject;
 import com.qualityplus.pets.api.pet.entity.PetEntity;
 import com.qualityplus.pets.base.pet.entity.tracket.PetArmorStandTracker;
 import com.qualityplus.pets.base.pet.tracker.PetEntityTracker;
-import eu.okaeri.injector.annotation.Inject;
-import eu.okaeri.platform.core.annotation.Component;
+
+import com.qualityplus.assistant.lib.eu.okaeri.platform.core.annotation.Component;
 import org.bukkit.Bukkit;
 import org.bukkit.Chunk;
 import org.bukkit.ChunkSnapshot;

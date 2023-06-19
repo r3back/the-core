@@ -1,14 +1,16 @@
 package com.qualityplus.skills.base.stat.stats;
 
-import com.cryptomorin.xseries.XMaterial;
+import com.qualityplus.assistant.lib.com.cryptomorin.xseries.XMaterial;
 import com.qualityplus.assistant.api.util.BukkitItemUtil;
 import com.qualityplus.assistant.api.util.IPlaceholder;
 import com.qualityplus.assistant.base.event.PlayerKillEvent;
 import com.qualityplus.assistant.util.StringUtils;
-import com.qualityplus.assistant.util.math.MathUtils;
+import com.qualityplus.assistant.api.util.MathUtil;
+import com.qualityplus.assistant.util.number.NumberUtil;
 import com.qualityplus.assistant.util.placeholder.Placeholder;
 import com.qualityplus.assistant.util.placeholder.PlaceholderBuilder;
 import com.qualityplus.assistant.util.random.RandomSelector;
+import com.qualityplus.assistant.util.random.RandomUtil;
 import com.qualityplus.skills.base.event.MagicFindEvent;
 import com.qualityplus.skills.base.skill.gui.GUIOptions;
 import com.qualityplus.skills.base.stat.Stat;
@@ -49,10 +51,10 @@ public final class MagicFindStat extends Stat {
 
         int level = getStat(player);
 
-        if (MathUtils.randomBetween(0.0, 100.0) >= chancePerLevel * level)
+        if (RandomUtil.randomBetween(0.0, 100.0) >= chancePerLevel * level)
             return;
 
-        final ItemStack toGive = Optional.ofNullable(RandomSelector.getRandom(itemAndChances))
+        final ItemStack toGive = Optional.ofNullable(RandomUtil.getRandom(itemAndChances))
                 .map(XMaterial::parseItem)
                 .orElse(null);
 
@@ -69,7 +71,7 @@ public final class MagicFindStat extends Stat {
     public List<String> getFormattedDescription(final int level) {
         final List<IPlaceholder> placeholders = PlaceholderBuilder.create()
                 .with(new Placeholder("level_number", level),
-                      new Placeholder("level_roman", MathUtils.toRoman(level)),
+                      new Placeholder("level_roman", NumberUtil.toRoman(level)),
                       new Placeholder("chance", chancePerLevel * level)
                 ).get();
         return StringUtils.processMulti(description, placeholders);

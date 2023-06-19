@@ -1,7 +1,7 @@
 package com.qualityplus.runes.base.table.effects;
 
 import com.qualityplus.assistant.inventory.Item;
-import eu.okaeri.configs.OkaeriConfig;
+import com.qualityplus.assistant.lib.eu.okaeri.configs.OkaeriConfig;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;

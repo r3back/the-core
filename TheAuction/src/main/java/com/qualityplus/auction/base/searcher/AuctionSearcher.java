@@ -1,8 +1,8 @@
 package com.qualityplus.auction.base.searcher;
 
-import com.cryptomorin.xseries.XMaterial;
+import com.qualityplus.assistant.lib.com.cryptomorin.xseries.XMaterial;
 import com.qualityplus.assistant.api.util.BukkitItemUtil;
-import com.qualityplus.assistant.util.math.MathUtils;
+import com.qualityplus.assistant.util.random.RandomUtil;
 import com.qualityplus.auction.api.box.Box;
 import com.qualityplus.auction.api.category.AuctionCategory;
 import com.qualityplus.auction.api.searcher.Searcher;
@@ -43,7 +43,7 @@ public final class AuctionSearcher implements Searcher<AuctionItem> {
         List<AuctionItem> auctionItems = new ArrayList<>(box.auctionService().getItems());
 
         if(sortFilter.equals(SortFilter.RANDOM))
-            auctionItems.sort(Comparator.comparingDouble(p -> (int) p.getHighestBid() + MathUtils.randomBetween(0,5)));
+            auctionItems.sort(Comparator.comparingDouble(p -> (int) p.getHighestBid() + RandomUtil.randomBetween(0,5)));
         else if(sortFilter.equals(SortFilter.LOWEST_PRICE))
             auctionItems.sort((o1, o2) -> (int) (o1.getHighestBid() - o2.getHighestBid()));
         else if(sortFilter.equals(SortFilter.HIGHEST_PRICE))

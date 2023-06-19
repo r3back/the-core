@@ -1,7 +1,7 @@
 package com.qualityplus.collections.base.collection.category;
 
 import com.qualityplus.collections.base.collection.gui.GUIOptions;
-import eu.okaeri.configs.OkaeriConfig;
+import com.qualityplus.assistant.lib.eu.okaeri.configs.OkaeriConfig;
 import lombok.Builder;
 import lombok.Getter;
 

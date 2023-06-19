@@ -5,14 +5,14 @@ import com.qualityplus.assistant.inventory.Item;
 import com.qualityplus.assistant.util.StringUtils;
 import com.qualityplus.assistant.util.itemstack.ItemBuilder;
 import com.qualityplus.assistant.util.itemstack.ItemStackUtils;
-import com.qualityplus.assistant.util.math.MathUtils;
+import com.qualityplus.assistant.util.number.NumberUtil;
 import com.qualityplus.runes.api.box.Box;
 import com.qualityplus.runes.api.recipes.Runes;
 import com.qualityplus.runes.api.session.RuneInstance;
 import com.qualityplus.runes.base.rune.Rune;
 import com.qualityplus.runes.base.session.ItemRuneInstanceImpl;
 import com.qualityplus.runes.base.session.RuneInstanceImpl;
-import de.tr7zw.changeme.nbtapi.NBTItem;
+import com.qualityplus.assistant.lib.de.tr7zw.changeme.nbtapi.NBTItem;
 import lombok.experimental.UtilityClass;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -90,7 +90,9 @@ public final class RunesUtils {
 
         List<String> lore = new ArrayList<>(BukkitItemUtil.getItemLore(itemStack));
 
-        String toRemove = Optional.ofNullable(rune).map(rune1 -> StringUtils.color(rune1.getToAddLore().replace("%rune_level%", MathUtils.toRoman(level)))).orElse(null);
+        String toRemove = Optional.ofNullable(rune)
+                .map(rune1 -> StringUtils.color(rune1.getToAddLore().replace("%rune_level%", NumberUtil.toRoman(level))))
+                .orElse(null);
 
         if(toRemove != null)
             lore.remove(toRemove);

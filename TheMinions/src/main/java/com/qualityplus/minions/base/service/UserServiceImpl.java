@@ -2,7 +2,7 @@ package com.qualityplus.minions.base.service;
 
 import com.qualityplus.minions.api.service.UserService;
 import com.qualityplus.minions.persistance.data.UserData;
-import eu.okaeri.platform.core.annotation.Component;
+import com.qualityplus.assistant.lib.eu.okaeri.platform.core.annotation.Component;
 
 import java.util.HashMap;
 import java.util.Map;

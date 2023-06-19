@@ -1,7 +1,7 @@
 package com.qualityplus.minions.base.minions.entity.message;
 
 import com.qualityplus.assistant.api.util.Randomable;
-import eu.okaeri.configs.OkaeriConfig;
+import com.qualityplus.assistant.lib.eu.okaeri.configs.OkaeriConfig;
 import lombok.*;
 
 import java.util.List;

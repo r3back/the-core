@@ -1,8 +1,8 @@
 package com.qualityplus.skills.base.perk.perks.common;
 
-import com.cryptomorin.xseries.XMaterial;
-import com.qualityplus.assistant.util.math.MathUtils;
-import com.qualityplus.assistant.util.player.PlayerUtils;
+import com.qualityplus.assistant.lib.com.cryptomorin.xseries.XMaterial;
+import com.qualityplus.assistant.util.block.BlockUtils;
+import com.qualityplus.assistant.util.random.RandomUtil;
 import com.qualityplus.skills.base.event.ItemFortunePerkEvent;
 import com.qualityplus.skills.base.skill.gui.GUIOptions;
 import com.qualityplus.skills.util.SkillsPlayerUtil;
@@ -41,7 +41,7 @@ public abstract class AbstractFortuneBlockPerk extends AbstractFortunePerk {
 
         Block block = event.getBlock();
 
-        if (PlayerUtils.isPlacedByPlayer(block))
+        if (BlockUtils.isPlacedByPlayer(block))
             return;
 
         int level = getStat(player);
@@ -53,7 +53,7 @@ public abstract class AbstractFortuneBlockPerk extends AbstractFortunePerk {
         if (additional <= 0)
             return;
 
-        if (MathUtils.randomBetween(0.0, 100.0) < chance)
+        if (RandomUtil.randomBetween(0.0, 100.0) < chance)
             additional++;
 
         ItemFortunePerkEvent fortunePerkEvent = new ItemFortunePerkEvent(player, this, new ArrayList<>(event.getBlock().getDrops()), event.getBlock().getLocation());

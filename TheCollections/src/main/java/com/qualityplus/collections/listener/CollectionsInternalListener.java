@@ -1,6 +1,7 @@
 package com.qualityplus.collections.listener;
 
 import com.qualityplus.assistant.api.util.IPlaceholder;
+import com.qualityplus.assistant.lib.eu.okaeri.injector.annotation.Inject;
 import com.qualityplus.assistant.util.StringUtils;
 import com.qualityplus.assistant.util.placeholder.Placeholder;
 import com.qualityplus.assistant.util.placeholder.PlaceholderBuilder;
@@ -13,8 +14,8 @@ import com.qualityplus.collections.base.event.CollectionsUnlockEvent;
 import com.qualityplus.collections.base.event.CollectionsXPGainEvent;
 import com.qualityplus.collections.persistance.data.UserData;
 import com.qualityplus.collections.util.CollectionsPlaceholderUtil;
-import eu.okaeri.injector.annotation.Inject;
-import eu.okaeri.platform.core.annotation.Component;
+
+import com.qualityplus.assistant.lib.eu.okaeri.platform.core.annotation.Component;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;

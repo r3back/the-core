@@ -1,12 +1,13 @@
 package com.qualityplus.dragon.base.service;
 
 import com.google.common.collect.ImmutableList;
+import com.qualityplus.assistant.lib.eu.okaeri.injector.annotation.Inject;
 import com.qualityplus.dragon.api.game.part.GameEnd;
 import com.qualityplus.dragon.api.service.BossBarService;
 import com.qualityplus.dragon.api.service.UserService;
 import com.qualityplus.dragon.base.game.player.EventPlayer;
-import eu.okaeri.injector.annotation.Inject;
-import eu.okaeri.platform.core.annotation.Component;
+
+import com.qualityplus.assistant.lib.eu.okaeri.platform.core.annotation.Component;
 import lombok.Getter;
 import org.bukkit.entity.Player;
 

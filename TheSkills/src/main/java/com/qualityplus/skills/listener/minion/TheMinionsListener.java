@@ -1,6 +1,6 @@
 package com.qualityplus.skills.listener.minion;
 
-import com.cryptomorin.xseries.XMaterial;
+import com.qualityplus.assistant.lib.com.cryptomorin.xseries.XMaterial;
 import com.qualityplus.minions.base.event.PlayerPickUpMinionItemsEvent;
 import com.qualityplus.skills.TheSkills;
 import com.qualityplus.skills.api.listener.ExtraListener;

@@ -1,15 +1,16 @@
 package com.qualityplus.crafting.base.edition;
 
 import com.qualityplus.assistant.api.util.IPlaceholder;
+import com.qualityplus.assistant.lib.eu.okaeri.injector.annotation.Inject;
 import com.qualityplus.assistant.util.StringUtils;
-import com.qualityplus.assistant.util.math.MathUtils;
+import com.qualityplus.assistant.util.number.NumberUtil;
 import com.qualityplus.crafting.api.box.Box;
 import com.qualityplus.crafting.api.edition.EditionObject;
 import com.qualityplus.crafting.api.edition.RecipeEdition;
 import com.qualityplus.crafting.base.gui.individual.RecipeIndividualGUI;
 import com.qualityplus.crafting.util.CraftingPlaceholderUtils;
-import eu.okaeri.injector.annotation.Inject;
-import eu.okaeri.platform.core.annotation.Component;
+
+import com.qualityplus.assistant.lib.eu.okaeri.platform.core.annotation.Component;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -60,9 +61,9 @@ public final class RecipeEditionImpl implements RecipeEdition, Listener {
             else if(editionObject.getType() == EditionType.CATEGORY)
                 editionObject.getRecipe().setCategory(message);
             else if(editionObject.getType() == EditionType.SLOT)
-                editionObject.getRecipe().setSlot(MathUtils.intOrZero(message));
+                editionObject.getRecipe().setSlot(NumberUtil.intOrZero(message));
             else if(editionObject.getType() == EditionType.PAGE)
-                editionObject.getRecipe().setPage(MathUtils.intOrZero(message));
+                editionObject.getRecipe().setPage(NumberUtil.intOrZero(message));
             else
                 editionObject.getRecipe().setDisplayName(message);
 

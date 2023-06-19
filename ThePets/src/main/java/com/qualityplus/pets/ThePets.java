@@ -1,5 +1,6 @@
 package com.qualityplus.pets;
 
+import com.qualityplus.assistant.lib.eu.okaeri.injector.annotation.Inject;
 import com.qualityplus.assistant.okaeri.OkaeriSilentPlugin;
 import com.qualityplus.pets.api.ThePetsAPI;
 import com.qualityplus.pets.api.pet.entity.PetEntity;
@@ -8,10 +9,10 @@ import com.qualityplus.pets.api.service.UserPetService;
 import com.qualityplus.pets.base.pet.tracker.PetEntityTracker;
 import com.qualityplus.pets.persistance.PetRepository;
 import com.qualityplus.pets.persistance.data.PetData;
-import eu.okaeri.injector.annotation.Inject;
-import eu.okaeri.platform.core.annotation.Scan;
-import eu.okaeri.platform.core.plan.ExecutionPhase;
-import eu.okaeri.platform.core.plan.Planned;
+
+import com.qualityplus.assistant.lib.eu.okaeri.platform.core.annotation.Scan;
+import com.qualityplus.assistant.lib.eu.okaeri.platform.core.plan.ExecutionPhase;
+import com.qualityplus.assistant.lib.eu.okaeri.platform.core.plan.Planned;
 import lombok.Getter;
 
 import java.util.Optional;
@@ -21,7 +22,8 @@ import java.util.logging.Logger;
 
 @Scan(deep = true)
 public final class ThePets extends OkaeriSilentPlugin {
-    private static @Inject @Getter ThePetsAPI api;
+    private static @Inject
+    @Getter ThePetsAPI api;
 
     @Planned(ExecutionPhase.POST_SETUP)
     private void loadAllPets(@Inject Logger logger, @Inject PetRepository petRepository, @Inject PetService petService){

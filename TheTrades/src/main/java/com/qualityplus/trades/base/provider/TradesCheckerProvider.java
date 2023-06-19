@@ -1,17 +1,17 @@
 package com.qualityplus.trades.base.provider;
 
-import com.cryptomorin.xseries.XMaterial;
 import com.qualityplus.assistant.TheAssistantPlugin;
 import com.qualityplus.assistant.api.util.BukkitItemUtil;
+import com.qualityplus.assistant.lib.com.cryptomorin.xseries.XMaterial;
+import com.qualityplus.assistant.lib.eu.okaeri.injector.annotation.Inject;
+import com.qualityplus.assistant.lib.eu.okaeri.platform.core.annotation.Component;
 import com.qualityplus.assistant.util.StringUtils;
 import com.qualityplus.assistant.util.inventory.InventoryUtils;
-import com.qualityplus.assistant.util.itemstack.ItemStackUtils;
 import com.qualityplus.trades.api.provider.CheckerProvider;
 import com.qualityplus.trades.api.session.TradeSession;
 import com.qualityplus.trades.base.config.Messages;
 import com.qualityplus.trades.base.trades.PluginTrade;
-import eu.okaeri.injector.annotation.Inject;
-import eu.okaeri.platform.core.annotation.Component;
+
 import org.bukkit.entity.Player;
 
 import java.util.HashMap;

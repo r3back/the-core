@@ -88,7 +88,7 @@ public final class ArmorStandHandlerImpl implements ArmorStandHandler {
 
         List<RandomMessage> randomMessages = TheMinions.getApi().getConfigFiles().config().messages.getOrDefault(status, null);
 
-        RandomMessage randomSelector = new RandomSelector<>(randomMessages).getRandomModified();
+        RandomMessage randomSelector = new RandomSelector<>(randomMessages).getRandomOrUniqueItem();
 
         List<String> msg = Optional.ofNullable(randomSelector).map(RandomMessage::getMessage).orElse(Collections.singletonList("       "));
 

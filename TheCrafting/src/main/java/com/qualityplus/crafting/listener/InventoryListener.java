@@ -1,7 +1,7 @@
 package com.qualityplus.crafting.listener;
 
 import com.qualityplus.crafting.base.gui.CraftingGUI;
-import eu.okaeri.platform.core.annotation.Component;
+import com.qualityplus.assistant.lib.eu.okaeri.platform.core.annotation.Component;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;

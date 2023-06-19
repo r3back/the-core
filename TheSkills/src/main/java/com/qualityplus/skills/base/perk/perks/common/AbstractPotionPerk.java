@@ -1,7 +1,7 @@
 package com.qualityplus.skills.base.perk.perks.common;
 
 import com.qualityplus.assistant.util.StringUtils;
-import com.qualityplus.assistant.util.math.MathUtils;
+import com.qualityplus.assistant.util.number.NumberUtil;
 import com.qualityplus.assistant.util.placeholder.Placeholder;
 import com.qualityplus.assistant.util.placeholder.PlaceholderBuilder;
 import com.qualityplus.skills.base.perk.Perk;
@@ -32,7 +32,7 @@ public abstract class AbstractPotionPerk extends Perk {
     public List<String> getFormattedDescription(int level) {
         return StringUtils.processMulti(super.getFormattedDescription(level), PlaceholderBuilder.create(
                 new Placeholder("duration", getDurationSeconds(level)),
-                new Placeholder("potion_level_roman", MathUtils.toRoman(getLevel())),
+                new Placeholder("potion_level_roman", NumberUtil.toRoman(getLevel())),
                 new Placeholder("potion_level_number", getLevel())
         ).get());
     }

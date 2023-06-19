@@ -1,6 +1,6 @@
 package com.qualityplus.minions.base.minions.entity.type;
 
-import com.cryptomorin.xseries.XMaterial;
+import com.qualityplus.assistant.lib.com.cryptomorin.xseries.XMaterial;
 import com.qualityplus.assistant.util.block.BlockUtils;
 import com.qualityplus.minions.base.minions.animations.BreakAnimation;
 import com.qualityplus.minions.base.minions.animations.PlaceAnimation;

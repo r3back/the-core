@@ -5,6 +5,7 @@ import com.qualityplus.assistant.api.addons.PasterAddon;
 import com.qualityplus.assistant.api.addons.paster.schematic.Schematic;
 import com.qualityplus.assistant.api.addons.paster.session.PasterSession;
 import com.qualityplus.assistant.base.addons.paster.session.DefaultSession;
+import com.qualityplus.assistant.lib.eu.okaeri.injector.annotation.Inject;
 import com.qualityplus.dragon.api.exception.InvalidSpawnException;
 import com.qualityplus.dragon.api.game.structure.GameStructure;
 import com.qualityplus.dragon.api.game.structure.GameStructures;
@@ -14,8 +15,8 @@ import com.qualityplus.dragon.api.game.structure.type.DragonSpawn;
 import com.qualityplus.dragon.api.service.SchematicService;
 import com.qualityplus.dragon.base.configs.Config;
 import com.qualityplus.dragon.base.configs.StructuresFile;
-import eu.okaeri.injector.annotation.Inject;
-import eu.okaeri.platform.core.annotation.Component;
+
+import com.qualityplus.assistant.lib.eu.okaeri.platform.core.annotation.Component;
 import org.bukkit.Location;
 import org.bukkit.entity.Entity;
 
