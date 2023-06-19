@@ -3,7 +3,7 @@ package com.qualityplus.minions.base.minions.entity;
 import com.qualityplus.assistant.TheAssistantPlugin;
 import com.qualityplus.assistant.api.gui.FakeInventory;
 import com.qualityplus.assistant.util.time.Markable;
-import com.qualityplus.assistant.util.time.Timer;
+import com.qualityplus.assistant.util.time.HumanTime;
 import com.qualityplus.minions.TheMinions;
 import com.qualityplus.minions.api.handler.ArmorStandHandler;
 import com.qualityplus.minions.base.config.Skins;
@@ -111,7 +111,7 @@ public abstract class ArmorStandMinion<T> extends MinecraftMinion implements Lis
     private boolean timeHasHappened(){
         int level = getLevel();
 
-        Timer timer = minion.getTimer(level);
+        HumanTime timer = minion.getTimer(level);
 
         if(state.getLastActionTime() == 0) return true;
 

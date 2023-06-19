@@ -11,7 +11,7 @@ import com.qualityplus.pets.base.event.PetCreateEvent;
 import com.qualityplus.pets.base.pet.Pet;
 import com.qualityplus.pets.base.pet.egg.PetEgg;
 import com.qualityplus.pets.persistance.data.PetData;
-import de.tr7zw.changeme.nbtapi.NBTItem;
+import com.qualityplus.assistant.lib.de.tr7zw.changeme.nbtapi.NBTItem;
 import lombok.experimental.UtilityClass;
 import org.bukkit.Bukkit;
 import org.bukkit.inventory.ItemStack;

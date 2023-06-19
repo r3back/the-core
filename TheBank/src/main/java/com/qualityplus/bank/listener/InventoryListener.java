@@ -1,7 +1,7 @@
 package com.qualityplus.bank.listener;
 
 import com.qualityplus.bank.base.gui.BankGUI;
-import eu.okaeri.platform.core.annotation.Component;
+import com.qualityplus.assistant.lib.eu.okaeri.platform.core.annotation.Component;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;

@@ -1,5 +1,6 @@
 package com.qualityplus.enchanting.base;
 
+import com.qualityplus.assistant.lib.eu.okaeri.injector.annotation.Inject;
 import com.qualityplus.assistant.util.map.MapUtils;
 import com.qualityplus.enchanting.api.TheEnchantingAPI;
 import com.qualityplus.enchanting.api.enchantment.CoreEnchants;
@@ -8,7 +9,7 @@ import com.qualityplus.enchanting.api.processor.EnchantmentProcessor;
 import com.qualityplus.enchanting.api.provider.EnchantmentProvider;
 import com.qualityplus.enchanting.api.session.EnchantmentSession;
 
-import eu.okaeri.platform.core.annotation.Component;
+import com.qualityplus.assistant.lib.eu.okaeri.platform.core.annotation.Component;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.EnchantmentStorageMeta;

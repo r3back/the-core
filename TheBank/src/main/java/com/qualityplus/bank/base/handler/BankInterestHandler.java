@@ -1,6 +1,9 @@
 package com.qualityplus.bank.base.handler;
 
 import com.qualityplus.assistant.api.util.IPlaceholder;
+import com.qualityplus.assistant.lib.eu.okaeri.commons.bukkit.time.MinecraftTimeEquivalent;
+import com.qualityplus.assistant.lib.eu.okaeri.injector.annotation.Inject;
+import com.qualityplus.assistant.lib.eu.okaeri.platform.bukkit.annotation.Scheduled;
 import com.qualityplus.assistant.util.StringUtils;
 import com.qualityplus.assistant.util.placeholder.Placeholder;
 import com.qualityplus.assistant.util.time.Markable;
@@ -10,13 +13,10 @@ import com.qualityplus.bank.api.transaction.TransactionType;
 import com.qualityplus.bank.base.gui.main.BankInterfaceGUI;
 import com.qualityplus.bank.persistence.data.BankData;
 import com.qualityplus.bank.persistence.data.BankTransaction;
-import eu.okaeri.commons.bukkit.time.MinecraftTimeEquivalent;
 
-import eu.okaeri.platform.bukkit.annotation.Scheduled;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 

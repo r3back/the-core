@@ -1,11 +1,12 @@
 package com.qualityplus.dragon.base.game.guardian;
 
+import com.qualityplus.assistant.lib.eu.okaeri.injector.annotation.Inject;
 import com.qualityplus.dragon.api.factory.GuardianFactory;
 import com.qualityplus.dragon.api.game.guardian.Guardian;
 import com.qualityplus.dragon.base.configs.DragonEventsFile.GuardianChanceConfig;
 import com.qualityplus.dragon.base.configs.DragonGuardiansFile;
 
-import eu.okaeri.platform.core.annotation.Component;
+import com.qualityplus.assistant.lib.eu.okaeri.platform.core.annotation.Component;
 import lombok.AllArgsConstructor;
 
 import java.util.*;

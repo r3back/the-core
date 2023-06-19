@@ -3,7 +3,7 @@ package com.qualityplus.pets.base.pet.level;
 import com.qualityplus.assistant.api.common.rewards.commands.CommandReward;
 import com.qualityplus.pets.base.pet.potion.PetPotion;
 import com.qualityplus.pets.base.rewards.StatReward;
-import eu.okaeri.configs.OkaeriConfig;
+import com.qualityplus.assistant.lib.eu.okaeri.configs.OkaeriConfig;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

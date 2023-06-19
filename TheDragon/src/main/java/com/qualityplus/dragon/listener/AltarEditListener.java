@@ -1,5 +1,6 @@
 package com.qualityplus.dragon.listener;
 
+import com.qualityplus.assistant.lib.eu.okaeri.injector.annotation.Inject;
 import com.qualityplus.assistant.util.StringUtils;
 import com.qualityplus.assistant.util.location.LocationUtils;
 import com.qualityplus.dragon.api.box.Box;
@@ -7,7 +8,7 @@ import com.qualityplus.dragon.api.game.structure.type.DragonAltar;
 import com.qualityplus.dragon.api.service.AltarSetupService;
 import com.qualityplus.dragon.base.game.structure.DragonAltarImpl;
 
-import eu.okaeri.platform.core.annotation.Component;
+import com.qualityplus.assistant.lib.eu.okaeri.platform.core.annotation.Component;
 import org.bukkit.Location;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;

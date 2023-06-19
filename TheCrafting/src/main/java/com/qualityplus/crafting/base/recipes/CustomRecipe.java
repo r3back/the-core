@@ -1,12 +1,12 @@
 package com.qualityplus.crafting.base.recipes;
 
-import com.cryptomorin.xseries.XMaterial;
+import com.qualityplus.assistant.lib.com.cryptomorin.xseries.XMaterial;
 import com.qualityplus.assistant.api.util.BukkitItemUtil;
+import com.qualityplus.assistant.lib.eu.okaeri.configs.annotation.Exclude;
 import com.qualityplus.assistant.util.map.MapUtils;
 import com.qualityplus.crafting.api.recipes.IRecipe;
 import com.qualityplus.crafting.api.recipes.Recipes;
-import eu.okaeri.configs.OkaeriConfig;
-import eu.okaeri.configs.annotation.Exclude;
+import com.qualityplus.assistant.lib.eu.okaeri.configs.OkaeriConfig;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;

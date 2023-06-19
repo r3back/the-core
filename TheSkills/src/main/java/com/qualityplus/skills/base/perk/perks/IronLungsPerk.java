@@ -1,8 +1,8 @@
 package com.qualityplus.skills.base.perk.perks;
 
-import com.cryptomorin.xseries.XMaterial;
-import com.cryptomorin.xseries.XPotion;
-import com.qualityplus.assistant.util.math.MathUtils;
+import com.qualityplus.assistant.lib.com.cryptomorin.xseries.XMaterial;
+import com.qualityplus.assistant.lib.com.cryptomorin.xseries.XPotion;
+import com.qualityplus.assistant.util.random.RandomUtil;
 import com.qualityplus.skills.base.perk.perks.common.AbstractPotionPerk;
 import com.qualityplus.skills.base.skill.gui.GUIOptions;
 import lombok.Builder;
@@ -32,7 +32,7 @@ public final class IronLungsPerk extends AbstractPotionPerk {
 
         if(!m.equals(XMaterial.WATER.parseMaterial())) return;
 
-        if(MathUtils.randomBetween(0.0, 100.0) >= getChancePerLevel() * getStat(p)) return;
+        if(RandomUtil.randomBetween(0.0, 100.0) >= getChancePerLevel() * getStat(p)) return;
 
         Optional.of(XPotion.WATER_BREATHING)
                 .map(potion -> potion.buildPotionEffect(getDurationTicks(getStat(p)), getLevel()))

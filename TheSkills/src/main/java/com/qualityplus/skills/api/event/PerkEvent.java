@@ -1,6 +1,6 @@
 package com.qualityplus.skills.api.event;
 
-import com.qualityplus.assistant.api.event.PlayerHelperEvent;
+import com.qualityplus.assistant.api.event.PlayerAssistantEvent;
 import com.qualityplus.skills.base.perk.Perk;
 import lombok.Getter;
 import lombok.Setter;
@@ -9,7 +9,7 @@ import org.jetbrains.annotations.NotNull;
 
 @Getter
 @Setter
-public abstract class PerkEvent extends PlayerHelperEvent {
+public abstract class PerkEvent extends PlayerAssistantEvent {
     private Perk perk;
 
     public PerkEvent(@NotNull Player who, Perk perk) {

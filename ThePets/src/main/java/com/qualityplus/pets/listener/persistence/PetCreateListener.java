@@ -1,11 +1,12 @@
 package com.qualityplus.pets.listener.persistence;
 
+import com.qualityplus.assistant.lib.eu.okaeri.injector.annotation.Inject;
 import com.qualityplus.pets.api.box.Box;
 import com.qualityplus.pets.base.event.PetCreateEvent;
 import com.qualityplus.pets.persistance.PetRepository;
 
-import eu.okaeri.platform.core.annotation.Component;
-import eu.okaeri.tasker.core.Tasker;
+import com.qualityplus.assistant.lib.eu.okaeri.platform.core.annotation.Component;
+import com.qualityplus.assistant.lib.eu.okaeri.tasker.core.Tasker;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 

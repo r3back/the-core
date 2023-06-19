@@ -1,10 +1,10 @@
 package com.qualityplus.minions.base.config.minions;
 
-import com.cryptomorin.xseries.XMaterial;
+import com.qualityplus.assistant.lib.com.cryptomorin.xseries.XMaterial;
 import com.qualityplus.assistant.util.faster.FastMap;
-import com.qualityplus.assistant.util.faster.FasterStack;
+import com.qualityplus.assistant.util.faster.FastStack;
 import com.qualityplus.assistant.util.itemstack.ItemBuilder;
-import com.qualityplus.assistant.util.time.Timer;
+import com.qualityplus.assistant.util.time.HumanTime;
 import com.qualityplus.minions.base.minions.entity.MinionEntityOptions;
 import com.qualityplus.minions.base.minions.minion.Minion;
 import com.qualityplus.minions.base.minions.minion.MinionType;
@@ -18,12 +18,12 @@ import com.qualityplus.minions.base.minions.minion.level.MinionLevel;
 import com.qualityplus.minions.base.minions.minion.update.MinionSettings;
 import com.qualityplus.minions.base.minions.minion.update.item.ItemSettings;
 import com.qualityplus.minions.base.minions.minion.update.item.UpgradeSettings;
-import eu.okaeri.configs.OkaeriConfig;
-import eu.okaeri.configs.annotation.Header;
-import eu.okaeri.configs.annotation.NameModifier;
-import eu.okaeri.configs.annotation.NameStrategy;
-import eu.okaeri.configs.annotation.Names;
-import eu.okaeri.platform.core.annotation.Configuration;
+import com.qualityplus.assistant.lib.eu.okaeri.configs.OkaeriConfig;
+import com.qualityplus.assistant.lib.eu.okaeri.configs.annotation.Header;
+import com.qualityplus.assistant.lib.eu.okaeri.configs.annotation.NameModifier;
+import com.qualityplus.assistant.lib.eu.okaeri.configs.annotation.NameStrategy;
+import com.qualityplus.assistant.lib.eu.okaeri.configs.annotation.Names;
+import com.qualityplus.assistant.lib.eu.okaeri.platform.core.annotation.Configuration;
 import lombok.Getter;
 import org.bukkit.inventory.ItemStack;
 
@@ -76,7 +76,7 @@ public final class TestMinion extends OkaeriConfig {
             .build();
     private final MinionSettings minionSettings = MinionSettings.builder()
             .baseItem(ItemSettings.builder()
-                    .itemsToGive(Collections.singletonList(FasterStack.fast(XMaterial.DIAMOND, 4)))
+                    .itemsToGive(Collections.singletonList(FastStack.fast(XMaterial.DIAMOND, 4)))
                     .requiredItemsToCreate(Collections.emptyMap())
                     .build())
             .upgradeSettings(FastMap.builder(String.class, UpgradeSettings.class)
@@ -119,7 +119,7 @@ public final class TestMinion extends OkaeriConfig {
                                 .requiredMaterial(XMaterial.DIAMOND)
                                 .requiredMaterialAmount(64)
                                 .build())
-                        .executeActionsTime(new Timer(1, Timer.TimeType.SECONDS))
+                        .executeActionsTime(new HumanTime(1, HumanTime.TimeType.SECONDS))
                         .maxStorage(1)
                         .minionSkin("diamond_minion_1")
                         .build())
@@ -128,7 +128,7 @@ public final class TestMinion extends OkaeriConfig {
                                 .requiredMaterial(XMaterial.DIAMOND)
                                 .requiredMaterialAmount(128)
                                 .build())
-                        .executeActionsTime(new Timer(1, Timer.TimeType.SECONDS))
+                        .executeActionsTime(new HumanTime(1, HumanTime.TimeType.SECONDS))
                         .maxStorage(2)
                         .minionSkin("diamond_minion_2")
                         .build())
@@ -137,7 +137,7 @@ public final class TestMinion extends OkaeriConfig {
                                 .requiredMaterial(XMaterial.DIAMOND)
                                 .requiredMaterialAmount(128)
                                 .build())
-                        .executeActionsTime(new Timer(110, Timer.TimeType.SECONDS))
+                        .executeActionsTime(new HumanTime(110, HumanTime.TimeType.SECONDS))
                         .maxStorage(3)
                         .minionSkin("diamond_minion_3")
                         .build())
@@ -146,7 +146,7 @@ public final class TestMinion extends OkaeriConfig {
                                 .requiredMaterial(XMaterial.DIAMOND)
                                 .requiredMaterialAmount(128)
                                 .build())
-                        .executeActionsTime(new Timer(105, Timer.TimeType.SECONDS))
+                        .executeActionsTime(new HumanTime(105, HumanTime.TimeType.SECONDS))
                         .maxStorage(3)
                         .minionSkin("diamond_minion_4")
                         .build())
@@ -155,7 +155,7 @@ public final class TestMinion extends OkaeriConfig {
                                 .requiredMaterial(XMaterial.DIAMOND)
                                 .requiredMaterialAmount(128)
                                 .build())
-                        .executeActionsTime(new Timer(100, Timer.TimeType.SECONDS))
+                        .executeActionsTime(new HumanTime(100, HumanTime.TimeType.SECONDS))
                         .maxStorage(3)
                         .minionSkin("diamond_minion_5")
                         .build())
@@ -164,7 +164,7 @@ public final class TestMinion extends OkaeriConfig {
                                 .requiredMaterial(XMaterial.DIAMOND)
                                 .requiredMaterialAmount(128)
                                 .build())
-                        .executeActionsTime(new Timer(90, Timer.TimeType.SECONDS))
+                        .executeActionsTime(new HumanTime(90, HumanTime.TimeType.SECONDS))
                         .maxStorage(3)
                         .minionSkin("diamond_minion_6")
                         .build())
@@ -173,7 +173,7 @@ public final class TestMinion extends OkaeriConfig {
                                 .requiredMaterial(XMaterial.DIAMOND)
                                 .requiredMaterialAmount(128)
                                 .build())
-                        .executeActionsTime(new Timer(85, Timer.TimeType.SECONDS))
+                        .executeActionsTime(new HumanTime(85, HumanTime.TimeType.SECONDS))
                         .maxStorage(3)
                         .minionSkin("diamond_minion_7")
                         .build())
@@ -182,7 +182,7 @@ public final class TestMinion extends OkaeriConfig {
                                 .requiredMaterial(XMaterial.DIAMOND)
                                 .requiredMaterialAmount(128)
                                 .build())
-                        .executeActionsTime(new Timer(80, Timer.TimeType.SECONDS))
+                        .executeActionsTime(new HumanTime(80, HumanTime.TimeType.SECONDS))
                         .maxStorage(3)
                         .minionSkin("diamond_minion_8")
                         .build())
@@ -191,7 +191,7 @@ public final class TestMinion extends OkaeriConfig {
                                 .requiredMaterial(XMaterial.DIAMOND)
                                 .requiredMaterialAmount(128)
                                 .build())
-                        .executeActionsTime(new Timer(70, Timer.TimeType.SECONDS))
+                        .executeActionsTime(new HumanTime(70, HumanTime.TimeType.SECONDS))
                         .maxStorage(3)
                         .minionSkin("diamond_minion_9")
                         .build())
@@ -200,7 +200,7 @@ public final class TestMinion extends OkaeriConfig {
                                 .requiredMaterial(XMaterial.DIAMOND)
                                 .requiredMaterialAmount(128)
                                 .build())
-                        .executeActionsTime(new Timer(60, Timer.TimeType.SECONDS))
+                        .executeActionsTime(new HumanTime(60, HumanTime.TimeType.SECONDS))
                         .maxStorage(3)
                         .minionSkin("diamond_minion_10")
                         .build())
@@ -209,7 +209,7 @@ public final class TestMinion extends OkaeriConfig {
                                 .requiredMaterial(XMaterial.DIAMOND)
                                 .requiredMaterialAmount(128)
                                 .build())
-                        .executeActionsTime(new Timer(55, Timer.TimeType.SECONDS))
+                        .executeActionsTime(new HumanTime(55, HumanTime.TimeType.SECONDS))
                         .maxStorage(3)
                         .minionSkin("diamond_minion_11")
                         .build())

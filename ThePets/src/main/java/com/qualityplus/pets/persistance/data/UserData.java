@@ -6,7 +6,7 @@ import com.qualityplus.pets.base.pet.Pet;
 import com.qualityplus.pets.persistance.data.inside.InventoryData;
 import com.qualityplus.pets.persistance.data.inside.SpawnedData;
 import com.qualityplus.pets.persistance.data.inside.UserSettings;
-import eu.okaeri.persistence.document.Document;
+import com.qualityplus.assistant.lib.eu.okaeri.persistence.document.Document;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 

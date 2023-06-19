@@ -1,5 +1,6 @@
 package com.qualityplus.minions.base;
 
+import com.qualityplus.assistant.lib.eu.okaeri.injector.annotation.Inject;
 import com.qualityplus.minions.api.TheMinionsAPI;
 import com.qualityplus.minions.api.config.ConfigFiles;
 import com.qualityplus.minions.api.recipe.provider.RecipeProvider;
@@ -10,7 +11,7 @@ import com.qualityplus.minions.base.config.upgrades.AutomatedShippingUpgrades;
 import com.qualityplus.minions.base.config.upgrades.FuelUpgrades;
 import com.qualityplus.minions.base.config.upgrades.NormalUpgrades;
 
-import eu.okaeri.platform.core.annotation.Component;
+import com.qualityplus.assistant.lib.eu.okaeri.platform.core.annotation.Component;
 import lombok.Getter;
 
 @Component

@@ -1,6 +1,6 @@
 package com.qualityplus.enchanting.base.factory;
 
-import com.cryptomorin.xseries.XMaterial;
+import com.qualityplus.assistant.lib.com.cryptomorin.xseries.XMaterial;
 import com.qualityplus.enchanting.api.enchantment.ICoreEnchantment;
 import com.qualityplus.enchanting.api.enchantment.ProviderType;
 import com.qualityplus.enchanting.base.enchantment.legacy.VanillaEnchantLegacy;

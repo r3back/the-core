@@ -1,9 +1,10 @@
 package com.qualityplus.collections.base.config.impl;
 
+import com.qualityplus.assistant.lib.eu.okaeri.injector.annotation.Inject;
 import com.qualityplus.collections.api.config.ConfigFiles;
 import com.qualityplus.collections.base.config.*;
 
-import eu.okaeri.platform.core.annotation.Component;
+import com.qualityplus.assistant.lib.eu.okaeri.platform.core.annotation.Component;
 
 @Component
 public final class BasicFiles implements ConfigFiles<Config, Inventories, Commands, Messages, CollectionsFile, CategoriesFile> {

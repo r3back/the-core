@@ -1,5 +1,6 @@
 package com.qualityplus.dragon.base.factory;
 
+import com.qualityplus.assistant.lib.eu.okaeri.injector.annotation.Inject;
 import com.qualityplus.dragon.api.factory.DragonFactory;
 import com.qualityplus.dragon.api.game.dragon.TheDragonEntity;
 import com.qualityplus.dragon.base.configs.Config;
@@ -7,7 +8,7 @@ import com.qualityplus.dragon.base.configs.Config.GameSettings;
 import com.qualityplus.dragon.base.game.dragon.TheDragonEntityImpl;
 import com.qualityplus.dragon.base.game.dragon.TheMythicDragonEntity;
 
-import eu.okaeri.platform.core.annotation.Component;
+import com.qualityplus.assistant.lib.eu.okaeri.platform.core.annotation.Component;
 
 import java.util.*;
 

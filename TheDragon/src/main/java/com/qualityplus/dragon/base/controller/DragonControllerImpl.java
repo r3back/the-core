@@ -1,6 +1,7 @@
 package com.qualityplus.dragon.base.controller;
 
-import com.qualityplus.assistant.util.math.MathUtils;
+import com.qualityplus.assistant.api.util.MathUtil;
+import com.qualityplus.assistant.util.random.RandomUtil;
 import com.qualityplus.dragon.TheDragon;
 import com.qualityplus.dragon.api.controller.DragonController;
 import com.qualityplus.dragon.api.game.structure.type.DragonSpawn;
@@ -74,7 +75,7 @@ public final class DragonControllerImpl implements DragonController {
         }
         if (this.target == null)
             targetSky();
-        if (MathUtils.offset(this.location, this.target) < 4.0D){
+        if (MathUtil.offset(this.location, this.target) < 4.0D){
             Optional<DragonSpawn> spawn = TheDragon.getApi().getStructureService().getSpawn();
             if(!spawn.isPresent()) return;
             if (this.target.getY() >= spawn.get().getLocation().getY()) {
@@ -87,9 +88,9 @@ public final class DragonControllerImpl implements DragonController {
     }
 
     private void targetTimeout() {
-        if (MathUtils.offset(this.location, this.target) + 1.0D < this.rangeBest) {
+        if (MathUtil.offset(this.location, this.target) + 1.0D < this.rangeBest) {
             this.rangeTime = System.currentTimeMillis();
-            this.rangeBest = MathUtils.offset(this.location, this.target);
+            this.rangeBest = MathUtil.offset(this.location, this.target);
         } else if (elapsed(this.rangeTime, 10000L)) {
             targetSky();
         }
@@ -101,7 +102,7 @@ public final class DragonControllerImpl implements DragonController {
         if(!spawn.isPresent()) return;
         this.rangeBest = 9000.0D;
         this.rangeTime = System.currentTimeMillis();
-        this.target = spawn.get().getLocation().clone().add((50 - MathUtils.randomUpTo(100)), (20 + MathUtils.randomUpTo(30)), (50 - MathUtils.randomUpTo(100)));
+        this.target = spawn.get().getLocation().clone().add((50 - RandomUtil.randomUpTo(100)), (20 + RandomUtil.randomUpTo(30)), (50 - RandomUtil.randomUpTo(100)));
         TheDragon.getApi().getPlugin().getServer().getPluginManager().callEvent(new DragonTargetEvent(null, this, TargetType.SKY));
     }
 
@@ -109,7 +110,7 @@ public final class DragonControllerImpl implements DragonController {
     public void targetPlayer() {
         this.rangeBest = 9000.0D;
         this.rangeTime = System.currentTimeMillis();
-        Player player = TheDragon.getApi().getUserService().getUsers().get(MathUtils.randomUpTo(TheDragon.getApi().getUserService().getUsers().size())).getPlayer();
+        Player player = TheDragon.getApi().getUserService().getUsers().get(RandomUtil.randomUpTo(TheDragon.getApi().getUserService().getUsers().size())).getPlayer();
         this.target = player.getLocation();
         this.target.add(DragonVelocityUtil.getTrajectory(this.location, this.target).multiply(3.5D));
         TheDragon.getApi().getPlugin().getServer().getPluginManager().callEvent(new DragonTargetEvent(player, this, TargetType.PLAYER));

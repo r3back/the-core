@@ -1,5 +1,11 @@
 package com.qualityplus.souls.listener;
 
+import com.qualityplus.assistant.api.util.BukkitItemUtil;
+import com.qualityplus.assistant.lib.de.tr7zw.changeme.nbtapi.NBTItem;
+import com.qualityplus.assistant.lib.eu.okaeri.injector.annotation.Inject;
+import com.qualityplus.assistant.lib.eu.okaeri.platform.core.annotation.Component;
+import com.qualityplus.assistant.util.StringUtils;
+import com.qualityplus.assistant.util.location.ALocation;
 import com.qualityplus.souls.api.box.Box;
 import com.qualityplus.souls.base.soul.Soul;
 

@@ -1,9 +1,7 @@
 package com.qualityplus.minions.base.handler;
 
-import com.cryptomorin.xseries.XMaterial;
 import com.qualityplus.assistant.util.armorstand.ArmorStandUtil;
-import com.qualityplus.assistant.util.math.MathUtils;
-import com.qualityplus.assistant.util.random.RandomSelector;
+import com.qualityplus.assistant.util.random.RandomUtil;
 import com.qualityplus.minions.TheMinions;
 import com.qualityplus.minions.api.handler.AnimationHandler;
 import com.qualityplus.minions.api.handler.ArmorStandHandler;
@@ -40,7 +38,7 @@ public final class AnimationHandlerImpl implements AnimationHandler, LayoutGette
 
         List<Vector> vectors = getMinionLayout(minion).equals(LayoutType.THREE_X_THREE) ? MinionAnimationUtil.getThree() : MinionAnimationUtil.getSecond();
 
-        Vector vector = /*vectors.get(0)*/RandomSelector.getRandom(vectors);
+        Vector vector = /*vectors.get(0)*/RandomUtil.getRandom(vectors);
 
         Location location = Optional.ofNullable(handler)
                 .map(ArmorStandHandler::getLocation)
@@ -97,11 +95,11 @@ public final class AnimationHandlerImpl implements AnimationHandler, LayoutGette
         }
 
         getNearEntity(location).thenAccept(entity -> {
-            int random = MathUtils.randomUpTo(100);
+            int random = RandomUtil.randomUpTo(100);
 
             if(entity == null || random > 50) {
-                double x = MathUtils.randomBetween(1, 2);
-                double z = MathUtils.randomBetween(1, 2);
+                double x = RandomUtil.randomBetween(1, 2);
+                double z = RandomUtil.randomBetween(1, 2);
 
                 Location newLocation = location.clone()
                         .add(x, 0, z);

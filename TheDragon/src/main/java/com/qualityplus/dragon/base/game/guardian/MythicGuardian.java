@@ -2,7 +2,7 @@ package com.qualityplus.dragon.base.game.guardian;
 
 import com.qualityplus.assistant.TheAssistantPlugin;
 import com.qualityplus.dragon.api.game.guardian.Guardian;
-import eu.okaeri.configs.OkaeriConfig;
+import com.qualityplus.assistant.lib.eu.okaeri.configs.OkaeriConfig;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import org.bukkit.Location;

@@ -1,18 +1,18 @@
 package com.qualityplus.minions.base.config;
 
-import com.cryptomorin.xseries.XMaterial;
+import com.qualityplus.assistant.lib.com.cryptomorin.xseries.XMaterial;
 import com.qualityplus.assistant.util.faster.FastMap;
-import com.qualityplus.assistant.util.faster.FasterStack;
+import com.qualityplus.assistant.util.faster.FastStack;
 import com.qualityplus.assistant.util.itemstack.ItemBuilder;
-import com.qualityplus.assistant.util.math.MathUtils;
+import com.qualityplus.assistant.util.number.NumberUtil;
 import com.qualityplus.minions.TheMinions;
 import com.qualityplus.minions.base.minions.minion.skin.MinionSkin;
-import eu.okaeri.configs.OkaeriConfig;
-import eu.okaeri.configs.annotation.Header;
-import eu.okaeri.configs.annotation.NameModifier;
-import eu.okaeri.configs.annotation.NameStrategy;
-import eu.okaeri.configs.annotation.Names;
-import eu.okaeri.platform.core.annotation.Configuration;
+import com.qualityplus.assistant.lib.eu.okaeri.configs.OkaeriConfig;
+import com.qualityplus.assistant.lib.eu.okaeri.configs.annotation.Header;
+import com.qualityplus.assistant.lib.eu.okaeri.configs.annotation.NameModifier;
+import com.qualityplus.assistant.lib.eu.okaeri.configs.annotation.NameStrategy;
+import com.qualityplus.assistant.lib.eu.okaeri.configs.annotation.Names;
+import com.qualityplus.assistant.lib.eu.okaeri.platform.core.annotation.Configuration;
 import org.bukkit.Color;
 
 import java.util.Collections;
@@ -89,9 +89,9 @@ public final class Skins extends OkaeriConfig {
                 .helmet(ItemBuilder.of(XMaterial.PLAYER_HEAD, 1, "", Collections.emptyList())
                         .headData("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMTljODlhODg5YzRiYjQyMWVhOWM1NmNiZWFlN2FmMWU2ZDg1ZjRmYWZmMzRhY2JhNzJlMWE4ZDVjNDExNmE4In19fQ==")
                         .buildStack())
-                .chestplate(FasterStack.fastWithColor(XMaterial.LEATHER_CHESTPLATE, Color.BLUE))
-                .leggings(FasterStack.fastWithColor(XMaterial.LEATHER_LEGGINGS, Color.BLACK))
-                .boots(FasterStack.fastWithColor(XMaterial.LEATHER_BOOTS, Color.BLACK))
+                .chestplate(FastStack.fastWithColor(XMaterial.LEATHER_CHESTPLATE, Color.BLUE))
+                .leggings(FastStack.fastWithColor(XMaterial.LEATHER_LEGGINGS, Color.BLACK))
+                .boots(FastStack.fastWithColor(XMaterial.LEATHER_BOOTS, Color.BLACK))
                 .inHand(ItemBuilder.of(XMaterial.PLAYER_HEAD, 1, "", Collections.emptyList())
                         .headData("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMWI0YjVjNzQ4MzA2MDlmOWNlN2JmYjhjYTI2ZmFjMTcxZWRiYzZiMjdjNjM3ZWExMDFmYzFhZTFhMmZhYzQ0MSJ9fX0=")
                         .buildStack())
@@ -119,10 +119,10 @@ public final class Skins extends OkaeriConfig {
                 .helmet(ItemBuilder.of(XMaterial.PLAYER_HEAD, 1, "", Collections.emptyList())
                         .headData(dataWithLevel.get(level))
                         .buildStack())
-                .chestplate(FasterStack.fastWithColor(XMaterial.LEATHER_CHESTPLATE, Color.YELLOW))
-                .leggings(FasterStack.fastWithColor(XMaterial.LEATHER_LEGGINGS, Color.YELLOW))
-                .boots(FasterStack.fastWithColor(XMaterial.LEATHER_BOOTS, Color.YELLOW))
-                .inHand(FasterStack.fast(XMaterial.DIAMOND_HOE, 1))
+                .chestplate(FastStack.fastWithColor(XMaterial.LEATHER_CHESTPLATE, Color.YELLOW))
+                .leggings(FastStack.fastWithColor(XMaterial.LEATHER_LEGGINGS, Color.YELLOW))
+                .boots(FastStack.fastWithColor(XMaterial.LEATHER_BOOTS, Color.YELLOW))
+                .inHand(FastStack.fast(XMaterial.DIAMOND_HOE, 1))
                 .build();
     }
 
@@ -148,10 +148,10 @@ public final class Skins extends OkaeriConfig {
                 .helmet(ItemBuilder.of(XMaterial.PLAYER_HEAD, 1, "", Collections.emptyList())
                         .headData(dataWithLevel.get(level))
                         .buildStack())
-                .chestplate(FasterStack.fastWithColor(XMaterial.LEATHER_CHESTPLATE, Color.BLUE))
-                .leggings(FasterStack.fastWithColor(XMaterial.LEATHER_LEGGINGS, Color.BLUE))
-                .boots(FasterStack.fastWithColor(XMaterial.LEATHER_BOOTS, Color.BLUE))
-                .inHand(FasterStack.fast(XMaterial.DIAMOND_PICKAXE, 1))
+                .chestplate(FastStack.fastWithColor(XMaterial.LEATHER_CHESTPLATE, Color.BLUE))
+                .leggings(FastStack.fastWithColor(XMaterial.LEATHER_LEGGINGS, Color.BLUE))
+                .boots(FastStack.fastWithColor(XMaterial.LEATHER_BOOTS, Color.BLUE))
+                .inHand(FastStack.fast(XMaterial.DIAMOND_PICKAXE, 1))
                 .build();
     }
 
@@ -170,14 +170,14 @@ public final class Skins extends OkaeriConfig {
 
 
         return MinionSkin.builder()
-                .displayName("Snow Minion " + MathUtils.toRoman(level))
+                .displayName("Snow Minion " + NumberUtil.toRoman(level))
                 .helmet(ItemBuilder.of(XMaterial.PLAYER_HEAD, 1, "", Collections.emptyList())
                         .headData(dataWithLevel.get(level))
                         .buildStack())
-                .chestplate(FasterStack.fastWithColor(XMaterial.LEATHER_CHESTPLATE, Color.WHITE))
-                .leggings(FasterStack.fastWithColor(XMaterial.LEATHER_LEGGINGS, Color.WHITE))
-                .boots(FasterStack.fastWithColor(XMaterial.LEATHER_BOOTS, Color.WHITE))
-                .inHand(FasterStack.fast(XMaterial.DIAMOND_SHOVEL, 1))
+                .chestplate(FastStack.fastWithColor(XMaterial.LEATHER_CHESTPLATE, Color.WHITE))
+                .leggings(FastStack.fastWithColor(XMaterial.LEATHER_LEGGINGS, Color.WHITE))
+                .boots(FastStack.fastWithColor(XMaterial.LEATHER_BOOTS, Color.WHITE))
+                .inHand(FastStack.fast(XMaterial.DIAMOND_SHOVEL, 1))
                 .build();
     }
 
@@ -196,14 +196,14 @@ public final class Skins extends OkaeriConfig {
 
 
         return MinionSkin.builder()
-                .displayName("Cow Minion " + MathUtils.toRoman(level))
+                .displayName("Cow Minion " + NumberUtil.toRoman(level))
                 .helmet(ItemBuilder.of(XMaterial.PLAYER_HEAD, 1, "", Collections.emptyList())
                         .headData(dataWithLevel.get(level))
                         .buildStack())
-                .chestplate(FasterStack.fastWithColor(XMaterial.LEATHER_CHESTPLATE, Color.MAROON))
-                .leggings(FasterStack.fastWithColor(XMaterial.LEATHER_LEGGINGS, Color.WHITE))
-                .boots(FasterStack.fastWithColor(XMaterial.LEATHER_BOOTS, Color.MAROON))
-                .inHand(FasterStack.fast(XMaterial.DIAMOND_SWORD, 1))
+                .chestplate(FastStack.fastWithColor(XMaterial.LEATHER_CHESTPLATE, Color.MAROON))
+                .leggings(FastStack.fastWithColor(XMaterial.LEATHER_LEGGINGS, Color.WHITE))
+                .boots(FastStack.fastWithColor(XMaterial.LEATHER_BOOTS, Color.MAROON))
+                .inHand(FastStack.fast(XMaterial.DIAMOND_SWORD, 1))
                 .build();
     }
 }

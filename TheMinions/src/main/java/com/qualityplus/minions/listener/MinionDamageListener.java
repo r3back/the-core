@@ -2,7 +2,7 @@ package com.qualityplus.minions.listener;
 
 import com.qualityplus.minions.api.minion.MinionEntity;
 import com.qualityplus.minions.base.minions.entity.tracker.MinionArmorStandTracker;
-import eu.okaeri.platform.core.annotation.Component;
+import com.qualityplus.assistant.lib.eu.okaeri.platform.core.annotation.Component;
 import org.bukkit.Location;
 import org.bukkit.block.Block;
 import org.bukkit.entity.ArmorStand;

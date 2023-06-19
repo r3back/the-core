@@ -1,5 +1,6 @@
 package com.qualityplus.collections.listener.minions;
 
+import com.qualityplus.assistant.lib.eu.okaeri.injector.annotation.Inject;
 import com.qualityplus.collections.api.service.CollectionsService;
 import com.qualityplus.collections.base.collection.Collection;
 import com.qualityplus.collections.base.collection.registry.CollectionsRegistry;

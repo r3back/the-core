@@ -1,5 +1,6 @@
 package com.qualityplus.minions.base.config.impl;
 
+import com.qualityplus.assistant.lib.eu.okaeri.injector.annotation.Inject;
 import com.qualityplus.minions.api.config.ConfigFiles;
 import com.qualityplus.minions.base.config.*;
 import com.qualityplus.minions.base.config.minions.CowMinion;
@@ -11,7 +12,7 @@ import com.qualityplus.minions.base.config.upgrades.FuelUpgrades;
 import com.qualityplus.minions.base.config.upgrades.NormalUpgrades;
 import com.qualityplus.minions.base.minions.entity.type.CropBreakMinion;
 
-import eu.okaeri.platform.core.annotation.Component;
+import com.qualityplus.assistant.lib.eu.okaeri.platform.core.annotation.Component;
 import lombok.Getter;
 
 @Component

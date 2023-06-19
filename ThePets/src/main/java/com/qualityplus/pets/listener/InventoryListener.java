@@ -1,7 +1,7 @@
 package com.qualityplus.pets.listener;
 
 import com.qualityplus.pets.base.gui.PetsGUI;
-import eu.okaeri.platform.core.annotation.Component;
+import com.qualityplus.assistant.lib.eu.okaeri.platform.core.annotation.Component;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;

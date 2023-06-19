@@ -2,7 +2,7 @@ package com.qualityplus.runes.util;
 
 import com.qualityplus.assistant.api.util.BukkitItemUtil;
 import com.qualityplus.assistant.util.StringUtils;
-import com.qualityplus.assistant.util.math.MathUtils;
+import com.qualityplus.assistant.util.number.NumberUtil;
 import com.qualityplus.runes.TheRunes;
 import com.qualityplus.runes.api.box.Box;
 import com.qualityplus.runes.api.session.RemoveSession;
@@ -123,7 +123,7 @@ public class RuneFinderUtil {
 
 
     public List<String> getAddLore(String addLore, int level) {
-        return Arrays.asList(StringUtils.color(addLore).replaceAll("%rune_level%", MathUtils.toRoman(level)).split("\\n"));
+        return Arrays.asList(StringUtils.color(addLore).replaceAll("%rune_level%", NumberUtil.toRoman(level)).split("\\n"));
     }
 
     public ItemStack getFinalItem(Box box, RuneSession session){

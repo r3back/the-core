@@ -2,7 +2,8 @@ package com.qualityplus.skills.base.addons;
 
 import com.qualityplus.assistant.TheAssistantPlugin;
 import com.qualityplus.assistant.api.addons.PlaceholdersAddon;
-import com.qualityplus.assistant.api.addons.registrable.Registrable;
+import com.qualityplus.assistant.api.addons.registrable.RegistrableAddon;
+import com.qualityplus.assistant.lib.eu.okaeri.injector.annotation.Inject;
 import com.qualityplus.skills.api.service.SkillsService;
 import com.qualityplus.skills.base.perk.Perk;
 import com.qualityplus.skills.base.perk.registry.Perks;
@@ -10,10 +11,10 @@ import com.qualityplus.skills.base.skill.Skill;
 import com.qualityplus.skills.base.skill.registry.Skills;
 import com.qualityplus.skills.base.stat.Stat;
 import com.qualityplus.skills.base.stat.registry.Stats;
-import eu.okaeri.commons.bukkit.time.MinecraftTimeEquivalent;
+import com.qualityplus.assistant.lib.eu.okaeri.commons.bukkit.time.MinecraftTimeEquivalent;;
 
-import eu.okaeri.platform.bukkit.annotation.Delayed;
-import eu.okaeri.platform.core.annotation.Component;
+import com.qualityplus.assistant.lib.eu.okaeri.platform.bukkit.annotation.Delayed;
+import com.qualityplus.assistant.lib.eu.okaeri.platform.core.annotation.Component;
 
 import java.util.Optional;
 import java.util.stream.Stream;
@@ -50,8 +51,8 @@ public final class PlaceholdersRegistry {
         }
 
         Stream.of(addon)
-                .filter(a -> a instanceof Registrable)
-                .map(a -> (Registrable) a)
-                .forEach(Registrable::registerAddon);
+                .filter(a -> a instanceof RegistrableAddon)
+                .map(a -> (RegistrableAddon) a)
+                .forEach(RegistrableAddon::registerAddon);
     }
 }

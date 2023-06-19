@@ -3,12 +3,13 @@ package com.qualityplus.souls.listener;
 import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
 import com.qualityplus.assistant.base.event.EntityDamagedByPlayerEvent;
+import com.qualityplus.assistant.lib.eu.okaeri.injector.annotation.Inject;
 import com.qualityplus.souls.api.box.Box;
 import com.qualityplus.souls.api.edition.SoulEdition;
 import com.qualityplus.souls.base.gui.editgui.SoulsEditGUI;
 import com.qualityplus.souls.base.soul.Soul;
 
-import eu.okaeri.platform.core.annotation.Component;
+import com.qualityplus.assistant.lib.eu.okaeri.platform.core.annotation.Component;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;

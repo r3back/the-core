@@ -1,12 +1,13 @@
 package com.qualityplus.dragon.base.game.parts;
 
 import com.qualityplus.assistant.api.addons.paster.session.PasterSession;
+import com.qualityplus.assistant.lib.eu.okaeri.injector.annotation.Inject;
+import com.qualityplus.assistant.lib.eu.okaeri.platform.bukkit.scheduler.PlatformScheduler;
 import com.qualityplus.dragon.api.game.part.GameExplosion;
 import com.qualityplus.dragon.base.configs.Config;
 
-import eu.okaeri.platform.bukkit.scheduler.PlatformScheduler;
-import eu.okaeri.platform.core.annotation.Component;
-import eu.okaeri.tasker.core.Tasker;
+import com.qualityplus.assistant.lib.eu.okaeri.platform.core.annotation.Component;
+import com.qualityplus.assistant.lib.eu.okaeri.tasker.core.Tasker;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.FallingBlock;

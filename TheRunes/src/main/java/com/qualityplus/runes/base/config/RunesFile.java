@@ -1,6 +1,6 @@
 package com.qualityplus.runes.base.config;
 
-import com.cryptomorin.xseries.XMaterial;
+import com.qualityplus.assistant.lib.com.cryptomorin.xseries.XMaterial;
 import com.qualityplus.assistant.util.faster.FastMap;
 import com.qualityplus.assistant.util.particle.ParticleColor;
 import com.qualityplus.runes.api.config.RuneTableConfig.RuneItem;
@@ -8,12 +8,12 @@ import com.qualityplus.runes.base.rune.Rune;
 import com.qualityplus.runes.base.rune.RuneApply;
 import com.qualityplus.runes.base.rune.RuneEffect;
 import com.qualityplus.runes.base.rune.RuneLevel;
-import eu.okaeri.configs.OkaeriConfig;
-import eu.okaeri.configs.annotation.Header;
-import eu.okaeri.configs.annotation.NameModifier;
-import eu.okaeri.configs.annotation.NameStrategy;
-import eu.okaeri.configs.annotation.Names;
-import eu.okaeri.platform.core.annotation.Configuration;
+import com.qualityplus.assistant.lib.eu.okaeri.configs.OkaeriConfig;
+import com.qualityplus.assistant.lib.eu.okaeri.configs.annotation.Header;
+import com.qualityplus.assistant.lib.eu.okaeri.configs.annotation.NameModifier;
+import com.qualityplus.assistant.lib.eu.okaeri.configs.annotation.NameStrategy;
+import com.qualityplus.assistant.lib.eu.okaeri.configs.annotation.Names;
+import com.qualityplus.assistant.lib.eu.okaeri.platform.core.annotation.Configuration;
 import lombok.Getter;
 import lombok.Setter;
 import xyz.xenondevs.particle.ParticleEffect;

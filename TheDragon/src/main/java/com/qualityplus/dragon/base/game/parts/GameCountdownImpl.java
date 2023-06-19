@@ -1,9 +1,10 @@
 package com.qualityplus.dragon.base.game.parts;
 
-import com.cryptomorin.xseries.XSound;
+import com.qualityplus.assistant.lib.com.cryptomorin.xseries.XSound;
 import com.qualityplus.assistant.TheAssistantPlugin;
 import com.qualityplus.assistant.api.config.ConfigTitle;
 import com.qualityplus.assistant.api.util.IPlaceholder;
+import com.qualityplus.assistant.lib.eu.okaeri.injector.annotation.Inject;
 import com.qualityplus.assistant.util.StringUtils;
 import com.qualityplus.assistant.util.placeholder.Placeholder;
 import com.qualityplus.assistant.util.sound.SoundUtils;
@@ -14,7 +15,7 @@ import com.qualityplus.dragon.api.game.structure.type.DragonSpawn;
 import com.qualityplus.dragon.base.configs.Config;
 import com.qualityplus.dragon.base.configs.Messages;
 
-import eu.okaeri.platform.core.annotation.Component;
+import com.qualityplus.assistant.lib.eu.okaeri.platform.core.annotation.Component;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;

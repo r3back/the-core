@@ -1,15 +1,16 @@
 package com.qualityplus.crafting;
 
-import com.cryptomorin.xseries.XMaterial;
+import com.qualityplus.assistant.lib.com.cryptomorin.xseries.XMaterial;
+import com.qualityplus.assistant.lib.eu.okaeri.injector.annotation.Inject;
 import com.qualityplus.assistant.okaeri.OkaeriSilentPlugin;
 import com.qualityplus.assistant.util.itemstack.ItemBuilder;
 import com.qualityplus.crafting.api.TheCraftingAPI;
 import com.qualityplus.crafting.base.config.Inventories;
 import com.qualityplus.crafting.base.config.RecipesFile;
 
-import eu.okaeri.platform.core.annotation.Scan;
-import eu.okaeri.platform.core.plan.ExecutionPhase;
-import eu.okaeri.platform.core.plan.Planned;
+import com.qualityplus.assistant.lib.eu.okaeri.platform.core.annotation.Scan;
+import com.qualityplus.assistant.lib.eu.okaeri.platform.core.plan.ExecutionPhase;
+import com.qualityplus.assistant.lib.eu.okaeri.platform.core.plan.Planned;
 import lombok.Getter;
 
 import java.util.Arrays;
@@ -17,7 +18,8 @@ import java.util.logging.Logger;
 
 @Scan(deep = true)
 public final class TheCrafting extends OkaeriSilentPlugin {
-    private static @Inject @Getter TheCraftingAPI api;
+    private static @Inject
+    @Getter TheCraftingAPI api;
 
     @Planned(ExecutionPhase.PRE_SHUTDOWN)
     private void saveOnShutdown(final @Inject RecipesFile recipesFile) {

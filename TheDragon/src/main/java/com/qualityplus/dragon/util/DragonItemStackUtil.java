@@ -1,7 +1,7 @@
 package com.qualityplus.dragon.util;
 
 import com.qualityplus.assistant.api.util.BukkitItemUtil;
-import de.tr7zw.changeme.nbtapi.NBTItem;
+import com.qualityplus.assistant.lib.de.tr7zw.changeme.nbtapi.NBTItem;
 import lombok.experimental.UtilityClass;
 import org.bukkit.inventory.ItemStack;
 

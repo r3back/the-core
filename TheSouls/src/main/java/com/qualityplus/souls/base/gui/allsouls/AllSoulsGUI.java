@@ -4,7 +4,8 @@ import com.qualityplus.assistant.api.util.IPlaceholder;
 import com.qualityplus.assistant.inventory.GUI;
 import com.qualityplus.assistant.util.inventory.InventoryUtils;
 import com.qualityplus.assistant.util.itemstack.ItemStackUtils;
-import com.qualityplus.assistant.util.math.MathUtils;
+import com.qualityplus.assistant.api.util.MathUtil;
+import com.qualityplus.assistant.util.number.NumberUtil;
 import com.qualityplus.assistant.util.placeholder.Placeholder;
 import com.qualityplus.souls.api.box.Box;
 import com.qualityplus.souls.api.edition.SoulEdition;
@@ -35,9 +36,9 @@ public final class AllSoulsGUI extends SoulsGUI {
 
     private List<IPlaceholder> getPlaceholders(Soul soul){
         return Arrays.asList(
-                new Placeholder("soul_location_x", MathUtils.toInt(soul.getLocation().getX())),
-                new Placeholder("soul_location_y", MathUtils.toInt(soul.getLocation().getY())),
-                new Placeholder("soul_location_z", MathUtils.toInt(soul.getLocation().getZ())),
+                new Placeholder("soul_location_x", NumberUtil.toInt(soul.getLocation().getX())),
+                new Placeholder("soul_location_y", NumberUtil.toInt(soul.getLocation().getY())),
+                new Placeholder("soul_location_z", NumberUtil.toInt(soul.getLocation().getZ())),
                 new Placeholder("soul_location_world", soul.getLocation().getWorld())
         );
     }

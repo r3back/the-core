@@ -1,10 +1,11 @@
 package com.qualityplus.minions.base.minions.entity.scheduler;
 
-import com.cryptomorin.xseries.XMaterial;
+import com.qualityplus.assistant.lib.com.cryptomorin.xseries.XMaterial;
+import com.qualityplus.assistant.lib.eu.okaeri.injector.annotation.Inject;
 import com.qualityplus.minions.base.minions.entity.tracker.MinionEntityTracker;
 
-import eu.okaeri.platform.bukkit.annotation.Scheduled;
-import eu.okaeri.platform.core.annotation.Component;
+import com.qualityplus.assistant.lib.eu.okaeri.platform.bukkit.annotation.Scheduled;
+import com.qualityplus.assistant.lib.eu.okaeri.platform.core.annotation.Component;
 import org.bukkit.Bukkit;
 import org.bukkit.World;
 import org.bukkit.entity.Player;

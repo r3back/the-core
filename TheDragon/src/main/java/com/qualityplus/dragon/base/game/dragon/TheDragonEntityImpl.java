@@ -1,9 +1,9 @@
 package com.qualityplus.dragon.base.game.dragon;
 
+import com.qualityplus.assistant.lib.eu.okaeri.configs.annotation.Exclude;
 import com.qualityplus.dragon.api.game.dragon.TheDragonEntity;
 import com.qualityplus.dragon.util.DragonHealthUtil;
-import eu.okaeri.configs.OkaeriConfig;
-import eu.okaeri.configs.annotation.Exclude;
+import com.qualityplus.assistant.lib.eu.okaeri.configs.OkaeriConfig;
 import lombok.Getter;
 import org.bukkit.Location;
 import org.bukkit.entity.EnderDragon;

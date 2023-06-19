@@ -1,6 +1,6 @@
 package com.qualityplus.minions.base.minions.minion;
 
-import com.qualityplus.assistant.util.time.Timer;
+import com.qualityplus.assistant.util.time.HumanTime;
 import com.qualityplus.minions.base.config.Skins;
 import com.qualityplus.minions.base.config.minions.MinionConfig;
 import com.qualityplus.minions.base.minions.minion.egg.MinionEgg;
@@ -13,7 +13,7 @@ import com.qualityplus.minions.base.minions.minion.level.MinionLevel;
 import com.qualityplus.minions.base.minions.minion.recipes.MinionRecipeConfig;
 import com.qualityplus.minions.base.minions.minion.skin.MinionSkin;
 import com.qualityplus.minions.base.minions.minion.update.MinionSettings;
-import eu.okaeri.configs.OkaeriConfig;
+import com.qualityplus.assistant.lib.eu.okaeri.configs.OkaeriConfig;
 import lombok.*;
 
 import java.util.List;
@@ -60,7 +60,7 @@ public final class Minion extends OkaeriConfig {
                 .orElse(Optional.empty());
     }
 
-    public Timer getTimer(int level) {
+    public HumanTime getTimer(int level) {
         return getMinionLevel(level)
                 .map(MinionLevel::getExecuteActionsTime)
                 .orElse(null);

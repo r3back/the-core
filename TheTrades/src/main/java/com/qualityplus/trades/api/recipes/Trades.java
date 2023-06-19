@@ -1,6 +1,9 @@
 package com.qualityplus.trades.api.recipes;
 
 import com.google.common.collect.ImmutableSet;
+import com.qualityplus.assistant.lib.eu.okaeri.injector.annotation.Inject;
+import com.qualityplus.assistant.lib.eu.okaeri.platform.bukkit.annotation.Delayed;
+import com.qualityplus.assistant.lib.eu.okaeri.platform.core.annotation.Component;
 import com.qualityplus.trades.api.box.Box;
 import com.qualityplus.trades.base.trades.PluginTrade;
 import org.bukkit.NamespacedKey;

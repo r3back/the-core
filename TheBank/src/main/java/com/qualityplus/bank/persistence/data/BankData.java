@@ -3,7 +3,7 @@ package com.qualityplus.bank.persistence.data;
 import com.qualityplus.bank.base.config.BankUpgrades;
 import com.qualityplus.bank.base.upgrade.BankUpgrade;
 import com.qualityplus.bank.base.upgrade.UpgradeInterest;
-import eu.okaeri.persistence.document.Document;
+import com.qualityplus.assistant.lib.eu.okaeri.persistence.document.Document;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 

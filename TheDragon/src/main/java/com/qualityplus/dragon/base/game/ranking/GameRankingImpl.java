@@ -1,6 +1,7 @@
 package com.qualityplus.dragon.base.game.ranking;
 
 import com.qualityplus.assistant.api.util.IPlaceholder;
+import com.qualityplus.assistant.lib.eu.okaeri.injector.annotation.Inject;
 import com.qualityplus.assistant.util.placeholder.Placeholder;
 import com.qualityplus.assistant.util.placeholder.PlaceholderBuilder;
 import com.qualityplus.dragon.TheDragon;
@@ -12,7 +13,7 @@ import com.qualityplus.dragon.base.configs.Messages;
 import com.qualityplus.dragon.base.game.player.EventPlayer;
 import com.qualityplus.dragon.persistance.data.UserData;
 
-import eu.okaeri.platform.core.annotation.Component;
+import com.qualityplus.assistant.lib.eu.okaeri.platform.core.annotation.Component;
 import org.bukkit.Bukkit;
 
 import java.util.*;

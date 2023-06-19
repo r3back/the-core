@@ -1,5 +1,7 @@
 package com.qualityplus.skills.base.box;
 
+import com.qualityplus.assistant.lib.eu.okaeri.injector.OkaeriInjector;
+import com.qualityplus.assistant.lib.eu.okaeri.injector.annotation.Inject;
 import com.qualityplus.skills.api.box.Box;
 import com.qualityplus.skills.api.config.ConfigFiles;
 import com.qualityplus.skills.api.config.PerkFiles;
@@ -15,9 +17,8 @@ import com.qualityplus.skills.base.config.perk.*;
 import com.qualityplus.skills.base.config.skills.*;
 import com.qualityplus.skills.base.config.stat.*;
 import com.qualityplus.skills.persistance.SkillsRepository;
-import eu.okaeri.injector.OkaeriInjector;
 
-import eu.okaeri.platform.core.annotation.Component;
+import com.qualityplus.assistant.lib.eu.okaeri.platform.core.annotation.Component;
 import org.bukkit.plugin.Plugin;
 
 import java.util.logging.Logger;

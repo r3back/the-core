@@ -8,8 +8,8 @@ import com.qualityplus.pets.base.event.PetXPGainEvent;
 import com.qualityplus.pets.base.pet.Pet;
 import com.qualityplus.pets.base.pet.tracker.PetEntityTracker;
 import com.qualityplus.pets.persistance.data.PetData;
-import eu.okaeri.persistence.document.Document;
-import eu.okaeri.platform.core.annotation.Component;
+import com.qualityplus.assistant.lib.eu.okaeri.persistence.document.Document;
+import com.qualityplus.assistant.lib.eu.okaeri.platform.core.annotation.Component;
 import org.bukkit.Bukkit;
 
 import java.util.HashMap;

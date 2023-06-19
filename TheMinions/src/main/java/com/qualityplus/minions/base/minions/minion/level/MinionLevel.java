@@ -1,9 +1,9 @@
 package com.qualityplus.minions.base.minions.minion.level;
 
-import com.qualityplus.assistant.util.time.Timer;
+import com.qualityplus.assistant.util.time.HumanTime;
 import com.qualityplus.minions.base.minions.minion.recipes.MinionRecipeConfig;
 import com.qualityplus.minions.base.minions.minion.skin.MinionSkin;
-import eu.okaeri.configs.OkaeriConfig;
+import com.qualityplus.assistant.lib.eu.okaeri.configs.OkaeriConfig;
 import lombok.*;
 
 @Data
@@ -14,7 +14,7 @@ import lombok.*;
 public final class MinionLevel extends OkaeriConfig {
     private MinionRecipeConfig minionRecipe;
     private MatRequirement matRequirement;
-    private Timer executeActionsTime;
+    private HumanTime executeActionsTime;
     private String minionSkin;
     private int maxStorage;
 }

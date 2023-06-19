@@ -1,18 +1,22 @@
 package com.qualityplus.collections.base.config;
 
-import com.cryptomorin.xseries.XMaterial;
+import com.qualityplus.assistant.lib.com.cryptomorin.xseries.XMaterial;
 import com.google.common.collect.ImmutableMap;
 import com.qualityplus.assistant.api.common.rewards.commands.CommandReward;
+import com.qualityplus.assistant.lib.eu.okaeri.configs.annotation.Exclude;
+import com.qualityplus.assistant.lib.eu.okaeri.configs.annotation.Header;
+import com.qualityplus.assistant.lib.eu.okaeri.configs.annotation.NameModifier;
+import com.qualityplus.assistant.lib.eu.okaeri.configs.annotation.NameStrategy;
+import com.qualityplus.assistant.lib.eu.okaeri.configs.annotation.Names;
 import com.qualityplus.assistant.util.faster.FastMap;
-import com.qualityplus.assistant.util.list.ListUtils.ListBuilder;
+import com.qualityplus.assistant.util.list.ListBuilder;
 import com.qualityplus.collections.base.collection.Collection;
 import com.qualityplus.collections.base.collection.category.Categories;
 import com.qualityplus.collections.base.collection.executor.CollectionExecutor;
 import com.qualityplus.collections.base.collection.gui.GUIOptions;
 import com.qualityplus.collections.base.collection.rewards.CollectionsCommandRewards;
-import eu.okaeri.configs.OkaeriConfig;
-import eu.okaeri.configs.annotation.*;
-import eu.okaeri.platform.core.annotation.Configuration;
+import com.qualityplus.assistant.lib.eu.okaeri.configs.OkaeriConfig;
+import com.qualityplus.assistant.lib.eu.okaeri.platform.core.annotation.Configuration;
 import lombok.Getter;
 import lombok.Setter;
 import org.bukkit.inventory.ItemStack;
@@ -27,13 +31,18 @@ import java.util.*;
 @Header("================================")
 @Names(strategy = NameStrategy.HYPHEN_CASE, modifier = NameModifier.TO_LOWER_CASE)
 public final class CollectionsFile extends OkaeriConfig {
-    private @Exclude static final String FARMING = Categories.FARMING.getId();
-    private @Exclude static final String MINING = Categories.MINING.getId();
-    private @Exclude static final String COMBAT = Categories.COMBAT.getId();
-    private @Exclude static final String FORAGING = Categories.FORAGING.getId();
-    private @Exclude static final String FISHING = Categories.FISHING.getId();
+    @Exclude
+    private  static final String FARMING = Categories.FARMING.getId();
+    @Exclude
+    private static final String MINING = Categories.MINING.getId();
+    @Exclude
+    private static final String COMBAT = Categories.COMBAT.getId();
+    @Exclude
+    private static final String FORAGING = Categories.FORAGING.getId();
+    @Exclude
+    private static final String FISHING = Categories.FISHING.getId();
 
-    public List<Collection> collections = ListBuilder.of(new ArrayList<Collection>())
+    public List<Collection> collections = new ListBuilder<Collection>()
             .with(getFarmingCategory())
             .with(getMiningCollection())
             .with(getCombatCollections())

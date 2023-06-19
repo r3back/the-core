@@ -1,6 +1,6 @@
 package com.qualityplus.pets.base.config.pet;
 
-import com.cryptomorin.xseries.XMaterial;
+import com.qualityplus.assistant.lib.com.cryptomorin.xseries.XMaterial;
 import com.qualityplus.assistant.api.common.rewards.commands.CommandRewards;
 import com.qualityplus.assistant.util.faster.FastMap;
 import com.qualityplus.pets.base.pet.Pet;
@@ -10,12 +10,12 @@ import com.qualityplus.pets.base.pet.entity.PetEntityOptions;
 import com.qualityplus.pets.base.pet.level.PetLevel;
 import com.qualityplus.pets.base.pet.potion.PetPotion;
 import com.qualityplus.pets.base.rewards.StatReward;
-import eu.okaeri.configs.OkaeriConfig;
-import eu.okaeri.configs.annotation.Header;
-import eu.okaeri.configs.annotation.NameModifier;
-import eu.okaeri.configs.annotation.NameStrategy;
-import eu.okaeri.configs.annotation.Names;
-import eu.okaeri.platform.core.annotation.Configuration;
+import com.qualityplus.assistant.lib.eu.okaeri.configs.OkaeriConfig;
+import com.qualityplus.assistant.lib.eu.okaeri.configs.annotation.Header;
+import com.qualityplus.assistant.lib.eu.okaeri.configs.annotation.NameModifier;
+import com.qualityplus.assistant.lib.eu.okaeri.configs.annotation.NameStrategy;
+import com.qualityplus.assistant.lib.eu.okaeri.configs.annotation.Names;
+import com.qualityplus.assistant.lib.eu.okaeri.platform.core.annotation.Configuration;
 import lombok.Getter;
 
 import java.util.Arrays;

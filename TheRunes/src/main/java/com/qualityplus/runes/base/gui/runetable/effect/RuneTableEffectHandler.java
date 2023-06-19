@@ -7,7 +7,7 @@ import com.qualityplus.assistant.util.inventory.InventoryUtils;
 import com.qualityplus.assistant.util.itemstack.ItemStackUtils;
 import com.qualityplus.assistant.util.placeholder.Placeholder;
 import com.qualityplus.assistant.util.time.Markable;
-import com.qualityplus.assistant.util.time.Timer;
+import com.qualityplus.assistant.util.time.HumanTime;
 import com.qualityplus.runes.TheRunes;
 import com.qualityplus.runes.api.box.Box;
 import com.qualityplus.runes.api.session.RuneSession;
@@ -107,7 +107,7 @@ public final class RuneTableEffectHandler implements EffectHandler<RuneTableGUI>
 
         RuneTableEffects standEffects = box.files().inventories().runeTableGUIConfig.getRuneTableEffects();
 
-        this.time = new Markable(new Timer(4, Timer.TimeType.SECONDS).getEffectiveTime(), System.currentTimeMillis());
+        this.time = new Markable(new HumanTime(4, HumanTime.TimeType.SECONDS).getEffectiveTime(), System.currentTimeMillis());
 
         this.tasksMap.put(uuid, Bukkit.getScheduler().runTaskTimer(box.plugin(), () -> {
             if(time.remainingTime() > 0){

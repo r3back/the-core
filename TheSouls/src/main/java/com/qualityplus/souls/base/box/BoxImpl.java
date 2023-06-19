@@ -1,12 +1,13 @@
 package com.qualityplus.souls.base.box;
 
+import com.qualityplus.assistant.lib.eu.okaeri.injector.annotation.Inject;
 import com.qualityplus.souls.api.box.Box;
 import com.qualityplus.souls.api.config.ConfigFiles;
 import com.qualityplus.souls.api.service.SoulsService;
 import com.qualityplus.souls.base.config.*;
 import com.qualityplus.souls.persistance.SoulsRepository;
 
-import eu.okaeri.platform.core.annotation.Component;
+import com.qualityplus.assistant.lib.eu.okaeri.platform.core.annotation.Component;
 import org.bukkit.plugin.Plugin;
 
 @Component

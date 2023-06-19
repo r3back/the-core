@@ -1,9 +1,14 @@
 package com.qualityplus.auction.base.config;
 
-import com.cryptomorin.xseries.XMaterial;
+import com.qualityplus.assistant.lib.com.cryptomorin.xseries.XMaterial;
 import com.qualityplus.assistant.inventory.CommonGUI;
 import com.qualityplus.assistant.inventory.background.Background;
 import com.qualityplus.assistant.inventory.background.DefaultBackgrounds;
+import com.qualityplus.assistant.lib.eu.okaeri.configs.annotation.CustomKey;
+import com.qualityplus.assistant.lib.eu.okaeri.configs.annotation.Header;
+import com.qualityplus.assistant.lib.eu.okaeri.configs.annotation.NameModifier;
+import com.qualityplus.assistant.lib.eu.okaeri.configs.annotation.NameStrategy;
+import com.qualityplus.assistant.lib.eu.okaeri.configs.annotation.Names;
 import com.qualityplus.assistant.util.itemstack.ItemBuilder;
 import com.qualityplus.auction.base.gui.all.AllAuctionsGUIConfig;
 import com.qualityplus.auction.base.gui.confirm.ConfirmAuctionGUIConfig;
@@ -15,9 +20,8 @@ import com.qualityplus.auction.base.gui.stats.AuctionStatsGUIConfig;
 import com.qualityplus.auction.base.gui.time.AuctionTimeConfigGUI;
 import com.qualityplus.auction.base.gui.view.bin.BinAuctionViewGUIConfig;
 import com.qualityplus.auction.base.gui.view.normal.NormalAuctionViewGUIConfig;
-import eu.okaeri.configs.OkaeriConfig;
-import eu.okaeri.configs.annotation.*;
-import eu.okaeri.platform.core.annotation.Configuration;
+import com.qualityplus.assistant.lib.eu.okaeri.configs.OkaeriConfig;
+import com.qualityplus.assistant.lib.eu.okaeri.platform.core.annotation.Configuration;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -65,7 +69,7 @@ public final class Inventories extends OkaeriConfig implements DefaultBackground
             .commonGUI(new CommonGUI(
                     "Manage Auctions",
                     36,
-                    getBackGround5(),
+                    getBackgroundWith4RowsDecoratedAround(),
                     ItemBuilder.of(XMaterial.BARRIER,  31, 1, "&cClose", Arrays.asList("", "&e» &7Click to close")).enabled(false).build()
             ))
             .auctionItem(ItemBuilder.of(XMaterial.STONE, 1, "&f%auction_item_name%",
@@ -110,7 +114,7 @@ public final class Inventories extends OkaeriConfig implements DefaultBackground
             .commonGUI(new CommonGUI(
                     "Your bids",
                     36,
-                    getBackGround5(),
+                    getBackgroundWith4RowsDecoratedAround(),
                     ItemBuilder.of(XMaterial.BARRIER,  31, 1, "&cClose", Arrays.asList("", "&e» &7Click to close")).enabled(false).build()
             ))
             .auctionItem(ItemBuilder.of(XMaterial.STONE, 1, "&f%auction_item_name%",

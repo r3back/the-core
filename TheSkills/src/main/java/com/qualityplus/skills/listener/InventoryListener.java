@@ -1,7 +1,7 @@
 package com.qualityplus.skills.listener;
 
 import com.qualityplus.skills.gui.SkillsGUI;
-import eu.okaeri.platform.core.annotation.Component;
+import com.qualityplus.assistant.lib.eu.okaeri.platform.core.annotation.Component;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;

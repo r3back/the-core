@@ -1,9 +1,9 @@
 package com.qualityplus.bank.base.upgrade;
 
-import com.cryptomorin.xseries.XMaterial;
+import com.qualityplus.assistant.lib.com.cryptomorin.xseries.XMaterial;
 import com.qualityplus.assistant.payable.ItemPayable;
 import com.qualityplus.bank.api.gui.GUIDisplayItem;
-import eu.okaeri.configs.OkaeriConfig;
+import com.qualityplus.assistant.lib.eu.okaeri.configs.OkaeriConfig;
 import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;

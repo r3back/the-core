@@ -1,12 +1,13 @@
 package com.qualityplus.bank.listener;
 
+import com.qualityplus.assistant.lib.eu.okaeri.injector.annotation.Inject;
+import com.qualityplus.assistant.lib.eu.okaeri.tasker.core.Tasker;
 import com.qualityplus.bank.api.box.Box;
 import com.qualityplus.bank.base.upgrade.BankUpgrade;
 import com.qualityplus.bank.persistence.data.BankData;
 
-import eu.okaeri.persistence.document.Document;
-import eu.okaeri.platform.core.annotation.Component;
-import eu.okaeri.tasker.core.Tasker;
+import com.qualityplus.assistant.lib.eu.okaeri.persistence.document.Document;
+import com.qualityplus.assistant.lib.eu.okaeri.platform.core.annotation.Component;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;

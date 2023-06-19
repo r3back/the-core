@@ -5,7 +5,7 @@ import com.qualityplus.collections.base.collection.executor.CollectionExecutor;
 import com.qualityplus.collections.base.collection.gui.GUIOptions;
 import com.qualityplus.collections.base.collection.registry.CollectionsRegistry;
 import com.qualityplus.collections.base.collection.rewards.CollectionsCommandRewards;
-import eu.okaeri.configs.OkaeriConfig;
+import com.qualityplus.assistant.lib.eu.okaeri.configs.OkaeriConfig;
 import lombok.*;
 
 import java.util.ArrayList;

@@ -23,7 +23,6 @@ project.ext.copyJars = copyJars
 
 subprojects {
     apply plugin: 'java'
-    //apply plugin: 'checkstyle'
     apply plugin: 'maven-publish'
 
     sourceCompatibility = 1.8
@@ -43,14 +42,24 @@ subprojects {
         mavenCentral()
 
         maven { url 'https://jitpack.io' }
+
+        maven {
+            url 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/'
+        }
+
+        maven {
+            url 'https://papermc.io/repo/repository/maven-public/'
+        }
     }
 
     dependencies {
         implementation("org.jetbrains:annotations:22.0.0")
 
         compileOnly("org.projectlombok:lombok:1.18.22")
-
-        compileOnly 'com.github.r3back:the-assistant:3.2.1'
+        compileOnly 'com.github.r3back:the-assistant:3.2.5'
+        //These both are temporal until jar class loader be added
+        compileOnly 'io.lettuce:lettuce-core:6.1.1.RELEASE'
+        compileOnly 'org.mongodb:mongo-java-driver:3.12.10'
 
         // Enable lombok annotation processing
         annotationProcessor("org.projectlombok:lombok:1.18.22")

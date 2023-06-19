@@ -1,9 +1,9 @@
 package com.qualityplus.skills.base.perk.perks;
 
 import com.qualityplus.assistant.util.StringUtils;
-import com.qualityplus.assistant.util.math.MathUtils;
 import com.qualityplus.assistant.util.placeholder.Placeholder;
 import com.qualityplus.assistant.util.placeholder.PlaceholderBuilder;
+import com.qualityplus.assistant.util.random.RandomUtil;
 import com.qualityplus.skills.base.perk.Perk;
 import com.qualityplus.skills.base.skill.gui.GUIOptions;
 import lombok.Builder;
@@ -40,7 +40,7 @@ public final class MiningSpeedPerk extends Perk {
 
         int level = getStat(player);
 
-        if (MathUtils.randomBetween(0.0, 100.0) >= chancePerLevel * level)
+        if (RandomUtil.randomBetween(0.0, 100.0) >= chancePerLevel * level)
             return;
 
         int duration = getDuration(level) * 20;

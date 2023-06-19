@@ -1,6 +1,6 @@
 package com.qualityplus.skills.converter;
 
-import com.cryptomorin.xseries.XMaterial;
+import com.qualityplus.assistant.lib.com.cryptomorin.xseries.XMaterial;
 import com.qualityplus.assistant.api.common.rewards.commands.CommandReward;
 import com.qualityplus.assistant.okaeri.OkaeriSilentPlugin;
 import com.qualityplus.skills.api.box.Box;
@@ -8,7 +8,7 @@ import com.qualityplus.skills.base.config.common.BaseFile;
 import com.qualityplus.skills.base.config.skills.SkillFile;
 import com.qualityplus.skills.base.reward.StatReward;
 import com.qualityplus.skills.base.skill.gui.GUIOptions;
-import eu.okaeri.configs.OkaeriConfig;
+import com.qualityplus.assistant.lib.eu.okaeri.configs.OkaeriConfig;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.bukkit.configuration.ConfigurationSection;

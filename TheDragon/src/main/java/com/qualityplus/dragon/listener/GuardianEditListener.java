@@ -1,5 +1,7 @@
 package com.qualityplus.dragon.listener;
 
+import com.qualityplus.assistant.lib.eu.okaeri.injector.annotation.Inject;
+import com.qualityplus.assistant.lib.eu.okaeri.platform.bukkit.scheduler.PlatformScheduler;
 import com.qualityplus.assistant.util.StringUtils;
 import com.qualityplus.dragon.api.box.Box;
 import com.qualityplus.dragon.api.service.GuardianEditService;
@@ -8,8 +10,7 @@ import com.qualityplus.dragon.base.game.guardian.DragonGuardian;
 import com.qualityplus.dragon.base.service.GuardianEditServiceImpl.EditType;
 import com.qualityplus.dragon.gui.guardian.GuardianGUI;
 
-import eu.okaeri.platform.bukkit.scheduler.PlatformScheduler;
-import eu.okaeri.platform.core.annotation.Component;
+import com.qualityplus.assistant.lib.eu.okaeri.platform.core.annotation.Component;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;

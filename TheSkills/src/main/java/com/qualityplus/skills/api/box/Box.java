@@ -1,5 +1,6 @@
 package com.qualityplus.skills.api.box;
 
+import com.qualityplus.assistant.lib.eu.okaeri.injector.OkaeriInjector;
 import com.qualityplus.skills.api.config.ConfigFiles;
 import com.qualityplus.skills.api.config.PerkFiles;
 import com.qualityplus.skills.api.config.SkillFiles;
@@ -13,7 +14,6 @@ import com.qualityplus.skills.base.config.Messages;
 import com.qualityplus.skills.base.config.perk.*;
 import com.qualityplus.skills.base.config.skills.*;
 import com.qualityplus.skills.base.config.stat.*;
-import eu.okaeri.injector.OkaeriInjector;
 import org.bukkit.plugin.Plugin;
 
 import java.util.logging.Logger;

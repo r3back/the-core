@@ -1,7 +1,8 @@
 package com.qualityplus.skills.base.perk;
 
+import com.qualityplus.assistant.api.util.MathUtil;
 import com.qualityplus.assistant.util.StringUtils;
-import com.qualityplus.assistant.util.math.MathUtils;
+import com.qualityplus.assistant.util.number.NumberUtil;
 import com.qualityplus.assistant.util.placeholder.Placeholder;
 import com.qualityplus.assistant.util.placeholder.PlaceholderBuilder;
 import com.qualityplus.skills.TheSkills;
@@ -15,7 +16,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.bukkit.entity.Player;
-import org.bukkit.event.Listener;
 
 import java.util.List;
 
@@ -58,8 +58,8 @@ public abstract class Perk extends CommonObject implements ListenerRegistrable {
 
     protected PlaceholderBuilder getPlaceholders(int level){
         return PlaceholderBuilder.create()
-                .with(new Placeholder("level_number", level), new Placeholder("level_roman", MathUtils.toRoman(level)))
-                .with(new Placeholder("percent", MathUtils.round(getChancePerLevel() * level)));
+                .with(new Placeholder("level_number", level), new Placeholder("level_roman", NumberUtil.toRoman(level)))
+                .with(new Placeholder("percent", MathUtil.round(getChancePerLevel() * level)));
     }
 
 }

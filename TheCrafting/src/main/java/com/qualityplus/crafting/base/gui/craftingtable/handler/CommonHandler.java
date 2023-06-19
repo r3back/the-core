@@ -2,7 +2,7 @@ package com.qualityplus.crafting.base.gui.craftingtable.handler;
 
 import com.qualityplus.assistant.api.util.BukkitItemUtil;
 import com.qualityplus.crafting.base.recipes.CustomRecipe;
-import de.tr7zw.changeme.nbtapi.NBTItem;
+import com.qualityplus.assistant.lib.de.tr7zw.changeme.nbtapi.NBTItem;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 

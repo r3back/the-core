@@ -1,20 +1,22 @@
 package com.qualityplus.skills;
 
+import com.qualityplus.assistant.lib.eu.okaeri.injector.annotation.Inject;
 import com.qualityplus.skills.api.TheSkillsAPI;
 import com.qualityplus.skills.api.box.Box;
 import com.qualityplus.skills.converter.TheSkillsConverterPlugin;
 import com.qualityplus.skills.persistance.data.UserData;
 
-import eu.okaeri.platform.core.annotation.Scan;
-import eu.okaeri.platform.core.plan.ExecutionPhase;
-import eu.okaeri.platform.core.plan.Planned;
+import com.qualityplus.assistant.lib.eu.okaeri.platform.core.annotation.Scan;
+import com.qualityplus.assistant.lib.eu.okaeri.platform.core.plan.ExecutionPhase;
+import com.qualityplus.assistant.lib.eu.okaeri.platform.core.plan.Planned;
 import lombok.Getter;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
 @Scan(deep = true)
 public final class TheSkills extends TheSkillsConverterPlugin {
-    private static @Inject @Getter TheSkillsAPI api;
+    private static @Inject
+    @Getter TheSkillsAPI api;
 
     @Override
     @Planned(ExecutionPhase.POST_SETUP)

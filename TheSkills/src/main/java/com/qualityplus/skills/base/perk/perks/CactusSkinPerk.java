@@ -2,9 +2,9 @@ package com.qualityplus.skills.base.perk.perks;
 
 import com.qualityplus.assistant.base.event.PlayerDamagedByEntityEvent;
 import com.qualityplus.assistant.util.StringUtils;
-import com.qualityplus.assistant.util.math.MathUtils;
 import com.qualityplus.assistant.util.placeholder.Placeholder;
 import com.qualityplus.assistant.util.placeholder.PlaceholderBuilder;
+import com.qualityplus.assistant.util.random.RandomUtil;
 import com.qualityplus.skills.base.perk.Perk;
 import com.qualityplus.skills.base.skill.gui.GUIOptions;
 import lombok.Builder;
@@ -37,7 +37,7 @@ public final class CactusSkinPerk extends Perk {
     public void handlePerk(PlayerDamagedByEntityEvent e) {
         Player p = e.getPlayer();
 
-        if (MathUtils.randomBetween(0.0, 100.0) >= getChancePerLevel() * getStat(p))
+        if (RandomUtil.randomBetween(0.0, 100.0) >= getChancePerLevel() * getStat(p))
             return;
 
         double toDamage = damage(getStat(p));

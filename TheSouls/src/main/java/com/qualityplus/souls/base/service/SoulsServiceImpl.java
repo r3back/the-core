@@ -1,8 +1,8 @@
 package com.qualityplus.souls.base.service;
 
+import com.qualityplus.assistant.lib.eu.okaeri.platform.core.annotation.Component;
 import com.qualityplus.souls.api.service.SoulsService;
 import com.qualityplus.souls.persistance.data.SoulsData;
-import eu.okaeri.platform.core.annotation.Component;
 
 import java.util.HashMap;
 import java.util.Map;

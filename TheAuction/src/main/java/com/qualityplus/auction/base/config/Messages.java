@@ -1,13 +1,13 @@
 package com.qualityplus.auction.base.config;
 
 import com.google.common.collect.ImmutableMap;
-import com.qualityplus.assistant.util.time.Timer;
-import eu.okaeri.configs.OkaeriConfig;
-import eu.okaeri.configs.annotation.Header;
-import eu.okaeri.configs.annotation.NameModifier;
-import eu.okaeri.configs.annotation.NameStrategy;
-import eu.okaeri.configs.annotation.Names;
-import eu.okaeri.platform.core.annotation.Configuration;
+import com.qualityplus.assistant.util.time.HumanTime;
+import com.qualityplus.assistant.lib.eu.okaeri.configs.OkaeriConfig;
+import com.qualityplus.assistant.lib.eu.okaeri.configs.annotation.Header;
+import com.qualityplus.assistant.lib.eu.okaeri.configs.annotation.NameModifier;
+import com.qualityplus.assistant.lib.eu.okaeri.configs.annotation.NameStrategy;
+import com.qualityplus.assistant.lib.eu.okaeri.configs.annotation.Names;
+import com.qualityplus.assistant.lib.eu.okaeri.platform.core.annotation.Configuration;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -48,11 +48,11 @@ public final class Messages extends OkaeriConfig {
         public String noTimeFormat = "&b-";
         public boolean showNoTimeSymbol = true;
 
-        public Map<Timer.TimeType, String> timeFormat = ImmutableMap.<Timer.TimeType, String>builder()
-                .put(Timer.TimeType.DAYS, "Days")
-                .put(Timer.TimeType.MINUTES, "Minutes")
-                .put(Timer.TimeType.SECONDS, "Seconds")
-                .put(Timer.TimeType.HOURS, "Hours")
+        public Map<HumanTime.TimeType, String> timeFormat = ImmutableMap.<HumanTime.TimeType, String>builder()
+                .put(HumanTime.TimeType.DAYS, "Days")
+                .put(HumanTime.TimeType.MINUTES, "Minutes")
+                .put(HumanTime.TimeType.SECONDS, "Seconds")
+                .put(HumanTime.TimeType.HOURS, "Hours")
                 .build();
 
         public String invalidAmount = "&cInvalid Amount";

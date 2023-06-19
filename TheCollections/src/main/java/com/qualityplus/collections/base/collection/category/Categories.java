@@ -1,6 +1,6 @@
 package com.qualityplus.collections.base.collection.category;
 
-import com.cryptomorin.xseries.XMaterial;
+import com.qualityplus.assistant.lib.com.cryptomorin.xseries.XMaterial;
 import com.qualityplus.collections.base.collection.gui.GUIOptions;
 import lombok.Getter;
 

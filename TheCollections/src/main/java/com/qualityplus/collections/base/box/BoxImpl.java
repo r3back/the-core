@@ -1,11 +1,12 @@
 package com.qualityplus.collections.base.box;
 
+import com.qualityplus.assistant.lib.eu.okaeri.injector.annotation.Inject;
 import com.qualityplus.collections.api.box.Box;
 import com.qualityplus.collections.api.config.ConfigFiles;
 import com.qualityplus.collections.api.service.CollectionsService;
 import com.qualityplus.collections.base.config.*;
 
-import eu.okaeri.platform.core.annotation.Component;
+import com.qualityplus.assistant.lib.eu.okaeri.platform.core.annotation.Component;
 import org.bukkit.plugin.Plugin;
 
 @Component

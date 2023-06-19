@@ -1,6 +1,6 @@
 package com.qualityplus.pets.base.gui;
 
-import com.cryptomorin.xseries.XMaterial;
+import com.qualityplus.assistant.lib.com.cryptomorin.xseries.XMaterial;
 import com.qualityplus.assistant.api.util.IPlaceholder;
 import com.qualityplus.assistant.inventory.GUI;
 import com.qualityplus.assistant.inventory.Item;

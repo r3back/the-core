@@ -7,7 +7,6 @@ dependencies {
 
     compileOnly 'com.google.guava:guava:31.0.1-jre'
 
-    compileOnly 'com.github.r3back:the-assistant:3.2.1'
 }
 
 processResources{

@@ -8,7 +8,7 @@ import com.qualityplus.skills.base.skill.Skill;
 import com.qualityplus.skills.persistance.data.UserData;
 import com.qualityplus.skills.persistance.data.user.UserSkills;
 import com.qualityplus.skills.util.SkillsPlayerUtil;
-import eu.okaeri.platform.core.annotation.Component;
+import com.qualityplus.assistant.lib.eu.okaeri.platform.core.annotation.Component;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 

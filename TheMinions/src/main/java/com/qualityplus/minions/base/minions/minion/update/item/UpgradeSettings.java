@@ -1,6 +1,6 @@
 package com.qualityplus.minions.base.minions.minion.update.item;
 
-import eu.okaeri.configs.OkaeriConfig;
+import com.qualityplus.assistant.lib.eu.okaeri.configs.OkaeriConfig;
 import lombok.*;
 
 @Data

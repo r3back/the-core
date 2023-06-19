@@ -1,11 +1,11 @@
 package com.qualityplus.skills.base.perk.perks;
 
-import com.cryptomorin.xseries.XPotion;
+import com.qualityplus.assistant.lib.com.cryptomorin.xseries.XPotion;
 import com.qualityplus.assistant.util.StringUtils;
-import com.qualityplus.assistant.util.math.MathUtils;
 import com.qualityplus.assistant.util.placeholder.Placeholder;
 import com.qualityplus.assistant.util.random.EasyRandom;
 import com.qualityplus.assistant.util.random.RandomSelector;
+import com.qualityplus.assistant.util.random.RandomUtil;
 import com.qualityplus.skills.base.perk.Perk;
 import com.qualityplus.skills.base.skill.gui.GUIOptions;
 import lombok.Builder;
@@ -49,7 +49,7 @@ public final class BrewChancePerk extends Perk {
 
         Player p = e.getPlayer();
 
-        if (MathUtils.randomBetween(0.0, 100.0) >= chancePerLevel * getStat(p))
+        if (RandomUtil.randomBetween(0.0, 100.0) >= chancePerLevel * getStat(p))
             return;
 
         getRandom(p).ifPresent(p::addPotionEffect);

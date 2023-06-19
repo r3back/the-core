@@ -1,31 +1,32 @@
 package com.qualityplus.minions.base.factory;
 
-import com.mongodb.MongoClient;
+import com.qualityplus.assistant.lib.com.mongodb.client.MongoClient;
 import com.mongodb.MongoClientURI;
 import com.qualityplus.assistant.api.config.ConfigDatabase;
 import com.qualityplus.assistant.api.config.DatabaseType;
-import com.qualityplus.assistant.api.database.HikariDatabaseHelper;
+import com.qualityplus.assistant.api.database.HikariConfiguration;
+import com.qualityplus.assistant.lib.eu.okaeri.injector.annotation.Inject;
 import com.qualityplus.minions.base.config.Config;
-import eu.okaeri.configs.json.simple.JsonSimpleConfigurer;
-import eu.okaeri.configs.yaml.bukkit.serdes.SerdesBukkit;
+import com.qualityplus.assistant.lib.eu.okaeri.configs.json.simple.JsonSimpleConfigurer;
+import com.qualityplus.assistant.lib.eu.okaeri.configs.yaml.bukkit.serdes.SerdesBukkit;
 
-import eu.okaeri.persistence.PersistencePath;
-import eu.okaeri.persistence.document.DocumentPersistence;
-import eu.okaeri.persistence.jdbc.H2Persistence;
-import eu.okaeri.persistence.jdbc.JdbcPersistence;
-import eu.okaeri.persistence.jdbc.MariaDbPersistence;
-import eu.okaeri.persistence.mongo.MongoPersistence;
-import eu.okaeri.persistence.redis.RedisPersistence;
-import eu.okaeri.platform.bukkit.persistence.YamlBukkitPersistence;
-import eu.okaeri.platform.core.annotation.Bean;
-import eu.okaeri.platform.core.annotation.Component;
+import com.qualityplus.assistant.lib.eu.okaeri.persistence.PersistencePath;
+import com.qualityplus.assistant.lib.eu.okaeri.persistence.document.DocumentPersistence;
+import com.qualityplus.assistant.lib.eu.okaeri.persistence.jdbc.H2Persistence;
+import com.qualityplus.assistant.lib.eu.okaeri.persistence.jdbc.JdbcPersistence;
+import com.qualityplus.assistant.lib.eu.okaeri.persistence.jdbc.MariaDbPersistence;
+import com.qualityplus.assistant.lib.eu.okaeri.persistence.mongo.MongoPersistence;
+import com.qualityplus.assistant.lib.eu.okaeri.persistence.redis.RedisPersistence;
+import com.qualityplus.assistant.lib.eu.okaeri.platform.bukkit.persistence.YamlBukkitPersistence;
+import com.qualityplus.assistant.lib.eu.okaeri.platform.core.annotation.Bean;
+import com.qualityplus.assistant.lib.eu.okaeri.platform.core.annotation.Component;
 import io.lettuce.core.RedisClient;
 import io.lettuce.core.RedisURI;
 
 import java.io.File;
 
 @Component
-public final class DatabaseFactory extends HikariDatabaseHelper {
+public final class DatabaseFactory extends HikariConfiguration {
     @Bean(value = "persistence", preload = true)
     public DocumentPersistence configurePersistence(@Inject("dataFolder") File dataFolder, @Inject Config config) {
         try {
@@ -39,7 +40,7 @@ public final class DatabaseFactory extends HikariDatabaseHelper {
 
         ConfigDatabase db = config.configDatabase;
 
-        DatabaseType backend = db.type;
+        DatabaseType backend = db.getType();
 
         String h2Uri = "jdbc:h2:file:./plugins/TheMinions/storage/storage;MODE=MYSQL;DATABASE_TO_LOWER=TRUE";
 
@@ -53,8 +54,8 @@ public final class DatabaseFactory extends HikariDatabaseHelper {
             case H2:
                 return new DocumentPersistence(new H2Persistence(basePath, getH2Hikari("TheMinions")), JsonSimpleConfigurer::new, new SerdesBukkit());
             case REDIS:
-                return new DocumentPersistence(new RedisPersistence(basePath, RedisClient.create(RedisURI.create(getUri(db)))), JsonSimpleConfigurer::new, new SerdesBukkit());
-            case MONGODB:
+                return new DocumentPersistence(new RedisPersistence(basePath, RedisClient.create(RedisURI.create(parseDatabaseUrl(db)))), JsonSimpleConfigurer::new, new SerdesBukkit());
+            /*case MONGODB:
                 MongoClientURI clientURI = new MongoClientURI(getUri(db));
 
                 MongoClient mongoClient = new MongoClient(clientURI);
@@ -63,7 +64,7 @@ public final class DatabaseFactory extends HikariDatabaseHelper {
                     throw new IllegalArgumentException("Mongo URI needs to specify the database");
 
                 return new DocumentPersistence(new MongoPersistence(basePath, mongoClient, clientURI.getDatabase()), JsonSimpleConfigurer::new, new SerdesBukkit());
-            default:
+            */default:
                 throw new RuntimeException("unsupported storage backend: " + backend);
         }
     }

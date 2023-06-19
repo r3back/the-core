@@ -2,7 +2,7 @@ package com.qualityplus.minions.base.handler;
 
 import com.qualityplus.assistant.api.gui.FakeInventory;
 import com.qualityplus.assistant.api.util.BukkitItemUtil;
-import com.qualityplus.assistant.util.math.MathUtils;
+import com.qualityplus.assistant.api.util.MathUtil;
 import com.qualityplus.minions.TheMinions;
 import com.qualityplus.minions.api.handler.SellHandler;
 import com.qualityplus.minions.api.minion.MinionEntity;
@@ -58,7 +58,7 @@ public final class SellHandlerImpl implements SellHandler, LevelGetter {
                 .map(MinionAutoShipping::getPercentageOfPriceToSell)
                 .orElse(100D);
 
-        automatedShipping.addHeldCoins(MathUtils.getPercentage(sellPrice, percentage));
+        automatedShipping.addHeldCoins(MathUtil.getPercentage(sellPrice, percentage));
         automatedShipping.addSoldItems(item.getAmount());
 
         minionData.ifPresent(minionData1 -> minionData1.setItemStackList(fakeInventory.getItems()));

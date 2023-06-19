@@ -1,12 +1,13 @@
 package com.qualityplus.skills.base.config.impl;
 
+import com.qualityplus.assistant.lib.eu.okaeri.injector.annotation.Inject;
 import com.qualityplus.skills.api.config.ConfigFiles;
 import com.qualityplus.skills.base.config.Commands;
 import com.qualityplus.skills.base.config.Config;
 import com.qualityplus.skills.base.config.Inventories;
 import com.qualityplus.skills.base.config.Messages;
 
-import eu.okaeri.platform.core.annotation.Component;
+import com.qualityplus.assistant.lib.eu.okaeri.platform.core.annotation.Component;
 
 @Component
 public final class BasicFiles implements ConfigFiles<Config, Inventories, Commands, Messages> {

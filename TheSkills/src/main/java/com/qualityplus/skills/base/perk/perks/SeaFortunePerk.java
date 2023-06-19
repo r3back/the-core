@@ -1,6 +1,6 @@
 package com.qualityplus.skills.base.perk.perks;
 
-import com.qualityplus.assistant.util.math.MathUtils;
+import com.qualityplus.assistant.util.random.RandomUtil;
 import com.qualityplus.skills.base.event.EntityFortunePerkEvent;
 import com.qualityplus.skills.base.perk.perks.common.AbstractFortunePerk;
 import com.qualityplus.skills.base.skill.gui.GUIOptions;
@@ -47,7 +47,7 @@ public final class SeaFortunePerk extends AbstractFortunePerk {
         if (additional <= 0)
             return;
 
-        if (MathUtils.randomBetween(0.0, 100.0) < chance)
+        if (RandomUtil.randomBetween(0.0, 100.0) < chance)
             additional++;
 
         EntityFortunePerkEvent fortunePerkEvent = new EntityFortunePerkEvent(player, this, e.getCaught(), e.getPlayer().getLocation());

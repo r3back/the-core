@@ -1,14 +1,19 @@
 package com.qualityplus.auction.base.config;
 
-import com.cryptomorin.xseries.XMaterial;
+import com.qualityplus.assistant.lib.com.cryptomorin.xseries.XMaterial;
 import com.google.common.collect.ImmutableMap;
 import com.qualityplus.assistant.api.config.ConfigDatabase;
 import com.qualityplus.assistant.api.gui.LoreWrapper;
-import com.qualityplus.assistant.util.time.Timer;
+import com.qualityplus.assistant.lib.eu.okaeri.configs.annotation.Comment;
+import com.qualityplus.assistant.lib.eu.okaeri.configs.annotation.CustomKey;
+import com.qualityplus.assistant.lib.eu.okaeri.configs.annotation.Header;
+import com.qualityplus.assistant.lib.eu.okaeri.configs.annotation.NameModifier;
+import com.qualityplus.assistant.lib.eu.okaeri.configs.annotation.NameStrategy;
+import com.qualityplus.assistant.lib.eu.okaeri.configs.annotation.Names;
+import com.qualityplus.assistant.util.time.HumanTime;
 import com.qualityplus.auction.persistence.data.AuctionTime;
-import eu.okaeri.configs.OkaeriConfig;
-import eu.okaeri.configs.annotation.*;
-import eu.okaeri.platform.core.annotation.Configuration;
+import com.qualityplus.assistant.lib.eu.okaeri.configs.OkaeriConfig;
+import com.qualityplus.assistant.lib.eu.okaeri.platform.core.annotation.Configuration;
 
 import java.util.Map;
 
@@ -37,13 +42,13 @@ public final class Config extends OkaeriConfig {
     public LoreWrapper loreWrapper = new LoreWrapper(50, "&7");
 
     public Map<String, AuctionTime> durationPrices = ImmutableMap.<String, AuctionTime>builder()
-            .put("15s", new AuctionTime(new Timer(15, Timer.TimeType.SECONDS), 1D, XMaterial.RED_TERRACOTTA, 10))
+            .put("15s", new AuctionTime(new HumanTime(15, HumanTime.TimeType.SECONDS), 1D, XMaterial.RED_TERRACOTTA, 10))
 
-            .put("2h", new AuctionTime(new Timer(2, Timer.TimeType.HOURS), 200D, XMaterial.RED_TERRACOTTA, 11))
-            .put("6h", new AuctionTime(new Timer(6, Timer.TimeType.HOURS), 400D, XMaterial.ORANGE_TERRACOTTA, 12))
-            .put("12h", new AuctionTime(new Timer(12, Timer.TimeType.HOURS), 500D, XMaterial.YELLOW_TERRACOTTA, 13))
-            .put("18h", new AuctionTime(new Timer(18, Timer.TimeType.HOURS), 800D, XMaterial.TERRACOTTA, 14))
-            .put("24h", new AuctionTime(new Timer(24, Timer.TimeType.HOURS), 900D, XMaterial.PURPLE_TERRACOTTA, 15))
+            .put("2h", new AuctionTime(new HumanTime(2, HumanTime.TimeType.HOURS), 200D, XMaterial.RED_TERRACOTTA, 11))
+            .put("6h", new AuctionTime(new HumanTime(6, HumanTime.TimeType.HOURS), 400D, XMaterial.ORANGE_TERRACOTTA, 12))
+            .put("12h", new AuctionTime(new HumanTime(12, HumanTime.TimeType.HOURS), 500D, XMaterial.YELLOW_TERRACOTTA, 13))
+            .put("18h", new AuctionTime(new HumanTime(18, HumanTime.TimeType.HOURS), 800D, XMaterial.TERRACOTTA, 14))
+            .put("24h", new AuctionTime(new HumanTime(24, HumanTime.TimeType.HOURS), 900D, XMaterial.PURPLE_TERRACOTTA, 15))
             .build();
 
     public double startBidPrice = 500;

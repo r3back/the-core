@@ -2,7 +2,7 @@ package com.qualityplus.collections.util;
 
 import com.qualityplus.assistant.api.util.IPlaceholder;
 import com.qualityplus.assistant.util.actionbar.ActionBarUtils;
-import com.qualityplus.assistant.util.math.MathUtils;
+import com.qualityplus.assistant.util.number.NumberUtil;
 import com.qualityplus.assistant.util.placeholder.Placeholder;
 import com.qualityplus.assistant.util.placeholder.PlaceholderBuilder;
 import com.qualityplus.collections.api.box.Box;
@@ -40,9 +40,9 @@ public class CollectionsPlaceholderUtil {
                 new Placeholder("collection_displayname", skill.getDisplayName()),
                 new Placeholder("collection_description", Optional.ofNullable(skill.getDescription()).orElse(Collections.emptyList())),
 
-                new Placeholder("collection_level_roman", MathUtils.toRoman(level)),
+                new Placeholder("collection_level_roman", NumberUtil.toRoman(level)),
                 new Placeholder("collection_level_number", level),
-                new Placeholder("collection_next_level_roman", MathUtils.toRoman(level + 1)),
+                new Placeholder("collection_next_level_roman", NumberUtil.toRoman(level + 1)),
                 new Placeholder("collection_next_level_number", level + 1),
 
                 new Placeholder("collection_level_progress", percentage),
@@ -55,7 +55,9 @@ public class CollectionsPlaceholderUtil {
     public PlaceholderBuilder getCategoryPlaceholders(UserData userData, CollectionCategory category) {
         List<Collection> collections = new ArrayList<>(CollectionsRegistry.getByCategory(category));
 
-        double xp = collections.stream().filter(collection -> userData.getCollections().getXp(collection.getId()) > 0).count();
+        double xp = collections.stream()
+                .filter(collection -> userData.getCollections().getXp(collection.getId()) > 0)
+                .count();
         double maxXp = collections.size();
         double percentage = ActionBarUtils.getPercentageFromTotal(xp, maxXp);
 
@@ -71,7 +73,9 @@ public class CollectionsPlaceholderUtil {
     public Placeholder getCategoryStatePlaceholder(UserData userData, CollectionCategory category, Box box){
         List<Collection> collections = new ArrayList<>(CollectionsRegistry.getByCategory(category));
 
-        double xp = collections.stream().filter(collection -> userData.getCollections().getXp(collection.getId()) > 0).count();
+        double xp = collections.stream()
+                .filter(collection -> userData.getCollections().getXp(collection.getId()) > 0)
+                .count();
         double maxXp = collections.size();
 
         String value = xp >= maxXp ? box.files().messages().collectionsPlaceholders.isMaxedOutPlaceholder : box.files().messages().collectionsPlaceholders.unlockedPlaceholder;

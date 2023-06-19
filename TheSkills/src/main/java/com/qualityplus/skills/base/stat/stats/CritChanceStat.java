@@ -2,9 +2,11 @@ package com.qualityplus.skills.base.stat.stats;
 
 import com.qualityplus.assistant.api.util.IPlaceholder;
 import com.qualityplus.assistant.util.StringUtils;
-import com.qualityplus.assistant.util.math.MathUtils;
+import com.qualityplus.assistant.api.util.MathUtil;
+import com.qualityplus.assistant.util.number.NumberUtil;
 import com.qualityplus.assistant.util.placeholder.Placeholder;
 import com.qualityplus.assistant.util.placeholder.PlaceholderBuilder;
+import com.qualityplus.assistant.util.random.RandomUtil;
 import com.qualityplus.skills.base.skill.gui.GUIOptions;
 import com.qualityplus.skills.base.stat.Stat;
 import com.qualityplus.skills.base.stat.registry.Stats;
@@ -40,7 +42,7 @@ public final class CritChanceStat extends Stat {
 
         Player player = (Player) e.getDamager();
 
-        double randomNumber = MathUtils.randomBetween(0.0, 100.0);
+        double randomNumber = RandomUtil.randomBetween(0.0, 100.0);
         double playerChance = chancePerLevel * getStat(player);
 
         if (randomNumber >= playerChance)
@@ -73,7 +75,7 @@ public final class CritChanceStat extends Stat {
     public List<String> getFormattedDescription(int level) {
         List<IPlaceholder> placeholders = PlaceholderBuilder.create()
                 .with(new Placeholder("level_number", level),
-                        new Placeholder("level_roman", MathUtils.toRoman(level)),
+                        new Placeholder("level_roman", NumberUtil.toRoman(level)),
                         new Placeholder("chance", chancePerLevel * level)
                 ).get();
         return StringUtils.processMulti(description, placeholders);

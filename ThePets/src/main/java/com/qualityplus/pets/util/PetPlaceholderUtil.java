@@ -1,7 +1,7 @@
 package com.qualityplus.pets.util;
 
 import com.qualityplus.assistant.util.actionbar.ActionBarUtils;
-import com.qualityplus.assistant.util.math.MathUtils;
+import com.qualityplus.assistant.util.number.NumberUtil;
 import com.qualityplus.assistant.util.placeholder.Placeholder;
 import com.qualityplus.assistant.util.placeholder.PlaceholderBuilder;
 import com.qualityplus.pets.ThePets;
@@ -81,7 +81,7 @@ public class PetPlaceholderUtil {
 
         return PlaceholderBuilder.create(
                 new Placeholder("pet_level_number", level),
-                new Placeholder("pet_level_roman", MathUtils.toRoman(level)),
+                new Placeholder("pet_level_roman", NumberUtil.toRoman(level)),
 
                 new Placeholder("pet_level_progress", percentage),
                 new Placeholder("pet_action_bar", ActionBarUtils.getReplacedBar(percentage)),
@@ -105,7 +105,7 @@ public class PetPlaceholderUtil {
 
         return PlaceholderBuilder.create(
                 new Placeholder("pet_level_number", level),
-                new Placeholder("pet_level_roman", MathUtils.toRoman(level)),
+                new Placeholder("pet_level_roman", NumberUtil.toRoman(level)),
                 new Placeholder("pet_level_progress", percentage),
                 new Placeholder("pet_action_bar", ActionBarUtils.getReplacedBar(percentage)),
                 new Placeholder("pet_description_chat", pet.map(p -> p.getPetCachedMessage(level)).orElse(Collections.emptyList())),

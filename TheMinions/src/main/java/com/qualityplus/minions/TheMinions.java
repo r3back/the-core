@@ -1,9 +1,11 @@
 package com.qualityplus.minions;
 
-import com.cryptomorin.xseries.XMaterial;
+import com.qualityplus.assistant.lib.com.cryptomorin.xseries.XMaterial;
 import com.qualityplus.assistant.TheAssistantPlugin;
 import com.qualityplus.assistant.api.addons.WorldManagerAddon;
 import com.qualityplus.assistant.api.addons.response.ChunkCheckResponse;
+import com.qualityplus.assistant.lib.eu.okaeri.injector.OkaeriInjector;
+import com.qualityplus.assistant.lib.eu.okaeri.injector.annotation.Inject;
 import com.qualityplus.assistant.okaeri.OkaeriSilentPlugin;
 import com.qualityplus.minions.api.TheMinionsAPI;
 import com.qualityplus.minions.api.box.Box;
@@ -22,13 +24,12 @@ import com.qualityplus.minions.persistance.MinionsRepository;
 import com.qualityplus.minions.persistance.data.MinionData;
 import com.qualityplus.minions.persistance.data.UserData;
 import com.qualityplus.minions.util.MinionAnimationUtil;
-import eu.okaeri.injector.OkaeriInjector;
 
-import eu.okaeri.persistence.document.Document;
-import eu.okaeri.platform.bukkit.annotation.Delayed;
-import eu.okaeri.platform.core.annotation.Scan;
-import eu.okaeri.platform.core.plan.ExecutionPhase;
-import eu.okaeri.platform.core.plan.Planned;
+import com.qualityplus.assistant.lib.eu.okaeri.persistence.document.Document;
+import com.qualityplus.assistant.lib.eu.okaeri.platform.bukkit.annotation.Delayed;
+import com.qualityplus.assistant.lib.eu.okaeri.platform.core.annotation.Scan;
+import com.qualityplus.assistant.lib.eu.okaeri.platform.core.plan.ExecutionPhase;
+import com.qualityplus.assistant.lib.eu.okaeri.platform.core.plan.Planned;
 import lombok.Getter;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -45,7 +46,8 @@ import java.util.logging.Logger;
 
 @Scan(deep = true)
 public final class TheMinions extends OkaeriSilentPlugin {
-    private static @Inject @Getter TheMinionsAPI api;
+    private static @Inject
+    @Getter TheMinionsAPI api;
     private static TheMinions INSTANCE;
 
     public static TheMinions getInstance() {

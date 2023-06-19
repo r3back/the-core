@@ -1,13 +1,14 @@
 package com.qualityplus.pets.listener.manager;
 
 import com.qualityplus.assistant.TheAssistantPlugin;
+import com.qualityplus.assistant.lib.eu.okaeri.injector.OkaeriInjector;
+import com.qualityplus.assistant.lib.eu.okaeri.injector.annotation.Inject;
 import com.qualityplus.pets.listener.BlockBreakListener;
 import com.qualityplus.pets.listener.skills.SkillsListener;
-import eu.okaeri.commons.bukkit.time.MinecraftTimeEquivalent;
-import eu.okaeri.injector.OkaeriInjector;
+import com.qualityplus.assistant.lib.eu.okaeri.commons.bukkit.time.MinecraftTimeEquivalent;;
 
-import eu.okaeri.platform.bukkit.annotation.Delayed;
-import eu.okaeri.platform.core.annotation.Component;
+import com.qualityplus.assistant.lib.eu.okaeri.platform.bukkit.annotation.Delayed;
+import com.qualityplus.assistant.lib.eu.okaeri.platform.core.annotation.Component;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginManager;

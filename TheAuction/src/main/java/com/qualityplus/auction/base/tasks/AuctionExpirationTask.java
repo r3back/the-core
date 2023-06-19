@@ -1,12 +1,13 @@
 package com.qualityplus.auction.base.tasks;
 
+import com.qualityplus.assistant.lib.eu.okaeri.injector.annotation.Inject;
 import com.qualityplus.auction.api.box.Box;
 import com.qualityplus.auction.persistence.data.AuctionBid;
 import com.qualityplus.auction.persistence.data.AuctionItem;
 import com.qualityplus.auction.persistence.data.User;
-import eu.okaeri.commons.bukkit.time.MinecraftTimeEquivalent;
+import com.qualityplus.assistant.lib.eu.okaeri.commons.bukkit.time.MinecraftTimeEquivalent;;
 
-import eu.okaeri.platform.bukkit.annotation.Scheduled;
+import com.qualityplus.assistant.lib.eu.okaeri.platform.bukkit.annotation.Scheduled;
 
 import java.util.Comparator;
 import java.util.Optional;

@@ -2,11 +2,12 @@ package com.qualityplus.runes.listener;
 
 import com.qualityplus.assistant.api.util.BukkitItemUtil;
 import com.qualityplus.assistant.base.event.PlayerKillEvent;
+import com.qualityplus.assistant.lib.eu.okaeri.injector.annotation.Inject;
 import com.qualityplus.runes.api.provider.EffectProvider;
 import com.qualityplus.runes.api.session.RuneInstance;
 import com.qualityplus.runes.util.RunesUtils;
 
-import eu.okaeri.platform.core.annotation.Component;
+import com.qualityplus.assistant.lib.eu.okaeri.platform.core.annotation.Component;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;

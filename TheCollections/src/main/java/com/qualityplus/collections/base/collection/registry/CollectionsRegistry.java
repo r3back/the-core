@@ -1,15 +1,16 @@
 package com.qualityplus.collections.base.collection.registry;
 
-import com.cryptomorin.xseries.XMaterial;
+import com.qualityplus.assistant.lib.com.cryptomorin.xseries.XMaterial;
 import com.google.common.collect.ImmutableSet;
+import com.qualityplus.assistant.lib.eu.okaeri.injector.annotation.Inject;
 import com.qualityplus.collections.api.box.Box;
 import com.qualityplus.collections.base.collection.Collection;
 import com.qualityplus.collections.base.collection.category.CollectionCategory;
 import com.qualityplus.collections.base.collection.executor.ExecutorType;
-import eu.okaeri.commons.bukkit.time.MinecraftTimeEquivalent;
+import com.qualityplus.assistant.lib.eu.okaeri.commons.bukkit.time.MinecraftTimeEquivalent;;
 
-import eu.okaeri.platform.bukkit.annotation.Delayed;
-import eu.okaeri.platform.core.annotation.Component;
+import com.qualityplus.assistant.lib.eu.okaeri.platform.bukkit.annotation.Delayed;
+import com.qualityplus.assistant.lib.eu.okaeri.platform.core.annotation.Component;
 import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.ApiStatus;

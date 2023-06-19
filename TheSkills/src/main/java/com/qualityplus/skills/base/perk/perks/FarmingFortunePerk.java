@@ -1,6 +1,6 @@
 package com.qualityplus.skills.base.perk.perks;
 
-import com.cryptomorin.xseries.XMaterial;
+import com.qualityplus.assistant.lib.com.cryptomorin.xseries.XMaterial;
 import com.qualityplus.skills.base.perk.perks.common.AbstractFortuneBlockPerk;
 import com.qualityplus.skills.base.skill.gui.GUIOptions;
 import lombok.Builder;

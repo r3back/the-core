@@ -1,16 +1,21 @@
 package com.qualityplus.minions.base.config;
 
-import com.cryptomorin.xseries.XMaterial;
+import com.qualityplus.assistant.lib.com.cryptomorin.xseries.XMaterial;
 import com.qualityplus.assistant.api.config.ConfigDatabase;
 import com.qualityplus.assistant.api.gui.LoreWrapper;
 import com.qualityplus.assistant.inventory.Item;
+import com.qualityplus.assistant.lib.eu.okaeri.configs.annotation.Comment;
+import com.qualityplus.assistant.lib.eu.okaeri.configs.annotation.CustomKey;
+import com.qualityplus.assistant.lib.eu.okaeri.configs.annotation.Header;
+import com.qualityplus.assistant.lib.eu.okaeri.configs.annotation.NameModifier;
+import com.qualityplus.assistant.lib.eu.okaeri.configs.annotation.NameStrategy;
+import com.qualityplus.assistant.lib.eu.okaeri.configs.annotation.Names;
 import com.qualityplus.assistant.util.faster.FastMap;
 import com.qualityplus.assistant.util.itemstack.ItemBuilder;
 import com.qualityplus.minions.base.minions.entity.message.RandomMessage;
 import com.qualityplus.minions.base.minions.entity.status.MinionStatus;
-import eu.okaeri.configs.OkaeriConfig;
-import eu.okaeri.configs.annotation.*;
-import eu.okaeri.platform.core.annotation.Configuration;
+import com.qualityplus.assistant.lib.eu.okaeri.configs.OkaeriConfig;
+import com.qualityplus.assistant.lib.eu.okaeri.platform.core.annotation.Configuration;
 
 import java.util.Arrays;
 import java.util.Collections;

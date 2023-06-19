@@ -6,7 +6,7 @@ import com.qualityplus.pets.api.service.UserPetService;
 import com.qualityplus.pets.base.pet.Pet;
 import com.qualityplus.pets.base.pet.tracker.PetEntityTracker;
 import com.qualityplus.pets.persistance.data.UserData;
-import eu.okaeri.platform.core.annotation.Component;
+import com.qualityplus.assistant.lib.eu.okaeri.platform.core.annotation.Component;
 
 import java.util.*;
 

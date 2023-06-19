@@ -1,6 +1,6 @@
 package com.qualityplus.dragon.api.game.structure;
 
-import eu.okaeri.configs.OkaeriConfig;
+import com.qualityplus.assistant.lib.eu.okaeri.configs.OkaeriConfig;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import org.bukkit.Location;

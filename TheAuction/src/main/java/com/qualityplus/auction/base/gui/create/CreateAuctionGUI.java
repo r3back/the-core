@@ -3,13 +3,13 @@ package com.qualityplus.auction.base.gui.create;
 import com.qualityplus.assistant.TheAssistantPlugin;
 import com.qualityplus.assistant.api.util.BukkitItemUtil;
 import com.qualityplus.assistant.api.util.IPlaceholder;
-import com.qualityplus.assistant.base.dependency.UsualDependencies;
-import com.qualityplus.assistant.inventory.SignGUI;
+import com.qualityplus.assistant.base.dependency.ProtocolLibDependency;
+import com.qualityplus.assistant.inventory.SignGUIImpl;
 import com.qualityplus.assistant.util.StringUtils;
 import com.qualityplus.assistant.util.itemstack.ItemStackUtils;
 import com.qualityplus.assistant.util.placeholder.Placeholder;
 import com.qualityplus.assistant.util.time.Markable;
-import com.qualityplus.assistant.util.time.Timer;
+import com.qualityplus.assistant.util.time.HumanTime;
 import com.qualityplus.auction.api.box.Box;
 import com.qualityplus.auction.base.gui.AuctionGUI;
 import com.qualityplus.auction.base.gui.main.MainAuctionGUI;
@@ -135,8 +135,8 @@ public final class CreateAuctionGUI extends AuctionGUI {
 
                 player.closeInventory();
 
-                if(UsualDependencies.isProtocolLib()){
-                    SignGUI.builder()
+                if(ProtocolLibDependency.isProtocolLib()){
+                    SignGUIImpl.builder()
                             .action(event1 -> changeBidPrice(player, auctionItem, event1.getLines().get(0)))
                             .withLines(box.files().messages().auctionMessages.startingBid)
                             .uuid(player.getUniqueId())
@@ -153,7 +153,7 @@ public final class CreateAuctionGUI extends AuctionGUI {
                 double fees = getPrice(auctionItem);
 
                 //Set timer
-                Timer timer = box.files().config().durationPrices.get(auctionItem.getTimerId()).getTimer();
+                HumanTime timer = box.files().config().durationPrices.get(auctionItem.getTimerId()).getTimer();
 
                 auctionItem.setMarkable(new Markable(timer.getEffectiveTime(), System.currentTimeMillis()));
 
@@ -257,7 +257,7 @@ public final class CreateAuctionGUI extends AuctionGUI {
     }
 
     private String getDuration(AuctionItem auctionItem){
-        Timer timer = box.files().config().durationPrices.get(auctionItem.getTimerId()).getTimer();
+        HumanTime timer = box.files().config().durationPrices.get(auctionItem.getTimerId()).getTimer();
 
         List<IPlaceholder> placeholders = Arrays.asList(
                 new Placeholder("auction_duration_type", box.files().messages().auctionMessages.getTimeFormat().get(timer.getType())),

@@ -1,15 +1,16 @@
 package com.qualityplus.pets.api.pet;
 
 import com.google.common.collect.ImmutableSet;
+import com.qualityplus.assistant.lib.eu.okaeri.configs.ConfigManager;
+import com.qualityplus.assistant.lib.eu.okaeri.configs.validator.okaeri.OkaeriValidator;
+import com.qualityplus.assistant.lib.eu.okaeri.configs.yaml.bukkit.YamlBukkitConfigurer;
+import com.qualityplus.assistant.lib.eu.okaeri.injector.annotation.Inject;
 import com.qualityplus.pets.base.config.pet.PetConfig;
 import com.qualityplus.pets.base.config.pet.Tiger;
 import com.qualityplus.pets.base.pet.Pet;
-import eu.okaeri.configs.ConfigManager;
-import eu.okaeri.configs.validator.okaeri.OkaeriValidator;
-import eu.okaeri.configs.yaml.bukkit.YamlBukkitConfigurer;
 
-import eu.okaeri.platform.bukkit.annotation.Delayed;
-import eu.okaeri.platform.core.annotation.Component;
+import com.qualityplus.assistant.lib.eu.okaeri.platform.bukkit.annotation.Delayed;
+import com.qualityplus.assistant.lib.eu.okaeri.platform.core.annotation.Component;
 import org.bukkit.NamespacedKey;
 import org.bukkit.plugin.Plugin;
 import org.jetbrains.annotations.ApiStatus;

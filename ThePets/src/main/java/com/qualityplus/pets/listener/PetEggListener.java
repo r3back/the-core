@@ -1,6 +1,7 @@
 package com.qualityplus.pets.listener;
 
 import com.qualityplus.assistant.api.util.BukkitItemUtil;
+import com.qualityplus.assistant.lib.eu.okaeri.injector.annotation.Inject;
 import com.qualityplus.assistant.util.StringUtils;
 import com.qualityplus.assistant.util.placeholder.PlaceholderBuilder;
 import com.qualityplus.pets.api.box.Box;
@@ -9,7 +10,7 @@ import com.qualityplus.pets.persistance.data.UserData;
 import com.qualityplus.pets.util.PetEggUtil;
 import com.qualityplus.pets.util.PetPlaceholderUtil;
 
-import eu.okaeri.platform.core.annotation.Component;
+import com.qualityplus.assistant.lib.eu.okaeri.platform.core.annotation.Component;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;

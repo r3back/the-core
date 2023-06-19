@@ -1,7 +1,7 @@
 package com.qualityplus.auction.persistence.data;
 
 import com.qualityplus.assistant.util.time.Markable;
-import eu.okaeri.configs.OkaeriConfig;
+import com.qualityplus.assistant.lib.eu.okaeri.configs.OkaeriConfig;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

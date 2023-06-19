@@ -1,9 +1,9 @@
 package com.qualityplus.collections.base.collection.executor;
 
-import com.cryptomorin.xseries.XMaterial;
+import com.qualityplus.assistant.lib.com.cryptomorin.xseries.XMaterial;
 import com.qualityplus.assistant.api.util.BukkitItemUtil;
-import eu.okaeri.configs.OkaeriConfig;
-import eu.okaeri.configs.annotation.Exclude;
+import com.qualityplus.assistant.lib.eu.okaeri.configs.OkaeriConfig;
+import com.qualityplus.assistant.lib.eu.okaeri.configs.annotation.Exclude;
 import lombok.Getter;
 import org.bukkit.inventory.ItemStack;
 

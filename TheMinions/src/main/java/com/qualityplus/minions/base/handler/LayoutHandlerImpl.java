@@ -1,6 +1,6 @@
 package com.qualityplus.minions.base.handler;
 
-import com.cryptomorin.xseries.XMaterial;
+import com.qualityplus.assistant.lib.com.cryptomorin.xseries.XMaterial;
 import com.qualityplus.assistant.util.armorstand.ArmorStandUtil;
 import com.qualityplus.assistant.util.block.BlockUtils;
 import com.qualityplus.minions.api.handler.ArmorStandHandler;

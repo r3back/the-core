@@ -1,7 +1,7 @@
 package com.qualityplus.dragon.base.service;
 
 import com.qualityplus.dragon.api.service.AltarSetupService;
-import eu.okaeri.platform.core.annotation.Component;
+import com.qualityplus.assistant.lib.eu.okaeri.platform.core.annotation.Component;
 
 import java.util.HashSet;
 import java.util.Set;

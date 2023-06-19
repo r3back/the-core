@@ -1,6 +1,6 @@
 package com.qualityplus.skills.base.perk.perks;
 
-import com.qualityplus.assistant.util.math.MathUtils;
+import com.qualityplus.assistant.util.random.RandomUtil;
 import com.qualityplus.skills.base.perk.Perk;
 import com.qualityplus.skills.base.skill.gui.GUIOptions;
 import lombok.Builder;
@@ -30,7 +30,7 @@ public final class SteelSkinPerk extends Perk {
 
         double chance = chancePerLevel * getStat(player);
 
-        if (MathUtils.randomBetween(0.0, 100.0) < chance)
+        if (RandomUtil.randomBetween(0.0, 100.0) < chance)
             event.setCancelled(true);
     }
 }

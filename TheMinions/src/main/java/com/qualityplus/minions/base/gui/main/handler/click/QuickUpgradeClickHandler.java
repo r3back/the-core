@@ -1,10 +1,10 @@
 package com.qualityplus.minions.base.gui.main.handler.click;
 
-import com.cryptomorin.xseries.XMaterial;
+import com.qualityplus.assistant.lib.com.cryptomorin.xseries.XMaterial;
 import com.qualityplus.assistant.api.util.IPlaceholder;
 import com.qualityplus.assistant.util.StringUtils;
 import com.qualityplus.assistant.util.inventory.InventoryUtils;
-import com.qualityplus.assistant.util.math.MathUtils;
+import com.qualityplus.assistant.util.number.NumberUtil;
 import com.qualityplus.assistant.util.placeholder.Placeholder;
 import com.qualityplus.assistant.util.placeholder.PlaceholderBuilder;
 import com.qualityplus.minions.TheMinions;
@@ -64,7 +64,7 @@ public final class QuickUpgradeClickHandler implements ClickHandler {
 
             InventoryUtils.removeItems(player.getInventory(), item, required);
 
-            List<IPlaceholder> placeholders = new Placeholder("minion_level_roman", MathUtils.toRoman(level + 1))
+            List<IPlaceholder> placeholders = new Placeholder("minion_level_roman", NumberUtil.toRoman(level + 1))
                     .alone();
 
             player.sendMessage(StringUtils.processMulti(messages.upgradeMessage, placeholders));

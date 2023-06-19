@@ -1,7 +1,7 @@
 package com.qualityplus.minions.base.minions.minion.layout;
 
 import com.qualityplus.assistant.inventory.Item;
-import eu.okaeri.configs.OkaeriConfig;
+import com.qualityplus.assistant.lib.eu.okaeri.configs.OkaeriConfig;
 import lombok.*;
 
 import java.util.List;

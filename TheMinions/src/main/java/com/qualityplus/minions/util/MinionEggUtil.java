@@ -1,11 +1,11 @@
 package com.qualityplus.minions.util;
 
-import com.cryptomorin.xseries.XMaterial;
+import com.qualityplus.assistant.lib.com.cryptomorin.xseries.XMaterial;
 import com.qualityplus.assistant.api.util.BukkitItemUtil;
 import com.qualityplus.assistant.api.util.IPlaceholder;
 import com.qualityplus.assistant.inventory.Item;
 import com.qualityplus.assistant.util.StringUtils;
-import com.qualityplus.assistant.util.faster.FasterStack;
+import com.qualityplus.assistant.util.faster.FastStack;
 import com.qualityplus.assistant.util.itemstack.ItemBuilder;
 import com.qualityplus.assistant.util.itemstack.ItemStackUtils;
 import com.qualityplus.minions.TheMinions;
@@ -15,7 +15,7 @@ import com.qualityplus.minions.base.minions.minion.egg.MinionEgg;
 import com.qualityplus.minions.base.minions.Minions;
 import com.qualityplus.minions.base.minions.minion.skin.MinionSkin;
 import com.qualityplus.minions.persistance.data.MinionData;
-import de.tr7zw.changeme.nbtapi.NBTItem;
+import com.qualityplus.assistant.lib.de.tr7zw.changeme.nbtapi.NBTItem;
 import lombok.experimental.UtilityClass;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
@@ -99,7 +99,7 @@ public class MinionEggUtil {
 
         ItemStack eggIcon = minionSkin
                 .map(MinionSkin::getHelmet)
-                .orElse(FasterStack.fast(XMaterial.PLAYER_HEAD));
+                .orElse(FastStack.fast(XMaterial.PLAYER_HEAD));
 
         ItemStack itemStack = ItemStackUtils.makeItem(item1, eggIcon.clone());
 

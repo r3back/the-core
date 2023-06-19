@@ -1,8 +1,9 @@
 package com.qualityplus.minions.listener;
 
-import com.cryptomorin.xseries.XMaterial;
+import com.qualityplus.assistant.lib.com.cryptomorin.xseries.XMaterial;
 import com.qualityplus.assistant.api.util.BukkitItemUtil;
 import com.qualityplus.assistant.api.util.IPlaceholder;
+import com.qualityplus.assistant.lib.eu.okaeri.injector.annotation.Inject;
 import com.qualityplus.assistant.util.StringUtils;
 import com.qualityplus.assistant.util.block.BlockUtils;
 import com.qualityplus.assistant.util.placeholder.Placeholder;
@@ -18,7 +19,7 @@ import com.qualityplus.minions.persistance.data.UserData;
 import com.qualityplus.minions.util.MinionEggUtil;
 import com.qualityplus.minions.util.MinionPlayerUtil;
 
-import eu.okaeri.platform.core.annotation.Component;
+import com.qualityplus.assistant.lib.eu.okaeri.platform.core.annotation.Component;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.block.Block;

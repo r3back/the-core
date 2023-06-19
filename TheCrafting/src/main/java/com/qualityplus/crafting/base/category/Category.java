@@ -1,9 +1,9 @@
 package com.qualityplus.crafting.base.category;
 
-import com.cryptomorin.xseries.XMaterial;
+import com.qualityplus.assistant.lib.com.cryptomorin.xseries.XMaterial;
 import com.qualityplus.crafting.api.recipes.Recipes;
 import com.qualityplus.crafting.base.recipes.CustomRecipe;
-import eu.okaeri.configs.OkaeriConfig;
+import com.qualityplus.assistant.lib.eu.okaeri.configs.OkaeriConfig;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;

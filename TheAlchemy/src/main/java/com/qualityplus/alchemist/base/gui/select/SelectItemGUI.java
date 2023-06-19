@@ -1,6 +1,6 @@
 package com.qualityplus.alchemist.base.gui.select;
 
-import com.cryptomorin.xseries.XSound;
+import com.qualityplus.assistant.lib.com.cryptomorin.xseries.XSound;
 import com.qualityplus.alchemist.api.box.Box;
 import com.qualityplus.alchemist.base.gui.AlchemistGUI;
 import com.qualityplus.alchemist.base.gui.individual.IndividualRecipeGUI;

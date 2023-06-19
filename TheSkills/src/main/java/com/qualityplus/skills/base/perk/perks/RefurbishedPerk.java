@@ -1,10 +1,10 @@
 package com.qualityplus.skills.base.perk.perks;
 
-import com.cryptomorin.xseries.XMaterial;
+import com.qualityplus.assistant.lib.com.cryptomorin.xseries.XMaterial;
 import com.qualityplus.assistant.TheAssistantPlugin;
 import com.qualityplus.assistant.api.nms.NMS;
 import com.qualityplus.assistant.api.util.BukkitItemUtil;
-import com.qualityplus.assistant.util.math.MathUtils;
+import com.qualityplus.assistant.util.random.RandomUtil;
 import com.qualityplus.skills.TheSkills;
 import com.qualityplus.skills.base.perk.Perk;
 import com.qualityplus.skills.base.skill.gui.GUIOptions;
@@ -47,7 +47,7 @@ public final class RefurbishedPerk extends Perk {
 
         if(!toolList.contains(XMaterial.matchXMaterial(inHand.getType()))) return;
 
-        if (MathUtils.randomBetween(0.0, 100.0) >= getChancePerLevel() * getStat(p))
+        if (RandomUtil.randomBetween(0.0, 100.0) >= getChancePerLevel() * getStat(p))
             return;
 
         NMS nms = TheAssistantPlugin.getAPI().getNms();

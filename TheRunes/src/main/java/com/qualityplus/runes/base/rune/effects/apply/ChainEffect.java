@@ -1,8 +1,7 @@
 package com.qualityplus.runes.base.rune.effects.apply;
 
-import com.cryptomorin.xseries.XMaterial;
-import com.qualityplus.assistant.util.math.MathUtils;
-import com.qualityplus.assistant.util.random.RandomSelector;
+import com.qualityplus.assistant.lib.com.cryptomorin.xseries.XMaterial;
+import com.qualityplus.assistant.util.random.RandomUtil;
 import com.qualityplus.runes.TheRunes;
 import com.qualityplus.runes.base.event.FakeEntitySpawnEvent;
 import com.qualityplus.runes.base.rune.Rune;
@@ -64,10 +63,10 @@ public interface ChainEffect {
 
             if(materials == null || materials.isEmpty()) return;
 
-            XMaterial material = RandomSelector.getRandom(
+            XMaterial material = RandomUtil.getRandom(
                     materials.stream()
                             .collect(Collectors
-                            .toMap(m -> m, m -> MathUtils.randomBetween(0, 100)))
+                            .toMap(m -> m, m -> RandomUtil.randomBetween(0, 100)))
             );
 
 

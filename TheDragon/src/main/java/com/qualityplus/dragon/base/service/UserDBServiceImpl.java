@@ -2,7 +2,7 @@ package com.qualityplus.dragon.base.service;
 
 import com.qualityplus.dragon.api.service.UserDBService;
 import com.qualityplus.dragon.persistance.data.UserData;
-import eu.okaeri.platform.core.annotation.Component;
+import com.qualityplus.assistant.lib.eu.okaeri.platform.core.annotation.Component;
 
 import java.util.HashMap;
 import java.util.Map;

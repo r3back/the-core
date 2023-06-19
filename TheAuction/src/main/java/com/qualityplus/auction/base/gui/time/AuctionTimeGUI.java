@@ -4,7 +4,7 @@ import com.qualityplus.assistant.api.util.IPlaceholder;
 import com.qualityplus.assistant.util.StringUtils;
 import com.qualityplus.assistant.util.itemstack.ItemStackUtils;
 import com.qualityplus.assistant.util.placeholder.Placeholder;
-import com.qualityplus.assistant.util.time.Timer;
+import com.qualityplus.assistant.util.time.HumanTime;
 import com.qualityplus.auction.api.box.Box;
 import com.qualityplus.auction.base.gui.AuctionGUI;
 import com.qualityplus.auction.base.gui.create.CreateAuctionGUI;
@@ -86,7 +86,7 @@ public final class AuctionTimeGUI extends AuctionGUI {
     }
 
 
-    private String getDuration(Timer timer){
+    private String getDuration(HumanTime timer){
 
         List<IPlaceholder> placeholders = Arrays.asList(
                 new Placeholder("duration_type", box.files().messages().auctionMessages.getTimeFormat().get(timer.getType())),

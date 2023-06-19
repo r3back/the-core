@@ -34,7 +34,7 @@ public final class Inventories extends OkaeriConfig implements DefaultBackground
             .commonGUI(new CommonGUI(
                     "Trades",
                     54,
-                    getBackGround3(),
+                    getBackgroundWith6RowsDecoratedAround(),
                     ItemBuilder.of(XMaterial.BARRIER,  49, 1, "&cClose", Arrays.asList("", "&e» &7Click to close")).build()
             ))
             .goBack(ItemBuilder.of(XMaterial.ARROW,  48, 1, "&eGo Back", Arrays.asList("", "&e» &7Click to go back")).build())

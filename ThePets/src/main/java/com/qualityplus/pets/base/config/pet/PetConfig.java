@@ -1,23 +1,18 @@
 package com.qualityplus.pets.base.config.pet;
 
 import com.qualityplus.assistant.api.common.rewards.commands.CommandRewards;
-import com.qualityplus.assistant.util.faster.FastMap;
+import com.qualityplus.assistant.lib.eu.okaeri.configs.OkaeriConfig;
+import com.qualityplus.assistant.lib.eu.okaeri.configs.annotation.CustomKey;
 import com.qualityplus.pets.base.pet.Pet;
 import com.qualityplus.pets.base.pet.egg.PetEgg;
 import com.qualityplus.pets.base.pet.egg.PetModelEngine;
 import com.qualityplus.pets.base.pet.entity.PetEntityOptions;
 import com.qualityplus.pets.base.pet.level.PetLevel;
-import com.qualityplus.pets.base.pet.potion.PetPotion;
-import com.qualityplus.pets.base.rewards.StatReward;
-import eu.okaeri.configs.OkaeriConfig;
-import eu.okaeri.configs.annotation.CustomKey;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.Map;
 
 @Getter

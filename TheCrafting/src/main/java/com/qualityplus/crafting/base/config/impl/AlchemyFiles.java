@@ -1,9 +1,10 @@
 package com.qualityplus.crafting.base.config.impl;
 
+import com.qualityplus.assistant.lib.eu.okaeri.injector.annotation.Inject;
 import com.qualityplus.crafting.api.config.ConfigFiles;
 import com.qualityplus.crafting.base.config.*;
 
-import eu.okaeri.platform.core.annotation.Component;
+import com.qualityplus.assistant.lib.eu.okaeri.platform.core.annotation.Component;
 
 @Component
 public final class AlchemyFiles implements ConfigFiles<Config, RecipesFile, Inventories, Messages, Commands, Categories, BlockedCraftings> {

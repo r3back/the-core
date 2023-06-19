@@ -1,6 +1,6 @@
 package com.qualityplus.auction.persistence.data;
 
-import eu.okaeri.persistence.document.Document;
+import com.qualityplus.assistant.lib.eu.okaeri.persistence.document.Document;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 

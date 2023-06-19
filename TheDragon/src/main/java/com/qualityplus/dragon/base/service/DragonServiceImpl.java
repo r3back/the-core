@@ -1,5 +1,6 @@
 package com.qualityplus.dragon.base.service;
 
+import com.qualityplus.assistant.lib.eu.okaeri.injector.annotation.Inject;
 import com.qualityplus.dragon.TheDragon;
 import com.qualityplus.dragon.api.controller.DragonController;
 import com.qualityplus.dragon.api.factory.DragonFactory;
@@ -10,7 +11,7 @@ import com.qualityplus.dragon.api.service.DragonService;
 import com.qualityplus.dragon.base.configs.DragonsFile;
 import com.qualityplus.dragon.base.controller.DragonControllerImpl;
 
-import eu.okaeri.platform.core.annotation.Component;
+import com.qualityplus.assistant.lib.eu.okaeri.platform.core.annotation.Component;
 import lombok.Getter;
 import org.bukkit.entity.EnderDragon;
 

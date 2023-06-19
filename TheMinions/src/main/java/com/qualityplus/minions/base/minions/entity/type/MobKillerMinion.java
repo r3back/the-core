@@ -1,27 +1,16 @@
 package com.qualityplus.minions.base.minions.entity.type;
 
-import com.cryptomorin.xseries.XMaterial;
 import com.qualityplus.assistant.TheAssistantPlugin;
-import com.qualityplus.assistant.util.block.BlockUtils;
-import com.qualityplus.assistant.util.math.MathUtils;
-import com.qualityplus.minions.api.handler.ArmorStandHandler;
-import com.qualityplus.minions.base.minions.animations.BreakAnimation;
 import com.qualityplus.minions.base.minions.animations.PlaceAnimation;
 import com.qualityplus.minions.base.minions.entity.ArmorStandMinion;
 import com.qualityplus.minions.base.minions.entity.mob.MinionMobEntity;
 import com.qualityplus.minions.base.minions.minion.Minion;
 import com.qualityplus.minions.base.minions.minion.mob.MinionMob;
-import org.bukkit.Bukkit;
 import org.bukkit.Location;
-import org.bukkit.Material;
-import org.bukkit.block.Block;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
 
-import java.util.Objects;
-import java.util.Optional;
-import java.util.Random;
 import java.util.UUID;
 
 public final class MobKillerMinion extends ArmorStandMinion<MinionMobEntity> {

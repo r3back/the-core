@@ -1,5 +1,6 @@
 package com.qualityplus.dragon.base.box;
 
+import com.qualityplus.assistant.lib.eu.okaeri.injector.annotation.Inject;
 import com.qualityplus.dragon.api.box.Box;
 import com.qualityplus.dragon.api.config.ConfigFiles;
 import com.qualityplus.dragon.api.game.DragonGame;
@@ -9,7 +10,7 @@ import com.qualityplus.dragon.api.service.UserDBService;
 import com.qualityplus.dragon.api.service.UserService;
 import com.qualityplus.dragon.base.configs.*;
 
-import eu.okaeri.platform.core.annotation.Component;
+import com.qualityplus.assistant.lib.eu.okaeri.platform.core.annotation.Component;
 import org.bukkit.plugin.Plugin;
 
 @Component

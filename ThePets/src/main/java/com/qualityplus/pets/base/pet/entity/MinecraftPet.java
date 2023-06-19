@@ -1,8 +1,8 @@
 package com.qualityplus.pets.base.pet.entity;
 
 import com.qualityplus.assistant.api.util.IPlaceholder;
+import com.qualityplus.assistant.api.util.MathUtil;
 import com.qualityplus.assistant.util.StringUtils;
-import com.qualityplus.assistant.util.math.MathUtils;
 import com.qualityplus.assistant.util.placeholder.Placeholder;
 import com.qualityplus.pets.ThePets;
 import com.qualityplus.pets.api.pet.entity.PetEntity;
@@ -133,7 +133,7 @@ public abstract class MinecraftPet implements PetEntity {
 
         Location location = player.getEyeLocation().clone().add(rotateAroundY(vector, Math.PI / 6));
 
-        location.setY(location.getY() + MathUtils.sinCalc(count / (2 * Math.PI) * 0.5) * 0.15);
+        location.setY(location.getY() + MathUtil.sinCalc(count / (2 * Math.PI) * 0.5) * 0.15);
 
         count++;
 
