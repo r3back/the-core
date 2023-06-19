@@ -1,0 +1,9 @@
+version: "3"
+
+services:
+  gradle:
+    image: gradle:jdk17-jammy
+    volumes:
+      - .:/app
+    working_dir: /app
+    command: gradle clean build -x shadowJar

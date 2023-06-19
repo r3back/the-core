@@ -9,7 +9,7 @@ dependencies {
 
     [':TheRunes:TheRunes-NMS', ':TheRunes:TheRunes-NMS:TheRunes-Legacy', ':TheRunes:TheRunes-NMS:TheRunes-Newest'].forEach(value -> implementation project(value))
 
-    compileOnly fileTree(dir: '/libs', include: ['*.jar'])
+    compileOnly fileTree(dir: 'libs', include: ['*.jar'])
 
 }
 
