@@ -1,0 +1,34 @@
+plugins {
+    id 'com.github.johnrengelman.shadow'
+}
+
+dependencies {
+    compileOnly 'org.spigotmc:spigot-api:1.15.2-R0.1-SNAPSHOT'
+
+    compileOnly fileTree(dir: '/libs', include: ['*.jar'])
+
+    compileOnly project(':TheEnchanting')
+    compileOnly project(':TheEnchanting:TheEnchanting-NMS')
+}
+
+processResources{
+    filesMatching('plugin.yml') {
+        expand 'version': version
+    }
+}
+
+shadowJar {
+    archiveFileName = 'TheAnvil.jar'
+
+    dependencies {
+        exclude(dependency('org.jetbrains:.*'))
+    }
+
+    doLast {
+        rootProject.copyJars(archiveFile)
+    }
+}
+
+artifacts {
+    archives shadowJar
+}
