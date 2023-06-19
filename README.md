@@ -1,5 +1,7 @@
 ![Core-Logo](https://i.imgur.com/OOhzVG5.png)
 
+[![Java CI with Gradle](https://github.com/r3back/the-core/actions/workflows/gradle.yml/badge.svg)](https://github.com/r3back/the-core/actions/workflows/gradle.yml)
+
 # About
 This core was created with the idea of providing server owners a super complete core
 for their PvP and PvE Servers to improve the fun for their users.
@@ -25,7 +27,7 @@ aimed to customers which want versatile software and easy to use.
 * ***Developers API***
 
 ## Requirements
-* Spigot 1.8 or higher
+* Spigot 1.8 Server or Higher
 
 ## License
 This App is licensed under the GNU license. Please see [`LICENSE.txt`](https://github.com/r3back/the-core/blob/master/LICENSE.txt) for more info.
