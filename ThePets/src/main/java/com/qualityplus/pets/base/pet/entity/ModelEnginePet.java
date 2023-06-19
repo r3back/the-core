@@ -5,6 +5,7 @@ import com.qualityplus.pets.base.pet.Pet;
 import com.ticxo.modelengine.api.ModelEngineAPI;
 import com.ticxo.modelengine.api.animation.AnimationHandler;
 import com.ticxo.modelengine.api.animation.AnimationProperty;
+import com.ticxo.modelengine.api.animation.property.IAnimationProperty;
 import com.ticxo.modelengine.api.model.ActiveModel;
 import com.ticxo.modelengine.api.model.ModeledEntity;
 import org.bukkit.Bukkit;
@@ -107,14 +108,14 @@ public final class ModelEnginePet extends MinecraftPet{
 
         if (animationId != null) {
             AnimationHandler animationHandler = model.getAnimationHandler();
-            AnimationProperty animationProperty = animationHandler.getAnimation(animationId);
+            IAnimationProperty animationProperty = animationHandler.getAnimation(animationId);
 
             if (animationProperty != null) {
                 animationHandler.playAnimation(animationProperty, true);
             } else {
                 Bukkit.getConsoleSender().sendMessage("Animation $meAnimation not found in model" + modelId + ", defaulting to walk!");
 
-                AnimationProperty animationPropertyWalk = animationHandler.getAnimation("walk");
+                IAnimationProperty animationPropertyWalk = animationHandler.getAnimation("walk");
                 if (animationPropertyWalk != null) {
                     animationHandler.playAnimation(animationPropertyWalk, true);
                 } else {
