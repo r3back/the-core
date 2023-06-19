@@ -35,9 +35,7 @@ subprojects {
     jar {
         from '../LICENSE.txt'
     }
-
-    //configureCheckstyleForSubproject(it)
-
+    
     repositories {
         mavenCentral()
 
