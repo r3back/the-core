@@ -1,9 +1,14 @@
 version: "3"
 
 services:
-  gradle:
-    image: gradle:jdk17-jammy
+  test-server:
+    build:
+      context: .
+    environment:
+      CFG_SERVER_NAME: "test-server"
+    env_file:
+      - velocity-config/velocity.env
+      - mc-config/mc.env
     volumes:
-      - .:/app
-    working_dir: /app
-    command: gradle clean build -x shadowJar
+      - ./data/lobby:/data
+      - ./mc-config:/config

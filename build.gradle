@@ -67,8 +67,9 @@ subprojects {
         doLast {
             if (!name.contains('NMS') && !name.contains('Legacy') && !name.contains("Newest")) {
                 def saveFilesPath =  rootProject.projectDir.getAbsolutePath() + '/all-generated'
+                def testSuitePath =  rootProject.projectDir.getAbsolutePath() + '/test-suite/mc-config/plugins'
                 mkdir saveFilesPath
-                copy { into saveFilesPath from archiveFile.get().getAsFile() }
+                [saveFilesPath, testSuitePath].forEach(folder -> copy { into folder from archiveFile.get().getAsFile() })
             }
         }
     }
