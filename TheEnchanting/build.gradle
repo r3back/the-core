@@ -1,5 +1,5 @@
 dependencies {
+    project(':TheEnchanting').subprojects.forEach(project -> implementation project)
     compileOnly 'org.spigotmc:spigot-api:1.15.2-R0.1-SNAPSHOT'
     compileOnly fileTree(dir: 'libs', include: ['*.jar'])
-    [':TheEnchanting:TheEnchanting-NMS', ':TheEnchanting:TheEnchanting-NMS:TheEnchanting-Legacy', ':TheEnchanting:TheEnchanting-NMS:TheEnchanting-Newest'].forEach(value -> implementation project(value))
 }

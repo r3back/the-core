@@ -1,7 +1,6 @@
 dependencies {
-    compileOnly project(':TheSkills')
+    project(':TheRunes').subprojects.forEach(project -> implementation project)
     compileOnly 'org.spigotmc:spigot-api:1.18.1-R0.1-SNAPSHOT'
     compileOnly 'xyz.xenondevs:particle:1.8.4'
-    //TODO Change this
-    [':TheRunes:TheRunes-NMS', ':TheRunes:TheRunes-NMS:TheRunes-Legacy', ':TheRunes:TheRunes-NMS:TheRunes-Newest'].forEach(value -> implementation project(value))
+    compileOnly project(':TheSkills')
 }
