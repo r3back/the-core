@@ -2,13 +2,10 @@ version: "3"
 
 services:
   test-server:
-    build:
-      context: .
+    image: itzg/minecraft-server:java16
     environment:
       CFG_SERVER_NAME: "test-server"
     env_file:
-      - velocity-config/velocity.env
       - mc-config/mc.env
     volumes:
-      - ./data/lobby:/data
       - ./mc-config:/config
