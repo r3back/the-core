@@ -20,6 +20,11 @@ public final class TheBank extends OkaeriSilentPlugin {
     private static @Inject
     @Getter TheBankAPI api;
 
+    @Planned(ExecutionPhase.PRE_SETUP)
+    private void beforeStart(){
+
+    }
+
     @Planned(ExecutionPhase.PRE_SHUTDOWN)
     private void whenStop(Box box){
         Bukkit.getOnlinePlayers()

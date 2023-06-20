@@ -2,6 +2,8 @@ package com.qualityplus.dragon.base.handler;
 
 import com.qualityplus.assistant.TheAssistantPlugin;
 import com.qualityplus.assistant.api.nms.NMS;
+import com.qualityplus.assistant.lib.xyz.xenondevs.particle.ParticleBuilder;
+import com.qualityplus.assistant.lib.xyz.xenondevs.particle.ParticleEffect;
 import com.qualityplus.dragon.TheDragon;
 import com.qualityplus.dragon.api.controller.DragonController;
 import com.qualityplus.dragon.api.game.DragonGame;
@@ -9,8 +11,6 @@ import com.qualityplus.dragon.api.handler.ParticleHandler;
 import com.qualityplus.dragon.base.game.player.EventPlayer;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
-import xyz.xenondevs.particle.ParticleBuilder;
-import xyz.xenondevs.particle.ParticleEffect;
 
 public final class ParticleHandlerImpl implements ParticleHandler {
     @Override

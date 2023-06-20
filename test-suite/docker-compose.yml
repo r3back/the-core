@@ -5,6 +5,8 @@ services:
     image: itzg/minecraft-server:java16
     environment:
       CFG_SERVER_NAME: "test-server"
+    ports:
+      - "25575:25575"
     env_file:
       - mc-config/mc.env
     volumes:

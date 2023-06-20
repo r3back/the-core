@@ -2,6 +2,7 @@ repositories {
     maven {
         url 'https://mvn.lumine.io/repository/maven-public/'
     }
+    //TODO check if this can be removed
     maven {
         url 'https://jitpack.io'
     }
@@ -10,7 +11,6 @@ repositories {
 dependencies {
     compileOnly project(':TheSkills')
     compileOnly 'org.spigotmc:spigot-api:1.18.1-R0.1-SNAPSHOT'
-    compileOnly 'xyz.xenondevs:particle:1.8.4'
     compileOnly 'com.github.Archy-X:AureliumSkills:Beta1.3.11'
 
     compileOnly fileTree(dir: 'libs', include: ['*.jar'])

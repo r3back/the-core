@@ -1,6 +1,7 @@
 package com.qualityplus.runes.base.config;
 
 import com.qualityplus.assistant.lib.com.cryptomorin.xseries.XMaterial;
+import com.qualityplus.assistant.lib.xyz.xenondevs.particle.ParticleEffect;
 import com.qualityplus.assistant.util.faster.FastMap;
 import com.qualityplus.assistant.util.particle.ParticleColor;
 import com.qualityplus.runes.api.config.RuneTableConfig.RuneItem;
@@ -16,7 +17,6 @@ import com.qualityplus.assistant.lib.eu.okaeri.configs.annotation.Names;
 import com.qualityplus.assistant.lib.eu.okaeri.platform.core.annotation.Configuration;
 import lombok.Getter;
 import lombok.Setter;
-import xyz.xenondevs.particle.ParticleEffect;
 
 import java.util.Arrays;
 import java.util.List;

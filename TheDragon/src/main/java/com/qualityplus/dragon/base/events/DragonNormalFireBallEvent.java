@@ -1,5 +1,6 @@
 package com.qualityplus.dragon.base.events;
 
+import com.qualityplus.assistant.lib.xyz.xenondevs.particle.ParticleEffect;
 import com.qualityplus.dragon.TheDragon;
 import com.qualityplus.dragon.api.event.DragonGameEvent;
 import com.qualityplus.dragon.api.game.DragonGame;
@@ -11,7 +12,6 @@ import com.qualityplus.dragon.base.handler.ParticleHandlerImpl;
 import com.qualityplus.dragon.base.handler.ProjectileHandlerImpl;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;
-import xyz.xenondevs.particle.ParticleEffect;
 
 public final class DragonNormalFireBallEvent extends DragonGameEvent {
     private final ProjectileHandler projectileEvent;

@@ -2,6 +2,8 @@ package com.qualityplus.pets.base.pet.entity;
 
 import com.qualityplus.assistant.api.util.IPlaceholder;
 import com.qualityplus.assistant.api.util.MathUtil;
+import com.qualityplus.assistant.lib.xyz.xenondevs.particle.ParticleBuilder;
+import com.qualityplus.assistant.lib.xyz.xenondevs.particle.ParticleEffect;
 import com.qualityplus.assistant.util.StringUtils;
 import com.qualityplus.assistant.util.placeholder.Placeholder;
 import com.qualityplus.pets.ThePets;
@@ -19,8 +21,6 @@ import org.bukkit.Location;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.util.Vector;
-import xyz.xenondevs.particle.ParticleBuilder;
-import xyz.xenondevs.particle.ParticleEffect;
 
 import java.util.List;
 import java.util.Optional;

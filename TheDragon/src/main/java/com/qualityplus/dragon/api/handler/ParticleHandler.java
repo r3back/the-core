@@ -1,7 +1,7 @@
 package com.qualityplus.dragon.api.handler;
 
+import com.qualityplus.assistant.lib.xyz.xenondevs.particle.ParticleEffect;
 import com.qualityplus.dragon.api.game.DragonGame;
-import xyz.xenondevs.particle.ParticleEffect;
 
 /**
  * Handle Particles During an Event

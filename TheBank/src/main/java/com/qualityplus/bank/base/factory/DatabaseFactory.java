@@ -1,11 +1,8 @@
 package com.qualityplus.bank.base.factory;
 
-import com.qualityplus.assistant.lib.com.mongodb.client.MongoClient;
-import com.mongodb.MongoClientURI;
 import com.qualityplus.assistant.api.config.ConfigDatabase;
 import com.qualityplus.assistant.api.config.DatabaseType;
 import com.qualityplus.assistant.api.database.HikariConfiguration;
-import com.qualityplus.assistant.lib.com.mongodb.client.internal.MongoClientImpl;
 import com.qualityplus.assistant.lib.eu.okaeri.injector.annotation.Inject;
 import com.qualityplus.bank.base.config.Config;
 import com.qualityplus.assistant.lib.eu.okaeri.configs.json.simple.JsonSimpleConfigurer;
@@ -16,7 +13,6 @@ import com.qualityplus.assistant.lib.eu.okaeri.persistence.document.DocumentPers
 import com.qualityplus.assistant.lib.eu.okaeri.persistence.jdbc.H2Persistence;
 import com.qualityplus.assistant.lib.eu.okaeri.persistence.jdbc.JdbcPersistence;
 import com.qualityplus.assistant.lib.eu.okaeri.persistence.jdbc.MariaDbPersistence;
-import com.qualityplus.assistant.lib.eu.okaeri.persistence.mongo.MongoPersistence;
 import com.qualityplus.assistant.lib.eu.okaeri.persistence.redis.RedisPersistence;
 import com.qualityplus.assistant.lib.eu.okaeri.platform.bukkit.persistence.YamlBukkitPersistence;
 import com.qualityplus.assistant.lib.eu.okaeri.platform.core.annotation.Bean;
@@ -32,9 +28,9 @@ public final class DatabaseFactory extends HikariConfiguration {
     public DocumentPersistence configurePersistence(@Inject("dataFolder") File dataFolder, @Inject Config config) {
 
         try {
-            Class.forName("org.mariadb.jdbc.Driver");
-            Class.forName("org.h2.Driver");
-            Class.forName("com.mysql");
+            Class.forName("com.qualityplus.assistant.lib.org.mariadb.jdbc.Driver");
+            Class.forName("com.qualityplus.assistant.lib.org.h2.Driver");
+            Class.forName("com.qualityplus.assistant.lib.com.mysql.jdbc.Driver");
         } catch (Exception ignored) {}
 
         PersistencePath basePath = PersistencePath.of("bankDb");
