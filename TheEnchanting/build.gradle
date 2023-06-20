@@ -1,33 +1,5 @@
-plugins {
-    id 'com.github.johnrengelman.shadow'
-}
-
 dependencies {
     compileOnly 'org.spigotmc:spigot-api:1.15.2-R0.1-SNAPSHOT'
-
     compileOnly fileTree(dir: 'libs', include: ['*.jar'])
-
     [':TheEnchanting:TheEnchanting-NMS', ':TheEnchanting:TheEnchanting-NMS:TheEnchanting-Legacy', ':TheEnchanting:TheEnchanting-NMS:TheEnchanting-Newest'].forEach(value -> implementation project(value))
-}
-
-processResources{
-    filesMatching('plugin.yml') {
-        expand 'version': version
-    }
-}
-
-shadowJar {
-    archiveFileName = 'TheEnchanting.jar'
-
-    dependencies {
-        exclude(dependency('org.jetbrains:.*'))
-    }
-
-    doLast {
-        rootProject.copyJars(archiveFile)
-    }
-}
-
-artifacts {
-    archives shadowJar
 }

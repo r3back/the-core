@@ -3,27 +3,13 @@ plugins {
     id 'checkstyle'
 }
 
-defaultTasks 'build'
-
-def copyJars =  {
-    file -> {
-        def dir = System.getenv("SAVE_FOLDER")
-        mkdir dir
-        copy {
-            into dir
-            from file
-        }
-    }
-}
-
-
 group = 'com.qualityplus.core'
 version = '3.2.0'
-project.ext.copyJars = copyJars
 
 subprojects {
     apply plugin: 'java'
     apply plugin: 'maven-publish'
+    apply plugin: 'com.github.johnrengelman.shadow'
 
     sourceCompatibility = 1.8
     targetCompatibility = 1.8
@@ -61,6 +47,34 @@ subprojects {
 
         // Enable lombok annotation processing
         annotationProcessor("org.projectlombok:lombok:1.18.22")
+    }
+
+    processResources{
+        filesMatching('plugin.yml') {
+            expand 'version': version
+        }
+    }
+
+    shadowJar {
+        def name = project.name
+
+        archiveFileName = name + '.jar'
+
+        dependencies {
+            exclude(dependency('org.jetbrains:.*'))
+        }
+
+        doLast {
+            if (!name.contains('NMS') && !name.contains('Legacy') && !name.contains("Newest")) {
+                def saveFilesPath =  rootProject.projectDir.getAbsolutePath() + '/all-generated'
+                mkdir saveFilesPath
+                copy { into saveFilesPath from archiveFile.get().getAsFile() }
+            }
+        }
+    }
+
+    artifacts {
+        archives shadowJar
     }
 }
 

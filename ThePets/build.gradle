@@ -1,9 +1,7 @@
-plugins {
-    id 'com.github.johnrengelman.shadow'
-}
-
 repositories {
-    maven { url 'https://mvn.lumine.io/repository/maven-public/' }
+    maven {
+        url 'https://mvn.lumine.io/repository/maven-public/'
+    }
     maven {
         url 'https://jitpack.io'
     }
@@ -16,26 +14,4 @@ dependencies {
     compileOnly 'com.github.Archy-X:AureliumSkills:Beta1.3.11'
 
     compileOnly fileTree(dir: 'libs', include: ['*.jar'])
-}
-
-processResources{
-    filesMatching('plugin.yml') {
-        expand 'version': version
-    }
-}
-
-shadowJar {
-    archiveFileName = 'ThePets.jar'
-
-    dependencies {
-        exclude(dependency('org.jetbrains:.*'))
-    }
-
-    doLast {
-        rootProject.copyJars(archiveFile)
-    }
-}
-
-artifacts {
-    archives shadowJar
 }

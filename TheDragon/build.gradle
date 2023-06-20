@@ -1,34 +1,4 @@
-plugins {
-    id 'com.github.johnrengelman.shadow'
-}
-
 dependencies {
     compileOnly 'org.spigotmc:spigot-api:1.18.1-R0.1-SNAPSHOT'
-    compileOnly 'xyz.xenondevs:particle:1.8.3'
-
-    compileOnly fileTree(dir: 'libs', include: ['*.jar'])
-
+    compileOnly 'xyz.xenondevs:particle:1.8.4'
 }
-
-processResources{
-    filesMatching('plugin.yml') {
-        expand 'version': version
-    }
-}
-
-shadowJar {
-    archiveFileName = 'TheDragon.jar'
-
-    dependencies {
-        exclude(dependency('org.jetbrains:.*'))
-    }
-
-    doLast {
-        rootProject.copyJars(archiveFile)
-    }
-}
-
-artifacts {
-    archives shadowJar
-}
-

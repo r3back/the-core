@@ -1,32 +1,4 @@
-plugins {
-    id 'com.github.johnrengelman.shadow'
-}
-
 dependencies {
     compileOnly 'org.spigotmc:spigot-api:1.18.1-R0.1-SNAPSHOT'
-
     compileOnly 'com.google.guava:guava:31.0.1-jre'
-
-}
-
-processResources{
-    filesMatching('plugin.yml') {
-        expand 'version': version
-    }
-}
-
-shadowJar {
-    archiveFileName = 'TheTrades.jar'
-
-    dependencies {
-        exclude(dependency('org.jetbrains:.*'))
-    }
-
-    doLast {
-        rootProject.copyJars(archiveFile)
-    }
-}
-
-artifacts {
-    archives shadowJar
 }
