@@ -7,5 +7,5 @@
 */*/*/build
 */*/*/*/build
 /all-generated
-!/test-suite/mc-config/plugins/*
+/test-suite/mc-config/plugins/*
 !/test-suite/mc-config/plugins/TheAssistant-3.2.7.jar
