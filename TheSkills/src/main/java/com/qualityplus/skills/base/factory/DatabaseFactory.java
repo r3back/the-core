@@ -30,9 +30,9 @@ public final class DatabaseFactory extends HikariConfiguration {
     @Bean(value = "persistence", preload = true)
     public DocumentPersistence configurePersistence(@Inject("dataFolder") File dataFolder, @Inject Config config) {
 
-        try { Class.forName("org.mariadb.jdbc.Driver"); } catch (ClassNotFoundException ignored) { }
-        try { Class.forName("org.h2.Driver"); } catch (ClassNotFoundException ignored) { }
-        try { Class.forName("com.mysql"); } catch (ClassNotFoundException ignored) { }
+        try { Class.forName("com.qualityplus.assistant.lib.org.mariadb.jdbc.Driver"); } catch (ClassNotFoundException ignored) { }
+        try { Class.forName("com.qualityplus.assistant.lib.org.h2.Driver"); } catch (ClassNotFoundException ignored) { }
+        try { Class.forName("com.qualityplus.assistant.lib.com.mysql.jdbc.Driver"); } catch (ClassNotFoundException ignored) { }
 
         PersistencePath basePath = PersistencePath.of("skills_db");
 
