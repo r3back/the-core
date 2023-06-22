@@ -34,32 +34,33 @@ public final class DragonServiceImpl implements DragonService {
 
     @Override
     public void spawnDragon() {
-        Optional<DragonSpawn> spawn = TheDragon.getApi().getStructureService().getSpawn();
+        final Optional<DragonSpawn> spawn = TheDragon.getApi().getStructureService().getSpawn();
 
-        theDragonEntity = factory.getDragon(dragons.dragonMap);
+        this.theDragonEntity = this.factory.getDragon(this.dragons.dragonMap);
 
-        if(theDragonEntity != null && spawn.isPresent())
-            dragonController = new DragonControllerImpl(theDragonEntity.spawn(spawn.get().getLocation()));
+        if (this.theDragonEntity != null && spawn.isPresent()) {
+            this.dragonController = new DragonControllerImpl(this.theDragonEntity.spawn(spawn.get().getLocation()));
+        }
     }
 
     @Override
     public CompletableFuture<Void> killDragon() {
 
-        if(dragonController != null && dragonController.dragon() != null){
-            dragonController.setAfk(true);
-            dragonController.kill();
+        if(this.dragonController != null && this.dragonController.dragon() != null){
+            this.dragonController.setAfk(true);
+            this.dragonController.kill();
         }
         return CompletableFuture.completedFuture(null);
     }
 
     @Override
     public TheDragonEntity getActiveDragon() {
-        return theDragonEntity;
+        return this.theDragonEntity;
     }
 
     @Override
     public EnderDragon getActiveEnderDragon() {
-        return Optional.ofNullable(dragonController)
+        return Optional.ofNullable(this.dragonController)
                 .map(DragonController::dragon)
                 .orElse(null);
     }

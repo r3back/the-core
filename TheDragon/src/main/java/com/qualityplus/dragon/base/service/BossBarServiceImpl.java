@@ -34,13 +34,14 @@ public final class BossBarServiceImpl implements BossBarService {
 
     @Override
     public void stopBossBar(){
+
         Optional.ofNullable(this.task).ifPresent(Bukkit.getScheduler()::cancelTask);
 
         TheAssistantPlugin.getAPI().getNms().sendBossBar(null, null);
     }
 
     private void handleBossBar() {
-        if (this.dragonGame.isActive()) {
+        if (!this.dragonGame.isActive()) {
             return;
         }
 

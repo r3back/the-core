@@ -12,5 +12,5 @@ public interface GameExplosion {
      *
      * @return When Block explosion is finished
      */
-    CompletableFuture<Void> makeBlockExplosion(PasterSession session);
+    public CompletableFuture<Void> makeBlockExplosion(final PasterSession session);
 }

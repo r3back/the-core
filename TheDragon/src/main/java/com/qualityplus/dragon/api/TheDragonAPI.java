@@ -4,6 +4,7 @@ import com.qualityplus.dragon.api.service.*;
 import org.bukkit.plugin.Plugin;
 
 public interface TheDragonAPI {
+    GamePlayerCheckService getGamePlayerCheckService();
     GuardianEditService getGuardianEditService();
     StructureService getStructureService();
     GuardianService getGuardianService();

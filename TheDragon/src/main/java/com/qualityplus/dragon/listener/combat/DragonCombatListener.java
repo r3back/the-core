@@ -2,12 +2,14 @@ package com.qualityplus.dragon.listener.combat;
 
 import com.qualityplus.assistant.lib.com.cryptomorin.xseries.XSound;
 import com.qualityplus.assistant.lib.eu.okaeri.injector.annotation.Inject;
+import com.qualityplus.dragon.TheDragon;
 import com.qualityplus.dragon.api.box.Box;
 import com.qualityplus.dragon.api.game.dragon.TheDragonEntity;
 import com.qualityplus.dragon.base.game.dragon.TheDragonEntityImpl;
 import com.qualityplus.dragon.util.DragonHealthUtil;
 
 import com.qualityplus.assistant.lib.eu.okaeri.platform.core.annotation.Component;
+import org.bukkit.Bukkit;
 import org.bukkit.EntityEffect;
 import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
@@ -23,29 +25,38 @@ public final class DragonCombatListener implements Listener {
     private @Inject Box box;
 
     @EventHandler
-    public void removeDamageFromPlayers(EntityRegainHealthEvent e) {
-        if(!(e.getEntity() instanceof EnderDragon) && !(e.getEntity() instanceof EnderDragonPart)) return;
+    public void removeDamageFromPlayers(final EntityRegainHealthEvent e) {
+        if (!(e.getEntity() instanceof EnderDragon) && !(e.getEntity() instanceof EnderDragonPart)) {
+            return;
+        }
 
-        EnderDragon enderDragon = box.dragonService().getActiveEnderDragon();
+        final EnderDragon enderDragon = box.dragonService().getActiveEnderDragon();
 
-        if(!e.getEntity().getUniqueId().equals(enderDragon.getUniqueId())) return;
+        if (!e.getEntity().getUniqueId().equals(enderDragon.getUniqueId())) {
+            return;
+        }
 
         box.users().removePlayersDamage(e.getAmount());
     }
 
     @EventHandler(priority = EventPriority.LOW)
-    public void addDamageToPlayers(EntityDamageByEntityEvent event) {
-        if(!(event.getEntity() instanceof EnderDragon)) return;
+    public void addDamageToPlayers(final EntityDamageByEntityEvent event) {
+        if (!(event.getEntity() instanceof EnderDragon)) {
+            return;
+        }
 
         if(event.getDamager() instanceof Fireball){
             event.setCancelled(true);
         }else{
-            Player attacker = getDragonAttacker(event);
+
+            final Player attacker = getDragonAttacker(event);
 
             Optional.ofNullable(attacker).ifPresent(player -> {
                 double damage = event.getDamage();
 
-                if(dragonIsDeath()) return;
+                if (dragonIsDeath()) {
+                    return;
+                }
 
                 addDamageToAttacker(player, damage);
 
@@ -54,12 +65,14 @@ public final class DragonCombatListener implements Listener {
         }
     }
 
-    private void mangeDragonHealth(EntityDamageByEntityEvent event, double damage){
-        TheDragonEntity theDragonEntity = box.dragonService().getActiveDragon();
+    private void mangeDragonHealth(final EntityDamageByEntityEvent event, double damage){
+        final TheDragonEntity theDragonEntity = box.dragonService().getActiveDragon();
 
-        EnderDragon enderDragon = box.dragonService().getActiveEnderDragon();
+        final EnderDragon enderDragon = box.dragonService().getActiveEnderDragon();
 
-        if(enderDragon.getHealth() <= 0) return;
+        if(enderDragon.getHealth() <= 0) {
+            return;
+        }
 
         event.setCancelled(true);
 
@@ -68,9 +81,10 @@ public final class DragonCombatListener implements Listener {
         if(dragonHealth < 0){
             box.game().finish();
         }else{
+
             enderDragon.setHealth(dragonHealth);
 
-            enderDragon.playEffect(EntityEffect.HURT);
+            Bukkit.getScheduler().runTaskLater(TheDragon.getApi().getPlugin(), () -> enderDragon.playEffect(EntityEffect.HURT), 1);
             enderDragon.getWorld().playSound(enderDragon.getLocation(), XSound.ENTITY_ENDER_DRAGON_HURT.parseSound(), 100.0F, 1.0F);
         }
     }

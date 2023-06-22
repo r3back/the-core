@@ -15,6 +15,7 @@ import com.qualityplus.dragon.base.game.player.EventPlayer;
 import com.qualityplus.assistant.lib.eu.okaeri.platform.core.annotation.Component;
 import com.qualityplus.assistant.lib.eu.okaeri.tasker.core.Tasker;
 import lombok.Getter;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
 import java.util.List;
@@ -64,7 +65,7 @@ public final class DragonGameImpl implements DragonGame {
     @Override
     public void finish() {
         if(active) {
-            TheDragonAPI api = TheDragon.getApi();
+            final TheDragonAPI api = TheDragon.getApi();
 
             active = false;
 
@@ -73,7 +74,8 @@ public final class DragonGameImpl implements DragonGame {
                     .thenRun(api.getUserService()::sendFinishMessage)
                     .thenRun(api.getBossBarService()::stopBossBar)
                     .thenRun(api.getUserService()::resetData)
-                    .thenRun(api.getGameService()::stopSwitching);
+                    .thenRun(api.getGameService()::stopSwitching)
+                    .thenRun(api.getGamePlayerCheckService()::stopChecking);
 
         }
     }
@@ -130,6 +132,7 @@ public final class DragonGameImpl implements DragonGame {
     private void startGame(){
         final TheDragonAPI api = TheDragon.getApi();
 
+        api.getGamePlayerCheckService().startChecking();
         api.getBossBarService().startBossBar();
         api.getDragonService().spawnDragon();
         api.getGameService().switchEvents();

@@ -12,6 +12,7 @@ import org.bukkit.plugin.Plugin;
 @Getter
 @Component
 public final class TheDragonAPIImpl implements TheDragonAPI {
+    private @Inject GamePlayerCheckService gamePlayerCheckService;
     private @Inject GuardianEditService guardianEditService;
     private @Inject StructureService structureService;
     private @Inject GuardianService guardianService;

@@ -46,26 +46,26 @@ public final class GameRankingImpl implements GameRanking {
 
     @Override
     public void refreshRanking(){
-        TheDragonAPI api = TheDragon.getApi();
+        final TheDragonAPI api = TheDragon.getApi();
 
-        List<EventPlayer> eventPlayers = api.getUserService().getUsers();
+        final List<EventPlayer> eventPlayers = new ArrayList<>(api.getUserService().getUsers());
 
         eventPlayers.sort((o1, o2) -> (int) (o2.getDamage() - o1.getDamage()));
 
         this.eventPlayerMap.clear();
 
-        int ranking = 0;
+        int ranking = 1;
 
-        for(EventPlayer eventPlayer : eventPlayers){
+        for (EventPlayer eventPlayer : eventPlayers) {
             this.eventPlayerMap.put(ranking, eventPlayer);
             ranking++;
         }
     }
 
-    private String getRecordMessage(EventPlayer player){
-        Optional<UserData> dragonPlayer = userDBService.getData(player.getUuid());
+    private String getRecordMessage(final EventPlayer player){
+        final Optional<UserData> dragonPlayer = userDBService.getData(player.getUuid());
 
-        double oldRecord = dragonPlayer.map(UserData::getRecord).orElse(0.0);
+        final double oldRecord = dragonPlayer.map(UserData::getRecord).orElse(0.0);
 
         return player.getDamage() > oldRecord ? messages.gameMessages.newRecordPlaceholder : "";
     }

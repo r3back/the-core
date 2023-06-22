@@ -19,8 +19,11 @@ public final class GuardianSpawnFactoryImpl implements GuardianSpawnFactory {
 
     @Override
     public Location getRandomLocation() {
-        List<Location> locations = Optional.ofNullable(dragonGuardiansFile.guardianSpawns).orElse(Collections.emptyList());
 
-        return RandomUtil.getRandom(locations);
+
+        final List<Location> locations = Optional.ofNullable(dragonGuardiansFile.guardianSpawns)
+                .orElse(Collections.emptyList());
+
+        return locations.size() >= 1 ? RandomUtil.getRandom(locations) : null;
     }
 }

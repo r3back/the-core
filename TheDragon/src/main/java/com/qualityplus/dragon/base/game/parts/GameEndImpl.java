@@ -21,30 +21,25 @@ import java.util.*;
 
 @Component
 public final class GameEndImpl implements GameEnd {
-    private @Inject UserDBService userDBService;
+    private @Inject DragonRewardsFile rewards;
     private @Inject GameRanking gameRanking;
     private @Inject Messages messages;
-    private @Inject DragonRewardsFile rewards;
 
     @Override
-    public void sendFinishMessage() {
+    public void sendFinishMessage(final List<EventPlayer> players) {
+        this.gameRanking.refreshRanking();
 
-        gameRanking.refreshRanking();
-
-        TheDragon.getApi()
-                .getUserService()
-                .getUsers()
-                .forEach(this::managePlayer);
+        players.forEach(this::managePlayer);
     }
 
-    private void managePlayer(EventPlayer player){
-        List<String> finalMessage = StringUtils.processMulti(messages.setupMessages.newGameEndMessage, gameRanking.getPlaceholders(player));
+    private void managePlayer(final EventPlayer player){
+        final List<String> finalMessage = StringUtils.processMulti(messages.setupMessages.newGameEndMessage, gameRanking.getPlaceholders(player));
 
         player.sendMessage(finalMessage);
 
-        TheDragonEntity theDragonEntity = TheDragon.getApi().getDragonService().getActiveDragon();
+        final TheDragonEntity theDragonEntity = TheDragon.getApi().getDragonService().getActiveDragon();
 
-        List<IPlaceholder> placeholders = Arrays.asList(
+        final List<IPlaceholder> placeholders = Arrays.asList(
                 new Placeholder("thedragon_player_reward_xp", theDragonEntity.getXp()),
                 new Placeholder("player", player.getName()));
 

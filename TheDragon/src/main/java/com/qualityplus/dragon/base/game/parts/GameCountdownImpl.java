@@ -36,23 +36,26 @@ public final class GameCountdownImpl implements GameCountdown {
 
 
     @Override
-    public CompletableFuture<Void> start(TheDragonEntity theDragonEntity) {
-        CompletableFuture<Void> future = new CompletableFuture<>();
+    public CompletableFuture<Void> start(final TheDragonEntity theDragonEntity) {
+        final CompletableFuture<Void> future = new CompletableFuture<>();
 
-        Optional<DragonSpawn> spawn = TheDragon.getApi().getStructureService().getSpawn();
+        final Optional<DragonSpawn> spawn = TheDragon.getApi().getStructureService().getSpawn();
 
-        if(!spawn.isPresent()) return future;
+        if (!spawn.isPresent()) {
+            return future;
+        }
 
         this.time = configuration.eventSettings.generalSettings.dragonSpawnCountdownSeconds;
 
-        Messages.GameTitlesMessages titles = messages.gameTitlesMessages;
+        final Messages.GameTitlesMessages titles = this.messages.gameTitlesMessages;
 
-        taskID = Bukkit.getScheduler().scheduleSyncRepeatingTask(TheDragon.getApi().getPlugin(), () -> {
+        this.taskID = Bukkit.getScheduler().scheduleSyncRepeatingTask(TheDragon.getApi().getPlugin(), () -> {
 
             if (this.time <= 0) {
                 getPlayersAround(spawn.get().getLocation()).forEach(player -> sendTitle(player, theDragonEntity, titles.dragonSpawned));
                 future.complete(null);
                 Bukkit.getScheduler().cancelTask(taskID);
+                return;
             }
 
             getPlayersAround(spawn.get().getLocation()).forEach(player -> sendTitle(player, theDragonEntity, titles.dragonSpawning));
@@ -65,14 +68,14 @@ public final class GameCountdownImpl implements GameCountdown {
     }
 
     private void sendTitle(Player player, TheDragonEntity theDragonEntity, ConfigTitle configTitle){
-        String dragonName = theDragonEntity == null ? "" : theDragonEntity.getDisplayName();
+        final String dragonName = theDragonEntity == null ? "" : theDragonEntity.getDisplayName();
 
-        List<IPlaceholder> placeholders = Arrays.asList(
+        final List<IPlaceholder> placeholders = Arrays.asList(
                 new Placeholder("thedragon_dragon_displayname", dragonName),
                 new Placeholder("thedragon_dragon_spawning_time", time));
 
-        String title = StringUtils.processMulti(configTitle.getTitle(), placeholders);
-        String subTitle = StringUtils.processMulti(configTitle.getSubtitle(), placeholders);
+        final String title = StringUtils.processMulti(configTitle.getTitle(), placeholders);
+        final String subTitle = StringUtils.processMulti(configTitle.getSubtitle(), placeholders);
 
         TheAssistantPlugin.getAPI().getNms().sendTitle(player, title, subTitle, 5, 5, 5);
 

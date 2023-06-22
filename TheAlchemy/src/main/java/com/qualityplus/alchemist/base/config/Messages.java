@@ -55,7 +55,7 @@ public final class Messages extends OkaeriConfig {
         private String successfullyReloaded = "&aPlugin has been reloaded successfully!";
         private String invalidPlayer = "&cInvalid Player!";
         private String useSyntax = "&cUsage: %usage%!";
-        private String noPermission = "&ecYou don't have permission to do that!";
+        private String noPermission = "&eYou don't have permission to do that!";
         private String unknownCommand = "&cUnknown command!";
         private String mustBeAPlayer = "&cYou must be a player to do that!";
         private String invalidArguments = "&cInvalid Arguments!";

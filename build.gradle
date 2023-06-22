@@ -4,9 +4,11 @@ plugins {
 }
 
 group = 'com.qualityplus.core'
-version = '3.2.0'
+version = '3.4.0'
 
 subprojects {
+    version = rootProject.version
+
     apply plugin: 'java'
     apply plugin: 'maven-publish'
     apply plugin: 'com.github.johnrengelman.shadow'
@@ -40,7 +42,7 @@ subprojects {
         implementation("org.jetbrains:annotations:22.0.0")
 
         compileOnly("org.projectlombok:lombok:1.18.22")
-        compileOnly 'com.github.r3back:the-assistant:3.2.7'
+        compileOnly 'com.github.r3back:the-assistant:3.2.9'
         //These both are temporal until jar class loader be added
         compileOnly 'io.lettuce:lettuce-core:6.1.1.RELEASE'
         compileOnly 'org.mongodb:mongo-java-driver:3.12.10'

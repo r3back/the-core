@@ -13,6 +13,8 @@ import org.bukkit.event.inventory.InventoryOpenEvent;
 import org.bukkit.inventory.Inventory;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.Optional;
+
 /**
  * Alchemist Stand GUI
  */
@@ -63,7 +65,7 @@ public final class AlchemistStandGUI extends AlchemistGUI {
             return;
         }
 
-        this.standService.removeSession(this.alchemistStandManager.getLocation());
+        Optional.ofNullable(this.standService).ifPresent(this::removeSession);
     }
 
 
@@ -96,5 +98,9 @@ public final class AlchemistStandGUI extends AlchemistGUI {
         }
 
         this.alchemistStandManager.check(player);
+    }
+
+    private void removeSession(final StandService standService) {
+        standService.removeSession(this.alchemistStandManager.getLocation());
     }
 }

@@ -53,7 +53,7 @@ public final class GamePlayerCheckServiceImpl implements GamePlayerCheckService 
     }
 
     private void checkPlayerStatus() {
-        if (this.dragonGame.isActive()) {
+        if (!this.dragonGame.isActive()) {
             return;
         }
 
@@ -104,11 +104,15 @@ public final class GamePlayerCheckServiceImpl implements GamePlayerCheckService 
     private void addTargetPlayers(){
         final TheDragonAPI api = TheDragon.getApi();
 
-        this.getSpawn()
+        List<EventPlayer> players = this.getSpawn()
                 .map(this::getNearbyPlayers)
-                .orElse(Collections.emptyList()).stream()
+                .orElse(Collections.emptyList())
+                .stream()
                 .map(this::getDefaultEventPlayer)
-                .forEach(api.getUserService()::addPlayer);
+                .collect(Collectors.toList());
+
+
+        players.forEach(api.getUserService()::addPlayer);
     }
 
     private EventPlayer getDefaultEventPlayer(final Player player) {

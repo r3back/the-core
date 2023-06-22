@@ -11,6 +11,7 @@ import com.qualityplus.dragon.api.game.structure.type.DragonSpawn;
 import com.qualityplus.dragon.api.service.StructureService;
 
 import com.qualityplus.assistant.lib.eu.okaeri.platform.core.annotation.Component;
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.Entity;
 

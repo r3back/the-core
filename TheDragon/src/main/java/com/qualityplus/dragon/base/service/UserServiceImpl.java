@@ -9,6 +9,7 @@ import com.qualityplus.dragon.base.game.player.EventPlayer;
 
 import com.qualityplus.assistant.lib.eu.okaeri.platform.core.annotation.Component;
 import lombok.Getter;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
@@ -84,6 +85,6 @@ public final class UserServiceImpl implements UserService {
 
     @Override
     public void sendFinishMessage() {
-        this.gameEnd.sendFinishMessage();
+        this.gameEnd.sendFinishMessage(this.eventUsers);
     }
 }

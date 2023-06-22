@@ -40,7 +40,7 @@ public final class Messages extends OkaeriConfig {
 
         public String useSyntax = "&cUsage: %usage%!";
 
-        public String noPermission = "&ecYou don't have permission to do that!";
+        public String noPermission = "&eYou don't have permission to do that!";
         public String unknownCommand = "&cUnknown command!";
         public String mustBeAPlayer = "&cYou must be a player to do that!";
         public String invalidArguments = "&cInvalid Arguments!";
