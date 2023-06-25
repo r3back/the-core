@@ -20,7 +20,7 @@ import org.bukkit.entity.Player;
 import java.util.List;
 import java.util.Optional;
 
-@Scheduled(rate = MinecraftTimeEquivalent.SECOND, async = true)
+@Scheduled(rate = MinecraftTimeEquivalent.SECOND)
 public final class BankInterestHandler implements Runnable {
     private @Inject Box box;
 

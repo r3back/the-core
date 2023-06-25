@@ -7,9 +7,10 @@ import lombok.Getter;
 import org.bukkit.Location;
 import org.bukkit.World;
 
+@Getter
 @AllArgsConstructor
 public final class DragonSpawnImpl extends OkaeriConfig implements DragonSpawn {
-    private @Getter Location location;
+    private Location location;
 
     @Override
     public void removeStructure() {

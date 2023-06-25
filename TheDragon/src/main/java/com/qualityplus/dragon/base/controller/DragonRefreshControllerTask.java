@@ -23,7 +23,7 @@ public final class DragonRefreshControllerTask implements Runnable{
                 .forEach(this::callEvent);
     }
 
-    private void callEvent(RefreshType type){
+    private void callEvent(RefreshType type) {
         plugin.getServer().getPluginManager().callEvent(new DragonRefreshEvent(type));
     }
 }

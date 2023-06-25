@@ -61,6 +61,7 @@ public final class TransactionGatewayImpl implements TransactionGateway {
 
     private Optional<TrxResponse> handleSet(final TrxRequest request){
         final BankData data = request.getBankData();
+
         final double amount = request.getTransaction().getAmount();
 
         data.setMoney(amount);

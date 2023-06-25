@@ -16,13 +16,18 @@ public final class RecipeBookSubGUIConfig extends OkaeriConfig implements Simple
     private Item unlockedItem;
     private Item lockedItem;
     private Item goBack;
+    private Item previousPage;
+    private Item nextPage;
 
     @Builder
-    public RecipeBookSubGUIConfig(CommonGUI commonGUI, Item categoryItem, Item unlockedItem, Item lockedItem, Item goBack) {
+    public RecipeBookSubGUIConfig(CommonGUI commonGUI, Item categoryItem, Item unlockedItem, Item lockedItem, Item goBack,
+                                  Item previousPage, Item nextPage) {
         this.commonGUI = commonGUI;
         this.categoryItem = categoryItem;
         this.unlockedItem = unlockedItem;
         this.lockedItem = lockedItem;
         this.goBack = goBack;
+        this.previousPage = previousPage;
+        this.nextPage = nextPage;
     }
 }

@@ -110,7 +110,8 @@ public final class DragonControllerImpl implements DragonController {
     public void targetPlayer() {
         this.rangeBest = 9000.0D;
         this.rangeTime = System.currentTimeMillis();
-        Player player = TheDragon.getApi().getUserService().getUsers().get(RandomUtil.randomUpTo(TheDragon.getApi().getUserService().getUsers().size())).getPlayer();
+        final int randomIndex = Math.max(RandomUtil.randomUpTo(TheDragon.getApi().getUserService().getUsers().size() - 1), 0);
+        final Player player = TheDragon.getApi().getUserService().getUsers().get(randomIndex).getPlayer();
         this.target = player.getLocation();
         this.target.add(DragonVelocityUtil.getTrajectory(this.location, this.target).multiply(3.5D));
         TheDragon.getApi().getPlugin().getServer().getPluginManager().callEvent(new DragonTargetEvent(player, this, TargetType.PLAYER));
