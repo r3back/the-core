@@ -58,16 +58,20 @@ public final class GameEndImpl implements GameEnd {
 
     private Optional<DragonReward> getSpecificRewardByDamage(TheDragonEntity entity, EventPlayer eventPlayer){
 
-        if(rewards.rewardsPerEachDragon == null) return Optional.empty();
+        if (this.rewards.rewardsPerEachDragon == null) {
+            return Optional.empty();
+        }
 
-        List<DragonReward> dragonRewards = new ArrayList<>(rewards.rewardsPerEachDragon.getOrDefault(entity.getId(), Collections.emptyList()));
+        final List<DragonReward> dragonRewards = new ArrayList<>(this.rewards.rewardsPerEachDragon.getOrDefault(entity.getId(), Collections.emptyList()));
+
         dragonRewards.sort((o1, o2) -> o2.getDamageDone() - o1.getDamageDone());
+
         return dragonRewards.stream()
                 .filter(dragonReward -> eventPlayer.getDamage() >= dragonReward.getDamageDone())
                 .findFirst();
     }
 
-    private void executeCommands(List<String> commands, List<IPlaceholder> placeholders){
+    private void executeCommands(final List<String> commands, final List<IPlaceholder> placeholders){
         commands.forEach(command -> Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), StringUtils.processMulti(command, placeholders)));
     }
 }

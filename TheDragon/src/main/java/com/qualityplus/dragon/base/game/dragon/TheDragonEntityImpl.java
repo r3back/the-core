@@ -12,7 +12,8 @@ import java.util.Optional;
 
 @Getter
 public final class TheDragonEntityImpl extends OkaeriConfig implements TheDragonEntity {
-    private @Exclude EnderDragon enderDragon;
+    @Exclude
+    private EnderDragon enderDragon;
     private final String displayName;
     private final double maxHealth;
     private final double chance;

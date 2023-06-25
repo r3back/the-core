@@ -156,13 +156,14 @@ public final class Inventories extends OkaeriConfig implements DefaultBackground
             ))
             .lockedItem(ItemBuilder.of(XMaterial.GRAY_DYE,  4, 1, "&c???", Collections.singletonList("&7Locked Recipe")).build())
             .unlockedItem(ItemBuilder.of(XMaterial.GRAY_DYE,  4, 1, "%crafting_recipe_result_item_displayname%", Arrays.asList("%crafting_recipe_result_item_lore%", "", "&eClick to view recipe")).build())
-
             .categoryItem(ItemBuilder.of(XMaterial.STONE, 4, 1, "&a%category_recipe_displayname% Recipes", Arrays.asList("&7View all of the &a%category_recipe_displayname% Recipes",
                     "&7that you have unlocked!",
                     "",
                     "&7Recipe Unlocked: &e%recipes_percentage_progress%&6%",
                     "%recipes_progress_actionbar% &e%unlocked_recipes%&6/&e%recipes_total%")).build())
             .goBack(ItemBuilder.of(XMaterial.ARROW,  48, 1, "&aGo Back", Arrays.asList("", "&e» &7Click to go back")).build())
+            .nextPage(ItemBuilder.of(XMaterial.BOOK,  53,1, "&dNext Page", Arrays.asList("", "&e» Click to go next Page!")).build())
+            .previousPage(ItemBuilder.of(XMaterial.BOOK, 46, 1, "&dPrevious Page", Arrays.asList("", "&e» Click to go to previous Page!")).build())
             .build();
 
     private Background getTableBackground() {

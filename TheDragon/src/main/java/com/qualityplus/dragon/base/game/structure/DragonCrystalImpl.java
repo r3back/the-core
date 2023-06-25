@@ -1,5 +1,6 @@
 package com.qualityplus.dragon.base.game.structure;
 
+import com.qualityplus.assistant.lib.eu.okaeri.configs.annotation.Exclude;
 import com.qualityplus.assistant.util.StringUtils;
 import com.qualityplus.dragon.TheDragon;
 import com.qualityplus.dragon.api.game.structure.type.DragonCrystal;
@@ -16,8 +17,10 @@ import java.util.Optional;
 
 @RequiredArgsConstructor
 public final class DragonCrystalImpl extends OkaeriConfig implements DragonCrystal {
+    @Exclude
     private EnderCrystal enderCrystal;
-    private @Getter final Location location;
+    @Getter
+    private final Location location;
 
     @Override
     public void removeStructure() {

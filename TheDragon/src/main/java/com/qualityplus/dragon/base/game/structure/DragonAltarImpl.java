@@ -11,10 +11,11 @@ import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.block.Block;
 
+@Getter
 @AllArgsConstructor
 public final class DragonAltarImpl extends OkaeriConfig implements DragonAltar {
-    private @Getter final Location location;
-    private @Getter boolean enderKey;
+    private final Location location;
+    private boolean enderKey;
 
     @Override
     public void removeStructure() {

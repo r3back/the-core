@@ -54,7 +54,7 @@ public final class GameRankingImpl implements GameRanking {
 
         this.eventPlayerMap.clear();
 
-        int ranking = 1;
+        int ranking = 0;
 
         for (EventPlayer eventPlayer : eventPlayers) {
             this.eventPlayerMap.put(ranking, eventPlayer);
@@ -71,19 +71,39 @@ public final class GameRankingImpl implements GameRanking {
     }
 
     private List<IPlaceholder> getCommonPlaceholders(){
-        String notFound = messages.gameMessages.forbiddenPlayer;
 
         return PlaceholderBuilder
                 .create(IntStream.of(0,1,2)
                         .boxed()
-                        .map(number -> new Placeholder(String.format("the_dragon_player_top_%d_name", number + 1), getByRank(number).map(EventPlayer::getName).orElse(notFound)))
+                        .map(this::getNameByTopNumber)
                         .collect(Collectors.toList()))
-                .with(IntStream.of(0,1,2)
+                .with(IntStream.of(0, 1, 2)
                         .boxed()
-                        .map(number -> new Placeholder(String.format("the_dragon_player_top_%d_damage", number + 1), getByRank(number).map(EventPlayer::getDamage).orElse(0D)))
+                        .map(this::getDamageByTopNumber)
                         .collect(Collectors.toList()))
                 .get();
     }
+
+    private Placeholder getDamageByTopNumber(final int number) {
+        final String key = String.format("the_dragon_player_top_%d_damage", number + 1);
+        final double value = getByRank(number)
+                .map(EventPlayer::getDamage)
+                .orElse(0D);
+
+        return new Placeholder(key, value);
+    }
+
+    private Placeholder getNameByTopNumber(final int number) {
+        String notFound = messages.gameMessages.forbiddenPlayer;
+
+        final String key = String.format("the_dragon_player_top_%d_name", number + 1);
+        final String value = getByRank(number)
+                .map(EventPlayer::getName)
+                .orElse(notFound);
+
+        return new Placeholder(key, value);
+    }
+
     private String getLastAttacker(){
         return Optional.ofNullable(TheDragon.getApi().getUserService().getLast())
                 .filter(Objects::nonNull)
@@ -98,13 +118,13 @@ public final class GameRankingImpl implements GameRanking {
                 .orElse(0D);
     }
 
-    private Integer getRankByPlayer(EventPlayer eventPlayer) {
+    private Integer getRankByPlayer(final EventPlayer eventPlayer) {
         return eventPlayerMap.entrySet()
                 .stream()
                 .filter(entry -> entry.getValue().getName().equals(eventPlayer.getName()))
                 .map(Map.Entry::getKey)
                 .findFirst()
-                .orElse(0);
+                .orElse(0) + 1;
     }
 
 }
