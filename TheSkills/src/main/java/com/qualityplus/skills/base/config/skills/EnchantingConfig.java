@@ -27,7 +27,7 @@ import java.util.*;
 @Header("       Enchanting      ")
 @Header("================================")
 @Names(strategy = NameStrategy.HYPHEN_CASE, modifier = NameModifier.TO_LOWER_CASE)
-public final class EnchantingConfig extends OkaeriConfig implements SkillFile {
+public final class EnchantingConfig extends OkaeriConfig {
 
     public String id = "enchanting";
     public boolean enabled = true;
@@ -36,7 +36,7 @@ public final class EnchantingConfig extends OkaeriConfig implements SkillFile {
     public int maxLevel = 50;
     private Map<Integer, Double> xpRequirements = getLevelsMap();
     private Map<Integer, List<String>> skillInfoInGUI = getInfo();
-    private Map<Integer, List<StatReward>> statRewards = getRewards();
+    private Map<Integer, List<StatReward>> statRewards = getInternalRewards();
     private Map<Integer, List<String>> skillInfoInMessage = getInfo();
     private Map<Integer, List<CommandReward>> commandRewards = new HashMap<>();
 
@@ -104,7 +104,7 @@ public final class EnchantingConfig extends OkaeriConfig implements SkillFile {
                 .build();
     }
 
-    private Map<Integer, List<StatReward>> getRewards(){
+    private Map<Integer, List<StatReward>> getInternalRewards(){
         return FastMap.listBuilder(Integer.class, StatReward.class)
                 .put(1, Arrays.asList(new StatReward("intelligence", 1), new StatReward("defense", 1), new StatReward("enchantment_master", 1), new StatReward("orb_master", 1)))
                 .put(10, Arrays.asList(new StatReward("intelligence", 2), new StatReward("defense", 2), new StatReward("enchantment_master", 1), new StatReward("orb_master", 1)))

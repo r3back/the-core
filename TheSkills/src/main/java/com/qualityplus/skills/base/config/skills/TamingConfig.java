@@ -26,7 +26,7 @@ import java.util.*;
 @Header("       Taming      ")
 @Header("================================")
 @Names(strategy = NameStrategy.HYPHEN_CASE, modifier = NameModifier.TO_LOWER_CASE)
-public final class TamingConfig extends OkaeriConfig implements SkillFile {
+public final class TamingConfig extends OkaeriConfig {
 
     public String id = "taming";
     public boolean enabled = true;
@@ -35,7 +35,7 @@ public final class TamingConfig extends OkaeriConfig implements SkillFile {
     public int maxLevel = 50;
     private Map<Integer, Double> xpRequirements = getLevelsMap();
     private Map<Integer, List<String>> skillInfoInGUI = getInfo();
-    private Map<Integer, List<StatReward>> statRewards = getRewards();
+    private Map<Integer, List<StatReward>> statRewards = getInternalRewards();
     private Map<Integer, List<String>> skillInfoInMessage = getInfo();
     private Map<Integer, List<CommandReward>> commandRewards = new HashMap<>();
     private GUIOptions guiOptions = GUIOptions.builder()
@@ -75,7 +75,7 @@ public final class TamingConfig extends OkaeriConfig implements SkillFile {
                 .build();
     }
 
-    private Map<Integer, List<StatReward>> getRewards(){
+    private Map<Integer, List<StatReward>> getInternalRewards(){
         return FastMap.listBuilder(Integer.class, StatReward.class)
                 .put(1, Arrays.asList(new StatReward("ferocity", 1), new StatReward("pet_luck", 1)))
                 .put(10, Arrays.asList(new StatReward("ferocity", 2), new StatReward("pet_luck", 2)))

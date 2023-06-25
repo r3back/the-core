@@ -27,7 +27,7 @@ import java.util.*;
 @Header("       Foraging      ")
 @Header("================================")
 @Names(strategy = NameStrategy.HYPHEN_CASE, modifier = NameModifier.TO_LOWER_CASE)
-public final class ForagingConfig extends OkaeriConfig implements SkillFile {
+public final class ForagingConfig extends OkaeriConfig {
     public String id = "foraging";
     public boolean enabled = true;
     public String displayName = "Foraging";
@@ -35,9 +35,25 @@ public final class ForagingConfig extends OkaeriConfig implements SkillFile {
     public int maxLevel = 50;
     private Map<Integer, Double> xpRequirements = getLevelsMap();
     private Map<Integer, List<String>> skillInfoInGUI = getInfo();
-    private Map<Integer, List<StatReward>> statRewards = getRewards();
+    private Map<Integer, List<StatReward>> statRewards = getInternalRewards();
     private Map<Integer, List<String>> skillInfoInMessage = getInfo();
     private Map<Integer, List<CommandReward>> commandRewards = new HashMap<>();
+    private Map<XMaterial, Double> rewards = ImmutableMap.<XMaterial, Double>builder()
+                        .put(XMaterial.OAK_LOG, 2D)
+                        .put(XMaterial.ACACIA_LOG, 2D)
+                        .put(XMaterial.BIRCH_LOG, 2D)
+                        .put(XMaterial.DARK_OAK_LOG, 2D)
+                        .put(XMaterial.JUNGLE_LOG, 2D)
+                        .put(XMaterial.SPRUCE_LOG, 2D)
+                        .build();
+    private Map<XMaterial, Double> minionXpRewards = ImmutableMap.<XMaterial, Double>builder()
+            .put(XMaterial.OAK_LOG, 2D)
+            .put(XMaterial.ACACIA_LOG, 2D)
+            .put(XMaterial.BIRCH_LOG, 2D)
+            .put(XMaterial.DARK_OAK_LOG, 2D)
+            .put(XMaterial.JUNGLE_LOG, 2D)
+            .put(XMaterial.SPRUCE_LOG, 2D)
+            .build();
 
     private GUIOptions guiOptions = GUIOptions.builder()
             .slot(29)
@@ -68,22 +84,8 @@ public final class ForagingConfig extends OkaeriConfig implements SkillFile {
                 .commandRewards(commandRewards)
                 .maxLevel(maxLevel)
                 .skillGUIOptions(guiOptions)
-                .rewards(ImmutableMap.<XMaterial, Double>builder()
-                        .put(XMaterial.OAK_LOG, 2D)
-                        .put(XMaterial.ACACIA_LOG, 2D)
-                        .put(XMaterial.BIRCH_LOG, 2D)
-                        .put(XMaterial.DARK_OAK_LOG, 2D)
-                        .put(XMaterial.JUNGLE_LOG, 2D)
-                        .put(XMaterial.SPRUCE_LOG, 2D)
-                        .build())
-                .minionXpRewards(ImmutableMap.<XMaterial, Double>builder()
-                        .put(XMaterial.OAK_LOG, 2D)
-                        .put(XMaterial.ACACIA_LOG, 2D)
-                        .put(XMaterial.BIRCH_LOG, 2D)
-                        .put(XMaterial.DARK_OAK_LOG, 2D)
-                        .put(XMaterial.JUNGLE_LOG, 2D)
-                        .put(XMaterial.SPRUCE_LOG, 2D)
-                        .build())
+                .rewards(rewards)
+                .minionXpRewards(minionXpRewards)
                 .build();
     }
 
@@ -110,7 +112,7 @@ public final class ForagingConfig extends OkaeriConfig implements SkillFile {
                 .build();
     }
 
-    private Map<Integer, List<StatReward>> getRewards(){
+    private Map<Integer, List<StatReward>> getInternalRewards(){
         return FastMap.listBuilder(Integer.class, StatReward.class)
                 .put(1, Arrays.asList(new StatReward("strength", 1), new StatReward("defense", 1), new StatReward("foraging_fortune", 1), new StatReward("medicine_man", 1)))
                 .put(10, Arrays.asList(new StatReward("strength", 2), new StatReward("defense", 2), new StatReward("foraging_fortune", 1), new StatReward("medicine_man", 1)))

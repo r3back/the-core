@@ -27,7 +27,7 @@ import java.util.*;
 @Header("       Fishing      ")
 @Header("================================")
 @Names(strategy = NameStrategy.HYPHEN_CASE, modifier = NameModifier.TO_LOWER_CASE)
-public final class FishingConfig extends OkaeriConfig implements SkillFile {
+public final class FishingConfig extends OkaeriConfig {
 
     public String id = "fishing";
     public boolean enabled = true;
@@ -36,7 +36,7 @@ public final class FishingConfig extends OkaeriConfig implements SkillFile {
     public int maxLevel = 50;
     private Map<Integer, Double> xpRequirements = getLevelsMap();
     private Map<Integer, List<String>> skillInfoInGUI = getInfo();
-    private Map<Integer, List<StatReward>> statRewards = getRewards();
+    private Map<Integer, List<StatReward>> statRewards = getInternalRewards();
     private Map<Integer, List<String>> skillInfoInMessage = getInfo();
     private Map<Integer, List<CommandReward>> commandRewards = new HashMap<>();
 
@@ -100,7 +100,7 @@ public final class FishingConfig extends OkaeriConfig implements SkillFile {
                 .build();
     }
 
-    private Map<Integer, List<StatReward>> getRewards(){
+    private Map<Integer, List<StatReward>> getInternalRewards(){
         return FastMap.listBuilder(Integer.class, StatReward.class)
                 .put(1, Arrays.asList(new StatReward("speed", 1), new StatReward("magic_find", 1), new StatReward("fishing_fortune", 1), new StatReward("iron_lungs", 1)))
                 .put(10, Arrays.asList(new StatReward("speed", 2), new StatReward("magic_find", 2), new StatReward("fishing_fortune", 1), new StatReward("iron_lungs", 1)))
