@@ -15,19 +15,23 @@ import com.qualityplus.assistant.lib.eu.okaeri.configs.annotation.NameModifier;
 import com.qualityplus.assistant.lib.eu.okaeri.configs.annotation.NameStrategy;
 import com.qualityplus.assistant.lib.eu.okaeri.configs.annotation.Names;
 import com.qualityplus.assistant.lib.eu.okaeri.platform.core.annotation.Configuration;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.*;
 
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Configuration(path = "skills/farming_skill.yml")
 @Header("================================")
 @Header("       Farming      ")
 @Header("================================")
 @Names(strategy = NameStrategy.HYPHEN_CASE, modifier = NameModifier.TO_LOWER_CASE)
-public final class FarmingConfig extends OkaeriConfig implements SkillFile {
+public final class FarmingConfig extends OkaeriConfig {
     public String id = "farming";
     public boolean enabled = true;
     public String displayName = "Farming";
@@ -35,9 +39,19 @@ public final class FarmingConfig extends OkaeriConfig implements SkillFile {
     public int maxLevel = 50;
     private Map<Integer, Double> xpRequirements = getLevelsMap();
     private Map<Integer, List<String>> skillInfoInGUI = getInfo();
-    private Map<Integer, List<StatReward>> statRewards = getRewards();
+    private Map<Integer, List<StatReward>> statRewards = getInternalRewards();
     private Map<Integer, List<String>> skillInfoInMessage = getInfo();
     private Map<Integer, List<CommandReward>> commandRewards = new HashMap<>();
+    private Map<XMaterial, Double> rewards = ImmutableMap.<XMaterial, Double>builder()
+            .put(XMaterial.WHEAT, 2D)
+            .put(XMaterial.CARROTS, 4D)
+            .put(XMaterial.POTATOES, 5D)
+            .build();
+    private Map<XMaterial, Double> minionXpRewards = ImmutableMap.<XMaterial, Double>builder()
+            .put(XMaterial.WHEAT, 2D)
+            .put(XMaterial.CARROTS, 4D)
+            .put(XMaterial.POTATOES, 5D)
+            .build();
 
     private GUIOptions guiOptions = GUIOptions.builder()
             .slot(24)
@@ -69,16 +83,8 @@ public final class FarmingConfig extends OkaeriConfig implements SkillFile {
                 .commandRewards(commandRewards)
                 .maxLevel(maxLevel)
                 .skillGUIOptions(guiOptions)
-                .rewards(ImmutableMap.<XMaterial, Double>builder()
-                        .put(XMaterial.WHEAT, 2D)
-                        .put(XMaterial.CARROTS, 4D)
-                        .put(XMaterial.POTATOES, 5D)
-                        .build())
-                .minionXpRewards(ImmutableMap.<XMaterial, Double>builder()
-                        .put(XMaterial.WHEAT, 2D)
-                        .put(XMaterial.CARROTS, 4D)
-                        .put(XMaterial.POTATOES, 5D)
-                        .build())
+                .rewards(rewards)
+                .minionXpRewards(minionXpRewards)
                 .build();
     }
 
@@ -105,7 +111,7 @@ public final class FarmingConfig extends OkaeriConfig implements SkillFile {
                 .build();
     }
 
-    private Map<Integer, List<StatReward>> getRewards(){
+    private Map<Integer, List<StatReward>> getInternalRewards(){
         return FastMap.listBuilder(Integer.class, StatReward.class)
                 .put(1, Arrays.asList(new StatReward("strength", 1), new StatReward("critic_damage", 1), new StatReward("farming_fortune", 1), new StatReward("eagle_eyes", 1)))
                 .put(10, Arrays.asList(new StatReward("strength", 2), new StatReward("critic_damage", 2), new StatReward("farming_fortune", 1), new StatReward("eagle_eyes", 1)))

@@ -28,19 +28,22 @@ import java.util.*;
 @Header("       Combat      ")
 @Header("================================")
 @Names(strategy = NameStrategy.HYPHEN_CASE, modifier = NameModifier.TO_LOWER_CASE)
-public final class CombatConfig extends OkaeriConfig implements SkillFile {
+public final class CombatConfig extends OkaeriConfig {
     public String id = "combat";
     public boolean enabled = true;
     public String displayName = "Combat";
     public List<String> description = Collections.singletonList("&7Earn xp by killing mobs!");
     public int maxLevel = 50;
-
     private Map<Integer, Double> xpRequirements = getLevelsMap();
     private Map<Integer, List<String>> skillInfoInGUI = getInfo();
-    private Map<Integer, List<StatReward>> statRewards = getRewards();
+    private Map<Integer, List<StatReward>> statRewards = getInternalRewards();
     private Map<Integer, List<String>> skillInfoInMessage = getInfo();
     private Map<Integer, List<CommandReward>> commandRewards = new HashMap<>();
-
+    private Map<EntityType, Double> rewards = ImmutableMap.<EntityType, Double>builder()
+            .put(EntityType.ZOMBIE, 2D)
+            .put(EntityType.CREEPER, 3D)
+            .put(EntityType.ENDERMAN, 4D)
+            .build();
     private GUIOptions guiOptions = GUIOptions.builder()
             .slot(21)
             .item(XMaterial.PLAYER_HEAD)
@@ -70,11 +73,7 @@ public final class CombatConfig extends OkaeriConfig implements SkillFile {
                 .commandRewards(commandRewards)
                 .maxLevel(maxLevel)
                 .skillGUIOptions(guiOptions)
-                .rewards(ImmutableMap.<EntityType, Double>builder()
-                        .put(EntityType.ZOMBIE, 2D)
-                        .put(EntityType.CREEPER, 3D)
-                        .put(EntityType.ENDERMAN, 4D)
-                        .build())
+                .rewards(rewards)
                 .build();
     }
 
@@ -101,7 +100,7 @@ public final class CombatConfig extends OkaeriConfig implements SkillFile {
                 .build();
     }
 
-    private Map<Integer, List<StatReward>> getRewards(){
+    private Map<Integer, List<StatReward>> getInternalRewards(){
         return FastMap.listBuilder(Integer.class, StatReward.class)
                 .put(1, Arrays.asList(new StatReward("critic_damage", 1), new StatReward("critic_chance", 1), new StatReward("one_punch_man", 1), new StatReward("spiderman", 1)))
                 .put(10, Arrays.asList(new StatReward("critic_damage", 2), new StatReward("critic_chance", 2), new StatReward("one_punch_man", 1), new StatReward("spiderman", 1)))

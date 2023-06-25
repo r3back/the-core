@@ -27,7 +27,7 @@ import java.util.*;
 @Header("       Mining      ")
 @Header("================================")
 @Names(strategy = NameStrategy.HYPHEN_CASE, modifier = NameModifier.TO_LOWER_CASE)
-public final class MiningConfig extends OkaeriConfig implements SkillFile {
+public final class MiningConfig extends OkaeriConfig {
 
     public String id = "mining";
     public boolean enabled = true;
@@ -36,7 +36,7 @@ public final class MiningConfig extends OkaeriConfig implements SkillFile {
     public int maxLevel = 50;
     private Map<Integer, Double> xpRequirements = getLevelsMap();
     private Map<Integer, List<String>> skillInfoInGUI = getInfo();
-    private Map<Integer, List<StatReward>> statRewards = getRewards();
+    private Map<Integer, List<StatReward>> statRewards = getInternalRewards();
     private Map<Integer, List<String>> skillInfoInMessage = getInfo();
     private Map<Integer, List<CommandReward>> commandRewards = new HashMap<>();
     private GUIOptions guiOptions = GUIOptions.builder()
@@ -54,6 +54,26 @@ public final class MiningConfig extends OkaeriConfig implements SkillFile {
                     "   &7%skill_mining_speed_description%"
             ))
             .build();
+    private Map<XMaterial, Double> rewards = ImmutableMap.<XMaterial, Double>builder()
+            .put(XMaterial.COAL_ORE, 2D)
+            .put(XMaterial.IRON_ORE, 2D)
+            .put(XMaterial.STONE, 2D)
+            .put(XMaterial.COBBLESTONE, 2D)
+            .put(XMaterial.DIAMOND_ORE, 2D)
+            .put(XMaterial.REDSTONE_ORE, 2D)
+            .build();
+    private Map<XMaterial, Double> minionXpRewards = ImmutableMap.<XMaterial, Double>builder()
+            .put(XMaterial.COAL_ORE, 2D)
+            .put(XMaterial.IRON_ORE, 2D)
+            .put(XMaterial.STONE, 2D)
+            .put(XMaterial.COBBLESTONE, 2D)
+            .put(XMaterial.DIAMOND_ORE, 2D)
+            .put(XMaterial.REDSTONE_ORE, 2D)
+            .put(XMaterial.COAL, 2D)
+            .put(XMaterial.IRON_INGOT, 2D)
+            .put(XMaterial.DIAMOND, 2D)
+            .put(XMaterial.REDSTONE, 2D)
+            .build();
 
     public Skill getSkill(){
         return MiningSkill.builder()
@@ -69,26 +89,8 @@ public final class MiningConfig extends OkaeriConfig implements SkillFile {
                 .commandRewards(commandRewards)
                 .maxLevel(maxLevel)
                 .skillGUIOptions(guiOptions)
-                .rewards(ImmutableMap.<XMaterial, Double>builder()
-                        .put(XMaterial.COAL_ORE, 2D)
-                        .put(XMaterial.IRON_ORE, 2D)
-                        .put(XMaterial.STONE, 2D)
-                        .put(XMaterial.COBBLESTONE, 2D)
-                        .put(XMaterial.DIAMOND_ORE, 2D)
-                        .put(XMaterial.REDSTONE_ORE, 2D)
-                        .build())
-                .minionXpRewards(ImmutableMap.<XMaterial, Double>builder()
-                        .put(XMaterial.COAL_ORE, 2D)
-                        .put(XMaterial.IRON_ORE, 2D)
-                        .put(XMaterial.STONE, 2D)
-                        .put(XMaterial.COBBLESTONE, 2D)
-                        .put(XMaterial.DIAMOND_ORE, 2D)
-                        .put(XMaterial.REDSTONE_ORE, 2D)
-                        .put(XMaterial.COAL, 2D)
-                        .put(XMaterial.IRON_INGOT, 2D)
-                        .put(XMaterial.DIAMOND, 2D)
-                        .put(XMaterial.REDSTONE, 2D)
-                        .build())
+                .rewards(rewards)
+                .minionXpRewards(minionXpRewards)
                 .build();
     }
 
@@ -115,7 +117,7 @@ public final class MiningConfig extends OkaeriConfig implements SkillFile {
                 .build();
     }
 
-    private Map<Integer, List<StatReward>> getRewards(){
+    private Map<Integer, List<StatReward>> getInternalRewards(){
         return FastMap.listBuilder(Integer.class, StatReward.class)
                 .put(1, Arrays.asList(new StatReward("strength", 1), new StatReward("magic_find", 1), new StatReward("mining_fortune", 1), new StatReward("mining_speed", 1)))
                 .put(10, Arrays.asList(new StatReward("strength", 2), new StatReward("magic_find", 2), new StatReward("mining_fortune", 1), new StatReward("mining_speed", 1)))

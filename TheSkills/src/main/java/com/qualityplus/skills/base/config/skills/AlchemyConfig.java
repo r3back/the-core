@@ -27,7 +27,7 @@ import java.util.*;
 @Header("       Alchemy      ")
 @Header("================================")
 @Names(strategy = NameStrategy.HYPHEN_CASE, modifier = NameModifier.TO_LOWER_CASE)
-public final class AlchemyConfig extends OkaeriConfig implements SkillFile {
+public final class AlchemyConfig extends OkaeriConfig {
     public String id = "alchemy";
     public boolean enabled = true;
     public String displayName = "Alchemy";
@@ -35,10 +35,24 @@ public final class AlchemyConfig extends OkaeriConfig implements SkillFile {
     public int maxLevel = 50;
     private Map<Integer, Double> xpRequirements = getLevelsMap();
     private Map<Integer, List<String>> skillInfoInGUI = getInfo();
-    private Map<Integer, List<StatReward>> statRewards = getRewards();
+    private Map<Integer, List<StatReward>> statRewards = getInternalRewards();
     private Map<Integer, List<String>> skillInfoInMessage = getInfo();
     private Map<Integer, List<CommandReward>> commandRewards = new HashMap<>();
-
+    private Map<XMaterial, Double> rewards = ImmutableMap.<XMaterial, Double>builder()
+            .put(XMaterial.GHAST_TEAR, 5D)
+            .put(XMaterial.GLOWSTONE_DUST, 5D)
+            .put(XMaterial.FERMENTED_SPIDER_EYE, 5D)
+            .put(XMaterial.GUNPOWDER, 5D)
+            .put(XMaterial.REDSTONE, 5D)
+            .put(XMaterial.NETHER_WART, 5D)
+            .put(XMaterial.PUFFERFISH, 5D)
+            .put(XMaterial.DRAGON_BREATH, 5D)
+            .put(XMaterial.SUGAR, 5D)
+            .put(XMaterial.RABBIT_FOOT, 5D)
+            .put(XMaterial.MAGMA_BLOCK, 5D)
+            .put(XMaterial.SPIDER_EYE, 5D)
+            .put(XMaterial.PHANTOM_MEMBRANE, 5D)
+            .build();
 
     public GUIOptions guiOptions = GUIOptions.builder()
             .slot(19)
@@ -68,24 +82,9 @@ public final class AlchemyConfig extends OkaeriConfig implements SkillFile {
                 .skillInfoInMessage(skillInfoInMessage)
                 .skillInfoInGUI(skillInfoInGUI)
                 .commandRewards(commandRewards)
-
                 .maxLevel(maxLevel)
                 .skillGUIOptions(guiOptions)
-                .rewards(ImmutableMap.<XMaterial, Double>builder()
-                        .put(XMaterial.GHAST_TEAR, 5D)
-                        .put(XMaterial.GLOWSTONE_DUST, 5D)
-                        .put(XMaterial.FERMENTED_SPIDER_EYE, 5D)
-                        .put(XMaterial.GUNPOWDER, 5D)
-                        .put(XMaterial.REDSTONE, 5D)
-                        .put(XMaterial.NETHER_WART, 5D)
-                        .put(XMaterial.PUFFERFISH, 5D)
-                        .put(XMaterial.DRAGON_BREATH, 5D)
-                        .put(XMaterial.SUGAR, 5D)
-                        .put(XMaterial.RABBIT_FOOT, 5D)
-                        .put(XMaterial.MAGMA_BLOCK, 5D)
-                        .put(XMaterial.SPIDER_EYE, 5D)
-                        .put(XMaterial.PHANTOM_MEMBRANE, 5D)
-                        .build())
+                .rewards(rewards)
                 .build();
     }
 
@@ -112,7 +111,7 @@ public final class AlchemyConfig extends OkaeriConfig implements SkillFile {
                 .build();
     }
 
-    private Map<Integer, List<StatReward>> getRewards(){
+    private Map<Integer, List<StatReward>> getInternalRewards(){
         return FastMap.listBuilder(Integer.class, StatReward.class)
                 .put(1, Arrays.asList(new StatReward("defense", 1), new StatReward("ferocity", 1), new StatReward("brew_chance", 1), new StatReward("potion_master", 1)))
                 .put(10, Arrays.asList(new StatReward("defense", 2), new StatReward("ferocity", 2), new StatReward("brew_chance", 1), new StatReward("potion_master", 1)))

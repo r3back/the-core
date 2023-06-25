@@ -26,7 +26,7 @@ import java.util.*;
 @Header("       RuneCrafting      ")
 @Header("================================")
 @Names(strategy = NameStrategy.HYPHEN_CASE, modifier = NameModifier.TO_LOWER_CASE)
-public final class RunecraftingConfig extends OkaeriConfig implements SkillFile {
+public final class RunecraftingConfig extends OkaeriConfig {
     public String id = "runecrafting";
     public boolean enabled = true;
     public String displayName = "RuneCrafting";
@@ -34,7 +34,7 @@ public final class RunecraftingConfig extends OkaeriConfig implements SkillFile 
     public int maxLevel = 50;
     private Map<Integer, Double> xpRequirements = getLevelsMap();
     private Map<Integer, List<String>> skillInfoInGUI = getInfo();
-    private Map<Integer, List<StatReward>> statRewards = getRewards();
+    private Map<Integer, List<StatReward>> statRewards = getInternalRewards();
     private Map<Integer, List<String>> skillInfoInMessage = getInfo();
     private Map<Integer, List<CommandReward>> commandRewards = new HashMap<>();
 
@@ -73,7 +73,7 @@ public final class RunecraftingConfig extends OkaeriConfig implements SkillFile 
                 .build();
     }
 
-    private Map<Integer, List<StatReward>> getRewards(){
+    private Map<Integer, List<StatReward>> getInternalRewards(){
         return new HashMap<>();
     }
 
