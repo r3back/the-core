@@ -33,7 +33,7 @@ public class CollectionsPlaceholderUtil {
 
     public PlaceholderBuilder getCollectionsPlaceholders(UserData userData, Collection skill, int level) {
         double xp = userData.getCollections().getXp(skill.getId());
-        double maxXp = skill.getLevelRequirement(level + 1);
+        double maxXp = skill.getLevelRequirement(level);
         double percentage = ActionBarUtils.getPercentageFromTotal(xp, maxXp);
 
         return PlaceholderBuilder.create(
