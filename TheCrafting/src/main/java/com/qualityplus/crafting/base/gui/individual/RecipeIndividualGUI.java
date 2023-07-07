@@ -89,6 +89,10 @@ public final class RecipeIndividualGUI extends CraftingGUI {
             player.closeInventory();
             player.sendMessage(StringUtils.color(box.files().messages().recipeMessages.typePage));
             edition.setEditMode(player.getUniqueId(), new EditionObject(recipe, RecipeEdition.EditionType.PAGE));
+        }else if(isItem(slot, config.getDeleteItem())) {
+            player.closeInventory();
+            // Maybe a better way to do this?
+            player.performCommand("thecrafting delete " + recipe.getId());
         }
     }
 
