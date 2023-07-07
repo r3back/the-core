@@ -12,11 +12,13 @@ public final class RecipeBookMainGUIConfig extends OkaeriConfig implements Simpl
     private final Item generalProgressItem;
     private final CommonGUI commonGUI;
     private final Item categoryItem;
+    private final Item customGoBackItem;
 
     @Builder
-    public RecipeBookMainGUIConfig(Item generalProgressItem, CommonGUI commonGUI, Item categoryItem) {
+    public RecipeBookMainGUIConfig(Item generalProgressItem, CommonGUI commonGUI, Item categoryItem, Item customGoBackItem) {
         this.generalProgressItem = generalProgressItem;
         this.commonGUI = commonGUI;
         this.categoryItem = categoryItem;
+        this.customGoBackItem = customGoBackItem;
     }
 }
