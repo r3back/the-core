@@ -74,7 +74,16 @@ public final class MainGUI extends SkillsGUI {
         if(isItem(slot, config.getCloseGUI())) {
             player.closeInventory();
         }else if(isItem(slot, config.getPlayerInfoItem())){
-            player.openInventory(new StatsAndPerksGUI(box, player, 1, StatsAndPerksGUI.GUIType.STAT).getInventory());
+            // This retains the original behaviour for all server owners
+            // as the command is not provided by default but allows more
+            // customization.
+            if(config.getPlayerInfoItem().command != null && !config.getPlayerInfoItem().command.isEmpty()){
+                // A workaround while TheAssistant does not replace
+                // PlaceholderAPI placeholders in item name and lore.
+                handleItemCommandClick(player, config.getPlayerInfoItem());
+            }else{
+                player.openInventory(new StatsAndPerksGUI(box, player, 1, StatsAndPerksGUI.GUIType.STAT).getInventory());
+            }
         }else if(isItem(slot, config.getCustomGoBackItem())){
             handleItemCommandClick(player, config.getCustomGoBackItem());
         }else{
