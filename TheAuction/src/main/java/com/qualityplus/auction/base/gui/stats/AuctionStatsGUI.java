@@ -44,7 +44,7 @@ public final class AuctionStatsGUI extends AuctionGUI {
         return inventory;
     }
 
-    private List<IPlaceholder> getUserPlaceholders(){
+    private List<IPlaceholder> getUserPlaceholders() {
         AuctionStats stats = box.service().getUser(uuid)
                 .map(User::getAuctionStats)
                 .orElse(new AuctionStats());
@@ -71,9 +71,9 @@ public final class AuctionStatsGUI extends AuctionGUI {
 
         int slot = event.getSlot();
 
-        if(isItem(slot, config.getCloseGUI())){
+        if(isItem(slot, config.getCloseGUI())) {
             player.closeInventory();
-        }else if(isItem(slot, config.goBackItem)){
+        }else if(isItem(slot, config.goBackItem)) {
             player.openInventory(new MainAuctionGUI(box, searcher, player.getUniqueId()).getInventory());
         }
     }

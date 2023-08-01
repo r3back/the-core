@@ -19,7 +19,7 @@ public final class AuctionExpirationTask implements Runnable{
 
     @Override
     public void run() {
-        for(AuctionItem auctionItem : box.auctionService().getItems()){
+        for(AuctionItem auctionItem : box.auctionService().getItems()) {
             if(auctionItem.isBuyItNow()) continue;
 
             if(!auctionItem.isExpired()) continue;
@@ -33,7 +33,7 @@ public final class AuctionExpirationTask implements Runnable{
 
             Optional<User> user = box.getCacheOrDatabase(owner);
 
-            if(owner.equals(topBidder)){
+            if(owner.equals(topBidder)) {
                 auctionItem.setHasBids(false);
                 user.ifPresent(User::addAuctionCompletedWithoutBids);
             }else{
@@ -50,7 +50,7 @@ public final class AuctionExpirationTask implements Runnable{
         }
     }
 
-    private UUID getTopPrice(AuctionItem auctionItem){
+    private UUID getTopPrice(AuctionItem auctionItem) {
         return auctionItem.getBids().stream()
                 .max(Comparator.comparingDouble(AuctionBid::getBidAmount))
                 .map(AuctionBid::getBidder)

@@ -61,7 +61,7 @@ public final class PendingAuctionGUI extends AuctionGUI {
         try {
             int slot = 0;
             int i = maxPerPage * (page - 1);
-            if(auctions.size() > 0){
+            if(auctions.size() > 0) {
                 while (slot < maxPerPage) {
                     if (auctions.size() > i && i >= 0) {
                         AuctionItem auctionItem = auctions.get(i);
@@ -76,7 +76,7 @@ public final class PendingAuctionGUI extends AuctionGUI {
                     slot++;
                 }
             }
-        }catch (Exception e){
+        }catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -89,19 +89,19 @@ public final class PendingAuctionGUI extends AuctionGUI {
 
         int slot = event.getSlot();
 
-        if(isItem(slot, config.getCloseGUI())){
+        if(isItem(slot, config.getCloseGUI())) {
             player.closeInventory();
-        }else if(isItem(slot, config.goBackItem)){
+        }else if(isItem(slot, config.goBackItem)) {
             player.openInventory(new MainAuctionGUI(box, searcher, player.getUniqueId()).getInventory());
-        }else if(allAuctions.containsKey(slot)){
+        }else if(allAuctions.containsKey(slot)) {
             AuctionItem auctionItem = allAuctions.get(slot);
 
             if(auctionItem == null) return;
 
             ViewOpener.open(player, auctionItem, box, searcher, -1);
-        }else if(isItem(slot, config.previousPageItem) && page > 1){
+        }else if(isItem(slot, config.previousPageItem) && page > 1) {
             player.openInventory(new PendingAuctionGUI(box, uuid, searcher, page - 1).getInventory());
-        }else if(isItem(slot, config.nextPageItem) && hasNext){
+        }else if(isItem(slot, config.nextPageItem) && hasNext) {
             player.openInventory(new PendingAuctionGUI(box, uuid, searcher, page + 1).getInventory());
         }
     }

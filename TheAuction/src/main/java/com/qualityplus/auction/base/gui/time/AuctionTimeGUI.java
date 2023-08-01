@@ -40,7 +40,7 @@ public final class AuctionTimeGUI extends AuctionGUI {
     public @NotNull Inventory getInventory() {
         fillInventory(config);
 
-        for(String key : box.files().config().durationPrices.keySet()){
+        for(String key : box.files().config().durationPrices.keySet()) {
             AuctionTime auctionTime = box.files().config().durationPrices.get(key);
 
             inventory.setItem(auctionTime.getSlot(), ItemStackUtils.makeItem(config.timeItem, Arrays.asList(
@@ -68,11 +68,11 @@ public final class AuctionTimeGUI extends AuctionGUI {
 
         int slot = event.getSlot();
 
-        if(isItem(slot, config.getCloseGUI())){
+        if(isItem(slot, config.getCloseGUI())) {
             player.closeInventory();
-        }else if(isItem(slot, config.goBack)){
+        }else if(isItem(slot, config.goBack)) {
             player.openInventory(new CreateAuctionGUI(box, player, searcher).getInventory());
-        }else if(timerMap.containsKey(slot)){
+        }else if(timerMap.containsKey(slot)) {
             String key = timerMap.get(slot);
 
             AuctionTime auctionTime = box.files().config().durationPrices.getOrDefault(key, null);
@@ -86,7 +86,7 @@ public final class AuctionTimeGUI extends AuctionGUI {
     }
 
 
-    private String getDuration(HumanTime timer){
+    private String getDuration(HumanTime timer) {
 
         List<IPlaceholder> placeholders = Arrays.asList(
                 new Placeholder("duration_type", box.files().messages().auctionMessages.getTimeFormat().get(timer.getType())),

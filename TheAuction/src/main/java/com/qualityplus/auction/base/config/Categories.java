@@ -98,13 +98,13 @@ public final class Categories extends OkaeriConfig {
                     .build());
 
 
-    public Optional<AuctionCategory> getById(String id){
+    public Optional<AuctionCategory> getById(String id) {
         return categoryList.stream()
                 .filter(category -> category.getId().equals(id))
                 .findFirst();
     }
 
-    private Background getBackGround(XMaterial material){
+    private Background getBackGround(XMaterial material) {
         return new Background(ImmutableMap.<Integer, Item>builder()
                 .put(1, ItemBuilder.of(material, 1, " ", Collections.emptyList()).build())
                 .put(2, ItemBuilder.of(material, 1, " ", Collections.emptyList()).build())
@@ -136,10 +136,10 @@ public final class Categories extends OkaeriConfig {
                 .build());
     }
 
-    private List<XMaterial> getConsumables(){
+    private List<XMaterial> getConsumables() {
         List<XMaterial> allowed = new ArrayList<>();
 
-        for(XMaterial material : XMaterial.VALUES){
+        for(XMaterial material : XMaterial.VALUES) {
             String parsed = material.toString().toLowerCase();
             if(parsed.contains("waxed") || parsed.contains("fishing_rod")) continue;
 
@@ -150,14 +150,14 @@ public final class Categories extends OkaeriConfig {
         return allowed;
     }
 
-    private List<XMaterial> getAccessories(){
+    private List<XMaterial> getAccessories() {
         return Collections.singletonList(XMaterial.PLAYER_HEAD);
     }
 
-    private List<XMaterial> getTools(){
+    private List<XMaterial> getTools() {
         List<XMaterial> allowed = new ArrayList<>();
 
-        for(XMaterial material : XMaterial.VALUES){
+        for(XMaterial material : XMaterial.VALUES) {
             String parsed = material.toString().toLowerCase();
             if(parsed.contains("waxed")) continue;
 
@@ -167,10 +167,10 @@ public final class Categories extends OkaeriConfig {
         return allowed;
     }
 
-    private List<XMaterial> getWeapons(){
+    private List<XMaterial> getWeapons() {
         List<XMaterial> allowed = new ArrayList<>();
 
-        for(XMaterial material : XMaterial.VALUES){
+        for(XMaterial material : XMaterial.VALUES) {
             String parsed = material.toString().toLowerCase();
             if(parsed.contains("waxed")) continue;
 
@@ -180,14 +180,14 @@ public final class Categories extends OkaeriConfig {
         return allowed;
     }
 
-    private List<XMaterial> getBlocks(){
+    private List<XMaterial> getBlocks() {
         return Arrays.asList(XMaterial.OAK_LOG, XMaterial.JUNGLE_LOG, XMaterial.SPRUCE_LOG, XMaterial.DARK_OAK_LOG, XMaterial.BIRCH_LOG, XMaterial.ACACIA_LOG,
                 XMaterial.DIAMOND_BLOCK, XMaterial.GOLD_BLOCK, XMaterial.IRON_BLOCK, XMaterial.COAL_BLOCK, XMaterial.LAPIS_BLOCK);
     }
 
-    private List<XMaterial> getArmors(){
+    private List<XMaterial> getArmors() {
         List<XMaterial> allowed = new ArrayList<>();
-        for(XMaterial material : XMaterial.VALUES){
+        for(XMaterial material : XMaterial.VALUES) {
             String parsed = material.toString().toLowerCase();
 
             if(parsed.contains("leggings") || parsed.contains("chestplate") || parsed.contains("boots") || parsed.contains("helmet"))

@@ -66,26 +66,26 @@ public final class ConfirmAuctionGUI extends AuctionGUI {
 
         int slot = event.getSlot();
 
-        if(isItem(slot, config.getCloseGUI())){
+        if(isItem(slot, config.getCloseGUI())) {
             player.closeInventory();
-        }else if(isItem(slot, config.cancelItem)){
+        }else if(isItem(slot, config.cancelItem)) {
             player.closeInventory();
-        }else if(isItem(slot, config.confirmItem)){
+        }else if(isItem(slot, config.confirmItem)) {
 
             if(auctionItem == null) return;
 
-            if(auctionItem.isBuyItNow()){
-                if(auctionItem.isOwner(uuid)){
+            if(auctionItem.isBuyItNow()) {
+                if(auctionItem.isOwner(uuid)) {
                     player.sendMessage(StringUtils.color(box.files().messages().auctionMessages.youCannotBidYourOwn));
                     return;
                 }
 
-                if(auctionItem.getMarkable().getRemainingTime().isZero() || auctionItem.hasBeenBought()){
+                if(auctionItem.getMarkable().getRemainingTime().isZero() || auctionItem.hasBeenBought()) {
                     player.sendMessage(StringUtils.color(box.files().messages().auctionMessages.auctionExpired));
                     return;
                 }
 
-                if(!canSubmitBid()){
+                if(!canSubmitBid()) {
                     player.sendMessage(StringUtils.color(box.files().messages().auctionMessages.youCannotAffordIt));
                     return;
                 }
@@ -108,22 +108,22 @@ public final class ConfirmAuctionGUI extends AuctionGUI {
                 player.openInventory(new AllAuctionsGUI(box, 1, player.getUniqueId(), searcher).getInventory());
 
             }else{
-                if(auctionItem.isOwner(uuid)){
+                if(auctionItem.isOwner(uuid)) {
                     player.sendMessage(StringUtils.color(box.files().messages().auctionMessages.youCannotBidYourOwn));
                     return;
                 }
 
-                if(auctionItem.getMarkable().getRemainingTime().isZero()){
+                if(auctionItem.getMarkable().getRemainingTime().isZero()) {
                     player.sendMessage(StringUtils.color(box.files().messages().auctionMessages.auctionExpired));
                     return;
                 }
 
-                if(!canSubmitBid()){
+                if(!canSubmitBid()) {
                     player.sendMessage(StringUtils.color(box.files().messages().auctionMessages.youCannotAffordIt));
                     return;
                 }
 
-                if(isTopBidder()){
+                if(isTopBidder()) {
                     player.sendMessage(StringUtils.color(box.files().messages().auctionMessages.youAlreadyHaveTheHighestBid));
                     return;
                 }
@@ -146,7 +146,7 @@ public final class ConfirmAuctionGUI extends AuctionGUI {
         }
     }
 
-    private void addToSellerStats(){
+    private void addToSellerStats() {
 
         Optional<User> user = box.getCacheOrDatabase(uuid);
 
@@ -156,21 +156,21 @@ public final class ConfirmAuctionGUI extends AuctionGUI {
 
     }
 
-    private boolean canSubmitBid(){
+    private boolean canSubmitBid() {
         double money = TheAssistantPlugin.getAPI().getAddons().getEconomy().getMoney(Bukkit.getOfflinePlayer(uuid));
 
         return money >= auctionPrice;
     }
 
 
-    private double getTopPrice(){
+    private double getTopPrice() {
         return auctionItem.getBids().stream()
                 .max(Comparator.comparingDouble(AuctionBid::getBidAmount))
                 .map(AuctionBid::getBidAmount)
                 .orElse(0D);
     }
 
-    private boolean isTopBidder(){
+    private boolean isTopBidder() {
         return uuid.equals(auctionItem.getBids().stream()
                 .max(Comparator.comparingDouble(AuctionBid::getBidAmount))
                 .map(AuctionBid::getBidder)

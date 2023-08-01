@@ -13,37 +13,37 @@ public final class User extends Document {
     private AuctionItem temporalAuction;
     private AuctionStats auctionStats;
 
-    public AuctionStats getAuctionStats(){
+    public AuctionStats getAuctionStats() {
         if(auctionStats == null)
             this.auctionStats = new AuctionStats();
         return auctionStats;
     }
 
-    public void addAuctionCompletedWithBids(){
+    public void addAuctionCompletedWithBids() {
         getAuctionStats().setAuctionsCompletedWithBids(getAuctionStats().getAuctionsCompletedWithBids() + 1);
     }
 
-    public void addAuctionCompletedWithoutBids(){
+    public void addAuctionCompletedWithoutBids() {
         getAuctionStats().setAuctionsCompletedWithoutBids(getAuctionStats().getAuctionsCompletedWithoutBids() + 1);
     }
 
-    public void addTotalMoneyEarned(double totalMoneyEarned){
+    public void addTotalMoneyEarned(double totalMoneyEarned) {
         getAuctionStats().setTotalMoneyEarned(getAuctionStats().getTotalMoneyEarned() + totalMoneyEarned);
     }
 
-    public void addAuctionsWon(){
+    public void addAuctionsWon() {
         getAuctionStats().setAuctionsWon(getAuctionStats().getAuctionsWon() + 1);
     }
 
-    public void addTotalBids(){
+    public void addTotalBids() {
         getAuctionStats().setTotalBids(getAuctionStats().getTotalBids() + 1);
     }
 
-    public void addHighestBid(double highestBid){
+    public void addHighestBid(double highestBid) {
         if(highestBid > getAuctionStats().getHighestBid()) getAuctionStats().setHighestBid(highestBid);
     }
 
-    public void addMoneySpent(double moneySpent){
+    public void addMoneySpent(double moneySpent) {
         getAuctionStats().setMoneySpent(getAuctionStats().getMoneySpent() + moneySpent);
     }
 }

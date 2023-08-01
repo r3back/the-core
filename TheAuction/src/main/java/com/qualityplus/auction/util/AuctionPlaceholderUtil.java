@@ -8,7 +8,7 @@ import java.util.List;
 
 @UtilityClass
 public class AuctionPlaceholderUtil {
-    public List<IPlaceholder> getPlaceholders(){
+    public List<IPlaceholder> getPlaceholders() {
         return Collections.emptyList();
     }
 }

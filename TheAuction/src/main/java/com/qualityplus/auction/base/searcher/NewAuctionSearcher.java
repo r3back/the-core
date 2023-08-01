@@ -23,7 +23,7 @@ public class NewAuctionSearcher implements Searcher<AuctionItem> {
 
 
 
-   /* private Predicate<AuctionItem> stringFilter(){
+   /* private Predicate<AuctionItem> stringFilter() {
         if(stringFilter == null || stringFilter.getToSearch() == null) return auctionItem -> true;
 
         return auctionItem -> BukkitItemUtil.getItemLore(auctionItem.getItemStack()).contains(stringFilter.getToSearch()) ||
@@ -31,16 +31,16 @@ public class NewAuctionSearcher implements Searcher<AuctionItem> {
                 BukkitItemUtil.getName(auctionItem.getItemStack()).contains(stringFilter.getToSearch());
     }
 
-    private Predicate<AuctionItem> binFilter(){
-        if(binFilter.equals(BinFilter.BIN_ONLY)){
+    private Predicate<AuctionItem> binFilter() {
+        if(binFilter.equals(BinFilter.BIN_ONLY)) {
             return AuctionItem::isBuyItNow;
-        }else if(binFilter.equals(BinFilter.AUCTION_ONLY)){
+        }else if(binFilter.equals(BinFilter.AUCTION_ONLY)) {
             return auctionItem -> !auctionItem.isBuyItNow();
         }else
             return auctionItem -> true;
     }
 
-    private Predicate<AuctionItem> categoryFilter(){
+    private Predicate<AuctionItem> categoryFilter() {
         if(categoryFilter == null || categoryFilter.getCategory() == null) return auctionItem -> true;
 
         Optional<AuctionCategory> category = categoryFilter.getBox().files().bankUpgrades().getById(categoryFilter.getCategory());
@@ -51,11 +51,11 @@ public class NewAuctionSearcher implements Searcher<AuctionItem> {
                 .orElseGet(() -> auctionItem -> true);
     }
 
-    private boolean checkIfItEquals(AuctionItem auctionItem, XMaterial material){
+    private boolean checkIfItEquals(AuctionItem auctionItem, XMaterial material) {
         return XMaterial.matchXMaterial(auctionItem.getItemStack()).equals(material);
     }
 
-    public String getCategory(){
+    public String getCategory() {
         return categoryFilter.getCategory();
     }*/
 }

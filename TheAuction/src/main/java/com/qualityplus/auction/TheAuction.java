@@ -21,7 +21,7 @@ public final class TheAuction extends OkaeriSilentPlugin {
     private static @Inject @Getter TheAuctionAPI api;
 
     @Planned(ExecutionPhase.POST_STARTUP)
-    private void whenStart(){
+    private void whenStart() {
         Bukkit.getScheduler().runTaskTimer(this, () -> Bukkit.getServer().getOnlinePlayers().forEach(player -> {
             InventoryHolder inventoryHolder = player.getOpenInventory().getTopInventory().getHolder();
             if (inventoryHolder instanceof AuctionGUI) {
@@ -31,7 +31,7 @@ public final class TheAuction extends OkaeriSilentPlugin {
     }
 
     @Planned(ExecutionPhase.PRE_SHUTDOWN)
-    private void whenStop(Box box){
+    private void whenStop(Box box) {
         box.auctionService().getAuctionHouse().ifPresent(AuctionHouse::save);
         Bukkit.getOnlinePlayers()
                 .stream()

@@ -65,7 +65,7 @@ public final class CreateAuctionGUI extends AuctionGUI {
 
         List<IPlaceholder> placeholders = getPlaceholders(auctionItem);
 
-        if(auctionItem.getItemStack() == null){
+        if(auctionItem.getItemStack() == null) {
             setItem(config.currentItemEmpty);
             setItem(config.createAuctionEmpty, Collections.singletonList(getIsBuyItNowPlaceholder(auctionItem)));
         }else{
@@ -110,7 +110,7 @@ public final class CreateAuctionGUI extends AuctionGUI {
 
         if(auctionItem == null) return;
 
-        if(getTarget(e).equals(ClickTarget.PLAYER)){
+        if(getTarget(e).equals(ClickTarget.PLAYER)) {
             ItemStack itemStack = e.getCurrentItem();
 
             if(BukkitItemUtil.isNull(itemStack))
@@ -125,17 +125,17 @@ public final class CreateAuctionGUI extends AuctionGUI {
             player.openInventory(new CreateAuctionGUI(box, player, searcher).getInventory());
         }else{
 
-            if(isItem(slot, config.getCloseGUI())){
+            if(isItem(slot, config.getCloseGUI())) {
                 player.closeInventory();
-            }else if(isItem(slot, config.goBack)){
+            }else if(isItem(slot, config.goBack)) {
                 player.openInventory(new MainAuctionGUI(box, searcher, uuid).getInventory());
-            }else if(isItem(slot, config.auctionDuration)){
+            }else if(isItem(slot, config.auctionDuration)) {
                 player.openInventory(new AuctionTimeGUI(box, auctionItem, searcher).getInventory());
-            }else if(isItem(slot, config.auctionInitialBid)){
+            }else if(isItem(slot, config.auctionInitialBid)) {
 
                 player.closeInventory();
 
-                if(ProtocolLibDependency.isProtocolLib()){
+                if(ProtocolLibDependency.isProtocolLib()) {
                     SignGUIImpl.builder()
                             .action(event1 -> changeBidPrice(player, auctionItem, event1.getLines().get(0)))
                             .withLines(box.files().messages().auctionMessages.startingBid)
@@ -147,7 +147,7 @@ public final class CreateAuctionGUI extends AuctionGUI {
                     box.plugin().getLogger().warning("You need to install ProtocolLib to use Sign GUIS!");
                 }
 
-            }else if(isItem(slot, config.createAuctionFilled)){
+            }else if(isItem(slot, config.createAuctionFilled)) {
                 if(auctionItem.getItemStack() == null) return;
 
                 double fees = getPrice(auctionItem);
@@ -176,7 +176,7 @@ public final class CreateAuctionGUI extends AuctionGUI {
                 user.ifPresent(user1 -> user1.getAuctionStats().setAuctionsCreated(user1.getAuctionStats().getAuctionsCreated() + 1));
                 user.ifPresent(user1 -> user1.getAuctionStats().setMoneySpentOnFees(user1.getAuctionStats().getMoneySpentOnFees() + fees));
 
-            }else if(isItem(slot, config.currentItemFilled)){
+            }else if(isItem(slot, config.currentItemFilled)) {
                 if(BukkitItemUtil.isNull(auctionItem.getItemStack())) return;
 
                 ItemStack toGive = auctionItem.getItemStack().clone();
@@ -187,14 +187,14 @@ public final class CreateAuctionGUI extends AuctionGUI {
 
                 player.getInventory().addItem(toGive);
 
-            }else if(isItem(slot, config.switchToAuction) || isItem(slot, config.switchToBin)){
+            }else if(isItem(slot, config.switchToAuction) || isItem(slot, config.switchToBin)) {
                 user.ifPresent(user1 -> user1.getTemporalAuction().setBuyItNow(!auctionItem.isBuyItNow()));
                 player.openInventory(new CreateAuctionGUI(box, player, searcher).getInventory());
             }
         }
     }
 
-    private void changeBidPrice(Player player, AuctionItem auctionItem, String input){
+    private void changeBidPrice(Player player, AuctionItem auctionItem, String input) {
         double newPrice;
 
         if(auctionItem == null) return;
@@ -204,7 +204,7 @@ public final class CreateAuctionGUI extends AuctionGUI {
 
             if(newPrice <= 0) throw new NumberFormatException();
 
-        }catch (NumberFormatException e){
+        }catch (NumberFormatException e) {
             player.sendMessage(StringUtils.color(box.files().messages().auctionMessages.invalidAmount));
             return;
         }
@@ -215,11 +215,11 @@ public final class CreateAuctionGUI extends AuctionGUI {
     }
 
 
-    private List<AuctionBid> defaultBid(){
+    private List<AuctionBid> defaultBid() {
         return new ArrayList<>(Collections.singletonList(new AuctionBid(uuid, box.files().config().startBidPrice, System.currentTimeMillis(), false)));
     }
 
-    private List<IPlaceholder> getPlaceholders(AuctionItem auctionItem){
+    private List<IPlaceholder> getPlaceholders(AuctionItem auctionItem) {
 
         double startingBid = auctionItem.getBid(uuid).map(AuctionBid::getBidAmount).orElse(0D);
 
@@ -242,11 +242,11 @@ public final class CreateAuctionGUI extends AuctionGUI {
         );
     }
 
-    private Placeholder getIsBuyItNowPlaceholder(AuctionItem item){
+    private Placeholder getIsBuyItNowPlaceholder(AuctionItem item) {
         return new Placeholder("auction_is_buy_it_now_placeholder", item.isBuyItNow() ? box.files().messages().auctionMessages.buyItNowPlaceholder : box.files().messages().auctionMessages.auctionPlaceholder);
     }
 
-    private double getPrice(AuctionItem auctionItem){
+    private double getPrice(AuctionItem auctionItem) {
         double startingBid = auctionItem.getBid(uuid).map(AuctionBid::getBidAmount).orElse(0D);
 
         double timeFee = box.files().config().durationPrices.get(auctionItem.getTimerId()).getFee();
@@ -256,7 +256,7 @@ public final class CreateAuctionGUI extends AuctionGUI {
         return  (int) (percentage + timeFee);
     }
 
-    private String getDuration(AuctionItem auctionItem){
+    private String getDuration(AuctionItem auctionItem) {
         HumanTime timer = box.files().config().durationPrices.get(auctionItem.getTimerId()).getTimer();
 
         List<IPlaceholder> placeholders = Arrays.asList(

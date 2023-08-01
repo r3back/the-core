@@ -71,17 +71,17 @@ public final class MainAuctionGUI extends AuctionGUI {
 
         int slot = event.getSlot();
 
-        if(isItem(slot, config.getCloseGUI())){
+        if(isItem(slot, config.getCloseGUI())) {
             player.closeInventory();
-        }else if(isItem(slot, config.auctionStats)){
+        }else if(isItem(slot, config.auctionStats)) {
             player.openInventory(new AuctionStatsGUI(box, uuid, searcher).getInventory());
-        }else if(isItem(slot, config.auctionsBrowser)){
+        }else if(isItem(slot, config.auctionsBrowser)) {
             player.openInventory(new AllAuctionsGUI(box, 1, uuid, searcher).getInventory());
-        }else if(isItem(slot, config.manageAuctions) && ownAuctions > 0){
+        }else if(isItem(slot, config.manageAuctions) && ownAuctions > 0) {
             player.openInventory(new ManageAuctionGUI(box, uuid, searcher, 1).getInventory());
-        }else if(isItem(slot, config.createAnAuction) && ownAuctions <= 0){
+        }else if(isItem(slot, config.createAnAuction) && ownAuctions <= 0) {
             player.openInventory(new CreateAuctionGUI(box, player, searcher).getInventory());
-        }else if(isItem(slot, config.viewBids)){
+        }else if(isItem(slot, config.viewBids)) {
             List<AuctionItem> whereBid = getAuctionsWherePlayerBid(uuid);
 
             if(whereBid.size() <= 0) return;

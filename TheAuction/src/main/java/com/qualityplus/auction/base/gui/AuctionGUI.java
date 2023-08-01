@@ -34,9 +34,9 @@ public abstract class AuctionGUI extends GUI {
         this.box = box;
     }
 
-    public void addContent(){}
+    public void addContent() {}
 
-    protected String getRemainingTime(AuctionItem auctionItem){
+    protected String getRemainingTime(AuctionItem auctionItem) {
         RemainingTime time = auctionItem.getMarkable().getRemainingTime();
 
         return TimeUtils.getParsedTime(
@@ -51,7 +51,7 @@ public abstract class AuctionGUI extends GUI {
         );
     }
 
-    protected List<IPlaceholder> getAuctionItemPlaceholders(AuctionItem auctionItem){
+    protected List<IPlaceholder> getAuctionItemPlaceholders(AuctionItem auctionItem) {
         return PlaceholderBuilder.create(new Placeholder("auction_item_name", BukkitItemUtil.getName(auctionItem.getItemStack())),
                 new Placeholder("auction_item_lore", BukkitItemUtil.getItemLore(auctionItem.getItemStack())),
                 new Placeholder("auction_owner_name", auctionItem.getOwnerName()),
@@ -61,7 +61,7 @@ public abstract class AuctionGUI extends GUI {
                 .get();
     }
 
-    protected List<IPlaceholder> getBidPlaceholders(AuctionItem auctionItem){
+    protected List<IPlaceholder> getBidPlaceholders(AuctionItem auctionItem) {
         return Arrays.asList(
                 new Placeholder("bid_information", getBidInformation(auctionItem)),
                 new Placeholder("auction_is_buy_it_now", auctionItem.isBuyItNow() ? box.files().messages().auctionMessages.auctionIsBin : box.files().messages().auctionMessages.auctionIsNotBin),
@@ -69,8 +69,8 @@ public abstract class AuctionGUI extends GUI {
         );
     }
 
-    protected String getStatusPlaceholder(AuctionItem auctionItem){
-        if(auctionItem.isBuyItNow()){
+    protected String getStatusPlaceholder(AuctionItem auctionItem) {
+        if(auctionItem.isBuyItNow()) {
             if(auctionItem.getWhoBought() == null)
                 return auctionItem.isExpired() ? box.files().messages().auctionMessages.expiredStatus :
                                                  box.files().messages().auctionMessages.inProgressStatus
@@ -88,14 +88,14 @@ public abstract class AuctionGUI extends GUI {
         }
     }
 
-    public List<String> getHistoryPlaceholders(AuctionItem auctionItem){
+    public List<String> getHistoryPlaceholders(AuctionItem auctionItem) {
         List<AuctionBid> withoutOwner = auctionItem.getBidsWithoutOwner();
 
         withoutOwner.sort((o1, o2) -> (int) (o1.getBidAmount() - o2.getBidAmount()));
 
         List<String> toReturn = new ArrayList<>();
 
-        for(AuctionBid auctionBid : withoutOwner){
+        for(AuctionBid auctionBid : withoutOwner) {
 
             RemainingTime time = TimeUtils.getTimeWhenAgo(auctionBid.getTimeAgo());
 
@@ -121,8 +121,8 @@ public abstract class AuctionGUI extends GUI {
         return toReturn;
     }
 
-    private List<String> getBidInformation(AuctionItem auctionItem){
-        if(auctionItem.isBuyItNow()){
+    private List<String> getBidInformation(AuctionItem auctionItem) {
+        if(auctionItem.isBuyItNow()) {
             List<IPlaceholder> placeholders = Arrays.asList(
                     new Placeholder("auction_buyer_name", PlayerUtils.getPlayerName(auctionItem.getWhoBought())),
                     new Placeholder("auction_top_bid", auctionItem.getHighestBid()),
@@ -130,7 +130,7 @@ public abstract class AuctionGUI extends GUI {
             );
             return StringUtils.processMulti(auctionItem.getWhoBought() == null ? box.files().messages().auctionMessages.notSoldYet : box.files().messages().auctionMessages.soldFor, placeholders);
         }else{
-            if(auctionItem.getBids().size() == 1){
+            if(auctionItem.getBids().size() == 1) {
                 double bid = auctionItem.getBid(auctionItem.getOwner())
                         .map(AuctionBid::getBidAmount)
                         .orElse(0D);
@@ -159,7 +159,7 @@ public abstract class AuctionGUI extends GUI {
 
     }
 
-    protected List<AuctionItem> getAuctionsWherePlayerBid(UUID uuid){
+    protected List<AuctionItem> getAuctionsWherePlayerBid(UUID uuid) {
         return box.auctionService().getItems().stream()
                 .filter(auctionItem -> !auctionItem.getOwner().equals(uuid))
                 .filter(auctionItem -> auctionItem.getBid(uuid).isPresent())
@@ -167,14 +167,14 @@ public abstract class AuctionGUI extends GUI {
                 .collect(Collectors.toList());
     }
 
-    protected List<AuctionItem> getNotClaimedOwned(UUID uuid){
+    protected List<AuctionItem> getNotClaimedOwned(UUID uuid) {
         return box.auctionService().getItems().stream()
                 .filter(auctionItem -> auctionItem.getOwner().equals(uuid))
                 .filter(auctionItem -> !isClaimed(auctionItem, uuid))
                 .collect(Collectors.toList());
     }
 
-    private boolean isClaimed(AuctionItem auctionItem, UUID uuid){
+    private boolean isClaimed(AuctionItem auctionItem, UUID uuid) {
         Optional<AuctionBid> bid = auctionItem.getBid(uuid);
 
         return bid.isPresent() && bid.get().isClaimedBack();

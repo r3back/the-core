@@ -13,7 +13,7 @@ public enum SortFilter {
 
     public final int level;
 
-    public SortFilter getNext(){
+    public SortFilter getNext() {
         return Arrays.stream(values())
                 .filter(sortBy -> sortBy.level == this.level + 1)
                 .findFirst()

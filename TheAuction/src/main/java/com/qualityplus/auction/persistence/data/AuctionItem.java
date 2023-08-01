@@ -36,7 +36,7 @@ public final class AuctionItem extends OkaeriConfig {
         this.isBuyItNow = isBuyItNow;
     }
 
-    public boolean hasBeenBought(){
+    public boolean hasBeenBought() {
         return whoBought != null;
     }
 
@@ -46,31 +46,31 @@ public final class AuctionItem extends OkaeriConfig {
                 .orElse(null);
     }
 
-    public Optional<AuctionBid> getBid(UUID uuid){
+    public Optional<AuctionBid> getBid(UUID uuid) {
         return bids.stream().filter(bid -> bid.getBidder().equals(uuid)).findFirst();
     }
 
-    public List<AuctionBid> getBidsWithoutOwner(){
+    public List<AuctionBid> getBidsWithoutOwner() {
         return bids.stream().filter(bid -> !bid.getBidder().equals(owner)).collect(Collectors.toList());
     }
 
-    public boolean isExpired(){
+    public boolean isExpired() {
         return markable.getRemainingTime().isZero();
     }
 
 
-    public void addBid(AuctionBid bid){
+    public void addBid(AuctionBid bid) {
         bids.add(bid);
     }
 
-    public double getHighestBid(){
+    public double getHighestBid() {
         return new ArrayList<>(bids).stream()
                 .min((o1, o2) -> (int) (o1.getBidAmount() - o2.getBidAmount()))
                 .map(AuctionBid::getBidAmount)
                 .orElse(0D);
     }
 
-    public double getHighestBid(UUID uuid){
+    public double getHighestBid(UUID uuid) {
         return new ArrayList<>(bids).stream()
                 .min((o1, o2) -> (int) (o1.getBidAmount() - o2.getBidAmount()))
                 .filter(bid -> bid.getBidder().equals(uuid))
@@ -78,14 +78,14 @@ public final class AuctionItem extends OkaeriConfig {
                 .orElse(0D);
     }
 
-    public Set<UUID> getBidders(){
+    public Set<UUID> getBidders() {
         return bids.stream()
                 .map(AuctionBid::getBidder)
                 .filter(bidder -> !bidder.equals(owner))
                 .collect(Collectors.toSet());
     }
 
-    public boolean isOwner(UUID uuid){
+    public boolean isOwner(UUID uuid) {
         return owner.equals(uuid);
     }
 

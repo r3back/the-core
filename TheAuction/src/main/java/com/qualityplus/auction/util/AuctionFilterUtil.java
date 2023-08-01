@@ -10,7 +10,7 @@ import lombok.experimental.UtilityClass;
 @UtilityClass
 //@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class AuctionFilterUtil {
-    public AuctionSearcher getSearcher(Box box){
+    public AuctionSearcher getSearcher(Box box) {
         return AuctionSearcher.builder()
                 .stringFilter(new StringFilter(null))
                 .sortFilter(SortFilter.HIGHEST_PRICE)

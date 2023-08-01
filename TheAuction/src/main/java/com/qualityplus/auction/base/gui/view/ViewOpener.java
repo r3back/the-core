@@ -11,7 +11,7 @@ import org.bukkit.entity.Player;
 
 @UtilityClass
 public class ViewOpener {
-    public void open(Player player, AuctionItem auctionItem, Box box, AuctionSearcher searcher, double newCost){
+    public void open(Player player, AuctionItem auctionItem, Box box, AuctionSearcher searcher, double newCost) {
         AuctionGUI gui = auctionItem.isBuyItNow() ? new BinAuctionViewGUI(box, player.getUniqueId(), auctionItem, searcher) : new NormalAuctionViewGUI(box, player.getUniqueId(), auctionItem, newCost, searcher);
 
         player.openInventory(gui.getInventory());

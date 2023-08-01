@@ -17,7 +17,7 @@ import java.util.logging.Logger;
 public final class AuctionHouseLoader {
     @Async
     @Delayed(time = MinecraftTimeEquivalent.SECOND / 20, async = true)
-    public void load(@Inject AuctionService service, @Inject AuctionRepository repository, @Inject Logger logger){
+    public void load(@Inject AuctionService service, @Inject AuctionRepository repository, @Inject Logger logger) {
         AuctionHouse auctionHouse = repository.get();
 
         service.setAuctionHouse(auctionHouse);
@@ -29,7 +29,7 @@ public final class AuctionHouseLoader {
     }
 
     @Planned(ExecutionPhase.PRE_SHUTDOWN)
-    public void unload(@Inject AuctionService service, @Inject Logger logger){
+    public void unload(@Inject AuctionService service, @Inject Logger logger) {
         logger.info("Saving Auction House...");
 
         service.getAuctionHouse().ifPresent(AuctionHouse::save);

@@ -12,7 +12,7 @@ public enum BinFilter {
 
     public final int level;
 
-    public BinFilter getNext(){
+    public BinFilter getNext() {
         return Arrays.stream(values())
                 .filter(sortBy -> sortBy.level == this.level + 1)
                 .findFirst()

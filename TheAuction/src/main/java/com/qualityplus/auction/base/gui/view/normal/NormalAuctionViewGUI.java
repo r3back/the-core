@@ -50,7 +50,7 @@ public final class NormalAuctionViewGUI extends AuctionGUI {
         return inventory;
     }
 
-    private List<IPlaceholder> getCollectItemPlaceholders(){
+    private List<IPlaceholder> getCollectItemPlaceholders() {
         double ownBid = getPlayerHighest(uuid)
                 .map(AuctionBid::getBidAmount)
                 .orElse(0D);
@@ -81,7 +81,7 @@ public final class NormalAuctionViewGUI extends AuctionGUI {
                 .get(), auctionItem.getItemStack()));
 
         if(auctionItem.isExpired()) {
-            if(isOwnAuction()){
+            if(isOwnAuction()) {
                 if(auctionItem.getWhoBought() == null)
                     setItem(config.collectAuctionEmptyItem, placeholders);
                 else
@@ -109,7 +109,7 @@ public final class NormalAuctionViewGUI extends AuctionGUI {
         setItem(config.goBack);
     }
 
-    private void markAndRemoveIfNeeded(){
+    private void markAndRemoveIfNeeded() {
         auctionItem.getBids().stream().filter(bid -> bid.getBidder().equals(uuid)).forEach(bid -> bid.setClaimedBack(true));
 
         int size = (int) auctionItem.getBids().stream().filter(AuctionBid::isClaimedBack).count();
@@ -152,11 +152,11 @@ public final class NormalAuctionViewGUI extends AuctionGUI {
             }
 
             markAndRemoveIfNeeded();
-        }else if(isItem(slot, config.collectItemAuctionItem) && !isOwnAuction() && auctionItem.isExpired() && auctionItem.getBid(uuid).isPresent()){
+        }else if(isItem(slot, config.collectItemAuctionItem) && !isOwnAuction() && auctionItem.isExpired() && auctionItem.getBid(uuid).isPresent()) {
             //Esto es para agarrar las monedas o el item en caso de que lo haya ganado (buyer side)
             player.closeInventory();
 
-            if(isTopBidder()){
+            if(isTopBidder()) {
                 player.getInventory().addItem(auctionItem.getItemStack().clone());
                 player.sendMessage(StringUtils.color(box.files().messages().auctionMessages.claimedAuctionItem
                         .replace("%auction_owner_name%", auctionItem.getOwnerName())
@@ -178,23 +178,23 @@ public final class NormalAuctionViewGUI extends AuctionGUI {
             }
 
             markAndRemoveIfNeeded();
-        }else if(isItem(slot, config.submitBid)){
-            if(isOwnAuction()){
+        }else if(isItem(slot, config.submitBid)) {
+            if(isOwnAuction()) {
                 player.sendMessage(StringUtils.color(box.files().messages().auctionMessages.youCannotBidYourOwn));
                 return;
             }
 
-            if(auctionItem.getMarkable().getRemainingTime().isZero()){
+            if(auctionItem.getMarkable().getRemainingTime().isZero()) {
                 player.sendMessage(StringUtils.color(box.files().messages().auctionMessages.auctionExpired));
                 return;
             }
 
-            if(!canSubmit()){
+            if(!canSubmit()) {
                 player.sendMessage(StringUtils.color(box.files().messages().auctionMessages.youCannotAffordIt));
                 return;
             }
 
-            if(isTopBidder()){
+            if(isTopBidder()) {
                 player.sendMessage(StringUtils.color(box.files().messages().auctionMessages.youAlreadyHaveTheHighestBid));
                 return;
             }
@@ -203,12 +203,12 @@ public final class NormalAuctionViewGUI extends AuctionGUI {
 
             player.openInventory(new ConfirmAuctionGUI(box, uuid, searcher, auctionItem, newTopPrice).getInventory());
 
-        }else if(isItem(slot, config.goBack)){
+        }else if(isItem(slot, config.goBack)) {
             player.openInventory(new AllAuctionsGUI(box, 1, player.getUniqueId(), searcher).getInventory());
-        }else if(isItem(slot, config.bidAmount) && !isOwnAuction() && canSubmit()){
+        }else if(isItem(slot, config.bidAmount) && !isOwnAuction() && canSubmit()) {
             player.closeInventory();
 
-            if(ProtocolLibDependency.isProtocolLib()){
+            if(ProtocolLibDependency.isProtocolLib()) {
                 SignGUIImpl.builder()
                         .action(event1 -> changeBid(event1.getPlayer(), event1.getLines().get(0)))
                         .withLines(box.files().messages().auctionMessages.submitBid)
@@ -225,7 +225,7 @@ public final class NormalAuctionViewGUI extends AuctionGUI {
     }
 
     //Cambiar el bid a uno diferente
-    private void changeBid(Player player, String input){
+    private void changeBid(Player player, String input) {
         double newBid;
 
         if(auctionItem == null) return;
@@ -235,12 +235,12 @@ public final class NormalAuctionViewGUI extends AuctionGUI {
 
             if(newBid <= 0) throw new NumberFormatException();
 
-            if(newBid < getAutomaticBidPrice()){
+            if(newBid < getAutomaticBidPrice()) {
                 player.sendMessage(StringUtils.color(box.files().messages().auctionMessages.mustBeHigherThanMin.replace("%auction_new_bid%", String.valueOf(getAutomaticBidPrice()))));
                 return;
             }
 
-        }catch (NumberFormatException e){
+        }catch (NumberFormatException e) {
             player.sendMessage(StringUtils.color(box.files().messages().auctionMessages.invalidAmount));
             return;
         }
@@ -248,7 +248,7 @@ public final class NormalAuctionViewGUI extends AuctionGUI {
         ViewOpener.open(player, auctionItem, box, searcher, newBid);
     }
 
-    private List<IPlaceholder> getPlaceholders(){
+    private List<IPlaceholder> getPlaceholders() {
         String canSubmit = isOwnAuction() ? box.files().messages().auctionMessages.ownAuction :
                 isTopBidder() ? box.files().messages().auctionMessages.alreadyTopBid :
                         canSubmit() ? box.files().messages().auctionMessages.canSubmit : box.files().messages().auctionMessages.cannotSubmit;
@@ -267,11 +267,11 @@ public final class NormalAuctionViewGUI extends AuctionGUI {
                 new Placeholder("auction_top_bid", getTopPrice()));
     }
 
-    private boolean isOwnAuction(){
+    private boolean isOwnAuction() {
         return auctionItem.getOwner().equals(uuid);
     }
 
-    private boolean canSubmit(){
+    private boolean canSubmit() {
         double money = TheAssistantPlugin.getAPI().getAddons().getEconomy().getMoney(Bukkit.getOfflinePlayer(uuid));
 
         double toCheckPrice = Math.max(getAutomaticBidPrice(), newCost);
@@ -279,25 +279,25 @@ public final class NormalAuctionViewGUI extends AuctionGUI {
         return money >= toCheckPrice;
     }
 
-    private double getAutomaticBidPrice(){
+    private double getAutomaticBidPrice() {
         return getTopPrice() + ((box.files().config().minPercentageToSubmitNewBid * getTopPrice()) / 100);
     }
 
-    private double getTopPrice(){
+    private double getTopPrice() {
         return auctionItem.getBids().stream()
                 .max(Comparator.comparingDouble(AuctionBid::getBidAmount))
                 .map(AuctionBid::getBidAmount)
                 .orElse(0D);
     }
 
-    private boolean isTopBidder(){
+    private boolean isTopBidder() {
         return uuid.equals(auctionItem.getBids().stream()
                 .max(Comparator.comparingDouble(AuctionBid::getBidAmount))
                 .map(AuctionBid::getBidder)
                 .orElse(null));
     }
 
-    protected Optional<AuctionBid> getPlayerHighest(UUID uuid){
+    protected Optional<AuctionBid> getPlayerHighest(UUID uuid) {
         return auctionItem.getBids()
                 .stream()
                 .max(Comparator.comparingDouble(AuctionBid::getBidAmount))
