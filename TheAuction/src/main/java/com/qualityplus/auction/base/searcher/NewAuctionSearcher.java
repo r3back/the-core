@@ -9,6 +9,9 @@ import lombok.RequiredArgsConstructor;
 
 import java.util.List;
 
+/**
+ * Utility class for new auction searcher
+ */
 @Component
 @RequiredArgsConstructor
 public class NewAuctionSearcher implements Searcher<AuctionItem> {
@@ -18,13 +21,13 @@ public class NewAuctionSearcher implements Searcher<AuctionItem> {
     public List<AuctionItem> getFiltered() {
 
 
-        return auctionFilter.filter(TheAuction.getApi().getAuctionService().getItems());
+        return this.auctionFilter.filter(TheAuction.getApi().getAuctionService().getItems());
     }
 
 
 
    /* private Predicate<AuctionItem> stringFilter() {
-        if(stringFilter == null || stringFilter.getToSearch() == null) return auctionItem -> true;
+        if (stringFilter == null || stringFilter.getToSearch() == null) return auctionItem -> true;
 
         return auctionItem -> BukkitItemUtil.getItemLore(auctionItem.getItemStack()).contains(stringFilter.getToSearch()) ||
                 BukkitItemUtil.getName(auctionItem.getItemStack()).equalsIgnoreCase(stringFilter.getToSearch()) ||
@@ -32,16 +35,16 @@ public class NewAuctionSearcher implements Searcher<AuctionItem> {
     }
 
     private Predicate<AuctionItem> binFilter() {
-        if(binFilter.equals(BinFilter.BIN_ONLY)) {
+        if (binFilter.equals(BinFilter.BIN_ONLY)) {
             return AuctionItem::isBuyItNow;
-        }else if(binFilter.equals(BinFilter.AUCTION_ONLY)) {
+        }else if (binFilter.equals(BinFilter.AUCTION_ONLY)) {
             return auctionItem -> !auctionItem.isBuyItNow();
         }else
             return auctionItem -> true;
     }
 
     private Predicate<AuctionItem> categoryFilter() {
-        if(categoryFilter == null || categoryFilter.getCategory() == null) return auctionItem -> true;
+        if (categoryFilter == null || categoryFilter.getCategory() == null) return auctionItem -> true;
 
         Optional<AuctionCategory> category = categoryFilter.getBox().files().bankUpgrades().getById(categoryFilter.getCategory());
 

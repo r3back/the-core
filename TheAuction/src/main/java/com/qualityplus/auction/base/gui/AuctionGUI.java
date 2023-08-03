@@ -15,43 +15,68 @@ import com.qualityplus.auction.api.box.Box;
 import com.qualityplus.auction.persistence.data.AuctionBid;
 import com.qualityplus.auction.persistence.data.AuctionItem;
 
-import java.util.*;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
+/**
+ * Utility class for auction gui
+ */
 public abstract class AuctionGUI extends GUI {
     protected final Box box;
     protected UUID uuid;
 
-    public AuctionGUI(int size, String title, Box box) {
+    /**
+     * Makes a actions gui
+     *
+     * @param size  Size
+     * @param title Title
+     * @param box   {@link Box}
+     */
+    public AuctionGUI(final int size, final String title, final Box box) {
         super(size, title);
 
         this.box = box;
     }
 
-    public AuctionGUI(SimpleGUI simpleGUI, Box box) {
+    /**
+     * Makes a Auctions gui
+     * @param simpleGUI {@link SimpleGUI}
+     * @param box       {@link Box}
+     */
+    public AuctionGUI(final SimpleGUI simpleGUI, final Box box) {
         super(simpleGUI);
 
         this.box = box;
     }
 
-    public void addContent() {}
+    /**
+     * Adds content
+     */
+    public void addContent() { }
 
-    protected String getRemainingTime(AuctionItem auctionItem) {
-        RemainingTime time = auctionItem.getMarkable().getRemainingTime();
+    protected String getRemainingTime(final AuctionItem auctionItem) {
+        final RemainingTime time = auctionItem.getMarkable().getRemainingTime();
 
         return TimeUtils.getParsedTime(
                 time,
-                box.files().messages().auctionMessages.auctionEndsInFormat,
-                box.files().messages().auctionMessages.days,
-                box.files().messages().auctionMessages.hours,
-                box.files().messages().auctionMessages.minutes,
-                box.files().messages().auctionMessages.seconds,
-                box.files().messages().auctionMessages.noTimeFormat,
-                box.files().messages().auctionMessages.showNoTimeSymbol
+                this.box.files().messages().getAuctionMessages().getAuctionEndsInFormat(),
+                this.box.files().messages().getAuctionMessages().getDays(),
+                this.box.files().messages().getAuctionMessages().getHours(),
+                this.box.files().messages().getAuctionMessages().getMinutes(),
+                this.box.files().messages().getAuctionMessages().getSeconds(),
+                this.box.files().messages().getAuctionMessages().getNoTimeFormat(),
+                this.box.files().messages().getAuctionMessages().isShowNoTimeSymbol()
         );
     }
 
-    protected List<IPlaceholder> getAuctionItemPlaceholders(AuctionItem auctionItem) {
+    protected List<IPlaceholder> getAuctionItemPlaceholders(final AuctionItem auctionItem) {
         return PlaceholderBuilder.create(new Placeholder("auction_item_name", BukkitItemUtil.getName(auctionItem.getItemStack())),
                 new Placeholder("auction_item_lore", BukkitItemUtil.getItemLore(auctionItem.getItemStack())),
                 new Placeholder("auction_owner_name", auctionItem.getOwnerName()),
@@ -61,94 +86,108 @@ public abstract class AuctionGUI extends GUI {
                 .get();
     }
 
-    protected List<IPlaceholder> getBidPlaceholders(AuctionItem auctionItem) {
+    protected List<IPlaceholder> getBidPlaceholders(final AuctionItem auctionItem) {
         return Arrays.asList(
                 new Placeholder("bid_information", getBidInformation(auctionItem)),
-                new Placeholder("auction_is_buy_it_now", auctionItem.isBuyItNow() ? box.files().messages().auctionMessages.auctionIsBin : box.files().messages().auctionMessages.auctionIsNotBin),
-                new Placeholder("auction_is_your_bid", auctionItem.getOwner().equals(uuid) ? StringUtils.color(box.files().messages().auctionMessages.itsYourAuction) : Collections.emptyList())
+                new Placeholder("auction_is_buy_it_now", auctionItem.isBuyItNow() ? this.box.files().messages().
+                        getAuctionMessages().getAuctionIsBin() : this.box.files().messages().
+                        getAuctionMessages().getAuctionIsNotBin()),
+                new Placeholder("auction_is_your_bid", auctionItem.getOwner().equals(this.uuid) ? StringUtils.
+                        color(this.box.files().messages().getAuctionMessages().getItsYourAuction()) : Collections.emptyList())
         );
     }
 
-    protected String getStatusPlaceholder(AuctionItem auctionItem) {
-        if(auctionItem.isBuyItNow()) {
-            if(auctionItem.getWhoBought() == null)
-                return auctionItem.isExpired() ? box.files().messages().auctionMessages.expiredStatus :
-                                                 box.files().messages().auctionMessages.inProgressStatus
-                                                    .replace("%auction_remaining_time%", getRemainingTime(auctionItem));
-            else
-                return box.files().messages().auctionMessages.binAuctionEndedStatus;
-
-        }else{
-            if(auctionItem.getWhoBought() == null)
-                return auctionItem.isExpired() ? box.files().messages().auctionMessages.expiredStatus :
-                                                 box.files().messages().auctionMessages.inProgressStatus
-                                                    .replace("%auction_remaining_time%", getRemainingTime(auctionItem));
-            else
-                return box.files().messages().auctionMessages.normalAuctionEndedStatus;
+    protected String getStatusPlaceholder(final AuctionItem auctionItem) {
+        if (auctionItem.isBuyItNow()) {
+            if (auctionItem.getWhoBought() == null) {
+                return auctionItem.isExpired() ? this.box.files().messages().getAuctionMessages().getExpiredStatus() :
+                        this.box.files().messages().getAuctionMessages().getInProgressStatus()
+                                .replace("%auction_remaining_time%", getRemainingTime(auctionItem));
+            } else {
+                return this.box.files().messages().getAuctionMessages().getBinAuctionEndedStatus();
+            }
+        } else {
+            if (auctionItem.getWhoBought() == null) {
+                return auctionItem.isExpired() ? this.box.files().messages().getAuctionMessages().getExpiredStatus() :
+                        this.box.files().messages().getAuctionMessages().getInProgressStatus()
+                                .replace("%auction_remaining_time%", getRemainingTime(auctionItem));
+            } else {
+                return this.box.files().messages().getAuctionMessages().getNormalAuctionEndedStatus();
+            }
         }
     }
 
-    public List<String> getHistoryPlaceholders(AuctionItem auctionItem) {
-        List<AuctionBid> withoutOwner = auctionItem.getBidsWithoutOwner();
+    /**
+     * Make list history placeholders
+     *
+     * @param auctionItem {@link AuctionItem}
+     * @return            Get History Placeholders
+     */
+    public List<String> getHistoryPlaceholders(final AuctionItem auctionItem) {
+        final List<AuctionBid> withoutOwner = auctionItem.getBidsWithoutOwner();
 
         withoutOwner.sort((o1, o2) -> (int) (o1.getBidAmount() - o2.getBidAmount()));
 
-        List<String> toReturn = new ArrayList<>();
+        final List<String> toReturn = new ArrayList<>();
 
-        for(AuctionBid auctionBid : withoutOwner) {
+        for (AuctionBid auctionBid : withoutOwner) {
 
-            RemainingTime time = TimeUtils.getTimeWhenAgo(auctionBid.getTimeAgo());
+            final RemainingTime time = TimeUtils.getTimeWhenAgo(auctionBid.getTimeAgo());
 
-            String timeAgoMsg = TimeUtils.getParsedTime(
-                    time, box.files().messages().auctionMessages.auctionHistoryTimeFormat,
-                    box.files().messages().auctionMessages.days,
-                    box.files().messages().auctionMessages.hours,
-                    box.files().messages().auctionMessages.minutes,
-                    box.files().messages().auctionMessages.seconds,
-                    box.files().messages().auctionMessages.noTimeFormat,
-                    box.files().messages().auctionMessages.showNoTimeSymbol
+            final String timeAgoMsg = TimeUtils.getParsedTime(
+                    time, this.box.files().messages().getAuctionMessages().getAuctionHistoryTimeFormat(),
+                    this.box.files().messages().getAuctionMessages().getDays(),
+                    this.box.files().messages().getAuctionMessages().getHours(),
+                    this.box.files().messages().getAuctionMessages().getMinutes(),
+                    this.box.files().messages().getAuctionMessages().getSeconds(),
+                    this.box.files().messages().getAuctionMessages().getNoTimeFormat(),
+                    this.box.files().messages().getAuctionMessages().isShowNoTimeSymbol()
             );
 
-            List<IPlaceholder> placeholders1 = Arrays.asList(
+            final List<IPlaceholder> placeholders1 = Arrays.asList(
                     new Placeholder("auction_bid_amount", auctionBid.getBidAmount()),
                     new Placeholder("auction_owner_name", PlayerUtils.getPlayerName(auctionBid.getBidder())),
                     new Placeholder("auction_history_bid_time", timeAgoMsg)
             );
 
-            toReturn.addAll(StringUtils.processMulti(box.files().messages().auctionMessages.bidHistoryFormat, placeholders1));
+            toReturn.addAll(StringUtils.processMulti(this.box.files().messages().getAuctionMessages().getBidHistoryFormat(), placeholders1));
         }
 
         return toReturn;
     }
 
-    private List<String> getBidInformation(AuctionItem auctionItem) {
-        if(auctionItem.isBuyItNow()) {
-            List<IPlaceholder> placeholders = Arrays.asList(
+    private List<String> getBidInformation(final AuctionItem auctionItem) {
+        if (auctionItem.isBuyItNow()) {
+            final List<IPlaceholder> placeholders = Arrays.asList(
                     new Placeholder("auction_buyer_name", PlayerUtils.getPlayerName(auctionItem.getWhoBought())),
                     new Placeholder("auction_top_bid", auctionItem.getHighestBid()),
                     new Placeholder("auction_starting_bid", auctionItem.getHighestBid())
             );
-            return StringUtils.processMulti(auctionItem.getWhoBought() == null ? box.files().messages().auctionMessages.notSoldYet : box.files().messages().auctionMessages.soldFor, placeholders);
-        }else{
-            if(auctionItem.getBids().size() == 1) {
-                double bid = auctionItem.getBid(auctionItem.getOwner())
+            return StringUtils.processMulti(auctionItem.getWhoBought() == null ? this.box.files().
+                    messages().getAuctionMessages().getNotSoldYet() : this.box.files().messages().getAuctionMessages().getSoldFor(), placeholders);
+        } else {
+            if (auctionItem.getBids().size() == 1) {
+                final double bid = auctionItem.getBid(auctionItem.getOwner())
                         .map(AuctionBid::getBidAmount)
                         .orElse(0D);
 
-                return StringUtils.processMulti(box.files().messages().auctionMessages.noBidsInformation, Collections.singletonList(new Placeholder("auction_starting_bid", bid)));
-            }else{
+                return StringUtils.processMulti(this.box.files().messages().getAuctionMessages().getNoBidsInformation(),
+                        Collections.singletonList(new Placeholder("auction_starting_bid", bid)));
+            } else {
 
-                Optional<AuctionBid> bid = auctionItem.getBids()
+                final Optional<AuctionBid> bid = auctionItem.getBids()
                         .stream()
                         .max(Comparator.comparingInt(p -> (int) p.getBidAmount()));
 
-                double ownerBid = auctionItem.getBid(auctionItem.getOwner())
+                final double ownerBid = auctionItem.getBid(auctionItem.getOwner())
                         .map(AuctionBid::getBidAmount)
                         .orElse(0D);
 
-                if(!bid.isPresent()) return Collections.emptyList();
+                if (!bid.isPresent()) {
+                    return Collections.emptyList();
+                }
 
-                return StringUtils.processMulti(box.files().messages().auctionMessages.bidsInformation, Arrays.asList(
+                return StringUtils.processMulti(this.box.files().messages().getAuctionMessages().getBidsInformation(), Arrays.asList(
                         new Placeholder("auction_starting_bid", ownerBid),
                         new Placeholder("auction_top_bid", bid.map(AuctionBid::getBidAmount).orElse(0D)),
                         new Placeholder("auction_bids_amount", auctionItem.getBidsWithoutOwner().size()),
@@ -159,32 +198,43 @@ public abstract class AuctionGUI extends GUI {
 
     }
 
-    protected List<AuctionItem> getAuctionsWherePlayerBid(UUID uuid) {
-        return box.auctionService().getItems().stream()
+    protected List<AuctionItem> getAuctionsWherePlayerBid(final UUID uuid) {
+        return this.box.auctionService().getItems().stream()
                 .filter(auctionItem -> !auctionItem.getOwner().equals(uuid))
                 .filter(auctionItem -> auctionItem.getBid(uuid).isPresent())
                 .filter(auctionItem -> !isClaimed(auctionItem, uuid))
                 .collect(Collectors.toList());
     }
 
-    protected List<AuctionItem> getNotClaimedOwned(UUID uuid) {
-        return box.auctionService().getItems().stream()
+    protected List<AuctionItem> getNotClaimedOwned(final UUID uuid) {
+        return this.box.auctionService().getItems().stream()
                 .filter(auctionItem -> auctionItem.getOwner().equals(uuid))
                 .filter(auctionItem -> !isClaimed(auctionItem, uuid))
                 .collect(Collectors.toList());
     }
 
-    private boolean isClaimed(AuctionItem auctionItem, UUID uuid) {
-        Optional<AuctionBid> bid = auctionItem.getBid(uuid);
+    private boolean isClaimed(final AuctionItem auctionItem, final UUID uuid) {
+        final Optional<AuctionBid> bid = auctionItem.getBid(uuid);
 
         return bid.isPresent() && bid.get().isClaimedBack();
     }
 
-    public void setItem(Item item) {
-        setItem(item, box.files().config().loreWrapper);
+    /**
+     * Adds item
+     *
+     * @param item {@link Item}
+     */
+    public void setItem(final Item item) {
+        setItem(item, this.box.files().config().getLoreWrapper());
     }
 
-    public void setItem(Item item, List<IPlaceholder> placeholderList) {
-        setItem(item, placeholderList, box.files().config().loreWrapper);
+    /**
+     * Adds an  item
+     *
+     * @param item {@link Item}
+     * @param placeholderList {@link IPlaceholder}
+     */
+    public void setItem(final Item item, final List<IPlaceholder> placeholderList) {
+        setItem(item, placeholderList, this.box.files().config().getLoreWrapper());
     }
 }

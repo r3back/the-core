@@ -9,14 +9,26 @@ import lombok.Getter;
 
 import java.util.List;
 
+/**
+ * Utility class for time auction
+ */
+@Getter
 public final class AuctionTimeConfigGUI extends OkaeriConfig implements SimpleGUI {
-    public @Getter CommonGUI commonGUI;
-    public Item timeItem;
-    public Item goBack;
-    public List<Integer> timeSlots;
+    private CommonGUI commonGUI;
+    private Item timeItem;
+    private Item goBack;
+    private List<Integer> timeSlots;
 
+    /**
+     * Make auction time config
+     *
+     * @param commonGUI {@link CommonGUI}
+     * @param timeItem  {@link AuctionTimeConfigGUI}
+     * @param goBack    {@link AuctionTimeConfigGUI}
+     * @param timeSlots {@link AuctionTimeConfigGUI}
+     */
     @Builder
-    public AuctionTimeConfigGUI(CommonGUI commonGUI, Item timeItem, Item goBack, List<Integer> timeSlots) {
+    public AuctionTimeConfigGUI(final CommonGUI commonGUI, final Item timeItem, final Item goBack, final List<Integer> timeSlots) {
         this.commonGUI = commonGUI;
         this.timeItem = timeItem;
         this.goBack = goBack;

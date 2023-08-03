@@ -7,8 +7,11 @@ import com.qualityplus.auction.api.service.AuctionService;
 import com.qualityplus.assistant.lib.eu.okaeri.platform.core.annotation.Component;
 import lombok.Getter;
 
+/**
+ * utility class for auction api
+ */
 @Component
 public final class TheAuctionAPIImpl implements TheAuctionAPI {
     private @Inject
-    @Getter AuctionService auctionService;
+        @Getter AuctionService auctionService;
 }

@@ -6,6 +6,9 @@ import lombok.EqualsAndHashCode;
 
 import java.util.UUID;
 
+/**
+ * Utility class Users Documents
+ */
 @Data @EqualsAndHashCode(callSuper = false)
 public final class User extends Document {
     private String name;
@@ -13,37 +16,68 @@ public final class User extends Document {
     private AuctionItem temporalAuction;
     private AuctionStats auctionStats;
 
+    /**
+     * Makes an auction stats
+     * @return an {@link AuctionStats}
+     */
     public AuctionStats getAuctionStats() {
-        if(auctionStats == null)
+        if (this.auctionStats == null) {
             this.auctionStats = new AuctionStats();
-        return auctionStats;
+        }
+        return this.auctionStats;
     }
 
+    /**
+     * Adds auction completed with bids
+     */
     public void addAuctionCompletedWithBids() {
         getAuctionStats().setAuctionsCompletedWithBids(getAuctionStats().getAuctionsCompletedWithBids() + 1);
     }
 
+    /**
+     * Adds Auction Completed Without Bids
+     */
     public void addAuctionCompletedWithoutBids() {
         getAuctionStats().setAuctionsCompletedWithoutBids(getAuctionStats().getAuctionsCompletedWithoutBids() + 1);
     }
 
-    public void addTotalMoneyEarned(double totalMoneyEarned) {
+    /**
+     *
+     * @param totalMoneyEarned TotalMoneyEarned
+     */
+    public void addTotalMoneyEarned(final double totalMoneyEarned) {
         getAuctionStats().setTotalMoneyEarned(getAuctionStats().getTotalMoneyEarned() + totalMoneyEarned);
     }
 
+    /**
+     * Adds a won auctions
+     */
     public void addAuctionsWon() {
         getAuctionStats().setAuctionsWon(getAuctionStats().getAuctionsWon() + 1);
     }
 
+    /**
+     * Adds a bids totals
+     */
     public void addTotalBids() {
         getAuctionStats().setTotalBids(getAuctionStats().getTotalBids() + 1);
     }
 
-    public void addHighestBid(double highestBid) {
-        if(highestBid > getAuctionStats().getHighestBid()) getAuctionStats().setHighestBid(highestBid);
+    /**
+     *
+     * @param highestBid HighestBid
+     */
+    public void addHighestBid(final double highestBid) {
+        if (highestBid > getAuctionStats().getHighestBid()) {
+            getAuctionStats().setHighestBid(highestBid);
+        }
     }
 
-    public void addMoneySpent(double moneySpent) {
+    /**
+     * Adds ann money spent
+     * @param moneySpent MoneySpent
+     */
+    public void addMoneySpent(final double moneySpent) {
         getAuctionStats().setMoneySpent(getAuctionStats().getMoneySpent() + moneySpent);
     }
 }

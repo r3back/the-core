@@ -13,12 +13,22 @@ import com.qualityplus.assistant.lib.eu.okaeri.platform.core.plan.Planned;
 
 import java.util.logging.Logger;
 
+/**
+ * Makes an auctions house loader
+ */
 @Component
 public final class AuctionHouseLoader {
+    /**
+     * Makes a load
+     *
+     * @param service    {@link AuctionService}
+     * @param repository {@link AuctionRepository}
+     * @param logger     {@link Logger}
+     */
     @Async
     @Delayed(time = MinecraftTimeEquivalent.SECOND / 20, async = true)
-    public void load(@Inject AuctionService service, @Inject AuctionRepository repository, @Inject Logger logger) {
-        AuctionHouse auctionHouse = repository.get();
+    public void load(final @Inject AuctionService service, final @Inject AuctionRepository repository, final @Inject Logger logger) {
+        final AuctionHouse auctionHouse = repository.get();
 
         service.setAuctionHouse(auctionHouse);
 
@@ -28,8 +38,14 @@ public final class AuctionHouseLoader {
 
     }
 
+    /**
+     * makes a unload
+     *
+     * @param service {@link AuctionService}
+     * @param logger  {@link Logger}
+     */
     @Planned(ExecutionPhase.PRE_SHUTDOWN)
-    public void unload(@Inject AuctionService service, @Inject Logger logger) {
+    public void unload(final @Inject AuctionService service, final @Inject Logger logger) {
         logger.info("Saving Auction House...");
 
         service.getAuctionHouse().ifPresent(AuctionHouse::save);

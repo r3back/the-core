@@ -8,9 +8,17 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.bukkit.inventory.ItemStack;
 
-import java.util.*;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
+/**
+ * Makes an auction items
+ */
 @NoArgsConstructor
 @Getter @Setter
 public final class AuctionItem extends OkaeriConfig {
@@ -25,8 +33,21 @@ public final class AuctionItem extends OkaeriConfig {
     private UUID whoBought;
     private Boolean hasBids;
 
+    /**
+     * Makes an Auctions item
+     *
+     * @param owner      {@link UUID}
+     * @param ownerName  Owner Name
+     * @param itemStack  {@link ItemStack}
+     * @param markable   {@link Markable}
+     * @param timer      Timer
+     * @param bids       {@link AuctionBid}
+     * @param isBuyItNow If Is Buy It Now
+     */
     @Builder
-    public AuctionItem(UUID owner, String ownerName, ItemStack itemStack, Markable markable, String timer, List<AuctionBid> bids, boolean isBuyItNow) {
+    public AuctionItem(final UUID owner, final String ownerName, final ItemStack itemStack,
+                       final Markable markable, final String timer,
+                       final List<AuctionBid> bids, final boolean isBuyItNow) {
         this.owner = owner;
         this.ownerName = ownerName;
         this.itemStack = itemStack;
@@ -36,57 +57,104 @@ public final class AuctionItem extends OkaeriConfig {
         this.isBuyItNow = isBuyItNow;
     }
 
+    /**
+     * Makes a bought been
+     *
+     * @return a HasBeenBought
+     */
     public boolean hasBeenBought() {
-        return whoBought != null;
+        return this.whoBought != null;
     }
 
+    /**
+     * Makes an items stack
+     *
+     * @return an {@link ItemStack}
+     */
     public ItemStack getItemStack() {
-        return Optional.ofNullable(itemStack)
+        return Optional.ofNullable(this.itemStack)
                 .map(ItemStack::clone)
                 .orElse(null);
     }
 
-    public Optional<AuctionBid> getBid(UUID uuid) {
-        return bids.stream().filter(bid -> bid.getBidder().equals(uuid)).findFirst();
+    /**
+     * Makes an auctions bids
+     *
+     * @param uuid {@link UUID}
+     * @return a {@link AuctionBid}
+     */
+    public Optional<AuctionBid> getBid(final UUID uuid) {
+        return this.bids.stream().filter(bid -> bid.getBidder().equals(uuid)).findFirst();
     }
 
+    /**
+     * Makes an owners without bids
+     * @return list of {@link AuctionBid}
+     */
     public List<AuctionBid> getBidsWithoutOwner() {
-        return bids.stream().filter(bid -> !bid.getBidder().equals(owner)).collect(Collectors.toList());
+        return this.bids.stream().filter(bid -> !bid.getBidder().equals(this.owner)).collect(Collectors.toList());
     }
 
+    /**
+     * Makes an expired
+     * @return a IsExpired
+     */
     public boolean isExpired() {
-        return markable.getRemainingTime().isZero();
+        return this.markable.getRemainingTime().isZero();
     }
 
 
-    public void addBid(AuctionBid bid) {
-        bids.add(bid);
+    /**
+     * Adds a bid to an auction
+     *
+     * @param bid {@link AuctionBid}
+     */
+    public void addBid(final AuctionBid bid) {
+        this.bids.add(bid);
     }
 
+    /**
+     * Makes a Bids highest
+     * @return a HighestBid
+     */
     public double getHighestBid() {
-        return new ArrayList<>(bids).stream()
+        return new ArrayList<>(this.bids).stream()
                 .min((o1, o2) -> (int) (o1.getBidAmount() - o2.getBidAmount()))
                 .map(AuctionBid::getBidAmount)
                 .orElse(0D);
     }
 
-    public double getHighestBid(UUID uuid) {
-        return new ArrayList<>(bids).stream()
+    /**
+     * makes a Bids Highest
+     * @param uuid {@link UUID}
+     * @return a HighestBid
+     */
+    public double getHighestBid(final UUID uuid) {
+        return new ArrayList<>(this.bids).stream()
                 .min((o1, o2) -> (int) (o1.getBidAmount() - o2.getBidAmount()))
                 .filter(bid -> bid.getBidder().equals(uuid))
                 .map(AuctionBid::getBidAmount)
                 .orElse(0D);
     }
 
+    /**
+     * Makes a bidders
+     * @return a {@link UUID}
+     */
     public Set<UUID> getBidders() {
-        return bids.stream()
+        return this.bids.stream()
                 .map(AuctionBid::getBidder)
-                .filter(bidder -> !bidder.equals(owner))
+                .filter(bidder -> !bidder.equals(this.owner))
                 .collect(Collectors.toSet());
     }
 
-    public boolean isOwner(UUID uuid) {
-        return owner.equals(uuid);
+    /**
+     * Makes a Owner uuid
+     * @param uuid {@link UUID}
+     * @return an IsOwner
+     */
+    public boolean isOwner(final UUID uuid) {
+        return this.owner.equals(uuid);
     }
 
 }

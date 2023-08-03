@@ -9,17 +9,36 @@ import lombok.Getter;
 
 import java.util.List;
 
+/**
+ * Utility class for auction pending
+ */
+@Getter
 public final class PendingAuctionGUIConfig extends OkaeriConfig implements SimpleGUI {
-    public @Getter CommonGUI commonGUI;
-    public Item auctionItem;
+    private CommonGUI commonGUI;
+    private Item auctionItem;
 
-    public Item goBackItem;
-    public Item previousPageItem;
-    public Item nextPageItem;
-    public List<Integer> auctionSlots;
+    private Item goBackItem;
+    private Item previousPageItem;
+    private Item nextPageItem;
+    private List<Integer> auctionSlots;
 
+    /**
+     * Adds pending auction
+     *
+     * @param commonGUI        {@link CommonGUI}
+     * @param auctionItem      {@link PendingAuctionGUIConfig}
+     * @param goBackItem       {@link PendingAuctionGUIConfig}
+     * @param previousPageItem {@link PendingAuctionGUIConfig}
+     * @param nextPageItem     {@link PendingAuctionGUIConfig}
+     * @param auctionSlots     {@link PendingAuctionGUIConfig}
+     */
     @Builder
-    public PendingAuctionGUIConfig(CommonGUI commonGUI, Item auctionItem, Item goBackItem, Item previousPageItem, Item nextPageItem, List<Integer> auctionSlots) {
+    public PendingAuctionGUIConfig(final CommonGUI commonGUI,
+                                    final Item auctionItem,
+                                     final Item goBackItem,
+                                        final Item previousPageItem,
+                                         final Item nextPageItem,
+                                            final List<Integer> auctionSlots) {
         this.commonGUI = commonGUI;
         this.auctionItem = auctionItem;
         this.goBackItem = goBackItem;

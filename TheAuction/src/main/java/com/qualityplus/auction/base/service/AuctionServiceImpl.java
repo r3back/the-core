@@ -10,27 +10,30 @@ import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
+/**
+ * Utility class for auction service
+ */
 @Component
 public final class AuctionServiceImpl implements AuctionService {
     private AuctionHouse auctionHouse;
 
     @Override
     public List<AuctionItem> getItems() {
-        return auctionHouse.getNormalItems();
+        return this.auctionHouse.getNormalItems();
     }
 
     @Override
-    public List<AuctionItem> getItems(UUID owner) {
+    public List<AuctionItem> getItems(final UUID owner) {
         return getItems().stream().filter(auctionItem -> auctionItem.getOwner().equals(owner)).collect(Collectors.toList());
     }
 
     @Override
     public Optional<AuctionHouse> getAuctionHouse() {
-        return Optional.ofNullable(auctionHouse);
+        return Optional.ofNullable(this.auctionHouse);
     }
 
     @Override
-    public void setAuctionHouse(AuctionHouse auctionHouse) {
+    public void setAuctionHouse(final AuctionHouse auctionHouse) {
         this.auctionHouse = auctionHouse;
     }
 }

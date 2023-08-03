@@ -7,14 +7,26 @@ import com.qualityplus.assistant.lib.eu.okaeri.configs.OkaeriConfig;
 import lombok.Builder;
 import lombok.Getter;
 
+/**
+ * Utility class for confirm auction
+ */
+@Getter
 public final class ConfirmAuctionGUIConfig extends OkaeriConfig implements SimpleGUI {
-    public @Getter CommonGUI commonGUI;
-    public Item auctionItem;
-    public Item confirmItem;
-    public Item cancelItem;
+    private CommonGUI commonGUI;
+    private Item auctionItem;
+    private Item confirmItem;
+    private Item cancelItem;
 
+    /**
+     * make confirm auction
+     *
+     * @param commonGUI   {@link CommonGUI}
+     * @param auctionItem {@link ConfirmAuctionGUIConfig}
+     * @param confirmItem {@link ConfirmAuctionGUIConfig}
+     * @param cancelItem  {@link ConfirmAuctionGUIConfig}
+     */
     @Builder
-    public ConfirmAuctionGUIConfig(CommonGUI commonGUI, Item auctionItem, Item confirmItem, Item cancelItem) {
+    public ConfirmAuctionGUIConfig(final CommonGUI commonGUI, final Item auctionItem, final Item confirmItem, final Item cancelItem) {
         this.commonGUI = commonGUI;
         this.auctionItem = auctionItem;
         this.confirmItem = confirmItem;
