@@ -28,7 +28,7 @@ import java.util.Map;
 @Header("================================")
 @Names(strategy = NameStrategy.HYPHEN_CASE, modifier = NameModifier.TO_LOWER_CASE)
 public final class Config extends OkaeriConfig {
-    private @Getter String prefix = "[TheAuction] ";
+    private String prefix = "[TheAuction] ";
 
     @CustomKey("configDatabase")
     @Comment("Database Configuration")
@@ -37,16 +37,16 @@ public final class Config extends OkaeriConfig {
     @Comment("- FLAT")
     @Comment("- MYSQL")
     @Comment("- REDIS")
-    private @Getter  ConfigDatabase configDatabase = new ConfigDatabase();
+    private ConfigDatabase configDatabase = new ConfigDatabase();
 
     @CustomKey("loreWrapper")
     @Comment("- wrapLength = After how many characters in a lore you want")
     @Comment("               to separate it.")
     @Comment("- wrapStart = After line is separated what character do you")
     @Comment("              want to start the new line with.")
-    private @Getter LoreWrapper loreWrapper = new LoreWrapper(50, "&7");
+    private  LoreWrapper loreWrapper = new LoreWrapper(50, "&7");
 
-    private @Getter Map<String, AuctionTime> durationPrices = ImmutableMap.<String, AuctionTime>builder()
+    private  Map<String, AuctionTime> durationPrices = ImmutableMap.<String, AuctionTime>builder()
             .put("15s", new AuctionTime(new HumanTime(15, HumanTime.TimeType.SECONDS), 1D, XMaterial.RED_TERRACOTTA, 10))
 
             .put("2h", new AuctionTime(new HumanTime(2, HumanTime.TimeType.HOURS), 200D, XMaterial.RED_TERRACOTTA, 11))

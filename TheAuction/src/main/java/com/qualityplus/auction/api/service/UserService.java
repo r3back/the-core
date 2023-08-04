@@ -13,7 +13,7 @@ public interface UserService {
      * Adds an uuid
      *
      * @param uuid {@link UUID}
-     * @return     {@link User}
+     * @return Optional of {@link User}
      */
     public Optional<User> getUser(UUID uuid);
 
@@ -26,6 +26,7 @@ public interface UserService {
 
     /**
      * Remove User
+     *
      * @param user {@link User}
      */
     public void removeUser(User user);

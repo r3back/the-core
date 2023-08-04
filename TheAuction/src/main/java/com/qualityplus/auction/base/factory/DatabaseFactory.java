@@ -21,7 +21,7 @@ import io.lettuce.core.RedisURI;
 import java.io.File;
 
 /**
- * Utility class dor database factory
+ * Utility class for database factory
  */
 @Component
 public final class DatabaseFactory extends HikariConfiguration {
@@ -33,7 +33,7 @@ public final class DatabaseFactory extends HikariConfiguration {
      * @return           {@link DocumentPersistence}
      */
     @Bean(value = "persistence", preload = true)
-    public DocumentPersistence configurePersistence(final @Inject("dataFolder") File dataFolder, @Inject final Config config) {
+    public DocumentPersistence configurePersistence(final @Inject("dataFolder") File dataFolder, final @Inject Config config) {
         try {
             Class.forName("com.qualityplus.assistant.lib.org.mariadb.jdbc.Driver");
             Class.forName("com.qualityplus.assistant.lib.org.h2.Driver");

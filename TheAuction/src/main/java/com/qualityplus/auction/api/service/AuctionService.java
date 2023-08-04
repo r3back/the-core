@@ -14,7 +14,7 @@ public interface AuctionService {
     /**
      * Makes list items
      *
-     * @return {@link AuctionItem}
+     * @return List Of {@link AuctionItem}
      */
     public List<AuctionItem> getItems();
 
@@ -22,14 +22,14 @@ public interface AuctionService {
      * Adds an auction item
      *
      * @param owner {@link UUID}
-     * @return      {@link AuctionItem}
+     * @return List Of {@link AuctionItem}
      */
-    public List<AuctionItem> getItems(UUID owner);
+    public List<AuctionItem> getItems(final UUID owner);
 
     /**
      * Adds an auction house
      *
-     * @return {@link AuctionHouse}
+     * @return Optional of {@link AuctionHouse}
      */
     public Optional<AuctionHouse> getAuctionHouse();
 
@@ -38,5 +38,5 @@ public interface AuctionService {
      *
      * @param auctionHouse {@link AuctionHouse}
      */
-    public void setAuctionHouse(AuctionHouse auctionHouse);
+    public void setAuctionHouse(final AuctionHouse auctionHouse);
 }

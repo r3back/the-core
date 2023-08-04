@@ -17,7 +17,6 @@ public final class ManageAuctionGUIConfig extends OkaeriConfig implements Simple
     private CommonGUI commonGUI;
     private Item auctionItem;
     private Item auctionItemSold;
-
     private Item goBackItem;
     private Item sortItem;
     private Item createAnAuction;

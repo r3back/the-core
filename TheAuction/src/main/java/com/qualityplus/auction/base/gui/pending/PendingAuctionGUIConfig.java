@@ -16,7 +16,6 @@ import java.util.List;
 public final class PendingAuctionGUIConfig extends OkaeriConfig implements SimpleGUI {
     private CommonGUI commonGUI;
     private Item auctionItem;
-
     private Item goBackItem;
     private Item previousPageItem;
     private Item nextPageItem;
@@ -34,11 +33,11 @@ public final class PendingAuctionGUIConfig extends OkaeriConfig implements Simpl
      */
     @Builder
     public PendingAuctionGUIConfig(final CommonGUI commonGUI,
-                                    final Item auctionItem,
-                                     final Item goBackItem,
-                                        final Item previousPageItem,
-                                         final Item nextPageItem,
-                                            final List<Integer> auctionSlots) {
+                                   final Item auctionItem,
+                                   final Item goBackItem,
+                                   final Item previousPageItem,
+                                   final Item nextPageItem,
+                                   final List<Integer> auctionSlots) {
         this.commonGUI = commonGUI;
         this.auctionItem = auctionItem;
         this.goBackItem = goBackItem;

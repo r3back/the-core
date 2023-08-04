@@ -14,6 +14,7 @@ import lombok.experimental.UtilityClass;
 //@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class AuctionFilterUtil {
     /**
+     * Makes an auction searcher
      *
      * @param box {@link Box}
      * @return an {@link AuctionSearcher}

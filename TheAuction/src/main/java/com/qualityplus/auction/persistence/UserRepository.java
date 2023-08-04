@@ -24,6 +24,7 @@ public interface UserRepository extends DocumentRepository<UUID, User> {
 
     /**
      * Makes a name user
+     *
      * @param name Name
      * @return     {@link User}
      */

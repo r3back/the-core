@@ -12,7 +12,7 @@ import lombok.Getter;
  */
 @Getter
 public final class BinAuctionViewGUIConfig extends OkaeriConfig implements SimpleGUI {
-    private final Item collectItemAuctionItem;
+    private Item collectItemAuctionItem;
     private Item collectAuctionEmptyItem;
     private CommonGUI commonGUI;
     private Item collectAuctionItem;

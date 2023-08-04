@@ -17,7 +17,7 @@ public final class CategoryFilter extends OkaeriConfig {
     private final String nbtKey;
 
     /**
-     * Adds a category filter
+     * Represents a filter type
      *
      * @param type   {@link FilterType}
      * @param nbtKey Nbt Key
@@ -29,7 +29,7 @@ public final class CategoryFilter extends OkaeriConfig {
     }
 
     /**
-     * Add a filter type
+     * Represents a filter type
      */
     public enum FilterType {
         EXCLUDE,

@@ -47,6 +47,7 @@ public abstract class AuctionGUI extends GUI {
 
     /**
      * Makes a Auctions gui
+     *
      * @param simpleGUI {@link SimpleGUI}
      * @param box       {@link Box}
      */

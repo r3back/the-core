@@ -5,11 +5,11 @@ import com.qualityplus.assistant.api.config.ConfigReloader;
 /**
  * Makes a files
  *
- * @param <C>   {@link ConfigFiles}
- * @param <I>   {@link ConfigFiles}
- * @param <M>   {@link ConfigFiles}
- * @param <CMD> {@link ConfigFiles}
- * @param <BU>  {@link ConfigFiles}
+ * @param <C>   Config
+ * @param <I>   Inventories
+ * @param <M>   Messages
+ * @param <CMD> Commands
+ * @param <BU>  Bank Upgrades
  */
 public interface ConfigFiles<C, I, M, CMD, BU> extends ConfigReloader {
 
@@ -18,7 +18,7 @@ public interface ConfigFiles<C, I, M, CMD, BU> extends ConfigReloader {
      *
      * @return {@link ConfigFiles}
      */
-    public C  config();
+    public C config();
 
     /**
      * Adds inventories
