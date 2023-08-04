@@ -14,38 +14,22 @@ import org.bukkit.inventory.ItemStack;
 import java.util.Collections;
 import java.util.List;
 
-/**
- * Utility class for auction item stacks
- */
 @UtilityClass
 public class AuctionItemStackUtils {
-    /**
-     * Makes a category for an item
-     *
-     * @param item           {@link Item}
-     * @param placeholders   List of {@link IPlaceholder}
-     * @param guiDisplayItem {@link GUIDisplayItem}
-     * @param wrapper        {@link LoreWrapper}
-     * @return an {@link ItemStack}
-     */
-
-    public static ItemStack makeCategoryItem(final Item item,
-                                             final List<IPlaceholder> placeholders,
-                                             final GUIDisplayItem guiDisplayItem,
-                                             final LoreWrapper wrapper) {
+    public static ItemStack makeCategoryItem(Item item, List<IPlaceholder> placeholders, GUIDisplayItem guiDisplayItem, LoreWrapper wrapper){
         try {
-            final Item item1 = ItemBuilder.of(guiDisplayItem.getIcon(), 1, 1, "", Collections.emptyList()).headData(guiDisplayItem.getTexture())
+            Item item1 = ItemBuilder.of(guiDisplayItem.getIcon(), 1, 1, "", Collections.emptyList()).headData(guiDisplayItem.getTexture())
                     .enchanted(item.enchanted)
                     .build();
 
-            final ItemStack firstProcess = ItemStackUtils.makeItem(
+            ItemStack firstProcess = ItemStackUtils.makeItem(
                     guiDisplayItem.getIcon(),
                     1,
                     StringUtils.processMulti(item.displayName, placeholders),
                     StringUtils.processMulti(item.lore, placeholders));
 
             return ItemStackUtils.getFinalItem(item1, firstProcess, placeholders, wrapper);
-        } catch (NullPointerException e) {
+        } catch (Exception e) {
             e.printStackTrace();
             return XMaterial.STONE.parseItem();
         }

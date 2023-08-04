@@ -11,9 +11,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-/**
- * Utility class dor auction filter
- */
 @Data
 public final class AuctionFilter extends OkaeriConfig implements FilterAlgorithm<AuctionItem> {
     private final Map<String, String> data = new HashMap<>();
@@ -23,14 +20,14 @@ public final class AuctionFilter extends OkaeriConfig implements FilterAlgorithm
 
 
     @Override
-    public List<AuctionItem> filter(final List<AuctionItem> filter) {
-        return Optional.ofNullable(this.filterMethod.getFilterAlgorithm())
+    public List<AuctionItem> filter(List<AuctionItem> filter) {
+        return Optional.ofNullable(filterMethod.getFilterAlgorithm())
                 .map(algorithm -> algorithm.filter(filter))
                 .orElse(filter);
     }
 
     @Override
-    public void addData(final String key, final String value) {
-        this.data.put(key, value);
+    public void addData(String key, String value) {
+        data.put(key, value);
     }
 }

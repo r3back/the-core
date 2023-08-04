@@ -7,9 +7,6 @@ import lombok.Setter;
 
 import java.util.UUID;
 
-/**
- * Utility class for auction bids
- */
 @AllArgsConstructor
 @Getter
 @Setter

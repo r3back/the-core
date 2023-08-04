@@ -13,25 +13,16 @@ import com.qualityplus.assistant.lib.eu.okaeri.configs.annotation.NameModifier;
 import com.qualityplus.assistant.lib.eu.okaeri.configs.annotation.NameStrategy;
 import com.qualityplus.assistant.lib.eu.okaeri.configs.annotation.Names;
 import com.qualityplus.assistant.lib.eu.okaeri.platform.core.annotation.Configuration;
-import lombok.Getter;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
-
-/**
- * Utility class for extends categories
- */
 @Configuration(path = "categories.yml")
 @Header("================================")
 @Header("       Categories      ")
 @Header("================================")
 @Names(strategy = NameStrategy.HYPHEN_CASE, modifier = NameModifier.TO_LOWER_CASE)
 public final class Categories extends OkaeriConfig {
-    private @Getter List<AuctionCategory>  categoryList = Arrays.asList(
+    public List<AuctionCategory> categoryList = Arrays.asList(
             AuctionCategory.builder()
                     .id("weapons")
                     .displayName("&6Weapons")
@@ -64,8 +55,7 @@ public final class Categories extends OkaeriConfig {
                             .background(getBackGround(XMaterial.GREEN_STAINED_GLASS_PANE))
                             .description(Arrays.asList("&7Examples:", "&8■ &7Swords", "&8■ &7Bows", "&8■ &7Axes", "&8■ &7Magic Weapons"))
                             .icon(XMaterial.PLAYER_HEAD)
-                            .texture("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubm" +
-                                    "V0L3RleHR1cmUvMzE1ZjAyZWFjNjAyNmI4ZTg3MTJjYTRkNzgxYjc5MWJiYmI3YjQ3NTVhYmRhMjdmNDYyMTg5YjkwZmVkNjZhMSJ9fX0=")
+                            .texture("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMzE1ZjAyZWFjNjAyNmI4ZTg3MTJjYTRkNzgxYjc5MWJiYmI3YjQ3NTVhYmRhMjdmNDYyMTg5YjkwZmVkNjZhMSJ9fX0=")
                             .slot(18)
                             .build())
                     .filters(new ArrayList<>())
@@ -108,19 +98,13 @@ public final class Categories extends OkaeriConfig {
                     .build());
 
 
-    /**
-     * Makes auction categories
-     *
-     * @param id Id
-     * @return   {@link AuctionCategory}
-     */
-    public Optional<AuctionCategory> getById(final String id) {
-        return this.categoryList.stream()
+    public Optional<AuctionCategory> getById(String id){
+        return categoryList.stream()
                 .filter(category -> category.getId().equals(id))
                 .findFirst();
     }
 
-    private Background getBackGround(final XMaterial material) {
+    private Background getBackGround(XMaterial material){
         return new Background(ImmutableMap.<Integer, Item>builder()
                 .put(1, ItemBuilder.of(material, 1, " ", Collections.emptyList()).build())
                 .put(2, ItemBuilder.of(material, 1, " ", Collections.emptyList()).build())
@@ -152,72 +136,62 @@ public final class Categories extends OkaeriConfig {
                 .build());
     }
 
-    private List<XMaterial> getConsumables() {
-        final List<XMaterial> allowed = new ArrayList<>();
+    private List<XMaterial> getConsumables(){
+        List<XMaterial> allowed = new ArrayList<>();
 
-        for (XMaterial material : XMaterial.VALUES) {
-            final String parsed = material.toString().toLowerCase();
-            if (parsed.contains("waxed") || parsed.contains("fishing_rod")) {
-                continue;
-            }
+        for(XMaterial material : XMaterial.VALUES){
+            String parsed = material.toString().toLowerCase();
+            if(parsed.contains("waxed") || parsed.contains("fishing_rod")) continue;
 
-            if (parsed.contains("apple") || parsed.contains("bread") || parsed.contains("pumpkin") || parsed.contains("fish") || parsed.contains("pork") ||
-                    parsed.contains("carrot") || parsed.contains("chicken") || parsed.contains("beef")) {
+            if(parsed.contains("apple") || parsed.contains("bread") || parsed.contains("pumpkin") || parsed.contains("fish") || parsed.contains("pork") ||
+                    parsed.contains("carrot") || parsed.contains("chicken") || parsed.contains("beef"))
                 allowed.add(material);
-            }
         }
         return allowed;
     }
 
-    private List<XMaterial> getAccessories() {
+    private List<XMaterial> getAccessories(){
         return Collections.singletonList(XMaterial.PLAYER_HEAD);
     }
 
-    private List<XMaterial> getTools() {
-        final List<XMaterial> allowed = new ArrayList<>();
+    private List<XMaterial> getTools(){
+        List<XMaterial> allowed = new ArrayList<>();
 
-        for (XMaterial material : XMaterial.VALUES) {
-            final String parsed = material.toString().toLowerCase();
-            if (parsed.contains("waxed")) {
-                continue;
-            }
+        for(XMaterial material : XMaterial.VALUES){
+            String parsed = material.toString().toLowerCase();
+            if(parsed.contains("waxed")) continue;
 
-            if (parsed.contains("axe") || parsed.contains("pickaxe") || parsed.contains("shovel") || parsed.contains("hoe") || parsed.contains("shears")) {
+            if(parsed.contains("axe") || parsed.contains("pickaxe") || parsed.contains("shovel") || parsed.contains("hoe") || parsed.contains("shears"))
                 allowed.add(material);
-            }
         }
         return allowed;
     }
 
-    private List<XMaterial> getWeapons() {
-        final List<XMaterial> allowed = new ArrayList<>();
+    private List<XMaterial> getWeapons(){
+        List<XMaterial> allowed = new ArrayList<>();
 
-        for (XMaterial material : XMaterial.VALUES) {
-            final String parsed = material.toString().toLowerCase();
-            if (parsed.contains("waxed")) {
-                continue;
-            }
+        for(XMaterial material : XMaterial.VALUES){
+            String parsed = material.toString().toLowerCase();
+            if(parsed.contains("waxed")) continue;
 
-            if (parsed.contains("sword")) {
+            if(parsed.contains("sword"))
                 allowed.add(material);
-            }
         }
         return allowed;
     }
 
-    private List<XMaterial> getBlocks() {
+    private List<XMaterial> getBlocks(){
         return Arrays.asList(XMaterial.OAK_LOG, XMaterial.JUNGLE_LOG, XMaterial.SPRUCE_LOG, XMaterial.DARK_OAK_LOG, XMaterial.BIRCH_LOG, XMaterial.ACACIA_LOG,
                 XMaterial.DIAMOND_BLOCK, XMaterial.GOLD_BLOCK, XMaterial.IRON_BLOCK, XMaterial.COAL_BLOCK, XMaterial.LAPIS_BLOCK);
     }
 
-    private List<XMaterial> getArmors() {
-        final List<XMaterial> allowed = new ArrayList<>();
-        for (XMaterial material : XMaterial.VALUES) {
-            final String parsed = material.toString().toLowerCase();
+    private List<XMaterial> getArmors(){
+        List<XMaterial> allowed = new ArrayList<>();
+        for(XMaterial material : XMaterial.VALUES){
+            String parsed = material.toString().toLowerCase();
 
-            if (parsed.contains("leggings") || parsed.contains("chestplate") || parsed.contains("boots") || parsed.contains("helmet")) {
+            if(parsed.contains("leggings") || parsed.contains("chestplate") || parsed.contains("boots") || parsed.contains("helmet"))
                 allowed.add(material);
-            }
         }
         return allowed;
     }

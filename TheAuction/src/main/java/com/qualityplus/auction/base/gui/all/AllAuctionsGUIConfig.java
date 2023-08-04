@@ -9,57 +9,27 @@ import lombok.Getter;
 
 import java.util.List;
 
-/**
- * Utility class for all auctions gui config
-  */
-@Getter
 public final class AllAuctionsGUIConfig extends OkaeriConfig implements SimpleGUI {
-    private CommonGUI commonGUI;
-    private Item categoryItem;
+    public @Getter CommonGUI commonGUI;
+    public Item categoryItem;
 
-    private Item byNameFilterEmptyItem;
-    private Item byNameFilterFilledItem;
+    public Item byNameFilterEmptyItem;
+    public Item byNameFilterFilledItem;
 
-    private Item binFilterItem;
-    private Item sortItem;
+    public Item binFilterItem;
+    public Item sortItem;
 
-    private Item resetSettings;
-    private Item auctionItem;
-    private Item previousPage;
-    private Item nextPage;
-    private Item goBack;
+    public Item resetSettings;
+    public Item auctionItem;
+    public Item previousPage;
+    public Item nextPage;
+    public Item goBack;
 
-    private List<Integer> auctionSlots;
+    public List<Integer> auctionSlots;
 
-    /**
-     * Adds all auction gui
-     *
-     * @param commonGUI {@link CommonGUI}
-     * @param categoryItem {@link AllAuctionsGUIConfig}
-     * @param byNameFilterEmptyItem {@link AllAuctionsGUIConfig}
-     * @param byNameFilterFilledItem {@link AllAuctionsGUIConfig}
-     * @param binFilterItem {@link AllAuctionsGUIConfig}
-     * @param sortItem {@link AllAuctionsGUIConfig}
-     * @param auctionItem {@link AllAuctionsGUIConfig}
-     * @param previousPage {@link AllAuctionsGUIConfig}
-     * @param nextPage {@link AllAuctionsGUIConfig}
-     * @param goBack {@link AllAuctionsGUIConfig}
-     * @param auctionSlots {@link AllAuctionsGUIConfig}
-     * @param resetSettings {@link AllAuctionsGUIConfig}
-     */
     @Builder
-    public AllAuctionsGUIConfig(final CommonGUI commonGUI,
-                                final Item categoryItem,
-                                final Item byNameFilterEmptyItem,
-                                final Item byNameFilterFilledItem,
-                                final Item binFilterItem,
-                                final Item sortItem,
-                                final Item auctionItem,
-                                final Item previousPage,
-                                final Item nextPage,
-                                final Item goBack,
-                                final List<Integer> auctionSlots,
-                                final Item resetSettings) {
+    public AllAuctionsGUIConfig(CommonGUI commonGUI, Item categoryItem, Item byNameFilterEmptyItem, Item byNameFilterFilledItem, Item binFilterItem, Item sortItem, Item auctionItem, Item previousPage, Item nextPage, Item goBack,
+                                List<Integer> auctionSlots, Item resetSettings) {
         this.byNameFilterEmptyItem = byNameFilterEmptyItem;
         this.byNameFilterFilledItem = byNameFilterFilledItem;
         this.binFilterItem = binFilterItem;

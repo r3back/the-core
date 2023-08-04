@@ -22,9 +22,6 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 
-/**
- * Utility class for auction searcher
- */
 public final class AuctionSearcher implements Searcher<AuctionItem> {
     private final CategoryFilter categoryFilter;
     private final @Getter StringFilter stringFilter;
@@ -32,17 +29,8 @@ public final class AuctionSearcher implements Searcher<AuctionItem> {
     private final @Getter BinFilter binFilter;
     private final Box box;
 
-    /**
-     * Makes an auctions searcher
-     *
-     * @param stringFilter Filter
-     * @param sortFilter   {@link SortFilter}
-     * @param binFilter    {@link BinFilter}
-     * @param category     category
-     * @param box          {@link Box}
-     */
     @Builder
-    public AuctionSearcher(final StringFilter stringFilter, final  SortFilter sortFilter, final BinFilter binFilter, final String category, final Box box) {
+    public AuctionSearcher(StringFilter stringFilter, SortFilter sortFilter, BinFilter binFilter, String category, Box box) {
         this.categoryFilter = new CategoryFilter(category, box);
         this.stringFilter = stringFilter;
         this.sortFilter = sortFilter;
@@ -52,17 +40,17 @@ public final class AuctionSearcher implements Searcher<AuctionItem> {
 
     @Override
     public List<AuctionItem> getFiltered() {
-        final List<AuctionItem> auctionItems = new ArrayList<>(this.box.auctionService().getItems());
+        List<AuctionItem> auctionItems = new ArrayList<>(box.auctionService().getItems());
 
-        if (this.sortFilter.equals(SortFilter.RANDOM)) {
-            auctionItems.sort(Comparator.comparingDouble(p -> (int) p.getHighestBid() + RandomUtil.randomBetween(0, 5)));
-        } else if (this.sortFilter.equals(SortFilter.LOWEST_PRICE)) {
+        if(sortFilter.equals(SortFilter.RANDOM))
+            auctionItems.sort(Comparator.comparingDouble(p -> (int) p.getHighestBid() + RandomUtil.randomBetween(0,5)));
+        else if(sortFilter.equals(SortFilter.LOWEST_PRICE))
             auctionItems.sort((o1, o2) -> (int) (o1.getHighestBid() - o2.getHighestBid()));
-        } else if (this.sortFilter.equals(SortFilter.HIGHEST_PRICE)) {
+        else if(sortFilter.equals(SortFilter.HIGHEST_PRICE))
             auctionItems.sort(Comparator.comparingDouble(p -> (int) p.getHighestBid()));
-        } else if (this.sortFilter.equals(SortFilter.ENDING_SOON)) {
+        else if(sortFilter.equals(SortFilter.ENDING_SOON))
             auctionItems.sort(Comparator.comparingDouble(p -> (int) p.getHighestBid()));
-        }
+
 
         return auctionItems.stream()
                 .filter(binFilter())
@@ -71,31 +59,27 @@ public final class AuctionSearcher implements Searcher<AuctionItem> {
                 .collect(Collectors.toList());
     }
 
-    private Predicate<AuctionItem> stringFilter() {
-        if (this.stringFilter == null || this.stringFilter.getToSearch() == null) {
-            return auctionItem -> true;
-        }
+    private Predicate<AuctionItem> stringFilter(){
+        if(stringFilter == null || stringFilter.getToSearch() == null) return auctionItem -> true;
 
-        return auctionItem -> BukkitItemUtil.getItemLore(auctionItem.getItemStack()).contains(this.stringFilter.getToSearch()) ||
-                              BukkitItemUtil.getName(auctionItem.getItemStack()).equalsIgnoreCase(this.stringFilter.getToSearch()) ||
-                              BukkitItemUtil.getName(auctionItem.getItemStack()).contains(this.stringFilter.getToSearch());
+        return auctionItem -> BukkitItemUtil.getItemLore(auctionItem.getItemStack()).contains(stringFilter.getToSearch()) ||
+                              BukkitItemUtil.getName(auctionItem.getItemStack()).equalsIgnoreCase(stringFilter.getToSearch()) ||
+                              BukkitItemUtil.getName(auctionItem.getItemStack()).contains(stringFilter.getToSearch());
     }
 
-    private Predicate<AuctionItem> binFilter() {
-        if (this.binFilter.equals(BinFilter.BIN_ONLY)) {
+    private Predicate<AuctionItem> binFilter(){
+        if(binFilter.equals(BinFilter.BIN_ONLY)){
             return AuctionItem::isBuyItNow;
-        } else if (this.binFilter.equals(BinFilter.AUCTION_ONLY)) {
+        }else if(binFilter.equals(BinFilter.AUCTION_ONLY)){
             return auctionItem -> !auctionItem.isBuyItNow();
-        }
-        return auctionItem -> true;
+        }else
+            return auctionItem -> true;
     }
 
-    private Predicate<AuctionItem> categoryFilter() {
-        if (this.categoryFilter == null || this.categoryFilter.getCategory() == null) {
-            return auctionItem -> true;
-        }
+    private Predicate<AuctionItem> categoryFilter(){
+        if(categoryFilter == null || categoryFilter.getCategory() == null) return auctionItem -> true;
 
-        final Optional<AuctionCategory> category = this.categoryFilter.getBox().files().bankUpgrades().getById(this.categoryFilter.getCategory());
+        Optional<AuctionCategory> category = categoryFilter.getBox().files().bankUpgrades().getById(categoryFilter.getCategory());
 
         return category.<Predicate<AuctionItem>>map(auctionCategory -> auctionItem -> auctionCategory.getMaterials()
                 .stream()
@@ -103,16 +87,11 @@ public final class AuctionSearcher implements Searcher<AuctionItem> {
                 .orElseGet(() -> auctionItem -> true);
     }
 
-    private boolean checkIfItEquals(final AuctionItem auctionItem, final XMaterial material) {
+    private boolean checkIfItEquals(AuctionItem auctionItem, XMaterial material){
         return XMaterial.matchXMaterial(auctionItem.getItemStack()).equals(material);
     }
 
-    /**
-     * makes a string for category
-     *
-     * @return Category
-     */
-    public String getCategory() {
-        return this.categoryFilter.getCategory();
+    public String getCategory(){
+        return categoryFilter.getCategory();
     }
 }

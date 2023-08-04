@@ -21,25 +21,15 @@ import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
 
-/**
- * Utility class dof main auction
- */
 public final class MainAuctionGUI extends AuctionGUI {
     private final MainAuctionGUIConfig config;
     private final AuctionSearcher searcher;
     private final int ownAuctions;
 
-    /**
-     * Make auction main
-     *
-     * @param boxUtil  {@link Box}
-     * @param searcher {@link AuctionSearcher}
-     * @param uuid     {@link UUID}
-     */
-    public MainAuctionGUI(final Box boxUtil, final AuctionSearcher searcher, final UUID uuid) {
-        super(boxUtil.files().inventories().getAuctionGUIConfig(), boxUtil);
+    public MainAuctionGUI(Box boxUtil, AuctionSearcher searcher, UUID uuid) {
+        super(boxUtil.files().inventories().auctionGUIConfig, boxUtil);
 
-        this.config = boxUtil.files().inventories().getAuctionGUIConfig();
+        this.config = boxUtil.files().inventories().auctionGUIConfig;
         this.ownAuctions = getNotClaimedOwned(uuid).size();
         this.searcher = searcher;
         this.uuid = uuid;
@@ -47,59 +37,56 @@ public final class MainAuctionGUI extends AuctionGUI {
 
     @Override
     public @NotNull Inventory getInventory() {
-        fillInventory(this.config);
+        fillInventory(config);
 
-        setItem(this.config.getCloseGUI());
+        setItem(config.getCloseGUI());
 
-        setItem(this.config.getAuctionsBrowser());
+        setItem(config.auctionsBrowser);
 
-        final List<AuctionItem> whereBid = getAuctionsWherePlayerBid(uuid);
+        List<AuctionItem> whereBid = getAuctionsWherePlayerBid(uuid);
 
-        if (whereBid.size() <= 0) {
-            setItem(this.config.getViewBidsEmpty());
-        } else {
-            setItem(this.config.getViewBids(), Collections.singletonList(new Placeholder("auction_pending_amount", whereBid.size())));
-        }
-        if (this.ownAuctions <= 0) {
-            setItem(this.config.getCreateAnAuction());
-        } else {
-            setItem(this.config.getManageAuctions(), Arrays.asList(
+        if(whereBid.size() <= 0)
+            setItem(config.viewBidsEmpty);
+        else
+            setItem(config.viewBids, Collections.singletonList(new Placeholder("auction_pending_amount", whereBid.size())));
+
+        if(ownAuctions <= 0)
+            setItem(config.createAnAuction);
+        else
+            setItem(config.manageAuctions, Arrays.asList(
                     new Placeholder("player", PlayerUtils.getPlayerName(uuid)),
-                    new Placeholder("auction_bids_amount", this.ownAuctions)
+                    new Placeholder("auction_bids_amount", ownAuctions)
             ));
-        }
 
-        setItem(this.config.getAuctionStats());
+        setItem(config.auctionStats);
 
         return inventory;
     }
 
     @Override
-    public void onInventoryClick(final InventoryClickEvent event) {
+    public void onInventoryClick(InventoryClickEvent event) {
         event.setCancelled(true);
 
-        final Player player = (Player) event.getWhoClicked();
+        Player player = (Player) event.getWhoClicked();
 
-        final int slot = event.getSlot();
+        int slot = event.getSlot();
 
-        if (isItem(slot, this.config.getCloseGUI())) {
+        if(isItem(slot, config.getCloseGUI())){
             player.closeInventory();
-        } else if (isItem(slot, this.config.getAuctionStats())) {
-            player.openInventory(new AuctionStatsGUI(box, uuid, this.searcher).getInventory());
-        } else if (isItem(slot, this.config.getAuctionsBrowser())) {
-            player.openInventory(new AllAuctionsGUI(box, 1, uuid, this.searcher).getInventory());
-        } else if (isItem(slot, this.config.getManageAuctions()) && this.ownAuctions > 0) {
-            player.openInventory(new ManageAuctionGUI(box, uuid, this.searcher, 1).getInventory());
-        } else if (isItem(slot, this.config.getCreateAnAuction()) && this.ownAuctions <= 0) {
-            player.openInventory(new CreateAuctionGUI(box, player, this.searcher).getInventory());
-        } else if (isItem(slot, this.config.getViewBids())) {
-            final List<AuctionItem> whereBid = getAuctionsWherePlayerBid(uuid);
+        }else if(isItem(slot, config.auctionStats)){
+            player.openInventory(new AuctionStatsGUI(box, uuid, searcher).getInventory());
+        }else if(isItem(slot, config.auctionsBrowser)){
+            player.openInventory(new AllAuctionsGUI(box, 1, uuid, searcher).getInventory());
+        }else if(isItem(slot, config.manageAuctions) && ownAuctions > 0){
+            player.openInventory(new ManageAuctionGUI(box, uuid, searcher, 1).getInventory());
+        }else if(isItem(slot, config.createAnAuction) && ownAuctions <= 0){
+            player.openInventory(new CreateAuctionGUI(box, player, searcher).getInventory());
+        }else if(isItem(slot, config.viewBids)){
+            List<AuctionItem> whereBid = getAuctionsWherePlayerBid(uuid);
 
-            if (whereBid.size() <= 0) {
-                return;
-            }
+            if(whereBid.size() <= 0) return;
 
-            player.openInventory(new PendingAuctionGUI(box, uuid, this.searcher, 1).getInventory());
+            player.openInventory(new PendingAuctionGUI(box, uuid, searcher, 1).getInventory());
         }
     }
 

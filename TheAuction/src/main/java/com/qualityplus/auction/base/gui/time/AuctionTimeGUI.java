@@ -21,26 +21,16 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/**
- * Utility class for auction time
- */
 public final class AuctionTimeGUI extends AuctionGUI {
     private final Map<Integer, String> timerMap = new HashMap<>();
     private final AuctionTimeConfigGUI config;
     private final AuctionItem auctionItem;
     private final AuctionSearcher searcher;
 
-    /**
-     * Makes auction time
-     *
-     * @param boxUtil     {@link Box}
-     * @param auctionItem {@link AuctionItem}
-     * @param searcher    {@link AuctionSearcher}
-     */
-    public AuctionTimeGUI(final Box boxUtil, final AuctionItem auctionItem, final AuctionSearcher searcher) {
-        super(boxUtil.files().inventories().getAuctionTimeConfigGUI(), boxUtil);
+    public AuctionTimeGUI(Box boxUtil, AuctionItem auctionItem, AuctionSearcher searcher) {
+        super(boxUtil.files().inventories().auctionTimeConfigGUI, boxUtil);
 
-        this.config = boxUtil.files().inventories().getAuctionTimeConfigGUI();
+        this.config = boxUtil.files().inventories().auctionTimeConfigGUI;
         this.auctionItem = auctionItem;
         this.searcher = searcher;
     }
@@ -48,64 +38,62 @@ public final class AuctionTimeGUI extends AuctionGUI {
 
     @Override
     public @NotNull Inventory getInventory() {
-        fillInventory(this.config);
+        fillInventory(config);
 
-        for (String key : box.files().config().getDurationPrices().keySet()) {
-            final AuctionTime auctionTime = box.files().config().getDurationPrices().get(key);
+        for(String key : box.files().config().durationPrices.keySet()){
+            AuctionTime auctionTime = box.files().config().durationPrices.get(key);
 
-            inventory.setItem(auctionTime.getSlot(), ItemStackUtils.makeItem(this.config.getTimeItem(), Arrays.asList(
+            inventory.setItem(auctionTime.getSlot(), ItemStackUtils.makeItem(config.timeItem, Arrays.asList(
                     new Placeholder("duration_format", getDuration(auctionTime.getTimer())),
                     new Placeholder("duration_fee", auctionTime.getFee())
 
             ), auctionTime.getIcon().parseItem()));
 
-            this.timerMap.put(auctionTime.getSlot(), key);
+            timerMap.put(auctionTime.getSlot(), key);
         }
 
-        setItem(this.config.getGoBack());
+        setItem(config.goBack);
 
-        setItem(this.config.getCloseGUI());
+        setItem(config.getCloseGUI());
 
         return inventory;
     }
 
 
     @Override
-    public void onInventoryClick(final InventoryClickEvent event) {
+    public void onInventoryClick(InventoryClickEvent event) {
         event.setCancelled(true);
 
-        final Player player = (Player) event.getWhoClicked();
+        Player player = (Player) event.getWhoClicked();
 
-        final int slot = event.getSlot();
+        int slot = event.getSlot();
 
-        if (isItem(slot, this.config.getCloseGUI())) {
+        if(isItem(slot, config.getCloseGUI())){
             player.closeInventory();
-        } else if (isItem(slot, this.config.getGoBack())) {
-            player.openInventory(new CreateAuctionGUI(box, player, this.searcher).getInventory());
-        } else if (this.timerMap.containsKey(slot)) {
-            final String key = this.timerMap.get(slot);
+        }else if(isItem(slot, config.goBack)){
+            player.openInventory(new CreateAuctionGUI(box, player, searcher).getInventory());
+        }else if(timerMap.containsKey(slot)){
+            String key = timerMap.get(slot);
 
-            final AuctionTime auctionTime = box.files().config().getDurationPrices().getOrDefault(key, null);
+            AuctionTime auctionTime = box.files().config().durationPrices.getOrDefault(key, null);
 
-            if (auctionTime == null) {
-                return;
-            }
+            if(auctionTime == null) return;
 
-            this.auctionItem.setTimerId(key);
+            auctionItem.setTimerId(key);
 
-            player.openInventory(new CreateAuctionGUI(box, player, this.searcher).getInventory());
+            player.openInventory(new CreateAuctionGUI(box, player, searcher).getInventory());
         }
     }
 
 
-    private String getDuration(final HumanTime timer) {
+    private String getDuration(HumanTime timer){
 
-        final List<IPlaceholder> placeholders = Arrays.asList(
-                new Placeholder("duration_type", box.files().messages().getAuctionMessages().getTimeFormat().get(timer.getType())),
+        List<IPlaceholder> placeholders = Arrays.asList(
+                new Placeholder("duration_type", box.files().messages().auctionMessages.getTimeFormat().get(timer.getType())),
                 new Placeholder("duration_time", timer.getAmount())
         );
 
-        return StringUtils.processMulti(box.files().messages().getAuctionMessages().getItemDurationFormat(), placeholders);
+        return StringUtils.processMulti(box.files().messages().auctionMessages.itemDurationFormat, placeholders);
 
     }
 }

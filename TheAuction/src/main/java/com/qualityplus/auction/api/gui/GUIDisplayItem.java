@@ -10,9 +10,6 @@ import lombok.Setter;
 
 import java.util.List;
 
-/**
- * Utility class for gui display item
- */
 @Getter
 @Setter
 @AllArgsConstructor

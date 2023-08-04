@@ -18,55 +18,39 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
-/**
- * Utility class manage auction
- */
 public final class ManageAuctionGUI extends AuctionGUI {
     private final Map<Integer, AuctionItem> allAuctions = new HashMap<>();
     private final ManageAuctionGUIConfig config;
     private final AuctionSearcher searcher;
 
-    /**
-     * Adds manage auction gui
-     *
-     * @param boxUtil  {@link Box}
-     * @param uuid     {@link UUID}
-     * @param searcher {@link AuctionSearcher}
-     * @param page     Page
-     */
-    public ManageAuctionGUI(final Box boxUtil, final UUID uuid, final AuctionSearcher searcher, final int page) {
-        super(boxUtil.files().inventories().getManageAuctionGUIConfig(), boxUtil);
+    public ManageAuctionGUI(Box boxUtil, UUID uuid, AuctionSearcher searcher, int page) {
+        super(boxUtil.files().inventories().manageAuctionGUIConfig, boxUtil);
 
-        this.maxPerPage = box.files().inventories().getManageAuctionGUIConfig().getAuctionSlots().size();
+        this.maxPerPage = box.files().inventories().manageAuctionGUIConfig.auctionSlots.size();
         this.hasNext = getNotClaimedOwned(uuid).size() > maxPerPage * page;
-        this.config = boxUtil.files().inventories().getManageAuctionGUIConfig();
+        this.config = boxUtil.files().inventories().manageAuctionGUIConfig;
         this.searcher = searcher;
         this.page = page;
         this.uuid = uuid;
     }
 
-    /**
-     * Add inventory
-     *
-     * @return {@link Inventory}
-     */
     @Override
     public @NotNull Inventory getInventory() {
-        fillInventory(this.config);
+        fillInventory(config);
 
         addContent();
 
-        setItem(this.config.getCloseGUI());
-        setItem(this.config.getGoBackItem());
-        setItem(this.config.getSortItem());
-        setItem(this.config.getCreateAnAuction());
+        setItem(config.getCloseGUI());
+        setItem(config.goBackItem);
+        setItem(config.sortItem);
+        setItem(config.createAnAuction);
 
-        if (hasNext) {
-            setItem(this.config.getNextPageItem());
-        }
-        if (page > 1) {
-            setItem(this.config.getPreviousPageItem());
-        }
+        if(hasNext)
+            setItem(config.nextPageItem);
+
+        if(page > 1)
+            setItem(config.previousPageItem);
+
 
         return inventory;
     }
@@ -75,22 +59,19 @@ public final class ManageAuctionGUI extends AuctionGUI {
 
     @Override
     public void addContent() {
-        final List<AuctionItem> auctions = getNotClaimedOwned(uuid);
+        List<AuctionItem> auctions = getNotClaimedOwned(uuid);
 
         try {
             int slot = 0;
             int i = maxPerPage * (page - 1);
-            if (auctions.size() > 0) {
+            if(auctions.size() > 0){
                 while (slot < maxPerPage) {
                     if (auctions.size() > i && i >= 0) {
-                        final AuctionItem auctionItem = auctions.get(i);
-                        final int finalSlot = this.config.getAuctionSlots().get(slot);
-                        inventory.setItem(finalSlot,
-                                ItemStackUtils.makeItem(this.config.getAuctionItem(),
-                                getAuctionItemPlaceholders(auctionItem),
-                                auctionItem.getItemStack()));
+                        AuctionItem auctionItem = auctions.get(i);
+                        int finalSlot = config.auctionSlots.get(slot);
+                        inventory.setItem(finalSlot, ItemStackUtils.makeItem(config.auctionItem, getAuctionItemPlaceholders(auctionItem), auctionItem.getItemStack()));
 
-                        this.allAuctions.put(finalSlot, auctionItem);
+                        allAuctions.put(finalSlot, auctionItem);
                         slot++;
                         i++;
                         continue;
@@ -98,37 +79,35 @@ public final class ManageAuctionGUI extends AuctionGUI {
                     slot++;
                 }
             }
-        } catch (IndexOutOfBoundsException e) {
+        }catch (Exception e){
             e.printStackTrace();
         }
     }
 
     @Override
-    public void onInventoryClick(final InventoryClickEvent event) {
+    public void onInventoryClick(InventoryClickEvent event) {
         event.setCancelled(true);
 
-        final Player player = (Player) event.getWhoClicked();
+        Player player = (Player) event.getWhoClicked();
 
-        final int slot = event.getSlot();
+        int slot = event.getSlot();
 
-        if (isItem(slot, this.config.getCloseGUI())) {
+        if(isItem(slot, config.getCloseGUI())){
             player.closeInventory();
-        } else if (isItem(slot, this.config.getGoBackItem())) {
-            player.openInventory(new MainAuctionGUI(box, this.searcher, player.getUniqueId()).getInventory());
-        } else if (isItem(slot, this.config.getCreateAnAuction())) {
-            player.openInventory(new CreateAuctionGUI(box, player, this.searcher).getInventory());
-        } else if (this.allAuctions.containsKey(slot)) {
-            final AuctionItem auctionItem = this.allAuctions.get(slot);
+        }else if(isItem(slot, config.goBackItem)){
+            player.openInventory(new MainAuctionGUI(box, searcher, player.getUniqueId()).getInventory());
+        }else if(isItem(slot, config.createAnAuction)){
+            player.openInventory(new CreateAuctionGUI(box, player, searcher).getInventory());
+        }else if(allAuctions.containsKey(slot)){
+            AuctionItem auctionItem = allAuctions.get(slot);
 
-            if (auctionItem == null) {
-                return;
-            }
+            if(auctionItem == null) return;
 
-            ViewOpener.open(player, auctionItem, box, this.searcher, -1);
-        } else if (isItem(slot, this.config.getPreviousPageItem()) && page > 1) {
-            player.openInventory(new ManageAuctionGUI(box, uuid, this.searcher, page - 1).getInventory());
-        } else if (isItem(slot, this.config.getNextPageItem()) && hasNext) {
-            player.openInventory(new ManageAuctionGUI(box, uuid, this.searcher, page + 1).getInventory());
+            ViewOpener.open(player, auctionItem, box, searcher, -1);
+        }else if(isItem(slot, config.previousPageItem) && page > 1){
+            player.openInventory(new ManageAuctionGUI(box, uuid, searcher, page - 1).getInventory());
+        }else if(isItem(slot, config.nextPageItem) && hasNext){
+            player.openInventory(new ManageAuctionGUI(box, uuid, searcher, page + 1).getInventory());
         }
     }
 

@@ -7,9 +7,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
-/**
- * Represents the auction time
- */
 @AllArgsConstructor
 @Getter
 @Setter

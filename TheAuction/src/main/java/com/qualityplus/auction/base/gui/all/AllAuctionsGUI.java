@@ -23,19 +23,9 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.jetbrains.annotations.NotNull;
 
-
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
-import java.util.UUID;
+import java.util.*;
 import java.util.stream.Collectors;
 
-/**
- * Utility class for all auction gui
- */
 public final class AllAuctionsGUI extends AuctionGUI {
     private final Map<Integer, AuctionCategory> categoriesMap = new HashMap<>();
     private final Map<Integer, AuctionItem> allAuctions = new HashMap<>();
@@ -43,21 +33,13 @@ public final class AllAuctionsGUI extends AuctionGUI {
     private final AuctionSearcher searcher;
     private final int itemsSize;
 
-    /**
-     * Adds all auctions
-     *
-     * @param boxUtil         {@link Box}
-     * @param page            Page
-     * @param uuid            {@link UUID}
-     * @param auctionSearcher {@link AuctionSearcher}
-     */
-    public AllAuctionsGUI(final Box boxUtil, final int page, final UUID uuid, final AuctionSearcher auctionSearcher) {
-        super(boxUtil.files().inventories().getAllAuctionsGUIConfig(), boxUtil);
+    public AllAuctionsGUI(Box boxUtil, int page, UUID uuid, AuctionSearcher auctionSearcher) {
+        super(boxUtil.files().inventories().allAuctionsGUIConfig, boxUtil);
 
-        final List<AuctionItem> items = getNoExpiredItems(auctionSearcher);
+        List<AuctionItem> items = getNoExpiredItems(auctionSearcher);
 
-        this.maxPerPage = box.files().inventories().getAllAuctionsGUIConfig().getAuctionSlots().size();
-        this.config = boxUtil.files().inventories().getAllAuctionsGUIConfig();
+        this.maxPerPage = box.files().inventories().allAuctionsGUIConfig.auctionSlots.size();
+        this.config = boxUtil.files().inventories().allAuctionsGUIConfig;
         this.hasNext = items.size() > maxPerPage * page;
         this.searcher = auctionSearcher;
         this.itemsSize = items.size();
@@ -65,7 +47,7 @@ public final class AllAuctionsGUI extends AuctionGUI {
         this.uuid = uuid;
     }
 
-    private static List<AuctionItem> getNoExpiredItems(final AuctionSearcher searcher) {
+    private static List<AuctionItem> getNoExpiredItems(AuctionSearcher searcher){
         return searcher.getFiltered().stream()
                 .filter(auctionItem -> !auctionItem.isExpired())
                 .filter(auctionItem -> !auctionItem.hasBeenBought())
@@ -74,69 +56,61 @@ public final class AllAuctionsGUI extends AuctionGUI {
 
     @Override
     public @NotNull Inventory getInventory() {
-        fillInventory(this.config);
+        fillInventory(config);
 
         setCategoryItems();
 
-        setItem(this.config.getCloseGUI());
+        setItem(config.getCloseGUI());
 
-        setItem(this.config.getGoBack());
+        setItem(config.goBack);
 
         addContent();
 
-        if (this.page > 1) {
-            inventory.setItem(this.config.getPreviousPage().slot, ItemStackUtils.makeItem(this.config.getPreviousPage()));
-        }
+        if (this.page > 1)
+            inventory.setItem(config.previousPage.slot, ItemStackUtils.makeItem(config.previousPage));
+
+        if (hasNext)
+            inventory.setItem(config.nextPage.slot, ItemStackUtils.makeItem(config.nextPage));
 
 
-        if (hasNext) {
-            inventory.setItem(this.config.getNextPage().slot, ItemStackUtils.makeItem(this.config.getNextPage()));
-        }
+        setItem(config.sortItem, getSortPlaceholders());
+        setItem(config.binFilterItem, getBinPlaceholders());
 
-        setItem(this.config.getSortItem(), getSortPlaceholders());
-        setItem(this.config.getBinFilterItem(), getBinPlaceholders());
+        if(searcher.getStringFilter().getToSearch() == null)
+            setItem(config.byNameFilterEmptyItem);
+        else
+            setItem(config.byNameFilterFilledItem, Collections.singletonList(new Placeholder("auction_by_name_search", searcher.getStringFilter().getToSearch())));
 
-        if (this.searcher.getStringFilter().getToSearch() == null) {
-            setItem(this.config.getByNameFilterEmptyItem());
-        } else {
-            setItem(this.config.getByNameFilterFilledItem(), Collections.
-                    singletonList(new Placeholder("auction_by_name_search", this.searcher.getStringFilter().getToSearch())));
-        }
-
-        setItem(this.config.getResetSettings());
+        setItem(config.resetSettings);
 
 
         return inventory;
     }
 
-    private void deleteExpired() {
-        if (this.itemsSize == getNoExpiredItems(this.searcher).size()) {
-            return;
-        }
+    private void deleteExpired(){
+        if(itemsSize == getNoExpiredItems(searcher).size()) return;
 
-        Optional.ofNullable(Bukkit.getPlayer(uuid)).ifPresent(player -> player.
-                openInventory(new AllAuctionsGUI(box, page, uuid, this.searcher).getInventory()));
+        Optional.ofNullable(Bukkit.getPlayer(uuid)).ifPresent(player -> player.openInventory(new AllAuctionsGUI(box, page, uuid, searcher).getInventory()));
     }
 
     @Override
     public void addContent() {
         deleteExpired();
 
-        final List<AuctionItem> auctions = getNoExpiredItems(this.searcher);
+        List<AuctionItem> auctions = getNoExpiredItems(searcher);
 
         try {
 
             int slot = 0;
             int i = maxPerPage * (page - 1);
-            if (auctions.size() > 0) {
+            if(auctions.size() > 0){
                 while (slot < maxPerPage) {
                     if (auctions.size() > i && i >= 0) {
-                        final AuctionItem auctionItem = auctions.get(i);
-                        final int finalSlot = this.config.getAuctionSlots().get(slot);
+                        AuctionItem auctionItem = auctions.get(i);
+                        int finalSlot = config.auctionSlots.get(slot);
 
-                        inventory.setItem(finalSlot, ItemStackUtils.makeItem(this.config.getAuctionItem(),
-                                getAuctionItemPlaceholders(auctionItem), auctionItem.getItemStack()));
-                        this.allAuctions.put(finalSlot, auctionItem);
+                        inventory.setItem(finalSlot, ItemStackUtils.makeItem(config.auctionItem, getAuctionItemPlaceholders(auctionItem), auctionItem.getItemStack()));
+                        allAuctions.put(finalSlot, auctionItem);
                         slot++;
                         i++;
                         continue;
@@ -144,13 +118,13 @@ public final class AllAuctionsGUI extends AuctionGUI {
                     slot++;
                 }
             }
-        } catch (IndexOutOfBoundsException e) {
+        }catch (Exception e){
             e.printStackTrace();
         }
     }
 
-    private List<IPlaceholder> getBinPlaceholders() {
-        final BinFilter filter = this.searcher.getBinFilter();
+    private List<IPlaceholder> getBinPlaceholders(){
+        BinFilter filter = searcher.getBinFilter();
         return Arrays.asList(
                 new Placeholder("auction_browser_show_all", getAnswer(filter.equals(BinFilter.SHOW_ALL))),
                 new Placeholder("auction_browser_bin_only", getAnswer(filter.equals(BinFilter.BIN_ONLY))),
@@ -158,8 +132,8 @@ public final class AllAuctionsGUI extends AuctionGUI {
         );
     }
 
-    private List<IPlaceholder> getSortPlaceholders() {
-        final SortFilter filter = this.searcher.getSortFilter();
+    private List<IPlaceholder> getSortPlaceholders(){
+        SortFilter filter = searcher.getSortFilter();
         return Arrays.asList(
                 new Placeholder("auction_browser_is_by_highest", getAnswer(filter.equals(SortFilter.HIGHEST_PRICE))),
                 new Placeholder("auction_browser_is_by_lowest", getAnswer(filter.equals(SortFilter.LOWEST_PRICE))),
@@ -168,70 +142,64 @@ public final class AllAuctionsGUI extends AuctionGUI {
         );
     }
 
-    private String getAnswer(final boolean value) {
-        return value ? box.files().messages().getAuctionMessages().getSortSelected() : box.files().messages().getAuctionMessages().getSortNotSelected();
+    private String getAnswer(boolean value){
+        return value ? box.files().messages().auctionMessages.sortSelected : box.files().messages().auctionMessages.sortNotSelected;
     }
 
-    private void setCategoryItems() {
-        for (AuctionCategory category : box.files().bankUpgrades().getCategoryList()) {
-            if (category.getId().equals(this.searcher.getCategory())) {
+    private void setCategoryItems(){
+        for(AuctionCategory category : box.files().bankUpgrades().categoryList){
+            if(category.getId().equals(searcher.getCategory()))
                 InventoryUtils.fillInventory(inventory, category.getDisplayInfo().getBackground());
-            }
 
-            this.categoriesMap.put(category.getDisplayInfo().getSlot(), category);
+            categoriesMap.put(category.getDisplayInfo().getSlot(), category);
 
-            inventory.setItem(category.getDisplayInfo().getSlot(), AuctionItemStackUtils.makeCategoryItem(this.config.getCategoryItem(),
+            inventory.setItem(category.getDisplayInfo().getSlot(), AuctionItemStackUtils.makeCategoryItem(config.categoryItem,
                     Arrays.asList(new Placeholder("auction_category_displayname", category.getDisplayName()),
                                   new Placeholder("auction_category_lore", category.getDisplayInfo().getDescription()),
-                                  new Placeholder("auction_is_current_category", category.getId().
-                                          equals(this.searcher.getCategory()) ? box.files().messages().getAuctionMessages().getCurrentlyBrowsing() :
-                                          box.files().messages().getAuctionMessages().getCurrentlyNotBrowsing())),
-                    category.getDisplayInfo(), box.files().config().getLoreWrapper()));
+                                  new Placeholder("auction_is_current_category", category.getId().equals(searcher.getCategory()) ? box.files().messages().auctionMessages.currentlyBrowsing :
+                                                                                                                                   box.files().messages().auctionMessages.currentlyNotBrowsing)),
+                    category.getDisplayInfo(), box.files().config().loreWrapper));
         }
     }
 
     @Override
-    public void onInventoryClick(final InventoryClickEvent event) {
+    public void onInventoryClick(InventoryClickEvent event) {
         event.setCancelled(true);
 
-        final Player player = (Player) event.getWhoClicked();
+        Player player = (Player) event.getWhoClicked();
 
-        final int slot = event.getSlot();
+        int slot = event.getSlot();
 
-        if (isItem(slot, this.config.getCloseGUI())) {
+        if(isItem(slot, config.getCloseGUI())){
             player.closeInventory();
-        } else if (isItem(slot, this.config.getNextPage()) && hasNext) {
-            player.openInventory(new AllAuctionsGUI(box, page + 1, uuid, this.searcher).getInventory());
-        } else if (isItem(slot, this.config.getPreviousPage()) && page > 1) {
-            player.openInventory(new AllAuctionsGUI(box, page - 1, uuid, this.searcher).getInventory());
-        } else if (this.allAuctions.containsKey(slot)) {
-            final AuctionItem auctionItem = this.allAuctions.get(slot);
+        } else if(isItem(slot, config.nextPage) && hasNext){
+            player.openInventory(new AllAuctionsGUI(box, page + 1, uuid, searcher).getInventory());
+        }else if(isItem(slot, config.previousPage) && page > 1){
+            player.openInventory(new AllAuctionsGUI(box, page - 1, uuid, searcher).getInventory());
+        }else if(allAuctions.containsKey(slot)) {
+            AuctionItem auctionItem = allAuctions.get(slot);
 
-            if (auctionItem == null) {
-                return;
-            }
+            if (auctionItem == null) return;
 
-            ViewOpener.open(player, auctionItem, box, this.searcher, -1);
-        } else if (this.categoriesMap.containsKey(slot)) {
-            final AuctionCategory category = this.categoriesMap.getOrDefault(slot, null);
+            ViewOpener.open(player, auctionItem, box, searcher, -1);
+        }else if(categoriesMap.containsKey(slot)) {
+            AuctionCategory category = categoriesMap.getOrDefault(slot, null);
 
-            if (category == null) {
-                return;
-            }
+            if (category == null) return;
 
             player.openInventory(new AllAuctionsGUI(box, 1, uuid, getBuilder()
                     .category(category.getId())
                     .build()).getInventory());
-        } else if (isItem(slot, this.config.getSortItem())) {
+        }else if(isItem(slot, config.sortItem)){
             player.openInventory(new AllAuctionsGUI(box, 1, uuid, getBuilder()
-                    .sortFilter(this.searcher.getSortFilter().getNext())
+                    .sortFilter(searcher.getSortFilter().getNext())
                     .build()).getInventory());
-        } else if (isItem(slot, this.config.getBinFilterItem())) {
+        }else if(isItem(slot, config.binFilterItem)) {
             player.openInventory(new AllAuctionsGUI(box, 1, uuid, getBuilder()
-                    .binFilter(this.searcher.getBinFilter().getNext())
+                    .binFilter(searcher.getBinFilter().getNext())
                     .build()).getInventory());
-        } else if (isItem(slot, this.config.getByNameFilterEmptyItem()) || isItem(slot, this.config.getByNameFilterFilledItem())) {
-            if (this.searcher.getStringFilter().getToSearch() != null && event.isRightClick()) {
+        }else if(isItem(slot, config.byNameFilterEmptyItem) || isItem(slot, config.byNameFilterFilledItem)) {
+            if(searcher.getStringFilter().getToSearch() != null && event.isRightClick()){
                 player.openInventory(new AllAuctionsGUI(box, 1, uuid, getBuilder()
                         .stringFilter(new StringFilter(null))
                         .build()).getInventory());
@@ -239,11 +207,11 @@ public final class AllAuctionsGUI extends AuctionGUI {
             }
             player.closeInventory();
 
-            if (ProtocolLibDependency.isProtocolLib()) {
+            if(ProtocolLibDependency.isProtocolLib()){
                 SignGUIImpl.builder()
                         .plugin(box.plugin())
                         .uuid(player.getUniqueId())
-                        .withLines(box.files().messages().getAuctionMessages().getEnterQuery())
+                        .withLines(box.files().messages().auctionMessages.enterQuery)
                         .action(e -> e.getPlayer().openInventory(
                                 new AllAuctionsGUI(box, 1, uuid, getBuilder()
                                         .stringFilter(new StringFilter(e.getLines().get(0)))
@@ -251,21 +219,21 @@ public final class AllAuctionsGUI extends AuctionGUI {
                         ))
                         .build()
                         .open();
-            } else {
+            }else{
                 box.plugin().getLogger().warning("You need to install ProtocolLib to use Sign GUIS!");
             }
 
-        } else if (isItem(slot, this.config.getGoBack())) {
-            player.openInventory(new MainAuctionGUI(box, this.searcher, uuid).getInventory());
+        }else if(isItem(slot, config.goBack)){
+            player.openInventory(new MainAuctionGUI(box, searcher, uuid).getInventory());
         }
     }
 
-    private AuctionSearcher.AuctionSearcherBuilder getBuilder() {
+    private AuctionSearcher.AuctionSearcherBuilder getBuilder(){
         return AuctionSearcher.builder()
-                .stringFilter(this.searcher.getStringFilter())
-                .sortFilter(this.searcher.getSortFilter())
-                .binFilter(this.searcher.getBinFilter())
-                .category(box.files().config().getDefaultCategory())
+                .stringFilter(searcher.getStringFilter())
+                .sortFilter(searcher.getSortFilter())
+                .binFilter(searcher.getBinFilter())
+                .category(box.files().config().defaultCategory)
                 .box(box);
     }
 
