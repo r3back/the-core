@@ -15,25 +15,38 @@ import org.bukkit.event.player.PlayerQuitEvent;
 import java.util.Optional;
 import java.util.function.Consumer;
 
+/**
+ * Utility class for player join event
+ */
 @Component
 public final class UserListener implements Listener {
     private @Inject Tasker tasker;
     private @Inject Box box;
 
+    /**
+     * Makes a join player
+     *
+     * @param event {@link PlayerJoinEvent}
+     */
     @EventHandler
-    public void onJoin(PlayerJoinEvent event) {
+    public void onJoin(final PlayerJoinEvent event) {
         this.tasker.newChain()
-                .async(() -> box.repository().get(event.getPlayer()))
-                .acceptSync(box.service()::addUser)
+                .async(() -> this.box.repository().get(event.getPlayer()))
+                .acceptSync(this.box.service()::addUser)
                 .execute();
     }
 
+    /**
+     * makes a player quit
+     *
+     * @param event {@link PlayerQuitEvent}
+     */
     @EventHandler
-    public void onQuit(PlayerQuitEvent event) {
+    public void onQuit(final PlayerQuitEvent event) {
         this.tasker.newChain()
-                .async(() -> box.service().getUser(event.getPlayer().getUniqueId()))
+                .async(() -> this.box.service().getUser(event.getPlayer().getUniqueId()))
                 .acceptAsync((Consumer<Optional<User>>) user -> user.ifPresent(Document::save))
-                .acceptAsync((Consumer<Optional<User>>) user -> user.ifPresent(box.service()::removeUser))
+                .acceptAsync((Consumer<Optional<User>>) user -> user.ifPresent(this.box.service()::removeUser))
                 .execute();
     }
 }

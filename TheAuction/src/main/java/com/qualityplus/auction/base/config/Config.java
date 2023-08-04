@@ -14,16 +14,21 @@ import com.qualityplus.assistant.util.time.HumanTime;
 import com.qualityplus.auction.persistence.data.AuctionTime;
 import com.qualityplus.assistant.lib.eu.okaeri.configs.OkaeriConfig;
 import com.qualityplus.assistant.lib.eu.okaeri.platform.core.annotation.Configuration;
+import lombok.Getter;
 
 import java.util.Map;
 
+/***
+ * Utility class for database
+ */
+@Getter
 @Configuration()
 @Header("================================")
 @Header("       Config      ")
 @Header("================================")
 @Names(strategy = NameStrategy.HYPHEN_CASE, modifier = NameModifier.TO_LOWER_CASE)
 public final class Config extends OkaeriConfig {
-    public String prefix = "[TheAuction] ";
+    private String prefix = "[TheAuction] ";
 
     @CustomKey("configDatabase")
     @Comment("Database Configuration")
@@ -32,16 +37,16 @@ public final class Config extends OkaeriConfig {
     @Comment("- FLAT")
     @Comment("- MYSQL")
     @Comment("- REDIS")
-    public ConfigDatabase configDatabase = new ConfigDatabase();
+    private ConfigDatabase configDatabase = new ConfigDatabase();
 
     @CustomKey("loreWrapper")
     @Comment("- wrapLength = After how many characters in a lore you want")
     @Comment("               to separate it.")
     @Comment("- wrapStart = After line is separated what character do you")
     @Comment("              want to start the new line with.")
-    public LoreWrapper loreWrapper = new LoreWrapper(50, "&7");
+    private  LoreWrapper loreWrapper = new LoreWrapper(50, "&7");
 
-    public Map<String, AuctionTime> durationPrices = ImmutableMap.<String, AuctionTime>builder()
+    private  Map<String, AuctionTime> durationPrices = ImmutableMap.<String, AuctionTime>builder()
             .put("15s", new AuctionTime(new HumanTime(15, HumanTime.TimeType.SECONDS), 1D, XMaterial.RED_TERRACOTTA, 10))
 
             .put("2h", new AuctionTime(new HumanTime(2, HumanTime.TimeType.HOURS), 200D, XMaterial.RED_TERRACOTTA, 11))
@@ -51,15 +56,15 @@ public final class Config extends OkaeriConfig {
             .put("24h", new AuctionTime(new HumanTime(24, HumanTime.TimeType.HOURS), 900D, XMaterial.PURPLE_TERRACOTTA, 15))
             .build();
 
-    public double startBidPrice = 500;
+    private double startBidPrice = 500;
 
-    public double serverFeePercentage = 5;
+    private double serverFeePercentage = 5;
 
-    public String defaultCategory = "weapons";
+    private String defaultCategory = "weapons";
 
     @Comment("The new amount required to submit a new bid")
     @Comment("By example if there's a bid of 50 coins")
     @Comment("The new bid should be 2.5 coins higher")
     @Comment("which is the 5% of 50")
-    public double minPercentageToSubmitNewBid = 5;
+    private double minPercentageToSubmitNewBid = 5;
 }

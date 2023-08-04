@@ -11,17 +11,29 @@ import com.qualityplus.assistant.lib.eu.okaeri.platform.core.annotation.DependsO
 
 import java.util.Optional;
 
+/**
+ * Makes name of User
+ */
 @DependsOn(type = DocumentPersistence.class, name = "persistence")
 @DocumentCollection(path = "auction", keyLength = 36, indexes = {
         @DocumentIndex(path = "name", maxLength = 24)
 })
 public interface AuctionRepository extends DocumentRepository<String, AuctionHouse> {
+    /**
+     * Makes name of user
+     *
+     * @param name Name
+     * @return     {@link User}
+     */
+    @DocumentPath ("name")
+     public Optional<User> findByName(String name);
 
-    @DocumentPath("name")
-    Optional<User> findByName(String name);
-
-    default AuctionHouse get() {
-        AuctionHouse actionHouse = this.findOrCreateByPath("global");
+    /**
+     * makes an auctions house
+     * @return {@link AuctionHouse}
+     */
+    public default AuctionHouse get() {
+        final AuctionHouse actionHouse = this.findOrCreateByPath("global");
 
         actionHouse.setName("global");
 

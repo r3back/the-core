@@ -16,22 +16,29 @@ import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.InventoryHolder;
 
+
+/**
+ * Makes an auction
+ */
 @Scan(deep = true)
 public final class TheAuction extends OkaeriSilentPlugin {
     private static @Inject @Getter TheAuctionAPI api;
 
     @Planned(ExecutionPhase.POST_STARTUP)
-    private void whenStart(){
-        Bukkit.getScheduler().runTaskTimer(this, () -> Bukkit.getServer().getOnlinePlayers().forEach(player -> {
-            InventoryHolder inventoryHolder = player.getOpenInventory().getTopInventory().getHolder();
-            if (inventoryHolder instanceof AuctionGUI) {
-                ((AuctionGUI) inventoryHolder).addContent();
-            }
-        }), 0, 20);
+    private void whenStart() {
+        Bukkit.getScheduler().runTaskTimer(this, () -> Bukkit.getServer().getOnlinePlayers().
+                        forEach(player -> {
+                            final InventoryHolder inventoryHolder = player.getOpenInventory()
+                                    .getTopInventory()
+                                    .getHolder();
+                            if (inventoryHolder instanceof AuctionGUI) {
+                                ((AuctionGUI) inventoryHolder).addContent();
+                            }
+                        }), 0, 20);
     }
 
     @Planned(ExecutionPhase.PRE_SHUTDOWN)
-    private void whenStop(Box box){
+    private void whenStop(final Box box) {
         box.auctionService().getAuctionHouse().ifPresent(AuctionHouse::save);
         Bukkit.getOnlinePlayers()
                 .stream()

@@ -9,22 +9,25 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
 
+/**
+ * Utility class for service user
+ */
 @Component
 public final class UserServiceImpl implements UserService {
     private final Map<UUID, User> userMap = new HashMap<>();
 
     @Override
-    public Optional<User> getUser(UUID uuid) {
-        return Optional.ofNullable(userMap.getOrDefault(uuid, null));
+    public Optional<User> getUser(final UUID uuid) {
+        return Optional.ofNullable(this.userMap.getOrDefault(uuid, null));
     }
 
     @Override
-    public void addUser(User user) {
-        userMap.put(user.getUuid(), user);
+    public void addUser(final User user) {
+        this.userMap.put(user.getUuid(), user);
     }
 
     @Override
-    public void removeUser(User user) {
-        userMap.remove(user.getUuid());
+    public void removeUser(final User user) {
+        this.userMap.remove(user.getUuid());
     }
 }

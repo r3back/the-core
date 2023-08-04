@@ -19,24 +19,38 @@ import com.qualityplus.auction.base.searcher.AuctionSearcher;
 import com.qualityplus.auction.persistence.data.AuctionBid;
 import com.qualityplus.auction.persistence.data.AuctionItem;
 import com.qualityplus.auction.persistence.data.User;
-import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import java.util.Optional;
 
+
+/**
+ * Utility class for create auction
+ */
 public final class CreateAuctionGUI extends AuctionGUI {
     private final CreateAuctionGUIConfig config;
     private final AuctionSearcher searcher;
     private final String name;
 
-    public CreateAuctionGUI(Box boxUtil, Player player, AuctionSearcher searcher) {
-        super(boxUtil.files().inventories().createAuctionGUIConfig, boxUtil);
+    /**
+     * Adds create auction
+     *
+     * @param boxUtil  {@link Box}
+     * @param player   {@link Player}
+     * @param searcher {@link AuctionSearcher}
+     */
+    public CreateAuctionGUI(final Box boxUtil, final Player player, final AuctionSearcher searcher) {
+        super(boxUtil.files().inventories().getCreateAuctionGUIConfig(), boxUtil);
 
-        this.config = boxUtil.files().inventories().createAuctionGUIConfig;
+        this.config = boxUtil.files().inventories().getCreateAuctionGUIConfig();
         this.uuid = player.getUniqueId();
         this.name = player.getName();
         this.searcher = searcher;
@@ -44,49 +58,51 @@ public final class CreateAuctionGUI extends AuctionGUI {
 
     @Override
     public @NotNull Inventory getInventory() {
-        fillInventory(config);
+        fillInventory(this.config);
 
-        Optional<User> user = box.service().getUser(uuid);
+        final Optional<User> user = box.service().getUser(uuid);
 
-        String timer = box.files().config().durationPrices.keySet().stream().findFirst().orElse(null);
+        final String timer = box.files().config().getDurationPrices().keySet().stream().findFirst().orElse(null);
 
-        if(timer == null)
+        if (timer == null) {
             return inventory;
+        }
 
-
-        AuctionItem auctionItem = user.map(User::getTemporalAuction)
+        final AuctionItem auctionItem = user.map(User::getTemporalAuction)
                 .orElse(AuctionItem.builder()
                         .owner(uuid)
-                        .ownerName(name)
+                        .ownerName(this.name)
                         .timer(timer)
                         .isBuyItNow(false)
                         .bids(defaultBid())
                         .build());
 
-        List<IPlaceholder> placeholders = getPlaceholders(auctionItem);
+        final List<IPlaceholder> placeholders = getPlaceholders(auctionItem);
 
-        if(auctionItem.getItemStack() == null){
-            setItem(config.currentItemEmpty);
-            setItem(config.createAuctionEmpty, Collections.singletonList(getIsBuyItNowPlaceholder(auctionItem)));
-        }else{
-            inventory.setItem(config.currentItemFilled.slot, ItemStackUtils.makeItem(config.currentItemFilled, placeholders, auctionItem.getItemStack()));
+        if (auctionItem.getItemStack() == null) {
+            setItem(this.config.getCurrentItemEmpty());
+            setItem(this.config.getCreateAuctionEmpty(), Collections.singletonList(getIsBuyItNowPlaceholder(auctionItem)));
+        } else {
+            inventory.setItem(this.config.getCurrentItemFilled().slot, ItemStackUtils.
+                    makeItem(this.config.getCurrentItemFilled(), placeholders, auctionItem.getItemStack()));
 
-            inventory.setItem(config.createAuctionFilled.slot, ItemStackUtils.makeItem(config.createAuctionFilled, placeholders));
+            inventory.setItem(this.config.getCreateAuctionFilled().slot, ItemStackUtils.
+                    makeItem(this.config.getCreateAuctionFilled(), placeholders));
         }
 
-        if(auctionItem.isBuyItNow()) {
-            setItem(config.auctionItemPrice, placeholders);
-            setItem(config.switchToAuction);
-        }else {
-            setItem(config.auctionInitialBid, placeholders);
-            setItem(config.switchToBin);
+        if (auctionItem.isBuyItNow()) {
+            setItem(this.config.getAuctionItemPrice(), placeholders);
+            setItem(this.config.getSwitchToAuction());
+        } else {
+            setItem(this.config.getAuctionInitialBid(), placeholders);
+            setItem(this.config.getSwitchToBin());
         }
 
 
-        setItem(config.auctionDuration, placeholders);
-        setItem(config.goBack, placeholders);
+        setItem(this.config.getAuctionDuration(), placeholders);
+        setItem(this.config.getGoBack(), placeholders);
 
-        setItem(config.getCloseGUI());
+        setItem(this.config.getCloseGUI());
 
         user.ifPresent(u -> u.setTemporalAuction(auctionItem));
 
@@ -95,65 +111,69 @@ public final class CreateAuctionGUI extends AuctionGUI {
 
 
     @Override
-    public void onInventoryClick(InventoryClickEvent e) {
+    public void onInventoryClick(final InventoryClickEvent e) {
         e.setCancelled(true);
 
-        Player player = (Player) e.getWhoClicked();
+        final Player player = (Player) e.getWhoClicked();
 
-        int slot = e.getSlot();
+        final int slot = e.getSlot();
 
-        Optional<User> user = box.service().getUser(uuid);
+        final Optional<User> user = box.service().getUser(uuid);
 
-        AuctionItem auctionItem = user
+        final AuctionItem auctionItem = user
                 .map(User::getTemporalAuction)
                 .orElse(null);
 
-        if(auctionItem == null) return;
+        if (auctionItem == null) {
+            return;
+        }
 
-        if(getTarget(e).equals(ClickTarget.PLAYER)){
-            ItemStack itemStack = e.getCurrentItem();
+        if (getTarget(e).equals(ClickTarget.PLAYER)) {
+            final ItemStack itemStack = e.getCurrentItem();
 
-            if(BukkitItemUtil.isNull(itemStack))
+            if (BukkitItemUtil.isNull(itemStack)) {
                 return;
-
+            }
             Optional.ofNullable(auctionItem.getItemStack()).ifPresent(item -> player.getInventory().addItem(item));
 
             auctionItem.setItemStack(itemStack.clone());
 
             e.setCurrentItem(null);
 
-            player.openInventory(new CreateAuctionGUI(box, player, searcher).getInventory());
-        }else{
+            player.openInventory(new CreateAuctionGUI(box, player, this.searcher).getInventory());
+        } else {
 
-            if(isItem(slot, config.getCloseGUI())){
+            if (isItem(slot, this.config.getCloseGUI())) {
                 player.closeInventory();
-            }else if(isItem(slot, config.goBack)){
-                player.openInventory(new MainAuctionGUI(box, searcher, uuid).getInventory());
-            }else if(isItem(slot, config.auctionDuration)){
-                player.openInventory(new AuctionTimeGUI(box, auctionItem, searcher).getInventory());
-            }else if(isItem(slot, config.auctionInitialBid)){
+            } else if (isItem(slot, this.config.getGoBack())) {
+                player.openInventory(new MainAuctionGUI(box, this.searcher, uuid).getInventory());
+            } else if (isItem(slot, this.config.getAuctionDuration())) {
+                player.openInventory(new AuctionTimeGUI(box, auctionItem, this.searcher).getInventory());
+            } else if (isItem(slot, this.config.getAuctionInitialBid())) {
 
                 player.closeInventory();
 
-                if(ProtocolLibDependency.isProtocolLib()){
+                if (ProtocolLibDependency.isProtocolLib()) {
                     SignGUIImpl.builder()
                             .action(event1 -> changeBidPrice(player, auctionItem, event1.getLines().get(0)))
-                            .withLines(box.files().messages().auctionMessages.startingBid)
+                            .withLines(box.files().messages().getAuctionMessages().getStartingBid())
                             .uuid(player.getUniqueId())
                             .plugin(box.plugin())
                             .build()
                             .open();
-                }else{
+                } else {
                     box.plugin().getLogger().warning("You need to install ProtocolLib to use Sign GUIS!");
                 }
 
-            }else if(isItem(slot, config.createAuctionFilled)){
-                if(auctionItem.getItemStack() == null) return;
+            } else if (isItem(slot, this.config.getCreateAuctionFilled())) {
+                if (auctionItem.getItemStack() == null) {
+                    return;
+                }
 
-                double fees = getPrice(auctionItem);
+                final double fees = getPrice(auctionItem);
 
                 //Set timer
-                HumanTime timer = box.files().config().durationPrices.get(auctionItem.getTimerId()).getTimer();
+                final HumanTime timer = box.files().config().getDurationPrices().get(auctionItem.getTimerId()).getTimer();
 
                 auctionItem.setMarkable(new Markable(timer.getEffectiveTime(), System.currentTimeMillis()));
 
@@ -166,68 +186,74 @@ public final class CreateAuctionGUI extends AuctionGUI {
                 //Remove Fees money
                 TheAssistantPlugin.getAPI().getAddons().getEconomy().withdrawMoney(player, fees);
 
-                String name = BukkitItemUtil.getName(auctionItem.getItemStack());
+                final String name = BukkitItemUtil.getName(auctionItem.getItemStack());
 
-                player.sendMessage(StringUtils.color(box.files().messages().auctionMessages.auctionStarted.replace("%auction_item_name%", name)));
+                player.sendMessage(StringUtils.color(box.files().messages().getAuctionMessages().getAuctionStarted().replace("%auction_item_name%", name)));
 
-                ViewOpener.open(player, auctionItem, box, searcher, -1);
+                ViewOpener.open(player, auctionItem, box, this.searcher, -1);
 
                 //Add Created Stat
                 user.ifPresent(user1 -> user1.getAuctionStats().setAuctionsCreated(user1.getAuctionStats().getAuctionsCreated() + 1));
                 user.ifPresent(user1 -> user1.getAuctionStats().setMoneySpentOnFees(user1.getAuctionStats().getMoneySpentOnFees() + fees));
 
-            }else if(isItem(slot, config.currentItemFilled)){
-                if(BukkitItemUtil.isNull(auctionItem.getItemStack())) return;
+            } else if (isItem(slot, this.config.getCurrentItemFilled())) {
+                if (BukkitItemUtil.isNull(auctionItem.getItemStack())) {
+                    return;
+                }
 
-                ItemStack toGive = auctionItem.getItemStack().clone();
+                final ItemStack toGive = auctionItem.getItemStack().clone();
 
                 auctionItem.setItemStack(null);
 
-                player.openInventory(new CreateAuctionGUI(box, player, searcher).getInventory());
+                player.openInventory(new CreateAuctionGUI(box, player, this.searcher).getInventory());
 
                 player.getInventory().addItem(toGive);
 
-            }else if(isItem(slot, config.switchToAuction) || isItem(slot, config.switchToBin)){
+            } else if (isItem(slot, this.config.getSwitchToAuction()) || isItem(slot, this.config.getSwitchToBin())) {
                 user.ifPresent(user1 -> user1.getTemporalAuction().setBuyItNow(!auctionItem.isBuyItNow()));
-                player.openInventory(new CreateAuctionGUI(box, player, searcher).getInventory());
+                player.openInventory(new CreateAuctionGUI(box, player, this.searcher).getInventory());
             }
         }
     }
 
-    private void changeBidPrice(Player player, AuctionItem auctionItem, String input){
-        double newPrice;
+    private void changeBidPrice(final Player player, final AuctionItem auctionItem, final String input) {
+        final double newPrice;
 
-        if(auctionItem == null) return;
+        if (auctionItem == null) {
+            return;
+        }
 
         try {
             newPrice = Double.parseDouble(input);
 
-            if(newPrice <= 0) throw new NumberFormatException();
+            if (newPrice <= 0) {
+                throw new NumberFormatException();
+            }
 
-        }catch (NumberFormatException e){
-            player.sendMessage(StringUtils.color(box.files().messages().auctionMessages.invalidAmount));
+        } catch (NumberFormatException e) {
+            player.sendMessage(StringUtils.color(box.files().messages().getAuctionMessages().getInvalidAmount()));
             return;
         }
 
         auctionItem.getBid(uuid).ifPresent(bid -> bid.setBidAmount(newPrice));
 
-        player.openInventory(new CreateAuctionGUI(box, player, searcher).getInventory());
+        player.openInventory(new CreateAuctionGUI(box, player, this.searcher).getInventory());
     }
 
 
-    private List<AuctionBid> defaultBid(){
-        return new ArrayList<>(Collections.singletonList(new AuctionBid(uuid, box.files().config().startBidPrice, System.currentTimeMillis(), false)));
+    private List<AuctionBid> defaultBid() {
+        return new ArrayList<>(Collections.singletonList(new AuctionBid(uuid, box.files().config().getStartBidPrice(), System.currentTimeMillis(), false)));
     }
 
-    private List<IPlaceholder> getPlaceholders(AuctionItem auctionItem){
+    private List<IPlaceholder> getPlaceholders(final AuctionItem auctionItem) {
 
-        double startingBid = auctionItem.getBid(uuid).map(AuctionBid::getBidAmount).orElse(0D);
+        final double startingBid = auctionItem.getBid(uuid).map(AuctionBid::getBidAmount).orElse(0D);
 
-        double timeFee = box.files().config().durationPrices.get(auctionItem.getTimerId()).getFee();
+        final double timeFee = box.files().config().getDurationPrices().get(auctionItem.getTimerId()).getFee();
 
-        int percentage = (int) ((5 * startingBid) / 100);
+        final int percentage = (int) ((5 * startingBid) / 100);
 
-        int creationPrice = (int) (percentage + timeFee);
+        final int creationPrice = (int) (percentage + timeFee);
 
         return Arrays.asList(
                 new Placeholder("auction_item_name", BukkitItemUtil.getName(auctionItem.getItemStack())),
@@ -242,29 +268,31 @@ public final class CreateAuctionGUI extends AuctionGUI {
         );
     }
 
-    private Placeholder getIsBuyItNowPlaceholder(AuctionItem item){
-        return new Placeholder("auction_is_buy_it_now_placeholder", item.isBuyItNow() ? box.files().messages().auctionMessages.buyItNowPlaceholder : box.files().messages().auctionMessages.auctionPlaceholder);
+    private Placeholder getIsBuyItNowPlaceholder(final AuctionItem item) {
+        return new Placeholder("auction_is_buy_it_now_placeholder", item.isBuyItNow() ? box.files().
+                messages().getAuctionMessages().getBuyItNowPlaceholder() : box.files().
+                messages().getAuctionMessages().getAuctionPlaceholder());
     }
 
-    private double getPrice(AuctionItem auctionItem){
-        double startingBid = auctionItem.getBid(uuid).map(AuctionBid::getBidAmount).orElse(0D);
+    private double getPrice(final AuctionItem auctionItem) {
+        final double startingBid = auctionItem.getBid(uuid).map(AuctionBid::getBidAmount).orElse(0D);
 
-        double timeFee = box.files().config().durationPrices.get(auctionItem.getTimerId()).getFee();
+        final double timeFee = box.files().config().getDurationPrices().get(auctionItem.getTimerId()).getFee();
 
-        int percentage = (int) ((5 * startingBid) / 100);
+        final int percentage = (int) ((5 * startingBid) / 100);
 
         return  (int) (percentage + timeFee);
     }
 
-    private String getDuration(AuctionItem auctionItem){
-        HumanTime timer = box.files().config().durationPrices.get(auctionItem.getTimerId()).getTimer();
+    private String getDuration(final AuctionItem auctionItem) {
+        final HumanTime timer = box.files().config().getDurationPrices().get(auctionItem.getTimerId()).getTimer();
 
-        List<IPlaceholder> placeholders = Arrays.asList(
-                new Placeholder("auction_duration_type", box.files().messages().auctionMessages.getTimeFormat().get(timer.getType())),
+        final List<IPlaceholder> placeholders = Arrays.asList(
+                new Placeholder("auction_duration_type", box.files().messages().getAuctionMessages().getTimeFormat().get(timer.getType())),
                 new Placeholder("auction_duration_time", timer.getAmount())
         );
 
-        return StringUtils.processMulti(box.files().messages().auctionMessages.auctionDurationFormat, placeholders);
+        return StringUtils.processMulti(box.files().messages().getAuctionMessages().getAuctionDurationFormat(), placeholders);
 
     }
 }

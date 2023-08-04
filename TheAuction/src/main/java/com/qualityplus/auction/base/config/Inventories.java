@@ -22,10 +22,15 @@ import com.qualityplus.auction.base.gui.view.bin.BinAuctionViewGUIConfig;
 import com.qualityplus.auction.base.gui.view.normal.NormalAuctionViewGUIConfig;
 import com.qualityplus.assistant.lib.eu.okaeri.configs.OkaeriConfig;
 import com.qualityplus.assistant.lib.eu.okaeri.platform.core.annotation.Configuration;
+import lombok.Getter;
 
 import java.util.Arrays;
 import java.util.Collections;
 
+/**
+ * Utility class for inventories
+ */
+@Getter
 @Configuration(path = "inventories.yml")
 @Header("================================")
 @Header("       Inventories      ")
@@ -33,7 +38,7 @@ import java.util.Collections;
 @Names(strategy = NameStrategy.HYPHEN_CASE, modifier = NameModifier.TO_LOWER_CASE)
 public final class Inventories extends OkaeriConfig implements DefaultBackgrounds {
     @CustomKey("auctionGUIConfig")
-    public MainAuctionGUIConfig auctionGUIConfig = MainAuctionGUIConfig.builder()
+    private MainAuctionGUIConfig auctionGUIConfig = MainAuctionGUIConfig.builder()
             .commonGUI(new CommonGUI(
                     "Auction House",
                     36,
@@ -57,15 +62,13 @@ public final class Inventories extends OkaeriConfig implements DefaultBackground
                             "&7Player can find your auctions",
                             "&7using the &6Auctions Browser",
                             "&7or typing &a/ah",
-                            "&a%player%&7!"
-                            , "", "&eClick to manage!")).build())
+                            "&a%player%&7!", "", "&eClick to manage!")).build())
             .auctionStats(ItemBuilder.of(XMaterial.MAP, 32, 1, "&aAuction Stats",
-                    Arrays.asList("&7View various statistics about", "&7you and the Auction House."
-                            , "", "&eClick to view!")).build())
+                    Arrays.asList("&7View various statistics about", "&7you and the Auction House.", "", "&eClick to view!")).build())
             .build();
 
     @CustomKey("manageAuctionGUIConfig")
-    public ManageAuctionGUIConfig manageAuctionGUIConfig = ManageAuctionGUIConfig.builder()
+    private ManageAuctionGUIConfig manageAuctionGUIConfig = ManageAuctionGUIConfig.builder()
             .commonGUI(new CommonGUI(
                     "Manage Auctions",
                     36,
@@ -89,13 +92,13 @@ public final class Inventories extends OkaeriConfig implements DefaultBackground
             .createAnAuction(ItemBuilder.of(XMaterial.GOLDEN_HORSE_ARMOR, 33, 1, "&aCreate Auction",
                     Arrays.asList("&7Set your own items on auction", "&7for other players to purchase.", "", "&eClick to become rich!")).build())
 
-            .nextPageItem(ItemBuilder.of(XMaterial.ARROW,  35,1, "&dNext Page", Arrays.asList("", "&e» Click to go next Page!")).build())
+            .nextPageItem(ItemBuilder.of(XMaterial.ARROW,  35, 1, "&dNext Page", Arrays.asList("", "&e» Click to go next Page!")).build())
             .previousPageItem(ItemBuilder.of(XMaterial.ARROW, 27, 1, "&dBack Page", Arrays.asList("", "&e» Click to go to back Page!")).build())
-            .auctionSlots(Arrays.asList(10,11,12,13,14,15,16,19,20,21,22,23,24,25))
+            .auctionSlots(Arrays.asList(10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25))
             .build();
 
     @CustomKey("confirmAuctionGUIConfig")
-    public ConfirmAuctionGUIConfig confirmAuctionGUIConfig = ConfirmAuctionGUIConfig.builder()
+    private ConfirmAuctionGUIConfig confirmAuctionGUIConfig = ConfirmAuctionGUIConfig.builder()
             .commonGUI(new CommonGUI(
                     "Confirm Purchase",
                     27,
@@ -104,13 +107,14 @@ public final class Inventories extends OkaeriConfig implements DefaultBackground
             ))
             .auctionItem(ItemBuilder.of(XMaterial.STONE, 13, 1, "&e&l&nBUYING ITEM:",
                     Arrays.asList("&f%auction_item_name%", "%auction_item_lore%")).build())
-            .confirmItem(ItemBuilder.of(XMaterial.GREEN_TERRACOTTA,  11, 1, "&aConfirm", Arrays.asList("&7Purchasing: &f%auction_item_name%", "&7Cost: &6%auction_to_confirm_price% Coins")).build())
+            .confirmItem(ItemBuilder.of(XMaterial.GREEN_TERRACOTTA,  11, 1, "&aConfirm",
+                    Arrays.asList("&7Purchasing: &f%auction_item_name%", "&7Cost: &6%auction_to_confirm_price% Coins")).build())
             .cancelItem(ItemBuilder.of(XMaterial.RED_TERRACOTTA, 15, 1, "&cCancel",
                     Collections.emptyList()).build())
             .build();
 
     @CustomKey("pendingAuctionGUIConfig")
-    public PendingAuctionGUIConfig pendingAuctionGUIConfig = PendingAuctionGUIConfig.builder()
+    private PendingAuctionGUIConfig pendingAuctionGUIConfig = PendingAuctionGUIConfig.builder()
             .commonGUI(new CommonGUI(
                     "Your bids",
                     36,
@@ -130,13 +134,13 @@ public final class Inventories extends OkaeriConfig implements DefaultBackground
                             "&6» &eClick to inspect")).build())
             .goBackItem(ItemBuilder.of(XMaterial.ARROW,  31, 1, "&aGo Back", Arrays.asList("&7To Auction House")).build())
 
-            .nextPageItem(ItemBuilder.of(XMaterial.ARROW,  35,1, "&dNext Page", Arrays.asList("", "&e» Click to go next Page!")).build())
+            .nextPageItem(ItemBuilder.of(XMaterial.ARROW,  35, 1, "&dNext Page", Arrays.asList("", "&e» Click to go next Page!")).build())
             .previousPageItem(ItemBuilder.of(XMaterial.ARROW, 27, 1, "&dBack Page", Arrays.asList("", "&e» Click to go to back Page!")).build())
-            .auctionSlots(Arrays.asList(10,11,12,13,14,15,16,19,20,21,22,23,24,25))
+            .auctionSlots(Arrays.asList(10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25))
             .build();
 
     @CustomKey("auctionStatsGUIConfig")
-    public AuctionStatsGUIConfig auctionStatsGUIConfig = AuctionStatsGUIConfig.builder()
+    private AuctionStatsGUIConfig auctionStatsGUIConfig = AuctionStatsGUIConfig.builder()
             .commonGUI(new CommonGUI(
                     "Your stats",
                     36,
@@ -162,17 +166,17 @@ public final class Inventories extends OkaeriConfig implements DefaultBackground
             .build();
 
     @CustomKey("allAuctionsGUIConfig")
-    public AllAuctionsGUIConfig allAuctionsGUIConfig = AllAuctionsGUIConfig.builder()
+    private AllAuctionsGUIConfig allAuctionsGUIConfig = AllAuctionsGUIConfig.builder()
             .commonGUI(new CommonGUI(
                     "Auction Browser",
                     54,
                     new Background(),
                     ItemBuilder.of(XMaterial.BARRIER,  49, 1, "&cClose", Arrays.asList("", "&e» &7Click to close")).enabled(false).build())
             )
-            .nextPage(ItemBuilder.of(XMaterial.BOOK,  53,1, "&dNext Page", Arrays.asList("", "&e» Click to go next Page!")).build())
+            .nextPage(ItemBuilder.of(XMaterial.BOOK,  53, 1, "&dNext Page", Arrays.asList("", "&e» Click to go next Page!")).build())
             .previousPage(ItemBuilder.of(XMaterial.BOOK, 46, 1, "&dBack Page", Arrays.asList("", "&e» Click to go to back Page!")).build())
             .goBack(ItemBuilder.of(XMaterial.ARROW, 49, 1, "&aGo back", Arrays.asList("", "&e» Click to go to back!")).build())
-            .auctionSlots(Arrays.asList(11,12,13,14,15,16,20,21,22,23,24,25,29,30,31,32,33,34,38,39,40,41,42,43))
+            .auctionSlots(Arrays.asList(11, 12, 13, 14, 15, 16, 20, 21, 22, 23, 24, 25, 29, 30, 31, 32, 33, 34, 38, 39, 40, 41, 42, 43))
             .auctionItem(ItemBuilder.of(XMaterial.STONE, 1, "&f%auction_item_name%",
                     Arrays.asList("%auction_item_lore%",
                             "",
@@ -227,7 +231,7 @@ public final class Inventories extends OkaeriConfig implements DefaultBackground
             .build();
 
     @CustomKey("createAuctionGUIConfig")
-    public CreateAuctionGUIConfig createAuctionGUIConfig = CreateAuctionGUIConfig.builder()
+    private CreateAuctionGUIConfig createAuctionGUIConfig = CreateAuctionGUIConfig.builder()
             .commonGUI(new CommonGUI(
                     "Create Auction",
                     54,
@@ -238,9 +242,9 @@ public final class Inventories extends OkaeriConfig implements DefaultBackground
                     Collections.singletonList("&7Selects it for auction")).build())
             .currentItemFilled(ItemBuilder.of(XMaterial.STONE, 13, 1, "&eClick an item in your inventory!",
                     Arrays.asList("&a&l&nAUCTION FOR ITEM:", "", "&f%auction_item_name%", "%auction_item_lore%", "", "&eClick to pickup!")).build())
-            .createAuctionEmpty(ItemBuilder.of(XMaterial.RED_TERRACOTTA,  29,1, "&cCreate %auction_is_buy_it_now_placeholder%",
+            .createAuctionEmpty(ItemBuilder.of(XMaterial.RED_TERRACOTTA,  29, 1, "&cCreate %auction_is_buy_it_now_placeholder%",
                     Arrays.asList("&7No item selected!", "", "&7Click an item in your inventory", "&7to select it for this auction.")).build())
-            .createAuctionFilled(ItemBuilder.of(XMaterial.GREEN_TERRACOTTA,  29,1, "&aCreate %auction_is_buy_it_now_placeholder%",
+            .createAuctionFilled(ItemBuilder.of(XMaterial.GREEN_TERRACOTTA,  29, 1, "&aCreate %auction_is_buy_it_now_placeholder%",
                     Arrays.asList("&7This Item will be added to the", "&7auction house for other players",
                             "&7to purchase", "",
                             "&7Item: %auction_item_name%",
@@ -251,7 +255,7 @@ public final class Inventories extends OkaeriConfig implements DefaultBackground
                             "",
                             "&eClick to submit"
                     )).build())
-            .auctionInitialBid(ItemBuilder.of(XMaterial.POWERED_RAIL,  31,1, "&fStarting bid: &6%auction_starting_bid% coins",
+            .auctionInitialBid(ItemBuilder.of(XMaterial.POWERED_RAIL,  31, 1, "&fStarting bid: &6%auction_starting_bid% coins",
                     Arrays.asList("&7The minimun price a player can",
                             "&7offer to obtain your item.",
                             "",
@@ -263,7 +267,7 @@ public final class Inventories extends OkaeriConfig implements DefaultBackground
                             "&7Extra Fee: &6+%auction_fee% coins &e(5%)",
                             "",
                             "&eClick to edit")).build())
-            .auctionDuration(ItemBuilder.of(XMaterial.CLOCK,  33,1, "&fDuration: &e%auction_duration%",
+            .auctionDuration(ItemBuilder.of(XMaterial.CLOCK,  33, 1, "&fDuration: &e%auction_duration%",
                     Arrays.asList("&7How long players will be able to",
                             "&7place bigs for.",
                             "",
@@ -276,20 +280,20 @@ public final class Inventories extends OkaeriConfig implements DefaultBackground
                             "&eClick to edit")).build())
             .goBack(ItemBuilder.of(XMaterial.ARROW, 49, 1, "&eGo back",
                     Arrays.asList("", "&e» Click to go to back!")).build())
-            .auctionItemPrice(ItemBuilder.of(XMaterial.GOLD_INGOT,  31,1, "&fItem Price: &6%auction_starting_bid% coins",
+            .auctionItemPrice(ItemBuilder.of(XMaterial.GOLD_INGOT,  31, 1, "&fItem Price: &6%auction_starting_bid% coins",
                     Arrays.asList("&7The price at which you want to",
                             "&7sell this item.",
                             "",
                             "&7Extra Fee: &6+%auction_fee% coins &e(1%)",
                             "",
                             "&eClick to edit")).build())
-            .switchToAuction(ItemBuilder.of(XMaterial.POWERED_RAIL,  48,1, "&aSwitch to Auction",
+            .switchToAuction(ItemBuilder.of(XMaterial.POWERED_RAIL,  48, 1, "&aSwitch to Auction",
                     Arrays.asList("&7With traditional auctions,",
                             "&7multiple buyers compete for the",
                             "&7item by bidding turn by turn.",
                             "",
                             "&eClick to switch!")).build())
-            .switchToBin(ItemBuilder.of(XMaterial.GOLD_INGOT,  48,1, "&aSwitch to BIN",
+            .switchToBin(ItemBuilder.of(XMaterial.GOLD_INGOT,  48, 1, "&aSwitch to BIN",
                     Arrays.asList("&7BIN Auctions are simple.",
                             "&7Set a price, then one player may",
                             "&7buy the item at that price.",
@@ -300,7 +304,7 @@ public final class Inventories extends OkaeriConfig implements DefaultBackground
             .build();
 
     @CustomKey("auctionTimeConfigGUI")
-    public AuctionTimeConfigGUI auctionTimeConfigGUI = new AuctionTimeConfigGUI(
+    private AuctionTimeConfigGUI auctionTimeConfigGUI = new AuctionTimeConfigGUI(
             new CommonGUI(
                     "&bCREATE AUCTION",
                     27,
@@ -311,12 +315,12 @@ public final class Inventories extends OkaeriConfig implements DefaultBackground
                     Arrays.asList("&7Extra Fee: &6%duration_fee% coins", "", "&eClick to pick!")).build(),
             ItemBuilder.of(XMaterial.ARROW, 22, 1, "&eGo back",
                     Arrays.asList("", "&e» Click to go back!")).build(),
-            Arrays.asList(10,11,12,13,14,15,16)
+            Arrays.asList(10, 11, 12, 13, 14, 15, 16)
     );
 
 
     @CustomKey("submitGUIBuyerConfig")
-    public NormalAuctionViewGUIConfig submitGUIBuyerConfig = NormalAuctionViewGUIConfig.builder()
+    private NormalAuctionViewGUIConfig submitGUIBuyerConfig = NormalAuctionViewGUIConfig.builder()
             .commonGUI(new CommonGUI(
                     "Auction Preview",
                     54,
@@ -332,7 +336,8 @@ public final class Inventories extends OkaeriConfig implements DefaultBackground
                             "",
                             "%auction_is_your_bid%",
                             "%auction_status%")).build())
-            .bidItem(ItemBuilder.of(XMaterial.GOLD_NUGGET, 29, 1, "&6Submit Bid", Arrays.asList("", "&7New bid: &6%auction_new_bid% coins", "", "%auction_can_submit%")).build())
+            .bidItem(ItemBuilder.of(XMaterial.GOLD_NUGGET, 29, 1, "&6Submit Bid",
+                    Arrays.asList("", "&7New bid: &6%auction_new_bid% coins", "", "%auction_can_submit%")).build())
             .collectAuctionItem(ItemBuilder.of(XMaterial.GOLD_BLOCK, 29, 1, "&6Collect Auction",
                     Arrays.asList("", "&7Item sold to %auction_buyer_name%", "&7for &6%auction_top_bid% coins&7!", "", "&eClick to collect coins!")).build())
 
@@ -361,7 +366,7 @@ public final class Inventories extends OkaeriConfig implements DefaultBackground
             .build();
 
     @CustomKey("binAuctionViewGUIConfig")
-    public BinAuctionViewGUIConfig binAuctionViewGUIConfig = BinAuctionViewGUIConfig.builder()
+    private BinAuctionViewGUIConfig binAuctionViewGUIConfig = BinAuctionViewGUIConfig.builder()
             .commonGUI(new CommonGUI(
                     "BIN Auction Preview",
                     54,
@@ -377,9 +382,12 @@ public final class Inventories extends OkaeriConfig implements DefaultBackground
                             "",
                             "%auction_is_your_bid%",
                             "%auction_status%")).build())
-            .buyItNowItem(ItemBuilder.of(XMaterial.GOLD_NUGGET, 31, 1, "&6Buy Item Right Now", Arrays.asList("", "&7Price: &6%auction_top_bid% coins", "", "%auction_can_submit%")).build())
-            .ownBuyItNowItem(ItemBuilder.of(XMaterial.GOLD_NUGGET, 29, 1, "&6Buy Item Right Now", Arrays.asList("", "&7Price: &6%auction_top_bid% coins", "", "&aThis is your own auction!")).build())
-            .cancelAuctionItem(ItemBuilder.of(XMaterial.RED_TERRACOTTA, 33, 1, "&cCancel Auction", Arrays.asList("", "&7You may cancel auction as", "&7long as they have &c0 &7bids!", "", "&eClick to cancel auction!")).build())
+            .buyItNowItem(ItemBuilder.of(XMaterial.GOLD_NUGGET, 31, 1, "&6Buy Item Right Now",
+                    Arrays.asList("", "&7Price: &6%auction_top_bid% coins", "", "%auction_can_submit%")).build())
+            .ownBuyItNowItem(ItemBuilder.of(XMaterial.GOLD_NUGGET, 29, 1, "&6Buy Item Right Now",
+                    Arrays.asList("", "&7Price: &6%auction_top_bid% coins", "", "&aThis is your own auction!")).build())
+            .cancelAuctionItem(ItemBuilder.of(XMaterial.RED_TERRACOTTA, 33, 1, "&cCancel Auction",
+                    Arrays.asList("", "&7You may cancel auction as", "&7long as they have &c0 &7bids!", "", "&eClick to cancel auction!")).build())
             .collectAuctionItem(ItemBuilder.of(XMaterial.GOLD_BLOCK, 31, 1, "&6Collect Auction",
                     Arrays.asList("", "&7Item sold to %auction_buyer_name%", "&7for &6%auction_top_bid% coins&7!", "", "&eClick to collect coins!")).build())
 

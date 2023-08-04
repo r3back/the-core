@@ -17,35 +17,45 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 
+/**
+ * Utility class for auction stats
+ */
 public final class AuctionStatsGUI extends AuctionGUI {
     private final AuctionStatsGUIConfig config;
     private final AuctionSearcher searcher;
 
-    public AuctionStatsGUI(Box boxUtil, UUID uuid, AuctionSearcher searcher) {
-        super(boxUtil.files().inventories().auctionStatsGUIConfig, boxUtil);
+    /**
+     * Makes auction stats
+     *
+     * @param boxUtil  {@link Box}
+     * @param uuid     {@link UUID}
+     * @param searcher {@link AuctionSearcher}
+     */
+    public AuctionStatsGUI(final Box boxUtil, final UUID uuid, final AuctionSearcher searcher) {
+        super(boxUtil.files().inventories().getAuctionStatsGUIConfig(), boxUtil);
 
-        this.config = boxUtil.files().inventories().auctionStatsGUIConfig;
+        this.config = boxUtil.files().inventories().getAuctionStatsGUIConfig();
         this.searcher = searcher;
         this.uuid = uuid;
     }
 
     @Override
     public @NotNull Inventory getInventory() {
-        fillInventory(config);
+        fillInventory(this.config);
 
-        List<IPlaceholder> placeholders = getUserPlaceholders();
+        final List<IPlaceholder> placeholders = getUserPlaceholders();
 
-        setItem(config.buyerStatsItem, placeholders);
-        setItem(config.sellerStatsItem, placeholders);
+        setItem(this.config.getBuyerStatsItem(), placeholders);
+        setItem(this.config.getSellerStatsItem(), placeholders);
 
-        setItem(config.getCloseGUI());
-        setItem(config.goBackItem);
+        setItem(this.config.getCloseGUI());
+        setItem(this.config.getGoBackItem());
 
         return inventory;
     }
 
-    private List<IPlaceholder> getUserPlaceholders(){
-        AuctionStats stats = box.service().getUser(uuid)
+    private List<IPlaceholder> getUserPlaceholders() {
+        final AuctionStats stats = box.service().getUser(uuid)
                 .map(User::getAuctionStats)
                 .orElse(new AuctionStats());
 
@@ -64,17 +74,17 @@ public final class AuctionStatsGUI extends AuctionGUI {
     }
 
     @Override
-    public void onInventoryClick(InventoryClickEvent event) {
+    public void onInventoryClick(final InventoryClickEvent event) {
         event.setCancelled(true);
 
-        Player player = (Player) event.getWhoClicked();
+        final Player player = (Player) event.getWhoClicked();
 
-        int slot = event.getSlot();
+        final int slot = event.getSlot();
 
-        if(isItem(slot, config.getCloseGUI())){
+        if (isItem(slot, this.config.getCloseGUI())) {
             player.closeInventory();
-        }else if(isItem(slot, config.goBackItem)){
-            player.openInventory(new MainAuctionGUI(box, searcher, player.getUniqueId()).getInventory());
+        } else if (isItem(slot, this.config.getGoBackItem())) {
+            player.openInventory(new MainAuctionGUI(box, this.searcher, player.getUniqueId()).getInventory());
         }
     }
 

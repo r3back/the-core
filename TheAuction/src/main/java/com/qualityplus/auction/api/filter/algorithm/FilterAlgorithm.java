@@ -2,8 +2,25 @@ package com.qualityplus.auction.api.filter.algorithm;
 
 import java.util.List;
 
+/**
+ * Adds filter algorithm
+ *
+ * @param <T> {@link FilterAlgorithm}
+ */
 public interface FilterAlgorithm<T> {
-    List<T> filter(List<T> filter);
+    /**
+     * Add filter
+     *
+     * @param filter Filter
+     * @return Filter
+     */
+    public List<T> filter(List<T> filter);
 
-    void addData(String key, String value);
+    /**
+     * Adds a data
+     *
+     * @param key   Key
+     * @param value Value
+     */
+    public void addData(String key, String value);
 }
