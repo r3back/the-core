@@ -4,6 +4,9 @@ import lombok.AllArgsConstructor;
 
 import java.util.Arrays;
 
+/**
+ * makes a bin filters
+ */
 @AllArgsConstructor
 public enum BinFilter {
     AUCTION_ONLY(2),
@@ -12,7 +15,12 @@ public enum BinFilter {
 
     public final int level;
 
-    public BinFilter getNext(){
+    /**
+     * Makes a bin filter
+     *
+     * @return {@link BinFilter}
+     */
+    public BinFilter getNext() {
         return Arrays.stream(values())
                 .filter(sortBy -> sortBy.level == this.level + 1)
                 .findFirst()

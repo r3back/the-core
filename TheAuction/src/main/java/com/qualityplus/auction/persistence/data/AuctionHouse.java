@@ -7,6 +7,9 @@ import lombok.EqualsAndHashCode;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Makes an auctions house
+ */
 @EqualsAndHashCode(callSuper = true)
 @Data
 public final class AuctionHouse extends Document {

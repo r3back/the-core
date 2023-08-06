@@ -7,14 +7,26 @@ import com.qualityplus.assistant.lib.eu.okaeri.configs.OkaeriConfig;
 import lombok.Builder;
 import lombok.Getter;
 
+/**
+ * Utility class for auction stats
+ */
+@Getter
 public final class AuctionStatsGUIConfig extends OkaeriConfig implements SimpleGUI {
-    public @Getter CommonGUI commonGUI;
-    public Item sellerStatsItem;
-    public Item buyerStatsItem;
-    public Item goBackItem;
+    private CommonGUI commonGUI;
+    private Item sellerStatsItem;
+    private Item buyerStatsItem;
+    private Item goBackItem;
 
+    /**
+     * Makes auction stats
+     *
+     * @param commonGUI       {@link CommonGUI}
+     * @param sellerStatsItem {@link AuctionStatsGUIConfig}
+     * @param buyerStatsItem  {@link AuctionStatsGUIConfig}
+     * @param goBackItem      {@link AuctionStatsGUIConfig}
+     */
     @Builder
-    public AuctionStatsGUIConfig(CommonGUI commonGUI, Item sellerStatsItem, Item buyerStatsItem, Item goBackItem) {
+    public AuctionStatsGUIConfig(final CommonGUI commonGUI, final Item sellerStatsItem, final Item buyerStatsItem, final Item goBackItem) {
         this.commonGUI = commonGUI;
         this.sellerStatsItem = sellerStatsItem;
         this.buyerStatsItem = buyerStatsItem;

@@ -5,10 +5,29 @@ import com.qualityplus.auction.persistence.data.User;
 import java.util.Optional;
 import java.util.UUID;
 
+/**
+ * Service interface for users
+ */
 public interface UserService {
-    Optional<User> getUser(UUID uuid);
+    /**
+     * Adds an uuid
+     *
+     * @param uuid {@link UUID}
+     * @return Optional of {@link User}
+     */
+    public Optional<User> getUser(UUID uuid);
 
-    void addUser(User user);
+    /**
+     * Adds user
+     *
+     * @param user {@link User}
+     */
+    public void addUser(User user);
 
-    void removeUser(User user);
+    /**
+     * Remove User
+     *
+     * @param user {@link User}
+     */
+    public void removeUser(User user);
 }

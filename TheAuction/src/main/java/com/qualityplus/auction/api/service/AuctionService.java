@@ -7,12 +7,36 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
+/**
+ * Service interface for auction
+ */
 public interface AuctionService {
-    List<AuctionItem> getItems();
+    /**
+     * Makes list items
+     *
+     * @return List Of {@link AuctionItem}
+     */
+    public List<AuctionItem> getItems();
 
-    List<AuctionItem> getItems(UUID owner);
+    /**
+     * Adds an auction item
+     *
+     * @param owner {@link UUID}
+     * @return List Of {@link AuctionItem}
+     */
+    public List<AuctionItem> getItems(final UUID owner);
 
-    Optional<AuctionHouse> getAuctionHouse();
+    /**
+     * Adds an auction house
+     *
+     * @return Optional of {@link AuctionHouse}
+     */
+    public Optional<AuctionHouse> getAuctionHouse();
 
-    void setAuctionHouse(AuctionHouse auctionHouse);
+    /**
+     * Adds an auction house
+     *
+     * @param auctionHouse {@link AuctionHouse}
+     */
+    public void setAuctionHouse(final AuctionHouse auctionHouse);
 }

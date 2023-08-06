@@ -4,14 +4,17 @@ import com.qualityplus.assistant.lib.eu.okaeri.configs.OkaeriConfig;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
+/**
+ * Makes auction stats
+ */
 @Data @EqualsAndHashCode(callSuper = true)
 public final class AuctionStats extends OkaeriConfig {
     //Buyer
-    private int auctionsCreated;  //Done
-    private int auctionsCompletedWithBids; //Done
-    private int auctionsCompletedWithoutBids; //Done
-    private double totalMoneyEarned; //Done
-    private double moneySpentOnFees; //Done
+    private int auctionsCreated;
+    private int auctionsCompletedWithBids;
+    private int auctionsCompletedWithoutBids;
+    private double totalMoneyEarned;
+    private double moneySpentOnFees;
 
     //Seller
     private int auctionsWon;

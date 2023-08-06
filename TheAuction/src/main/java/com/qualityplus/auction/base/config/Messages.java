@@ -16,128 +16,144 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Utility class for messages
+ */
+@Getter
 @Configuration(path = "messages.yml")
 @Header("================================")
 @Header("       Messages      ")
 @Header("================================")
 @Names(strategy = NameStrategy.HYPHEN_CASE, modifier = NameModifier.TO_LOWER_CASE)
 public final class Messages extends OkaeriConfig {
-    public PluginMessages pluginMessages = new PluginMessages();
-    public AuctionMessages auctionMessages = new AuctionMessages();
+    private PluginMessages pluginMessages = new PluginMessages();
+    private AuctionMessages auctionMessages = new AuctionMessages();
 
+
+    /**
+     * Utility class dor auction messages
+     */
     @Getter
     @Setter
     public class AuctionMessages extends OkaeriConfig {
-        public List<String> startingBid = Arrays.asList("", "^^^^^^^^^^^^^^", "Your auction", "starting bid");
-        public List<String> submitBid = Arrays.asList("", "^^^^^^^^^^^^^^", "Enter an amount", "to bid");
-        public List<String> enterQuery = Arrays.asList("", "", "^^^^^^^^^^^^^^", "Enter Query");
+        private List<String> startingBid = Arrays.asList("", "^^^^^^^^^^^^^^", "Your auction", "starting bid");
+        private List<String> submitBid = Arrays.asList("", "^^^^^^^^^^^^^^", "Enter an amount", "to bid");
+        private List<String> enterQuery = Arrays.asList("", "", "^^^^^^^^^^^^^^", "Enter Query");
 
 
-        public String itemDurationFormat = "&e%duration_time% %duration_type%";
+        private String itemDurationFormat = "&e%duration_time% %duration_type%";
 
-        public String auctionDurationFormat = "&e%auction_duration_time% %auction_duration_type%";
-        public String auctionStarted = "&eAuction started for %auction_item_name%&e!";
+        private String auctionDurationFormat = "&e%auction_duration_time% %auction_duration_type%";
+        private String auctionStarted = "&eAuction started for %auction_item_name%&e!";
 
-        public String auctionEndsInFormat = "%days_placeholder% %hours_placeholder% %minutes_placeholder% %seconds_placeholder%";
-        public String auctionHistoryTimeFormat = "%days_placeholder% %hours_placeholder% %minutes_placeholder% %seconds_placeholder% ago";
+        private String auctionEndsInFormat = "%days_placeholder% %hours_placeholder% %minutes_placeholder% %seconds_placeholder%";
+        private String auctionHistoryTimeFormat = "%days_placeholder% %hours_placeholder% %minutes_placeholder% %seconds_placeholder% ago";
 
-        public String days = "%days%d";
-        public String hours = "%hours%h";
-        public String minutes = "%minutes%m";
-        public String seconds = "%seconds%s";
-        public String noTimeFormat = "&b-";
-        public boolean showNoTimeSymbol = true;
+        private String days = "%days%d";
+        private String hours = "%hours%h";
+        private String minutes = "%minutes%m";
+        private String seconds = "%seconds%s";
+        private String noTimeFormat = "&b-";
+        private boolean showNoTimeSymbol = true;
 
-        public Map<HumanTime.TimeType, String> timeFormat = ImmutableMap.<HumanTime.TimeType, String>builder()
+        private Map<HumanTime.TimeType, String> timeFormat = ImmutableMap.<HumanTime.TimeType, String>builder()
                 .put(HumanTime.TimeType.DAYS, "Days")
                 .put(HumanTime.TimeType.MINUTES, "Minutes")
                 .put(HumanTime.TimeType.SECONDS, "Seconds")
                 .put(HumanTime.TimeType.HOURS, "Hours")
                 .build();
 
-        public String invalidAmount = "&cInvalid Amount";
-        public String mustBeHigherThanMin = "&cAmount to bid must be higher than %auction_new_bid%!";
+        private String invalidAmount = "&cInvalid Amount";
+        private String mustBeHigherThanMin = "&cAmount to bid must be higher than %auction_new_bid%!";
 
-        public List<String> noBidsInformation = Collections.singletonList("&7%auction_is_buy_it_now%: &6%auction_starting_bid% coins");
-        public List<String> bidsInformation = Arrays.asList("&7Bids: &a%auction_bids_amount% bids", "", "&7Top bid: &6%auction_top_bid% coins", "&7Bidder: %auction_bidder_name%");
+        private List<String> noBidsInformation = Collections.singletonList("&7%auction_is_buy_it_now%: &6%auction_starting_bid% coins");
+        private List<String> bidsInformation = Arrays.
+                asList("&7Bids: &a%auction_bids_amount% bids", "",
+                        "&7Top bid: &6%auction_top_bid% coins", "&7Bidder: %auction_bidder_name%");
 
-        public List<String> soldFor = Arrays.asList("&7Buyer: &a%auction_buyer_name%", "", "&7Sold for: &6%auction_top_bid% coins");
-        public List<String> notSoldYet = Collections.singletonList("&7%auction_is_buy_it_now%: &6%auction_starting_bid% coins");
+        private List<String> soldFor = Arrays.asList("&7Buyer: &a%auction_buyer_name%", "", "&7Sold for: &6%auction_top_bid% coins");
+        private List<String> notSoldYet = Collections.singletonList("&7%auction_is_buy_it_now%: &6%auction_starting_bid% coins");
 
 
-        public List<String> itsYourAuction = Arrays.asList("&aThis is your own auction!", "");
+        private List<String> itsYourAuction = Arrays.asList("&aThis is your own auction!", "");
 
-        public List<String> bidHistoryFormat = Arrays.asList("&8————————————————————", "&7Bid: &6%auction_bid_amount% coins", "&7By: %auction_owner_name%", "&b%auction_history_bid_time%");
+        private List<String> bidHistoryFormat = Arrays.
+                asList("&8————————————————————", "&7Bid: &6%auction_bid_amount% coins",
+                        "&7By: %auction_owner_name%", "&b%auction_history_bid_time%");
 
-        public String ownAuction = "&aThis is your own auction!";
-        public String canSubmitBin = "&eClick to purchase!";
-        public String canSubmit = "&eClick to bid!";
-        public String cannotSubmit = "&cCannot afford bid!";
-        public String alreadyTopBid = "&aAlready Top Bid!";
+        private String ownAuction = "&aThis is your own auction!";
+        private String canSubmitBin = "&eClick to purchase!";
+        private String canSubmit = "&eClick to bid!";
+        private String cannotSubmit = "&cCannot afford bid!";
+        private String alreadyTopBid = "&aAlready Top Bid!";
 
-        public String youCannotAffordIt = "&cYou cannot afford it!";
-        public String youAlreadyHaveTheHighestBid = "&aYou already have the highest bid on this auction!";
-        public String yourBidIsLowestThanTopBid = "&cYour bid is lowest than top bid!";
+        private String youCannotAffordIt = "&cYou cannot afford it!";
+        private String youAlreadyHaveTheHighestBid = "&aYou already have the highest bid on this auction!";
+        private String yourBidIsLowestThanTopBid = "&cYour bid is lowest than top bid!";
 
-        public String youCannotBidYourOwn = "&aYou cannot bid in your own auction!";
-        public String auctionExpired = "&cThat auction just expired!";
-        public String bidPlaced = "&eBid of &6%bid_amount% coins &eplaced for %auction_item_name%!";
-        public String successfullyBought = "&eYou claimed &a%auction_item_name% &efrom %auction_owner_name%'s auction!";
+        private String youCannotBidYourOwn = "&aYou cannot bid in your own auction!";
+        private String auctionExpired = "&cThat auction just expired!";
+        private String bidPlaced = "&eBid of &6%bid_amount% coins &eplaced for %auction_item_name%!";
+        private String successfullyBought = "&eYou claimed &a%auction_item_name% &efrom %auction_owner_name%'s auction!";
 
-        public String currentlyBrowsing = "&aCurrently browsing!";
-        public String currentlyNotBrowsing = "&eClick to view items!";
+        private String currentlyBrowsing = "&aCurrently browsing!";
+        private String currentlyNotBrowsing = "&eClick to view items!";
 
-        public String sortSelected = "&b► ";
-        public String sortNotSelected = "";
+        private String sortSelected = "&b► ";
+        private String sortNotSelected = "";
 
-        public String auctionIsNotBin = "Starting bid";
-        public String auctionIsBin = "Buy It Now";
+        private String auctionIsNotBin = "Starting bid";
+        private String auctionIsBin = "Buy It Now";
 
-        public String buyItNowPlaceholder = "BIN Auction";
-        public String auctionPlaceholder = "Auction";
+        private String buyItNowPlaceholder = "BIN Auction";
+        private String auctionPlaceholder = "Auction";
 
-        public String inProgressStatus = "&7Ends in: &e%auction_remaining_time%";
-        public String normalAuctionEndedStatus = "&7Status: &aEnded!";
-        public String binAuctionEndedStatus = "&7Status: &aSold!";
-        public String expiredStatus = "&7Status: &cExpired!";
+        private String inProgressStatus = "&7Ends in: &e%auction_remaining_time%";
+        private String normalAuctionEndedStatus = "&7Status: &aEnded!";
+        private String binAuctionEndedStatus = "&7Status: &aSold!";
+        private String expiredStatus = "&7Status: &cExpired!";
 
-        public String collectedMoney = "&eYou collected &6%auction_top_bid% coins &efrom selling %auction_item_name% &eto %auction_buyer_name% &ein an auction!";
-        public String pickUpBack = "&eYou claimed &f%auction_item_name% &eback from your expired auction!";
+        private String collectedMoney =
+                "&eYou collected &6%auction_top_bid% coins &efrom selling %auction_item_name% &eto %auction_buyer_name% &ein an auction!";
+        private String pickUpBack = "&eYou claimed &f%auction_item_name% &eback from your expired auction!";
 
-        public String youPaidMinimumPrice = "&7You paid the minimum price of &6%auction_top_bid% coins&7!";
+        private String youPaidMinimumPrice = "&7You paid the minimum price of &6%auction_top_bid% coins&7!";
 
-        public String youHadTheTop = "&7You had the top bid for &6%auction_top_bid% coins&7!";
-        public String youHadNotTheTop = "&6%auction_own_bid% coins&7 couldn't reach top bid!";
-        public String youMayCollectItem = "&7You may collect the item.";
-        public String youMayCollectMoney = "&7You may collect the money.";
-        public String clickToPickupItem = "&eClick to pick up item!";
-        public String clickToPickupCoins = "&eClick to pick up coins!";
-        public String claimedAuctionItem = "&eYou collected &a%auction_item_name% &efrom %auction_owner_name%'s auction!";
-        public String claimedMoneyBack = "&eYou claimed back your &6%auction_own_bid% coins &efrom %auction_owner_name%'s auction!";
+        private String youHadTheTop = "&7You had the top bid for &6%auction_top_bid% coins&7!";
+        private String youHadNotTheTop = "&6%auction_own_bid% coins&7 couldn't reach top bid!";
+        private String youMayCollectItem = "&7You may collect the item.";
+        private String youMayCollectMoney = "&7You may collect the money.";
+        private String clickToPickupItem = "&eClick to pick up item!";
+        private String clickToPickupCoins = "&eClick to pick up coins!";
+        private String claimedAuctionItem = "&eYou collected &a%auction_item_name% &efrom %auction_owner_name%'s auction!";
+        private String claimedMoneyBack = "&eYou claimed back your &6%auction_own_bid% coins &efrom %auction_owner_name%'s auction!";
 
     }
 
-
+    /**
+     * Utility class for plugin messages
+     */
+    @Getter
     public class PluginMessages extends OkaeriConfig {
-        public String successfullyReloaded = "&aPlugin has been reloaded successfully!";
+        private String successfullyReloaded = "&aPlugin has been reloaded successfully!";
 
-        public String invalidPlayer = "&cInvalid Player!";
+        private String invalidPlayer = "&cInvalid Player!";
 
-        public String useSyntax = "&cUsage: %usage%!";
+        private String useSyntax = "&cUsage: %usage%!";
 
-        public String noPermission = "&eYou don't have permission to do that!";
-        public String unknownCommand = "&cUnknown command!";
-        public String mustBeAPlayer = "&cYou must be a player to do that!";
-        public String invalidArguments = "&cInvalid Arguments!";
-        public String invalidAmount = "&cInvalid Amount!";
-        public String useHelp = "&cUse: /auction help";
+        private String noPermission = "&eYou don't have permission to do that!";
+        private String unknownCommand = "&cUnknown command!";
+        private String mustBeAPlayer = "&cYou must be a player to do that!";
+        private String invalidArguments = "&cInvalid Arguments!";
+        private String invalidAmount = "&cInvalid Amount!";
+        private String useHelp = "&cUse: /auction help";
 
-        public String helpMessage = "&7%command% - &e%description%";
-        public String helpHeader = "      &6&lTheAuction   ";
-        public String helpfooter = "&e<< &6Page %page% of %maxpage% &e>>";
-        public String previousPage = "<<";
-        public String nextPage = ">>";
-        public String helpPageHoverMessage = "Click to go to page %page%";
+        private String helpMessage = "&7%command% - &e%description%";
+        private String helpHeader = "      &6&lTheAuction   ";
+        private String helpfooter = "&e<< &6Page %page% of %maxpage% &e>>";
+        private String previousPage = "<<";
+        private String nextPage = ">>";
+        private String helpPageHoverMessage = "Click to go to page %page%";
     }
 
 

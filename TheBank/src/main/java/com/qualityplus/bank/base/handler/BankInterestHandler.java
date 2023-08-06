@@ -52,7 +52,7 @@ public final class BankInterestHandler implements Runnable {
             bankData.setLastInterestTime(System.currentTimeMillis());
             bankData.setLastInterest(interest);
 
-            final List<IPlaceholder> placeholders = new Placeholder("%bank_calculated_interest%", interest).alone();
+            final List<IPlaceholder> placeholders = new Placeholder("bank_calculated_interest", interest).alone();
 
             final String message = StringUtils.processMulti(box.files().messages().bankMessages.receivedInterestMessage, placeholders);
 

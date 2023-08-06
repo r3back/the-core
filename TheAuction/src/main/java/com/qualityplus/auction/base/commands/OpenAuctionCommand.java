@@ -17,28 +17,37 @@ import org.bukkit.entity.Player;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * Utility class for open auction command
+ */
 @Component
 public final class OpenAuctionCommand extends AssistantCommand {
     private @Inject Box box;
 
     @Override
-    public boolean execute(CommandSender sender, String[] args) {
-        String syntaxMsg = StringUtils.color(box.files().messages().pluginMessages.useSyntax.replace("%usage%", syntax));
-        String mustBeAPlayer = StringUtils.color(box.files().messages().pluginMessages.mustBeAPlayer.replace("%usage%", syntax));
-        String invalidPlayer = StringUtils.color(box.files().messages().pluginMessages.invalidPlayer.replace("%usage%", syntax));
+    public boolean execute(final CommandSender sender, final String[] args) {
+        final String syntaxMsg = StringUtils.color(this.box.files().messages().getPluginMessages().getUseSyntax().replace("%usage%", syntax));
+        final String mustBeAPlayer = StringUtils.color(this.box.files().messages().getPluginMessages().getMustBeAPlayer().replace("%usage%", syntax));
+        final String invalidPlayer = StringUtils.color(this.box.files().messages().getPluginMessages().getInvalidPlayer().replace("%usage%", syntax));
 
-        Player player = (Player) sender;
+        final Player player = (Player) sender;
 
-        return openInventory(args, sender, new MainAuctionGUI(box, AuctionFilterUtil.getSearcher(box), player.getUniqueId()), syntaxMsg, mustBeAPlayer, invalidPlayer);
+        return openInventory(args, sender, new MainAuctionGUI(this.box, AuctionFilterUtil.getSearcher(this.box), player.
+                getUniqueId()), syntaxMsg, mustBeAPlayer, invalidPlayer);
     }
 
     @Override
-    public List<String> onTabComplete(CommandSender commandSender, org.bukkit.command.Command command, String label, String[] args) {
+    public List<String> onTabComplete(final CommandSender commandSender, final org.bukkit.command.Command command, final String label, final String[]  args) {
         return args.length == 2 ? null : Collections.emptyList();
     }
 
+    /**
+     * Adds a Register
+     *
+     * @param box {@link Box}
+     */
     @Delayed(time = MinecraftTimeEquivalent.SECOND)
-    public void register(@Inject Box box){
-        TheAssistantPlugin.getAPI().getCommandProvider().registerCommand(this, e -> e.getCommand().setDetails(box.files().commands().openCommand));
+    public void register(@Inject final Box box) {
+        TheAssistantPlugin.getAPI().getCommandProvider().registerCommand(this, e -> e.getCommand().setDetails(box.files().commands().getOpenCommand()));
     }
 }

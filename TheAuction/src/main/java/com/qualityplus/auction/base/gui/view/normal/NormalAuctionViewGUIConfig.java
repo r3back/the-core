@@ -7,20 +7,47 @@ import com.qualityplus.assistant.lib.eu.okaeri.configs.OkaeriConfig;
 import lombok.Builder;
 import lombok.Getter;
 
+/**
+ * Utility class for normal auction view config
+ */
+@Getter
 public final class NormalAuctionViewGUIConfig extends OkaeriConfig implements SimpleGUI {
-    public @Getter CommonGUI commonGUI;
-    public Item auctionItem;
-    public Item submitBid;
-    public Item bidAmount;
-    public Item bidHistoryEmpty;
-    public Item bidHistoryFilled;
-    public Item goBack;
-    public Item collectAuctionItem;
-    public Item collectAuctionEmptyItem;
-    public Item collectItemAuctionItem;
+    private CommonGUI commonGUI;
+    private Item auctionItem;
+    private Item submitBid;
+    private Item bidAmount;
+    private Item bidHistoryEmpty;
+    private Item bidHistoryFilled;
+    private Item goBack;
+    private Item collectAuctionItem;
+    private Item collectAuctionEmptyItem;
+    private Item collectItemAuctionItem;
 
+    /**
+     * Makes a auction view gui config
+     *
+     * @param commonGUI               {@link CommonGUI}
+     * @param collectItemAuctionItem  {@link NormalAuctionViewGUIConfig}
+     * @param collectAuctionEmptyItem {@link NormalAuctionViewGUIConfig}
+     * @param auctionItem             {@link NormalAuctionViewGUIConfig}
+     * @param bidItem                 {@link NormalAuctionViewGUIConfig}
+     * @param bidAmount               {@link NormalAuctionViewGUIConfig}
+     * @param bidHistoryEmpty         {@link NormalAuctionViewGUIConfig}
+     * @param bidHistoryFilled        {@link NormalAuctionViewGUIConfig}
+     * @param goBack                  {@link NormalAuctionViewGUIConfig}
+     * @param collectAuctionItem      {@link NormalAuctionViewGUIConfig}
+     */
     @Builder
-    public NormalAuctionViewGUIConfig(CommonGUI commonGUI, Item collectItemAuctionItem, Item collectAuctionEmptyItem, Item auctionItem, Item bidItem, Item bidAmount, Item bidHistoryEmpty, Item bidHistoryFilled, Item goBack, Item collectAuctionItem) {
+    public NormalAuctionViewGUIConfig( final CommonGUI commonGUI,
+                                       final Item collectItemAuctionItem,
+                                       final Item collectAuctionEmptyItem,
+                                       final Item auctionItem,
+                                       final Item bidItem,
+                                       final Item bidAmount,
+                                       final Item bidHistoryEmpty,
+                                       final Item bidHistoryFilled,
+                                       final Item goBack,
+                                       final Item collectAuctionItem) {
         this.goBack = goBack;
         this.commonGUI = commonGUI;
         this.auctionItem = auctionItem;

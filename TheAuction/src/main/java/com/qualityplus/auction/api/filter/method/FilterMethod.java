@@ -7,6 +7,9 @@ import com.qualityplus.assistant.lib.eu.okaeri.configs.OkaeriConfig;
 import com.qualityplus.assistant.lib.eu.okaeri.configs.annotation.Exclude;
 import lombok.Data;
 
+/**
+ * Utility class for filter method
+ */
 @Data
 public final class FilterMethod extends OkaeriConfig {
     private String id;

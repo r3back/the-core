@@ -9,6 +9,9 @@ import lombok.EqualsAndHashCode;
 
 import java.util.List;
 
+/**
+ * Utility class for auction category
+ */
 @Data @EqualsAndHashCode(callSuper = true)
 public final class AuctionCategory extends OkaeriConfig {
     private String id;
@@ -17,8 +20,21 @@ public final class AuctionCategory extends OkaeriConfig {
     private GUIDisplayItem displayInfo;
     private List<CategoryFilter> filters;
 
+    /**
+     * Makes an auction category
+     *
+     * @param id          Id
+     * @param displayName Display Name
+     * @param materials   {@link XMaterial}
+     * @param displayInfo {@link GUIDisplayItem}
+     * @param filters     {@link CategoryFilter}
+     */
     @Builder
-    public AuctionCategory(String id, String displayName, List<XMaterial> materials, GUIDisplayItem displayInfo, List<CategoryFilter> filters) {
+    public AuctionCategory(final String id,
+                           final String displayName,
+                           final List<XMaterial> materials,
+                           final GUIDisplayItem displayInfo,
+                           final List<CategoryFilter> filters) {
         this.id = id;
         this.filters = filters;
         this.materials = materials;
