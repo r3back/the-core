@@ -23,62 +23,75 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Utility class for main gui
+ */
 public final class MainGUI extends SkillsGUI {
     private final MainGUIConfig config;
     private final String name;
 
-    public MainGUI(Box box, Player player) {
-        super(box.files().inventories().mainGUIConfig, box);
+    /**
+     * Makes a main gui
+     *
+     * @param box    {@link Box}
+     * @param player {@link Player}
+     */
+    public MainGUI(final Box box, final Player player) {
+        super(box.files().inventories().getMainGUIConfig(), box);
 
-        this.config = box.files().inventories().mainGUIConfig;
+        this.config = box.files().inventories().getMainGUIConfig();
         this.uuid = player.getUniqueId();
         this.name = player.getName();
     }
 
     @Override
     public @NotNull Inventory getInventory() {
-        fillInventory(config);
+        fillInventory(this.config);
 
-        setItem(config.getCloseGUI());
+        setItem(this.config.getCloseGUI());
 
-        UserData data = box.service().getData(uuid).orElse(new UserData());
+        final UserData data = box.service().getData(uuid).orElse(new UserData());
 
-        for(Skill skill : Skills.values(Skill::isEnabled))
+        for (Skill skill : Skills.values(Skill::isEnabled)) {
             Optional.ofNullable(skill.getGuiOptions()).ifPresent(option -> inventory.setItem(option.getSlot(), getItem(data, skill, option)));
 
-        setItem(config.getPlayerInfoItem(), Collections.singletonList(new Placeholder("player", name)));
+            setItem(this.config.getPlayerInfoItem(), Collections.singletonList(new Placeholder("player", this.name)));
 
-        Optional.ofNullable(config.getCustomGoBackItem()).ifPresent(this::setItem);
+            Optional.ofNullable(this.config.getCustomGoBackItem()).ifPresent(this::setItem);
+        }
 
         return inventory;
     }
 
-    private ItemStack getItem(UserData data, Skill skill, GUIOptions option){
-        return SkillsItemStackUtil.makeItem(config.getSkillsItem(), getPlaceholders(data, skill, option), option);
+    private ItemStack getItem(final UserData data, final Skill skill, final GUIOptions option) {
+        return SkillsItemStackUtil.makeItem(this.config.getSkillsItem(), getPlaceholders(data, skill, option), option);
     }
 
-    private List<IPlaceholder> getPlaceholders(UserData data, Skill skill, GUIOptions option){
+    private List<IPlaceholder> getPlaceholders(final UserData data, final Skill skill, final GUIOptions option) {
         return SkillsPlaceholderUtil.getAllPlaceholders(data, skill)
-                .with(new Placeholder("skill_info_gui", StringUtils.processMulti(option.getMainMenuLore(), SkillsPlaceholderUtil.getAllPlaceholders(data, skill).get())))
+                .with(new Placeholder("skill_info_gui",
+                        StringUtils.processMulti(option
+                        .getMainMenuLore(), SkillsPlaceholderUtil
+                        .getAllPlaceholders(data, skill).get())))
                 .get();
     }
 
     @Override
-    public void onInventoryClick(InventoryClickEvent event) {
+    public void onInventoryClick(final InventoryClickEvent event) {
         event.setCancelled(true);
 
-        Player player = (Player) event.getWhoClicked();
+        final Player player = (Player) event.getWhoClicked();
 
-        int slot = event.getSlot();
+        final int slot = event.getSlot();
 
-        if(isItem(slot, config.getCloseGUI())) {
+        if (isItem(slot, this.config.getCloseGUI())) {
             player.closeInventory();
-        }else if(isItem(slot, config.getPlayerInfoItem())){
+        } else if (isItem(slot, this.config.getPlayerInfoItem())) {
             player.openInventory(new StatsAndPerksGUI(box, player, 1, StatsAndPerksGUI.GUIType.STAT).getInventory());
-        }else if(isItem(slot, config.getCustomGoBackItem())){
-            handleItemCommandClick(player, config.getCustomGoBackItem());
-        }else{
-            Optional<Skill> optionalSkill = Skills.values(Skill::isEnabled).stream().filter(s -> s.getGuiOptions().getSlot() == slot).findFirst();
+        } else if (isItem(slot, this.config.getCustomGoBackItem())) {
+            handleItemCommandClick(player, this.config.getCustomGoBackItem());
+        } else {
+            final Optional<Skill> optionalSkill = Skills.values(Skill::isEnabled).stream().filter(s -> s.getGuiOptions().getSlot() == slot).findFirst();
 
             optionalSkill.ifPresent(s -> player.openInventory(new SkillGUI(box, player, s, 1).getInventory()));
         }

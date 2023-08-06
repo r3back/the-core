@@ -22,37 +22,69 @@ import org.bukkit.inventory.ItemStack;
 
 import java.util.List;
 
+/**
+ * Utility class for refurbished perk
+ */
 @Getter
 @Setter
 @NoArgsConstructor
 public final class RefurbishedPerk extends Perk {
     private List<XMaterial> toolList;
 
+    /**
+     *
+     * @param id               Id
+     * @param enabled          Enabled
+     * @param displayName      Display Name
+     * @param description      Description
+     * @param skillGUIOptions  {@link GUIOptions}
+     * @param baseAmount       Base Amount
+     * @param chancePerLevel   Chance Per Level
+     * @param toolList         list of {@link XMaterial}
+     */
     @Builder
-    public RefurbishedPerk(String id, boolean enabled, String displayName, List<String> description, GUIOptions skillGUIOptions, double baseAmount, double chancePerLevel, List<XMaterial> toolList) {
+    public RefurbishedPerk(final String id,
+                           final boolean enabled,
+                           final String displayName,
+                           final List<String> description,
+                           final GUIOptions skillGUIOptions,
+                           final double baseAmount,
+                           final double chancePerLevel,
+                           final List<XMaterial> toolList) {
         super(id, enabled, displayName, description, skillGUIOptions, baseAmount, chancePerLevel);
 
         this.toolList = toolList;
     }
 
+    /**
+     * Adds a handle perk
+     *
+     * @param e {@link PlayerInteractEvent}
+     */
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
-    public void handlePerk(PlayerInteractEvent e) {
-        Player p = e.getPlayer();
+    public void handlePerk(final PlayerInteractEvent e) {
+        final Player p = e.getPlayer();
 
-        if(!e.getAction().equals(Action.RIGHT_CLICK_BLOCK) && !e.getAction().equals(Action.LEFT_CLICK_BLOCK)) return;
-
-        ItemStack inHand = p.getItemInHand();
-
-        if(BukkitItemUtil.isNull(inHand)) return;
-
-        if(!toolList.contains(XMaterial.matchXMaterial(inHand.getType()))) return;
-
-        if (RandomUtil.randomBetween(0.0, 100.0) >= getChancePerLevel() * getStat(p))
+        if (!e.getAction().equals(Action.RIGHT_CLICK_BLOCK) && !e.getAction().equals(Action.LEFT_CLICK_BLOCK)) {
             return;
+        }
 
-        NMS nms = TheAssistantPlugin.getAPI().getNms();
+        final ItemStack inHand = p.getItemInHand();
 
-        short durability = inHand.getType().getMaxDurability();
+        if (BukkitItemUtil.isNull(inHand)) {
+            return;
+        }
+
+        if (!this.toolList.contains(XMaterial.matchXMaterial(inHand.getType()))) {
+            return;
+        }
+
+        if (RandomUtil.randomBetween(0.0, 100.0) >= getChancePerLevel() * getStat(p)) {
+            return;
+        }
+        final NMS nms = TheAssistantPlugin.getAPI().getNms();
+
+        final short durability = inHand.getType().getMaxDurability();
 
         Bukkit.getScheduler().runTask(TheSkills.getApi().getPlugin(), () -> p.setItemInHand(nms.setDurability(inHand, durability)));
 

@@ -14,13 +14,24 @@ import org.bukkit.inventory.ItemStack;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * Utility class for skills item stack
+ */
 @UtilityClass
 public final class SkillsItemStackUtil {
-    public static ItemStack makeItem(Item item, List<IPlaceholder> placeholders, GUIOptions skillGUIOptions){
+    /**
+     * Makes an item stack
+     *
+     * @param item               {@link Item}
+     * @param placeholders       list of {@link IPlaceholder}
+     * @param skillGUIOptions    {@link GUIOptions}
+     * @return                   {@link ItemStack}
+     */
+    public static ItemStack makeItem(final Item item, final List<IPlaceholder> placeholders, final GUIOptions skillGUIOptions) {
         try {
-            Item item1 = ItemBuilder.of(skillGUIOptions.getItem(), 1, 1, "", Collections.emptyList()).headData(skillGUIOptions.getTexture()).build();
+            final Item item1 = ItemBuilder.of(skillGUIOptions.getItem(), 1, 1, "", Collections.emptyList()).headData(skillGUIOptions.getTexture()).build();
 
-            ItemStack firstProcess = ItemStackUtils.makeItem(
+            final ItemStack firstProcess = ItemStackUtils.makeItem(
                     skillGUIOptions.getItem(),
                     1,
                     StringUtils.processMulti(item.displayName, placeholders),

@@ -9,18 +9,18 @@ import com.qualityplus.skills.base.reward.StatReward;
 import com.qualityplus.skills.base.skill.gui.GUIOptions;
 import com.qualityplus.skills.base.skill.registry.Skills;
 import com.qualityplus.skills.base.skill.skills.blockbreak.BlockBreakResponse;
-import com.qualityplus.skills.util.SkillsPlayerUtil;
-import lombok.*;
-import org.bukkit.Material;
-import org.bukkit.entity.Player;
-import org.bukkit.event.Listener;
-import org.bukkit.event.block.BlockBreakEvent;
-
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+/**
+ * Utility class for skill
+ */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -33,9 +33,34 @@ public abstract class Skill extends CommonObject implements ListenerRegistrable 
     private Map<Integer, List<String>> skillInfoInMessage;
     private Map<Integer, List<CommandReward>> commandRewards;
 
-    public Skill(String id, boolean enabled, String displayName, List<String> description, GUIOptions skillGUIOptions, double initialAmount, int maxLevel,
-                 Map<Integer, Double> xpRequirements, Map<Integer, List<String>> skillInfoInGUI, Map<Integer, List<StatReward>> statRewards,
-                 Map<Integer, List<String>> skillInfoInMessage, Map<Integer, List<CommandReward>> commandRewards) {
+    /**
+     * Makes a skill
+     *
+     * @param id                        Id
+     * @param enabled                  Enabled
+     * @param displayName              Display Name
+     * @param description              Description
+     * @param skillGUIOptions          {@link GUIOptions}
+     * @param initialAmount            Initial Amount
+     * @param maxLevel                 Max Level
+     * @param xpRequirements           Xp Requirements
+     * @param skillInfoInGUI           Skill Info In GUI
+     * @param statRewards              Stat Rewards
+     * @param skillInfoInMessage       Skill Info In Message
+     * @param commandRewards           Command Rewards
+     */
+    public Skill(final String id,
+                 final boolean enabled,
+                 final String displayName,
+                 final List<String> description,
+                 final GUIOptions skillGUIOptions,
+                 final double initialAmount,
+                 final int maxLevel,
+                 final Map<Integer, Double> xpRequirements,
+                 final Map<Integer, List<String>> skillInfoInGUI,
+                 final Map<Integer, List<StatReward>> statRewards,
+                 final Map<Integer, List<String>> skillInfoInMessage,
+                 final Map<Integer, List<CommandReward>> commandRewards) {
         super(id, enabled, displayName, description, skillGUIOptions, initialAmount);
         this.maxLevel = maxLevel;
         this.xpRequirements = xpRequirements;
@@ -46,58 +71,98 @@ public abstract class Skill extends CommonObject implements ListenerRegistrable 
     }
 
     @Override
-    public void register(){
+    public void register() {
         Skills.registerNewSkill(this);
     }
 
     @Override
-    public void addExtraListener(Class<? extends ExtraListener> listener){
+    public void addExtraListener(final Class<? extends ExtraListener> listener) {
         extraListeners.add(listener);
     }
 
-    private <T> T getMap(Map<Integer, T> map, int level){
+    private <T> T getMap(final Map<Integer, T> map, final int level) {
         if (map.containsKey(level)) {
             return map.get(level);
         } else {
             int highestLevel = 1;
 
             for (Integer startLevel : map.keySet()) {
-                if (startLevel > level)
+                if (startLevel > level) {
                     break;
-
-                if (startLevel > highestLevel)
+                }
+                if (startLevel > highestLevel) {
                     highestLevel = startLevel;
+                }
             }
 
             return map.getOrDefault(highestLevel, null);
         }
     }
 
-    public List<String> getCachedMessage(int level) {
-        return getMap(skillInfoInMessage, level);
+    /**
+     * Adds a cached message
+     *
+     * @param level Level
+     * @return      Cached message
+     */
+    public List<String> getCachedMessage(final int level) {
+        return getMap(this.skillInfoInMessage, level);
     }
 
-    public List<String> getCachedGUI(int level) {
-        return getMap(skillInfoInGUI, level);
+    /**
+     * Adds a cached GUI
+     *
+     * @param level Level
+     * @return      Cached GUI
+     */
+    public List<String> getCachedGUI(final int level) {
+        return getMap(this.skillInfoInGUI, level);
 
     }
 
-    public List<CommandReward> getCommandRewards(int level) {
-        return Optional.ofNullable(getMap(commandRewards, level)).orElse(Collections.emptyList());
+    /**
+     * Adds a command reward
+     *
+     * @param level Level
+     * @return      {@link CommandReward}
+     */
+    public List<CommandReward> getCommandRewards(final int level) {
+        return Optional.ofNullable(getMap(this.commandRewards, level)).orElse(Collections.emptyList());
     }
 
-    public List<StatReward> getStatRewards(int level) {
-        return Optional.ofNullable(getMap(statRewards, level)).orElse(Collections.emptyList());
+    /**
+     * Adds a stat rewards
+     *
+     * @param level Level
+     * @return      {@link StatReward}
+     */
+    public List<StatReward> getStatRewards(final int level) {
+        return Optional.ofNullable(getMap(this.statRewards, level)).orElse(Collections.emptyList());
     }
 
-    public double getLevelRequirement(int level){
-        return getMap(xpRequirements, level);
+    /**
+     * Adds an level requirement
+     *
+     * @param level Level
+     * @return      Level Requirement
+     */
+    public double getLevelRequirement(final int level) {
+        return getMap(this.xpRequirements, level);
     }
 
-    public Optional<BlockBreakResponse> getBlockBreakEventXp(final XMaterial material, final Map<XMaterial, Double> rewards){
-        double xp = rewards.getOrDefault(material, 0D);
+    /**
+     * Makes a block break response
+     *
+     * @param material Material
+     * @param rewards  Rewards
+     * @return         {@link BlockBreakResponse}
+     */
+    public Optional<BlockBreakResponse> getBlockBreakEventXp(final XMaterial material, final Map<XMaterial, Double> rewards) {
+        final double xp = rewards.getOrDefault(material, 0D);
 
-        if(xp <= 0) return Optional.empty();
+        if (xp <= 0) {
+            return Optional.empty();
+        }
 
         return Optional.of(BlockBreakResponse.builder()
                         .xp(xp)

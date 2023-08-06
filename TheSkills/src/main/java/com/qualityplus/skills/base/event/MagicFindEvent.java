@@ -9,11 +9,22 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
+/**
+ * Utility class for magic find
+ */
 public final class MagicFindEvent extends StatEvent {
     private @Getter @Setter ItemStack toDropItem;
     private final @Getter Location toDropLocation;
 
-    public MagicFindEvent(@NotNull Player who, Stat stat, final ItemStack toDropItem, final Location toDropLocation) {
+    /**
+     * Makes a magic find
+     *
+     * @param who            Who
+     * @param stat           {@link Stat}
+     * @param toDropItem     {@link ItemStack}
+     * @param toDropLocation {@link Location}
+     */
+    public MagicFindEvent(@NotNull final Player who, final Stat stat, final ItemStack toDropItem, final Location toDropLocation) {
         super(who, stat);
 
         this.toDropLocation = toDropLocation;

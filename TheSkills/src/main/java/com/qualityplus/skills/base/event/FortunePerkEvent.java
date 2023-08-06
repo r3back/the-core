@@ -8,12 +8,22 @@ import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
+/**
+ * Utility class for fortune perk
+ */
 @Getter
 @Setter
 public abstract class FortunePerkEvent extends PerkEvent {
     private Location toDropLocation;
 
-    public FortunePerkEvent(@NotNull Player who, Perk perk, Location toDropLocation) {
+    /**
+     * Makes a fortune perk
+     *
+     * @param who             {@link Player}
+     * @param perk            {@link Perk}
+     * @param toDropLocation  {@link Location}
+     */
+    public FortunePerkEvent(@NotNull final Player who, final Perk perk, final Location toDropLocation) {
         super(who, perk);
 
         this.toDropLocation = toDropLocation;

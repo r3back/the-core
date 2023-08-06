@@ -17,53 +17,85 @@ import org.bukkit.event.block.BlockBreakEvent;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Utility class for abstract fortune perk
+ */
 @NoArgsConstructor
 public abstract class AbstractFortuneBlockPerk extends AbstractFortunePerk {
-    public AbstractFortuneBlockPerk(String id, boolean enabled, String displayName, List<String> description, GUIOptions skillGUIOptions, double baseAmount, double chancePerLevel, List<XMaterial> allowedMaterials) {
+    /**
+     *
+     * @param id               Id
+     * @param enabled          Enabled
+     * @param displayName      Display Name
+     * @param description      Description
+     * @param skillGUIOptions  {@link GUIOptions}
+     * @param baseAmount       Base Amount
+     * @param chancePerLevel   Chance Per Level
+     * @param allowedMaterials Allowed Materials
+     */
+    public AbstractFortuneBlockPerk(final String id,
+                                    final boolean enabled,
+                                    final String displayName,
+                                    final List<String> description,
+                                    final GUIOptions skillGUIOptions,
+                                    final double baseAmount,
+                                    final double chancePerLevel,
+                                    final List<XMaterial> allowedMaterials) {
         super(id, enabled, displayName, description, skillGUIOptions, baseAmount, chancePerLevel, allowedMaterials);
     }
 
-    protected boolean isAllowedMaterial(BlockBreakEvent e){
-        Player player = e.getPlayer();
+    protected boolean isAllowedMaterial(final BlockBreakEvent e) {
 
-        if(!SkillsPlayerUtil.isInSurvival(player)) return false;
+        final Player player = e.getPlayer();
 
-        XMaterial material = XMaterial.matchXMaterial(e.getBlock().getType());
+        if (!SkillsPlayerUtil.isInSurvival(player)) {
+            return false;
+        }
+
+        final XMaterial material = XMaterial.matchXMaterial(e.getBlock().getType());
 
         return getAllowedMaterials().contains(material);
     }
 
+    /**
+     * Adds an on break
+     *
+     * @param event {@link BlockBreakEvent}
+     */
     @EventHandler(priority = EventPriority.HIGH, ignoreCancelled = true)
-    public void  onBreak(BlockBreakEvent event) {
-        if(!isAllowedMaterial(event)) return;
-
-        Player player = event.getPlayer();
-
-        Block block = event.getBlock();
-
-        if (BlockUtils.isPlacedByPlayer(block))
+    public void  onBreak(final BlockBreakEvent event) {
+        if (!isAllowedMaterial(event)) {
             return;
+        }
 
-        int level = getStat(player);
+        final Player player = event.getPlayer();
 
-        double chance = getChance(level);
+        final Block block = event.getBlock();
+
+        if (BlockUtils.isPlacedByPlayer(block)) {
+            return;
+        }
+        final int level = getStat(player);
+
+        final double chance = getChance(level);
 
         int additional = getMultiplier(level) - 2;
 
-        if (additional <= 0)
+        if (additional <= 0) {
             return;
-
-        if (RandomUtil.randomBetween(0.0, 100.0) < chance)
+        }
+        if (RandomUtil.randomBetween(0.0, 100.0) < chance) {
             additional++;
-
-        ItemFortunePerkEvent fortunePerkEvent = new ItemFortunePerkEvent(player, this, new ArrayList<>(event.getBlock().getDrops()), event.getBlock().getLocation());
+        }
+        final ItemFortunePerkEvent fortunePerkEvent = new ItemFortunePerkEvent(player, this,
+                new ArrayList<>(event.getBlock().getDrops()), event.getBlock().getLocation());
 
         Bukkit.getPluginManager().callEvent(fortunePerkEvent);
 
-        if (fortunePerkEvent.getToDropItems().isEmpty() || fortunePerkEvent.isCancelled())
+        if (fortunePerkEvent.getToDropItems().isEmpty() || fortunePerkEvent.isCancelled()) {
             return;
-
-        int finalAdditional = additional;
+        }
+        final int finalAdditional = additional;
 
         fortunePerkEvent.getToDropItems().forEach(item -> block.getWorld().dropItem(block.getLocation(), getModified(item, finalAdditional)));
     }

@@ -17,6 +17,9 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * Utility class for farming fortune config
+ */
 @Getter
 @Setter
 @Configuration(path = "perks/farming_fortune_perk.yml")
@@ -25,25 +28,32 @@ import java.util.List;
 @Header("================================")
 @Names(strategy = NameStrategy.HYPHEN_CASE, modifier = NameModifier.TO_LOWER_CASE)
 public final class FarmingFortuneConfig extends OkaeriConfig implements PerkFile {
-    public String id = "farming_fortune";
-    public boolean enabled = true;
-    public String displayName = "Farming Fortune";
-    public List<String> description = Arrays.asList("  &a%percent%% &7chance to get &a%multiplier%x &7drops", "  &7when break crops.");
-    public int maxLevel = 50;
-    public GUIOptions guiOptions = GUIOptions.builder()
+    private String id = "farming_fortune";
+    private boolean enabled = true;
+    private String displayName = "Farming Fortune";
+    private List<String> description = Arrays.asList("  &a%percent%% &7chance to get &a%multiplier%x &7drops", "  &7when break crops.");
+    private int maxLevel = 50;
+    private GUIOptions guiOptions = GUIOptions.builder()
             .slot(13)
             .page(1)
             .item(XMaterial.PLAYER_HEAD)
-            .texture("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvN2FhNTk2NmExNDcyNDQ1MDRjYzU2ZWY2ZWZkMmQyZjQ0NzM4YjhmMDNkOTNhNjE3NjZhZjNmYzQ0ODdmOTgwYiJ9fX0=")
+            .texture("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvN2F" +
+                    "hNTk2NmExNDcyNDQ1MDRjYzU2ZWY2ZWZkMmQyZjQ0NzM4YjhmMDNkOTNhNjE3NjZhZjNmYzQ0ODdmOTgwYiJ9fX0=")
             .mainMenuLore(Collections.singletonList("%skill_farming_fortune_description%"))
             .build();
-    public Perk getPerk(){
+
+    /**
+     * Adds a perk
+     *
+     * @return {@link FarmingFortunePerk}
+     */
+    public Perk getPerk() {
         return FarmingFortunePerk.builder()
-                .id(id)
-                .displayName(displayName)
-                .description(description)
-                .enabled(enabled)
-                .skillGUIOptions(guiOptions)
+                .id(this.id)
+                .displayName(this.displayName)
+                .description(this.description)
+                .enabled(this.enabled)
+                .skillGUIOptions(this.guiOptions)
                 .chancePerLevel(0.1)
                 .initialAmount(0)
                 .allowedMaterials(Arrays.asList(

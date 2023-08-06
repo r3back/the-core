@@ -10,12 +10,23 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
+/**
+ * Utility class for item fortune perk
+ */
 @Getter
 @Setter
 public final class ItemFortunePerkEvent extends FortunePerkEvent {
     private List<ItemStack> toDropItems;
 
-    public ItemFortunePerkEvent(@NotNull Player who, Perk perk, List<ItemStack> toDropItems, Location toDropLocation) {
+    /**
+     * Makes a item fortune perk event
+     *
+     * @param who             {@link Player}
+     * @param perk            {@link Perk}
+     * @param toDropItems     List Of {@link ItemStack}
+     * @param toDropLocation  {@link Location}
+     */
+    public ItemFortunePerkEvent(@NotNull final Player who, final Perk perk, final List<ItemStack> toDropItems, final Location toDropLocation) {
         super(who, perk, toDropLocation);
 
         this.toDropItems = toDropItems;

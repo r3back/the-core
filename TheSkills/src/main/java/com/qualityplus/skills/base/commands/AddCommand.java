@@ -6,8 +6,6 @@ import com.qualityplus.assistant.api.util.IPlaceholder;
 import com.qualityplus.assistant.lib.eu.okaeri.injector.annotation.Inject;
 import com.qualityplus.assistant.util.StringUtils;
 import com.qualityplus.assistant.util.list.ListBuilder;
-import com.qualityplus.assistant.util.list.ListUtils;
-import com.qualityplus.assistant.api.util.MathUtil;
 import com.qualityplus.assistant.util.number.NumberUtil;
 import com.qualityplus.assistant.util.placeholder.Placeholder;
 import com.qualityplus.skills.api.box.Box;
@@ -24,63 +22,70 @@ import com.qualityplus.assistant.lib.eu.okaeri.platform.core.annotation.Componen
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+/**
+ * Utility class for Add command
+ */
 @Component
 public final class AddCommand extends AssistantCommand {
     private @Inject Box box;
 
     @Override
-    public boolean execute(CommandSender sender, String[] args) {
-        if(args.length == 4) {
+    public boolean execute(final CommandSender sender, final String[] args) {
+        if (args.length == 4) {
 
-            Player player = Bukkit.getPlayer(args[1]);
+            final Player player = Bukkit.getPlayer(args[1]);
 
-            if(player == null){
-                sender.sendMessage(StringUtils.color(box.files().messages().pluginMessages.invalidPlayer));
+            if (player == null) {
+                sender.sendMessage(StringUtils.color(this.box.files().messages().getPluginMessages().getInvalidPlayer()));
                 return false;
             }
 
-            Skill skill = Skills.getByID(args[2]);
-            Stat stat = Stats.getByID(args[2]);
+            final Skill skill = Skills.getByID(args[2]);
+            final Stat stat = Stats.getByID(args[2]);
 
-            CommonObject object = skill != null ? skill : stat;
+            final CommonObject object = skill != null ? skill : stat;
 
-            if(object == null){
-                sender.sendMessage(StringUtils.color(box.files().messages().skillsMessages.invalidObject));
+            if (object == null) {
+                sender.sendMessage(StringUtils.color(this.box.files().messages().getSkillsMessages().getInvalidObject()));
                 return false;
             }
 
-            Integer level = NumberUtil.intOrNull(args[3]);
+            final Integer level = NumberUtil.intOrNull(args[3]);
 
-            if(level == null){
-                sender.sendMessage(StringUtils.color(box.files().messages().pluginMessages.invalidAmount));
+            if (level == null) {
+                sender.sendMessage(StringUtils.color(this.box.files().messages().getPluginMessages().getInvalidAmount()));
                 return false;
             }
 
-            Optional<UserData> data = box.service().getData(player.getUniqueId());
+            final Optional<UserData> data = this.box.service().getData(player.getUniqueId());
 
             data.ifPresent(userData -> userData.getSkills().addLevel(object.getId(), level));
 
-            List<IPlaceholder> placeholders = Arrays.asList(new Placeholder("amount", level)
-                    , new Placeholder("object", object.getId())
-                    , new Placeholder("player", player.getName())
-                    , new Placeholder("new_level", data.map(d -> d.getSkills().getLevel(object.getId())).orElse(0)));
+            final List<IPlaceholder> placeholders = Arrays.asList(new Placeholder("amount", level),
+                    new Placeholder("object", object.getId()),
+                    new Placeholder("player", player.getName()),
+                    new Placeholder("new_level", data.map(d -> d.getSkills().getLevel(object.getId())).orElse(0)));
 
-            sender.sendMessage(StringUtils.processMulti(box.files().messages().skillsMessages.addedAmount, placeholders));
+            sender.sendMessage(StringUtils.processMulti(this.box.files().messages().getSkillsMessages().getAddedAmount(), placeholders));
 
-        }else
-            sender.sendMessage(StringUtils.color(box.files().messages().pluginMessages.useSyntax));
+        } else {
+            sender.sendMessage(StringUtils.color(this.box.files().messages().getPluginMessages().getUseSyntax()));
+        }
         return true;
+
     }
 
     @Override
-    public List<String> onTabComplete(CommandSender commandSender, org.bukkit.command.Command command, String label, String[] args) {
+    public List<String> onTabComplete(final CommandSender commandSender,
+                                      final org.bukkit.command.Command command,
+                                      final String label,
+                                      final String[] args) {
         return args.length == 2 ? null : args.length == 3 ?
                 new ListBuilder<String>()
                         .with(Stats.values().stream().map(CommonObject::getId).collect(Collectors.toList()))
@@ -89,8 +94,13 @@ public final class AddCommand extends AssistantCommand {
                 : args.length == 4 ? NumberUtil.stringSecuence(0, 10) : Collections.emptyList();
     }
 
+    /**
+     * Adds a register
+     *
+     * @param box {@link Box}
+     */
     @Delayed(time = MinecraftTimeEquivalent.SECOND)
-    public void register(@Inject Box box){
-        TheAssistantPlugin.getAPI().getCommandProvider().registerCommand(this, e -> e.getCommand().setDetails(box.files().commands().addCommand));
+    public void register(@Inject final Box box) {
+        TheAssistantPlugin.getAPI().getCommandProvider().registerCommand(this, e -> e.getCommand().setDetails(box.files().commands().getAddCommand()));
     }
 }

@@ -9,6 +9,9 @@ import com.qualityplus.skills.base.config.Messages;
 
 import com.qualityplus.assistant.lib.eu.okaeri.platform.core.annotation.Component;
 
+/**
+ * Utility class for basic files
+ */
 @Component
 public final class BasicFiles implements ConfigFiles<Config, Inventories, Commands, Messages> {
     private @Inject Inventories inventories;
@@ -18,29 +21,29 @@ public final class BasicFiles implements ConfigFiles<Config, Inventories, Comman
 
     @Override
     public Config config() {
-        return config;
+        return this.config;
     }
 
     @Override
     public Inventories inventories() {
-        return inventories;
+        return this.inventories;
     }
 
     @Override
     public Messages messages() {
-        return messages;
+        return this.messages;
     }
 
     @Override
     public Commands commands() {
-        return commands;
+        return this.commands;
     }
 
     @Override
     public void reloadFiles() {
-        config.load();
-        commands.load();
-        messages.load();
-        inventories.load();
+        this.config.load();
+        this.commands.load();
+        this.messages.load();
+        this.inventories.load();
     }
 }

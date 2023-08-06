@@ -10,6 +10,9 @@ import lombok.NoArgsConstructor;
 
 import java.util.List;
 
+/**
+ * Utility class for sub gui config
+ */
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter

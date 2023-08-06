@@ -12,6 +12,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * Utility class for common onbject
+ */
 @NoArgsConstructor
 @Getter
 @Setter
@@ -26,7 +29,22 @@ public abstract class CommonObject {
 
     protected @Getter @Setter double initialAmount;
 
-    public CommonObject(String id, boolean enabled, String displayName, List<String> description, GUIOptions skillGUIOptions, double initialAmount) {
+    /**
+     * Makes a common object
+     *
+     * @param id                        Id
+     * @param enabled                  Enabled
+     * @param displayName              Display Name
+     * @param description              Description
+     * @param skillGUIOptions          {@link GUIOptions}
+     * @param initialAmount            Initial Amount
+     */
+    public CommonObject(final String id,
+                        final boolean enabled,
+                        final String displayName,
+                        final List<String> description,
+                        final GUIOptions skillGUIOptions,
+                        final double initialAmount) {
         this.id = id;
         this.enabled = enabled;
         this.initialAmount = initialAmount;
@@ -35,13 +53,28 @@ public abstract class CommonObject {
         this.guiOptions = skillGUIOptions;
     }
 
-    public List<IPlaceholder> getPlaceholders(Integer level){
+    /**
+     * Adds a list placeholder
+     *
+     * @param level Level
+     * @return      List of {@link IPlaceholder}
+     */
+    public List<IPlaceholder> getPlaceholders(final Integer level) {
         return Collections.emptyList();
     }
 
-    public List<String> getFormattedDescription(int level){
-        return description;
+    /**
+     * Adds a description
+     *
+     * @param level Level
+     * @return      Formatted Description
+     */
+    public List<String> getFormattedDescription(final int level) {
+        return this.description;
     }
 
+    /**
+     * Adds a register
+     */
     public abstract void register();
 }

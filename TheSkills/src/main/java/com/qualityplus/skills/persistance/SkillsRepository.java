@@ -12,26 +12,54 @@ import org.bukkit.entity.Player;
 import java.util.Optional;
 import java.util.UUID;
 
+/**
+ * Makes a skills repositories
+ */
 @DependsOn(type = DocumentPersistence.class, name = "persistence")
 @DocumentCollection(path = "player", keyLength = 36, indexes = {
         @DocumentIndex(path = "name", maxLength = 24)
 })
 public interface SkillsRepository extends DocumentRepository<UUID, UserData> {
 
-    @DocumentPath("name")
-    Optional<UserData> findByName(String name);
+    /**
+     * Adds a user data
+     *
+     * @param name Name
+     * @return     {@link UserData}
+     */
+    public @DocumentPath("name")
+        Optional<UserData> findByName(String name);
 
-    @DocumentPath("uuid")
-    Optional<UserData> findByUuid(UUID uuid);
+    /**
+     * Adds a uuid
+     *
+     * @param uuid {@link UUID}
+     * @return     {@link UserData}
+     */
+    public @DocumentPath("uuid")
+        Optional<UserData> findByUuid(UUID uuid);
 
 
-    default UserData get(Player player) {
+    /**
+     * Adds a user data
+     *
+     * @param player {@link Player}
+     * @return       {@link UserData}
+     */
+    public default UserData get(Player player) {
         return get(player.getUniqueId(), player.getName());
     }
 
-    default UserData get(UUID uuid, String name) {
+    /**
+     * Adds a user data
+     *
+     * @param uuid {@link UUID}
+     * @param name Name
+     * @return     {@link UserData}
+     */
+    public default UserData get(UUID uuid, String name) {
 
-        UserData user = this.findOrCreateByPath(uuid);
+        final UserData user = this.findOrCreateByPath(uuid);
 
         user.setUuid(uuid);
 

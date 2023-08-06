@@ -18,40 +18,52 @@ import org.bukkit.entity.Player;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * Utility class for skill menu command
+ */
 @Component
 public final class SkillMenuCommand extends AssistantCommand {
     private @Inject Box box;
 
     @Override
-    public boolean execute(CommandSender sender, String[] args) {
-        if(args.length == 2) {
-            Player player = (Player) sender;
+    public boolean execute(final CommandSender sender, final String[] args) {
+        if (args.length == 2) {
+            final Player player = (Player) sender;
 
-            Skill skill = Skills.getByID(args[1]);
+            final Skill skill = Skills.getByID(args[1]);
 
-            if(skill == null){
-                player.sendMessage(StringUtils.color(box.files().messages().skillsMessages.invalidObject));
+            if (skill == null) {
+                player.sendMessage(StringUtils.color(this.box.files().messages().getSkillsMessages().getInvalidObject()));
                 return false;
             }
 
-            if(!skill.isEnabled()){
-                player.sendMessage(StringUtils.color(box.files().messages().skillsMessages.skillsIsDisabled));
+            if (!skill.isEnabled()) {
+                player.sendMessage(StringUtils.color(this.box.files().messages().getSkillsMessages().getSkillsIsDisabled()));
                 return false;
             }
 
-            player.openInventory(new SkillGUI(box, player, skill, 1).getInventory());
-        }else
-            sender.sendMessage(StringUtils.color(box.files().messages().pluginMessages.useSyntax));
+            player.openInventory(new SkillGUI(this.box, player, skill, 1).getInventory());
+        } else {
+            sender.sendMessage(StringUtils.color(this.box.files().messages().getPluginMessages().getUseSyntax()));
+        }
         return true;
     }
 
     @Override
-    public List<String> onTabComplete(CommandSender commandSender, org.bukkit.command.Command command, String label, String[] args) {
+    public List<String> onTabComplete(final CommandSender commandSender,
+                                      final org.bukkit.command.Command command,
+                                      final String label,
+                                      final String[] args) {
         return Collections.emptyList();
     }
 
+    /**
+     * Adds a register
+     *
+     * @param box {@link Box}
+     */
     @Delayed(time = MinecraftTimeEquivalent.SECOND)
-    public void register(@Inject Box box){
-        TheAssistantPlugin.getAPI().getCommandProvider().registerCommand(this, e -> e.getCommand().setDetails(box.files().commands().skillMenuCommand));
+    public void register(@Inject final Box box) {
+        TheAssistantPlugin.getAPI().getCommandProvider().registerCommand(this, e -> e.getCommand().setDetails(box.files().commands().getSkillMenuCommand()));
     }
 }

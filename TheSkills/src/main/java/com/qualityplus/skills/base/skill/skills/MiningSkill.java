@@ -15,16 +15,61 @@ import org.bukkit.event.block.BlockBreakEvent;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Utility class dor mining skill
+ */
 @Getter
 @Setter
 public final class MiningSkill extends BlockBreakSkill {
+    /**
+     * Makes a mining skills
+     *
+     * @param id                 Id
+     * @param enabled            Enabled
+     * @param displayName        Display Name
+     * @param description        Description
+     * @param skillGUIOptions    {@link GUIOptions}
+     * @param initialAmount      Initial Amount
+     * @param maxLevel           Max Level
+     * @param xpRequirements     Xp Requirements
+     * @param skillInfoInGUI     Skill Info In GUI
+     * @param statRewards        Stat Rewards
+     * @param skillInfoInMessage Skill info In Message
+     * @param commandRewards     Command Rewards
+     * @param rewards            Rewards
+     * @param minionXpRewards    Minion Xp Rewards
+     */
     @Builder
-    public MiningSkill(String id, boolean enabled, String displayName, List<String> description, GUIOptions skillGUIOptions, double initialAmount, int maxLevel, Map<Integer, Double> xpRequirements, Map<Integer, List<String>> skillInfoInGUI, Map<Integer, List<StatReward>> statRewards, Map<Integer, List<String>> skillInfoInMessage, Map<Integer, List<CommandReward>> commandRewards, Map<XMaterial, Double> rewards, Map<XMaterial, Double> minionXpRewards) {
-        super(id, enabled, displayName, description, skillGUIOptions, initialAmount, maxLevel, xpRequirements, skillInfoInGUI, statRewards, skillInfoInMessage, commandRewards, rewards, minionXpRewards);
+    public MiningSkill(final String id,
+                       final boolean enabled,
+                       final String displayName,
+                       final List<String> description,
+                       final GUIOptions skillGUIOptions,
+                       final double initialAmount,
+                       final int maxLevel,
+                       final Map<Integer, Double> xpRequirements,
+                       final Map<Integer, List<String>> skillInfoInGUI,
+                       final Map<Integer, List<StatReward>> statRewards,
+                       final Map<Integer, List<String>> skillInfoInMessage,
+                       final Map<Integer, List<CommandReward>> commandRewards,
+                       final Map<XMaterial, Double> rewards,
+                       final Map<XMaterial, Double> minionXpRewards) {
+        super(id, enabled, displayName,
+                description, skillGUIOptions,
+                initialAmount, maxLevel,
+                xpRequirements, skillInfoInGUI,
+                statRewards, skillInfoInMessage,
+                commandRewards, rewards,
+                minionXpRewards);
     }
 
+    /**
+     * Adds block break priority
+     *
+     * @param e {@link BlockBreakEvent}
+     */
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
-    public void onMine(BlockBreakEvent e){
+    public void onMine(final BlockBreakEvent e) {
         onBreak(e);
     }
 }

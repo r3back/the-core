@@ -10,17 +10,36 @@ import org.bukkit.event.Listener;
 import java.util.List;
 import java.util.Objects;
 
-public interface ListenerRegistrable extends Listener{
-    List<Class<? extends ExtraListener>> getExtraListeners();
-    List<Listener> getRegisteredListeners();
+/**
+ * Makes a listener registrable
+ */
+public interface ListenerRegistrable extends Listener {
+    /**
+     * Adds a list class
+     *
+     * @return {@link ExtraListener}
+     */
+    public List<Class<? extends ExtraListener>> getExtraListeners();
 
-    default void registerListeners(Box box){
+    /**
+     * Adds a register listener
+     *
+     * @return {@link Listener}
+     */
+    public List<Listener> getRegisteredListeners();
+
+    /**
+     * Makes a register listener
+     *
+     * @param box {@link Box}
+     */
+    public default void registerListeners(Box box) {
         Bukkit.getPluginManager().registerEvents(this, box.plugin());
 
         getRegisteredListeners().add(this);
 
-        for(Class<? extends ExtraListener> listener : getExtraListeners()){
-            ExtraListener instance = box.inject().createInstance(listener);
+        for (Class<? extends ExtraListener> listener : getExtraListeners()) {
+            final ExtraListener instance = box.inject().createInstance(listener);
 
             instance.applySkill((Skill) this);
 
@@ -30,11 +49,19 @@ public interface ListenerRegistrable extends Listener{
         }
     }
 
-    default void unregisterListeners(){
+    /**
+     * Makes a unregister listeners
+     */
+    public default void unregisterListeners() {
         getRegisteredListeners().stream().filter(Objects::nonNull).forEach(HandlerList::unregisterAll);
 
         getRegisteredListeners().clear();
     }
 
-    void addExtraListener(Class<? extends ExtraListener> listener);
+    /**
+     * Adds a extra listener
+     *
+     * @param listener {@link ExtraListener}
+     */
+    public void addExtraListener(Class<? extends ExtraListener> listener);
 }

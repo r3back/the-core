@@ -20,6 +20,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+/**
+ * Utility class for fishing skills
+ */
 @Getter
 @Setter
 @NoArgsConstructor
@@ -27,30 +30,79 @@ public final class FishingSkill extends Skill {
     private Map<String, Double> rewards;
     private double rewardsForAllCaught;
 
+    /**
+     * Makes a mining skills
+     *
+     * @param id                 Id
+     * @param enabled            Enabled
+     * @param displayName        Display Name
+     * @param description        Description
+     * @param skillGUIOptions    {@link GUIOptions}
+     * @param initialAmount      Initial Amount
+     * @param maxLevel           Max Level
+     * @param xpRequirements     Xp Requirements
+     * @param skillInfoInGUI     Skill Info In GUI
+     * @param statRewards        Stat Rewards
+     * @param skillInfoInMessage Skill info In Message
+     * @param commandRewards     Command Rewards
+     * @param rewards            Rewards
+     * @param rewardsForAllCaught Rewards For All Caught
+     */
     @Builder
-    public FishingSkill(String id, boolean enabled, String displayName, List<String> description, GUIOptions skillGUIOptions, double initialAmount, int maxLevel, Map<Integer, Double> xpRequirements, Map<Integer, List<String>> skillInfoInGUI, Map<Integer, List<StatReward>> statRewards, Map<Integer, List<String>> skillInfoInMessage, Map<Integer, List<CommandReward>> commandRewards, Map<String, Double> rewards, double rewardsForAllCaught) {
-        super(id, enabled, displayName, description, skillGUIOptions, initialAmount, maxLevel, xpRequirements, skillInfoInGUI, statRewards, skillInfoInMessage, commandRewards);
+    public FishingSkill(final String id,
+                        final boolean enabled,
+                        final String displayName,
+                        final List<String> description,
+                        final GUIOptions skillGUIOptions,
+                        final double initialAmount,
+                        final int maxLevel,
+                        final Map<Integer, Double> xpRequirements,
+                        final Map<Integer, List<String>> skillInfoInGUI,
+                        final Map<Integer, List<StatReward>> statRewards,
+                        final Map<Integer, List<String>> skillInfoInMessage,
+                        final Map<Integer, List<CommandReward>> commandRewards,
+                        final Map<String, Double> rewards,
+                        final double rewardsForAllCaught) {
+        super(id, enabled, displayName,
+                description, skillGUIOptions,
+                initialAmount, maxLevel,
+                xpRequirements, skillInfoInGUI,
+                statRewards, skillInfoInMessage,
+                commandRewards);
         this.rewards = rewards;
         this.rewardsForAllCaught = rewardsForAllCaught;
     }
 
+    /**
+     * Adds a fishing skill
+     *
+     * @param e {@link PlayerFishEvent}
+     */
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
-    public void fishingSkill(PlayerFishEvent e) {
-        Player player = e.getPlayer();
+    public void fishingSkill(final PlayerFishEvent e) {
+        final Player player = e.getPlayer();
 
-        String caughtName = Optional.ofNullable(e.getCaught()).map(Entity::getName).map(String::toUpperCase).orElse(null);
+        final String caughtName = Optional.ofNullable(e.getCaught()).map(Entity::getName).map(String::toUpperCase).orElse(null);
 
-        State state = e.getState();
+        final State state = e.getState();
 
-        if(caughtName == null) return;
+        if (caughtName == null) {
+            return;
+        }
 
-        if (state != State.CAUGHT_FISH && state != State.CAUGHT_ENTITY) return;
+        if (state != State.CAUGHT_FISH && state != State.CAUGHT_ENTITY) {
+            return;
+        }
 
-        if (state == State.CAUGHT_ENTITY && !rewards.containsKey(caughtName)) return;
+        if (state == State.CAUGHT_ENTITY && !this.rewards.containsKey(caughtName)) {
+            return;
+        }
 
-        double xp = rewardsForAllCaught + rewards.getOrDefault(caughtName, 0d);
+        final double xp = this.rewardsForAllCaught + this.rewards.getOrDefault(caughtName, 0d);
 
-        if(xp <= 0) return;
+        if (xp <= 0) {
+            return;
+        }
 
         TheSkills.getApi().getSkillsService().addXp(player, true, true, this, xp);
 

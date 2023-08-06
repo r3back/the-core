@@ -17,6 +17,9 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * Utility class for spiderman config
+ */
 @Getter
 @Setter
 @Configuration(path = "perks/spiderman_perk.yml")
@@ -25,25 +28,32 @@ import java.util.List;
 @Header("================================")
 @Names(strategy = NameStrategy.HYPHEN_CASE, modifier = NameModifier.TO_LOWER_CASE)
 public final class SpidermanConfig extends OkaeriConfig implements PerkFile {
-    public String id = "spiderman";
-    public boolean enabled = true;
-    public String displayName = "Spiderman";
-    public List<String> description = Arrays.asList("  &a%percent%% &7chance to trap mobs in", "  &7a web for &a%duration% &7seconds while", "  &7in combat.");
-    public int maxLevel = 50;
-    public GUIOptions guiOptions = GUIOptions.builder()
+    private String id = "spiderman";
+    private boolean enabled = true;
+    private String displayName = "Spiderman";
+    private List<String> description = Arrays.asList("  &a%percent%% &7chance to trap mobs in", "  &7a web for &a%duration% &7seconds while", "  &7in combat.");
+    private int maxLevel = 50;
+    private GUIOptions guiOptions = GUIOptions.builder()
             .slot(31)
             .page(1)
             .item(XMaterial.PLAYER_HEAD)
-            .texture("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZDU5NzZmZTMyZmM1ZDEwNTg5ZGZhODhkMDM2M2FkYmM5ODJlYjM1ZjhjZmNkMGUwYzg5M2E2MDk5NjY1YTg3NyJ9fX0=")
+            .texture("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZ" +
+                    "nQubmV0L3RleHR1cmUvZDU5NzZmZTMyZmM1ZDEwNTg5ZGZhODhkMDM2M2FkYmM5ODJlYjM1ZjhjZmNkMGUwYzg5M2E2MDk5NjY1YTg3NyJ9fX0=")
             .mainMenuLore(Collections.singletonList("%skill_spiderman_description%"))
             .build();
-    public Perk getPerk(){
+
+    /**
+     * Adds a perk
+     *
+     * @return {@link SpidermanPerk}
+     */
+    public Perk getPerk() {
         return SpidermanPerk.builder()
-                .id(id)
-                .displayName(displayName)
-                .description(description)
-                .enabled(enabled)
-                .skillGUIOptions(guiOptions)
+                .id(this.id)
+                .displayName(this.displayName)
+                .description(this.description)
+                .enabled(this.enabled)
+                .skillGUIOptions(this.guiOptions)
                 .chancePerLevel(0.1)
                 .secondsDuration(2)
                 .canBeUsedWithPlayers(false)

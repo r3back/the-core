@@ -21,35 +21,71 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+/**
+ * Utility class for Perks
+ */
 @Component
 public final class Perks {
     private static final Map<String, Perk> PERK_REGISTRY = new HashMap<>();
 
+    /**
+     * Makes a register new perk
+     *
+     * @param perk {@link Perk}
+     */
     @ApiStatus.Internal
     public static void registerNewPerk(@NotNull final Perk perk) {
         PERK_REGISTRY.put(perk.getId().toLowerCase(), perk);
     }
 
+    /**
+     * Adds a perk
+     *
+     * @param id Id
+     * @return   {@link Perk}
+     */
     @Nullable
     public static Perk getByID(@NotNull final String id) {
         return PERK_REGISTRY.get(id.toLowerCase());
     }
 
+    /**
+     * Adds an perk
+     *
+     * @param key {@link NamespacedKey}
+     * @return    {@link Perk}
+     */
     @Nullable
     public static Perk getByKey(@NotNull final NamespacedKey key) {
         return PERK_REGISTRY.get(key.getKey());
     }
 
+    /**
+     * Adds a perks
+     *
+     * @return Perk
+     */
     public static Set<Perk> values() {
         return ImmutableSet.copyOf(PERK_REGISTRY.values());
     }
 
-    public static Set<Perk> values(Predicate<Perk> filter) {
+    /**
+     * Adds a perks
+     *
+     * @param filter Filter
+     * @return       {@link Predicate}
+     */
+    public static Set<Perk> values(final Predicate<Perk> filter) {
         return ImmutableSet.copyOf(PERK_REGISTRY.values().stream().filter(filter).collect(Collectors.toList()));
     }
 
+    /**
+     * Adds a reload perks
+     *
+     * @param box {@link Box}
+     */
     @Delayed(time = MinecraftTimeEquivalent.SECOND, async = true)
-    public static void reloadPerks(@Inject Box box){
+    public static void reloadPerks(@Inject final Box box) {
         values().forEach(Perk::unregisterListeners);
 
         Stream.of(box.perkFiles().abilityDamage().getPerk(),

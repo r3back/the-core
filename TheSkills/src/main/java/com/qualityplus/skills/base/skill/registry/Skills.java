@@ -8,12 +8,9 @@ import com.qualityplus.skills.api.provider.MinionsProvider;
 import com.qualityplus.skills.base.skill.Skill;
 import com.qualityplus.skills.base.skill.skills.blockbreak.BlockBreakSkill;
 import com.qualityplus.assistant.lib.eu.okaeri.commons.bukkit.time.MinecraftTimeEquivalent;;
-
 import com.qualityplus.assistant.lib.eu.okaeri.platform.bukkit.annotation.Delayed;
-import com.qualityplus.assistant.lib.eu.okaeri.platform.core.annotation.Bean;
 import com.qualityplus.assistant.lib.eu.okaeri.platform.core.annotation.Component;
 import org.bukkit.NamespacedKey;
-import org.bukkit.block.Block;
 import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -26,37 +23,74 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+/**
+ * Utility class for skills
+ */
 @Component
 public final class Skills {
     private static final String REGISTERED_SKILLS_MESSAGE = "Registered %s Skills!";
     private static final Map<String, Skill> SKILL_REGISTRY = new HashMap<>();
 
+    /**
+     * Adds a skill
+     *
+     * @param skill {@link Skill}
+     */
     @ApiStatus.Internal
     public static void registerNewSkill(@NotNull final Skill skill) {
         SKILL_REGISTRY.put(skill.getId().toLowerCase(), skill);
     }
 
+    /**
+     * Adds a by id
+     *
+     * @param id Id
+     * @return   {@link Skill}
+     */
     @Nullable
     public static Skill getByID(@NotNull final String id) {
         return SKILL_REGISTRY.get(id.toLowerCase());
     }
 
+    /**
+     * Adds a by key
+     *
+     * @param key Key
+     * @return    {@link NamespacedKey}
+     */
     @Nullable
     public static Skill getByKey(@NotNull final NamespacedKey key) {
         return SKILL_REGISTRY.get(key.getKey());
     }
 
 
+    /**
+     * Adds a skill
+     *
+     * @return {@link Skill}
+     */
     public static Set<Skill> values() {
         return ImmutableSet.copyOf(SKILL_REGISTRY.values());
     }
 
-    public static Set<Skill> values(Predicate<Skill> filter) {
+    /**
+     * Adds a filter
+     *
+     * @param filter Filter
+     * @return       {@link Skill}
+     */
+    public static Set<Skill> values(final Predicate<Skill> filter) {
         return ImmutableSet.copyOf(SKILL_REGISTRY.values().stream().filter(filter).collect(Collectors.toList()));
     }
 
+    /**
+     * Makes a reload skill
+     *
+     * @param box      {@link Box}
+     * @param provider Provider
+     */
     @Delayed(time = MinecraftTimeEquivalent.SECOND, async = true)
-    public static void reloadSkills(@Inject Box box, @Inject MinionsProvider provider) {
+    public static void reloadSkills(@Inject final Box box, @Inject final MinionsProvider provider) {
         values().forEach(Skill::unregisterListeners);
 
         Stream.of(box.skillFiles().dungeoneering().getSkill(),
@@ -80,11 +114,11 @@ public final class Skills {
 
     }
 
-    private static void registerListeners(Box box, MinionsProvider provider) {
+    private static void registerListeners(final Box box, final MinionsProvider provider) {
         for (Skill skill : SKILL_REGISTRY.values()) {
 
             if (skill instanceof BlockBreakSkill) {
-                Optional<Class<? extends ExtraListener>> listener = provider.getExtraListener();
+                final Optional<Class<? extends ExtraListener>> listener = provider.getExtraListener();
 
                 listener.ifPresent(skill::addExtraListener);
             }

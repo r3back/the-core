@@ -9,25 +9,52 @@ import com.qualityplus.skills.api.box.Box;
 import java.util.List;
 import java.util.UUID;
 
+/**
+ * Utility class for Skills gui
+ */
 public abstract class SkillsGUI extends GUI {
     protected final Box box;
     protected UUID uuid;
 
-    public SkillsGUI(int size, String title, Box box) {
+    /**
+     * Adds an skills gui
+     *
+     * @param size  Size
+     * @param title Title
+     * @param box   {@link Box}
+     */
+    public SkillsGUI(final int size, final String title, final Box box) {
         super(size, title);
         this.box = box;
     }
 
-    public SkillsGUI(SimpleGUI simpleGUI, Box box) {
+    /**
+     * Adds a skills gui
+     *
+     * @param simpleGUI {@link SimpleGUI}
+     * @param box       {@link Box}
+     */
+    public SkillsGUI(final SimpleGUI simpleGUI, final Box box) {
         super(simpleGUI);
         this.box = box;
     }
 
-    public void setItem(Item item) {
+    /**
+     * Adds an item
+     *
+     * @param item {@link Item}
+     */
+    public void setItem(final Item item) {
         super.setItem(item);
     }
 
-    public void setItem(Item item, List<IPlaceholder> placeholderList) {
+    /**
+     * Adds an item
+     *
+     * @param item            {@link Item}
+     * @param placeholderList list of {@link IPlaceholder}
+     */
+    public void setItem(final Item item, final List<IPlaceholder> placeholderList) {
         super.setItem(item, placeholderList);
     }
 }

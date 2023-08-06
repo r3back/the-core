@@ -21,35 +21,71 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+/**
+ * Utility class for Stats
+ */
 @Component
 public final class Stats {
     private static final Map<String, Stat> STAT_REGISTRY = new HashMap<>();
 
+    /**
+     * Adds a register new stat
+     *
+     * @param stat {@link Stat}
+     */
     @ApiStatus.Internal
     public static void registerNewStat(@NotNull final Stat stat) {
         STAT_REGISTRY.put(stat.getId().toLowerCase(), stat);
     }
 
+    /**
+     * Adds a by Id
+     *
+     * @param id Id
+     * @return   By Id
+     */
     @Nullable
     public static Stat getByID(@NotNull final String id) {
         return STAT_REGISTRY.get(id.toLowerCase());
     }
 
+    /**
+     * Adds a by key
+     *
+     * @param key Key
+     * @return    {@link NamespacedKey}
+     */
     @Nullable
     public static Stat getByKey(@NotNull final NamespacedKey key) {
         return STAT_REGISTRY.get(key.getKey());
     }
 
+    /**
+     * Adds an stats values
+     *
+     * @return Stats Value
+     */
     public static Set<Stat> values() {
         return ImmutableSet.copyOf(STAT_REGISTRY.values());
     }
 
-    public static Set<Stat> values(Predicate<Stat> filter) {
+    /**
+     * Makes predicate stats filter
+     *
+     * @param filter  Filter
+     * @return        {@link Predicate}
+     */
+    public static Set<Stat> values(final Predicate<Stat> filter) {
         return ImmutableSet.copyOf(STAT_REGISTRY.values().stream().filter(filter).collect(Collectors.toList()));
     }
 
+    /**
+     * Makes an reload stats
+     *
+     * @param box {@link Box}
+     */
     @Delayed(time = MinecraftTimeEquivalent.SECOND, async = true)
-    public static void reloadStats(@Inject Box box){
+    public static void reloadStats(@Inject final Box box) {
         values().forEach(Stat::unregisterListeners);
 
         Stream.of(box.statFiles().defense().getStat(),

@@ -18,33 +18,70 @@ import org.bukkit.potion.PotionEffectType;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Utility class for potion master perk
+ */
 @NoArgsConstructor
 public final class PotionMasterPerk extends AbstractPotionPerk {
+    /**
+     *
+     * @param id                       Id
+     * @param enabled                  Enabled
+     * @param displayName              Display Name
+     * @param description              Description
+     * @param skillGUIOptions          {@link GUIOptions}
+     * @param initialAmount            Initial Amount
+     * @param chancePerLevel           Chance Per Level
+     * @param secondsDurationPerLevel  Seconds Duration Per Level
+     * @param baseSecondsDuration      Base Seconds Duration
+     * @param level                    Level
+     */
     @Builder
-    public PotionMasterPerk(String id, boolean enabled, String displayName, List<String> description, GUIOptions skillGUIOptions, double initialAmount, double chancePerLevel, int secondsDurationPerLevel, int baseSecondsDuration,
-                            int level) {
+    public PotionMasterPerk(final String id,
+                            final boolean enabled,
+                            final String displayName,
+                            final List<String> description,
+                            final GUIOptions skillGUIOptions,
+                            final double initialAmount,
+                            final double chancePerLevel,
+                            final int secondsDurationPerLevel,
+                            final int baseSecondsDuration,
+                            final int level) {
         super(id, enabled, displayName, description, skillGUIOptions, initialAmount, chancePerLevel, secondsDurationPerLevel, baseSecondsDuration, level);
     }
 
+    /**
+     * Adds a handle perk
+     *
+     * @param e {@link PlayerItemConsumeEvent}
+     */
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
-    public void handlePerk(PlayerItemConsumeEvent e) {
-        if(!e.getItem().getType().equals(Material.POTION)) return;
+    public void handlePerk(final PlayerItemConsumeEvent e) {
+        if (!e.getItem().getType().equals(Material.POTION)) {
+            return;
+        }
 
-        Player player = e.getPlayer();
+        final Player player = e.getPlayer();
 
-        if(RandomUtil.randomBetween(0.0, 100.0) >= getChancePerLevel() * getStat(player)) return;
+        if (RandomUtil.randomBetween(0.0, 100.0) >= getChancePerLevel() * getStat(player)) {
+            return;
+        }
 
-        PotionEffect effect = getPotion(getStat(player), e.getItem());
+        final PotionEffect effect = getPotion(getStat(player), e.getItem());
 
-        if(effect == null) return;
+        if (effect == null) {
+            return;
+        }
 
         player.addPotionEffect(effect);
     }
 
-    protected PotionEffect getPotion(int level, ItemStack item){
-        if(!(item.getItemMeta() instanceof PotionMeta)) return null;
+    protected PotionEffect getPotion(final int level, final ItemStack item) {
+        if (!(item.getItemMeta() instanceof PotionMeta)) {
+            return null;
+        }
 
-        PotionEffectType type = Optional.ofNullable((PotionMeta) item.getItemMeta())
+        final PotionEffectType type = Optional.ofNullable((PotionMeta) item.getItemMeta())
                 .map(meta -> meta.getBasePotionData().getType().getEffectType()).
                 orElse(null);
 

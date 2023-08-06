@@ -8,6 +8,9 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+/**
+ * Utility class for main gui config
+ */
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter

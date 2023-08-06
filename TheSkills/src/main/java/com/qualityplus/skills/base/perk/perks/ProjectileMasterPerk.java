@@ -18,6 +18,9 @@ import org.bukkit.event.entity.EntityShootBowEvent;
 
 import java.util.List;
 
+/**
+ * Utility class for projectile master perk
+ */
 @Getter
 @Setter
 @NoArgsConstructor
@@ -25,39 +28,66 @@ public final class ProjectileMasterPerk extends Perk {
     private double extraDamagePercentageBasePerLevel;
     private double extraDamagePercentageBase;
 
+    /**
+     *
+     * @param id                                 Id
+     * @param enabled                            Enabled
+     * @param displayName                        Display Name
+     * @param description                        Description
+     * @param skillGUIOptions                    {@link GUIOptions}
+     * @param initialAmount                      Initial Amount
+     * @param chancePerLevel                     Chance Per Level
+     * @param extraDamagePercentageBase          EXtra Damage Percentage Base
+     * @param extraDamagePercentageBasePerLevel  Extra Damage P1ercentage Base Per Level
+     */
     @Builder
-    public ProjectileMasterPerk(String id, boolean enabled, String displayName, List<String> description, GUIOptions skillGUIOptions, double initialAmount, double chancePerLevel, double extraDamagePercentageBase,
-                                double extraDamagePercentageBasePerLevel) {
+    public ProjectileMasterPerk(final String id,
+                                final boolean enabled,
+                                final String displayName,
+                                final List<String> description,
+                                final GUIOptions skillGUIOptions,
+                                final double initialAmount,
+                                final double chancePerLevel,
+                                final double extraDamagePercentageBase,
+                                final double extraDamagePercentageBasePerLevel) {
         super(id, enabled, displayName, description, skillGUIOptions, initialAmount, chancePerLevel);
 
         this.extraDamagePercentageBasePerLevel = extraDamagePercentageBasePerLevel;
         this.extraDamagePercentageBase = extraDamagePercentageBase;
     }
 
+    /**
+     * Adds a handle perk
+     *
+     * @param e {@link EntityShootBowEvent}
+     */
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
-    public void handlePerk(EntityShootBowEvent e) {
-        Projectile pr = (Projectile) e.getProjectile();
+    public void handlePerk(final EntityShootBowEvent e) {
+        final Projectile pr = (Projectile) e.getProjectile();
 
-        if(!(pr.getShooter() instanceof Player)) return;
-
-        Player p = (Player) pr.getShooter();
-
-        if (RandomUtil.randomBetween(0.0, 100.0) >= getChancePerLevel() * getStat(p))
+        if (!(pr.getShooter() instanceof Player)) {
             return;
+        }
 
-        double damage = e.getEntity().getLastDamage();
+        final Player p = (Player) pr.getShooter();
 
-        double toDamage = (getPercentage() * damage) / 100;
+        if (RandomUtil.randomBetween(0.0, 100.0) >= getChancePerLevel() * getStat(p)) {
+            return;
+        }
+        final double damage = e.getEntity().getLastDamage();
+
+        final double toDamage = (getPercentage() * damage) / 100;
 
         e.getEntity().damage(toDamage);
     }
 
     @Override
-    public List<String> getFormattedDescription(int level) {
-        return StringUtils.processMulti(super.getFormattedDescription(level), PlaceholderBuilder.create(new Placeholder("projectile_percent", getPercentage())).get());
+    public List<String> getFormattedDescription(final int level) {
+        return StringUtils.processMulti(super.getFormattedDescription(level), PlaceholderBuilder
+                .create(new Placeholder("projectile_percent", getPercentage())).get());
     }
 
-    private double getPercentage(){
-        return extraDamagePercentageBasePerLevel + extraDamagePercentageBase;
+    private double getPercentage() {
+        return this.extraDamagePercentageBasePerLevel + extraDamagePercentageBase;
     }
 }

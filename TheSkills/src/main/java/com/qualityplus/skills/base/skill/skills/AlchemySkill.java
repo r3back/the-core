@@ -22,41 +22,89 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+/**
+ * Utility class for alchemy skill
+ */
 @Getter
 @Setter
 @NoArgsConstructor
 public final class AlchemySkill extends Skill {
     private Map<XMaterial, Double> rewards;
 
+    /**
+     * Make a alchemy skills
+     *
+     * @param id                        Id
+     * @param enabled                  Enabled
+     * @param displayName              Display Name
+     * @param description              Description
+     * @param skillGUIOptions          {@link GUIOptions}
+     * @param initialAmount            Initial Amount
+     * @param maxLevel                 Max Level
+     * @param xpRequirements           Xp Requirements
+     * @param skillInfoInGUI           Skill Info In GUI
+     * @param statRewards              Stat Rewards
+     * @param skillInfoInMessage       Skill Info In Message
+     * @param commandRewards           Command Rewards
+     * @param rewards                  Rewards
+     */
     @Builder
-    public AlchemySkill(String id, boolean enabled, String displayName, List<String> description, GUIOptions skillGUIOptions, double initialAmount, int maxLevel,
-                        Map<Integer, Double> xpRequirements, Map<Integer, List<String>> skillInfoInGUI, Map<Integer, List<StatReward>> statRewards,
-                        Map<Integer, List<String>> skillInfoInMessage, Map<Integer, List<CommandReward>> commandRewards, Map<XMaterial, Double> rewards) {
-        super(id, enabled, displayName, description, skillGUIOptions, initialAmount, maxLevel, xpRequirements, skillInfoInGUI, statRewards, skillInfoInMessage, commandRewards);
+    public AlchemySkill(final String id,
+                        final boolean enabled,
+                        final String displayName,
+                        final List<String> description,
+                        final GUIOptions skillGUIOptions,
+                        final double initialAmount,
+                        final int maxLevel,
+                        final Map<Integer, Double> xpRequirements,
+                        final Map<Integer, List<String>> skillInfoInGUI,
+                        final Map<Integer, List<StatReward>> statRewards,
+                        final Map<Integer, List<String>> skillInfoInMessage,
+                        final Map<Integer, List<CommandReward>> commandRewards,
+                        final Map<XMaterial, Double> rewards) {
+        super(id, enabled, displayName,
+                description, skillGUIOptions,
+                initialAmount, maxLevel,
+                xpRequirements, skillInfoInGUI,
+                statRewards, skillInfoInMessage,
+                commandRewards);
         this.rewards = rewards;
     }
 
+    /**
+     * Makes an on brew event
+     *
+     * @param event {@link BrewEvent}
+     */
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
-    public void onBrewEvent(BrewEvent event){
-        Location loc = event.getBlock().getLocation();
+    public void onBrewEvent(final BrewEvent event) {
+        final Location loc = event.getBlock().getLocation();
 
-        Player player = (Player) loc.getWorld()
-                .getNearbyEntities(loc, 5,5,5)
+        final Player player = (Player) loc.getWorld()
+                .getNearbyEntities(loc, 5, 5, 5)
                 .stream()
                 .filter(entity -> entity instanceof Player)
                 .findFirst().orElse(null);
 
-        if(player == null) return;
+        if (player == null) {
+            return;
+        }
 
-        if(!SkillsPlayerUtil.isInSurvival(player)) return;
+        if (!SkillsPlayerUtil.isInSurvival(player)) {
+            return;
+        }
 
-        Optional<XMaterial> material = Optional.ofNullable(event.getContents().getIngredient()).map(ItemStack::getType).map(XMaterial::matchXMaterial);
+        final Optional<XMaterial> material = Optional.ofNullable(event.getContents().getIngredient()).map(ItemStack::getType).map(XMaterial::matchXMaterial);
 
-        if(!material.isPresent()) return;
+        if (!material.isPresent()) {
+            return;
+        }
 
-        double xp = rewards.getOrDefault(material.get(), 0D);
+        final double xp = this.rewards.getOrDefault(material.get(), 0D);
 
-        if(xp <= 0) return;
+        if (xp <= 0) {
+            return;
+        }
 
         TheSkills.getApi().getSkillsService().addXp(player, true, true, this, xp);
 

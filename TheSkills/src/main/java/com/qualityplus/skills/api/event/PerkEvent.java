@@ -7,12 +7,21 @@ import lombok.Setter;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
+/**
+ * Utility class for perk event
+ */
 @Getter
 @Setter
 public abstract class PerkEvent extends PlayerAssistantEvent {
     private Perk perk;
 
-    public PerkEvent(@NotNull Player who, Perk perk) {
+    /**
+     * Adds a perk
+     *
+     * @param who  {@link Player}
+     * @param perk {@link Perk}
+     */
+    public PerkEvent(@NotNull final Player who, final Perk perk) {
         super(who);
         this.perk = perk;
     }

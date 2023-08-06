@@ -9,34 +9,65 @@ import com.qualityplus.skills.base.stat.registry.Stats;
 import com.qualityplus.skills.persistance.data.UserData;
 import lombok.NoArgsConstructor;
 import org.bukkit.entity.Player;
-import org.bukkit.event.Listener;
+
 
 import java.util.List;
 
+/**
+ * Utility class for stat
+ */
 @NoArgsConstructor
 public abstract class Stat extends CommonObject implements ListenerRegistrable {
-    public Stat(String id, boolean enabled, String displayName, List<String> description, GUIOptions skillGUIOptions, double baseAmount) {
+    /**
+     * Makes a Stat
+     *
+     * @param id              Id
+     * @param enabled         Enabled
+     * @param displayName     Display Name
+     * @param description     Description
+     * @param skillGUIOptions {@link GUIOptions}
+     * @param baseAmount      Base Amount
+     */
+    public Stat(final String id,
+                final boolean enabled,
+                final String displayName,
+                final List<String> description,
+                final GUIOptions skillGUIOptions,
+                final double baseAmount) {
         super(id, enabled, displayName, description, skillGUIOptions, baseAmount);
     }
 
     @Override
-    public void register(){
+    public void register() {
         Stats.registerNewStat(this);
     }
 
     @Override
-    public void addExtraListener(Class<? extends ExtraListener> listener){
+    public void addExtraListener(final Class<? extends ExtraListener> listener) {
         extraListeners.add(listener);
     }
 
-    public int getStat(Player player, String id){
+    /**
+     * Adds a player
+     *
+     * @param player {@link Player}
+     * @param id     Id
+     * @return       {@link Stat}
+     */
+    public int getStat(final Player player, final String id) {
         return TheSkills.getApi().getSkillsService().getData(player.getUniqueId())
                 .map(UserData::getSkills)
                 .map(userPerks -> userPerks.getLevel(id))
                 .orElse(1);
     }
 
-    public int getStat(Player player){
+    /**
+     * Adds a player
+     *
+     * @param player {@link Player}
+     * @return       {@link Stat}
+     */
+    public int getStat(final Player player) {
         return getStat(player, id);
     }
 }

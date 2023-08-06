@@ -7,16 +7,22 @@ import lombok.EqualsAndHashCode;
 
 import java.util.UUID;
 
+/**
+ * Utility for user data
+ */
 @Data @EqualsAndHashCode(callSuper = true)
 public final class UserData extends Document {
     private UUID uuid;
     private String name;
     private UserSkills skills = new UserSkills();
 
-    public void resetData(){
-        skills.getXp().clear();
-        skills.getLevel().clear();
+    /**
+     * Adds a reset data
+     */
+    public void resetData() {
+        this.skills.getXp().clear();
+        this.skills.getLevel().clear();
 
-        skills.fillIfEmpty();
+        this.skills.fillIfEmpty();
     }
 }

@@ -8,6 +8,9 @@ import com.qualityplus.assistant.lib.eu.okaeri.platform.core.annotation.Componen
 
 import java.util.Optional;
 
+/**
+ * Utility class for minions provider
+ */
 @Component
 @SuppressWarnings("OptionalUsedAsFieldOrParameterType")
 public final class MinionsProviderImpl implements MinionsProvider {
@@ -15,6 +18,6 @@ public final class MinionsProviderImpl implements MinionsProvider {
 
     @Override
     public Optional<Class<? extends ExtraListener>> getExtraListener() {
-        return injected;
+        return this.injected;
     }
 }

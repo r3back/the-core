@@ -17,6 +17,9 @@ import lombok.Setter;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Utility class for user skills
+ */
 @Getter
 @Setter
 public final class UserSkills extends Document implements Levellable<String, Integer>, Progressable<String, Double>,
@@ -26,17 +29,20 @@ public final class UserSkills extends Document implements Levellable<String, Int
     private Map<String, Integer> level = new HashMap<>();
     private Map<String, Double> xp = new HashMap<>();
 
-    public void fillIfEmpty(){
-        Skills.values().stream().map(Skill::getId).forEach(skill -> level.putIfAbsent(skill, 0));
-        Skills.values().stream().map(Skill::getId).forEach(skill -> xp.putIfAbsent(skill, 0D));
-        Skills.values().stream().map(Skill::getId).forEach(skill -> fromArmor.putIfAbsent(skill, 0));
+    /**
+     * Adds a fill if empty
+     */
+    public void fillIfEmpty() {
+        Skills.values().stream().map(Skill::getId).forEach(skill -> this.level.putIfAbsent(skill, 0));
+        Skills.values().stream().map(Skill::getId).forEach(skill -> this.xp.putIfAbsent(skill, 0D));
+        Skills.values().stream().map(Skill::getId).forEach(skill -> this.fromArmor.putIfAbsent(skill, 0));
 
         //Perks
-        Perks.values().stream().map(Perk::getId).forEach(perk -> level.putIfAbsent(perk, 0));
-        Perks.values().stream().map(Perk::getId).forEach(perk -> fromArmor.putIfAbsent(perk, 0));
+        Perks.values().stream().map(Perk::getId).forEach(perk -> this.level.putIfAbsent(perk, 0));
+        Perks.values().stream().map(Perk::getId).forEach(perk -> this.fromArmor.putIfAbsent(perk, 0));
         //Stats
-        Stats.values().stream().map(Stat::getId).forEach(perk -> level.putIfAbsent(perk, 0));
-        Stats.values().stream().map(Stat::getId).forEach(perk -> fromArmor.putIfAbsent(perk, 0));
+        Stats.values().stream().map(Stat::getId).forEach(perk -> this.level.putIfAbsent(perk, 0));
+        Stats.values().stream().map(Stat::getId).forEach(perk -> this.fromArmor.putIfAbsent(perk, 0));
     }
 
     @Override

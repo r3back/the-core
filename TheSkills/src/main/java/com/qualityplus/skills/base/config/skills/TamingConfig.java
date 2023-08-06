@@ -16,9 +16,16 @@ import com.qualityplus.assistant.lib.eu.okaeri.configs.annotation.Names;
 import com.qualityplus.assistant.lib.eu.okaeri.platform.core.annotation.Configuration;
 import lombok.Getter;
 import lombok.Setter;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
-import java.util.*;
 
+/**
+ * Utility class for taming config
+ */
 @Getter
 @Setter
 @Configuration(path = "skills/taming_skill.yml")
@@ -28,11 +35,11 @@ import java.util.*;
 @Names(strategy = NameStrategy.HYPHEN_CASE, modifier = NameModifier.TO_LOWER_CASE)
 public final class TamingConfig extends OkaeriConfig {
 
-    public String id = "taming";
-    public boolean enabled = true;
-    public String displayName = "Taming";
-    public List<String> description = Collections.singletonList("&7Earn xp by levelling your pet!");
-    public int maxLevel = 50;
+    private String id = "taming";
+    private boolean enabled = true;
+    private String displayName = "Taming";
+    private List<String> description = Collections.singletonList("&7Earn xp by levelling your pet!");
+    private int maxLevel = 50;
     private Map<Integer, Double> xpRequirements = getLevelsMap();
     private Map<Integer, List<String>> skillInfoInGUI = getInfo();
     private Map<Integer, List<StatReward>> statRewards = getInternalRewards();
@@ -41,30 +48,36 @@ public final class TamingConfig extends OkaeriConfig {
     private GUIOptions guiOptions = GUIOptions.builder()
             .slot(33)
             .item(XMaterial.PLAYER_HEAD)
-            .texture("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMjU5MDAxYTg1MWJiMWI5ZTljMDVkZTVkNWM2OGIxZWEwZGM4YmQ4NmJhYmYxODhlMGFkZWQ4ZjkxMmMwN2QwZCJ9fX0=")
+            .texture("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvM" +
+                    "jU5MDAxYTg1MWJiMWI5ZTljMDVkZTVkNWM2OGIxZWEwZGM4YmQ4NmJhYmYxODhlMGFkZWQ4ZjkxMmMwN2QwZCJ9fX0=")
             .mainMenuLore(Arrays.asList("&7Abilities To Upgrade:",
                     "&8» %skill_ferocity_displayname%",
                     "&8» %skill_pet_luck_displayname%"))
             .build();
 
-    public Skill getSkill(){
+    /**
+     * Adds a stat
+     *
+     * @return {@link TamingSkill}
+     */
+    public Skill getSkill() {
         return TamingSkill.builder()
-                .id(id)
-                .enabled(enabled)
-                .displayName(displayName)
-                .description(description)
-                .xpRequirements(xpRequirements)
-                .skillInfoInGUI(skillInfoInGUI)
-                .statRewards(statRewards)
-                .skillInfoInMessage(skillInfoInMessage)
-                .skillInfoInGUI(skillInfoInGUI)
-                .commandRewards(commandRewards)
-                .maxLevel(maxLevel)
-                .skillGUIOptions(guiOptions)
+                .id(this.id)
+                .enabled(this.enabled)
+                .displayName(this.displayName)
+                .description(this.description)
+                .xpRequirements(this.xpRequirements)
+                .skillInfoInGUI(this.skillInfoInGUI)
+                .statRewards(this.statRewards)
+                .skillInfoInMessage(this.skillInfoInMessage)
+                .skillInfoInGUI(this.skillInfoInGUI)
+                .commandRewards(this.commandRewards)
+                .maxLevel(this.maxLevel)
+                .skillGUIOptions(this.guiOptions)
                 .build();
     }
 
-    private Map<Integer, List<String>> getInfo(){
+    private Map<Integer, List<String>> getInfo() {
         return FastMap.listBuilder(Integer.class, String.class)
                 .put(1, Arrays.asList("&7Abilities To Upgrade:",
                         "&8» &f+1 %skill_ferocity_displayname%",
@@ -75,17 +88,17 @@ public final class TamingConfig extends OkaeriConfig {
                 .build();
     }
 
-    private Map<Integer, List<StatReward>> getInternalRewards(){
+    private Map<Integer, List<StatReward>> getInternalRewards() {
         return FastMap.listBuilder(Integer.class, StatReward.class)
                 .put(1, Arrays.asList(new StatReward("ferocity", 1), new StatReward("pet_luck", 1)))
                 .put(10, Arrays.asList(new StatReward("ferocity", 2), new StatReward("pet_luck", 2)))
                 .build();
     }
 
-    private Map<Integer, Double> getLevelsMap(){
-        Map<Integer, Double> levels = new HashMap<>();
+    private Map<Integer, Double> getLevelsMap() {
+        final Map<Integer, Double> levels = new HashMap<>();
 
-        NumberUtil.intStream(0, maxLevel).forEach(n -> levels.put(n, n*15d));
+        NumberUtil.intStream(0, this.maxLevel).forEach(n -> levels.put(n, n * 15d));
 
         return levels;
     }

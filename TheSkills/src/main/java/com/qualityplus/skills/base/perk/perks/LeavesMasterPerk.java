@@ -18,33 +18,67 @@ import org.bukkit.inventory.ItemStack;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Utility class for leaves master perk
+ */
 @NoArgsConstructor
 public final class LeavesMasterPerk extends AbstractRandomBlockDropPerk {
+    /**
+     *
+     * @param id                                 Id
+     * @param enabled                            Enabled
+     * @param displayName                        Display Name
+     * @param description                        Description
+     * @param skillGUIOptions                    {@link GUIOptions}
+     * @param initialAmount                      Initial Amount
+     * @param chancePerLevel                     Chance Per Level
+     * @param itemAndChances                     Item And Chances
+     */
     @Builder
-    public LeavesMasterPerk(String id, boolean enabled, String displayName, List<String> description, GUIOptions skillGUIOptions, double initialAmount, double chancePerLevel, Map<XMaterial, Double> itemAndChances) {
+    public LeavesMasterPerk(final String id,
+                            final boolean enabled,
+                            final String displayName,
+                            final List<String> description,
+                            final GUIOptions skillGUIOptions,
+                            final double initialAmount,
+                            final double chancePerLevel,
+                            final Map<XMaterial, Double> itemAndChances) {
         super(id, enabled, displayName, description, skillGUIOptions, initialAmount, chancePerLevel, itemAndChances);
     }
 
+    /**
+     * Adds an handle perk
+     *
+     * @param e {@link PlayerInteractEvent}
+     */
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
-    public void handlePerk(PlayerInteractEvent e) {
-        if(!e.getAction().equals(Action.RIGHT_CLICK_BLOCK) || e.getClickedBlock() == null) return;
-
-        ItemStack inHand = e.getPlayer().getItemInHand();
-
-        if(BukkitItemUtil.isNull(inHand)) return;
-
-        if(!inHand.getType().equals(XMaterial.SHEARS.parseMaterial())) return;
-
-        Player p = e.getPlayer();
-
-        if (RandomUtil.randomBetween(0.0, 100.0) >= getChancePerLevel() * getStat(p))
+    public void handlePerk(final PlayerInteractEvent e) {
+        if (!e.getAction().equals(Action.RIGHT_CLICK_BLOCK) || e.getClickedBlock() == null) {
             return;
+        }
 
-        ItemStack toGive = getItem();
+        final ItemStack inHand = e.getPlayer().getItemInHand();
 
-        if(BukkitItemUtil.isNull(toGive)) return;
+        if (BukkitItemUtil.isNull(inHand)) {
+            return;
+        }
 
-        Block block = e.getClickedBlock();
+        if (!inHand.getType().equals(XMaterial.SHEARS.parseMaterial())) {
+            return;
+        }
+
+        final Player p = e.getPlayer();
+
+        if (RandomUtil.randomBetween(0.0, 100.0) >= getChancePerLevel() * getStat(p)) {
+            return;
+        }
+        final ItemStack toGive = getItem();
+
+        if (BukkitItemUtil.isNull(toGive)) {
+            return;
+        }
+
+        final Block block = e.getClickedBlock();
 
         block.getWorld().dropItem(block.getLocation(), toGive);
     }

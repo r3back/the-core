@@ -19,44 +19,80 @@ import org.bukkit.entity.Player;
 
 import java.util.List;
 
+/**
+ * Utility class for perk
+ */
 @Getter
 @Setter
 @NoArgsConstructor
 public abstract class Perk extends CommonObject implements ListenerRegistrable {
     protected double chancePerLevel;
 
-    public Perk(String id, boolean enabled, String displayName, List<String> description, GUIOptions skillGUIOptions, double initialAmount, double chancePerLevel) {
+    /**
+     * Makes a perk
+     *
+     * @param id                                 Id
+     * @param enabled                            Enabled
+     * @param displayName                        Display Name
+     * @param description                        Description
+     * @param skillGUIOptions                    {@link GUIOptions}
+     * @param initialAmount                      Initial Amount
+     * @param chancePerLevel                     Chance Per Level
+     */
+    public Perk(final String id,
+                final boolean enabled,
+                final String displayName,
+                final List<String> description,
+                final GUIOptions skillGUIOptions,
+                final double initialAmount,
+                final double chancePerLevel) {
         super(id, enabled, displayName, description, skillGUIOptions, initialAmount);
 
         this.chancePerLevel = chancePerLevel;
     }
 
-    public void register(){
+    /**
+     * Adds a register
+     */
+    public void register() {
         Perks.registerNewPerk(this);
     }
 
-    public int getStat(Player player, String id){
+    /**
+     * Makes a player stat
+     *
+     * @param player {@link Player}
+     * @param id     Id
+     * @return       Stat
+     */
+    public int getStat(final Player player, final String id) {
         return TheSkills.getApi().getSkillsService().getData(player.getUniqueId())
                 .map(UserData::getSkills)
                 .map(userPerks -> userPerks.getLevel(id))
                 .orElse(1);
     }
 
-    public int getStat(Player player){
+    /**
+     * Add a stat
+     *
+     * @param player {@link Player}
+     * @return       Stat
+     */
+    public int getStat(final Player player) {
         return getStat(player, id);
     }
 
     @Override
-    public List<String> getFormattedDescription(int level) {
+    public List<String> getFormattedDescription(final int level) {
         return StringUtils.processMulti(description, getPlaceholders(level).get());
     }
 
     @Override
-    public void addExtraListener(Class<? extends ExtraListener> listener){
+    public void addExtraListener(final Class<? extends ExtraListener> listener) {
         extraListeners.add(listener);
     }
 
-    protected PlaceholderBuilder getPlaceholders(int level){
+    protected PlaceholderBuilder getPlaceholders(final int level) {
         return PlaceholderBuilder.create()
                 .with(new Placeholder("level_number", level), new Placeholder("level_roman", NumberUtil.toRoman(level)))
                 .with(new Placeholder("percent", MathUtil.round(getChancePerLevel() * level)));

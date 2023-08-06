@@ -28,20 +28,44 @@ import java.util.List;
 public final class DefenseStat extends Stat {
     private double damageReductionPercentagePerLevel;
 
+    /**
+     * Makes a defense stats
+     *
+     * @param id                                 Id
+     * @param enabled                            Enabled
+     * @param displayName                        Display Name
+     * @param description                        Description
+     * @param skillGUIOptions                    {@link GUIOptions}
+     * @param baseAmount                         Base Amount
+     * @param damageReductionPercentagePerLevel  Damage Reduction Percentage Per Level
+     */
     @Builder
-    public DefenseStat(String id, boolean enabled, String displayName, List<String> description, GUIOptions skillGUIOptions, double baseAmount, double damageReductionPercentagePerLevel) {
+    public DefenseStat(final String id,
+                       final boolean enabled,
+                       final String displayName,
+                       final List<String> description,
+                       final GUIOptions skillGUIOptions,
+                       final double baseAmount,
+                       final double damageReductionPercentagePerLevel) {
         super(id, enabled, displayName, description, skillGUIOptions, baseAmount);
 
         this.damageReductionPercentagePerLevel = damageReductionPercentagePerLevel;
     }
 
+    /**
+     * Adds an entity damage
+     *
+     * @param event {@link EntityDamageEvent}
+     */
     @EventHandler(priority = EventPriority.LOW, ignoreCancelled = true)
-    public void handle(EntityDamageEvent event) {
-        if (!(event.getEntity() instanceof Player)) return;
+    public void handle(final EntityDamageEvent event) {
+        if (!(event.getEntity() instanceof Player)) {
+            return;
+        }
 
-        Player player = (Player) event.getEntity();
+        final Player player = (Player) event.getEntity();
 
-        double multiplier = damageReductionPercentagePerLevel * TheSkills.getApi().getSkillsService().getData(player.getUniqueId())
+        double multiplier = this.damageReductionPercentagePerLevel * TheSkills.getApi().getSkillsService().getData(player.getUniqueId())
                 .map(UserData::getSkills)
                 .map(userPerks -> userPerks.getLevel(id))
                 .orElse(1);
@@ -53,11 +77,11 @@ public final class DefenseStat extends Stat {
     }
 
     @Override
-    public List<String> getFormattedDescription(int level) {
-        List<IPlaceholder> placeholders = PlaceholderBuilder.create()
+    public List<String> getFormattedDescription(final int level) {
+        final List<IPlaceholder> placeholders = PlaceholderBuilder.create()
                 .with(new Placeholder("level_number", level),
                       new Placeholder("level_roman", NumberUtil.toRoman(level)),
-                      new Placeholder("percentage", MathUtil.round(damageReductionPercentagePerLevel * (double) level))
+                      new Placeholder("percentage", MathUtil.round(this.damageReductionPercentagePerLevel * (double) level))
                 ).get();
         return StringUtils.processMulti(description, placeholders);
     }

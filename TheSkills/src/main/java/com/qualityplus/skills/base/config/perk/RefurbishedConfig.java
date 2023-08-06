@@ -17,6 +17,9 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * Utility class for refurbished config
+ */
 @Getter
 @Setter
 @Configuration(path = "perks/refurbished_perk.yml")
@@ -25,25 +28,33 @@ import java.util.List;
 @Header("================================")
 @Names(strategy = NameStrategy.HYPHEN_CASE, modifier = NameModifier.TO_LOWER_CASE)
 public final class RefurbishedConfig extends OkaeriConfig implements PerkFile {
-    public String id = "refurbished";
-    public boolean enabled = true;
-    public String displayName = "Refurbished";
-    public List<String> description = Arrays.asList("  &a%percent%% &7chance to refurbish your", "  &7pickaxes restoring their max", "  &7durability while breaking blocks.");
-    public int maxLevel = 50;
-    public GUIOptions guiOptions = GUIOptions.builder()
+    private String id = "refurbished";
+    private boolean enabled = true;
+    private String displayName = "Refurbished";
+    private List<String> description = Arrays.asList("  &a%percent%% &7chance to refurbish your", "  &7pickaxes resto" +
+            "ring their max", "  &7durability while breaking blocks.");
+    private int maxLevel = 50;
+    private GUIOptions guiOptions = GUIOptions.builder()
             .slot(29)
             .page(1)
             .item(XMaterial.PLAYER_HEAD)
-            .texture("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNWNiZDlmNWVjMWVkMDA3MjU5OTk2NDkxZTY5ZmY2NDlhMzEwNmNmOTIwMjI3YjFiYjNhNzFlZTdhODk4NjNmIn19fQ==")
+            .texture("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNWNi" +
+                    "ZDlmNWVjMWVkMDA3MjU5OTk2NDkxZTY5ZmY2NDlhMzEwNmNmOTIwMjI3YjFiYjNhNzFlZTdhODk4NjNmIn19fQ==")
             .mainMenuLore(Collections.singletonList("%skill_refurbished_description%"))
             .build();
-    public Perk getPerk(){
+
+    /**
+     * Adds a perk
+     *
+     * @return {@link RefurbishedPerk}
+     */
+    public Perk getPerk() {
         return RefurbishedPerk.builder()
-                .id(id)
-                .displayName(displayName)
-                .description(description)
-                .enabled(enabled)
-                .skillGUIOptions(guiOptions)
+                .id(this.id)
+                .displayName(this.displayName)
+                .description(this.description)
+                .enabled(this.enabled)
+                .skillGUIOptions(this.guiOptions)
                 .chancePerLevel(0.1)
                 .toolList(Arrays.asList(
                         XMaterial.DIAMOND_PICKAXE,

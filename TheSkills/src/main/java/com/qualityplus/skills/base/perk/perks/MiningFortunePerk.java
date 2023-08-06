@@ -8,11 +8,31 @@ import lombok.NoArgsConstructor;
 
 import java.util.List;
 
+/**
+ * Utility class for mining fortune perk
+ */
 @NoArgsConstructor
 public final class MiningFortunePerk extends AbstractFortuneBlockPerk {
+    /**
+     *
+     * @param id                       Id
+     * @param enabled                  Enabled
+     * @param displayName              Display Name
+     * @param description              Description
+     * @param skillGUIOptions          {@link GUIOptions}
+     * @param initialAmount            Initial Amount
+     * @param chancePerLevel           Chance Per Level
+     * @param allowedMaterials         Allowed Materials
+     */
     @Builder
-    public MiningFortunePerk(String id, boolean enabled, String displayName, List<String> description, GUIOptions skillGUIOptions, double initialAmount, double chancePerLevel,
-                             List<XMaterial> allowedMaterials) {
+    public MiningFortunePerk(final String id,
+                             final boolean enabled,
+                             final String displayName,
+                             final List<String> description,
+                             final GUIOptions skillGUIOptions,
+                             final double initialAmount,
+                             final double chancePerLevel,
+                             final List<XMaterial> allowedMaterials) {
         super(id, enabled, displayName, description, skillGUIOptions, initialAmount, chancePerLevel, allowedMaterials);
     }
 }

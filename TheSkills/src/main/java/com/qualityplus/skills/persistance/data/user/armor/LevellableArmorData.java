@@ -2,22 +2,55 @@ package com.qualityplus.skills.persistance.data.user.armor;
 
 import java.util.Map;
 
-public interface LevellableArmorData<T>{
-    Map<T, Integer> getFromArmor();
+/**
+ * Make a levellable Armor data
+ * @param <T> From armor
+ */
+public interface LevellableArmorData<T> {
+    /**
+     * Adds a from armor
+     *
+     * @return From Armor
+     */
+    public Map<T, Integer> getFromArmor();
 
-    default void addArmor(T data, Integer quantity) {
+    /**
+     * Adds a armor
+     *
+     * @param data     Data
+     * @param quantity Quantity
+     */
+    public default void addArmor(T data, Integer quantity) {
         getFromArmor().computeIfPresent(data, (key, aDouble) -> aDouble + quantity);
     }
 
-    default void removeArmor(T data, Integer quantity) {
+    /**
+     * Make a remove armor
+     *
+     * @param data     Data
+     * @param quantity Quantity
+     */
+    public default void removeArmor(T data, Integer quantity) {
         getFromArmor().computeIfPresent(data, (key, aDouble) -> aDouble - quantity);
     }
 
-    default Integer getArmor(T data) {
+    /**
+     * Adds a armor
+     *
+     * @param data  Data
+     * @return      Armor
+     */
+    public default Integer getArmor(T data) {
         return getFromArmor().getOrDefault(data, 0);
     }
 
-    default void setArmor(T data, Integer quantity) {
+    /**
+     * Adds a armor
+     *
+     * @param data     Data
+     * @param quantity Quantity
+     */
+    public default void setArmor(T data, Integer quantity) {
         getFromArmor().computeIfPresent(data, (key, aDouble) -> quantity);
     }
 }

@@ -12,6 +12,9 @@ import lombok.Setter;
 
 import java.util.List;
 
+/**
+ * Utility class dor abstract option perk
+ */
 @Getter @Setter
 @NoArgsConstructor
 public abstract class AbstractPotionPerk extends Perk {
@@ -19,8 +22,30 @@ public abstract class AbstractPotionPerk extends Perk {
     protected int baseSecondsDuration;
     protected int level;
 
-    public AbstractPotionPerk(String id, boolean enabled, String displayName, List<String> description, GUIOptions skillGUIOptions, double initialAmount, double chancePerLevel,
-                              int secondsDurationPerLevel, int baseSecondsDuration, int level) {
+    /**
+     * Makes abstract potion perk
+     *
+     * @param id                        Id
+     * @param enabled                   Enabled
+     * @param displayName               Display Name
+     * @param description               Description
+     * @param skillGUIOptions           {@link GUIOptions}
+     * @param initialAmount             Initial Amount
+     * @param chancePerLevel            Chance Per Level
+     * @param secondsDurationPerLevel   Seconds Duration Per Level
+     * @param baseSecondsDuration       Base Seconds Duration
+     * @param level                     Level
+     */
+    public AbstractPotionPerk(final String id,
+                              final boolean enabled,
+                              final String displayName,
+                              final List<String> description,
+                              final GUIOptions skillGUIOptions,
+                              final double initialAmount,
+                              final double chancePerLevel,
+                              final int secondsDurationPerLevel,
+                              final int baseSecondsDuration,
+                              final int level) {
         super(id, enabled, displayName, description, skillGUIOptions, initialAmount, chancePerLevel);
 
         this.secondsDurationPerLevel = secondsDurationPerLevel;
@@ -29,7 +54,7 @@ public abstract class AbstractPotionPerk extends Perk {
     }
 
     @Override
-    public List<String> getFormattedDescription(int level) {
+    public List<String> getFormattedDescription(final int level) {
         return StringUtils.processMulti(super.getFormattedDescription(level), PlaceholderBuilder.create(
                 new Placeholder("duration", getDurationSeconds(level)),
                 new Placeholder("potion_level_roman", NumberUtil.toRoman(getLevel())),
@@ -37,15 +62,15 @@ public abstract class AbstractPotionPerk extends Perk {
         ).get());
     }
 
-    protected int getFinalLevel(){
-        return Math.max(0, level - 1);
+    protected int getFinalLevel() {
+        return Math.max(0, this.level - 1);
     }
 
-    protected int getDurationTicks(int level){
-        return baseSecondsDuration + (secondsDurationPerLevel * level) * 20;
+    protected int getDurationTicks(final int level) {
+        return this.baseSecondsDuration + (this.secondsDurationPerLevel * level) * 20;
     }
 
-    private int getDurationSeconds(int level){
-        return baseSecondsDuration + (secondsDurationPerLevel * level);
+    private int getDurationSeconds(final int level) {
+        return this.baseSecondsDuration + (this.secondsDurationPerLevel * level);
     }
 }

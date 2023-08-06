@@ -17,29 +17,57 @@ import org.bukkit.metadata.FixedMetadataValue;
 
 import java.util.List;
 
+/**
+ * Utility class for orb master perk
+ */
 @Getter
 @Setter
 @NoArgsConstructor
 public final class OrbMasterPerk extends Perk {
+    /**
+     *
+     * @param id               Id
+     * @param enabled          Enabled
+     * @param displayName      Display Name
+     * @param description      Description
+     * @param skillGUIOptions  {@link GUIOptions}
+     * @param initialAmount    Initial Amount
+     * @param chancePerLevel   Chance Per Level
+     */
     @Builder
-    public OrbMasterPerk(String id, boolean enabled, String displayName, List<String> description, GUIOptions skillGUIOptions, double initialAmount, double chancePerLevel) {
+    public OrbMasterPerk(final String id,
+                         final boolean enabled,
+                         final String displayName,
+                         final List<String> description,
+                         final GUIOptions skillGUIOptions,
+                         final double initialAmount,
+                         final double chancePerLevel) {
         super(id, enabled, displayName, description, skillGUIOptions, initialAmount, chancePerLevel);
     }
 
+    /**
+     * Adds a player chance event
+     *
+     * @param e {@link PlayerKillEvent}
+     */
     @EventHandler(priority = EventPriority.HIGH, ignoreCancelled = true)
-    public void onPlayerChanceExpEvent(PlayerKillEvent e) {
-        if(!(e.getKilled() instanceof ExperienceOrb)) return;
-
-        if(e.getKilled().hasMetadata("fortuneXpOrb")) return;
-
-        ExperienceOrb experienceOrb = (ExperienceOrb) e.getKilled();
-
-        Player player = e.getPlayer();
-
-        if (RandomUtil.randomBetween(0.0, 100.0) >= chancePerLevel * getStat(player))
+    public void onPlayerChanceExpEvent(final PlayerKillEvent e) {
+        if (!(e.getKilled() instanceof ExperienceOrb)) {
             return;
+        }
 
-        ExperienceOrb orb = player.getWorld().spawn(player.getLocation(), ExperienceOrb.class);
+        if (e.getKilled().hasMetadata("fortuneXpOrb")) {
+            return;
+        }
+
+        final ExperienceOrb experienceOrb = (ExperienceOrb) e.getKilled();
+
+        final Player player = e.getPlayer();
+
+        if (RandomUtil.randomBetween(0.0, 100.0) >= chancePerLevel * getStat(player)) {
+            return;
+        }
+        final ExperienceOrb orb = player.getWorld().spawn(player.getLocation(), ExperienceOrb.class);
 
         orb.setMetadata("fortuneXpOrb", new FixedMetadataValue(TheSkills.getApi().getPlugin(), "fortuneXpOrb"));
 

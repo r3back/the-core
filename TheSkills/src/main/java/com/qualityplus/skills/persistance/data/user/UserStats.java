@@ -11,18 +11,30 @@ import lombok.Setter;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Utility class for user stats
+ */
 @Getter
 @Setter
 public final class UserStats extends Document implements Levellable<String, Integer>, LevellableArmorData<String> {
     private Map<String, Integer> level = new HashMap<>();
     private Map<String, Integer> fromArmor = new HashMap<>();
 
-    public void fillIfEmpty(){
-        Stats.values().stream().map(Stat::getId).forEach(perk -> level.putIfAbsent(perk, 0));
-        Stats.values().stream().map(Stat::getId).forEach(perk -> fromArmor.putIfAbsent(perk, 0));
+    /**
+     * Adds a fill if empty
+     */
+    public void fillIfEmpty() {
+        Stats.values().stream().map(Stat::getId).forEach(perk -> this.level.putIfAbsent(perk, 0));
+        Stats.values().stream().map(Stat::getId).forEach(perk -> this.fromArmor.putIfAbsent(perk, 0));
     }
 
-    public int getTotalLevel(String value){
+    /**
+     * Adds a total level
+     *
+     * @param value Value
+     * @return      Total level
+     */
+    public int getTotalLevel(final String value) {
         return getLevel(value) + getArmor(value);
     }
 
