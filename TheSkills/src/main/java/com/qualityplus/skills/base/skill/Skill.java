@@ -36,18 +36,18 @@ public abstract class Skill extends CommonObject implements ListenerRegistrable 
     /**
      * Makes a skill
      *
-     * @param id                        Id
-     * @param enabled                  Enabled
-     * @param displayName              Display Name
-     * @param description              Description
-     * @param skillGUIOptions          {@link GUIOptions}
-     * @param initialAmount            Initial Amount
-     * @param maxLevel                 Max Level
-     * @param xpRequirements           Xp Requirements
-     * @param skillInfoInGUI           Skill Info In GUI
-     * @param statRewards              Stat Rewards
-     * @param skillInfoInMessage       Skill Info In Message
-     * @param commandRewards           Command Rewards
+     * @param id                 Id
+     * @param enabled            Enabled
+     * @param displayName        Display Name
+     * @param description        Description
+     * @param skillGUIOptions    {@link GUIOptions}
+     * @param initialAmount      Initial Amount
+     * @param maxLevel           Max Level
+     * @param xpRequirements     Xp Requirements
+     * @param skillInfoInGUI     Skill Info In GUI
+     * @param statRewards        Stat Rewards
+     * @param skillInfoInMessage Skill Info In Message
+     * @param commandRewards     Command Rewards
      */
     public Skill(final String id,
                  final boolean enabled,
@@ -103,7 +103,7 @@ public abstract class Skill extends CommonObject implements ListenerRegistrable 
      * Adds a cached message
      *
      * @param level Level
-     * @return      Cached message
+     * @return Cached message
      */
     public List<String> getCachedMessage(final int level) {
         return getMap(this.skillInfoInMessage, level);
@@ -113,7 +113,7 @@ public abstract class Skill extends CommonObject implements ListenerRegistrable 
      * Adds a cached GUI
      *
      * @param level Level
-     * @return      Cached GUI
+     * @return Cached GUI
      */
     public List<String> getCachedGUI(final int level) {
         return getMap(this.skillInfoInGUI, level);
@@ -124,7 +124,7 @@ public abstract class Skill extends CommonObject implements ListenerRegistrable 
      * Adds a command reward
      *
      * @param level Level
-     * @return      {@link CommandReward}
+     * @return {@link CommandReward}
      */
     public List<CommandReward> getCommandRewards(final int level) {
         return Optional.ofNullable(getMap(this.commandRewards, level)).orElse(Collections.emptyList());
@@ -134,7 +134,7 @@ public abstract class Skill extends CommonObject implements ListenerRegistrable 
      * Adds a stat rewards
      *
      * @param level Level
-     * @return      {@link StatReward}
+     * @return {@link StatReward}
      */
     public List<StatReward> getStatRewards(final int level) {
         return Optional.ofNullable(getMap(this.statRewards, level)).orElse(Collections.emptyList());
@@ -144,7 +144,7 @@ public abstract class Skill extends CommonObject implements ListenerRegistrable 
      * Adds an level requirement
      *
      * @param level Level
-     * @return      Level Requirement
+     * @return Level Requirement
      */
     public double getLevelRequirement(final int level) {
         return getMap(this.xpRequirements, level);
@@ -155,7 +155,7 @@ public abstract class Skill extends CommonObject implements ListenerRegistrable 
      *
      * @param material Material
      * @param rewards  Rewards
-     * @return         {@link BlockBreakResponse}
+     * @return {@link BlockBreakResponse}
      */
     public Optional<BlockBreakResponse> getBlockBreakEventXp(final XMaterial material, final Map<XMaterial, Double> rewards) {
         final double xp = rewards.getOrDefault(material, 0D);

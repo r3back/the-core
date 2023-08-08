@@ -32,7 +32,7 @@ public final class UserStats extends Document implements Levellable<String, Inte
      * Adds a total level
      *
      * @param value Value
-     * @return      Total level
+     * @return Total level
      */
     public int getTotalLevel(final String value) {
         return getLevel(value) + getArmor(value);

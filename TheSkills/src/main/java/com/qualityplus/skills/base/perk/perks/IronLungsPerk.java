@@ -24,16 +24,16 @@ public final class IronLungsPerk extends AbstractPotionPerk {
     /**
      * Makes a Iron lungs perk
      *
-     * @param id                                 Id
-     * @param enabled                            Enabled
-     * @param displayName                        Display Name
-     * @param description                        Description
-     * @param skillGUIOptions                    {@link GUIOptions}
-     * @param initialAmount                      Initial Amount
-     * @param chancePerLevel                     Chance Per Level
-     * @param secondsDurationPerLevel            Seconds Duration Per level
-     * @param baseSecondsDuration                Base Seconds Duration
-     * @param level                              Level
+     * @param id                      Id
+     * @param enabled                 Enabled
+     * @param displayName             Display Name
+     * @param description             Description
+     * @param skillGUIOptions         {@link GUIOptions}
+     * @param initialAmount           Initial Amount
+     * @param chancePerLevel          Chance Per Level
+     * @param secondsDurationPerLevel Seconds Duration Per level
+     * @param baseSecondsDuration     Base Seconds Duration
+     * @param level                   Level
      */
     @Builder
     public IronLungsPerk(final String id,

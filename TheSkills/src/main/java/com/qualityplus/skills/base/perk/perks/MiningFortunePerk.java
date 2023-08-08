@@ -15,14 +15,14 @@ import java.util.List;
 public final class MiningFortunePerk extends AbstractFortuneBlockPerk {
     /**
      *
-     * @param id                       Id
-     * @param enabled                  Enabled
-     * @param displayName              Display Name
-     * @param description              Description
-     * @param skillGUIOptions          {@link GUIOptions}
-     * @param initialAmount            Initial Amount
-     * @param chancePerLevel           Chance Per Level
-     * @param allowedMaterials         Allowed Materials
+     * @param id               Id
+     * @param enabled          Enabled
+     * @param displayName      Display Name
+     * @param description      Description
+     * @param skillGUIOptions  {@link GUIOptions}
+     * @param initialAmount    Initial Amount
+     * @param chancePerLevel   Chance Per Level
+     * @param allowedMaterials Allowed Materials
      */
     @Builder
     public MiningFortunePerk(final String id,

@@ -17,14 +17,14 @@ public interface ListenerRegistrable extends Listener {
     /**
      * Adds a list class
      *
-     * @return {@link ExtraListener}
+     * @return List of{@link ExtraListener}
      */
     public List<Class<? extends ExtraListener>> getExtraListeners();
 
     /**
      * Adds a register listener
      *
-     * @return {@link Listener}
+     * @return List of {@link Listener}
      */
     public List<Listener> getRegisteredListeners();
 
@@ -61,7 +61,7 @@ public interface ListenerRegistrable extends Listener {
     /**
      * Adds a extra listener
      *
-     * @param listener {@link ExtraListener}
+     * @param listener List of {@link ExtraListener}
      */
     public void addExtraListener(Class<? extends ExtraListener> listener);
 }

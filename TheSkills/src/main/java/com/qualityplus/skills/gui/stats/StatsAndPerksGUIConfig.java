@@ -24,15 +24,15 @@ public final class StatsAndPerksGUIConfig extends OkaeriConfig implements Simple
     /**
      * Makes a stats and perks gui config
      *
-     * @param commonGUI     {@link CommonGUI}
-     * @param previousPage  {@link StatsAndPerksGUIConfig}
-     * @param nextPage      {@link StatsAndPerksGUIConfig}
-     * @param goBack        {@link StatsAndPerksGUIConfig}
-     * @param statItem      {@link StatsAndPerksGUIConfig}
-     * @param perkItem      {@link StatsAndPerksGUIConfig}
-     * @param perkInfoItem  {@link StatsAndPerksGUIConfig}
-     * @param statInfoItem  {@link StatsAndPerksGUIConfig}
-     * @param switchMode    {@link StatsAndPerksGUIConfig}
+     * @param commonGUI    {@link CommonGUI}
+     * @param previousPage {@link StatsAndPerksGUIConfig}
+     * @param nextPage     {@link StatsAndPerksGUIConfig}
+     * @param goBack       {@link StatsAndPerksGUIConfig}
+     * @param statItem     {@link StatsAndPerksGUIConfig}
+     * @param perkItem     {@link StatsAndPerksGUIConfig}
+     * @param perkInfoItem {@link StatsAndPerksGUIConfig}
+     * @param statInfoItem {@link StatsAndPerksGUIConfig}
+     * @param switchMode   {@link StatsAndPerksGUIConfig}
      */
     @Builder
     public StatsAndPerksGUIConfig(final CommonGUI commonGUI,

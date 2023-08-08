@@ -17,10 +17,10 @@ public final class SkillsXPGainEvent extends SkillEvent {
     /**
      * Makes a skills xp gain
      *
-     * @param who              Who
-     * @param skill            {@link Skill}
-     * @param xp               Xp
-     * @param showXpActionBar  Show Xp Action Bar
+     * @param who             Who
+     * @param skill           {@link Skill}
+     * @param xp              Xp
+     * @param showXpActionBar Show Xp Action Bar
      */
     public SkillsXPGainEvent(@NotNull final Player who, final Skill skill, final double xp, final boolean showXpActionBar) {
         super(who, skill);

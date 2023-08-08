@@ -21,10 +21,10 @@ public final class ItemFortunePerkEvent extends FortunePerkEvent {
     /**
      * Makes a item fortune perk event
      *
-     * @param who             {@link Player}
-     * @param perk            {@link Perk}
-     * @param toDropItems     List Of {@link ItemStack}
-     * @param toDropLocation  {@link Location}
+     * @param who            {@link Player}
+     * @param perk           {@link Perk}
+     * @param toDropItems    List Of {@link ItemStack}
+     * @param toDropLocation {@link Location}
      */
     public ItemFortunePerkEvent(@NotNull final Player who, final Perk perk, final List<ItemStack> toDropItems, final Location toDropLocation) {
         super(who, perk, toDropLocation);

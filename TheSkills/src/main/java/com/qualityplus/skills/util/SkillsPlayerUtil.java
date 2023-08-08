@@ -14,7 +14,7 @@ public final class SkillsPlayerUtil {
      *
      *
      * @param player {@link Player}
-     * @return        Is In Survival
+     * @return Is In Survival
      */
     public static boolean isInSurvival(final Player player) {
         return player.getGameMode().equals(GameMode.SURVIVAL);

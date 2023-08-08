@@ -13,7 +13,7 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * Utility class for common onbject
+ * Utility class for common object
  */
 @NoArgsConstructor
 @Getter
@@ -32,12 +32,12 @@ public abstract class CommonObject {
     /**
      * Makes a common object
      *
-     * @param id                        Id
-     * @param enabled                  Enabled
-     * @param displayName              Display Name
-     * @param description              Description
-     * @param skillGUIOptions          {@link GUIOptions}
-     * @param initialAmount            Initial Amount
+     * @param id              Id
+     * @param enabled         Enabled
+     * @param displayName     Display Name
+     * @param description     Description
+     * @param skillGUIOptions {@link GUIOptions}
+     * @param initialAmount   Initial Amount
      */
     public CommonObject(final String id,
                         final boolean enabled,
@@ -57,7 +57,7 @@ public abstract class CommonObject {
      * Adds a list placeholder
      *
      * @param level Level
-     * @return      List of {@link IPlaceholder}
+     * @return List of {@link IPlaceholder}
      */
     public List<IPlaceholder> getPlaceholders(final Integer level) {
         return Collections.emptyList();
@@ -67,7 +67,7 @@ public abstract class CommonObject {
      * Adds a description
      *
      * @param level Level
-     * @return      Formatted Description
+     * @return Formatted Description
      */
     public List<String> getFormattedDescription(final int level) {
         return this.description;

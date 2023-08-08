@@ -16,14 +16,14 @@ public final class FarmingFortunePerk extends AbstractFortuneBlockPerk {
     /**
      * Utility for farming fortune perk
      *
-     * @param id                                 Id
-     * @param enabled                            Enabled
-     * @param displayName                        Display Name
-     * @param description                        Description
-     * @param skillGUIOptions                    {@link GUIOptions}
-     * @param initialAmount                      Initial Amount
-     * @param chancePerLevel                     Chance Per Level
-     * @param allowedMaterials                   Allowed Materials
+     * @param id               Id
+     * @param enabled          Enabled
+     * @param displayName      Display Name
+     * @param description      Description
+     * @param skillGUIOptions  {@link GUIOptions}
+     * @param initialAmount    Initial Amount
+     * @param chancePerLevel   Chance Per Level
+     * @param allowedMaterials Allowed Materials
      */
     @Builder
     public FarmingFortunePerk(final String id,

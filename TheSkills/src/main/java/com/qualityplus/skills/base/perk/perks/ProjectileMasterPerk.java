@@ -30,15 +30,15 @@ public final class ProjectileMasterPerk extends Perk {
 
     /**
      *
-     * @param id                                 Id
-     * @param enabled                            Enabled
-     * @param displayName                        Display Name
-     * @param description                        Description
-     * @param skillGUIOptions                    {@link GUIOptions}
-     * @param initialAmount                      Initial Amount
-     * @param chancePerLevel                     Chance Per Level
-     * @param extraDamagePercentageBase          EXtra Damage Percentage Base
-     * @param extraDamagePercentageBasePerLevel  Extra Damage P1ercentage Base Per Level
+     * @param id                                Id
+     * @param enabled                           Enabled
+     * @param displayName                       Display Name
+     * @param description                       Description
+     * @param skillGUIOptions                   {@link GUIOptions}
+     * @param initialAmount                     Initial Amount
+     * @param chancePerLevel                    Chance Per Level
+     * @param extraDamagePercentageBase         EXtra Damage Percentage Base
+     * @param extraDamagePercentageBasePerLevel Extra Damage P1ercentage Base Per Level
      */
     @Builder
     public ProjectileMasterPerk(final String id,

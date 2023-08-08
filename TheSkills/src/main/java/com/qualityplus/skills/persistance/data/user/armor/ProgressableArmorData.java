@@ -39,7 +39,7 @@ public interface ProgressableArmorData<T> {
      * Adds an armor xp
      *
      * @param data Data
-     * @return     Armor Xp
+     * @return Armor Xp
      */
     public default Double getArmorXP(T data) {
         return getFromArmorXp().getOrDefault(data, 0D);

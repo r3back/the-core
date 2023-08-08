@@ -53,7 +53,7 @@ public final class Perks {
      * Adds an perk
      *
      * @param key {@link NamespacedKey}
-     * @return    {@link Perk}
+     * @return {@link Perk}
      */
     @Nullable
     public static Perk getByKey(@NotNull final NamespacedKey key) {
@@ -73,7 +73,7 @@ public final class Perks {
      * Adds a perks
      *
      * @param filter Filter
-     * @return       {@link Predicate}
+     * @return {@link Predicate}
      */
     public static Set<Perk> values(final Predicate<Perk> filter) {
         return ImmutableSet.copyOf(PERK_REGISTRY.values().stream().filter(filter).collect(Collectors.toList()));

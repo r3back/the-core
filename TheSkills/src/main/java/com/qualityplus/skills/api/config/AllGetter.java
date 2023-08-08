@@ -9,7 +9,7 @@ import java.util.List;
  */
 public interface AllGetter {
     /**
-     * makes all config
+     * Makes all config
      *
      * @return List Of {@link OkaeriConfig}
      */

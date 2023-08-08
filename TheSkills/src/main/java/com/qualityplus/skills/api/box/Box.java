@@ -86,6 +86,7 @@ public interface Box {
 
     /**
      * Adds a perk files
+     *
      * @return {@link PerkFiles}
      */
     public PerkFiles<AbilityDamageConfig, BonusAttackSpeedConfig,
@@ -114,6 +115,7 @@ public interface Box {
 
     /**
      * Adds an inject
+     *
       * @return {@link OkaeriInjector}
      */
     public OkaeriInjector inject();

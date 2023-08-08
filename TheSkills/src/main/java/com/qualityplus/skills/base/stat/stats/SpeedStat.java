@@ -24,13 +24,13 @@ public final class SpeedStat extends Stat {
     /**
      * Makes a speed stats
      *
-     * @param id                             Id
-     * @param enabled                        Enabled
-     * @param displayName                    Display Name
-     * @param description                    Description
-     * @param skillGUIOptions                {@link GUIOptions}
-     * @param baseAmount                     Base Amount
-     * @param extraSpeedPercentagePerLevel   Extra Speed Percentage Per Level
+     * @param id                           Id
+     * @param enabled                      Enabled
+     * @param displayName                  Display Name
+     * @param description                  Description
+     * @param skillGUIOptions              {@link GUIOptions}
+     * @param baseAmount                   Base Amount
+     * @param extraSpeedPercentagePerLevel Extra Speed Percentage Per Level
      */
     @Builder
     public SpeedStat(final String id,

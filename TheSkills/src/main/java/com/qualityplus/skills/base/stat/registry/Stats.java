@@ -42,7 +42,7 @@ public final class Stats {
      * Adds a by Id
      *
      * @param id Id
-     * @return   By Id
+     * @return By Id
      */
     @Nullable
     public static Stat getByID(@NotNull final String id) {
@@ -53,7 +53,7 @@ public final class Stats {
      * Adds a by key
      *
      * @param key Key
-     * @return    {@link NamespacedKey}
+     * @return {@link NamespacedKey}
      */
     @Nullable
     public static Stat getByKey(@NotNull final NamespacedKey key) {
@@ -72,8 +72,8 @@ public final class Stats {
     /**
      * Makes predicate stats filter
      *
-     * @param filter  Filter
-     * @return        {@link Predicate}
+     * @param filter Filter
+     * @return {@link Predicate}
      */
     public static Set<Stat> values(final Predicate<Stat> filter) {
         return ImmutableSet.copyOf(STAT_REGISTRY.values().stream().filter(filter).collect(Collectors.toList()));

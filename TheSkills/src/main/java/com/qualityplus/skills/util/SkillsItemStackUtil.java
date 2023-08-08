@@ -22,10 +22,10 @@ public final class SkillsItemStackUtil {
     /**
      * Makes an item stack
      *
-     * @param item               {@link Item}
-     * @param placeholders       list of {@link IPlaceholder}
-     * @param skillGUIOptions    {@link GUIOptions}
-     * @return                   {@link ItemStack}
+     * @param item            {@link Item}
+     * @param placeholders    list of {@link IPlaceholder}
+     * @param skillGUIOptions {@link GUIOptions}
+     * @return {@link ItemStack}
      */
     public static ItemStack makeItem(final Item item, final List<IPlaceholder> placeholders, final GUIOptions skillGUIOptions) {
         try {
@@ -41,7 +41,7 @@ public final class SkillsItemStackUtil {
 
 
             return ItemStackUtils.getFinalItem(item1, firstProcess, placeholders);
-        } catch (Exception e) {
+        } catch (NullPointerException e) {
             e.printStackTrace();
             return XMaterial.STONE.parseItem();
         }

@@ -29,14 +29,14 @@ public final class LightningPunchPerk extends Perk {
 
     /**
      *
-     * @param id                                 Id
-     * @param enabled                            Enabled
-     * @param displayName                        Display Name
-     * @param description                        Description
-     * @param skillGUIOptions                    {@link GUIOptions}
-     * @param initialAmount                      Initial Amount
-     * @param chancePerLevel                     Chance Per Level
-     * @param damage                             Damage
+     * @param id              Id
+     * @param enabled         Enabled
+     * @param displayName     Display Name
+     * @param description     Description
+     * @param skillGUIOptions {@link GUIOptions}
+     * @param initialAmount   Initial Amount
+     * @param chancePerLevel  Chance Per Level
+     * @param damage          Damage
      */
     @Builder
     public LightningPunchPerk(final String id,

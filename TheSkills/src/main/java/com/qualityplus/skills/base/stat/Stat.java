@@ -52,7 +52,7 @@ public abstract class Stat extends CommonObject implements ListenerRegistrable {
      *
      * @param player {@link Player}
      * @param id     Id
-     * @return       {@link Stat}
+     * @return {@link Stat}
      */
     public int getStat(final Player player, final String id) {
         return TheSkills.getApi().getSkillsService().getData(player.getUniqueId())
@@ -65,7 +65,7 @@ public abstract class Stat extends CommonObject implements ListenerRegistrable {
      * Adds a player
      *
      * @param player {@link Player}
-     * @return       {@link Stat}
+     * @return {@link Stat}
      */
     public int getStat(final Player player) {
         return getStat(player, id);

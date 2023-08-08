@@ -20,12 +20,12 @@ public final class StrengthStat extends Stat {
     /**
      * Make a strength stat
      *
-     * @param id               Id
-     * @param enabled          Enabled
-     * @param displayName      Display Name
-     * @param description      Description
-     * @param skillGUIOptions  {@link GUIOptions}
-     * @param baseAmount       Base Amount
+     * @param id              Id
+     * @param enabled         Enabled
+     * @param displayName     Display Name
+     * @param description     Description
+     * @param skillGUIOptions {@link GUIOptions}
+     * @param baseAmount      Base Amount
      */
     @Builder
     public StrengthStat(final String id,

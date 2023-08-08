@@ -54,7 +54,7 @@ public final class Config extends OkaeriConfig {
     }
 
     /**
-     * Utility class for  Action bar
+     * Utility class for Action bar
       */
     @Getter
     public static class LevelUpSettings extends OkaeriConfig {

@@ -18,8 +18,8 @@ public abstract class SkillEvent extends PlayerAssistantEvent {
     /**
      * adds a skill event
      *
-     * @param who    {@link Player}
-     * @param skill  {@link Skill}
+     * @param who   {@link Player}
+     * @param skill {@link Skill}
      */
     public SkillEvent(@NotNull final Player who, final Skill skill) {
         super(who);

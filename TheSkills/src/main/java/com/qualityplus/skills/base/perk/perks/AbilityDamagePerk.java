@@ -19,13 +19,13 @@ public final class AbilityDamagePerk extends Perk {
     /**
      * Makes an ability damage perk
      *
-     * @param id                                 Id
-     * @param enabled                            Enabled
-     * @param displayName                        Display Name
-     * @param description                        Description
-     * @param skillGUIOptions                    {@link GUIOptions}
-     * @param initialAmount                      Initial Amount
-     * @param chancePerLevel                     Chance Per Level
+     * @param id              Id
+     * @param enabled         Enabled
+     * @param displayName     Display Name
+     * @param description     Description
+     * @param skillGUIOptions {@link GUIOptions}
+     * @param initialAmount   Initial Amount
+     * @param chancePerLevel  Chance Per Level
      */
     @Builder
     public AbilityDamagePerk(final String id,

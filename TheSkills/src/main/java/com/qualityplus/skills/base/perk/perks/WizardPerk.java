@@ -21,16 +21,16 @@ import java.util.Optional;
 public final class WizardPerk extends AbstractPotionPerk {
     /**
      *
-     * @param id                        Id
-     * @param enabled                   Enabled
-     * @param displayName               Display Name
-     * @param description               Description
-     * @param skillGUIOptions           {@link GUIOptions}
-     * @param initialAmount             Initial Amount
-     * @param chancePerLevel            Chance Per Level
-     * @param secondsDurationPerLevel   Seconds Duration Per Level
-     * @param baseSecondsDuration       Base Seconds Duration
-     * @param level                     Level
+     * @param id                      Id
+     * @param enabled                 Enabled
+     * @param displayName             Display Name
+     * @param description             Description
+     * @param skillGUIOptions         {@link GUIOptions}
+     * @param initialAmount           Initial Amount
+     * @param chancePerLevel          Chance Per Level
+     * @param secondsDurationPerLevel Seconds Duration Per Level
+     * @param baseSecondsDuration     Base Seconds Duration
+     * @param level                   Level
      */
     @Builder
     public WizardPerk(final String id,

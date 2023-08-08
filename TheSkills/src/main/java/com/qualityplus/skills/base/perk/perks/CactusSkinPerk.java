@@ -31,15 +31,15 @@ public final class CactusSkinPerk extends Perk {
     /**
      * Makes a cactus skin perk
      *
-     * @param id                                 Id
-     * @param enabled                            Enabled
-     * @param displayName                        Display Name
-     * @param description                        Description
-     * @param skillGUIOptions                    {@link GUIOptions}
-     * @param initialAmount                      Initial Amount
-     * @param chancePerLevel                     Chance Per Level
-     * @param damagePerLevel                     Damage Per Level
-     * @param damageBase                         Damage Base
+     * @param id              Id
+     * @param enabled         Enabled
+     * @param displayName     Display Name
+     * @param description     Description
+     * @param skillGUIOptions {@link GUIOptions}
+     * @param initialAmount   Initial Amount
+     * @param chancePerLevel  Chance Per Level
+     * @param damagePerLevel  Damage Per Level
+     * @param damageBase      Damage Base
      */
     @Builder
     public CactusSkinPerk(final String id,

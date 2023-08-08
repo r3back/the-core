@@ -52,7 +52,7 @@ public abstract class SkillsGUI extends GUI {
      * Adds an item
      *
      * @param item            {@link Item}
-     * @param placeholderList list of {@link IPlaceholder}
+     * @param placeholderList List of {@link IPlaceholder}
      */
     public void setItem(final Item item, final List<IPlaceholder> placeholderList) {
         super.setItem(item, placeholderList);

@@ -30,15 +30,15 @@ public final class MiningSpeedPerk extends Perk {
 
     /**
      *
-     * @param id                       Id
-     * @param enabled                  Enabled
-     * @param displayName              Display Name
-     * @param description              Description
-     * @param skillGUIOptions          {@link GUIOptions}
-     * @param initialAmount            Initial Amount
-     * @param secondsDurationPerLevel  Seconds Duration Per Level
-     * @param baseSecondsDuration      Base Seconds Duration
-     * @param chancePerLevel           Chance Per Level
+     * @param id                      Id
+     * @param enabled                 Enabled
+     * @param displayName             Display Name
+     * @param description             Description
+     * @param skillGUIOptions         {@link GUIOptions}
+     * @param initialAmount           Initial Amount
+     * @param secondsDurationPerLevel Seconds Duration Per Level
+     * @param baseSecondsDuration     Base Seconds Duration
+     * @param chancePerLevel          Chance Per Level
      */
     @Builder
     public MiningSpeedPerk(final String id,

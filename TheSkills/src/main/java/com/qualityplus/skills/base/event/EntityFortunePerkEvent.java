@@ -19,10 +19,10 @@ public final class EntityFortunePerkEvent extends FortunePerkEvent {
     /**
      * Makes entity fortune perk event
      *
-     * @param who             {@link Player}
-     * @param perk            {@link Perk}
-     * @param toDropEntity    {@link Entity}
-     * @param toDropLocation  {@link Location}
+     * @param who            {@link Player}
+     * @param perk           {@link Perk}
+     * @param toDropEntity   {@link Entity}
+     * @param toDropLocation {@link Location}
      */
     public EntityFortunePerkEvent(@NotNull final Player who, final Perk perk, final Entity toDropEntity, final Location toDropLocation) {
         super(who, perk, toDropLocation);

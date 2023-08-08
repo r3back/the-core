@@ -25,7 +25,7 @@ public interface SkillsRepository extends DocumentRepository<UUID, UserData> {
      * Adds a user data
      *
      * @param name Name
-     * @return     {@link UserData}
+     * @return {@link UserData}
      */
     public @DocumentPath("name")
         Optional<UserData> findByName(String name);
@@ -34,7 +34,7 @@ public interface SkillsRepository extends DocumentRepository<UUID, UserData> {
      * Adds a uuid
      *
      * @param uuid {@link UUID}
-     * @return     {@link UserData}
+     * @return {@link UserData}
      */
     public @DocumentPath("uuid")
         Optional<UserData> findByUuid(UUID uuid);
@@ -44,7 +44,7 @@ public interface SkillsRepository extends DocumentRepository<UUID, UserData> {
      * Adds a user data
      *
      * @param player {@link Player}
-     * @return       {@link UserData}
+     * @return {@link UserData}
      */
     public default UserData get(Player player) {
         return get(player.getUniqueId(), player.getName());
@@ -55,7 +55,7 @@ public interface SkillsRepository extends DocumentRepository<UUID, UserData> {
      *
      * @param uuid {@link UUID}
      * @param name Name
-     * @return     {@link UserData}
+     * @return {@link UserData}
      */
     public default UserData get(UUID uuid, String name) {
 

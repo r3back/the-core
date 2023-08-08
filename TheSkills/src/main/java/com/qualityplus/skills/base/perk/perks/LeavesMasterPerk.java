@@ -25,14 +25,14 @@ import java.util.Map;
 public final class LeavesMasterPerk extends AbstractRandomBlockDropPerk {
     /**
      *
-     * @param id                                 Id
-     * @param enabled                            Enabled
-     * @param displayName                        Display Name
-     * @param description                        Description
-     * @param skillGUIOptions                    {@link GUIOptions}
-     * @param initialAmount                      Initial Amount
-     * @param chancePerLevel                     Chance Per Level
-     * @param itemAndChances                     Item And Chances
+     * @param id              Id
+     * @param enabled         Enabled
+     * @param displayName     Display Name
+     * @param description     Description
+     * @param skillGUIOptions {@link GUIOptions}
+     * @param initialAmount   Initial Amount
+     * @param chancePerLevel  Chance Per Level
+     * @param itemAndChances  Item And Chances
      */
     @Builder
     public LeavesMasterPerk(final String id,

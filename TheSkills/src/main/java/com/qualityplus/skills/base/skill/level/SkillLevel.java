@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 import java.util.List;
 
 /**
- * Utility class for skill livel
+ * Utility class for skill level
  */
 @Data
 @Builder

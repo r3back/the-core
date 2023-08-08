@@ -25,7 +25,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 /**
- * Chance to Give Random Potion Efect
+ * Utility class for Chance to Give Random Potion Efect
  */
 @Data @EqualsAndHashCode(callSuper = true) @NoArgsConstructor
 public final class BrewChancePerk extends Perk {
@@ -36,16 +36,16 @@ public final class BrewChancePerk extends Perk {
     /**
      * Makes a rew chance perk
      *
-     * @param id                                 Id
-     * @param enabled                            Enabled
-     * @param displayName                        Display Name
-     * @param description                        Description
-     * @param skillGUIOptions                    {@link GUIOptions}
-     * @param baseAmount                         Base Amount
-     * @param chancePerLevel                     Chance Per Level
-     * @param potionAndChances                   Potion And Chances
-     * @param baseSecondsDuration                Base Seconds Duration
-     * @param secondsDurationPerLevel            Seconds Duration Per Level
+     * @param id                      Id
+     * @param enabled                 Enabled
+     * @param displayName             Display Name
+     * @param description             Description
+     * @param skillGUIOptions         {@link GUIOptions}
+     * @param baseAmount              Base Amount
+     * @param chancePerLevel          Chance Per Level
+     * @param potionAndChances        Potion And Chances
+     * @param baseSecondsDuration     Base Seconds Duration
+     * @param secondsDurationPerLevel Seconds Duration Per Level
      */
     @Builder
     public BrewChancePerk(final String id,

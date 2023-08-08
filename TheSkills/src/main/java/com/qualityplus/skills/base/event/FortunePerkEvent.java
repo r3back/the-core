@@ -19,9 +19,9 @@ public abstract class FortunePerkEvent extends PerkEvent {
     /**
      * Makes a fortune perk
      *
-     * @param who             {@link Player}
-     * @param perk            {@link Perk}
-     * @param toDropLocation  {@link Location}
+     * @param who            {@link Player}
+     * @param perk           {@link Perk}
+     * @param toDropLocation {@link Location}
      */
     public FortunePerkEvent(@NotNull final Player who, final Perk perk, final Location toDropLocation) {
         super(who, perk);

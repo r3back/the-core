@@ -31,13 +31,13 @@ public final class DefenseStat extends Stat {
     /**
      * Makes a defense stats
      *
-     * @param id                                 Id
-     * @param enabled                            Enabled
-     * @param displayName                        Display Name
-     * @param description                        Description
-     * @param skillGUIOptions                    {@link GUIOptions}
-     * @param baseAmount                         Base Amount
-     * @param damageReductionPercentagePerLevel  Damage Reduction Percentage Per Level
+     * @param id                                Id
+     * @param enabled                           Enabled
+     * @param displayName                       Display Name
+     * @param description                       Description
+     * @param skillGUIOptions                   {@link GUIOptions}
+     * @param baseAmount                        Base Amount
+     * @param damageReductionPercentagePerLevel Damage Reduction Percentage Per Level
      */
     @Builder
     public DefenseStat(final String id,

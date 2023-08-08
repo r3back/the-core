@@ -45,7 +45,7 @@ public final class Skills {
      * Adds a by id
      *
      * @param id Id
-     * @return   {@link Skill}
+     * @return {@link Skill}
      */
     @Nullable
     public static Skill getByID(@NotNull final String id) {
@@ -56,7 +56,7 @@ public final class Skills {
      * Adds a by key
      *
      * @param key Key
-     * @return    {@link NamespacedKey}
+     * @return {@link NamespacedKey}
      */
     @Nullable
     public static Skill getByKey(@NotNull final NamespacedKey key) {
@@ -77,7 +77,7 @@ public final class Skills {
      * Adds a filter
      *
      * @param filter Filter
-     * @return       {@link Skill}
+     * @return {@link Skill}
      */
     public static Set<Skill> values(final Predicate<Skill> filter) {
         return ImmutableSet.copyOf(SKILL_REGISTRY.values().stream().filter(filter).collect(Collectors.toList()));

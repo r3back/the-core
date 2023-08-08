@@ -23,13 +23,13 @@ public final class BonusAttackSpeedPerk extends Perk {
     /**
      * Makes a bonus attack speed perk
      *
-     * @param id                                 Id
-     * @param enabled                            Enabled
-     * @param displayName                        Display Name
-     * @param description                        Description
-     * @param skillGUIOptions                    {@link GUIOptions}
-     * @param initialAmount                      Initial Amount
-     * @param chancePerLevel                     Chance Per Level
+     * @param id              Id
+     * @param enabled         Enabled
+     * @param displayName     Display Name
+     * @param description     Description
+     * @param skillGUIOptions {@link GUIOptions}
+     * @param initialAmount   Initial Amount
+     * @param chancePerLevel  Chance Per Level
      */
     @Builder
     public BonusAttackSpeedPerk(final String id,

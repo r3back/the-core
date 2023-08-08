@@ -31,13 +31,13 @@ public abstract class Perk extends CommonObject implements ListenerRegistrable {
     /**
      * Makes a perk
      *
-     * @param id                                 Id
-     * @param enabled                            Enabled
-     * @param displayName                        Display Name
-     * @param description                        Description
-     * @param skillGUIOptions                    {@link GUIOptions}
-     * @param initialAmount                      Initial Amount
-     * @param chancePerLevel                     Chance Per Level
+     * @param id              Id
+     * @param enabled         Enabled
+     * @param displayName     Display Name
+     * @param description     Description
+     * @param skillGUIOptions {@link GUIOptions}
+     * @param initialAmount   Initial Amount
+     * @param chancePerLevel  Chance Per Level
      */
     public Perk(final String id,
                 final boolean enabled,
@@ -63,7 +63,7 @@ public abstract class Perk extends CommonObject implements ListenerRegistrable {
      *
      * @param player {@link Player}
      * @param id     Id
-     * @return       Stat
+     * @return Stat
      */
     public int getStat(final Player player, final String id) {
         return TheSkills.getApi().getSkillsService().getData(player.getUniqueId())
@@ -76,7 +76,7 @@ public abstract class Perk extends CommonObject implements ListenerRegistrable {
      * Add a stat
      *
      * @param player {@link Player}
-     * @return       Stat
+     * @return Stat
      */
     public int getStat(final Player player) {
         return getStat(player, id);

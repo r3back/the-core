@@ -29,7 +29,7 @@ public class SkillsPlaceholderUtil {
      *
      * @param userData {@link UserData}
      * @param skill    {@link Skill}
-     * @return         list of {@link IPlaceholder}
+     * @return List of {@link IPlaceholder}
      */
     public List<IPlaceholder> getSkillsPlaceholders(final UserData userData, final Skill skill) {
         final int level = userData.getSkills().getLevel(skill.getId());
@@ -43,7 +43,7 @@ public class SkillsPlaceholderUtil {
      * @param userData {@link UserData}
      * @param skill    {@link Skill}
      * @param level    Level
-     * @return         list of {@link IPlaceholder}
+     * @return List of {@link IPlaceholder}
      */
     public List<IPlaceholder> getSkillsPlaceholders(final UserData userData, final Skill skill, final int level) {
         final double xp = userData.getSkills().getXp(skill.getId());
@@ -66,7 +66,7 @@ public class SkillsPlaceholderUtil {
      * Makes a perks placeholder
      *
      * @param userData {@link UserData}
-     * @return         {@link PlaceholderBuilder}
+     * @return {@link PlaceholderBuilder}
      */
     public static PlaceholderBuilder getPerksPlaceholders(final UserData userData) {
         final List<IPlaceholder> placeholders = new ArrayList<>();
@@ -85,7 +85,7 @@ public class SkillsPlaceholderUtil {
      * Makes a perks placeholder
      *
      * @param level Level
-     * @return      {@link PlaceholderBuilder}
+     * @return {@link PlaceholderBuilder}
      */
     public static PlaceholderBuilder getPerksPlaceholders(final Integer level) {
         final List<IPlaceholder> placeholders = new ArrayList<>();
@@ -105,7 +105,7 @@ public class SkillsPlaceholderUtil {
      * Makes stat placeholder
      *
      * @param userData {@link UserData}
-     * @return         {@link PlaceholderBuilder}
+     * @return {@link PlaceholderBuilder}
      */
     public static PlaceholderBuilder getStatPlaceholders(final UserData userData) {
         final List<IPlaceholder> placeholders = new ArrayList<>();
@@ -125,7 +125,7 @@ public class SkillsPlaceholderUtil {
      * Makes stat placeholder
      *
      * @param level Level
-     * @return      {@link PlaceholderBuilder}
+     * @return {@link PlaceholderBuilder}
      */
     public static PlaceholderBuilder getStatPlaceholders(final Integer level) {
         final List<IPlaceholder> placeholders = new ArrayList<>();
@@ -154,7 +154,7 @@ public class SkillsPlaceholderUtil {
      * Makes a health player
      *
      * @param player {@link Player}
-     * @return       {@link PlaceholderBuilder}
+     * @return {@link PlaceholderBuilder}
      */
     public static PlaceholderBuilder getHealthPlaceholders(final Player player) {
         return PlaceholderBuilder.create()
@@ -167,7 +167,7 @@ public class SkillsPlaceholderUtil {
      *
      * @param userData {@link UserData}
      * @param skill    {@link Skill}
-     * @return         {@link PlaceholderBuilder}
+     * @return {@link PlaceholderBuilder}
      */
     public static PlaceholderBuilder getAllPlaceholders(final UserData userData, final Skill skill) {
         return PlaceholderBuilder.create()
@@ -182,7 +182,7 @@ public class SkillsPlaceholderUtil {
      * @param userData {@link UserData}
      * @param skill    {@link Skill}
      * @param level    Level
-     * @return         {@link PlaceholderBuilder}
+     * @return {@link PlaceholderBuilder}
      */
     public static PlaceholderBuilder getAllPlaceholders(final UserData userData, final Skill skill, final int level) {
         return PlaceholderBuilder.create()

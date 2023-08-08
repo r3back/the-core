@@ -26,12 +26,12 @@ public final class GUIOptions extends OkaeriConfig {
     /**
      * Makes a GUI options
      *
-     * @param slot             Slot
-     * @param page             Page
-     * @param item             {@link XMaterial}
-     * @param texture          Texture
-     * @param mainMenuLore     Main Menu Lore
-     * @param customModelData  Custom Model Data
+     * @param slot            Slot
+     * @param page            Page
+     * @param item            {@link XMaterial}
+     * @param texture         Texture
+     * @param mainMenuLore    Main Menu Lore
+     * @param customModelData Custom Model Data
      */
     @Builder
     public GUIOptions(final int slot, final int page, final XMaterial item, final String texture, final List<String> mainMenuLore, final int customModelData) {

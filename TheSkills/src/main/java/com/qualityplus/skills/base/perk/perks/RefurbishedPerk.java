@@ -33,14 +33,14 @@ public final class RefurbishedPerk extends Perk {
 
     /**
      *
-     * @param id               Id
-     * @param enabled          Enabled
-     * @param displayName      Display Name
-     * @param description      Description
-     * @param skillGUIOptions  {@link GUIOptions}
-     * @param baseAmount       Base Amount
-     * @param chancePerLevel   Chance Per Level
-     * @param toolList         list of {@link XMaterial}
+     * @param id              Id
+     * @param enabled         Enabled
+     * @param displayName     Display Name
+     * @param description     Description
+     * @param skillGUIOptions {@link GUIOptions}
+     * @param baseAmount      Base Amount
+     * @param chancePerLevel  Chance Per Level
+     * @param toolList        list of {@link XMaterial}
      */
     @Builder
     public RefurbishedPerk(final String id,

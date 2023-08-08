@@ -26,14 +26,14 @@ public abstract class AbstractRandomBlockDropPerk extends Perk {
     /**
      * Makes an Abstract Random Block Dro pPerk
      *
-     * @param id               Id
-     * @param enabled          Enabled
-     * @param displayName      Display Name
-     * @param description      Description
-     * @param skillGUIOptions  {@link GUIOptions}
-     * @param baseAmount       Base Amount
-     * @param chancePerLevel   Chance Per Level
-     * @param itemAndChances   Item And Chances
+     * @param id              Id
+     * @param enabled         Enabled
+     * @param displayName     Display Name
+     * @param description     Description
+     * @param skillGUIOptions {@link GUIOptions}
+     * @param baseAmount      Base Amount
+     * @param chancePerLevel  Chance Per Level
+     * @param itemAndChances  Item And Chances
      */
     public AbstractRandomBlockDropPerk(final String id,
                                        final boolean enabled,

@@ -26,13 +26,13 @@ import java.util.Optional;
 public final class SeaFortunePerk extends AbstractFortunePerk {
     /**
      *
-     * @param id               Id
-     * @param enabled          Enabled
-     * @param displayName      Display Name
-     * @param description      Description
-     * @param skillGUIOptions  {@link GUIOptions}
-     * @param initialAmount    Initial Amount
-     * @param chancePerLevel   Chance Per Level
+     * @param id              Id
+     * @param enabled         Enabled
+     * @param displayName     Display Name
+     * @param description     Description
+     * @param skillGUIOptions {@link GUIOptions}
+     * @param initialAmount   Initial Amount
+     * @param chancePerLevel  Chance Per Level
      */
     @Builder
     public SeaFortunePerk(final String id,

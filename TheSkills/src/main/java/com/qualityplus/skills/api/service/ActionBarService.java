@@ -27,7 +27,7 @@ public interface ActionBarService {
      * Adds a uuid
      *
      * @param uuid {@link UUID}
-     * @return     Is Blacklisted
+     * @return Is Blacklisted
      */
     public boolean isBlacklisted(UUID uuid);
 
@@ -42,7 +42,7 @@ public interface ActionBarService {
      * Adds a UUID
      *
      * @param uuid {@link UUID}
-     * @return     Is Whitelisted
+     * @return Is Whitelisted
      */
     public boolean isWhitelisted(UUID uuid);
 }

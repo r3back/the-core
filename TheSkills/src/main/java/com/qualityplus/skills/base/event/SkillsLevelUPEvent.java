@@ -15,9 +15,9 @@ public final class SkillsLevelUPEvent extends SkillEvent {
     /**
      * Makes a skills level up
      *
-     * @param who         Who
-     * @param skill       {@link Skill}
-     * @param newLevel    New Level
+     * @param who      Who
+     * @param skill    {@link Skill}
+     * @param newLevel New Level
      */
     public SkillsLevelUPEvent(@NotNull final Player who, final Skill skill, final int newLevel) {
         super(who, skill);

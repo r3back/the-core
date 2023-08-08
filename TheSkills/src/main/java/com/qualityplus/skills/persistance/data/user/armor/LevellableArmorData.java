@@ -37,8 +37,8 @@ public interface LevellableArmorData<T> {
     /**
      * Adds a armor
      *
-     * @param data  Data
-     * @return      Armor
+     * @param data Data
+     * @return Armor
      */
     public default Integer getArmor(T data) {
         return getFromArmor().getOrDefault(data, 0);
