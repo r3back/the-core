@@ -17,6 +17,9 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * Utility class for eagle eyes config
+ */
 @Getter
 @Setter
 @Configuration(path = "perks/eagle_eyes_perk.yml")
@@ -25,25 +28,33 @@ import java.util.List;
 @Header("================================")
 @Names(strategy = NameStrategy.HYPHEN_CASE, modifier = NameModifier.TO_LOWER_CASE)
 public final class EagleEyesConfig extends OkaeriConfig implements PerkFile {
-    public String id = "eagle_eyes";
-    public boolean enabled = true;
-    public String displayName = "Eagle Eyes";
-    public List<String> description = Arrays.asList("  &a%percent%% &7chance to get Night Vision %potion_level_roman%", "  &7for &a%duration% &7seconds when receive", "  &7damage.");
-    public int maxLevel = 50;
-    public GUIOptions guiOptions = GUIOptions.builder()
+    private String id = "eagle_eyes";
+    private boolean enabled = true;
+    private String displayName = "Eagle Eyes";
+    private List<String> description = Arrays.asList("  &a%percent%% &7chance to get Night Vision %potion_level_roman%",
+            "  &7for &a%duration% &7seconds when receive", "  &7damage.");
+    private int maxLevel = 50;
+    private GUIOptions guiOptions = GUIOptions.builder()
             .slot(12)
             .page(1)
             .item(XMaterial.PLAYER_HEAD)
-            .texture("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYmRjNTc1YzhiM2ExOTVmM2Q5YmU3YWE0ZTg4NDllNGMyNWZjZGE0YTM0N2I2YmVmZDA2ZGQ4NmY5ODhjYjY5NiJ9fX0=")
+            .texture("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmU" +
+                    "vYmRjNTc1YzhiM2ExOTVmM2Q5YmU3YWE0ZTg4NDllNGMyNWZjZGE0YTM0N2I2YmVmZDA2ZGQ4NmY5ODhjYjY5NiJ9fX0=")
             .mainMenuLore(Collections.singletonList("%skill_eagle_eyes_description%"))
             .build();
-    public Perk getPerk(){
+
+    /**
+     * Adds a perk
+     *
+     * @return {@link EagleEyesPerk}
+     */
+    public Perk getPerk() {
         return EagleEyesPerk.builder()
-                .id(id)
-                .displayName(displayName)
-                .description(description)
-                .enabled(enabled)
-                .skillGUIOptions(guiOptions)
+                .id(this.id)
+                .displayName(this.displayName)
+                .description(this.description)
+                .enabled(this.enabled)
+                .skillGUIOptions(this.guiOptions)
                 .chancePerLevel(0.1)
                 .baseSecondsDuration(0)
                 .secondsDurationPerLevel(1)

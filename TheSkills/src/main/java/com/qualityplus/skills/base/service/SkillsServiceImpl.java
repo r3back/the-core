@@ -17,53 +17,60 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
 
+/**
+ * Utility class for skills service
+ */
 @Component
 public final class SkillsServiceImpl implements SkillsService {
     private final Map<UUID, UserData> dataMap = new HashMap<>();
 
     @Override
-    public Optional<UserData> getData(UUID uuid) {
-        return Optional.ofNullable(dataMap.getOrDefault(uuid, null));
+    public Optional<UserData> getData(final UUID uuid) {
+        return Optional.ofNullable(this.dataMap.getOrDefault(uuid, null));
     }
 
     @Override
-    public void addData(UserData data) {
-        dataMap.put(data.getUuid(), data);
+    public void addData(final UserData data) {
+        this.dataMap.put(data.getUuid(), data);
     }
 
     @Override
-    public void removeData(UserData data) {
-        dataMap.remove(data.getUuid());
+    public void removeData(final UserData data) {
+        this.dataMap.remove(data.getUuid());
     }
 
     @Override
-    public void addXp(Player player, boolean useMulti, boolean showXpActionBar, Skill skill, double xp) {
+    public void addXp(final Player player, final boolean useMulti, final boolean showXpActionBar, final Skill skill, final double xp) {
         double toAdd = Math.abs(xp * (useMulti ? SkillsPlayerUtil.getXpMultiplier(player) : 1));
 
-        SkillsXPGainEvent skillsXPGainEvent = new SkillsXPGainEvent(player, skill, toAdd, showXpActionBar);
+        final SkillsXPGainEvent skillsXPGainEvent = new SkillsXPGainEvent(player, skill, toAdd, showXpActionBar);
 
         Bukkit.getPluginManager().callEvent(skillsXPGainEvent);
 
-        if (skillsXPGainEvent.isCancelled()) return;
+        if (skillsXPGainEvent.isCancelled()) {
+            return;
+        }
 
         toAdd = skillsXPGainEvent.getXp();
 
-        UserSkills skills = getData(player.getUniqueId())
+        final UserSkills skills = getData(player.getUniqueId())
                 .map(UserData::getSkills)
                 .orElse(new UserSkills());
 
-        int level = skills.getLevel(skill.getId());
+        final int level = skills.getLevel(skill.getId());
 
         skills.addXp(skill.getId(), toAdd);
 
         if (skills.getXp(skill.getId()) >= skill.getLevelRequirement(level + 1) && level + 1 <= skill.getMaxLevel()) {
-            double remaining = skills.getXp(skill.getId()) - skill.getLevelRequirement(level + 1);
+            final double remaining = skills.getXp(skill.getId()) - skill.getLevelRequirement(level + 1);
             skills.setXp(skill.getId(), 0.0);
             skills.addLevel(skill.getId(),  1);
-            SkillEvent levelUpEvent = new SkillsLevelUPEvent(player, skill, level + 1);
+            final SkillEvent levelUpEvent = new SkillsLevelUPEvent(player, skill, level + 1);
             Bukkit.getPluginManager().callEvent(levelUpEvent);
 
-            if(remaining > 0) addXp(player, false, false, skill, remaining);
+            if (remaining > 0) {
+                addXp(player, false, false, skill, remaining);
+            }
         }
     }
 }

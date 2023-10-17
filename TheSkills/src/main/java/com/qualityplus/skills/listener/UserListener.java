@@ -16,6 +16,9 @@ import org.bukkit.event.player.PlayerQuitEvent;
 import java.util.Optional;
 import java.util.function.Consumer;
 
+/**
+ * Utility class for user events
+ */
 @Component
 public final class UserListener implements Listener {
     private @Inject SkillsRepository repository;
@@ -23,20 +26,30 @@ public final class UserListener implements Listener {
     private @Inject Box box;
 
 
+    /**
+     * Adds a player on join
+     *
+     * @param event {@link PlayerJoinEvent}
+     */
     @EventHandler
-    public void onJoin(PlayerJoinEvent event) {
+    public void onJoin(final PlayerJoinEvent event) {
         this.tasker.newChain()
-                .async(() -> repository.get(event.getPlayer()))
-                .acceptSync(box.service()::addData)
+                .async(() -> this.repository.get(event.getPlayer()))
+                .acceptSync(this.box.service()::addData)
                 .execute();
     }
 
+    /**
+     * Adds a player quit event
+     *
+     * @param event {@link PlayerJoinEvent}
+     */
     @EventHandler
-    public void onQuit(PlayerQuitEvent event) {
+    public void onQuit(final PlayerQuitEvent event) {
         this.tasker.newChain()
-                .async(() -> box.service().getData(event.getPlayer().getUniqueId()))
+                .async(() -> this.box.service().getData(event.getPlayer().getUniqueId()))
                 .acceptAsync((Consumer<Optional<UserData>>) user -> user.ifPresent(Document::save))
-                .acceptAsync((Consumer<Optional<UserData>>) user -> user.ifPresent(box.service()::removeData))
+                .acceptAsync((Consumer<Optional<UserData>>) user -> user.ifPresent(this.box.service()::removeData))
                 .execute();
     }
 }

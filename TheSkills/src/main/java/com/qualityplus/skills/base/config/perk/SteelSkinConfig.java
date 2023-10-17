@@ -16,6 +16,9 @@ import lombok.Setter;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * Utility class for steel skin config
+ */
 @Getter
 @Setter
 @Configuration(path = "perks/steel_skin_perk.yml")
@@ -24,25 +27,32 @@ import java.util.List;
 @Header("================================")
 @Names(strategy = NameStrategy.HYPHEN_CASE, modifier = NameModifier.TO_LOWER_CASE)
 public final class SteelSkinConfig extends OkaeriConfig implements PerkFile {
-    public String id = "steel_skin";
-    public boolean enabled = true;
-    public String displayName = "Steel Skin";
-    public List<String> description = Collections.singletonList("&7Harvest Crops to earn xp!");
-    public int maxLevel = 50;
-    public GUIOptions guiOptions = GUIOptions.builder()
+    private String id = "steel_skin";
+    private boolean enabled = true;
+    private String displayName = "Steel Skin";
+    private List<String> description = Collections.singletonList("&7Harvest Crops to earn xp!");
+    private int maxLevel = 50;
+    private GUIOptions guiOptions = GUIOptions.builder()
             .slot(32)
             .page(1)
             .item(XMaterial.PLAYER_HEAD)
-            .texture("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjljYjNkMTlkYjUyOWEyMTVjZjYyNjk3NTkxY2MxM2ZiOGM3ODZhOGYyN2I3NTI4YzMyYWMyOTg2Yjk2NzBjNCJ9fX0=")
+            .texture("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjljYjNkM" +
+                    "TlkYjUyOWEyMTVjZjYyNjk3NTkxY2MxM2ZiOGM3ODZhOGYyN2I3NTI4YzMyYWMyOTg2Yjk2NzBjNCJ9fX0=")
             .mainMenuLore(Collections.singletonList("%skill_eagle_eyes_description%"))
             .build();
-    public Perk getPerk(){
+
+    /**
+     * Adds a Perk
+     *
+     * @return {@link SteelSkinPerk}
+     */
+    public Perk getPerk() {
         return SteelSkinPerk.builder()
-                .id(id)
-                .displayName(displayName)
-                .description(description)
-                .enabled(enabled)
-                .skillGUIOptions(guiOptions)
+                .id(this.id)
+                .displayName(this.displayName)
+                .description(this.description)
+                .enabled(this.enabled)
+                .skillGUIOptions(this.guiOptions)
                 .chancePerLevel(0.1)
                 .initialAmount(0)
                 .build();

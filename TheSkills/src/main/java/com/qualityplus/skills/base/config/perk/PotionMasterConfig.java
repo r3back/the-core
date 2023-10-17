@@ -17,6 +17,9 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * Utility class for potion master config
+ */
 @Getter
 @Setter
 @Configuration(path = "perks/potion_master_perk.yml")
@@ -25,25 +28,32 @@ import java.util.List;
 @Header("================================")
 @Names(strategy = NameStrategy.HYPHEN_CASE, modifier = NameModifier.TO_LOWER_CASE)
 public final class PotionMasterConfig extends OkaeriConfig implements PerkFile {
-    public String id = "potion_master";
-    public boolean enabled = true;
-    public String displayName = "Potion Master";
-    public List<String> description = Arrays.asList("  &a%percent%% &7chance to get &a+%duration% &7seconds", "  &7when consume potions.");
-    public int maxLevel = 50;
-    public GUIOptions guiOptions = GUIOptions.builder()
+    private String id = "potion_master";
+    private boolean enabled = true;
+    private String displayName = "Potion Master";
+    private List<String> description = Arrays.asList("  &a%percent%% &7chance to get &a+%duration% &7seconds", "  &7when consume potions.");
+    private int maxLevel = 50;
+    private GUIOptions guiOptions = GUIOptions.builder()
             .slot(25)
             .page(1)
             .item(XMaterial.PLAYER_HEAD)
-            .texture("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNDEyYWMyMzlmMzliYTkxN2U5YmQ2YzE5ZDZlN2RjNDgzMTc5NjUxMDQ3ODdjOGJmY2YwOTBjMGMwMzI3N2FjOSJ9fX0=")
+            .texture("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQub" +
+                    "mV0L3RleHR1cmUvNDEyYWMyMzlmMzliYTkxN2U5YmQ2YzE5ZDZlN2RjNDgzMTc5NjUxMDQ3ODdjOGJmY2YwOTBjMGMwMzI3N2FjOSJ9fX0=")
             .mainMenuLore(Collections.singletonList("%skill_iron_lungs_description%"))
             .build();
-    public Perk getPerk(){
+
+    /**
+     * Adds a perk
+     *
+     * @return {@link PotionMasterPerk}
+     */
+    public Perk getPerk() {
         return PotionMasterPerk.builder()
-                .id(id)
-                .displayName(displayName)
-                .description(description)
-                .enabled(enabled)
-                .skillGUIOptions(guiOptions)
+                .id(this.id)
+                .displayName(this.displayName)
+                .description(this.description)
+                .enabled(this.enabled)
+                .skillGUIOptions(this.guiOptions)
                 .chancePerLevel(0.1)
                 .baseSecondsDuration(0)
                 .secondsDurationPerLevel(1)

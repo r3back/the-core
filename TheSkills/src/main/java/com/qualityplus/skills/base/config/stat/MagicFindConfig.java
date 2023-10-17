@@ -18,6 +18,9 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * Utility class for magic find config
+ */
 @Getter
 @Setter
 @Configuration(path = "stats/magic_find_stat.yml")
@@ -26,25 +29,33 @@ import java.util.List;
 @Header("================================")
 @Names(strategy = NameStrategy.HYPHEN_CASE, modifier = NameModifier.TO_LOWER_CASE)
 public final class MagicFindConfig extends OkaeriConfig implements StatFile {
-    public String id = "magic_find";
-    public boolean enabled = true;
-    public String displayName = "&b✬ Magic Find";
-    public List<String> description = Arrays.asList("&7With &a%level_number% &7Magic Find you have &a%chance%% &7chance", "&7to find magic objects when killing mobs.");
-    public int maxLevel = 50;
-    public GUIOptions guiOptions = GUIOptions.builder()
+    private String id = "magic_find";
+    private boolean enabled = true;
+    private String displayName = "&b✬ Magic Find";
+    private List<String> description = Arrays.asList("&7With &a%level_number% &7Magic Find you have " +
+            "&a%chance%% &7chance", "&7to find magic objects when killing mobs.");
+    private int maxLevel = 50;
+    private GUIOptions guiOptions = GUIOptions.builder()
             .slot(15)
             .page(1)
             .item(XMaterial.PLAYER_HEAD)
-            .texture("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvN2VkNTE5OGRkY2RkODliZTkxYzY5ZmU5YWJmZTJjYTRjMTk0N2M3ZTJlYWMxMWYxODQ2YmQzMTIyY2E1YjhjNiJ9fX0=")
+            .texture("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0" +
+                    "L3RleHR1cmUvN2VkNTE5OGRkY2RkODliZTkxYzY5ZmU5YWJmZTJjYTRjMTk0N2M3ZTJlYWMxMWYxODQ2YmQzMTIyY2E1YjhjNiJ9fX0=")
             .mainMenuLore(Collections.singletonList("%skill_intelligence_description%"))
             .build();
-    public Stat getStat(){
+
+    /**
+     * Adds a stat
+     *
+     * @return {@link Stat}
+     */
+    public Stat getStat() {
         return MagicFindStat.builder()
-                .id(id)
-                .displayName(displayName)
-                .description(description)
-                .enabled(enabled)
-                .skillGUIOptions(guiOptions)
+                .id(this.id)
+                .displayName(this.displayName)
+                .description(this.description)
+                .enabled(this.enabled)
+                .skillGUIOptions(this.guiOptions)
                 .chancePerLevel(0.1)
                 .itemAndChances(ImmutableMap.<XMaterial, Double>builder()
                         .put(XMaterial.DIAMOND_BLOCK, 2D)

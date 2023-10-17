@@ -7,12 +7,21 @@ import lombok.Setter;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
+/**
+ * Utility class for player assistant event
+ */
 @Getter
 @Setter
 public abstract class StatEvent extends PlayerAssistantEvent {
     private Stat stat;
 
-    public StatEvent(@NotNull Player who, Stat stat) {
+    /**
+     * Adds a stats
+     *
+     * @param who  {@link Player}
+     * @param stat {@link Stat}
+     */
+    public StatEvent(@NotNull final Player who, final Stat stat) {
         super(who);
         this.stat = stat;
     }

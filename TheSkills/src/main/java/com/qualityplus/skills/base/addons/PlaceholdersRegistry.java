@@ -15,39 +15,48 @@ import com.qualityplus.assistant.lib.eu.okaeri.commons.bukkit.time.MinecraftTime
 
 import com.qualityplus.assistant.lib.eu.okaeri.platform.bukkit.annotation.Delayed;
 import com.qualityplus.assistant.lib.eu.okaeri.platform.core.annotation.Component;
-
-import java.util.Optional;
 import java.util.stream.Stream;
 
+/**
+ * Utility class for place holder
+ */
 @Component
 public final class PlaceholdersRegistry {
+    /**
+     * Add a register skill
+     *
+     * @param service {@link SkillsService}
+     */
     @Delayed(time = MinecraftTimeEquivalent.SECOND * 5)
-    public void registerSkillsPlaceholders(@Inject SkillsService service){
-        PlaceholdersAddon addon = TheAssistantPlugin.getAPI().getAddons().getPlaceholders();
+    public void registerSkillsPlaceholders(@Inject final SkillsService service) {
+        final PlaceholdersAddon addon = TheAssistantPlugin.getAPI().getAddons().getPlaceholders();
 
-        for(Skill skill : Skills.values()){
-            addon.registerPlaceholders("skill_" + skill.getId() + "_displayname",
-                    e -> skill.getDisplayName());
-            addon.registerPlaceholders("skill_" + skill.getId() + "_xp",
-                    e -> String.valueOf(service.getData(e.getPlayer().getUniqueId()).map(data -> data.getSkills().getXp(skill.getId())).orElse(0D)));
-            addon.registerPlaceholders("skill_" + skill.getId() + "_level",
-                    e -> String.valueOf(service.getData(e.getPlayer().getUniqueId()).map(data -> data.getSkills().getLevel(skill.getId())).orElse(0)));
+        for (Skill skill : Skills.values()) {
+            addon.registerPlaceholders("skill_" + skill.getId() + "_displayname", e -> skill.getDisplayName());
+            addon.registerPlaceholders("skill_" + skill.getId() + "_xp", e -> String
+                    .valueOf(service.getData(e.getPlayer().getUniqueId()).map(data -> data
+                            .getSkills().getXp(skill.getId())).orElse(0D)));
+            addon.registerPlaceholders("skill_" + skill.getId() + "_level", e -> String
+                    .valueOf(service.getData(e.getPlayer().getUniqueId()).map(data -> data
+                            .getSkills().getLevel(skill.getId())).orElse(0)));
         }
 
-        for(Perk perk : Perks.values()) {
-            addon.registerPlaceholders("perk_" + perk.getId() + "_displayname",
-                    e -> perk.getDisplayName());
+        for (Perk perk : Perks.values()) {
+            addon.registerPlaceholders("perk_" + perk.getId() + "_displayname", e -> perk.getDisplayName());
 
-            addon.registerPlaceholders("perk_" + perk.getId() + "_level",
-                    e -> String.valueOf(service.getData(e.getPlayer().getUniqueId()).map(data -> data.getSkills().getLevel(perk.getId())).orElse(0)));
+            addon.registerPlaceholders("perk_" + perk.getId() + "_level", e -> String
+                    .valueOf(service.getData(e.getPlayer().getUniqueId()).map(data -> data
+                            .getSkills().getLevel(perk.getId())).orElse(0)));
         }
 
-        for(Stat stat : Stats.values()) {
-            addon.registerPlaceholders("stat_" + stat.getId() + "_displayname",
-                    e -> stat.getDisplayName());
+        for (Stat stat : Stats.values()) {
+            addon.registerPlaceholders("stat_" + stat.getId() + "_displayname", e -> stat.getDisplayName());
 
-            addon.registerPlaceholders("stat_" + stat.getId() + "_level",
-                    e -> String.valueOf(service.getData(e.getPlayer().getUniqueId()).map(data -> data.getSkills().getLevel(stat.getId())).orElse(0)));
+            addon.registerPlaceholders("stat_" + stat.getId() + "_level", e -> String
+                    .valueOf(service.getData(e.getPlayer()
+                    .getUniqueId()).map(data -> data
+                    .getSkills().getLevel(stat.getId()))
+                    .orElse(0)));
         }
 
         Stream.of(addon)

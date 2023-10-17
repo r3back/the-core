@@ -21,24 +21,35 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * Utility class for skills gui
+ */
 public final class SkillGUI extends SkillsGUI {
     private final SubGUIConfig config;
     private final Skill skill;
 
-    private static int getMaxPage(Skill skill, Box box){
-        return (int)Math.ceil((double)skill.getMaxLevel() / (double)box.files().inventories().subGUIConfig.getLevelSlots().size());
+    private static int getMaxPage(final Skill skill, final Box box) {
+        return (int) Math.ceil((double) skill.getMaxLevel() / (double) box.files().inventories().getSubGUIConfig().getLevelSlots().size());
     }
 
-    public SkillGUI(Box box, Player player, Skill skill, int page) {
-        super(box.files().inventories().subGUIConfig.getSize(),
-              StringUtils.processMulti(box.files().inventories().subGUIConfig.getTitle(), Arrays.asList(
+    /**
+     * Makes a skill gui
+     *
+     * @param box    {@link Box}
+     * @param player {@link Player}
+     * @param skill  {@link Skill}
+     * @param page   Page
+     */
+    public SkillGUI(final Box box, final Player player, final Skill skill, final int page) {
+        super(box.files().inventories().getSubGUIConfig().getSize(),
+              StringUtils.processMulti(box.files().inventories().getSubGUIConfig().getTitle(), Arrays.asList(
                       new Placeholder("category", skill.getDisplayName()),
                       new Placeholder("current_page", page),
                       new Placeholder("max_page", getMaxPage(skill, box) )
               )), box);
 
-        this.hasNext = skill.getMaxLevel() > box.files().inventories().subGUIConfig.getLevelSlots().size() * page;
-        this.config = box.files().inventories().subGUIConfig;
+        this.hasNext = skill.getMaxLevel() > box.files().inventories().getSubGUIConfig().getLevelSlots().size() * page;
+        this.config = box.files().inventories().getSubGUIConfig();
         this.uuid = player.getUniqueId();
         this.skill = skill;
         this.page = page;
@@ -46,50 +57,54 @@ public final class SkillGUI extends SkillsGUI {
 
     @Override
     public @NotNull Inventory getInventory() {
-        fillInventory(config);
+        fillInventory(this.config);
 
-        setItem(config.getCloseGUI());
+        setItem(this.config.getCloseGUI());
 
-        UserData data = box.service().getData(uuid).orElse(new UserData());
+        final UserData data = box.service().getData(uuid).orElse(new UserData());
 
-        int level = data.getSkills().getLevel(skill.getId());
+        final int level = data.getSkills().getLevel(this.skill.getId());
 
-        int maxPerPage = config.getLevelSlots().size();
+        final int maxPerPage = this.config.getLevelSlots().size();
 
         int count = (maxPerPage * page) - maxPerPage;
 
-        inventory.setItem(config.getCategoryItem().slot, SkillsItemStackUtil.makeItem(
-                config.getCategoryItem(),
-                SkillsPlaceholderUtil.getSkillsPlaceholders(data, skill),
-                skill.getGuiOptions()));
+        inventory.setItem(this.config.getCategoryItem().slot, SkillsItemStackUtil.makeItem(
+                this.config.getCategoryItem(),
+                SkillsPlaceholderUtil.getSkillsPlaceholders(data, this.skill),
+                this.skill.getGuiOptions()));
 
-        for (Integer slot : config.getLevelSlots()) {
+        for (Integer slot : this.config.getLevelSlots()) {
             count++;
 
-            if(count > skill.getMaxLevel()) break;
+            if (count > this.skill.getMaxLevel()) {
+                break;
 
-            Item item = count == level + 1 ? config.getInProgressItem() :
-                        count > level ? config.getLockedItem() : config.getUnlockedItem();
+            }
+            final Item item = count == level + 1 ? this.config.getInProgressItem() :
+                        count > level ? this.config.getLockedItem() : this.config.getUnlockedItem();
 
-            inventory.setItem(slot, getItem(item, data, skill, count));
+            inventory.setItem(slot, getItem(item, data, this.skill, count));
 
         }
 
-        if(page > 1)
-            setItem(config.getPreviousPage());
+        if (page > 1) {
+            setItem(this.config.getPreviousPage());
+        }
 
-        if(hasNext)
-            setItem(config.getNextPage());
+        if (hasNext) {
+            setItem(this.config.getNextPage());
 
-        setItem(config.getGoBack());
+            setItem(this.config.getGoBack());
+        }
 
         return inventory;
     }
 
-    private ItemStack getItem(Item item, UserData data, Skill skill, int level){
-        PlaceholderBuilder builder = SkillsPlaceholderUtil.getAllPlaceholders(data, skill, level);
+    private ItemStack getItem(final Item item, final UserData data, final Skill skill, final int level) {
+        final PlaceholderBuilder builder = SkillsPlaceholderUtil.getAllPlaceholders(data, skill, level);
 
-        List<String> loreInGui = skill.getCachedGUI(level);
+        final List<String> loreInGui = skill.getCachedGUI(level);
 
         return ItemStackUtils.makeItem(item, builder
                 .with(new Placeholder("skill_info_gui", StringUtils.processMulti(loreInGui, builder.get())))
@@ -97,21 +112,21 @@ public final class SkillGUI extends SkillsGUI {
     }
 
     @Override
-    public void onInventoryClick(InventoryClickEvent event) {
+    public void onInventoryClick(final InventoryClickEvent event) {
         event.setCancelled(true);
 
-        Player player = (Player) event.getWhoClicked();
+        final Player player = (Player) event.getWhoClicked();
 
-        int slot = event.getSlot();
+        final int slot = event.getSlot();
 
-        if(isItem(slot, config.getCloseGUI())){
+        if (isItem(slot, this.config.getCloseGUI())) {
             player.closeInventory();
-        }else if(isItem(slot, config.getGoBack())){
+        } else if (isItem(slot, this.config.getGoBack())) {
             player.openInventory(new MainGUI(box, player).getInventory());
-        }else if(isItem(slot, config.getPreviousPage()) && page > 1){
-            player.openInventory(new SkillGUI(box, player, skill, page - 1).getInventory());
-        }else if(isItem(slot, config.getNextPage()) && hasNext){
-            player.openInventory(new SkillGUI(box, player, skill, page + 1).getInventory());
+        } else if (isItem(slot, this.config.getPreviousPage()) && page > 1) {
+            player.openInventory(new SkillGUI(box, player, this.skill, page - 1).getInventory());
+        } else if (isItem(slot, this.config.getNextPage()) && hasNext) {
+            player.openInventory(new SkillGUI(box, player, this.skill, page + 1).getInventory());
         }
     }
 }

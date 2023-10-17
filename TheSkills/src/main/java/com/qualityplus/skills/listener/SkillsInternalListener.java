@@ -27,46 +27,60 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
+/**
+ * Utility class for internal skills
+ */
 @Component
 public final class SkillsInternalListener implements Listener {
     private @Inject Box box;
 
+    /**
+     * Adds a priority event
+     *
+     * @param event {@link EventPriority}
+     */
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
-    public void onXpGain(SkillsXPGainEvent event){
-        Player player = event.getPlayer();
+    public void onXpGain(final SkillsXPGainEvent event) {
+        final Player player = event.getPlayer();
 
-        UUID uuid = player.getUniqueId();
+        final UUID uuid = player.getUniqueId();
 
-        Optional<UserData> data = box.service().getData(uuid);
+        final Optional<UserData> data = this.box.service().getData(uuid);
 
-        Bukkit.getScheduler().runTask(box.plugin(), () -> {
+        Bukkit.getScheduler().runTask(this.box.plugin(), () -> {
 
-            List<IPlaceholder> placeholders = data.map(d -> SkillsPlaceholderUtil.getAllPlaceholders(d, event.getSkill()))
+            final List<IPlaceholder> placeholders = data.map(d -> SkillsPlaceholderUtil.getAllPlaceholders(d, event.getSkill()))
                     .map(PlaceholderBuilder::get)
                     .orElse(Collections.emptyList());
 
-            SoundUtils.playSound(player, box.files().config().gainXPSettings.sound);
+            SoundUtils.playSound(player, this.box.files().config().getGainXPSettings().getSound());
 
-            ConfigActionBar actionBar = box.files().config().gainXPSettings.actionBar;
+            final ConfigActionBar actionBar = this.box.files().config().getGainXPSettings().getActionBar();
 
-            String message = StringUtils.processMulti(actionBar.getMessage(), placeholders);
+            final String message = StringUtils.processMulti(actionBar.getMessage(), placeholders);
 
-            if(actionBar.isEnabled() && event.isShowXpActionBar())
-                box.actionBarService().sendActionBar(event.getPlayer(), message);
+            if (actionBar.isEnabled() && event.isShowXpActionBar()) {
+                this.box.actionBarService().sendActionBar(event.getPlayer(), message);
+            }
         });
     }
 
+    /**
+     * Adds a priority event
+     *
+     * @param event {@link EventPriority}
+     */
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
-    public void onXpGain(SkillsLevelUPEvent event){
-        Player player = event.getPlayer();
+    public void onXpGain(final SkillsLevelUPEvent event) {
+        final Player player = event.getPlayer();
 
-        UUID uuid = player.getUniqueId();
+        final UUID uuid = player.getUniqueId();
 
-        Optional<UserData> data = box.service().getData(uuid);
+        final Optional<UserData> data = this.box.service().getData(uuid);
 
-        Skill skill = event.getSkill();
+        final Skill skill = event.getSkill();
 
-        Bukkit.getScheduler().runTask(box.plugin(), () -> {
+        Bukkit.getScheduler().runTask(this.box.plugin(), () -> {
             event.getSkill()
                     .getCommandRewards(event.getNewLevel())
                     .forEach(reward -> reward.execute(player));
@@ -75,28 +89,28 @@ public final class SkillsInternalListener implements Listener {
                     .getStatRewards(event.getNewLevel())
                     .forEach(reward -> reward.execute(player));
 
-            PlaceholderBuilder builder = data
+            final PlaceholderBuilder builder = data
                     .map(d -> SkillsPlaceholderUtil.getAllPlaceholders(d, skill))
                     .orElse(PlaceholderBuilder.create());
 
-            List<IPlaceholder> placeholders = builder
+            final List<IPlaceholder> placeholders = builder
                     .with(new Placeholder("skill_info_message", StringUtils.processMulti(skill.getCachedMessage(event.getNewLevel() + 1), builder.get())))
                     .get();
 
-            Config.LevelUpSettings settings = box.files().config().levelUpSettings;
+            final Config.LevelUpSettings settings = this.box.files().config().getLevelUpSettings();
 
-            SoundUtils.playSound(player, settings.sound);
+            SoundUtils.playSound(player, settings.getSound());
 
-            ConfigActionBar actionBar = settings.actionBar;
+            final ConfigActionBar actionBar = settings.getActionBar();
 
-            String message = StringUtils.processMulti(actionBar.getMessage(), placeholders);
+            final String message = StringUtils.processMulti(actionBar.getMessage(), placeholders);
 
-            if(settings.message.isEnabled())
-                StringUtils.processMulti(settings.message.getMessages(), placeholders).forEach(msg -> player.sendMessage(StringUtils.color(msg)));
-
-            if(actionBar.isEnabled())
-                box.actionBarService().sendActionBar(event.getPlayer(), message);
-
+            if (settings.getMessage().isEnabled()) {
+                StringUtils.processMulti(settings.getMessage().getMessages(), placeholders).forEach(msg -> player.sendMessage(StringUtils.color(msg)));
+            }
+            if (actionBar.isEnabled()) {
+                this.box.actionBarService().sendActionBar(event.getPlayer(), message);
+            }
 
         });
     }

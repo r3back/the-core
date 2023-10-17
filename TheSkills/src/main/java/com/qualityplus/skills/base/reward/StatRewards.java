@@ -9,6 +9,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Utility class for stat rewards
+ */
 @AllArgsConstructor
 @NoArgsConstructor
 @Data

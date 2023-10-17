@@ -2,14 +2,23 @@ package com.qualityplus.skills.base.config.impl;
 
 import com.qualityplus.assistant.lib.eu.okaeri.injector.annotation.Inject;
 import com.qualityplus.skills.api.config.StatFiles;
-import com.qualityplus.skills.base.config.stat.*;
 import com.qualityplus.assistant.lib.eu.okaeri.configs.OkaeriConfig;
-
 import com.qualityplus.assistant.lib.eu.okaeri.platform.core.annotation.Component;
-
+import com.qualityplus.skills.base.config.stat.CritChanceConfig;
+import com.qualityplus.skills.base.config.stat.CritDamageConfig;
+import com.qualityplus.skills.base.config.stat.DefenseConfig;
+import com.qualityplus.skills.base.config.stat.FerocityConfig;
+import com.qualityplus.skills.base.config.stat.IntelligenceConfig;
+import com.qualityplus.skills.base.config.stat.MagicFindConfig;
+import com.qualityplus.skills.base.config.stat.PetLuckConfig;
+import com.qualityplus.skills.base.config.stat.SpeedConfig;
+import com.qualityplus.skills.base.config.stat.StrengthConfig;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * Utility class for stats files
+ */
 @Component
 public final class StatFilesImpl implements StatFiles<CritChanceConfig, CritDamageConfig, DefenseConfig, FerocityConfig, IntelligenceConfig, MagicFindConfig,
         PetLuckConfig, SpeedConfig, StrengthConfig> {
@@ -26,57 +35,61 @@ public final class StatFilesImpl implements StatFiles<CritChanceConfig, CritDama
 
     @Override
     public void reloadFiles() {
-        reloadAll(critChanceConfig, critDamageConfig, defenseConfig, ferocityConfig, intelligenceConfig, magicFindConfig, petLuckConfig, speedConfig, strengthConfig);
+        reloadAll(this.critChanceConfig, this.critDamageConfig, this.defenseConfig,
+                this.ferocityConfig, this.intelligenceConfig, this.magicFindConfig,
+                this.petLuckConfig, this.speedConfig, this.strengthConfig);
     }
 
     @Override
     public CritChanceConfig critChance() {
-        return critChanceConfig;
+        return this.critChanceConfig;
     }
 
     @Override
     public CritDamageConfig critDamage() {
-        return critDamageConfig;
+        return this.critDamageConfig;
     }
 
     @Override
     public DefenseConfig defense() {
-        return defenseConfig;
+        return this.defenseConfig;
     }
 
     @Override
     public FerocityConfig ferocity() {
-        return ferocityConfig;
+        return this.ferocityConfig;
     }
 
     @Override
     public IntelligenceConfig intelligence() {
-        return intelligenceConfig;
+        return this.intelligenceConfig;
     }
 
     @Override
     public MagicFindConfig magicFind() {
-        return magicFindConfig;
+        return this.magicFindConfig;
     }
 
 
     @Override
     public PetLuckConfig petLuck() {
-        return petLuckConfig;
+        return this.petLuckConfig;
     }
 
     @Override
     public SpeedConfig speed() {
-        return speedConfig;
+        return this.speedConfig;
     }
 
     @Override
     public StrengthConfig strength() {
-        return strengthConfig;
+        return this.strengthConfig;
     }
 
     @Override
     public List<OkaeriConfig> getAll() {
-        return Arrays.asList(critChanceConfig, critDamageConfig, defenseConfig, ferocityConfig, intelligenceConfig, magicFindConfig, petLuckConfig, speedConfig, strengthConfig);
+        return Arrays.asList(this.critChanceConfig, this.critDamageConfig, this.defenseConfig,
+                this.ferocityConfig, this.intelligenceConfig, this.magicFindConfig,
+                this.petLuckConfig, this.speedConfig, this.strengthConfig);
     }
 }

@@ -4,6 +4,14 @@ import com.qualityplus.skills.api.listener.ExtraListener;
 
 import java.util.Optional;
 
+/**
+ * Makes a minions provider
+ */
 public interface MinionsProvider {
-    Optional<Class<? extends ExtraListener>> getExtraListener();
+    /**
+     * Adds a class
+     *
+     * @return {@link ExtraListener}
+     */
+    public Optional<Class<? extends ExtraListener>> getExtraListener();
 }

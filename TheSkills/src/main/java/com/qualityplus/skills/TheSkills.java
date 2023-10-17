@@ -13,12 +13,15 @@ import lombok.Getter;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
+/**
+ * Utility class for the skills
+ */
 @Scan(deep = true)
 public final class TheSkills extends OkaeriSilentPlugin {
     private static @Inject @Getter TheSkillsAPI api;
 
     @Planned(ExecutionPhase.PRE_SHUTDOWN)
-    private void whenStop(Box box){
+    private void whenStop(final Box box) {
         Bukkit.getOnlinePlayers()
                 .stream()
                 .map(Player::getUniqueId)

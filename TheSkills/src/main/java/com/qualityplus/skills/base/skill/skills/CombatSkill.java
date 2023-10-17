@@ -19,29 +19,75 @@ import org.bukkit.event.EventPriority;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Utility class for combat skills
+ */
 @Data
 @NoArgsConstructor
 public final class CombatSkill extends Skill {
     private Map<EntityType, Double> rewards;
 
+    /**
+     * Makes a combat skills
+     *
+     * @param id                        Id
+     * @param enabled                  Enabled
+     * @param displayName              Display Name
+     * @param description              Description
+     * @param skillGUIOptions          {@link GUIOptions}
+     * @param initialAmount            Initial Amount
+     * @param maxLevel                 Max Level
+     * @param xpRequirements           Xp Requirements
+     * @param skillInfoInGUI           Skill Info In GUI
+     * @param statRewards              Stat Rewards
+     * @param skillInfoInMessage       Skill Info In Message
+     * @param commandRewards           Command Rewards
+     * @param rewards                  Rewards
+     */
     @Builder
-    public CombatSkill(String id, boolean enabled, String displayName, List<String> description, GUIOptions skillGUIOptions, double initialAmount, int maxLevel, Map<Integer, Double> xpRequirements, Map<Integer, List<String>> skillInfoInGUI, Map<Integer, List<StatReward>> statRewards, Map<Integer, List<String>> skillInfoInMessage, Map<Integer, List<CommandReward>> commandRewards, Map<EntityType, Double> rewards) {
-        super(id, enabled, displayName, description, skillGUIOptions, initialAmount, maxLevel, xpRequirements, skillInfoInGUI, statRewards, skillInfoInMessage, commandRewards);
+    public CombatSkill(final String id,
+                       final boolean enabled,
+                       final String displayName,
+                       final List<String> description,
+                       final GUIOptions skillGUIOptions,
+                       final double initialAmount,
+                       final int maxLevel,
+                       final Map<Integer, Double> xpRequirements,
+                       final Map<Integer, List<String>> skillInfoInGUI,
+                       final Map<Integer, List<StatReward>> statRewards,
+                       final Map<Integer, List<String>> skillInfoInMessage,
+                       final Map<Integer, List<CommandReward>> commandRewards,
+                       final Map<EntityType, Double> rewards) {
+        super(id, enabled, displayName,
+                description, skillGUIOptions,
+                initialAmount, maxLevel,
+                xpRequirements, skillInfoInGUI,
+                statRewards, skillInfoInMessage,
+                commandRewards);
         this.rewards = rewards;
     }
 
 
+    /**
+     * Adds an on kill mob
+     *
+     * @param e {@link PlayerKillEvent}
+     */
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
-    public void onKillMob(PlayerKillEvent e){
-        Player player = e.getPlayer();
+    public void onKillMob(final PlayerKillEvent e) {
+        final Player player = e.getPlayer();
 
-        if(!SkillsPlayerUtil.isInSurvival(player)) return;
+        if (!SkillsPlayerUtil.isInSurvival(player)) {
+            return;
+        }
 
-        Entity entity = e.getKilled();
+        final Entity entity = e.getKilled();
 
-        double xp = rewards.getOrDefault(entity.getType(), 0D);
+        final double xp = this.rewards.getOrDefault(entity.getType(), 0D);
 
-        if(xp <= 0) return;
+        if (xp <= 0) {
+            return;
+        }
 
         TheSkills.getApi().getSkillsService().addXp(player, true, true, this, xp);
     }

@@ -24,56 +24,69 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
+/**
+ * Utility class for action bar service
+ */
 @Component
 public final class ActionBarServiceImpl implements ActionBarService {
     @Override
-    public void sendActionBar(Player player, String message) {
+    public void sendActionBar(final Player player, final String message) {
         TheAssistantPlugin.getAPI().getNms().sendActionBar(player, message);
     }
 
     @Override
-    public void blacklist(UUID uuid) {
+    public void blacklist(final UUID uuid) {
         ((AbstractNMS) TheAssistantPlugin.getAPI().getNms()).blacklist(uuid);
     }
 
     @Override
-    public boolean isBlacklisted(UUID uuid) {
+    public boolean isBlacklisted(final UUID uuid) {
         return ((AbstractNMS) TheAssistantPlugin.getAPI().getNms()).isBlacklisted(uuid);
     }
 
     @Override
-    public void whitelistTemp(UUID uuid) {
+    public void whitelistTemp(final UUID uuid) {
         ((AbstractNMS) TheAssistantPlugin.getAPI().getNms()).whitelistTemp(uuid);
     }
 
     @Override
-    public boolean isWhitelisted(UUID uuid) {
+    public boolean isWhitelisted(final UUID uuid) {
         return ((AbstractNMS) TheAssistantPlugin.getAPI().getNms()).isWhitelisted(uuid);
     }
 
+    /**
+     * Adds a start scheduling
+     *
+     * @param service {@link SkillsService}
+     * @param config  {@link Config}
+     */
     @Scheduled(rate = 5, delay = 5)
-    public void startScheduling(@Inject SkillsService service, @Inject Config config){
-        AbstractNMS nms = (AbstractNMS) TheAssistantPlugin.getAPI().getNms();
+    public void startScheduling(@Inject final SkillsService service, @Inject final Config config) {
+        final AbstractNMS nms = (AbstractNMS) TheAssistantPlugin.getAPI().getNms();
 
         for (Player player :  Bukkit.getOnlinePlayers()) {
-            if (isBlacklisted(player.getUniqueId()))
+            if (isBlacklisted(player.getUniqueId())) {
                 continue;
+            }
 
-            if (!SkillsPlayerUtil.isInSurvival(player))
+            if (!SkillsPlayerUtil.isInSurvival(player)) {
                 continue;
+            }
 
-            ConfigActionBar actionBar = config.informationActionBar;
+            final ConfigActionBar actionBar = config.getInformationActionBar();
 
-            if(!actionBar.isEnabled()) return;
+            if (!actionBar.isEnabled()) {
+                return;
+            }
 
-            Optional<UserData> data = service.getData(player.getUniqueId());
+            final Optional<UserData> data = service.getData(player.getUniqueId());
 
-            List<IPlaceholder> placeholders = data.map(SkillsPlaceholderUtil::getStatPlaceholders)
+            final List<IPlaceholder> placeholders = data.map(SkillsPlaceholderUtil::getStatPlaceholders)
                     .map(p -> p.with(SkillsPlaceholderUtil.getHealthPlaceholders(player)))
                     .map(PlaceholderBuilder::get)
                     .orElse(Collections.emptyList());
 
-            String message = StringUtils.processMulti(actionBar.getMessage(), placeholders);
+            final String message = StringUtils.processMulti(actionBar.getMessage(), placeholders);
 
             whitelistTemp(player.getUniqueId());
 

@@ -9,6 +9,9 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import org.bukkit.entity.Player;
 
+/**
+ * Utility class for stat rewards
+ */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -18,10 +21,10 @@ public final class StatReward extends OkaeriConfig implements Reward {
     private int amount;
 
     @Override
-    public void execute(Player player) {
+    public void execute(final Player player) {
         TheSkills.getApi()
                 .getSkillsService()
                 .getData(player.getUniqueId())
-                .ifPresent(userData -> userData.getSkills().addLevel(stat, amount));
+                .ifPresent(userData -> userData.getSkills().addLevel(this.stat, this.amount));
     }
 }

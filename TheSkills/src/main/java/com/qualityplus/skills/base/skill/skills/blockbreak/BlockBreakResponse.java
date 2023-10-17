@@ -4,6 +4,9 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 
+/**
+ * Utility class for block break response
+ */
 @Data
 @Builder
 @AllArgsConstructor

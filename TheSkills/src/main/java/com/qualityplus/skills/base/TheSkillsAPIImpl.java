@@ -18,6 +18,9 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
+/**
+ * Utility class for the skills API
+ */
 @Component
 public final class TheSkillsAPIImpl implements TheSkillsAPI {
     private static final String NBT_STAT_KEY = "SKILL_STAT_";
@@ -25,10 +28,12 @@ public final class TheSkillsAPIImpl implements TheSkillsAPI {
     private @Getter @Inject Plugin plugin;
 
     @Override
-    public ItemStack setItemStats(ItemStack itemStack, Map<Stat, Integer> stats) {
-        if(BukkitItemUtil.isNull(itemStack)) return itemStack;
+    public ItemStack setItemStats(final ItemStack itemStack, final Map<Stat, Integer> stats) {
+        if (BukkitItemUtil.isNull(itemStack)) {
+            return itemStack;
+        }
 
-        NBTItem item = new NBTItem(itemStack);
+        final NBTItem item = new NBTItem(itemStack);
 
         stats.forEach((key, value) -> item.setInteger(key.getId(), value));
 
@@ -36,10 +41,12 @@ public final class TheSkillsAPIImpl implements TheSkillsAPI {
     }
 
     @Override
-    public Map<Stat, Integer> getItemStats(ItemStack itemStack) {
-        if(BukkitItemUtil.isNull(itemStack)) return new HashMap<>();
+    public Map<Stat, Integer> getItemStats(final ItemStack itemStack) {
+        if (BukkitItemUtil.isNull(itemStack)) {
+            return new HashMap<>();
+        }
 
-        NBTItem item = new NBTItem(itemStack);
+        final NBTItem item = new NBTItem(itemStack);
 
         return item.getKeys().stream()
                 .filter(key -> key.contains(NBT_STAT_KEY))

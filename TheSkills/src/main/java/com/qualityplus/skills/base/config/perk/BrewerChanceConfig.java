@@ -19,6 +19,9 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * Utility class for brewer chance config
+ */
 @Getter
 @Setter
 @Configuration(path = "perks/brew_chance_perk.yml")
@@ -28,25 +31,33 @@ import java.util.List;
 @Names(strategy = NameStrategy.HYPHEN_CASE, modifier = NameModifier.TO_LOWER_CASE)
 public final class BrewerChanceConfig extends OkaeriConfig implements PerkFile {
 
-    public String id = "brew_chance";
-    public boolean enabled = true;
-    public String displayName = "Brew Chance";
-    public List<String> description = Arrays.asList("  &a%percent%% &7chance to get extra potion", "  &7effect when consume a potion", "  &7for &a%duration% &7seconds.");
-    public int maxLevel = 50;
-    public GUIOptions guiOptions = GUIOptions.builder()
+    private String id = "brew_chance";
+    private boolean enabled = true;
+    private String displayName = "Brew Chance";
+    private List<String> description = Arrays.asList("  &a%percent%% &7chance to get extra potion",
+            "  &7effect when consume a potion", "  &7for &a%duration% &7seconds.");
+    private int maxLevel = 50;
+    private GUIOptions guiOptions = GUIOptions.builder()
             .slot(10)
             .page(1)
             .item(XMaterial.PLAYER_HEAD)
-            .texture("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNzQ5MmNhOTQwNzkxMzZkMjUyNTcwM2QzNzVjMjU1N2VhYzIwMWVlN2RkMzljZTExYzY0YTljMzgxNDdlY2M0ZCJ9fX0=")
+            .texture("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNzQ5MmN" +
+                    "hOTQwNzkxMzZkMjUyNTcwM2QzNzVjMjU1N2VhYzIwMWVlN2RkMzljZTExYzY0YTljMzgxNDdlY2M0ZCJ9fX0=")
             .mainMenuLore(Collections.singletonList("%skill_brew_chance_description%"))
             .build();
-    public Perk getPerk(){
+
+    /**
+     * Adds a perk
+     *
+     * @return {@link BrewChancePerk}
+     */
+    public Perk getPerk() {
         return BrewChancePerk.builder()
-                .id(id)
-                .displayName(displayName)
-                .description(description)
-                .enabled(enabled)
-                .skillGUIOptions(guiOptions)
+                .id(this.id)
+                .displayName(this.displayName)
+                .description(this.description)
+                .enabled(this.enabled)
+                .skillGUIOptions(this.guiOptions)
                 .chancePerLevel(1)
                 .secondsDurationPerLevel(1)
                 .baseSecondsDuration(1)

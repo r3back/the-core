@@ -17,9 +17,16 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.player.PlayerKickEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import java.util.UUID;
 
-import java.util.*;
 
+/**
+ * Utility Class for discoverer skill
+ */
 @Getter
 @Setter
 @NoArgsConstructor
@@ -27,52 +34,109 @@ public final class DiscovererSkill extends Skill {
     private static final Map<UUID, Double> blocksWalked = new HashMap<>();
     private Map<Integer, Double> rewardsPerBlocksWalked;
 
+    /**
+     * Makes a discoverer skil
+     *
+     * @param id                       Id
+     * @param enabled                  Enabled
+     * @param displayName              Display Name
+     * @param description              Description
+     * @param skillGUIOptions          {@link GUIOptions}
+     * @param initialAmount            Initial Amount
+     * @param maxLevel                 Max Level
+     * @param xpRequirements           Xp Requirements
+     * @param skillInfoInGUI           Skill Info In GUI
+     * @param statRewards              Stat Rewards
+     * @param skillInfoInMessage       Skill Info In Message
+     * @param commandRewards           Command Rewards
+     * @param rewardsPerBlocksWalked   Rewards Per Blocks Walked
+     */
     @Builder
-    public DiscovererSkill(String id, boolean enabled, String displayName, List<String> description, GUIOptions skillGUIOptions, double initialAmount, int maxLevel, Map<Integer, Double> xpRequirements, Map<Integer, List<String>> skillInfoInGUI, Map<Integer, List<StatReward>> statRewards, Map<Integer, List<String>> skillInfoInMessage, Map<Integer, List<CommandReward>> commandRewards, Map<Integer, Double> rewardsPerBlocksWalked) {
-        super(id, enabled, displayName, description, skillGUIOptions, initialAmount, maxLevel, xpRequirements, skillInfoInGUI, statRewards, skillInfoInMessage, commandRewards);
+    public DiscovererSkill(final String id,
+                           final boolean enabled,
+                           final String displayName,
+                           final List<String> description,
+                           final GUIOptions skillGUIOptions,
+                           final double initialAmount,
+                           final int maxLevel,
+                           final Map<Integer, Double> xpRequirements,
+                           final Map<Integer, List<String>> skillInfoInGUI,
+                           final Map<Integer, List<StatReward>> statRewards,
+                           final Map<Integer, List<String>> skillInfoInMessage,
+                           final Map<Integer, List<CommandReward>> commandRewards,
+                           final Map<Integer, Double> rewardsPerBlocksWalked) {
+        super(id, enabled, displayName,
+                description, skillGUIOptions,
+                initialAmount, maxLevel, xpRequirements,
+                skillInfoInGUI, statRewards,
+                skillInfoInMessage, commandRewards);
         this.rewardsPerBlocksWalked = rewardsPerBlocksWalked;
     }
 
+    /**
+     * Adds on player move event
+     *
+     * @param e {@link PlayerMoveEvent}
+     */
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
-    public void onPlayerMoveEvent(PlayerMoveEvent e){
-        Player player = e.getPlayer();
+    public void onPlayerMoveEvent(final PlayerMoveEvent e) {
+        final Player player = e.getPlayer();
 
-        UUID uuid = player.getUniqueId();
+        final UUID uuid = player.getUniqueId();
 
-        if(!SkillsPlayerUtil.isInSurvival(player)) return;
-
-        Location from = e.getFrom();
-        Location to = e.getTo();
-
-        if(to == null) return;
-
-        if (from.getWorld() != to.getWorld())
+        if (!SkillsPlayerUtil.isInSurvival(player)) {
             return;
+        }
 
-        double walked = blocksWalked.getOrDefault(uuid, 0D) + from.distance(to);
+        final Location from = e.getFrom();
+        final Location to = e.getTo();
+
+        if (to == null) {
+            return;
+        }
+
+        if (from.getWorld() != to.getWorld()) {
+            return;
+        }
+
+        final double walked = blocksWalked.getOrDefault(uuid, 0D) + from.distance(to);
 
         blocksWalked.put(uuid, walked);
 
-        Optional<Integer> optReward = rewardsPerBlocksWalked.keySet().stream().filter(reward -> reward <= walked).findFirst();
+        final Optional<Integer> optReward = this.rewardsPerBlocksWalked.keySet().stream().filter(reward -> reward <= walked).findFirst();
 
-        if(!optReward.isPresent()) return;
+        if (!optReward.isPresent()) {
+            return;
+        }
 
-        double xp = rewardsPerBlocksWalked.getOrDefault(optReward.get(), 0D);
+        final double xp = this.rewardsPerBlocksWalked.getOrDefault(optReward.get(), 0D);
 
-        if(xp <= 0) return;
+        if (xp <= 0) {
+            return;
+        }
 
         blocksWalked.put(uuid, walked - optReward.get());
 
         TheSkills.getApi().getSkillsService().addXp(player, true, true, this, xp);
     }
 
+    /**
+     * Adds an on craft
+     *
+     * @param e {@link PlayerQuitEvent}
+     */
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
-    public void onCraft(PlayerQuitEvent e){
+    public void onCraft(final PlayerQuitEvent e) {
         blocksWalked.remove(e.getPlayer().getUniqueId());
     }
 
+    /**
+     * Adds an on craft
+     *
+     * @param e {@link PlayerKickEvent}
+     */
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
-    public void onCraft(PlayerKickEvent e){
+    public void onCraft(final PlayerKickEvent e) {
         blocksWalked.remove(e.getPlayer().getUniqueId());
     }
 }

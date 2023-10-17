@@ -2,16 +2,29 @@ package com.qualityplus.skills.base.config.impl;
 
 import com.qualityplus.assistant.lib.eu.okaeri.injector.annotation.Inject;
 import com.qualityplus.skills.api.config.SkillFiles;
-import com.qualityplus.skills.base.config.skills.*;
 import com.qualityplus.assistant.lib.eu.okaeri.configs.OkaeriConfig;
-
 import com.qualityplus.assistant.lib.eu.okaeri.platform.core.annotation.Component;
-
+import com.qualityplus.skills.base.config.skills.AlchemyConfig;
+import com.qualityplus.skills.base.config.skills.CarpentryConfig;
+import com.qualityplus.skills.base.config.skills.CombatConfig;
+import com.qualityplus.skills.base.config.skills.DiscovererConfig;
+import com.qualityplus.skills.base.config.skills.DungeoneeringConfig;
+import com.qualityplus.skills.base.config.skills.EnchantingConfig;
+import com.qualityplus.skills.base.config.skills.FarmingConfig;
+import com.qualityplus.skills.base.config.skills.FishingConfig;
+import com.qualityplus.skills.base.config.skills.ForagingConfig;
+import com.qualityplus.skills.base.config.skills.MiningConfig;
+import com.qualityplus.skills.base.config.skills.RunecraftingConfig;
+import com.qualityplus.skills.base.config.skills.TamingConfig;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * Utility class foraging skills files
+ */
 @Component
-public final class SkillsFilesImpl implements SkillFiles<AlchemyConfig, CarpentryConfig, CombatConfig, DiscovererConfig, EnchantingConfig, FarmingConfig, FishingConfig,
+public final class SkillsFilesImpl implements SkillFiles<AlchemyConfig, CarpentryConfig,
+        CombatConfig, DiscovererConfig, EnchantingConfig, FarmingConfig, FishingConfig,
         ForagingConfig, MiningConfig, RunecraftingConfig, TamingConfig, DungeoneeringConfig> {
 
     private @Inject AlchemyConfig alchemyConfig;
@@ -29,71 +42,78 @@ public final class SkillsFilesImpl implements SkillFiles<AlchemyConfig, Carpentr
 
     @Override
     public AlchemyConfig alchemy() {
-        return alchemyConfig;
+        return this.alchemyConfig;
     }
 
     @Override
     public CarpentryConfig carpentry() {
-        return carpentryConfig;
+        return this.carpentryConfig;
     }
 
     @Override
     public CombatConfig combat() {
-        return combatConfig;
+        return this.combatConfig;
     }
 
     @Override
     public DiscovererConfig discoverer() {
-        return discovererConfig;
+        return this.discovererConfig;
     }
 
     @Override
     public DungeoneeringConfig dungeoneering() {
-        return dungeoneeringConfig;
+        return this.dungeoneeringConfig;
     }
 
     @Override
     public EnchantingConfig enchanting() {
-        return enchantingConfig;
+        return this.enchantingConfig;
     }
 
     @Override
     public FarmingConfig farming() {
-        return farmingConfig;
+        return this.farmingConfig;
     }
 
     @Override
     public FishingConfig fishing() {
-        return fishingConfig;
+        return this.fishingConfig;
     }
 
     @Override
     public ForagingConfig foraging() {
-        return foragingConfig;
+        return this.foragingConfig;
     }
 
     @Override
     public MiningConfig mining() {
-        return miningConfig;
+        return this.miningConfig;
     }
 
     @Override
     public RunecraftingConfig runeCrafting() {
-        return runecraftingConfig;
+        return this.runecraftingConfig;
     }
 
     @Override
     public TamingConfig taming() {
-        return tamingConfig;
+        return this.tamingConfig;
     }
 
     @Override
     public List<OkaeriConfig> getAll() {
-        return Arrays.asList(alchemyConfig, carpentryConfig, combatConfig, discovererConfig, enchantingConfig, farmingConfig, fishingConfig, foragingConfig, miningConfig, runecraftingConfig, dungeoneeringConfig, tamingConfig);
+        return Arrays.asList(this.alchemyConfig, this.carpentryConfig, this
+                .combatConfig, this.discovererConfig, this.enchantingConfig, this
+                .farmingConfig, this.fishingConfig, this.foragingConfig, this.miningConfig, this
+                .runecraftingConfig, this.dungeoneeringConfig, this.tamingConfig);
     }
 
     @Override
     public void reloadFiles() {
-        reloadAll(alchemyConfig, carpentryConfig, combatConfig, discovererConfig, enchantingConfig, farmingConfig, fishingConfig, foragingConfig, miningConfig, runecraftingConfig, dungeoneeringConfig, tamingConfig);
+        reloadAll(this.alchemyConfig, this.carpentryConfig, this
+                .combatConfig, this.discovererConfig, this
+                .enchantingConfig, this.farmingConfig, this
+                .fishingConfig, this.foragingConfig, this.miningConfig, this
+                .runecraftingConfig, this.dungeoneeringConfig, this.tamingConfig);
     }
 }

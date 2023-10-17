@@ -14,6 +14,9 @@ import org.bukkit.plugin.Plugin;
 import java.util.Optional;
 import java.util.logging.Logger;
 
+/**
+ * Utility class for minions registry
+ */
 @Component
 public final class MinionsRegistry {
     private static final String MINIONS_HOOKED_MESSAGE = "Successfully hooked into %s!";
@@ -22,8 +25,13 @@ public final class MinionsRegistry {
     private @Inject Plugin plugin;
     private @Inject Logger logger;
 
+    /**
+     * Adds a dependency resolver
+     *
+     * @return {@link Class}
+     */
     @Bean("minionListener")
-    public Optional<Class<? extends ExtraListener>> configureMinions(){
+    public Optional<Class<? extends ExtraListener>> configureMinions() {
         final DependencyResolver resolver = TheAssistantPlugin.getAPI().getDependencyResolver();
 
         if (resolver.isPlugin(THE_MINIONS_PLUGIN_NAME)) {
@@ -34,7 +42,7 @@ public final class MinionsRegistry {
         return Optional.empty();
     }
 
-    private void sendMinionsMessage(){
-        logger.info(String.format(MINIONS_HOOKED_MESSAGE, MinionsRegistry.THE_MINIONS_PLUGIN_NAME));
+    private void sendMinionsMessage() {
+        this.logger.info(String.format(MINIONS_HOOKED_MESSAGE, MinionsRegistry.THE_MINIONS_PLUGIN_NAME));
     }
 }

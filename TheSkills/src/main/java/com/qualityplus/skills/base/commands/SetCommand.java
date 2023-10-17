@@ -1,16 +1,20 @@
 package com.qualityplus.skills.base.commands;
 
 //@Component
+
+/**
+ * Utility class for  command
+ */
 public final class SetCommand /*extends AssistantCommand*/ {
   /*  private @Inject Box box;
 
     @Override
     public boolean execute(CommandSender sender, String[] args) {
-        if(args.length == 4) {
+        if (args.length == 4) {
 
             Player player = Bukkit.getPlayer(args[1]);
 
-            if(player == null){
+            if (player == null){
                 sender.sendMessage(StringUtils.color(box.files().messages().pluginMessages.invalidPlayer));
                 return false;
             }
@@ -20,14 +24,14 @@ public final class SetCommand /*extends AssistantCommand*/ {
 
             CommonObject object = skill != null ? skill : stat;
 
-            if(object == null){
+            if (object == null){
                 sender.sendMessage(StringUtils.color(box.files().messages().skillsMessages.invalidObject));
                 return false;
             }
 
             Integer level = MathUtils.intOrNull(args[3]);
 
-            if(level == null){
+            if (level == null){
                 sender.sendMessage(StringUtils.color(box.files().messages().pluginMessages.invalidAmount));
                 return false;
             }

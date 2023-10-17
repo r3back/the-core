@@ -17,9 +17,16 @@ import com.qualityplus.assistant.lib.eu.okaeri.configs.annotation.Names;
 import com.qualityplus.assistant.lib.eu.okaeri.platform.core.annotation.Configuration;
 import lombok.Getter;
 import lombok.Setter;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
-import java.util.*;
 
+/**
+ * Utility class for alchemy config
+ */
 @Getter
 @Setter
 @Configuration(path = "skills/alchemy_skill.yml")
@@ -28,11 +35,11 @@ import java.util.*;
 @Header("================================")
 @Names(strategy = NameStrategy.HYPHEN_CASE, modifier = NameModifier.TO_LOWER_CASE)
 public final class AlchemyConfig extends OkaeriConfig {
-    public String id = "alchemy";
-    public boolean enabled = true;
-    public String displayName = "Alchemy";
-    public List<String> description = Collections.singletonList("&7Brew Potions to earn alchemy xp!");
-    public int maxLevel = 50;
+    private String id = "alchemy";
+    private boolean enabled = true;
+    private String displayName = "Alchemy";
+    private List<String> description = Collections.singletonList("&7Brew Potions to earn alchemy xp!");
+    private int maxLevel = 50;
     private Map<Integer, Double> xpRequirements = getLevelsMap();
     private Map<Integer, List<String>> skillInfoInGUI = getInfo();
     private Map<Integer, List<StatReward>> statRewards = getInternalRewards();
@@ -54,10 +61,11 @@ public final class AlchemyConfig extends OkaeriConfig {
             .put(XMaterial.PHANTOM_MEMBRANE, 5D)
             .build();
 
-    public GUIOptions guiOptions = GUIOptions.builder()
+    private GUIOptions guiOptions = GUIOptions.builder()
             .slot(19)
             .item(XMaterial.PLAYER_HEAD)
-            .texture("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNzQ5MmNhOTQwNzkxMzZkMjUyNTcwM2QzNzVjMjU1N2VhYzIwMWVlN2RkMzljZTExYzY0YTljMzgxNDdlY2M0ZCJ9fX0=")
+            .texture("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNzQ5M" +
+                    "mNhOTQwNzkxMzZkMjUyNTcwM2QzNzVjMjU1N2VhYzIwMWVlN2RkMzljZTExYzY0YTljMzgxNDdlY2M0ZCJ9fX0=")
             .mainMenuLore(Arrays.asList("&7Abilities To Upgrade:",
                     "&8» %skill_defense_displayname%",
                     "&8» %skill_ferocity_displayname%",
@@ -70,25 +78,30 @@ public final class AlchemyConfig extends OkaeriConfig {
             ))
             .build();
 
-    public Skill getSkill(){
+    /**
+     * Adds a skill
+     *
+     * @return {@link AlchemySkill}
+     */
+    public Skill getSkill() {
         return AlchemySkill.builder()
-                .id(id)
-                .enabled(enabled)
-                .displayName(displayName)
-                .description(description)
-                .xpRequirements(xpRequirements)
-                .skillInfoInGUI(skillInfoInGUI)
-                .statRewards(statRewards)
-                .skillInfoInMessage(skillInfoInMessage)
-                .skillInfoInGUI(skillInfoInGUI)
-                .commandRewards(commandRewards)
-                .maxLevel(maxLevel)
-                .skillGUIOptions(guiOptions)
-                .rewards(rewards)
+                .id(this.id)
+                .enabled(this.enabled)
+                .displayName(this.displayName)
+                .description(this.description)
+                .xpRequirements(this.xpRequirements)
+                .skillInfoInGUI(this.skillInfoInGUI)
+                .statRewards( this.statRewards)
+                .skillInfoInMessage( this.skillInfoInMessage)
+                .skillInfoInGUI(this.skillInfoInGUI)
+                .commandRewards( this.commandRewards)
+                .maxLevel( this.maxLevel)
+                .skillGUIOptions( this.guiOptions)
+                .rewards( this.rewards)
                 .build();
     }
 
-    private Map<Integer, List<String>> getInfo(){
+    private Map<Integer, List<String>> getInfo() {
         return FastMap.listBuilder(Integer.class, String.class)
                 .put(1, Arrays.asList("&7Abilities To Upgrade:",
                                 "&8» &f+1 %skill_defense_displayname%",
@@ -111,17 +124,19 @@ public final class AlchemyConfig extends OkaeriConfig {
                 .build();
     }
 
-    private Map<Integer, List<StatReward>> getInternalRewards(){
+    private Map<Integer, List<StatReward>> getInternalRewards() {
         return FastMap.listBuilder(Integer.class, StatReward.class)
-                .put(1, Arrays.asList(new StatReward("defense", 1), new StatReward("ferocity", 1), new StatReward("brew_chance", 1), new StatReward("potion_master", 1)))
-                .put(10, Arrays.asList(new StatReward("defense", 2), new StatReward("ferocity", 2), new StatReward("brew_chance", 1), new StatReward("potion_master", 1)))
+                .put(1, Arrays.asList(new StatReward("defense", 1), new StatReward("ferocity", 1),
+                        new StatReward("brew_chance", 1), new StatReward("potion_master", 1)))
+                .put(10, Arrays.asList(new StatReward("defense", 2), new StatReward("ferocity", 2),
+                        new StatReward("brew_chance", 1), new StatReward("potion_master", 1)))
                 .build();
     }
 
-    private Map<Integer, Double> getLevelsMap(){
-        Map<Integer, Double> levels = new HashMap<>();
+    private Map<Integer, Double> getLevelsMap() {
+        final Map<Integer, Double> levels = new HashMap<>();
 
-        NumberUtil.intStream(0, maxLevel).forEach(n -> levels.put(n, n*15d));
+        NumberUtil.intStream(0,  this.maxLevel).forEach(n -> levels.put(n, n * 15d));
 
         return levels;
     }

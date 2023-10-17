@@ -26,6 +26,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+/**
+ * Utility class for spider perk
+ */
 @Getter
 @Setter
 @NoArgsConstructor
@@ -35,9 +38,30 @@ public final class SpidermanPerk extends Perk {
     private List<String> enabledWorlds;
     private int secondsDuration;
 
+    /**
+     *
+     * @param id                    Id
+     * @param enabled               Enabled
+     * @param displayName           Display Name
+     * @param description           Description
+     * @param skillGUIOptions       {@link GUIOptions}
+     * @param baseAmount            Base Amount
+     * @param chancePerLevel        Chance Per Level
+     * @param canBeUsedWithPlayers  Can Be Used With Players
+     * @param enabledWorlds         Enabled Worlds
+     * @param secondsDuration       Seconds Durations
+     */
     @Builder
-    public SpidermanPerk(String id, boolean enabled, String displayName, List<String> description, GUIOptions skillGUIOptions, double baseAmount, double chancePerLevel, boolean canBeUsedWithPlayers,
-                         List<String> enabledWorlds, int secondsDuration) {
+    public SpidermanPerk(final String id,
+                         final boolean enabled,
+                         final String displayName,
+                         final List<String> description,
+                         final GUIOptions skillGUIOptions,
+                         final double baseAmount,
+                         final double chancePerLevel,
+                         final boolean canBeUsedWithPlayers,
+                         final List<String> enabledWorlds,
+                         final int secondsDuration) {
         super(id, enabled, displayName, description, skillGUIOptions, baseAmount, chancePerLevel);
 
         this.canBeUsedWithPlayers = canBeUsedWithPlayers;
@@ -46,35 +70,45 @@ public final class SpidermanPerk extends Perk {
         this.secondsDuration = secondsDuration;
     }
 
+    /**
+     * Adds an entity damage
+     *
+     * @param e {@link EntityDamagedByPlayerEvent}
+     */
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
-    public void handlePerk(EntityDamagedByPlayerEvent e) {
-        Player p = e.getPlayer();
+    public void handlePerk(final EntityDamagedByPlayerEvent e) {
+        final Player p = e.getPlayer();
 
-        if(!enabledWorlds.contains(p.getWorld().getName())) return;
-
-        if(!canBeUsedWithPlayers && e.getEntity() instanceof Player) return;
-
-        if (RandomUtil.randomBetween(0.0, 100.0) >= getChancePerLevel() * getStat(p))
+        if (!this.enabledWorlds.contains(p.getWorld().getName())) {
             return;
+        }
 
-        Block block = e.getEntity().getLocation().getBlock();
+        if (!this.canBeUsedWithPlayers && e.getEntity() instanceof Player) {
+            return;
+        }
+
+        if (RandomUtil.randomBetween(0.0, 100.0) >= getChancePerLevel() * getStat(p)) {
+            return;
+        }
+        final Block block = e.getEntity().getLocation().getBlock();
 
         final Location location = block.getLocation();
 
         final Material before = Optional.of(block.getType()).orElse(Material.AIR);
 
-        oldBlocks.put(location, before);
+        this.oldBlocks.put(location, before);
 
         block.setType(XMaterial.COBWEB.parseMaterial());
 
-        Bukkit.getScheduler().runTaskLater(TheSkills.getApi().getPlugin(), () ->{
-            Optional.ofNullable(oldBlocks.getOrDefault(location, null)).ifPresent(material -> location.getBlock().setType(material));
-            oldBlocks.remove(location);
-        }, secondsDuration * 20L);
+        Bukkit.getScheduler().runTaskLater(TheSkills.getApi().getPlugin(), () -> {
+            Optional.ofNullable(this.oldBlocks.getOrDefault(location, null)).ifPresent(material -> location.getBlock().setType(material));
+            this.oldBlocks.remove(location);
+        }, this.secondsDuration * 20L);
     }
 
     @Override
-    public List<String> getFormattedDescription(int level) {
-        return StringUtils.processMulti(super.getFormattedDescription(level), PlaceholderBuilder.create(new Placeholder("duration", secondsDuration)).get());
+    public List<String> getFormattedDescription(final int level) {
+        return StringUtils.processMulti(super.getFormattedDescription(level),
+                PlaceholderBuilder.create(new Placeholder("duration", this.secondsDuration)).get());
     }
 }

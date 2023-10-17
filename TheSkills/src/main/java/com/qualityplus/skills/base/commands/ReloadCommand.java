@@ -17,6 +17,9 @@ import org.bukkit.command.CommandSender;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * Utility class for Reload command
+ */
 @Component
 public final class ReloadCommand extends AssistantCommand {
     private @Inject MinionsProvider minionsProvider;
@@ -24,29 +27,39 @@ public final class ReloadCommand extends AssistantCommand {
     private @Inject Box box;
 
     @Override
-    public boolean execute(CommandSender sender, String[] args) {
-        if(args.length == 1) {
-            sender.sendMessage(StringUtils.color(box.files().messages().pluginMessages.successfullyReloaded));
+    public boolean execute(final CommandSender sender, final String[] args) {
+        if (args.length == 1) {
+            sender.sendMessage(StringUtils.color(this.box.files().messages().getPluginMessages().getSuccessfullyReloaded()));
 
-            box.files().reloadFiles();
+            this.box.files().reloadFiles();
 
-            box.skillFiles().reloadFiles();
+            this.box.skillFiles().reloadFiles();
 
-            Skills.reloadSkills(box, minionsProvider);
+            Skills.reloadSkills(this.box, this.minionsProvider);
 
             TheAssistantPlugin.getAPI().getCommandProvider().reloadCommands();
-        }else
-            sender.sendMessage(StringUtils.color(box.files().messages().pluginMessages.useSyntax));
+        } else {
+            sender.sendMessage(StringUtils.color(this.box.files().messages().getPluginMessages().getUseSyntax()));
+        }
         return true;
+
     }
 
     @Override
-    public List<String> onTabComplete(CommandSender commandSender, org.bukkit.command.Command command, String label, String[] args) {
+    public List<String> onTabComplete(final CommandSender commandSender,
+                                      final org.bukkit.command.Command command,
+                                      final String label,
+                                      final String[] args) {
         return Collections.emptyList();
     }
 
+    /**
+     * Adds a register
+     *
+     * @param box {@link Box}
+     */
     @Delayed(time = MinecraftTimeEquivalent.SECOND)
-    public void register(@Inject Box box){
-        TheAssistantPlugin.getAPI().getCommandProvider().registerCommand(this, e -> e.getCommand().setDetails(box.files().commands().reloadCommand));
+    public void register(@Inject final Box box) {
+        TheAssistantPlugin.getAPI().getCommandProvider().registerCommand(this, e -> e.getCommand().setDetails(box.files().commands().getReloadCommand()));
     }
 }

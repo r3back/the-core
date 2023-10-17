@@ -20,6 +20,9 @@ import lombok.Setter;
 import java.util.Arrays;
 import java.util.Collections;
 
+/**
+ * Utility class for inventories
+ */
 @Getter
 @Setter
 @Configuration(path = "inventories.yml")
@@ -29,7 +32,7 @@ import java.util.Collections;
 @Names(strategy = NameStrategy.HYPHEN_CASE, modifier = NameModifier.TO_LOWER_CASE)
 public final class Inventories extends OkaeriConfig implements DefaultBackgrounds {
     @CustomKey("mainGUI")
-    public MainGUIConfig mainGUIConfig = new MainGUIConfig(
+    private MainGUIConfig mainGUIConfig = new MainGUIConfig(
             new CommonGUI(
                     "Main Menu",
                     54,
@@ -56,7 +59,7 @@ public final class Inventories extends OkaeriConfig implements DefaultBackground
     );
 
     @CustomKey("subGUI")
-    public SubGUIConfig subGUIConfig = new SubGUIConfig(
+    private SubGUIConfig subGUIConfig = new SubGUIConfig(
             new CommonGUI(
                     "%category% (%current_page%/%max_page%)",
                     54,
@@ -82,7 +85,7 @@ public final class Inventories extends OkaeriConfig implements DefaultBackground
             ItemBuilder.of(XMaterial.ARROW,  50, 1, "&aLevels 1 - 25", Arrays.asList("&eClick to view")).build(),
             ItemBuilder.of(XMaterial.ARROW,  50, 1, "&aLevels 26 - 50", Arrays.asList("&eClick to view")).build(),
             ItemBuilder.of(XMaterial.ARROW,  48, 1, "&aGo Back", Arrays.asList("&7To Your Skills")).build(),
-            Arrays.asList(9,18,27,28,29,20,11,2,3,4,13,22,31,32,33,24,15,6,7,8,17,26,35,44,53),
+            Arrays.asList(9, 18, 27, 28, 29, 20, 11, 2, 3, 4, 13, 22, 31, 32, 33, 24, 15, 6, 7, 8, 17, 26, 35, 44, 53),
             ItemBuilder.of(XMaterial.STONE,  0, 1, "&a%skill_displayname% %skill_level_roman%", Arrays.asList("",
                     "&7%skill_description%",
                     "",
@@ -92,23 +95,33 @@ public final class Inventories extends OkaeriConfig implements DefaultBackground
     );
 
     @CustomKey("statsAndPerksGUI")
-    public StatsAndPerksGUIConfig statsAndPerksGUI = StatsAndPerksGUIConfig.builder()
+    private StatsAndPerksGUIConfig statsAndPerksGUI = StatsAndPerksGUIConfig.builder()
             .commonGUI(new CommonGUI(
                     "Your stats",
                     54,
                     getBackgroundWith6RowsDecoratedAround(),
-                    ItemBuilder.of(XMaterial.BARRIER,  49, 1, "&cClose", Arrays.asList("", "&e» &7Click to close")).build()
+                    ItemBuilder.of(XMaterial.BARRIER,  49, 1, "&cClose",
+                            Arrays.asList("", "&e» &7Click to close")).build()
             ))
-            .previousPage(ItemBuilder.of(XMaterial.ARROW,  48, 1, "&aPrevious Page", Arrays.asList("", "&e» &7Click to go previous page.")).build())
-            .nextPage(ItemBuilder.of(XMaterial.ARROW,  50, 1, "&aNext Page", Arrays.asList("", "&e» &7Click to go to next page.")).build())
-            .goBack(ItemBuilder.of(XMaterial.ARROW,  48, 1, "&aGo Back", Arrays.asList("", "&e» &7Click to go to main menu.")).build())
-            .statItem(ItemBuilder.of(XMaterial.STONE, 1, "%stat_displayname%", Collections.singletonList("&7%stat_description%")).build())
-            .perkItem(ItemBuilder.of(XMaterial.STONE, 1, "&a%perk_displayname%", Collections.singletonList("&7%perk_description%")).build())
-            .statInfoItem(ItemBuilder.of(XMaterial.COMPASS, 4, 1, "&dStats", Arrays.asList("&7Statistics useful in combat", "&7and everyday situations!"))
+            .previousPage(ItemBuilder.of(XMaterial.ARROW,  48, 1, "&aPrevious Page",
+                    Arrays.asList("", "&e» &7Click to go previous page.")).build())
+            .nextPage(ItemBuilder.of(XMaterial.ARROW,  50, 1, "&aNext Page",
+                    Arrays.asList("", "&e» &7Click to go to next page.")).build())
+            .goBack(ItemBuilder.of(XMaterial.ARROW,  48, 1, "&aGo Back",
+                    Arrays.asList("", "&e» &7Click to go to main menu.")).build())
+            .statItem(ItemBuilder.of(XMaterial.STONE, 1, "%stat_displayname%",
+                    Collections.singletonList("&7%stat_description%")).build())
+            .perkItem(ItemBuilder.of(XMaterial.STONE, 1, "&a%perk_displayname%",
+                    Collections.singletonList("&7%perk_description%")).build())
+            .statInfoItem(ItemBuilder.of(XMaterial.COMPASS, 4, 1, "&dStats",
+                            Arrays.asList("&7Statistics useful in combat", "&7and everyday situations!"))
                     .build())
-            .perkInfoItem(ItemBuilder.of(XMaterial.CLOCK, 4, 1, "&dPerks", Arrays.asList("&7Perks stats use to", "&7better your farming, mining,", "&7etc."))
+            .perkInfoItem(ItemBuilder.of(XMaterial.CLOCK, 4, 1, "&dPerks", Arrays.asList("&7Perks stats use to",
+                            "&7better your farming, mining,", "&7etc."))
                     .build())
-            .switchMode(ItemBuilder.of(XMaterial.PUFFERFISH, 51, 1, "&aSwitch Mode", Arrays.asList("&7Switch whether you want to see", "&aPERKS &7or &aSTATS&7.", "", "&7Current Mode: %current_mode%", "", "&eClick to switch")).build())
+            .switchMode(ItemBuilder.of(XMaterial.PUFFERFISH, 51, 1,
+                    "&aSwitch Mode", Arrays.asList("&7Switch whether you want to see",
+                            "&aPERKS &7or &aSTATS&7.", "", "&7Current Mode: %current_mode%", "", "&eClick to switch")).build())
 
             .build();
 }

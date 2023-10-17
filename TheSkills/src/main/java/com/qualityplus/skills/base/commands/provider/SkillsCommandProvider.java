@@ -8,18 +8,21 @@ import com.qualityplus.assistant.lib.eu.okaeri.commons.bukkit.time.MinecraftTime
 import com.qualityplus.assistant.lib.eu.okaeri.platform.bukkit.annotation.Delayed;
 import com.qualityplus.assistant.lib.eu.okaeri.platform.core.annotation.Component;
 
+/**
+ * Utility class for commands skills
+ */
 @Component
 public final class SkillsCommandProvider {
     @Delayed(time = MinecraftTimeEquivalent.SECOND / 20, async = true)
-    private void configureProvider(@Inject Box box){
+    private void configureProvider(@Inject final Box box) {
         LabelProvider.builder()
                 .id("theskills")
                 .label("theskills")
                 .plugin(box.plugin())
-                .useHelpMessage(box.files().messages().pluginMessages.useHelp)
-                .unknownCommandMessage(box.files().messages().pluginMessages.unknownCommand)
-                .onlyForPlayersMessage(box.files().messages().pluginMessages.mustBeAPlayer)
-                .noPermissionMessage(box.files().messages().pluginMessages.noPermission)
+                .useHelpMessage(box.files().messages().getPluginMessages().getUseHelp())
+                .unknownCommandMessage(box.files().messages().getPluginMessages().getUnknownCommand())
+                .onlyForPlayersMessage(box.files().messages().getPluginMessages().getMustBeAPlayer())
+                .noPermissionMessage(box.files().messages().getPluginMessages().getNoPermission())
                 .build()
                 .register();
     }

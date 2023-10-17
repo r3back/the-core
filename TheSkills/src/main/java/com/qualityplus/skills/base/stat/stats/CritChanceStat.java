@@ -2,7 +2,6 @@ package com.qualityplus.skills.base.stat.stats;
 
 import com.qualityplus.assistant.api.util.IPlaceholder;
 import com.qualityplus.assistant.util.StringUtils;
-import com.qualityplus.assistant.api.util.MathUtil;
 import com.qualityplus.assistant.util.number.NumberUtil;
 import com.qualityplus.assistant.util.placeholder.Placeholder;
 import com.qualityplus.assistant.util.placeholder.PlaceholderBuilder;
@@ -29,26 +28,50 @@ import java.util.Optional;
 public final class CritChanceStat extends Stat {
     private double chancePerLevel;
 
+    /**
+     * Makes a critic chance stats
+     *
+     * @param id              Id
+     * @param enabled         Enabled
+     * @param displayName     Display Name
+     * @param description     Description
+     * @param skillGUIOptions {@link GUIOptions}
+     * @param baseAmount      Base Amount
+     * @param chancePerLevel  Chance Per Level
+     */
     @Builder
-    public CritChanceStat(String id, boolean enabled, String displayName, List<String> description, GUIOptions skillGUIOptions, double baseAmount, double chancePerLevel) {
+    public CritChanceStat(final String id,
+                          final boolean enabled,
+                          final String displayName,
+                          final List<String> description,
+                          final GUIOptions skillGUIOptions,
+                          final double baseAmount,
+                          final double chancePerLevel) {
         super(id, enabled, displayName, description, skillGUIOptions, baseAmount);
 
         this.chancePerLevel = chancePerLevel;
     }
 
+    /**
+     * Adds an entity damage
+     *
+     * @param e {@link EntityDamageByEntityEvent}
+     */
     @EventHandler(priority = EventPriority.LOW)
-    public void onEntityDamageByEntity(EntityDamageByEntityEvent e) {
-        if(!(e.getDamager() instanceof Player)) return;
-
-        Player player = (Player) e.getDamager();
-
-        double randomNumber = RandomUtil.randomBetween(0.0, 100.0);
-        double playerChance = chancePerLevel * getStat(player);
-
-        if (randomNumber >= playerChance)
+    public void onEntityDamageByEntity(final EntityDamageByEntityEvent e) {
+        if (!(e.getDamager() instanceof Player)) {
             return;
+        }
 
-        Optional<CritDamageStat> damageStat = Stats.values(stat -> stat instanceof CritDamageStat).stream()
+        final Player player = (Player) e.getDamager();
+
+        final double randomNumber = RandomUtil.randomBetween(0.0, 100.0);
+        final double playerChance = this.chancePerLevel * getStat(player);
+
+        if (randomNumber >= playerChance) {
+            return;
+        }
+        final Optional<CritDamageStat> damageStat = Stats.values(stat -> stat instanceof CritDamageStat).stream()
                 .map(stat -> (CritDamageStat) stat)
                 .findFirst();
 
@@ -66,17 +89,17 @@ public final class CritChanceStat extends Stat {
         /*CritDamageEvent event = new CritDamageEvent(player, this);
         Bukkit.getPluginManager().callEvent(e);
 
-        if(event.isCancelled()) return;*/
+        if (event.isCancelled()) return;*/
 
         e.setDamage(e.getDamage() * multiplier);
     }
 
     @Override
-    public List<String> getFormattedDescription(int level) {
-        List<IPlaceholder> placeholders = PlaceholderBuilder.create()
+    public List<String> getFormattedDescription(final int level) {
+        final List<IPlaceholder> placeholders = PlaceholderBuilder.create()
                 .with(new Placeholder("level_number", level),
                         new Placeholder("level_roman", NumberUtil.toRoman(level)),
-                        new Placeholder("chance", chancePerLevel * level)
+                        new Placeholder("chance", this.chancePerLevel * level)
                 ).get();
         return StringUtils.processMulti(description, placeholders);
     }
