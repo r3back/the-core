@@ -35,8 +35,6 @@ public final class PetChunkListener implements Listener {
 
             if(!isIn(chunk.getChunkSnapshot(), location)) return;
 
-            Bukkit.getConsoleSender().sendMessage("Cargando chunk del pet");
-
             entity.load();
         }
         //});
@@ -54,10 +52,7 @@ public final class PetChunkListener implements Listener {
 
             if(!minionEntity.isPresent()) continue;
 
-            Bukkit.getConsoleSender().sendMessage("Descargando chunk del pet");
-
             minionEntity.get().unload();
-            //e.getChunk().unload();
 
         }
         //});
