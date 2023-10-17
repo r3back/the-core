@@ -62,7 +62,7 @@ public final class Soul extends OkaeriConfig {
 
         soulEntity.setInvulnerable(true);
 
-        soulEntity.setCustomName("theSouls");
+        soulEntity.setCustomName("");
 
         soulEntity.setCustomNameVisible(false);
 
