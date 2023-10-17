@@ -25,7 +25,7 @@ public class ClickRequestStrategyFactoryImpl implements ClickRequestStrategyFact
     private static final ClickRequestStrategy NORMAL_PICK_UP = new NormalPickUpRequestStrategy();
     private static final ClickRequestStrategy SHIFT_PICK_UP = new ShiftPickUpRequestStrategy();
 
-    public static final Set<ClickRequestStrategy> STRATEGY_LIST = ImmutableSet.of(
+    public static final Set<ClickRequestStrategy> STRATEGIES_LIST = ImmutableSet.of(
             NORMAL_UPGRADE_AND_SACRIFICE,
             SHIFT_UPGRADE_AND_SACRIFICE,
             NORMAL_CLICK_TO_COMBINE,
@@ -38,7 +38,7 @@ public class ClickRequestStrategyFactoryImpl implements ClickRequestStrategyFact
 
     @Override
     public Optional<ClickRequestStrategy> getStrategy(final ClickRequest request) {
-        return STRATEGY_LIST.stream()
+        return STRATEGIES_LIST.stream()
                 .filter(strategy -> strategy.applies(request))
                 .findFirst();
     }
