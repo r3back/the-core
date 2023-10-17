@@ -4,10 +4,9 @@ import com.qualityplus.anvil.api.box.Box;
 import com.qualityplus.anvil.api.session.AnvilSession;
 import com.qualityplus.anvil.api.session.AnvilSession.SessionResult;
 import com.qualityplus.anvil.base.gui.AnvilGUI;
-import com.qualityplus.anvil.base.gui.anvilmain.handler.ClickHandler;
-import com.qualityplus.anvil.base.gui.anvilmain.handler.MainClickHandler;
-import com.qualityplus.anvil.base.gui.anvilmain.handler.NormalClickHandler;
-import com.qualityplus.anvil.base.gui.anvilmain.handler.ShiftClickHandler;
+import com.qualityplus.anvil.base.gui.anvilmain.factory.ClickRequestStrategyFactoryImpl;
+import com.qualityplus.anvil.base.gui.anvilmain.factory.ClickRequestStrategyFactory;
+import com.qualityplus.anvil.base.gui.anvilmain.request.ClickRequest;
 import com.qualityplus.anvil.util.AnvilFinderUtil;
 import com.qualityplus.assistant.api.util.BukkitItemUtil;
 import com.qualityplus.assistant.api.util.IPlaceholder;
@@ -19,7 +18,6 @@ import com.qualityplus.assistant.util.placeholder.Placeholder;
 import com.qualityplus.assistant.util.placeholder.PlaceholderBuilder;
 import lombok.Getter;
 import lombok.Setter;
-import org.bukkit.Bukkit;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
@@ -33,41 +31,30 @@ import org.jetbrains.annotations.NotNull;
 import java.util.*;
 
 public final class AnvilMainGUI extends AnvilGUI {
+    private final ClickRequestStrategyFactory strategyFactory;
     private @Getter final AnvilMainGUIConfig config;
     private @Setter boolean giveItem = true;
-    private final ClickHandler handler;
     private final AnvilSession session;
 
-    public AnvilMainGUI(Box box, AnvilSession session) {
+    public AnvilMainGUI(final Box box, final AnvilSession session) {
         super(box.files().inventories().enchantMainGUI, box);
 
-        this.handler = new MainClickHandler(new NormalClickHandler(box, this, session), new ShiftClickHandler(box, this, session));
+        this.strategyFactory = new ClickRequestStrategyFactoryImpl();
         this.config = box.files().inventories().enchantMainGUI;
         this.session = session;
     }
 
     @Override
-    public void onInventoryClick(InventoryClickEvent event) {
-        Player player = (Player) event.getWhoClicked();
+    public void onInventoryClick(final InventoryClickEvent event) {
+        final ClickRequest request = ClickRequest.builder()
+                .box(this.box)
+                .config(this.config)
+                .event(event)
+                .gui(this)
+                .session(this.session)
+                .build();
 
-        if(getTarget(event).equals(ClickTarget.INSIDE)){
-            int slot = event.getSlot();
-
-
-            if(isItem(slot, config.getCloseGUI())) {
-                event.setCancelled(true);
-                player.closeInventory();
-            }else if(slot == config.getToUpgradeSlot() || slot == config.getToSacrificeSlot() || slot == config.getCombineFilledItem().slot || slot == config.getCombinedFilledItem().slot) {
-                handler.handle(event);
-            }else {
-                event.setCancelled(true);
-
-            }
-        }else{
-
-            handler.handleOutSide(event);
-
-        }
+        this.strategyFactory.getStrategy(request).ifPresent(clickRequestStrategy -> clickRequestStrategy.execute(request));
     }
 
     @Override
