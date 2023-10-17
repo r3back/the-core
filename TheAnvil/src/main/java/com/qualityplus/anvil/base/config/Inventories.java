@@ -47,12 +47,13 @@ public final class Inventories extends OkaeriConfig implements DefaultBackground
 
             .readyToCombineSlots(Arrays.asList(45,46,47,48,50,51,52,53))
             .readyToCombineItem(ItemBuilder.of(XMaterial.LIME_STAINED_GLASS_PANE, 1, " ", Collections.emptyList()).build())
-
+            //Info
             .combineFilledItem(ItemBuilder.of(XMaterial.ANVIL, 22, 1, "&aCombine Items", Arrays.asList("&7Combine the items in the slots", "&7to the left and right below.", "",
                     "&7Cost: %anvil_enchant_exp_cost%", "&7Cost: %anvil_enchant_money_cost%", "", "&eClick to combine!"))
                     .enchanted(true).build())
 
             .combinedErrorItem(ItemBuilder.of(XMaterial.BARRIER, 13, 1, "&cError", Collections.singletonList("%anvil_error%")).build())
+            //Result
             .combinedItemFilled(ItemBuilder.of(XMaterial.STONE, 13, 1, "&f%anvil_result_item_displayname%", Arrays.asList("%anvil_result_item_lore%", "&8————————————————————", "&aThis is the item you will get.", "&aClick the &cANVIL BELOW &ato", "&acombine."))
                     .build())
             .build();

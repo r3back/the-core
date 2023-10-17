@@ -11,3 +11,5 @@
 !/test-suite/mc-config/plugins
 /test-suite/mc-config/plugins/*
 !/test-suite/mc-config/plugins/TheAssistant.jar
+/*/*/*.iml
+*/*/*/*.iml
