@@ -10,6 +10,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
 
+import java.util.HashSet;
 import java.util.stream.Collectors;
 
 @Component
@@ -21,7 +22,7 @@ public final class TickScheduler{
     private void tickAllLegacy(){
         if(XMaterial.getVersion() > 14) return;
 
-        MinionEntityTracker.TRACKED_ENTITIES.entrySet().forEach(minionTickService::tick);
+        new HashSet<>(MinionEntityTracker.TRACKED_ENTITIES.entrySet()).forEach(minionTickService::tick);
     }
 
 
@@ -29,6 +30,6 @@ public final class TickScheduler{
     private void tickAll(){
         if(XMaterial.getVersion() < 14) return;
 
-        MinionEntityTracker.TRACKED_ENTITIES.entrySet().forEach(minionTickService::tick);
+        new HashSet<>(MinionEntityTracker.TRACKED_ENTITIES.entrySet()).forEach(minionTickService::tick);
     }
 }
