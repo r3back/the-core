@@ -6,6 +6,6 @@ import lombok.experimental.UtilityClass;
 @UtilityClass
 public final class ClickSlot {
     public boolean isSlot(final int slot, final Item item) {
-        return item != null && item.enabled && item.slot == slot;
+        return item != null && item.isEnabled() && item.getSlot() == slot;
     }
 }

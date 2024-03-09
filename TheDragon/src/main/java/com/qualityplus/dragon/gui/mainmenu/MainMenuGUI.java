@@ -36,23 +36,23 @@ public final class MainMenuGUI extends TheDragonGUI {
     public @NotNull Inventory getInventory() {
         InventoryUtils.fillInventory(inventory, config.getBackground());
 
-        inventory.setItem(config.getSchematicItem().slot, ItemStackUtils.makeItem(config.getSchematicItem(), getSchematicPlaceholders()));
+        inventory.setItem(config.getSchematicItem().getSlot(), ItemStackUtils.makeItem(config.getSchematicItem(), getSchematicPlaceholders()));
 
-        inventory.setItem(config.getAltarItem().slot, ItemStackUtils.makeItem(config.getAltarItem(), getAltarsPlaceholders()));
+        inventory.setItem(config.getAltarItem().getSlot(), ItemStackUtils.makeItem(config.getAltarItem(), getAltarsPlaceholders()));
 
-        inventory.setItem(config.getCrystalItem().slot, ItemStackUtils.makeItem(config.getCrystalItem(), getCrystalsPlaceholders()));
+        inventory.setItem(config.getCrystalItem().getSlot(), ItemStackUtils.makeItem(config.getCrystalItem(), getCrystalsPlaceholders()));
 
-        inventory.setItem(config.getSpawnItem().slot, ItemStackUtils.makeItem(config.getSpawnItem(), getSpawnPlaceholders()));
+        inventory.setItem(config.getSpawnItem().getSlot(), ItemStackUtils.makeItem(config.getSpawnItem(), getSpawnPlaceholders()));
 
-        inventory.setItem(config.getDragonsItem().slot, ItemStackUtils.makeItem(config.getDragonsItem(), getDragonsPlaceholders()));
+        inventory.setItem(config.getDragonsItem().getSlot(), ItemStackUtils.makeItem(config.getDragonsItem(), getDragonsPlaceholders()));
 
-        inventory.setItem(config.getGuardiansItem().slot, ItemStackUtils.makeItem(config.getGuardiansItem(), getGuardiansPlaceholders()));
+        inventory.setItem(config.getGuardiansItem().getSlot(), ItemStackUtils.makeItem(config.getGuardiansItem(), getGuardiansPlaceholders()));
 
-        inventory.setItem(config.getGuardianSpawnsItem().slot, ItemStackUtils.makeItem(config.getGuardianSpawnsItem(), getGuardianSpawnsPlaceholders()));
+        inventory.setItem(config.getGuardianSpawnsItem().getSlot(), ItemStackUtils.makeItem(config.getGuardianSpawnsItem(), getGuardianSpawnsPlaceholders()));
 
-        inventory.setItem(config.getWikiTutorialItem().slot, ItemStackUtils.makeItem(config.getWikiTutorialItem()));
+        inventory.setItem(config.getWikiTutorialItem().getSlot(), ItemStackUtils.makeItem(config.getWikiTutorialItem()));
 
-        inventory.setItem(config.getCloseGUI().slot, ItemStackUtils.makeItem(config.getCloseGUI()));
+        inventory.setItem(config.getCloseGUI().getSlot(), ItemStackUtils.makeItem(config.getCloseGUI()));
 
         return inventory;
     }

@@ -4,7 +4,7 @@ import com.qualityplus.assistant.lib.com.cryptomorin.xseries.XMaterial;
 import com.qualityplus.assistant.util.faster.FastMap;
 import com.qualityplus.assistant.util.faster.FastStack;
 import com.qualityplus.assistant.util.itemstack.ItemBuilder;
-import com.qualityplus.assistant.util.number.NumberUtil;
+import com.qualityplus.assistant.api.util.NumberUtil;
 import com.qualityplus.minions.TheMinions;
 import com.qualityplus.minions.base.minions.minion.skin.MinionSkin;
 import com.qualityplus.assistant.lib.eu.okaeri.configs.OkaeriConfig;

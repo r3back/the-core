@@ -53,9 +53,9 @@ public final class IndividualRecipeGUI extends AlchemistGUI {
         final Item output = this.config.getOutputItem();
         final Item input = this.config.getInputItem();
 
-        this.inventory.setItem(fuel.slot, ItemStackUtils.makeItem(fuel, placeholders, getIfNull(this.brewingRecipe.getFuel())));
-        this.inventory.setItem(output.slot, ItemStackUtils.makeItem(output, placeholders, getIfNull(this.brewingRecipe.getOutPut())));
-        this.inventory.setItem(input.slot, ItemStackUtils.makeItem(input, placeholders, getIfNull(this.brewingRecipe.getInput())));
+        this.inventory.setItem(fuel.getSlot(), ItemStackUtils.makeItem(fuel, placeholders, getIfNull(this.brewingRecipe.getFuel())));
+        this.inventory.setItem(output.getSlot(), ItemStackUtils.makeItem(output, placeholders, getIfNull(this.brewingRecipe.getOutPut())));
+        this.inventory.setItem(input.getSlot(), ItemStackUtils.makeItem(input, placeholders, getIfNull(this.brewingRecipe.getInput())));
 
         setItem(this.config.getCloseGUI());
 

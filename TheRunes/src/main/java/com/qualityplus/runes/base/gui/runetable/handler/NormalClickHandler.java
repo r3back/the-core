@@ -30,7 +30,7 @@ public final class NormalClickHandler implements ClickHandler {
     public void handle(InventoryClickEvent event){
         Player player = (Player) event.getWhoClicked();
 
-        if(event.getSlot() == gui.getConfig().getClickToCombineRunesItem().slot || event.getSlot() == gui.getConfig().getClickToCombineItemAndRuneItem().slot){
+        if(event.getSlot() == gui.getConfig().getClickToCombineRunesItem().getSlot() || event.getSlot() == gui.getConfig().getClickToCombineItemAndRuneItem().getSlot()){
             event.setCancelled(true);
 
             if(!session.bothItemsAreSet()) return;
@@ -47,7 +47,7 @@ public final class NormalClickHandler implements ClickHandler {
             effectHandler.handle(player, gui, event.getClickedInventory());
 
 
-        } else if(event.getSlot() == gui.getConfig().getCombinedFilledItem().slot){
+        } else if(event.getSlot() == gui.getConfig().getCombinedFilledItem().getSlot()){
             if(BukkitItemUtil.isNull(session.getResult())) {
                 event.setCancelled(true);
                 return;

@@ -1,10 +1,10 @@
 package com.qualityplus.enchanting.base.chain;
 
 import com.google.common.collect.Lists;
+import com.qualityplus.assistant.api.util.NumberUtil;
 import com.qualityplus.assistant.lib.eu.okaeri.injector.annotation.Inject;
 import com.qualityplus.assistant.util.StringUtils;
 import com.qualityplus.assistant.util.itemstack.ItemStackUtils;
-import com.qualityplus.assistant.util.number.NumberUtil;
 import com.qualityplus.assistant.util.placeholder.Placeholder;
 import com.qualityplus.enchanting.TheEnchanting;
 import com.qualityplus.enchanting.api.chain.EnchantmentChain;

@@ -39,14 +39,14 @@ public final class TradeOptionsGUI extends TradeGUI {
 
         for(Map.Entry<Integer, Item> entry : config.getItemsAndAmountToTrade().entrySet()){
 
-            inventory.setItem(entry.getValue().slot, ItemStackUtils.makeItem(
+            inventory.setItem(entry.getValue().getSlot(), ItemStackUtils.makeItem(
                     entry.getValue(),
                     TradePlaceholderUtils.getRecipePlaceholders(box, trade, entry.getKey()).get(),
                     trade.getResult(),
                     false
             ));
 
-            slotsAndAmountMap.put(entry.getValue().slot, entry.getKey());
+            slotsAndAmountMap.put(entry.getValue().getSlot(), entry.getKey());
         }
 
         setItem(config.getCloseGUI());

@@ -79,7 +79,7 @@ public final class AnvilMainGUI extends AnvilGUI {
             ItemStack newItemInInv = ItemStackUtils.makeItem(config.getCombinedFilledItem(), getPlaceholders(newItem), newItem, false, false);
 
 
-            inventory.setItem(config.getCombinedFilledItem().slot, newItemInInv);
+            inventory.setItem(config.getCombinedFilledItem().getSlot(), newItemInInv);
 
             config.getReadyToCombineSlots().forEach(slot -> inventory.setItem(slot, ItemStackUtils.makeItem(config.getReadyToCombineItem())));
             //Anvil
@@ -90,7 +90,7 @@ public final class AnvilMainGUI extends AnvilGUI {
         }
 
         if(!BukkitItemUtil.isNull(session.getResult()))
-            inventory.setItem(config.getCombinedFilledItem().slot, ItemStackUtils.makeItem(config.getCombinedFilledItem(), getPlaceholders(session.getResult()), session.getResult()));
+            inventory.setItem(config.getCombinedFilledItem().getSlot(), ItemStackUtils.makeItem(config.getCombinedFilledItem(), getPlaceholders(session.getResult()), session.getResult()));
 
 
         if(answer.isError())

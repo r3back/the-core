@@ -16,13 +16,13 @@ import java.util.List;
 public class CraftingItemStackUtil {
     public static ItemStack makeCategoryItem(Item item, List<IPlaceholder> placeholders, Category category){
         try {
-            Item item1 = ItemBuilder.of(category.getIcon(), 1, 1, item.displayName, item.lore).headData(category.getIconTexture()).build();
+            Item item1 = ItemBuilder.of(category.getIcon(), 1, 1, item.getDisplayName(), item.getLore()).headData(category.getIconTexture()).build();
 
             ItemStack firstProcess = ItemStackUtils.makeItem(
                     category.getIcon(),
                     1,
-                    StringUtils.processMulti(item.displayName, placeholders),
-                    StringUtils.processMulti(item.lore, placeholders));
+                    StringUtils.processMulti(item.getDisplayName(), placeholders),
+                    StringUtils.processMulti(item.getLore(), placeholders));
 
             return ItemStackUtils.makeItem(item1, placeholders, firstProcess);
         } catch (Exception e) {

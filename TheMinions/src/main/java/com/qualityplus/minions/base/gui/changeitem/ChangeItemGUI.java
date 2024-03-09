@@ -60,7 +60,7 @@ public final class ChangeItemGUI extends MinionGUI {
                 new Placeholder("new_item_displayname", BukkitItemUtil.getName(newItem)),
                 new Placeholder("new_item_lore", BukkitItemUtil.getItemLore(newItem))
         ).get();
-        inventory.setItem(config.getNewItem().slot, ItemStackUtils.makeItem(config.getNewItem(), newItemPlaceholders, newItem));
+        inventory.setItem(config.getNewItem().getSlot(), ItemStackUtils.makeItem(config.getNewItem(), newItemPlaceholders, newItem));
 
 
         ItemStack oldItem = getOldItem();
@@ -70,7 +70,7 @@ public final class ChangeItemGUI extends MinionGUI {
                     new Placeholder("old_item_displayname", BukkitItemUtil.getName(newItem)),
                     new Placeholder("old_item_lore", BukkitItemUtil.getItemLore(newItem))
             ).get();
-            inventory.setItem(config.getOldItem().slot, ItemStackUtils.makeItem(config.getOldItem(), oldItemPlaceholders, oldItem));
+            inventory.setItem(config.getOldItem().getSlot(), ItemStackUtils.makeItem(config.getOldItem(), oldItemPlaceholders, oldItem));
         }
 
         setItem(config.getConfirmItem());

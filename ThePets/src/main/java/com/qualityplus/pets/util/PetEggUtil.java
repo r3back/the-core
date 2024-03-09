@@ -76,8 +76,8 @@ public class PetEggUtil {
 
         ItemStack itemStack = ItemBuilder.of()
                 .headData(petEgg.getTexture())
-                .displayName(StringUtils.processMulti(item.displayName, placeholderList))
-                .lore(StringUtils.processMulti(item.lore, placeholderList))
+                .displayName(StringUtils.processMulti(item.getDisplayName(), placeholderList))
+                .lore(StringUtils.processMulti(item.getLore(), placeholderList))
                 .material(petEgg.getMaterial())
                 .amount(1)
                 .buildStack();
@@ -99,8 +99,8 @@ public class PetEggUtil {
 
         ItemStack itemStack = ItemBuilder.of()
                 .headData(petEgg.getTexture())
-                .displayName(StringUtils.processMulti(item.displayName, placeholderList))
-                .lore(StringUtils.processMulti(item.lore, placeholderList))
+                .displayName(StringUtils.processMulti(item.getDisplayName(), placeholderList))
+                .lore(StringUtils.processMulti(item.getLore(), placeholderList))
                 .material(petEgg.getMaterial())
                 .amount(1)
                 .buildStack();

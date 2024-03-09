@@ -52,7 +52,7 @@ public final class RecipeBookSubGUI extends CraftingGUI {
     public @NotNull Inventory getInventory() {
         InventoryUtils.fillInventory(inventory, config.getBackground());
 
-        inventory.setItem(config.getCategoryItem().slot, CraftingItemStackUtil.makeCategoryItem(
+        inventory.setItem(config.getCategoryItem().getSlot(), CraftingItemStackUtil.makeCategoryItem(
                 config.getCategoryItem(),
                 getCategoryPlaceholders(category),
                 category));

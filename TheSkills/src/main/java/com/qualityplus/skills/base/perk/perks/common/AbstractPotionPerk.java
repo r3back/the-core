@@ -1,7 +1,7 @@
 package com.qualityplus.skills.base.perk.perks.common;
 
 import com.qualityplus.assistant.util.StringUtils;
-import com.qualityplus.assistant.util.number.NumberUtil;
+import com.qualityplus.assistant.api.util.NumberUtil;
 import com.qualityplus.assistant.util.placeholder.Placeholder;
 import com.qualityplus.assistant.util.placeholder.PlaceholderBuilder;
 import com.qualityplus.skills.base.perk.Perk;

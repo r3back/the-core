@@ -40,9 +40,9 @@ public final class ConfirmGUI extends TheDragonGUI {
     public Inventory getInventory() {
         InventoryUtils.fillInventory(inventory, config.getBackground());
 
-        inventory.setItem(config.getConfirmItem().slot, ItemStackUtils.makeItem(config.getConfirmItem()));
+        inventory.setItem(config.getConfirmItem().getSlot(), ItemStackUtils.makeItem(config.getConfirmItem()));
 
-        inventory.setItem(config.getCancelItem().slot, ItemStackUtils.makeItem(config.getCancelItem()));
+        inventory.setItem(config.getCancelItem().getSlot(), ItemStackUtils.makeItem(config.getCancelItem()));
 
         setItem(config.getCloseGUI());
 

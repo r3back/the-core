@@ -83,10 +83,10 @@ public final class CreateAuctionGUI extends AuctionGUI {
             setItem(this.config.getCurrentItemEmpty());
             setItem(this.config.getCreateAuctionEmpty(), Collections.singletonList(getIsBuyItNowPlaceholder(auctionItem)));
         } else {
-            inventory.setItem(this.config.getCurrentItemFilled().slot, ItemStackUtils.
+            inventory.setItem(this.config.getCurrentItemFilled().getSlot(), ItemStackUtils.
                     makeItem(this.config.getCurrentItemFilled(), placeholders, auctionItem.getItemStack()));
 
-            inventory.setItem(this.config.getCreateAuctionFilled().slot, ItemStackUtils.
+            inventory.setItem(this.config.getCreateAuctionFilled().getSlot(), ItemStackUtils.
                     makeItem(this.config.getCreateAuctionFilled(), placeholders));
         }
 

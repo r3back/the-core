@@ -39,7 +39,7 @@ public class MinionEggSetup implements ItemSetup {
                 .with(MinionPlaceholderUtil.getMinionPlaceholders(minion))
                 .get();
 
-        itemStack.ifPresent(item -> inventory.setItem(config.getMinionItem().slot, ItemStackUtils.makeItem(config.getMinionItem(), placeholders, item)));
+        itemStack.ifPresent(item -> inventory.setItem(config.getMinionItem().getSlot(), ItemStackUtils.makeItem(config.getMinionItem(), placeholders, item)));
 
     }
 }

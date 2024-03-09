@@ -39,7 +39,7 @@ public final class RecipeBookMainGUI extends CraftingGUI {
     public @NotNull Inventory getInventory() {
         InventoryUtils.fillInventory(inventory, config.getBackground());
 
-        inventory.setItem(config.getGeneralProgressItem().slot, ItemStackUtils.makeItem(
+        inventory.setItem(config.getGeneralProgressItem().getSlot(), ItemStackUtils.makeItem(
                 config.getGeneralProgressItem(),
                 getCategoryPlaceholders(new ArrayList<>(Recipes.values()))));
 

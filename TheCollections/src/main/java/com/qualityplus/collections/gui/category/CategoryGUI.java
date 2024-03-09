@@ -72,7 +72,7 @@ public final class CategoryGUI extends CollectionsGUI {
                 .with(CollectionsPlaceholderUtil.getCategoryStatePlaceholder(data, category, box))
                 .get();
 
-        inventory.setItem(config.getCategoryItem().slot, CollectionsItemStackUtil.makeItem(config.getCategoryItem(), placeholders, category.getGuiOptions()));
+        inventory.setItem(config.getCategoryItem().getSlot(), CollectionsItemStackUtil.makeItem(config.getCategoryItem(), placeholders, category.getGuiOptions()));
     }
 
     private void setCollectionItems(CollectionCategory category, UserData data){

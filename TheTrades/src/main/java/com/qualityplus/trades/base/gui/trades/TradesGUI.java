@@ -107,7 +107,7 @@ public final class TradesGUI extends TradeGUI {
         }else if(isItem(slot, config.getPreviousPage()) && page > 1){
             player.openInventory(new TradesGUI(box, uuid, page - 1).getInventory());
         }else if(isItem(slot, config.getGoBack())){
-            Optional.ofNullable(config.getGoBack().command).ifPresent(player::performCommand);
+            Optional.ofNullable(config.getGoBack().getCommand()).ifPresent(player::performCommand);
         }else if(isItem(slot, config.getCustomGoBackItem())){
             handleItemCommandClick(player, config.getCustomGoBackItem());
         }

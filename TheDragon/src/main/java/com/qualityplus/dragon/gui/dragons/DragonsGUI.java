@@ -38,9 +38,9 @@ public final class DragonsGUI extends TheDragonGUI {
             slot++;
         }
 
-        inventory.setItem(config.getBackToMainMenu().slot, ItemStackUtils.makeItem(config.getBackToMainMenu()));
+        inventory.setItem(config.getBackToMainMenu().getSlot(), ItemStackUtils.makeItem(config.getBackToMainMenu()));
 
-        inventory.setItem(config.getCloseGUI().slot, ItemStackUtils.makeItem(config.getCloseGUI()));
+        inventory.setItem(config.getCloseGUI().getSlot(), ItemStackUtils.makeItem(config.getCloseGUI()));
 
         return inventory;
     }

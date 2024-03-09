@@ -85,12 +85,12 @@ public final class AllAuctionsGUI extends AuctionGUI {
         addContent();
 
         if (this.page > 1) {
-            inventory.setItem(this.config.getPreviousPage().slot, ItemStackUtils.makeItem(this.config.getPreviousPage()));
+            inventory.setItem(this.config.getPreviousPage().getSlot(), ItemStackUtils.makeItem(this.config.getPreviousPage()));
         }
 
 
         if (hasNext) {
-            inventory.setItem(this.config.getNextPage().slot, ItemStackUtils.makeItem(this.config.getNextPage()));
+            inventory.setItem(this.config.getNextPage().getSlot(), ItemStackUtils.makeItem(this.config.getNextPage()));
         }
 
         setItem(this.config.getSortItem(), getSortPlaceholders());

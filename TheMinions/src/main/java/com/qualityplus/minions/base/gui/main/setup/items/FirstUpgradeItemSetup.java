@@ -28,7 +28,7 @@ public final class FirstUpgradeItemSetup implements ItemSetup {
                 .orElse(null);
 
         if(upgradeEntity == null)
-            inventory.setItem(config.getFirstUpgradeEmptyItem().slot, ItemStackUtils.makeItem(config.getFirstUpgradeEmptyItem()));
+            inventory.setItem(config.getFirstUpgradeEmptyItem().getSlot(), ItemStackUtils.makeItem(config.getFirstUpgradeEmptyItem()));
         else {
             MinionUpgrade fuel = box.files().upgrades().normalUpgrades.getOrDefault(upgradeEntity.getId(), null);
 
@@ -39,7 +39,7 @@ public final class FirstUpgradeItemSetup implements ItemSetup {
             String displayName = BukkitItemUtil.getName(itemStack);
             List<String> lore = BukkitItemUtil.getItemLore(itemStack);
 
-            inventory.setItem(config.getFirstUpgradePlacedItem().slot, ItemStackUtils.makeItem(
+            inventory.setItem(config.getFirstUpgradePlacedItem().getSlot(), ItemStackUtils.makeItem(
                     config.getFirstUpgradePlacedItem(),
                     PlaceholderBuilder.create(
                             new Placeholder("minion_upgrade_item_display_name", displayName),

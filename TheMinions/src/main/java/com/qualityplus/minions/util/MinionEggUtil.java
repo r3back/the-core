@@ -92,8 +92,8 @@ public class MinionEggUtil {
                 .get();
 
         Item item1 = ItemBuilder.of(XMaterial.PLAYER_HEAD, 1)
-                .displayName(StringUtils.processMulti(item.displayName, placeholderList))
-                .lore(StringUtils.processMulti(item.lore, placeholderList))
+                .displayName(StringUtils.processMulti(item.getDisplayName(), placeholderList))
+                .lore(StringUtils.processMulti(item.getLore(), placeholderList))
                 .amount(1)
                 .build();
 
