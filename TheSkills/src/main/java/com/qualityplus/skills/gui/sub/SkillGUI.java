@@ -58,7 +58,7 @@ public final class SkillGUI extends SkillsGUI {
 
         int count = (maxPerPage * page) - maxPerPage;
 
-        inventory.setItem(config.getCategoryItem().slot, SkillsItemStackUtil.makeItem(
+        inventory.setItem(config.getCategoryItem().getSlot(), SkillsItemStackUtil.makeItem(
                 config.getCategoryItem(),
                 SkillsPlaceholderUtil.getSkillsPlaceholders(data, skill),
                 skill.getGuiOptions()));

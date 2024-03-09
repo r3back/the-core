@@ -3,7 +3,7 @@ package com.qualityplus.crafting.base.edition;
 import com.qualityplus.assistant.api.util.IPlaceholder;
 import com.qualityplus.assistant.lib.eu.okaeri.injector.annotation.Inject;
 import com.qualityplus.assistant.util.StringUtils;
-import com.qualityplus.assistant.util.number.NumberUtil;
+import com.qualityplus.assistant.api.util.NumberUtil;
 import com.qualityplus.crafting.api.box.Box;
 import com.qualityplus.crafting.api.edition.EditionObject;
 import com.qualityplus.crafting.api.edition.RecipeEdition;

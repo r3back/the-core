@@ -96,7 +96,7 @@ public final class NormalAuctionViewGUI extends AuctionGUI {
 
         final List<IPlaceholder> placeholders = getPlaceholders();
 
-        inventory.setItem(this.config.getAuctionItem().slot, ItemStackUtils.makeItem(this.config.getAuctionItem(), PlaceholderBuilder.create(placeholders)
+        inventory.setItem(this.config.getAuctionItem().getSlot(), ItemStackUtils.makeItem(this.config.getAuctionItem(), PlaceholderBuilder.create(placeholders)
                 .with(getBidPlaceholders(this.auctionItem))
                 .get(), this.auctionItem.getItemStack()));
 
@@ -126,9 +126,9 @@ public final class NormalAuctionViewGUI extends AuctionGUI {
 
 
         if (this.auctionItem.getBids().size() <= 1) {
-            inventory.setItem(this.config.getBidHistoryEmpty().slot, ItemStackUtils.makeItem(this.config.getBidHistoryEmpty()));
+            inventory.setItem(this.config.getBidHistoryEmpty().getSlot(), ItemStackUtils.makeItem(this.config.getBidHistoryEmpty()));
         } else {
-            inventory.setItem(this.config.getBidHistoryFilled().slot, ItemStackUtils.makeItem(this.config.getBidHistoryFilled(), getPlaceholders()));
+            inventory.setItem(this.config.getBidHistoryFilled().getSlot(), ItemStackUtils.makeItem(this.config.getBidHistoryFilled(), getPlaceholders()));
 
             setItem(this.config.getGoBack());
         }

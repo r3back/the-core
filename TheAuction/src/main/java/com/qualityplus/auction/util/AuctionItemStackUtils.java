@@ -35,14 +35,14 @@ public class AuctionItemStackUtils {
                                              final LoreWrapper wrapper) {
         try {
             final Item item1 = ItemBuilder.of(guiDisplayItem.getIcon(), 1, 1, "", Collections.emptyList()).headData(guiDisplayItem.getTexture())
-                    .enchanted(item.enchanted)
+                    .enchanted(item.isEnchanted())
                     .build();
 
             final ItemStack firstProcess = ItemStackUtils.makeItem(
                     guiDisplayItem.getIcon(),
                     1,
-                    StringUtils.processMulti(item.displayName, placeholders),
-                    StringUtils.processMulti(item.lore, placeholders));
+                    StringUtils.processMulti(item.getDisplayName(), placeholders),
+                    StringUtils.processMulti(item.getLore(), placeholders));
 
             return ItemStackUtils.getFinalItem(item1, firstProcess, placeholders, wrapper);
         } catch (NullPointerException e) {

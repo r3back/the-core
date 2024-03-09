@@ -57,10 +57,10 @@ public final class ClickRequest {
     }
 
     public boolean isClickToCombineSlot() {
-        return slot == config.getCombineFilledItem().slot;
+        return slot == config.getCombineFilledItem().getSlot();
     }
 
     public boolean isPickUpSlot() {
-        return slot == config.getCombinedFilledItem().slot;
+        return slot == config.getCombinedFilledItem().getSlot();
     }
 }

@@ -69,7 +69,7 @@ public final class RuneTableGUI extends RuneGUI {
         if(session.bothItemsAreSet()) {
             ItemStack newItem = RuneFinderUtil.getFinalItem(box, session);
             //New Item with rune combined
-            inventory.setItem(config.getCombinedFilledItem().slot, ItemStackUtils.makeItem(config.getCombinedFilledItem(), getPlaceholders(newItem), newItem));
+            inventory.setItem(config.getCombinedFilledItem().getSlot(), ItemStackUtils.makeItem(config.getCombinedFilledItem(), getPlaceholders(newItem), newItem));
 
             config.getReadyToCombineSlots().forEach(slot -> inventory.setItem(slot, ItemStackUtils.makeItem(config.getReadyToCombineItem())));
             //If there are two runes
@@ -90,7 +90,7 @@ public final class RuneTableGUI extends RuneGUI {
         }
 
         if(!BukkitItemUtil.isNull(session.getResult()))
-            inventory.setItem(config.getCombinedFilledItem().slot, ItemStackUtils.makeItem(config.getCombinedFilledItem(), getPlaceholders(session.getResult()), session.getResult()));
+            inventory.setItem(config.getCombinedFilledItem().getSlot(), ItemStackUtils.makeItem(config.getCombinedFilledItem(), getPlaceholders(session.getResult()), session.getResult()));
 
 
         if(answer.isError())
@@ -171,7 +171,7 @@ public final class RuneTableGUI extends RuneGUI {
                 player.closeInventory();
             }else if(isItem(slot, config.getRemovalItem())){
                 player.openInventory(new RemoveRuneGUI(box, new RemoveSessionImpl(null, false)).getInventory());
-            }else if(slot == config.getToUpgradeSlot() || slot == config.getToSacrificeSlot() || slot == config.getClickToCombineRunesItem().slot || slot == config.getCombinedFilledItem().slot) {
+            }else if(slot == config.getToUpgradeSlot() || slot == config.getToSacrificeSlot() || slot == config.getClickToCombineRunesItem().getSlot() || slot == config.getCombinedFilledItem().getSlot()) {
                 handler.handle(e);
             }else {
                 e.setCancelled(true);

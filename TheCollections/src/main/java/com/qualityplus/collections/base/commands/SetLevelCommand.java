@@ -5,7 +5,7 @@ import com.qualityplus.assistant.api.commands.command.AssistantCommand;
 import com.qualityplus.assistant.api.util.IPlaceholder;
 import com.qualityplus.assistant.lib.eu.okaeri.injector.annotation.Inject;
 import com.qualityplus.assistant.util.StringUtils;
-import com.qualityplus.assistant.util.number.NumberUtil;
+import com.qualityplus.assistant.api.util.NumberUtil;
 import com.qualityplus.assistant.util.placeholder.Placeholder;
 import com.qualityplus.collections.api.box.Box;
 import com.qualityplus.collections.base.collection.Collection;

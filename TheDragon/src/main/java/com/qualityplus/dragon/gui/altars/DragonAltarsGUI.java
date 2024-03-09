@@ -62,13 +62,13 @@ public final class DragonAltarsGUI extends TheDragonGUI {
         }
 
         if (page > 1)
-            inventory.setItem(config.getPreviousPage().slot, ItemStackUtils.makeItem(config.getPreviousPage()));
+            inventory.setItem(config.getPreviousPage().getSlot(), ItemStackUtils.makeItem(config.getPreviousPage()));
         if (hasNext)
-            inventory.setItem(config.getNextPage().slot, ItemStackUtils.makeItem(config.getNextPage()));
+            inventory.setItem(config.getNextPage().getSlot(), ItemStackUtils.makeItem(config.getNextPage()));
 
-        inventory.setItem(config.getBackToMainMenu().slot, ItemStackUtils.makeItem(config.getBackToMainMenu()));
+        inventory.setItem(config.getBackToMainMenu().getSlot(), ItemStackUtils.makeItem(config.getBackToMainMenu()));
 
-        inventory.setItem(config.getCloseGUI().slot, ItemStackUtils.makeItem(config.getCloseGUI()));
+        inventory.setItem(config.getCloseGUI().getSlot(), ItemStackUtils.makeItem(config.getCloseGUI()));
 
         return inventory;
     }

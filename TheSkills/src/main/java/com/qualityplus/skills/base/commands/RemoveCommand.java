@@ -8,7 +8,7 @@ import com.qualityplus.assistant.util.StringUtils;
 import com.qualityplus.assistant.util.list.ListBuilder;
 import com.qualityplus.assistant.util.list.ListUtils;
 import com.qualityplus.assistant.api.util.MathUtil;
-import com.qualityplus.assistant.util.number.NumberUtil;
+import com.qualityplus.assistant.api.util.NumberUtil;
 import com.qualityplus.assistant.util.placeholder.Placeholder;
 import com.qualityplus.skills.api.box.Box;
 import com.qualityplus.skills.api.effect.CommonObject;

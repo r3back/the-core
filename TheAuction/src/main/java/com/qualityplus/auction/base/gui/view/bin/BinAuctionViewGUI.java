@@ -66,7 +66,7 @@ public final class BinAuctionViewGUI extends AuctionGUI {
 
         final List<IPlaceholder> placeholders = getPlaceholders();
 
-        inventory.setItem(this.config.getAuctionItem().slot, ItemStackUtils.makeItem(this.config.getAuctionItem(), PlaceholderBuilder.create(placeholders)
+        inventory.setItem(this.config.getAuctionItem().getSlot(), ItemStackUtils.makeItem(this.config.getAuctionItem(), PlaceholderBuilder.create(placeholders)
                 .with(getBidPlaceholders(this.auctionItem))
                 .get(), this.auctionItem.getItemStack()));
 

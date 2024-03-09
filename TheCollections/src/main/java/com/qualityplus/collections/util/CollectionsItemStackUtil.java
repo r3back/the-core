@@ -23,8 +23,8 @@ public final class CollectionsItemStackUtil {
             ItemStack firstProcess = ItemStackUtils.makeItem(
                     guiOptions.getItem(),
                     1,
-                    StringUtils.processMulti(item.displayName, placeholders),
-                    StringUtils.processMulti(item.lore, placeholders));
+                    StringUtils.processMulti(item.getDisplayName(), placeholders),
+                    StringUtils.processMulti(item.getLore(), placeholders));
 
             BukkitItemUtil.addCustomModelData(firstProcess, guiOptions.getCustomModelData());
 

@@ -94,7 +94,7 @@ public final class UpgradeClickHandler implements ClickHandler {
 
         int slot = event.getSlot();
 
-        return slot == config.getSecondUpgradeEmptyItem().slot ? UpgradeSlot.SECOND_SLOT : UpgradeSlot.FIRST_SLOT;
+        return slot == config.getSecondUpgradeEmptyItem().getSlot() ? UpgradeSlot.SECOND_SLOT : UpgradeSlot.FIRST_SLOT;
     }
 
 }

@@ -84,7 +84,7 @@ public final class PetLevelsGUI extends PetsGUI {
                 .with(PetPlaceholderUtil.getPetPlaceholders(invPet.getUuid()))
                 .get();
 
-        inventory.setItem(config.getPetItem().slot, ItemStackUtils.makeItem(config.getPetItem(), placeholders, getIcon(invPet)));
+        inventory.setItem(config.getPetItem().getSlot(), ItemStackUtils.makeItem(config.getPetItem(), placeholders, getIcon(invPet)));
 
         for (Integer slot : config.getLevelSlots()) {
             count++;

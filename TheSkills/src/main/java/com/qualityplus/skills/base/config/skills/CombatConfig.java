@@ -4,7 +4,7 @@ import com.qualityplus.assistant.lib.com.cryptomorin.xseries.XMaterial;
 import com.google.common.collect.ImmutableMap;
 import com.qualityplus.assistant.api.common.rewards.commands.CommandReward;
 import com.qualityplus.assistant.util.faster.FastMap;
-import com.qualityplus.assistant.util.number.NumberUtil;
+import com.qualityplus.assistant.api.util.NumberUtil;
 import com.qualityplus.skills.base.reward.StatReward;
 import com.qualityplus.skills.base.skill.Skill;
 import com.qualityplus.skills.base.skill.gui.GUIOptions;

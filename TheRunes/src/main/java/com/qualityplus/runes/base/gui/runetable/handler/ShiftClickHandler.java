@@ -24,7 +24,7 @@ public final class ShiftClickHandler implements ClickHandler {
     @Override
     public void handle(InventoryClickEvent event){
         Player player = (Player) event.getWhoClicked();
-        if(event.getSlot() == gui.getConfig().getCombinedFilledItem().slot){
+        if(event.getSlot() == gui.getConfig().getCombinedFilledItem().getSlot()){
             if(BukkitItemUtil.isNull(session.getResult())) {
                 event.setCancelled(true);
                 return;

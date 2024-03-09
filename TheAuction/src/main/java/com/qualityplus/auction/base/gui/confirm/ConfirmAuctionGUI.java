@@ -68,7 +68,7 @@ public final class ConfirmAuctionGUI extends AuctionGUI {
                 .with(new Placeholder("auction_to_confirm_price", this.auctionPrice))
                 .get());
 
-        inventory.setItem(this.config.getAuctionItem().slot, ItemStackUtils.
+        inventory.setItem(this.config.getAuctionItem().getSlot(), ItemStackUtils.
                 makeItem(this.config.getAuctionItem(), placeholders, this.auctionItem.getItemStack()));
 
         return inventory;

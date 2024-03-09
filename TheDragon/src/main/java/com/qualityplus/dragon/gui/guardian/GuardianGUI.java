@@ -43,32 +43,32 @@ public final class GuardianGUI extends TheDragonGUI {
 
         GuardianArmor guardianArmor = guardian.getGuardianArmor();
 
-        inventory.setItem(config.getHelmetItem().slot, ItemStackUtils.makeItem(config.getHelmetItem(), Optional
+        inventory.setItem(config.getHelmetItem().getSlot(), ItemStackUtils.makeItem(config.getHelmetItem(), Optional
                 .ofNullable(guardianArmor.getHelmet())
                 .orElse(XMaterial.GOLDEN_HELMET.parseItem())));
 
-        inventory.setItem(config.getChestPlateItem().slot, ItemStackUtils.makeItem(config.getChestPlateItem(), Optional
+        inventory.setItem(config.getChestPlateItem().getSlot(), ItemStackUtils.makeItem(config.getChestPlateItem(), Optional
                 .ofNullable(guardianArmor.getChestplate())
                 .orElse(XMaterial.GOLDEN_CHESTPLATE.parseItem())));
 
-        inventory.setItem(config.getLeggingsItem().slot, ItemStackUtils.makeItem(config.getLeggingsItem(), Optional
+        inventory.setItem(config.getLeggingsItem().getSlot(), ItemStackUtils.makeItem(config.getLeggingsItem(), Optional
                 .ofNullable(guardianArmor.getLeggings())
                 .orElse(XMaterial.GOLDEN_LEGGINGS.parseItem())));
 
-        inventory.setItem(config.getBootsItem().slot, ItemStackUtils.makeItem(config.getBootsItem(), Optional
+        inventory.setItem(config.getBootsItem().getSlot(), ItemStackUtils.makeItem(config.getBootsItem(), Optional
                 .ofNullable(guardianArmor.getBoots())
                 .orElse(XMaterial.GOLDEN_BOOTS.parseItem())));
 
-        inventory.setItem(config.getWeaponItem().slot, ItemStackUtils.makeItem(config.getWeaponItem(), Optional
+        inventory.setItem(config.getWeaponItem().getSlot(), ItemStackUtils.makeItem(config.getWeaponItem(), Optional
                 .ofNullable(guardianArmor.getWeapon())
                 .orElse(XMaterial.GOLDEN_SWORD.parseItem())));
 
-        inventory.setItem(config.getMobTypeItem().slot, ItemStackUtils.makeItem(config.getMobTypeItem(), getMobTypePlaceholders()));
-        inventory.setItem(config.getDisplayNameItem().slot, ItemStackUtils.makeItem(config.getDisplayNameItem(), getDisplayNamePlaceholders()));
-        inventory.setItem(config.getHealthItem().slot, ItemStackUtils.makeItem(config.getHealthItem(), getHealthPlaceholders()));
+        inventory.setItem(config.getMobTypeItem().getSlot(), ItemStackUtils.makeItem(config.getMobTypeItem(), getMobTypePlaceholders()));
+        inventory.setItem(config.getDisplayNameItem().getSlot(), ItemStackUtils.makeItem(config.getDisplayNameItem(), getDisplayNamePlaceholders()));
+        inventory.setItem(config.getHealthItem().getSlot(), ItemStackUtils.makeItem(config.getHealthItem(), getHealthPlaceholders()));
 
-        inventory.setItem(config.getGoBackItem().slot, ItemStackUtils.makeItem(config.getGoBackItem()));
-        inventory.setItem(config.getCloseGUI().slot, ItemStackUtils.makeItem(config.getCloseGUI()));
+        inventory.setItem(config.getGoBackItem().getSlot(), ItemStackUtils.makeItem(config.getGoBackItem()));
+        inventory.setItem(config.getCloseGUI().getSlot(), ItemStackUtils.makeItem(config.getCloseGUI()));
 
         return inventory;
     }
@@ -114,9 +114,9 @@ public final class GuardianGUI extends TheDragonGUI {
 
     private void setSetupMode(Player player, int slot){
 
-        EditType type = slot == config.getMobTypeItem().slot ? EditType.MOB :
-                slot == config.getDisplayNameItem().slot ? EditType.DISPLAYNAME :
-                        slot == config.getHealthItem().slot ? EditType.HEALTH : null;
+        EditType type = slot == config.getMobTypeItem().getSlot() ? EditType.MOB :
+                slot == config.getDisplayNameItem().getSlot() ? EditType.DISPLAYNAME :
+                        slot == config.getHealthItem().getSlot() ? EditType.HEALTH : null;
 
         if(type == null) return;
 

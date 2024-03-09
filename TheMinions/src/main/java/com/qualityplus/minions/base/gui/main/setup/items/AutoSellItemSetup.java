@@ -28,7 +28,7 @@ public final class AutoSellItemSetup implements ItemSetup {
                 .orElse(null);
 
         if(autoSellEntity == null)
-            inventory.setItem(config.getMinionAutomatedShipping().slot, ItemStackUtils.makeItem(config.getMinionAutomatedShipping()));
+            inventory.setItem(config.getMinionAutomatedShipping().getSlot(), ItemStackUtils.makeItem(config.getMinionAutomatedShipping()));
         else {
             MinionAutoShipping autoSell = box.files().getAutoSell().automatedShippingUpgrades.getOrDefault(autoSellEntity.getId(), null);
 
@@ -39,7 +39,7 @@ public final class AutoSellItemSetup implements ItemSetup {
             String displayName = BukkitItemUtil.getName(itemStack);
             List<String> lore = BukkitItemUtil.getItemLore(itemStack);
 
-            inventory.setItem(config.getAutomatedShippingPlacedItem().slot, ItemStackUtils.makeItem(
+            inventory.setItem(config.getAutomatedShippingPlacedItem().getSlot(), ItemStackUtils.makeItem(
                     config.getAutomatedShippingPlacedItem(),
                     PlaceholderBuilder.create(
                             new Placeholder("minion_upgrade_item_display_name", displayName),

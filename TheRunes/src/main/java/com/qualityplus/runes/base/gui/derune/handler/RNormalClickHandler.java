@@ -26,7 +26,7 @@ public final class RNormalClickHandler implements ClickHandler {
     public void handle(InventoryClickEvent event){
         Player player = (Player) event.getWhoClicked();
 
-        if(event.getSlot() == gui.getConfig().getClickToRemoveRune().slot){
+        if(event.getSlot() == gui.getConfig().getClickToRemoveRune().getSlot()){
             event.setCancelled(true);
 
             if(session.getSessionResult().isError()) return;

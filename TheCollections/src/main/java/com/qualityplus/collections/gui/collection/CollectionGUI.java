@@ -53,7 +53,7 @@ public final class CollectionGUI extends CollectionsGUI {
 
         int count = (maxPerPage * page) - maxPerPage;
 
-        inventory.setItem(config.getCategoryItem().slot, CollectionsItemStackUtil.makeItem(
+        inventory.setItem(config.getCategoryItem().getSlot(), CollectionsItemStackUtil.makeItem(
                 config.getCategoryItem(),
                 CollectionsPlaceholderUtil.getCollectionsPlaceholders(data, collection),
                 collection.getGuiOptions()));

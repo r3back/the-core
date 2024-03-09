@@ -23,8 +23,8 @@ public final class SkillsItemStackUtil {
             ItemStack firstProcess = ItemStackUtils.makeItem(
                     skillGUIOptions.getItem(),
                     1,
-                    StringUtils.processMulti(item.displayName, placeholders),
-                    StringUtils.processMulti(item.lore, placeholders));
+                    StringUtils.processMulti(item.getDisplayName(), placeholders),
+                    StringUtils.processMulti(item.getLore(), placeholders));
 
             BukkitItemUtil.addCustomModelData(firstProcess, skillGUIOptions.getCustomModelData());
 

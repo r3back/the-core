@@ -5,7 +5,7 @@ import com.qualityplus.assistant.inventory.GUI;
 import com.qualityplus.assistant.util.inventory.InventoryUtils;
 import com.qualityplus.assistant.util.itemstack.ItemStackUtils;
 import com.qualityplus.assistant.api.util.MathUtil;
-import com.qualityplus.assistant.util.number.NumberUtil;
+import com.qualityplus.assistant.api.util.NumberUtil;
 import com.qualityplus.assistant.util.placeholder.Placeholder;
 import com.qualityplus.souls.api.box.Box;
 import com.qualityplus.souls.api.edition.SoulEdition;

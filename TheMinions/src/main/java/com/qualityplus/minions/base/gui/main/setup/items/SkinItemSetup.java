@@ -31,7 +31,7 @@ public final class SkinItemSetup implements ItemSetup {
                 .orElse(null);
 
         if(skinEntity == null)
-            inventory.setItem(config.getMinionSkinEmptyItem().slot, ItemStackUtils.makeItem(config.getMinionSkinEmptyItem()));
+            inventory.setItem(config.getMinionSkinEmptyItem().getSlot(), ItemStackUtils.makeItem(config.getMinionSkinEmptyItem()));
         else {
             Optional<MinionSkin> skin = Skins.getSkin(skinEntity.getId());
 
@@ -42,7 +42,7 @@ public final class SkinItemSetup implements ItemSetup {
             String displayName = BukkitItemUtil.getName(itemStack);
             List<String> lore = BukkitItemUtil.getItemLore(itemStack);
 
-            inventory.setItem(config.getMinionSkinPlacedItem().slot, ItemStackUtils.makeItem(
+            inventory.setItem(config.getMinionSkinPlacedItem().getSlot(), ItemStackUtils.makeItem(
                     config.getMinionSkinPlacedItem(),
                     PlaceholderBuilder.create(
                             new Placeholder("minion_skin_item_display_name", displayName),

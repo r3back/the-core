@@ -5,7 +5,7 @@ import com.qualityplus.assistant.inventory.Item;
 import com.qualityplus.assistant.util.StringUtils;
 import com.qualityplus.assistant.util.itemstack.ItemBuilder;
 import com.qualityplus.assistant.util.itemstack.ItemStackUtils;
-import com.qualityplus.assistant.util.number.NumberUtil;
+import com.qualityplus.assistant.api.util.NumberUtil;
 import com.qualityplus.runes.api.box.Box;
 import com.qualityplus.runes.api.recipes.Runes;
 import com.qualityplus.runes.api.session.RuneInstance;
