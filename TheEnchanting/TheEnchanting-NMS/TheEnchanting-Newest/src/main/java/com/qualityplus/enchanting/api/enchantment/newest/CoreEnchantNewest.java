@@ -50,11 +50,9 @@ public abstract class CoreEnchantNewest extends Enchantment implements ICoreEnch
         return 1;
     }
 
-    @Override
     public boolean canEnchant(Player player, int level) {
         return player.hasPermission(requiredPermissionsToEnchant.getOrDefault(level, ""));
     }
-
 
     @Override
     public double getRequiredLevelToEnchant(int level) {

@@ -1,9 +1,8 @@
 package com.qualityplus.pets.base.pet.entity;
 
+import com.destroystokyo.paper.ParticleBuilder;
 import com.qualityplus.assistant.api.util.IPlaceholder;
 import com.qualityplus.assistant.api.util.MathUtil;
-import com.qualityplus.assistant.lib.com.georgev22.particle.ParticleBuilder;
-import com.qualityplus.assistant.lib.com.georgev22.particle.ParticleEffect;
 import com.qualityplus.assistant.util.StringUtils;
 import com.qualityplus.assistant.util.placeholder.Placeholder;
 import com.qualityplus.pets.ThePets;
@@ -19,6 +18,7 @@ import lombok.RequiredArgsConstructor;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.OfflinePlayer;
+import org.bukkit.Particle;
 import org.bukkit.entity.Player;
 import org.bukkit.util.Vector;
 
@@ -63,12 +63,13 @@ public abstract class MinecraftPet implements PetEntity {
         if(particle == null) return;
 
         try {
-            ParticleEffect particleEffect = ParticleEffect.valueOf(particle);
+            Particle particleEffect = Particle.valueOf(particle);
             Optional.ofNullable(getNextLocation())
                     .map(location -> location.clone().add(new Vector(0, 0.6, 0)))
                     .ifPresent(location -> new ParticleBuilder(particleEffect)
-                            .setLocation(location)
-                            .display(Bukkit.getOnlinePlayers()));
+                            .location(location)
+                            .allPlayers()
+                            .spawn());
         }catch (Exception e){
             Bukkit.getConsoleSender().sendMessage(StringUtils.color("&c[ThePets] Invalid Particle " + particle));
         }

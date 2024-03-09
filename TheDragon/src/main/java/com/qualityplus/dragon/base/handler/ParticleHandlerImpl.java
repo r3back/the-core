@@ -1,9 +1,8 @@
 package com.qualityplus.dragon.base.handler;
 
+import com.destroystokyo.paper.ParticleBuilder;
 import com.qualityplus.assistant.TheAssistantPlugin;
 import com.qualityplus.assistant.api.nms.NMS;
-import com.qualityplus.assistant.lib.com.georgev22.particle.ParticleBuilder;
-import com.qualityplus.assistant.lib.com.georgev22.particle.ParticleEffect;
 import com.qualityplus.dragon.TheDragon;
 import com.qualityplus.dragon.api.controller.DragonController;
 import com.qualityplus.dragon.api.game.DragonGame;
@@ -11,10 +10,11 @@ import com.qualityplus.dragon.api.handler.ParticleHandler;
 import com.qualityplus.dragon.base.game.player.EventPlayer;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.Particle;
 
 public final class ParticleHandlerImpl implements ParticleHandler {
     @Override
-    public void spell(final DragonGame dragonGame, final ParticleEffect particle) {
+    public void spell(final DragonGame dragonGame, final Particle particle) {
         int points = 30;
         double initialRadius = 1;
         Bukkit.getScheduler().runTaskLater(TheDragon.getApi().getPlugin(), () -> {
@@ -38,8 +38,9 @@ public final class ParticleHandlerImpl implements ParticleHandler {
                     Location toDisplay = new Location(point.getWorld(), point.getX(), point.getY(), point.getZ());
 
                     new ParticleBuilder(particle)
-                            .setLocation(toDisplay)
-                            .display(dragonGame.getPlayers(EventPlayer::isActive));
+                            .location(toDisplay)
+                            .receivers(dragonGame.getPlayers(EventPlayer::isActive))
+                            .spawn();
                 }
             }
         }, 1);

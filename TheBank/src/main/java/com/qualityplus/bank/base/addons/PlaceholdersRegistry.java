@@ -6,7 +6,7 @@ import com.qualityplus.assistant.api.addons.registrable.RegistrableAddon;
 import com.qualityplus.assistant.lib.eu.okaeri.injector.annotation.Inject;
 import com.qualityplus.bank.api.service.BankService;
 import com.qualityplus.bank.persistence.data.BankData;
-import com.qualityplus.assistant.lib.eu.okaeri.commons.bukkit.time.MinecraftTimeEquivalent;;
+import com.qualityplus.assistant.lib.eu.okaeri.commons.bukkit.time.MinecraftTimeEquivalent;
 
 import com.qualityplus.assistant.lib.eu.okaeri.platform.bukkit.annotation.Delayed;
 import com.qualityplus.assistant.lib.eu.okaeri.platform.core.annotation.Component;

@@ -1,7 +1,7 @@
 package com.qualityplus.dragon.api.handler;
 
-import com.qualityplus.assistant.lib.com.georgev22.particle.ParticleEffect;
 import com.qualityplus.dragon.api.game.DragonGame;
+import org.bukkit.Particle;
 
 /**
  * Handle Particles During an Event
@@ -13,5 +13,5 @@ public interface ParticleHandler {
      * @param dragonGame The Dragon Game
      * @param particle   EnumParticle particle type
      */
-    public void spell(final DragonGame dragonGame, final ParticleEffect particle);
+    public void spell(final DragonGame dragonGame, final Particle particle);
 }

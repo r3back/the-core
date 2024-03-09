@@ -3,15 +3,22 @@ package com.qualityplus.runes.base.rune;
 import com.qualityplus.runes.api.config.RuneTableConfig.RuneItem;
 import com.qualityplus.runes.api.recipes.Runes;
 import com.qualityplus.assistant.lib.eu.okaeri.configs.OkaeriConfig;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.Setter;
 
 import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+@Data
 @Getter
+@Setter
+@EqualsAndHashCode(callSuper = true)
 public final class Rune extends OkaeriConfig {
     private final String id;
     private final String displayName;

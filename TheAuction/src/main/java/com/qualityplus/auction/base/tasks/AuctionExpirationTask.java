@@ -5,7 +5,7 @@ import com.qualityplus.auction.api.box.Box;
 import com.qualityplus.auction.persistence.data.AuctionBid;
 import com.qualityplus.auction.persistence.data.AuctionItem;
 import com.qualityplus.auction.persistence.data.User;
-import com.qualityplus.assistant.lib.eu.okaeri.commons.bukkit.time.MinecraftTimeEquivalent;;
+import com.qualityplus.assistant.lib.eu.okaeri.commons.bukkit.time.MinecraftTimeEquivalent;
 
 import com.qualityplus.assistant.lib.eu.okaeri.platform.bukkit.annotation.Scheduled;
 

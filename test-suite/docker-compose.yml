@@ -11,3 +11,4 @@ services:
       - mc-config/mc.env
     volumes:
       - ./mc-config:/config
+      - ./mc-config/plugins:/data/plugins

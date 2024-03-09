@@ -11,7 +11,7 @@ import com.qualityplus.collections.api.box.Box;
 import com.qualityplus.collections.base.collection.Collection;
 import com.qualityplus.collections.base.collection.registry.CollectionsRegistry;
 import com.qualityplus.collections.persistance.data.UserData;
-import com.qualityplus.assistant.lib.eu.okaeri.commons.bukkit.time.MinecraftTimeEquivalent;;
+import com.qualityplus.assistant.lib.eu.okaeri.commons.bukkit.time.MinecraftTimeEquivalent;
 
 import com.qualityplus.assistant.lib.eu.okaeri.platform.bukkit.annotation.Delayed;
 import com.qualityplus.assistant.lib.eu.okaeri.platform.core.annotation.Component;

@@ -1,6 +1,5 @@
 package com.qualityplus.dragon.base.events;
 
-import com.qualityplus.assistant.lib.com.georgev22.particle.ParticleEffect;
 import com.qualityplus.dragon.TheDragon;
 import com.qualityplus.dragon.api.event.DragonGameEvent;
 import com.qualityplus.dragon.api.game.DragonGame;
@@ -11,6 +10,7 @@ import com.qualityplus.dragon.base.handler.ParticleHandlerImpl;
 import com.qualityplus.dragon.base.handler.ProjectileHandlerImpl;
 import org.bukkit.Bukkit;
 import com.qualityplus.dragon.api.handler.ProjectileHandler.ProjectileType;
+import org.bukkit.Particle;
 
 public final class DragonFireBallEvent extends DragonGameEvent {
     private final ProjectileHandler projectileEvent;
@@ -43,7 +43,7 @@ public final class DragonFireBallEvent extends DragonGameEvent {
             }
 
             if(this.particle) {
-                this.particleEvent.spell(dragonGame, ParticleEffect.SPELL_WITCH);
+                this.particleEvent.spell(dragonGame, Particle.SPELL_WITCH);
             }
 
             this.time+=1;

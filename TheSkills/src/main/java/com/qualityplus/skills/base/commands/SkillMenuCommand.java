@@ -8,7 +8,7 @@ import com.qualityplus.skills.api.box.Box;
 import com.qualityplus.skills.base.skill.Skill;
 import com.qualityplus.skills.base.skill.registry.Skills;
 import com.qualityplus.skills.gui.sub.SkillGUI;
-import com.qualityplus.assistant.lib.eu.okaeri.commons.bukkit.time.MinecraftTimeEquivalent;;
+import com.qualityplus.assistant.lib.eu.okaeri.commons.bukkit.time.MinecraftTimeEquivalent;
 
 import com.qualityplus.assistant.lib.eu.okaeri.platform.bukkit.annotation.Delayed;
 import com.qualityplus.assistant.lib.eu.okaeri.platform.core.annotation.Component;

@@ -12,9 +12,9 @@ subprojects {
     apply plugin: 'maven-publish'
     apply plugin: 'com.github.johnrengelman.shadow'
 
-    sourceCompatibility = 1.8
-    targetCompatibility = 1.8
-
+    java {
+        toolchain.languageVersion.set(JavaLanguageVersion.of(21))
+    }
     tasks.withType(JavaCompile) {
         options.encoding = 'UTF-8'
     }
@@ -40,14 +40,14 @@ subprojects {
     dependencies {
         implementation("org.jetbrains:annotations:22.0.0")
 
-        compileOnly("org.projectlombok:lombok:1.18.22")
-        compileOnly 'com.github.r3back:the-assistant:3.2.13'
+        compileOnly("org.projectlombok:lombok:1.18.30")
+        compileOnly 'com.github.r3back:the-assistant:3.2.16'
         //These both are temporal until jar class loader be added
         compileOnly 'io.lettuce:lettuce-core:6.1.1.RELEASE'
         compileOnly 'org.mongodb:mongo-java-driver:3.12.10'
 
         // Enable lombok annotation processing
-        annotationProcessor("org.projectlombok:lombok:1.18.22")
+        annotationProcessor("org.projectlombok:lombok:1.18.30")
     }
 
     processResources{

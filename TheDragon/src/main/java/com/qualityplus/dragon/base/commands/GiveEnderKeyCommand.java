@@ -8,7 +8,7 @@ import com.qualityplus.assistant.util.itemstack.ItemStackUtils;
 import com.qualityplus.assistant.api.util.NumberUtil;
 import com.qualityplus.dragon.api.box.Box;
 import com.qualityplus.dragon.util.DragonItemStackUtil;
-import com.qualityplus.assistant.lib.eu.okaeri.commons.bukkit.time.MinecraftTimeEquivalent;;
+import com.qualityplus.assistant.lib.eu.okaeri.commons.bukkit.time.MinecraftTimeEquivalent;
 
 import com.qualityplus.assistant.lib.eu.okaeri.platform.bukkit.annotation.Delayed;
 import com.qualityplus.assistant.lib.eu.okaeri.platform.core.annotation.Component;

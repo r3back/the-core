@@ -7,6 +7,7 @@ import lombok.Builder;
 import lombok.Getter;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.enchantments.EnchantmentTarget;
+import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
@@ -33,6 +34,11 @@ public final class VanillaEnchantNewest extends CoreEnchantNewest implements Van
                 .filter(map -> map.containsKey(level))
                 .map(map -> map.get(level))
                 .orElse("");
+    }
+
+    @Override
+    public boolean canEnchant(Player player, int level) {
+        return false;
     }
 
     @Override

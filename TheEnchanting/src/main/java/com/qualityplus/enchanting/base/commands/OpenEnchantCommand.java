@@ -7,7 +7,7 @@ import com.qualityplus.assistant.util.StringUtils;
 import com.qualityplus.enchanting.api.box.Box;
 import com.qualityplus.enchanting.base.gui.enchantmain.EnchantMainGUI;
 import com.qualityplus.enchanting.util.EnchantingFinderUtil;
-import com.qualityplus.assistant.lib.eu.okaeri.commons.bukkit.time.MinecraftTimeEquivalent;;
+import com.qualityplus.assistant.lib.eu.okaeri.commons.bukkit.time.MinecraftTimeEquivalent;
 
 import com.qualityplus.assistant.lib.eu.okaeri.platform.bukkit.annotation.Delayed;
 import com.qualityplus.assistant.lib.eu.okaeri.platform.core.annotation.Component;

@@ -6,6 +6,8 @@ import com.qualityplus.assistant.util.itemstack.ItemStackUtils;
 import com.qualityplus.assistant.lib.eu.okaeri.configs.OkaeriConfig;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import org.bukkit.inventory.ItemStack;
 
@@ -22,8 +24,10 @@ public final class RuneTableConfig extends OkaeriConfig {
         this.cornerItem = cornerItem;
     }
 
-    @AllArgsConstructor
+    @Data
     @Getter
+    @AllArgsConstructor
+    @EqualsAndHashCode(callSuper = true)
     public static final class RuneItem extends OkaeriConfig{
         private final XMaterial material;
         private final String texture;

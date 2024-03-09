@@ -5,6 +5,7 @@ import com.qualityplus.enchanting.api.enchantment.ICoreEnchantment;
 import com.qualityplus.enchanting.api.enchantment.ProviderType;
 import com.qualityplus.enchanting.base.enchantment.legacy.VanillaEnchantLegacy;
 import com.qualityplus.enchanting.base.enchantment.newest.VanillaEnchantNewest;
+import com.qualityplus.enchanting.base.enchantment.newest.VanillaEnchantNewest1_20;
 import lombok.Builder;
 import org.bukkit.enchantments.Enchantment;
 import org.jetbrains.annotations.NotNull;
@@ -42,7 +43,20 @@ public final class AEEnchantmentFactory {
     }
 
     public ICoreEnchantment buildVanilla(){
-        if(XMaterial.getVersion() > 12){
+        if(XMaterial.getVersion() >= 20){
+            return VanillaEnchantNewest1_20.builder()
+                    .requiredPermissionsToEnchant(requiredPermissionsToEnchant)
+                    .requiredXpLevelToEnchant(requiredXpLevelToEnchant)
+                    .requiredMoneyToEnchant(requiredMoneyToEnchant)
+                    .requiredBookShelf(requiredBookShelf)
+                    .enchantment(enchantment)
+                    .displayName(displayName)
+                    .description(description)
+                    .identifier(identifier)
+                    .maxLevel(maxLevel)
+                    .enabled(enabled)
+                    .build();
+        } else if(XMaterial.getVersion() > 12){
             return VanillaEnchantNewest.builder()
                     .requiredPermissionsToEnchant(requiredPermissionsToEnchant)
                     .requiredXpLevelToEnchant(requiredXpLevelToEnchant)

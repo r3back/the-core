@@ -7,7 +7,7 @@ import com.qualityplus.enchanting.base.hook.EcoHookSettings;
 import com.qualityplus.enchanting.base.provider.EcoEnchantmentProvider;
 import com.qualityplus.enchanting.base.provider.VanillaEnchantmentProvider;
 import com.qualityplus.enchanting.util.EnchantingAddonsUtil;
-import com.qualityplus.assistant.lib.eu.okaeri.commons.bukkit.time.MinecraftTimeEquivalent;;
+import com.qualityplus.assistant.lib.eu.okaeri.commons.bukkit.time.MinecraftTimeEquivalent;
 
 import com.qualityplus.assistant.lib.eu.okaeri.platform.bukkit.annotation.Delayed;
 import com.qualityplus.assistant.lib.eu.okaeri.platform.core.annotation.Bean;
