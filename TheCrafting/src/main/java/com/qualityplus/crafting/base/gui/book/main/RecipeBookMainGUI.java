@@ -18,6 +18,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
@@ -52,6 +53,7 @@ public final class RecipeBookMainGUI extends CraftingGUI {
             recipeMap.put(category.getSlot(), category);
         }
 
+        Optional.ofNullable(config.getCustomGoBackItem()).ifPresent(this::setItem);
 
         setItem(config.getCloseGUI());
 
@@ -70,8 +72,10 @@ public final class RecipeBookMainGUI extends CraftingGUI {
 
         Player player = (Player) event.getWhoClicked();
 
-        if(isItem(slot, config.getCloseGUI())){
+        if(isItem(slot, config.getCloseGUI())) {
             player.closeInventory();
+        }else if(isItem(slot, config.getCustomGoBackItem())) {
+            handleItemCommandClick(player, config.getCustomGoBackItem());
         }else if(recipeMap.containsKey(slot)){
             Category category = recipeMap.getOrDefault(slot, null);
 

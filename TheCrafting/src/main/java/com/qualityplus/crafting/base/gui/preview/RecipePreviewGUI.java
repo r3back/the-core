@@ -56,7 +56,7 @@ public final class RecipePreviewGUI extends CraftingGUI {
             player.closeInventory();
         }else if(isItem(slot, config.getGoBackBook())){
 
-            Category category = box.files().categories().getCategory(recipe.getId());
+            Category category = box.files().categories().getCategory(recipe.getCategory());
 
             if (category == null) {
                 player.sendMessage(StringUtils.color(box.files().messages().recipeMessages.recipeDontBelongAnyCategory));

@@ -144,6 +144,10 @@ public final class Inventories extends OkaeriConfig implements DefaultBackground
                     "",
                     "&7Recipe Unlocked: &e%recipes_percentage_progress%&6%",
                     "%recipes_progress_actionbar% &e%unlocked_recipes%&6/&e%recipes_total%")).build())
+            .customGoBackItem(ItemBuilder.of(XMaterial.ARROW,  47, 1, "&eGo Back", Arrays.asList("", "&7Click to go back!"))
+                .command("your go back command %player%")
+                .enabled(false)
+                .build())
             .build();
 
     @CustomKey("recipeBookSubGUI")
