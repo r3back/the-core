@@ -1,8 +1,8 @@
 package com.qualityplus.runes.base.rune.effects.apply;
 
 import com.qualityplus.assistant.lib.com.cryptomorin.xseries.XMaterial;
-import com.qualityplus.assistant.lib.xyz.xenondevs.particle.ParticleBuilder;
-import com.qualityplus.assistant.lib.xyz.xenondevs.particle.data.color.RegularColor;
+import com.qualityplus.assistant.lib.com.georgev22.particle.ParticleBuilder;
+import com.qualityplus.assistant.lib.com.georgev22.particle.data.color.RegularColor;
 import com.qualityplus.assistant.util.random.RandomUtil;
 import com.qualityplus.runes.TheRunes;
 import com.qualityplus.runes.base.event.FakeEntitySpawnEvent;

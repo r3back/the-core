@@ -1,6 +1,6 @@
 package com.qualityplus.dragon.api.handler;
 
-import com.qualityplus.assistant.lib.xyz.xenondevs.particle.ParticleEffect;
+import com.qualityplus.assistant.lib.com.georgev22.particle.ParticleEffect;
 import com.qualityplus.dragon.api.game.DragonGame;
 
 /**
