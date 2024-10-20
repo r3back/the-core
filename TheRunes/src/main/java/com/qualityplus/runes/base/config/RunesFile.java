@@ -1,7 +1,7 @@
 package com.qualityplus.runes.base.config;
 
 import com.qualityplus.assistant.lib.com.cryptomorin.xseries.XMaterial;
-import com.qualityplus.assistant.lib.xyz.xenondevs.particle.ParticleEffect;
+import com.qualityplus.assistant.lib.com.georgev22.particle.ParticleEffect;
 import com.qualityplus.assistant.util.faster.FastMap;
 import com.qualityplus.assistant.util.particle.ParticleColor;
 import com.qualityplus.runes.api.config.RuneTableConfig.RuneItem;

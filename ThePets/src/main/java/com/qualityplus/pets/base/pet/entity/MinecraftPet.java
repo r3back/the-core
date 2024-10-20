@@ -2,8 +2,8 @@ package com.qualityplus.pets.base.pet.entity;
 
 import com.qualityplus.assistant.api.util.IPlaceholder;
 import com.qualityplus.assistant.api.util.MathUtil;
-import com.qualityplus.assistant.lib.xyz.xenondevs.particle.ParticleBuilder;
-import com.qualityplus.assistant.lib.xyz.xenondevs.particle.ParticleEffect;
+import com.qualityplus.assistant.lib.com.georgev22.particle.ParticleBuilder;
+import com.qualityplus.assistant.lib.com.georgev22.particle.ParticleEffect;
 import com.qualityplus.assistant.util.StringUtils;
 import com.qualityplus.assistant.util.placeholder.Placeholder;
 import com.qualityplus.pets.ThePets;
