@@ -1,7 +1,6 @@
 package com.qualityplus.runes.base.config;
 
 import com.qualityplus.assistant.lib.com.cryptomorin.xseries.XMaterial;
-import com.qualityplus.assistant.lib.com.georgev22.particle.ParticleEffect;
 import com.qualityplus.assistant.util.faster.FastMap;
 import com.qualityplus.assistant.util.particle.ParticleColor;
 import com.qualityplus.runes.api.config.RuneTableConfig.RuneItem;
@@ -17,6 +16,7 @@ import com.qualityplus.assistant.lib.eu.okaeri.configs.annotation.Names;
 import com.qualityplus.assistant.lib.eu.okaeri.platform.core.annotation.Configuration;
 import lombok.Getter;
 import lombok.Setter;
+import org.bukkit.Particle;
 
 import java.util.Arrays;
 import java.util.List;
@@ -46,7 +46,7 @@ public final class RunesFile extends OkaeriConfig {
                     .toAddLore("&2Gem Rune %rune_level%")
                     .effect(
                             RuneEffect.builder()
-                                    .particle(ParticleEffect.VILLAGER_HAPPY)
+                                    .particle(Particle.VILLAGER_HAPPY)
                                     .particleQuantity(1)
                                     .toApplyIn(RuneApply.BOOTS)
                                     .build()
@@ -67,7 +67,7 @@ public final class RunesFile extends OkaeriConfig {
                     .toAddLore("&bSnow Rune %rune_level%")
                     .effect(
                             RuneEffect.builder()
-                                    .particle(ParticleEffect.REDSTONE)
+                                    .particle(Particle.REDSTONE)
                                     .particleColor(ParticleColor.WHITE)
                                     .particleQuantity(10)
                                     .toApplyIn(RuneApply.BOW)
@@ -88,7 +88,7 @@ public final class RunesFile extends OkaeriConfig {
                     .toAddLore("&eGolden Rune %rune_level%")
                     .effect(
                             RuneEffect.builder()
-                                    .particle(ParticleEffect.REDSTONE)
+                                    .particle(Particle.REDSTONE)
                                     .particleColor(ParticleColor.YELLOW)
                                     .particleQuantity(10)
                                     .toApplyIn(RuneApply.BOW)
@@ -110,7 +110,7 @@ public final class RunesFile extends OkaeriConfig {
                     .toAddLore("&7Smokey Rune %rune_level%")
                     .effect(
                             RuneEffect.builder()
-                                    .particle(ParticleEffect.SMOKE_LARGE)
+                                    .particle(Particle.SMOKE_LARGE)
                                     .particleQuantity(1)
                                     .toApplyIn(RuneApply.SWORD)
                                     .build()
@@ -131,7 +131,7 @@ public final class RunesFile extends OkaeriConfig {
                     .toAddLore("&dMagic Rune %rune_level%")
                     .effect(
                             RuneEffect.builder()
-                                    .particle(ParticleEffect.SPELL_WITCH)
+                                    .particle(Particle.SPELL_WITCH)
                                     .particleQuantity(1)
                                     .toApplyIn(RuneApply.BOW)
                                     .build()
@@ -151,7 +151,7 @@ public final class RunesFile extends OkaeriConfig {
                     .toAddLore("&4Lava Rune %rune_level%")
                     .effect(
                             RuneEffect.builder()
-                                    .particle(ParticleEffect.DRIP_LAVA)
+                                    .particle(Particle.DRIP_LAVA)
                                     .particleQuantity(1)
                                     .toApplyIn(RuneApply.BOW)
                                     .build()
@@ -172,7 +172,7 @@ public final class RunesFile extends OkaeriConfig {
                     .toAddLore("&cBlood Rune %rune_level%")
                     .effect(
                             RuneEffect.builder()
-                                    .particle(ParticleEffect.REDSTONE)
+                                    .particle(Particle.REDSTONE)
                                     .particleColor(ParticleColor.RED)
                                     .particleQuantity(1)
                                     .toApplyIn(RuneApply.SWORD)
@@ -193,7 +193,7 @@ public final class RunesFile extends OkaeriConfig {
                     .toAddLore("&cHearts Rune %rune_level%")
                     .effect(
                             RuneEffect.builder()
-                                    .particle(ParticleEffect.HEART)
+                                    .particle(Particle.HEART)
                                     .particleQuantity(1)
                                     .toApplyIn(RuneApply.SWORD)
                                     .build()
@@ -214,7 +214,7 @@ public final class RunesFile extends OkaeriConfig {
                     .toAddLore("&bMusic Rune %rune_level%")
                     .effect(
                             RuneEffect.builder()
-                                    .particle(ParticleEffect.NOTE)
+                                    .particle(Particle.NOTE)
                                     .particleQuantity(1)
                                     .toApplyIn(RuneApply.SWORD)
                                     .build()

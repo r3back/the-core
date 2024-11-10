@@ -6,12 +6,16 @@ repositories {
     maven {
         url 'https://jitpack.io'
     }
+    maven {
+        url = 'https://repo.papermc.io/repository/maven-public/'
+    }
 }
 
 dependencies {
     compileOnly project(':TheSkills')
     compileOnly 'org.spigotmc:spigot-api:1.18.1-R0.1-SNAPSHOT'
     compileOnly 'com.github.Archy-X:AureliumSkills:Beta1.3.11'
+    compileOnly("io.papermc.paper:paper-api:1.21.3-R0.1-SNAPSHOT")
 
     compileOnly fileTree(dir: 'libs', include: ['*.jar'])
 }

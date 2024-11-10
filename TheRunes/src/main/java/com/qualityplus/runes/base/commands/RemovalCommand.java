@@ -7,7 +7,7 @@ import com.qualityplus.assistant.util.StringUtils;
 import com.qualityplus.runes.api.box.Box;
 import com.qualityplus.runes.base.gui.derune.RemoveRuneGUI;
 import com.qualityplus.runes.base.session.RemoveSessionImpl;
-import com.qualityplus.assistant.lib.eu.okaeri.commons.bukkit.time.MinecraftTimeEquivalent;;
+import com.qualityplus.assistant.lib.eu.okaeri.commons.bukkit.time.MinecraftTimeEquivalent;
 
 import com.qualityplus.assistant.lib.eu.okaeri.platform.bukkit.annotation.Delayed;
 import com.qualityplus.assistant.lib.eu.okaeri.platform.core.annotation.Component;

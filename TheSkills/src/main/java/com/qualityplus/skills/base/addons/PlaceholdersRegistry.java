@@ -11,7 +11,7 @@ import com.qualityplus.skills.base.skill.Skill;
 import com.qualityplus.skills.base.skill.registry.Skills;
 import com.qualityplus.skills.base.stat.Stat;
 import com.qualityplus.skills.base.stat.registry.Stats;
-import com.qualityplus.assistant.lib.eu.okaeri.commons.bukkit.time.MinecraftTimeEquivalent;;
+import com.qualityplus.assistant.lib.eu.okaeri.commons.bukkit.time.MinecraftTimeEquivalent;
 
 import com.qualityplus.assistant.lib.eu.okaeri.platform.bukkit.annotation.Delayed;
 import com.qualityplus.assistant.lib.eu.okaeri.platform.core.annotation.Component;

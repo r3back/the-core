@@ -18,5 +18,6 @@ include ('TheRunes',
 include ('TheEnchanting',
          'TheEnchanting:TheEnchanting-NMS',
          'TheEnchanting:TheEnchanting-NMS:TheEnchanting-Legacy',
-         'TheEnchanting:TheEnchanting-NMS:TheEnchanting-Newest')
+         'TheEnchanting:TheEnchanting-NMS:TheEnchanting-Newest',
+         'TheEnchanting:TheEnchanting-NMS:TheEnchanting-Newest-1_20')
 

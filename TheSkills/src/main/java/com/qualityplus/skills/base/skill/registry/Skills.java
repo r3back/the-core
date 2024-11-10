@@ -7,7 +7,7 @@ import com.qualityplus.skills.api.listener.ExtraListener;
 import com.qualityplus.skills.api.provider.MinionsProvider;
 import com.qualityplus.skills.base.skill.Skill;
 import com.qualityplus.skills.base.skill.skills.blockbreak.BlockBreakSkill;
-import com.qualityplus.assistant.lib.eu.okaeri.commons.bukkit.time.MinecraftTimeEquivalent;;
+import com.qualityplus.assistant.lib.eu.okaeri.commons.bukkit.time.MinecraftTimeEquivalent;
 
 import com.qualityplus.assistant.lib.eu.okaeri.platform.bukkit.annotation.Delayed;
 import com.qualityplus.assistant.lib.eu.okaeri.platform.core.annotation.Bean;

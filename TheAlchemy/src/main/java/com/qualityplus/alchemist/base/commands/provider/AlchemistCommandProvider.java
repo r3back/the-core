@@ -3,7 +3,7 @@ package com.qualityplus.alchemist.base.commands.provider;
 import com.qualityplus.alchemist.api.box.Box;
 import com.qualityplus.alchemist.base.config.Messages;
 import com.qualityplus.assistant.api.commands.LabelProvider;
-import com.qualityplus.assistant.lib.eu.okaeri.commons.bukkit.time.MinecraftTimeEquivalent;;
+import com.qualityplus.assistant.lib.eu.okaeri.commons.bukkit.time.MinecraftTimeEquivalent;
 
 import com.qualityplus.assistant.lib.eu.okaeri.injector.annotation.Inject;
 import com.qualityplus.assistant.lib.eu.okaeri.platform.bukkit.annotation.Delayed;

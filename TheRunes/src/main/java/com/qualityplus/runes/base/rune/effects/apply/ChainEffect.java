@@ -1,8 +1,7 @@
 package com.qualityplus.runes.base.rune.effects.apply;
 
+import com.destroystokyo.paper.ParticleBuilder;
 import com.qualityplus.assistant.lib.com.cryptomorin.xseries.XMaterial;
-import com.qualityplus.assistant.lib.com.georgev22.particle.ParticleBuilder;
-import com.qualityplus.assistant.lib.com.georgev22.particle.data.color.RegularColor;
 import com.qualityplus.assistant.util.random.RandomUtil;
 import com.qualityplus.runes.TheRunes;
 import com.qualityplus.runes.base.event.FakeEntitySpawnEvent;
@@ -10,6 +9,7 @@ import com.qualityplus.runes.base.rune.Rune;
 import com.qualityplus.runes.base.rune.RuneEffect;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.Particle;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
@@ -39,14 +39,21 @@ public interface ChainEffect {
             Color color = getColor(effect);
 
             if(color == null){
-                new ParticleBuilder(effect.getParticle(), location)
-                        .setAmount(effect.getParticleQuantity())
-                        .display();
+                new ParticleBuilder(effect.getParticle())
+                        .count(effect.getParticleQuantity())
+                        .allPlayers()
+                        .spawn();
             }else{
-                new ParticleBuilder(effect.getParticle(), location)
-                        .setParticleData(new RegularColor(color))
-                        .setAmount(effect.getParticleQuantity())
-                        .display();
+                final org.bukkit.Color bukkitColor = org.bukkit.Color.fromRGB(
+                        color.getRed(),
+                        color.getGreen(),
+                        color.getBlue()
+                );
+                new ParticleBuilder(effect.getParticle())
+                        .data(new Particle.DustOptions(bukkitColor, 1))
+                        .count(effect.getParticleQuantity())
+                        .allPlayers()
+                        .spawn();
             }
 
         }catch (Exception e){

@@ -7,7 +7,7 @@ import com.qualityplus.assistant.util.StringUtils;
 import com.qualityplus.auction.api.box.Box;
 import com.qualityplus.auction.base.gui.main.MainAuctionGUI;
 import com.qualityplus.auction.util.AuctionFilterUtil;
-import com.qualityplus.assistant.lib.eu.okaeri.commons.bukkit.time.MinecraftTimeEquivalent;;
+import com.qualityplus.assistant.lib.eu.okaeri.commons.bukkit.time.MinecraftTimeEquivalent;
 
 import com.qualityplus.assistant.lib.eu.okaeri.platform.bukkit.annotation.Delayed;
 import com.qualityplus.assistant.lib.eu.okaeri.platform.core.annotation.Component;
