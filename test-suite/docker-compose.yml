@@ -2,7 +2,7 @@ version: "3"
 
 services:
   test-server:
-    image: itzg/minecraft-server:java17
+    image: itzg/minecraft-server:java21
     environment:
       CFG_SERVER_NAME: "test-server"
     ports:
