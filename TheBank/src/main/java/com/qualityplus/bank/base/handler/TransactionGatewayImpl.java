@@ -32,6 +32,8 @@ public final class TransactionGatewayImpl implements TransactionGateway {
 
     @Override
     public Optional<TrxResponse> handle(final BankData bankData, final BankTransaction transaction, final boolean sendMessages) {
+        Bukkit.getConsoleSender().sendMessage("DEPOSIT ALL GATEWAY");
+
         if (bankData == null) {
             return Optional.empty();
         }

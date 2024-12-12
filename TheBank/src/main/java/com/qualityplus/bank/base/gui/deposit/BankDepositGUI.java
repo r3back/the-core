@@ -16,6 +16,7 @@ import com.qualityplus.bank.base.gui.main.BankInterfaceGUI;
 import com.qualityplus.bank.base.gui.main.BankInterfaceGUI.GUIType;
 import com.qualityplus.bank.persistence.data.BankData;
 import com.qualityplus.bank.persistence.data.BankTransaction;
+import com.qualityplus.bank.persistence.data.TransactionCaller;
 import org.bukkit.Bukkit;
 import org.bukkit.DyeColor;
 import org.bukkit.Location;
@@ -79,27 +80,30 @@ public final class BankDepositGUI extends BankGUI {
     }
 
     @Override
-    public void onInventoryClick(InventoryClickEvent e) {
-        Player player = (Player) e.getWhoClicked();
+    public void onInventoryClick(final InventoryClickEvent e) {
+        final Player player = (Player) e.getWhoClicked();
 
-        int slot = e.getSlot();
+        final int slot = e.getSlot();
 
         e.setCancelled(true);
 
-        if(!getTarget(e).equals(ClickTarget.INSIDE)) return;
+        if (!getTarget(e).equals(ClickTarget.INSIDE)) {
+            return;
+        }
 
         if (isItem(slot, config.getCloseGUI())) {
             e.setCancelled(true);
             player.closeInventory();
-        }else if(isItem(slot, config.getGoBack())){
+        } else if(isItem(slot, config.getGoBack())) {
             player.openInventory(new BankInterfaceGUI(box, player, type).getInventory());
-        }else if(isItem(slot, config.getDepositAll())){
-            box.service().handleTransaction(player, new BankTransaction(getBalance(), TransactionType.DEPOSIT, type), true);
+        } else if(isItem(slot, config.getDepositAll())) {
+            Bukkit.getConsoleSender().sendMessage("DEPOSIT ALL GUII");
+            box.service().handleTransaction(player, new BankTransaction(getBalance(), TransactionType.DEPOSIT, type, TransactionCaller.PLAYER), true);
             player.openInventory(new BankDepositGUI(box, player, type).getInventory());
-        }else if(isItem(slot, config.getDepositHalf())){
-            box.service().handleTransaction(player, new BankTransaction(getHalf(), TransactionType.DEPOSIT, type), true);
+        } else if(isItem(slot, config.getDepositHalf())) {
+            box.service().handleTransaction(player, new BankTransaction(getHalf(), TransactionType.DEPOSIT, type, TransactionCaller.PLAYER), true);
             player.openInventory(new BankDepositGUI(box, player, type).getInventory());
-        }else if(isItem(slot, config.getDepositCustomAmount())){
+        } else if(isItem(slot, config.getDepositCustomAmount())) {
             final Location location = player.getLocation().clone().add(0, 100, 0);
             final SignGUIFinishHandler signGUIFinishHandler = (player1, signGUIResult) -> {
                 Bukkit.getScheduler().runTaskLater(this.box.plugin(), () -> {
@@ -126,7 +130,7 @@ public final class BankDepositGUI extends BankGUI {
             value = Integer.parseInt(event.getLine(0));
         }catch (NumberFormatException ignored){}
 
-        box.service().handleTransaction(player, new BankTransaction(Math.max(0, value), TransactionType.DEPOSIT, type), true);
+        box.service().handleTransaction(player, new BankTransaction(Math.max(0, value), TransactionType.DEPOSIT, type, TransactionCaller.PLAYER), true);
 
         Bukkit.getScheduler().runTaskLater(box.plugin(), () -> player.openInventory(new BankDepositGUI(box, player, type).getInventory()), 3);
     }

@@ -13,6 +13,7 @@ import com.qualityplus.bank.base.gui.main.BankInterfaceGUI;
 import com.qualityplus.bank.base.gui.main.BankInterfaceGUI.GUIType;
 import com.qualityplus.bank.persistence.data.BankData;
 import com.qualityplus.bank.persistence.data.BankTransaction;
+import com.qualityplus.bank.persistence.data.TransactionCaller;
 import org.bukkit.Bukkit;
 import org.bukkit.DyeColor;
 import org.bukkit.Location;
@@ -93,13 +94,13 @@ public final class BankWithdrawGUI extends BankGUI {
         }else if(isItem(slot, config.getGoBack())){
             player.openInventory(new BankInterfaceGUI(box, player, type).getInventory());
         }else if(isItem(slot, config.getWithdrawAll())){
-            box.service().handleTransaction(player, new BankTransaction(getData().getMoney(), TransactionType.WITHDRAW, type), true);
+            box.service().handleTransaction(player, new BankTransaction(getData().getMoney(), TransactionType.WITHDRAW, type, TransactionCaller.PLAYER), true);
             player.openInventory(new BankWithdrawGUI(box, player, type).getInventory());
         }else if(isItem(slot, config.getWithdrawHalf())){
-            box.service().handleTransaction(player, new BankTransaction(getHalf(getData()), TransactionType.WITHDRAW, type), true);
+            box.service().handleTransaction(player, new BankTransaction(getHalf(getData()), TransactionType.WITHDRAW, type, TransactionCaller.PLAYER), true);
             player.openInventory(new BankWithdrawGUI(box, player, type).getInventory());
         }else if(isItem(slot, config.getWithDrawCustomPercentage())){
-            box.service().handleTransaction(player, new BankTransaction(getCustomPercentage(getData()), TransactionType.WITHDRAW, type), true);
+            box.service().handleTransaction(player, new BankTransaction(getCustomPercentage(getData()), TransactionType.WITHDRAW, type, TransactionCaller.PLAYER), true);
             player.openInventory(new BankWithdrawGUI(box, player, type).getInventory());
         }else if(isItem(slot, config.getWithdrawAmount())){
             final Location location = player.getLocation().clone().add(0, 100, 0);
@@ -132,7 +133,7 @@ public final class BankWithdrawGUI extends BankGUI {
 
         }
 
-        box.service().handleTransaction(player, new BankTransaction(Math.max(0, value), TransactionType.WITHDRAW, type), true);
+        box.service().handleTransaction(player, new BankTransaction(Math.max(0, value), TransactionType.WITHDRAW, type, TransactionCaller.PLAYER), true);
 
         Bukkit.getScheduler().runTaskLater(box.plugin(), () -> player.openInventory(new BankWithdrawGUI(box, player, type).getInventory()), 3);
     }

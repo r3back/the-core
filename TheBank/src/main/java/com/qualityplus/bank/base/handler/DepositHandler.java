@@ -11,6 +11,7 @@ import com.qualityplus.bank.base.exception.NotEnoughMoneyException;
 import com.qualityplus.bank.base.gui.main.BankInterfaceGUI;
 import com.qualityplus.bank.persistence.data.BankData;
 import com.qualityplus.bank.persistence.data.BankTransaction;
+import com.qualityplus.bank.persistence.data.TransactionCaller;
 import lombok.RequiredArgsConstructor;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
@@ -34,13 +35,14 @@ public final class DepositHandler implements TrxHandler {
 
         final EconomyAddon economy = TheAssistantPlugin.getAPI().getAddons().getEconomy();
 
-        final double balance = economy.getMoney(player);
+        if (request.getTransaction().getCaller().equals(TransactionCaller.PLAYER)) {
+            final double balance = economy.getMoney(player);
 
-        if(balance <= 0){
-            throw new NotEnoughMoneyException(bankData);
+            if(balance <= 0){
+                throw new NotEnoughMoneyException(bankData);
+            }
+            economy.withdrawMoney(player, transaction.getAmount());
         }
-
-        economy.withdrawMoney(player, transaction.getAmount());
 
         bankData.addMoney(transaction.getAmount());
 
