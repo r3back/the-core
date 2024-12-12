@@ -3,8 +3,8 @@ package com.qualityplus.auction.base.gui.view.normal;
 import com.qualityplus.assistant.TheAssistantPlugin;
 import com.qualityplus.assistant.api.util.BukkitItemUtil;
 import com.qualityplus.assistant.api.util.IPlaceholder;
-import com.qualityplus.assistant.base.dependency.ProtocolLibDependency;
-import com.qualityplus.assistant.inventory.SignGUIImpl;
+import com.qualityplus.assistant.lib.de.rapha149.signgui.SignGUI;
+import com.qualityplus.assistant.lib.de.rapha149.signgui.SignGUIFinishHandler;
 import com.qualityplus.assistant.util.StringUtils;
 import com.qualityplus.assistant.util.itemstack.ItemStackUtils;
 import com.qualityplus.assistant.util.placeholder.Placeholder;
@@ -14,17 +14,22 @@ import com.qualityplus.auction.api.box.Box;
 import com.qualityplus.auction.base.gui.AuctionGUI;
 import com.qualityplus.auction.base.gui.all.AllAuctionsGUI;
 import com.qualityplus.auction.base.gui.confirm.ConfirmAuctionGUI;
+import com.qualityplus.auction.base.gui.manage.ManageAuctionGUI;
 import com.qualityplus.auction.base.gui.view.ViewOpener;
 import com.qualityplus.auction.base.searcher.AuctionSearcher;
 import com.qualityplus.auction.persistence.data.AuctionBid;
 import com.qualityplus.auction.persistence.data.AuctionItem;
 import org.bukkit.Bukkit;
+import org.bukkit.DyeColor;
+import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
@@ -68,7 +73,7 @@ public final class NormalAuctionViewGUI extends AuctionGUI {
     }
 
     private List<IPlaceholder> getCollectItemPlaceholders() {
-        final double ownBid = getPlayerHighest(uuid)
+        final double ownBid = getPlayerHighestBid(uuid)
                 .map(AuctionBid::getBidAmount)
                 .orElse(0D);
 
@@ -129,9 +134,8 @@ public final class NormalAuctionViewGUI extends AuctionGUI {
             inventory.setItem(this.config.getBidHistoryEmpty().getSlot(), ItemStackUtils.makeItem(this.config.getBidHistoryEmpty()));
         } else {
             inventory.setItem(this.config.getBidHistoryFilled().getSlot(), ItemStackUtils.makeItem(this.config.getBidHistoryFilled(), getPlaceholders()));
-
-            setItem(this.config.getGoBack());
         }
+        setItem(this.config.getGoBack());
     }
 
     private void markAndRemoveIfNeeded() {
@@ -156,7 +160,7 @@ public final class NormalAuctionViewGUI extends AuctionGUI {
 
         if (isItem(slot, this.config.getCloseGUI())) {
             player.closeInventory();
-        } else if (isItem(slot)) {
+        } else if (isCollectItemOrMoneyItem(slot)) {
             //Esto es para agarrar las monedas o el item en caso de que nadie lo haya comprado (seller side)
 
             player.closeInventory();
@@ -231,23 +235,32 @@ public final class NormalAuctionViewGUI extends AuctionGUI {
             player.openInventory(new ConfirmAuctionGUI(box, uuid, this.searcher, this.auctionItem, newTopPrice).getInventory());
 
         } else if (isItem(slot, this.config.getGoBack())) {
-            player.openInventory(new AllAuctionsGUI(box, 1, player.getUniqueId(), this.searcher).getInventory());
+            if (isOwnAuction()) {
+                player.openInventory(new ManageAuctionGUI(box, uuid, this.searcher, 1).getInventory());
+
+            } else {
+                player.openInventory(new AllAuctionsGUI(box, 1, player.getUniqueId(), this.searcher).getInventory());
+            }
         } else if (isItem(slot, this.config.getBidAmount()) && !isOwnAuction() && canSubmit()) {
             player.closeInventory();
 
-            if (ProtocolLibDependency.isProtocolLib()) {
-                SignGUIImpl.builder()
-                        .action(event1 -> changeBid(event1.getPlayer(), event1.getLines().get(0)))
-                        .withLines(box.files().messages().getAuctionMessages().getSubmitBid())
-                        .uuid(player.getUniqueId())
-                        .plugin(box.plugin())
-                        .build()
-                        .open();
-            } else {
-                box.plugin().getLogger().warning("You need to install ProtocolLib to use Sign GUIS!");
-            }
-
-
+            final Location location = player.getLocation().clone().add(0, 100, 0);
+            final SignGUIFinishHandler signGUIFinishHandler = (player1, signGUIResult) -> {
+                Bukkit.getScheduler().runTaskLater(this.box.plugin(), () -> {
+                    this.changeBid(player1, signGUIResult.getLine(0));
+                }, 5);
+                return Collections.emptyList();
+            };
+            Bukkit.getScheduler().runTaskLater(this.box.plugin(), () -> {
+                final com.qualityplus.assistant.lib.de.rapha149.signgui.SignGUI signGUI = SignGUI.builder().
+                        setLocation(location).
+                        setColor(DyeColor.BLACK).
+                        setType(Material.OAK_SIGN).
+                        setHandler(signGUIFinishHandler).setGlow(false).
+                        setLines(box.files().messages().getAuctionMessages().getSubmitBid().toArray(new String[0])).
+                        build();
+                signGUI.open(player);
+            }, 5);
         }
     }
 
@@ -330,16 +343,25 @@ public final class NormalAuctionViewGUI extends AuctionGUI {
                 .orElse(null));
     }
 
-    protected Optional<AuctionBid> getPlayerHighest(final UUID uuid) {
+    protected Optional<AuctionBid> getPlayerHighestBid(final UUID uuid) {
         return this.auctionItem.getBids()
                 .stream()
                 .max(Comparator.comparingDouble(AuctionBid::getBidAmount))
                 .filter(auctionItem -> auctionItem.getBidder().equals(uuid));
     }
 
-    private boolean isItem(final int slot) {
-        return ((isItem(slot, this.config.getCollectAuctionItem()) || isItem(slot, this.
-                config.getCollectAuctionEmptyItem())) && this.auctionItem.isExpired() && isOwnAuction()
-                && !getPlayerHighest(uuid).map(AuctionBid::isClaimedBack).orElse(false));
+    private boolean isCollectItemOrMoneyItem(final int slot) {
+        final boolean isCollectAuctionSlot = (
+                isItem(slot, this.config.getCollectAuctionItem()) || isItem(slot, this.config.getCollectAuctionEmptyItem())
+        );
+
+        final boolean isOwnAuctionExpired = this.auctionItem.isExpired() && isOwnAuction();
+
+        /* TODO CHECK THIS
+        && !getPlayerHighestBid(uuid).
+                map(AuctionBid::isClaimedBack).
+                orElse(false)
+         */
+        return isCollectAuctionSlot && isOwnAuctionExpired;
     }
 }

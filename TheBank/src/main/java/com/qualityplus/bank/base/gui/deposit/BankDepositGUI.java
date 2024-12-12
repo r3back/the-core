@@ -2,10 +2,11 @@ package com.qualityplus.bank.base.gui.deposit;
 
 import com.qualityplus.assistant.TheAssistantPlugin;
 import com.qualityplus.assistant.api.event.SignCompletedEvent;
-import com.qualityplus.assistant.api.sign.SignGUI;
 import com.qualityplus.assistant.api.util.IPlaceholder;
 import com.qualityplus.assistant.base.dependency.ProtocolLibDependency;
-import com.qualityplus.assistant.inventory.SignGUIImpl;
+import com.qualityplus.assistant.lib.de.rapha149.signgui.SignGUI;
+import com.qualityplus.assistant.lib.de.rapha149.signgui.SignGUIFinishHandler;
+import com.qualityplus.assistant.lib.de.rapha149.signgui.SignGUIResult;
 import com.qualityplus.assistant.util.inventory.InventoryUtils;
 import com.qualityplus.assistant.util.placeholder.Placeholder;
 import com.qualityplus.bank.api.box.Box;
@@ -16,12 +17,16 @@ import com.qualityplus.bank.base.gui.main.BankInterfaceGUI.GUIType;
 import com.qualityplus.bank.persistence.data.BankData;
 import com.qualityplus.bank.persistence.data.BankTransaction;
 import org.bukkit.Bukkit;
+import org.bukkit.DyeColor;
+import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
 
@@ -95,26 +100,30 @@ public final class BankDepositGUI extends BankGUI {
             box.service().handleTransaction(player, new BankTransaction(getHalf(), TransactionType.DEPOSIT, type), true);
             player.openInventory(new BankDepositGUI(box, player, type).getInventory());
         }else if(isItem(slot, config.getDepositCustomAmount())){
-            if(ProtocolLibDependency.isProtocolLib()){
-                SignGUIImpl.builder()
-                        .action(this::handleDeposit)
-                        .withLines(box.files().messages().bankMessages.enterAmountToDeposit)
-                        .uuid(player.getUniqueId())
-                        .plugin(box.plugin())
-                        .build()
-                        .open();
-            }else{
-                box.plugin().getLogger().warning("You need to install ProtocolLib to use Sign GUIS!");
-            }
+            final Location location = player.getLocation().clone().add(0, 100, 0);
+            final SignGUIFinishHandler signGUIFinishHandler = (player1, signGUIResult) -> {
+                Bukkit.getScheduler().runTaskLater(this.box.plugin(), () -> {
+                    this.handleDeposit(player1, signGUIResult);
+                    }, 5);
+                return Collections.emptyList();
+            };
+            Bukkit.getScheduler().runTaskLater(this.box.plugin(), () -> {
+                final SignGUI signGUI = SignGUI.builder().
+                        setLocation(location).
+                        setColor(DyeColor.BLACK).
+                        setType(Material.OAK_SIGN).
+                        setHandler(signGUIFinishHandler).setGlow(false).
+                        setLines(box.files().messages().bankMessages.enterAmountToDeposit.toArray(new String[0])).
+                        build();
+                signGUI.open(player);
+                }, 5);
         }
     }
 
-    private void handleDeposit(SignCompletedEvent event){
-        Player player = event.getPlayer();
-
+    private void handleDeposit(final Player player, final SignGUIResult event){
         int value = 0;
         try {
-            value = Integer.parseInt(event.getLines().get(0));
+            value = Integer.parseInt(event.getLine(0));
         }catch (NumberFormatException ignored){}
 
         box.service().handleTransaction(player, new BankTransaction(Math.max(0, value), TransactionType.DEPOSIT, type), true);

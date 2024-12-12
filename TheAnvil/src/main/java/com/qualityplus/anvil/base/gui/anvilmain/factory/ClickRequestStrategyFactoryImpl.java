@@ -3,6 +3,8 @@ package com.qualityplus.anvil.base.gui.anvilmain.factory;
 import com.google.common.collect.ImmutableSet;
 import com.qualityplus.anvil.base.gui.anvilmain.request.ClickRequest;
 import com.qualityplus.anvil.base.gui.anvilmain.strategy.ClickRequestStrategy;
+import com.qualityplus.anvil.base.gui.anvilmain.strategy.gui.PlayerCloseInventoryRequestStrategy;
+import com.qualityplus.anvil.base.gui.anvilmain.strategy.gui.NormalClickInAnvilItemsStrategy;
 import com.qualityplus.anvil.base.gui.anvilmain.strategy.gui.normal.NormalClickToCombineRequestStrategy;
 import com.qualityplus.anvil.base.gui.anvilmain.strategy.gui.normal.NormalPickUpRequestStrategy;
 import com.qualityplus.anvil.base.gui.anvilmain.strategy.gui.normal.NormalUpgradeAndSacrificeRequestStrategy;
@@ -19,7 +21,9 @@ public class ClickRequestStrategyFactoryImpl implements ClickRequestStrategyFact
     private static final ClickRequestStrategy NORMAL_UPGRADE_AND_SACRIFICE = new NormalUpgradeAndSacrificeRequestStrategy();
     private static final ClickRequestStrategy SHIFT_UPGRADE_AND_SACRIFICE = new ShiftUpgradeAndSacrificeRequestStrategy();
     private static final ClickRequestStrategy NORMAL_CLICK_TO_COMBINE = new NormalClickToCombineRequestStrategy();
+    private static final ClickRequestStrategy PLAYER_CLOSE_INVENTORY = new PlayerCloseInventoryRequestStrategy();
     private static final ClickRequestStrategy SHIFT_CLICK_TO_COMBINE = new ShiftClickToCombineRequestStrategy();
+    private static final ClickRequestStrategy NORMAL_CLICK_IN_ANVIL = new NormalClickInAnvilItemsStrategy();
     private static final ClickRequestStrategy PLAYER_NORMAL_CLICK = new NormalPlayerClickRequestStrategy();
     private static final ClickRequestStrategy PLAYER_SHIFT_CLICK = new ShiftPlayerClickRequestStrategy();
     private static final ClickRequestStrategy NORMAL_PICK_UP = new NormalPickUpRequestStrategy();
@@ -29,7 +33,9 @@ public class ClickRequestStrategyFactoryImpl implements ClickRequestStrategyFact
             NORMAL_UPGRADE_AND_SACRIFICE,
             SHIFT_UPGRADE_AND_SACRIFICE,
             NORMAL_CLICK_TO_COMBINE,
+            PLAYER_CLOSE_INVENTORY,
             SHIFT_CLICK_TO_COMBINE,
+            NORMAL_CLICK_IN_ANVIL,
             PLAYER_NORMAL_CLICK,
             PLAYER_SHIFT_CLICK,
             NORMAL_PICK_UP,
