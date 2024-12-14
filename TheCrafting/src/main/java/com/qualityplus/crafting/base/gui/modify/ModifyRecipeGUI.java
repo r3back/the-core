@@ -11,6 +11,7 @@ import com.qualityplus.crafting.base.gui.individual.RecipeIndividualGUI;
 import com.qualityplus.crafting.base.recipes.CustomRecipe;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
@@ -45,6 +46,26 @@ public final class ModifyRecipeGUI extends CraftingGUI {
         setItem(config.getCloseGUI());
 
         return inventory;
+    }
+
+    @Override
+    public void onInventoryClose(final InventoryCloseEvent event) {
+        final Inventory inventory1 = event.getInventory();
+        final Player player = (Player) event.getPlayer();
+
+        for (int slot : this.config.getRecipeSlots()) {
+            final ItemStack itemStack = inventory1.getItem(slot);
+            if (BukkitItemUtil.isNull(itemStack)) {
+                continue;
+            }
+            player.getInventory().addItem(itemStack);
+        }
+
+        final ItemStack resultItem = inventory1.getItem(this.config.getResultSlot());
+        if (BukkitItemUtil.isNull(resultItem)) {
+            return;
+        }
+        player.getInventory().addItem(resultItem);
     }
 
     @Override

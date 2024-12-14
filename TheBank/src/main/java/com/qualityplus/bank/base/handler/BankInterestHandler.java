@@ -14,6 +14,7 @@ import com.qualityplus.bank.base.gui.main.BankInterfaceGUI;
 import com.qualityplus.bank.persistence.data.BankData;
 import com.qualityplus.bank.persistence.data.BankTransaction;
 
+import com.qualityplus.bank.persistence.data.TransactionCaller;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
@@ -41,9 +42,9 @@ public final class BankInterestHandler implements Runnable {
                 continue;
             }
 
-            final BankTransaction trx = new BankTransaction(interest, TransactionType.DEPOSIT, BankInterfaceGUI.GUIType.GENERAL);
+            final BankTransaction trx = new BankTransaction(interest, TransactionType.DEPOSIT, BankInterfaceGUI.GUIType.GENERAL, TransactionCaller.SERVER);
 
-            final Optional<TrxResponse> response = box.service().handleTransaction(player, trx, true);
+            final Optional<TrxResponse> response = box.service().handleTransaction(player, trx, false);
 
             if (!response.isPresent()) {
                 return;

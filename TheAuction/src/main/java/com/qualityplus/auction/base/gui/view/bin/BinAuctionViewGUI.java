@@ -12,6 +12,7 @@ import com.qualityplus.auction.api.box.Box;
 import com.qualityplus.auction.base.gui.AuctionGUI;
 import com.qualityplus.auction.base.gui.all.AllAuctionsGUI;
 import com.qualityplus.auction.base.gui.confirm.ConfirmAuctionGUI;
+import com.qualityplus.auction.base.gui.manage.ManageAuctionGUI;
 import com.qualityplus.auction.base.searcher.AuctionSearcher;
 import com.qualityplus.auction.persistence.data.AuctionBid;
 import com.qualityplus.auction.persistence.data.AuctionItem;
@@ -210,7 +211,11 @@ public final class BinAuctionViewGUI extends AuctionGUI {
             player.openInventory(new ConfirmAuctionGUI(box, uuid, this.searcher, this.auctionItem, newTopPrice).getInventory());
 
         } else if (isItem(slot, this.config.getGoBack())) {
-            player.openInventory(new AllAuctionsGUI(box, 1, player.getUniqueId(), this.searcher).getInventory());
+            if (isOwnAuction()) {
+                player.openInventory(new ManageAuctionGUI(box, player.getUniqueId(), this.searcher, 1).getInventory());
+            } else {
+                player.openInventory(new AllAuctionsGUI(box, 1, player.getUniqueId(), this.searcher).getInventory());
+            }
         } else if (isOwnAuction() && isItem(slot, this.config.getCollectItemAuctionItem())) {
             //Esto es para agarrar las monedas o el item en caso de que nadie lo haya comprado (seller side)
             if (this.auctionItem.getWhoBought() == null && !this.auctionItem.isExpired()) {

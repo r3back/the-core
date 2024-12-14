@@ -52,6 +52,10 @@ public final class ClickRequest {
         return slot == config.getToSacrificeSlot();
     }
 
+    public boolean isCloseSlot() {
+        return slot == config.getCloseGUI().getSlot();
+    }
+
     public boolean isUpgradeSlot() {
         return slot == config.getToUpgradeSlot();
     }

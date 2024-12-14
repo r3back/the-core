@@ -8,6 +8,7 @@ import com.qualityplus.bank.persistence.data.BankData;
 import com.qualityplus.bank.persistence.data.BankTransaction;
 
 import com.qualityplus.assistant.lib.eu.okaeri.platform.core.annotation.Component;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
 import java.util.HashMap;
@@ -37,6 +38,8 @@ public final class BankServiceImpl implements BankService {
 
     @Override
     public Optional<TrxResponse> handleTransaction(final Player player, final BankTransaction transaction, final boolean sendMessages) {
+        Bukkit.getConsoleSender().sendMessage("DEPOSIT ALL BANK SERVICE");
+
         return getData(player.getUniqueId()).flatMap(data -> this.gateway.handle(data, transaction, sendMessages));
     }
 }

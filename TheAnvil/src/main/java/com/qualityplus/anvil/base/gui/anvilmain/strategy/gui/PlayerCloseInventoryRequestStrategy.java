@@ -5,20 +5,23 @@ import com.qualityplus.anvil.base.gui.anvilmain.strategy.CancellableClickRequest
 import com.qualityplus.anvil.util.ClickLocation;
 import com.qualityplus.anvil.util.ClickSlot;
 import com.qualityplus.assistant.inventory.Item;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.HumanEntity;
 
 public final class PlayerCloseInventoryRequestStrategy extends CancellableClickRequestStrategy {
     @Override
     public boolean applies(final ClickRequest request) {
-        final Item closeItem = request.getConfig().getCloseGUI();
-
-        return ClickLocation.of(request).isGuiInventory() && ClickSlot.isSlot(request.getSlot(), closeItem);
+        return ClickLocation.of(request).isGuiInventory() && request.isCloseSlot();
     }
 
     @Override
     public void execute(final ClickRequest request) {
         cancelEvent(request);
 
-        request.getPlayer().ifPresent(HumanEntity::closeInventory);
+        Bukkit.getScheduler().runTaskLater(
+                request.getBox().plugin(),
+                () -> request.getPlayer().ifPresent(HumanEntity::closeInventory),
+                3
+        );
     }
 }

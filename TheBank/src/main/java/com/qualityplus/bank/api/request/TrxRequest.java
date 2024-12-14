@@ -2,6 +2,7 @@ package com.qualityplus.bank.api.request;
 
 import com.qualityplus.bank.persistence.data.BankData;
 import com.qualityplus.bank.persistence.data.BankTransaction;
+import com.qualityplus.bank.persistence.data.TransactionCaller;
 import lombok.Builder;
 import lombok.Data;
 

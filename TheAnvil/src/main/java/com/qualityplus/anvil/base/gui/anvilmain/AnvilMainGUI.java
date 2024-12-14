@@ -59,54 +59,55 @@ public final class AnvilMainGUI extends AnvilGUI {
 
     @Override
     public @NotNull Inventory getInventory() {
-        InventoryUtils.fillInventory(inventory, config.getBackground());
+        InventoryUtils.fillInventory(this.inventory, this.config.getBackground());
 
-        SessionResult answer = AnvilFinderUtil.getAnswer(session);
+        final SessionResult answer = AnvilFinderUtil.getAnswer(this.session);
 
         //Izquierda
-        if(answer.equals(SessionResult.BOTH_ITEMS_SET) || answer.equals(SessionResult.ONLY_ITEM_TO_UPGRADE))
-            config.getToUpgradeFilledSlots().forEach(slot -> inventory.setItem(slot, ItemStackUtils.makeItem(config.getToUpgradeFilledItem())));
+        if (answer.equals(SessionResult.BOTH_ITEMS_SET) || answer.equals(SessionResult.ONLY_ITEM_TO_UPGRADE)) {
+            this.config.getToUpgradeFilledSlots().forEach(slot -> this.inventory.setItem(slot, ItemStackUtils.makeItem(this.config.getToUpgradeFilledItem())));
+        }
 
         //Derecha
-        if(answer.equals(SessionResult.BOTH_ITEMS_SET) || answer.equals(SessionResult.ONLY_ITEM_TO_SACRIFICE))
-            config.getToSacrificeFilledSlots().forEach(slot -> inventory.setItem(slot, ItemStackUtils.makeItem(config.getToSacrificeFilledItem())));
+        if(answer.equals(SessionResult.BOTH_ITEMS_SET) || answer.equals(SessionResult.ONLY_ITEM_TO_SACRIFICE)) {
+            this.config.getToSacrificeFilledSlots().forEach(slot -> this.inventory.setItem(slot, ItemStackUtils.makeItem(this.config.getToSacrificeFilledItem())));
+        }
 
         //Items de abajo
         if(answer.equals(SessionResult.BOTH_ITEMS_SET)) {
-            ItemStack newItem = AnvilFinderUtil.getFinalItem(session);
+            final ItemStack newItem = AnvilFinderUtil.getFinalItem(this.session);
             //Final Item
+            final ItemStack newItemInInv = ItemStackUtils.makeItem(this.config.getCombinedFilledItem(), getPlaceholders(newItem), newItem, false, false);
 
-            ItemStack newItemInInv = ItemStackUtils.makeItem(config.getCombinedFilledItem(), getPlaceholders(newItem), newItem, false, false);
+            this.inventory.setItem(this.config.getCombinedFilledItem().getSlot(), newItemInInv);
 
-
-            inventory.setItem(config.getCombinedFilledItem().getSlot(), newItemInInv);
-
-            config.getReadyToCombineSlots().forEach(slot -> inventory.setItem(slot, ItemStackUtils.makeItem(config.getReadyToCombineItem())));
+            this.config.getReadyToCombineSlots().forEach(slot -> this.inventory.setItem(slot, ItemStackUtils.makeItem(config.getReadyToCombineItem())));
             //Anvil
-            setItem(config.getCombineFilledItem(), Arrays.asList(
-                    new Placeholder("anvil_enchant_exp_cost", getParsed(box.files().messages().anvilPlaceholders.experienceCost)),
-                    new Placeholder("anvil_enchant_money_cost", getParsed(box.files().messages().anvilPlaceholders.moneyCost))
+            setItem(this.config.getCombineFilledItem(), Arrays.asList(
+                    new Placeholder("anvil_enchant_exp_cost", getParsed(this.box.files().messages().anvilPlaceholders.experienceCost)),
+                    new Placeholder("anvil_enchant_money_cost", getParsed(this.box.files().messages().anvilPlaceholders.moneyCost))
             ));
         }
 
-        if(!BukkitItemUtil.isNull(session.getResult()))
-            inventory.setItem(config.getCombinedFilledItem().getSlot(), ItemStackUtils.makeItem(config.getCombinedFilledItem(), getPlaceholders(session.getResult()), session.getResult()));
+        if (!BukkitItemUtil.isNull(this.session.getResult())) {
+            this.inventory.setItem(this.config.getCombinedFilledItem().getSlot(), ItemStackUtils.makeItem(this.config.getCombinedFilledItem(), getPlaceholders(this.session.getResult()), this.session.getResult()));
+        }
 
+        if (answer.isError()) {
+            setItem(this.config.getCombinedErrorItem(), Collections.singletonList(new Placeholder("anvil_error", getErrorPlaceholder(answer))));
+        }
 
-        if(answer.isError())
-            setItem(config.getCombinedErrorItem(), Collections.singletonList(new Placeholder("anvil_error", getErrorPlaceholder(answer))));
+        if (!BukkitItemUtil.isNull(this.session.getItemToSacrifice())) {
+            this.inventory.setItem(this.config.getToSacrificeSlot(), this.session.getItemToSacrifice());
+        }
 
+        if (!BukkitItemUtil.isNull(this.session.getItemToUpgrade())) {
+            this.inventory.setItem(this.config.getToUpgradeSlot(), this.session.getItemToUpgrade());
+        }
 
-        if(!BukkitItemUtil.isNull(session.getItemToSacrifice()))
-            inventory.setItem(config.getToSacrificeSlot(), session.getItemToSacrifice());
+        setItem(this.config.getCloseGUI());
 
-        if(!BukkitItemUtil.isNull(session.getItemToUpgrade()))
-            inventory.setItem(config.getToUpgradeSlot(), session.getItemToUpgrade());
-
-
-        setItem(config.getCloseGUI());
-
-        return inventory;
+        return this.inventory;
     }
     protected Map<Enchantment, Integer> getEnchantments(ItemStack itemStack) {
         ItemMeta meta = itemStack.getItemMeta();
