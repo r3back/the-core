@@ -57,7 +57,7 @@ public final class BankInterfaceGUI extends BankGUI {
         return inventory;
     }
 
-    private List<IPlaceholder> getPlaceholders(BankData bankData){
+    private List<IPlaceholder> getPlaceholders(BankData bankData) {
         Optional<BankUpgrade> upgrade = box.files().bankUpgrades().getUpgrade(bankData);
 
         return Arrays.asList(
@@ -72,7 +72,7 @@ public final class BankInterfaceGUI extends BankGUI {
         );
     }
 
-    private String getLastInterest(BankData data){
+    private String getLastInterest(BankData data) {
         Messages.BankMessages messages = box.files().messages().bankMessages;
 
         RemainingTime time = TimeUtils.getRemainingTime(new Markable(box.files().config().bankInterestDelay.getEffectiveTime(), data.getLastInterestTime()).remainingTime());
@@ -88,25 +88,25 @@ public final class BankInterfaceGUI extends BankGUI {
 
         e.setCancelled(true);
 
-        if(!getTarget(e).equals(ClickTarget.INSIDE)) return;
+        if (!getTarget(e).equals(ClickTarget.INSIDE)) return;
 
         if (isItem(slot, config.getCloseGUI())) {
             player.closeInventory();
-        }else if(isItem(slot, config.getDepositItem())){
+        } else if (isItem(slot, config.getDepositItem())) {
             player.openInventory(new BankDepositGUI(box, player, type).getInventory());
-        }else if(isItem(slot, config.getWithDrawItem())){
+        } else if (isItem(slot, config.getWithDrawItem())) {
             player.openInventory(new BankWithdrawGUI(box, player, type).getInventory());
-        }else if(isItem(slot, config.getBankUpgradesItem()))
+        } else if (isItem(slot, config.getBankUpgradesItem()))
             player.openInventory(new BankUpgradeGUI(box, player, type).getInventory());
 
     }
 
-    private List<String> getLatestTransactions(BankData data){
+    private List<String> getLatestTransactions(BankData data) {
         int count = 0;
         List<String> transactions = new ArrayList<>();
 
-        for(BankTransaction trx : data.getTransactionList()){
-            if(count == config.getTransactionLimit()) break;
+        for (BankTransaction trx : data.getTransactionList()) {
+            if (count == config.getTransactionLimit()) break;
 
             Messages.BankMessages messages = box.files().messages().bankMessages;
 
@@ -126,7 +126,7 @@ public final class BankInterfaceGUI extends BankGUI {
         return transactions;
     }
 
-    private String getParsedTime(RemainingTime remainingTime, String message){
+    private String getParsedTime(RemainingTime remainingTime, String message) {
         Messages.BankMessages messages = box.files().messages().bankMessages;
 
         String days = messages.days;

@@ -38,7 +38,7 @@ public final class LayoutHandlerImpl implements LayoutHandler, LayoutGetter {
 
         List<Vector> vectors = getMinionLayout(minion).equals(LayoutType.THREE_X_THREE) ? MinionAnimationUtil.getThree() : MinionAnimationUtil.getSecond();
 
-        if(!minionEntity.getState().isLoaded()) return false;
+        if (!minionEntity.getState().isLoaded()) return false;
 
         Location location = Optional.ofNullable(handler)
                 .map(ArmorStandHandler::getLocation)
@@ -46,13 +46,13 @@ public final class LayoutHandlerImpl implements LayoutHandler, LayoutGetter {
                 .map(e -> e.subtract(new Vector(0, 1, 0)))
                 .orElse(null);
 
-        if(location == null) return false;
+        if (location == null) return false;
 
         for (Vector vector : vectors) {
             Location newLocation = location.clone().add(vector);
 
-            if(!minionEntity.getState().isLoaded()) return false;
-            //if(!newLocation.getChunk().isLoaded()) return false;
+            if (!minionEntity.getState().isLoaded()) return false;
+            //if (!newLocation.getChunk().isLoaded()) return false;
 
             Block block = newLocation.getBlock();
 

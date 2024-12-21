@@ -27,7 +27,7 @@ public final class BankInterestHandler implements Runnable {
 
     @Override
     public void run() {
-        for(final Player player : Bukkit.getOnlinePlayers()){
+        for (final Player player : Bukkit.getOnlinePlayers()) {
             final BankData bankData = box.service().getData(player.getUniqueId()).orElse(new BankData());
 
             final Markable markable = new Markable(box.files().config().bankInterestDelay.getEffectiveTime(), bankData.getLastInterestTime());

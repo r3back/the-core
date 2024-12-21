@@ -47,18 +47,18 @@ public final class MinionEggListener implements Listener {
 
         Optional<MinionData> data = MinionEggUtil.dataFromEgg(inHand);
 
-        if(!data.isPresent())
+        if (!data.isPresent())
             return;
 
         event.setCancelled(true);
 
-        if(BlockUtils.isNull(block)) return;
+        if (BlockUtils.isNull(block)) return;
 
         Minion minion = Minions.getByID(data.get().getMinionId());
 
-        if(minion == null) return;
+        if (minion == null) return;
 
-        if(!canPlaceMinion(player)) return;
+        if (!canPlaceMinion(player)) return;
 
         player.setItemInHand(BukkitItemUtil.getItemWithout(inHand, 1));
 
@@ -84,7 +84,7 @@ public final class MinionEggListener implements Listener {
         petEntity.spawn(changed, true);
     }
 
-    private boolean canPlaceMinion(Player player){
+    private boolean canPlaceMinion(Player player) {
         int minionsAmount = MinionPlayerUtil.getMinionsAmount(player);
         int placedAmount = TheMinions.getApi().getUserService().getData(player.getUniqueId()).map(UserData::getMinionsToPlace).orElse(0);
 
@@ -92,11 +92,11 @@ public final class MinionEggListener implements Listener {
                 new Placeholder("minions_max_amount_to_place", minionsAmount),
                 new Placeholder("minions_placed_amount", placedAmount + 1)).get();
 
-        if(placedAmount < minionsAmount){
+        if (placedAmount < minionsAmount) {
             player.sendMessage(StringUtils.processMulti(box.files().messages().minionMessages.youPlacedAMinion, placeholders));
 
             return true;
-        }else{
+        } else {
             player.sendMessage(StringUtils.processMulti(box.files().messages().minionMessages.youCanOnlyPlaceAMaxOf, placeholders));
             return false;
         }

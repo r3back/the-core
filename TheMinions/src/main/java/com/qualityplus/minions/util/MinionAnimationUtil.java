@@ -67,21 +67,21 @@ public class MinionAnimationUtil {
     public static final Map<Integer, VectorSection> AXIS_POSITIONS;
     public static final Map<Integer, VectorSection> SUGAR_WATER_POSITIONS;
 
-    public List<Vector> getThree(){
+    public List<Vector> getThree() {
         return AXIS_POSITIONS.values().stream()
                 .map(VectorSection::getThirds)
                 .flatMap(Collection::stream)
                 .collect(Collectors.toList());
     }
 
-    public List<Vector> getSecond(){
+    public List<Vector> getSecond() {
         return AXIS_POSITIONS.values().stream()
                 .map(VectorSection::getSeconds)
                 .flatMap(Collection::stream)
                 .collect(Collectors.toList());
     }
 
-    public List<Vector> getFirst(){
+    public List<Vector> getFirst() {
         return AXIS_POSITIONS.values().stream()
                 .map(VectorSection::getFirsts)
                 .flatMap(Collection::stream)

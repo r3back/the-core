@@ -27,7 +27,7 @@ public final class DepositHandler implements TrxHandler {
 
         final double newBalance = transaction.getAmount() + bankData.getMoney();
 
-        if (newBalance > bankData.getLimit(upgrades)){
+        if (newBalance > bankData.getLimit(upgrades)) {
             throw new BankLimitException(bankData);
         }
 
@@ -38,7 +38,7 @@ public final class DepositHandler implements TrxHandler {
         if (request.getTransaction().getCaller().equals(TransactionCaller.PLAYER)) {
             final double balance = economy.getMoney(player);
 
-            if(balance <= 0){
+            if (balance <= 0) {
                 throw new NotEnoughMoneyException(bankData);
             }
             economy.withdrawMoney(player, transaction.getAmount());

@@ -27,14 +27,14 @@ public final class ChunkListenerNewest implements Listener {
     public void onChunk(ChunkLoadEvent e) {
         Chunk chunk = e.getChunk();
 
-        for(MinionEntity entity : MinionEntityTracker.values()){
-            if(entity.getState().isLoaded()) continue;
+        for (MinionEntity entity : MinionEntityTracker.values()) {
+            if (entity.getState().isLoaded()) continue;
 
             Location location = entity.getState().getSpawn();
 
-            if(!isIn(chunk.getChunkSnapshot(), location)) return;
+            if (!isIn(chunk.getChunkSnapshot(), location)) return;
 
-            if(entity.getState().isLoaded()) continue;
+            if (entity.getState().isLoaded()) continue;
 
             entity.load();
         }
@@ -43,15 +43,15 @@ public final class ChunkListenerNewest implements Listener {
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
     public void onChunk(EntitiesUnloadEvent e) {
 
-        for(Entity entity : e.getEntities()){
+        for (Entity entity : e.getEntities()) {
 
-            if(!(entity instanceof ArmorStand)) continue;
+            if (!(entity instanceof ArmorStand)) continue;
 
             Optional<MinionEntity> minionEntity = MinionArmorStandTracker.getByID(entity.getUniqueId());
 
-            if(!minionEntity.isPresent()) continue;
+            if (!minionEntity.isPresent()) continue;
 
-            if(!minionEntity.get().getState().isLoaded()) continue;
+            if (!minionEntity.get().getState().isLoaded()) continue;
 
             minionEntity.get().unload();
         }

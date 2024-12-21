@@ -72,13 +72,13 @@ public final class VanillaEnchantments extends OkaeriConfig {
 
 
     @Delayed(time = 1)
-    public void reload(){
+    public void reload() {
         vanillaEnchantments.entrySet().stream()
                 .filter(this::isCompatible)
                 .map(this::buildEnchantment)
                 .forEach(CoreEnchants::registerNewEnchantment);
     }
-    private ICoreEnchantment buildEnchantment(Map.Entry<XEnchantment, EnchantConfig> entry){
+    private ICoreEnchantment buildEnchantment(Map.Entry<XEnchantment, EnchantConfig> entry) {
 
         int maxLevel = maxLevel(entry.getKey());
 
@@ -99,33 +99,33 @@ public final class VanillaEnchantments extends OkaeriConfig {
                 .build(ProviderType.VANILLA_ENCHANT);
     }
 
-    private int maxLevel(XEnchantment xEnchantment){
+    private int maxLevel(XEnchantment xEnchantment) {
         Optional<Enchantment> enchantment = Optional.ofNullable(xEnchantment.getEnchant());
         return enchantment.map(Enchantment::getMaxLevel).orElse(1);
     }
 
-    private String key(XEnchantment enchantment){
+    private String key(XEnchantment enchantment) {
         return enchantment.toString().replace(" ", "_").toLowerCase();
     }
 
-    private Map<Integer, Double> easyMap(XEnchantment xEnchantment){
-        return new HashMap<Integer, Double>(){{
-            for(int i = 1; i<=maxLevel(xEnchantment); i++) put(i, 15d * i);
+    private Map<Integer, Double> easyMap(XEnchantment xEnchantment) {
+        return new HashMap<Integer, Double>() {{
+            for (int i = 1; i<=maxLevel(xEnchantment); i++) put(i, 15d * i);
         }};
     }
 
-    private Map<Integer, String> easyTxtMap(XEnchantment xEnchantment){
-        return new HashMap<Integer, String>(){{
-            for(int i = 1; i<=maxLevel(xEnchantment); i++) put(i, "ench."+ key(xEnchantment) +".level." + i);
+    private Map<Integer, String> easyTxtMap(XEnchantment xEnchantment) {
+        return new HashMap<Integer, String>() {{
+            for (int i = 1; i<=maxLevel(xEnchantment); i++) put(i, "ench."+ key(xEnchantment) +".level." + i);
         }};
     }
 
-    private boolean isCompatible(Map.Entry<XEnchantment, EnchantConfig> entry){
+    private boolean isCompatible(Map.Entry<XEnchantment, EnchantConfig> entry) {
         try {
             Enchantment enchantment = entry.getKey().getEnchant();
 
             return enchantment != null;
-        }catch (Exception e){
+        } catch (Exception e) {
             Bukkit.getConsoleSender().sendMessage(StringUtils.color("&c" + entry.getKey().toString() + " is not compatible with the current version!"));
             return false;
         }

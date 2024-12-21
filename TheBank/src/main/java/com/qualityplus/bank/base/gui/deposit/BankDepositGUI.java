@@ -62,7 +62,7 @@ public final class BankDepositGUI extends BankGUI {
         return inventory;
     }
 
-    private List<IPlaceholder> getPlaceholders(BankData bankData){
+    private List<IPlaceholder> getPlaceholders(BankData bankData) {
         return Arrays.asList(
                 new Placeholder("bank_balance", bankData.getMoney()),
                 new Placeholder("player_balance", getBalance()),
@@ -71,11 +71,11 @@ public final class BankDepositGUI extends BankGUI {
     }
 
 
-    private double getHalf(){
+    private double getHalf() {
         return Math.max(0, TheAssistantPlugin.getAPI().getAddons().getEconomy().getMoney(Bukkit.getOfflinePlayer(uuid)) / 2);
     }
 
-    private double getBalance(){
+    private double getBalance() {
         return TheAssistantPlugin.getAPI().getAddons().getEconomy().getMoney(Bukkit.getOfflinePlayer(uuid));
     }
 
@@ -94,16 +94,15 @@ public final class BankDepositGUI extends BankGUI {
         if (isItem(slot, config.getCloseGUI())) {
             e.setCancelled(true);
             player.closeInventory();
-        } else if(isItem(slot, config.getGoBack())) {
+        } else if (isItem(slot, config.getGoBack())) {
             player.openInventory(new BankInterfaceGUI(box, player, type).getInventory());
-        } else if(isItem(slot, config.getDepositAll())) {
-            Bukkit.getConsoleSender().sendMessage("DEPOSIT ALL GUII");
+        } else if (isItem(slot, config.getDepositAll())) {
             box.service().handleTransaction(player, new BankTransaction(getBalance(), TransactionType.DEPOSIT, type, TransactionCaller.PLAYER), true);
             player.openInventory(new BankDepositGUI(box, player, type).getInventory());
-        } else if(isItem(slot, config.getDepositHalf())) {
+        } else if (isItem(slot, config.getDepositHalf())) {
             box.service().handleTransaction(player, new BankTransaction(getHalf(), TransactionType.DEPOSIT, type, TransactionCaller.PLAYER), true);
             player.openInventory(new BankDepositGUI(box, player, type).getInventory());
-        } else if(isItem(slot, config.getDepositCustomAmount())) {
+        } else if (isItem(slot, config.getDepositCustomAmount())) {
             final Location location = player.getLocation().clone().add(0, 100, 0);
             final SignGUIFinishHandler signGUIFinishHandler = (player1, signGUIResult) -> {
                 Bukkit.getScheduler().runTaskLater(this.box.plugin(), () -> {
@@ -124,11 +123,11 @@ public final class BankDepositGUI extends BankGUI {
         }
     }
 
-    private void handleDeposit(final Player player, final SignGUIResult event){
+    private void handleDeposit(final Player player, final SignGUIResult event) {
         int value = 0;
         try {
             value = Integer.parseInt(event.getLine(0));
-        }catch (NumberFormatException ignored){}
+        } catch (NumberFormatException ignored) {}
 
         box.service().handleTransaction(player, new BankTransaction(Math.max(0, value), TransactionType.DEPOSIT, type, TransactionCaller.PLAYER), true);
 

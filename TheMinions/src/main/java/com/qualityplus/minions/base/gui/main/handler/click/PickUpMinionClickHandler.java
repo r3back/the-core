@@ -56,7 +56,7 @@ public final class PickUpMinionClickHandler implements ClickHandler {
         player.sendMessage(StringUtils.processMulti(box.files().messages().minionMessages.pickUpMinion, placeholders));
     }
 
-    private void dropMinionItems(Player player, MinionEntity minionEntity, Box box){
+    private void dropMinionItems(Player player, MinionEntity minionEntity, Box box) {
         minionEntity.pickUpAllItems()
                 .stream()
                 .filter(Objects::nonNull)
@@ -68,10 +68,10 @@ public final class PickUpMinionClickHandler implements ClickHandler {
                 .map(MinionData::getAutoSell)
                 .orElse(null);
 
-        if(autoSellEntity != null){
+        if (autoSellEntity != null) {
             MinionAutoShipping automatedShipping = box.files().getAutoSell().automatedShippingUpgrades.getOrDefault(autoSellEntity.getId(), null);
 
-            if(automatedShipping != null)
+            if (automatedShipping != null)
                 player.getWorld().dropItem(player.getLocation(), automatedShipping.getItemStack(autoSellEntity.getSoldItems(), autoSellEntity.getHeldCoins()));
         }
     }

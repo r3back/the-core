@@ -46,12 +46,12 @@ public final class AnimationHandlerImpl implements AnimationHandler, LayoutGette
                 .map(e -> e.subtract(new Vector(0, 1, 0)))
                 .orElse(null);
 
-        if(location == null){
+        if (location == null) {
             future.complete(null);
             return future;
         }
 
-        if(vector == null) {
+        if (vector == null) {
             future.complete(location.getBlock());
             return future;
         }
@@ -89,7 +89,7 @@ public final class AnimationHandlerImpl implements AnimationHandler, LayoutGette
                 .filter(Objects::nonNull)
                 .orElse(null);
 
-        if(location == null){
+        if (location == null) {
             future.complete(MinionMobEntity.builder().build());
             return future;
         }
@@ -97,7 +97,7 @@ public final class AnimationHandlerImpl implements AnimationHandler, LayoutGette
         getNearEntity(location).thenAccept(entity -> {
             int random = RandomUtil.randomUpTo(100);
 
-            if(entity == null || random > 50) {
+            if (entity == null || random > 50) {
                 double x = RandomUtil.randomBetween(1, 2);
                 double z = RandomUtil.randomBetween(1, 2);
 
@@ -126,7 +126,7 @@ public final class AnimationHandlerImpl implements AnimationHandler, LayoutGette
         return future;
     }
 
-    private CompletableFuture<Entity> getNearEntity(Location location){
+    private CompletableFuture<Entity> getNearEntity(Location location) {
         CompletableFuture<Entity> future = new CompletableFuture<>();
         MinionMob minionMob = minion.getMinionLayout().getMinionMob();
 
@@ -139,7 +139,7 @@ public final class AnimationHandlerImpl implements AnimationHandler, LayoutGette
                 Bukkit.getScheduler().runTask(TheMinions.getInstance(), () -> run(location, future, minionMob));
             }
 
-        } catch (Exception e){
+        } catch (Exception e) {
             future.complete(null);
         }
 
@@ -164,7 +164,7 @@ public final class AnimationHandlerImpl implements AnimationHandler, LayoutGette
 
             /*TODO SUGAR MINION
         int time = 0;
-        for(Map.Entry<Integer, VectorSection> sectionEntry : MinionAnimationUtil.SUGAR_WATER_POSITIONS.entrySet()){
+        for (Map.Entry<Integer, VectorSection> sectionEntry : MinionAnimationUtil.SUGAR_WATER_POSITIONS.entrySet()) {
 
             //AtomicInteger time = new AtomicInteger();
 

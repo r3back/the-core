@@ -22,15 +22,15 @@ public final class MinionInteractListener implements Listener {
     private @Inject Box box;
 
     @EventHandler
-    private void onClick(PlayerInteractAtEntityEvent event){
+    private void onClick(PlayerInteractAtEntityEvent event) {
 
-        if(!(event.getRightClicked() instanceof ArmorStand)) return;
+        if (!(event.getRightClicked() instanceof ArmorStand)) return;
 
         Player player = event.getPlayer();
 
         Optional<MinionEntity> armorStand = MinionArmorStandTracker.getByID(event.getRightClicked().getUniqueId());
 
-        if(!armorStand.isPresent()) return;
+        if (!armorStand.isPresent()) return;
 
         event.setCancelled(true);
 
@@ -38,14 +38,14 @@ public final class MinionInteractListener implements Listener {
     }
 
     @EventHandler
-    private void onClick(EntityDamageByEntityEvent event){
+    private void onClick(EntityDamageByEntityEvent event) {
         Entity entity = event.getEntity();
 
-        if(!(entity instanceof ArmorStand)) return;
+        if (!(entity instanceof ArmorStand)) return;
 
         Optional<MinionEntity> minionEntity = MinionArmorStandTracker.getByID(entity.getUniqueId());
 
-        if(!minionEntity.isPresent()) return;
+        if (!minionEntity.isPresent()) return;
 
         event.setCancelled(true);
     }

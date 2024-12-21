@@ -24,7 +24,7 @@ public final class MinionState {
     private boolean loaded;
     private Location spawn;
 
-    public MinionState(UUID uuid, UUID owner, boolean loaded){
+    public MinionState(UUID uuid, UUID owner, boolean loaded) {
         this.lastActionTime = System.currentTimeMillis();
         this.status = MinionStatus.INVALID_LAYOUT;
         this.isBreaking = true;

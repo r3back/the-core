@@ -30,10 +30,10 @@ public final class PetChunkListener implements Listener {
 
         Chunk chunk = e.getChunk();
         //Bukkit.getScheduler().runTaskAsynchronously(plugin, () -> {
-        for(PetEntity entity : PetEntityTracker.values()){
+        for (PetEntity entity : PetEntityTracker.values()) {
             Location location = entity.getSpawn();
 
-            if(!isIn(chunk.getChunkSnapshot(), location)) return;
+            if (!isIn(chunk.getChunkSnapshot(), location)) return;
 
             entity.load();
         }
@@ -45,12 +45,12 @@ public final class PetChunkListener implements Listener {
     public void onChunk(ChunkUnloadEvent e) {
 
         //Bukkit.getScheduler().runTaskAsynchronously(plugin, () -> {
-        for(Entity entity : e.getChunk().getEntities()){
-            if(!(entity instanceof ArmorStand)) return;
+        for (Entity entity : e.getChunk().getEntities()) {
+            if (!(entity instanceof ArmorStand)) return;
 
             Optional<PetEntity> minionEntity = PetArmorStandTracker.getByID(entity.getUniqueId());
 
-            if(!minionEntity.isPresent()) continue;
+            if (!minionEntity.isPresent()) continue;
 
             minionEntity.get().unload();
 

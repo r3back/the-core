@@ -43,8 +43,8 @@ public final class VanillaEnchantmentFactory {
         this.enabled = enabled;
     }
 
-    public ICoreEnchantment build(ProviderType providerType){
-        if(XMaterial.getVersion() >= 20){
+    public ICoreEnchantment build(ProviderType providerType) {
+        if (XMaterial.getVersion() >= 20) {
             return VanillaEnchantNewest1_20.builder()
                     .requiredPermissionsToEnchant(requiredPermissionsToEnchant)
                     .requiredXpLevelToEnchant(requiredXpLevelToEnchant)
@@ -59,7 +59,7 @@ public final class VanillaEnchantmentFactory {
                     .maxLevel(maxLevel)
                     .enabled(enabled)
                     .build();
-        } else if(XMaterial.getVersion() > 12){
+        } else if (XMaterial.getVersion() > 12) {
             return VanillaEnchantNewest.builder()
                     .requiredPermissionsToEnchant(requiredPermissionsToEnchant)
                     .requiredXpLevelToEnchant(requiredXpLevelToEnchant)
@@ -74,7 +74,7 @@ public final class VanillaEnchantmentFactory {
                     .maxLevel(maxLevel)
                     .enabled(enabled)
                     .build();
-        }else{
+        } else {
             return VanillaEnchantLegacy.builder()
                     .requiredPermissionsToEnchant(requiredPermissionsToEnchant)
                     .requiredXpLevelToEnchant(requiredXpLevelToEnchant)

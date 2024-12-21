@@ -3,7 +3,6 @@ package com.qualityplus.minions;
 import com.qualityplus.assistant.lib.com.cryptomorin.xseries.XMaterial;
 import com.qualityplus.assistant.TheAssistantPlugin;
 import com.qualityplus.assistant.api.addons.WorldManagerAddon;
-import com.qualityplus.assistant.api.addons.response.ChunkCheckResponse;
 import com.qualityplus.assistant.lib.eu.okaeri.injector.OkaeriInjector;
 import com.qualityplus.assistant.lib.eu.okaeri.injector.annotation.Inject;
 import com.qualityplus.assistant.okaeri.OkaeriSilentPlugin;
@@ -17,7 +16,6 @@ import com.qualityplus.minions.base.minions.minion.Minion;
 import com.qualityplus.minions.base.minions.entity.factory.MinionEntityFactory;
 import com.qualityplus.minions.base.minions.Minions;
 import com.qualityplus.minions.base.minions.entity.tracker.MinionEntityTracker;
-import com.qualityplus.minions.base.minions.minion.layout.LayoutType;
 import com.qualityplus.minions.listener.chunk.ChunkListenerLegacy;
 import com.qualityplus.minions.listener.chunk.ChunkListenerNewest;
 import com.qualityplus.minions.persistance.MinionsRepository;
@@ -75,7 +73,7 @@ public final class TheMinions extends OkaeriSilentPlugin {
     }
 
     @Planned(ExecutionPhase.PRE_SHUTDOWN)
-    private void whenStopSaveUsers(Box box){
+    private void whenStopSaveUsers(Box box) {
         Bukkit.getOnlinePlayers()
                 .stream()
                 .map(Player::getUniqueId)
@@ -100,20 +98,20 @@ public final class TheMinions extends OkaeriSilentPlugin {
     @Planned(ExecutionPhase.POST_STARTUP)
     private void whenStartFixMessages(@Inject Messages messages) {
         boolean save = false;
-        if(messages.minionMessages.pickUpMinion == null) {
+        if (messages.minionMessages.pickUpMinion == null) {
             save = true;
             messages.minionMessages.pickUpMinion = "&aYou picked up a minion! You currently have %minions_placed_amount% out of a maximum of %minions_max_amount_to_place% minions placed.";
         }
-        if(messages.minionMessages.youPlacedAMinion == null) {
+        if (messages.minionMessages.youPlacedAMinion == null) {
             save = true;
             messages.minionMessages.youPlacedAMinion = "&bYou placed a minion! (%minions_placed_amount%/%minions_max_amount_to_place%)";
         }
-        if(messages.minionMessages.youCanOnlyPlaceAMaxOf == null){
+        if (messages.minionMessages.youCanOnlyPlaceAMaxOf == null) {
             save = true;
             messages.minionMessages.youCanOnlyPlaceAMaxOf = "&cYou can only can place a max of %minions_max_amount_to_place% minions!";
         }
 
-        if(save)
+        if (save)
             messages.save();
     }
 
@@ -127,13 +125,13 @@ public final class TheMinions extends OkaeriSilentPlugin {
 
         allData.forEach(data -> {
 
-            if(data.getLocation() != null) {
+            if (data.getLocation() != null) {
 
                 loadChunk(data.getLocation()).thenRun(() -> {
 
                     Minion minion = Minions.getByID(data.getMinionId());
 
-                    if(minion == null){
+                    if (minion == null) {
                         logger.warning("Failed to load minion " + data.getMinionId());
                         return;
                     }
@@ -152,7 +150,7 @@ public final class TheMinions extends OkaeriSilentPlugin {
         });
     }
 
-    private CompletableFuture<Void> loadChunk(Location spawn){
+    private CompletableFuture<Void> loadChunk(Location spawn) {
         CompletableFuture<Void> future = new CompletableFuture<>();
 
         WorldManagerAddon addon = TheAssistantPlugin.getAPI().getAddons().getWorldManager();
@@ -161,9 +159,9 @@ public final class TheMinions extends OkaeriSilentPlugin {
 
             addon.chunksAreLoaded(spawn).thenAccept(response -> {
 
-                if(!response.isCanBeLoaded()) return;
+                if (!response.isCanBeLoaded()) return;
 
-                if(!response.isAreLoaded()){
+                if (!response.isAreLoaded()) {
                     addon.loadChunks(spawn);
                 }
 
@@ -175,7 +173,7 @@ public final class TheMinions extends OkaeriSilentPlugin {
                 for (Vector vector : vectors) {
                     Location newLocation = location.clone().add(vector);
 
-                    if(newLocation.getChunk().isLoaded()) continue;
+                    if (newLocation.getChunk().isLoaded()) continue;
 
                     newLocation.getChunk().load();
                 }

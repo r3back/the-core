@@ -48,12 +48,12 @@ public final class Config extends OkaeriConfig {
                     .build())
             .build();
 
-    private List<XMaterial> getMaterials(){
+    private List<XMaterial> getMaterials() {
         List<XMaterial> allowed = new ArrayList<>();
-        for(XMaterial material : XMaterial.VALUES){
+        for (XMaterial material : XMaterial.VALUES) {
             String parsed = material.toString().toLowerCase();
-            if(parsed.contains("waxed")) continue;
-            if(parsed.contains("axe") || parsed.contains("pickaxe") || parsed.contains("shovel") || parsed.contains("hoe") || parsed.contains("sword") || parsed.contains("leggings") ||
+            if (parsed.contains("waxed")) continue;
+            if (parsed.contains("axe") || parsed.contains("pickaxe") || parsed.contains("shovel") || parsed.contains("hoe") || parsed.contains("sword") || parsed.contains("leggings") ||
                parsed.contains("chestplate") || parsed.contains("boots") || parsed.contains("helmet"))
                 allowed.add(material);
         }

@@ -38,7 +38,7 @@ public final class CollectionsMainListener implements Listener {
 
         Optional<Collection> collection = CollectionsRegistry.getByItem(pickUpMaterial.parseItem());
 
-        if(!collection.isPresent()) return;
+        if (!collection.isPresent()) return;
 
         collectionsService.addXp(e.getPlayer(), collection.get(), e.getItemAmount());
     }
@@ -57,7 +57,7 @@ public final class CollectionsMainListener implements Listener {
 
         Optional<Collection> collection = CollectionsRegistry.getByItem(pickUpItem);
 
-        if(!collection.isPresent()) return;
+        if (!collection.isPresent()) return;
 
         antiExploitService.setPlayerTimer(player, -1);
 
@@ -72,7 +72,7 @@ public final class CollectionsMainListener implements Listener {
     @EventHandler(ignoreCancelled = true)
     public void onBreakInventoryHolders(BlockBreakEvent e) {
         Player player = e.getPlayer();
-        if(antiExploitService.hasMetadata(e.getBlock())){
+        if (antiExploitService.hasMetadata(e.getBlock())) {
             addMetadataToNearEntities(player.getLocation(), 5);
         }
 
@@ -112,11 +112,11 @@ public final class CollectionsMainListener implements Listener {
                 .forEach(antiExploitService::addMetadata)), 1);
     }
 
-    private boolean isOnTimer(Player player, Cancellable cancellable){
-        if(System.currentTimeMillis() < antiExploitService.getPlayerTimer(player)){
+    private boolean isOnTimer(Player player, Cancellable cancellable) {
+        if (System.currentTimeMillis() < antiExploitService.getPlayerTimer(player)) {
             cancellable.setCancelled(true);
             return true;
-        }else
+        } else
             return false;
     }
 }

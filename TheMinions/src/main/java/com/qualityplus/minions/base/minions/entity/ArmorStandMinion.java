@@ -40,8 +40,8 @@ public abstract class ArmorStandMinion<T> extends MinecraftMinion implements Lis
     }
 
     @Override
-    public void load(){
-        //if(state.isLoaded()) return;
+    public void load() {
+        //if (state.isLoaded()) return;
         state.setLoaded(true);
 
         Optional.ofNullable(state.getSpawn())
@@ -51,7 +51,7 @@ public abstract class ArmorStandMinion<T> extends MinecraftMinion implements Lis
     }
 
     @Override
-    public void unload(){
+    public void unload() {
         state.setLoaded(false);
 
         Optional.ofNullable(armorStand)
@@ -66,7 +66,7 @@ public abstract class ArmorStandMinion<T> extends MinecraftMinion implements Lis
     public void spawn(Location location, boolean load) {
         super.spawn(location, load);
 
-        if(load) load();
+        if (load) load();
 
         updateInventory();
 
@@ -79,26 +79,26 @@ public abstract class ArmorStandMinion<T> extends MinecraftMinion implements Lis
 
         super.deSpawn(deSpawnReason);
 
-        if(!deSpawnReason.equals(DeSpawnReason.PLAYER_DE_SPAWN_PET)) return;
+        if (!deSpawnReason.equals(DeSpawnReason.PLAYER_DE_SPAWN_PET)) return;
 
         getData().ifPresent(data -> data.setLocation(null));
     }
 
     @Override
-    public void tick(){
-        if(!armorStand.entityIsValid()) return;
+    public void tick() {
+        if (!armorStand.entityIsValid()) return;
 
         handlers.getFuelHandler().removeFuel();
 
-        if(timeHasHappened())
+        if (timeHasHappened())
             return;
 
-        if(state.isBreaking() || state.isSelling())
+        if (state.isBreaking() || state.isSelling())
             return;
 
         updateStatus();
 
-        if(!state.getStatus().equals(MinionStatus.IDEAL_LAYOUT)) {
+        if (!state.getStatus().equals(MinionStatus.IDEAL_LAYOUT)) {
             sellIfItsPossible();
             return;
         }
@@ -108,12 +108,12 @@ public abstract class ArmorStandMinion<T> extends MinecraftMinion implements Lis
         rotateToBlock();
     }
 
-    private boolean timeHasHappened(){
+    private boolean timeHasHappened() {
         int level = getLevel();
 
         HumanTime timer = minion.getTimer(level);
 
-        if(state.getLastActionTime() == 0) return true;
+        if (state.getLastActionTime() == 0) return true;
 
         long time = timer.getEffectiveTime();
 
@@ -125,7 +125,7 @@ public abstract class ArmorStandMinion<T> extends MinecraftMinion implements Lis
     }
 
     @Override
-    public void updateInventory(){
+    public void updateInventory() {
         int level = getLevel();
 
         int maxStorage = minion.getMaxStorage(level);
@@ -137,19 +137,19 @@ public abstract class ArmorStandMinion<T> extends MinecraftMinion implements Lis
     }
 
     @Override
-    public void updateSkin(){
+    public void updateSkin() {
         Optional<MinionData> data = getData();
 
-        if(!data.isPresent()) return;
+        if (!data.isPresent()) return;
 
         int level = data.get().getLevel();
 
-        if(data.get().getSkinEntity() == null){
+        if (data.get().getSkinEntity() == null) {
             minion.getSkin(level).ifPresent(skin -> skin.apply(armorStand));
-        }else{
+        } else {
             String id = data.get().getSkinEntity().getId();
 
-            if(id == null) return;
+            if (id == null) return;
 
             Skins.getSkin(id).ifPresent(skin -> skin.apply(armorStand));
         }
@@ -176,7 +176,7 @@ public abstract class ArmorStandMinion<T> extends MinecraftMinion implements Lis
     }
 
 
-    protected void addItemsToMinionInventory(){
+    protected void addItemsToMinionInventory() {
         MinionStorageState storageState = state.getStorageState();
 
         FakeInventory fakeInventory = state.getFakeInventory();
@@ -191,23 +191,23 @@ public abstract class ArmorStandMinion<T> extends MinecraftMinion implements Lis
         getData().ifPresent(minionData1 -> minionData1.setItemStackList(fakeInventory.getItems()));
     }
 
-    protected void sellIfItsPossible(){
+    protected void sellIfItsPossible() {
         handlers.getSellHandler().sellIfItsPossible();
     }
 
-    protected void checkBlockAfterRotate(Block block){}
+    protected void checkBlockAfterRotate(Block block) {}
 
-    protected void checkEntityAfterRotate(MinionMobEntity entity){}
+    protected void checkEntityAfterRotate(MinionMobEntity entity) {}
 
-    protected void doIfItsNull(T toCheck){}
+    protected void doIfItsNull(T toCheck) {}
 
-    protected void doIfItsNotNull(T toCheck){}
+    protected void doIfItsNotNull(T toCheck) {}
 
-    protected void teleportBack(){
+    protected void teleportBack() {
         state.setLastActionTime(System.currentTimeMillis());
 
         Bukkit.getScheduler().runTaskLater(TheMinions.getInstance(), () -> {
-            if(state.isLoaded()){
+            if (state.isLoaded()) {
                 armorStand.manipulateEntity(entity -> entity.setHeadPose(new EulerAngle(0, 0, 0)));
                 armorStand.teleportToSpawn();
             }
@@ -218,39 +218,39 @@ public abstract class ArmorStandMinion<T> extends MinecraftMinion implements Lis
     }
 
     private void rotateToBlock() {
-        if(state.isLoaded()){
-            if(minion.getType().equals(MinionType.MOB_KILLER)){
+        if (state.isLoaded()) {
+            if (minion.getType().equals(MinionType.MOB_KILLER)) {
                 handlers.getAnimationHandler()
                         .getEntityToRotate(armorStand)
                         .thenAccept(this::checkEntityAfterRotate);
-            }else{
+            } else {
                 handlers.getAnimationHandler()
                         .getBlockToRotate(armorStand)
                         .thenAccept(this::checkBlockAfterRotate);
             }
-        }else{
-            if(minion.getType().equals(MinionType.MOB_KILLER)) {
+        } else {
+            if (minion.getType().equals(MinionType.MOB_KILLER)) {
                 checkEntityAfterRotate(null);
-            }else{
+            } else {
                 checkBlockAfterRotate(null);
             }
         }
     }
 
 
-    private void createArmorStand(Location location){
+    private void createArmorStand(Location location) {
 
         armorStand.createEntity(this, location)
                         .thenAccept(this::handlePostCreation);
     }
 
-    private void handlePostCreation(ArmorStand armorStand){
+    private void handlePostCreation(ArmorStand armorStand) {
         updateSkin();
 
         startAnimation = StartAnimation.start(() -> Bukkit.getScheduler().runTaskLater(TheMinions.getInstance(), () -> state.setBreaking(false), 20), armorStand);
     }
 
-    private void updateStatus(){
+    private void updateStatus() {
         MinionStorageState storageState = handlers.getStorageHandler().getMinionStorageState();
 
         state.setStorageState(storageState);

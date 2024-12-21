@@ -19,7 +19,7 @@ public final class BlockBreakMinion extends ArmorStandMinion<Block> {
         super(minionUniqueId, owner, minion, loaded);
     }
 
-    public static BlockBreakMinion create(UUID minionUniqueId, UUID owner, Minion minion, boolean loaded){
+    public static BlockBreakMinion create(UUID minionUniqueId, UUID owner, Minion minion, boolean loaded) {
         return new BlockBreakMinion(minionUniqueId, owner, minion, loaded);
     }
 
@@ -34,7 +34,7 @@ public final class BlockBreakMinion extends ArmorStandMinion<Block> {
     }
 
     @Override
-    public void doIfItsNull(Block block){
+    public void doIfItsNull(Block block) {
         XMaterial material = minion.getMinionLayout().getToReplaceBlock();
 
         BlockUtils.setBlock(block, material);
@@ -43,8 +43,8 @@ public final class BlockBreakMinion extends ArmorStandMinion<Block> {
     }
 
     @Override
-    public void doIfItsNotNull(Block block){
-        if(block == null || block.getType().equals(Material.AIR)){
+    public void doIfItsNotNull(Block block) {
+        if (block == null || block.getType().equals(Material.AIR)) {
             teleportBack();
             return;
         }
@@ -56,7 +56,7 @@ public final class BlockBreakMinion extends ArmorStandMinion<Block> {
         teleportBack();
     }
 
-    private void handleAnimationCallBack(ArmorStand entity, Block block){
+    private void handleAnimationCallBack(ArmorStand entity, Block block) {
         Material material = minion.getMinionLayout().getToReplaceBlock().parseMaterial();
 
         if (BlockUtils.isNull(block) || !block.getType().equals(material))

@@ -35,20 +35,20 @@ public final class Soul extends OkaeriConfig {
         this.uuid = uuid;
     }
 
-    public void executeCommands(Player player){
+    public void executeCommands(Player player) {
         commands.stream()
                 .map(command -> command.replaceAll("%player%", player.getName()))
                 .forEach(command -> Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), command));
     }
 
-    public void sendMessages(Player player){
+    public void sendMessages(Player player) {
         messages.stream()
                 .map(message -> message.replaceAll("%player%", player.getName()))
                 .forEach(message -> player.sendMessage(StringUtils.color(message)));
     }
 
-    public void enable(Box box){
-        if(soulEntity != null) soulEntity.remove();
+    public void enable(Box box) {
+        if (soulEntity != null) soulEntity.remove();
 
         Location loc = location.getLocation();
 
@@ -70,7 +70,7 @@ public final class Soul extends OkaeriConfig {
 
     }
 
-    public void disable(){
+    public void disable() {
         Optional.ofNullable(soulEntity).ifPresent(Entity::remove);
     }
 }

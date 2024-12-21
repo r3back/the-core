@@ -65,7 +65,7 @@ public final class ChangeItemGUI extends MinionGUI {
 
         ItemStack oldItem = getOldItem();
 
-        if(oldItem != null) {
+        if (oldItem != null) {
             List<IPlaceholder> oldItemPlaceholders = PlaceholderBuilder.create(
                     new Placeholder("old_item_displayname", BukkitItemUtil.getName(newItem)),
                     new Placeholder("old_item_lore", BukkitItemUtil.getItemLore(newItem))
@@ -82,12 +82,12 @@ public final class ChangeItemGUI extends MinionGUI {
         return inventory;
     }
 
-    private ItemStack getOldItem(){
-        if(changeItemRequest.is(ChangeItem.UPGRADE_ITEM_REQUIRED_ITEM) || changeItemRequest.is(ChangeItem.UPGRADE_ITEM_TO_GIVE)) {
+    private ItemStack getOldItem() {
+        if (changeItemRequest.is(ChangeItem.UPGRADE_ITEM_REQUIRED_ITEM) || changeItemRequest.is(ChangeItem.UPGRADE_ITEM_TO_GIVE)) {
             Map<String, UpgradeSettings> upgradeSettings = changeItemRequest.getMinion().getMinionUpdateSettings().getUpgradeSettings();
             MinionUpgrade upgrade = changeItemRequest.getMinionUpgrade();
 
-            if(changeItemRequest.is(ChangeItem.UPGRADE_ITEM_TO_GIVE)) {
+            if (changeItemRequest.is(ChangeItem.UPGRADE_ITEM_TO_GIVE)) {
                 return upgradeSettings.get(upgrade.getId())
                         .getItemSettings()
                         .getItemsToGive()
@@ -95,12 +95,12 @@ public final class ChangeItemGUI extends MinionGUI {
                         .findFirst()
                         .orElse(null);
             }
-            if(changeItemRequest.is(ChangeItem.UPGRADE_ITEM_REQUIRED_ITEM)) {
+            if (changeItemRequest.is(ChangeItem.UPGRADE_ITEM_REQUIRED_ITEM)) {
                 return upgradeSettings.get(upgrade.getId())
                         .getItemSettings()
                         .getRequiredItemsToCreateSingle();
             }
-        }else if(changeItemRequest.is(ChangeItem.DROP_ITEM)){
+        } else if (changeItemRequest.is(ChangeItem.DROP_ITEM)) {
             MinionSettings minionSettings = changeItemRequest.getMinion().getMinionUpdateSettings();
 
             return minionSettings.getBaseItem().getItemsToGive().stream().findFirst().orElse(null);
@@ -111,12 +111,12 @@ public final class ChangeItemGUI extends MinionGUI {
     }
 
     private void updateItem(Player player) {
-        if(changeItemRequest.is(ChangeItem.UPGRADE_ITEM_REQUIRED_ITEM) || changeItemRequest.is(ChangeItem.UPGRADE_ITEM_TO_GIVE)) {
+        if (changeItemRequest.is(ChangeItem.UPGRADE_ITEM_REQUIRED_ITEM) || changeItemRequest.is(ChangeItem.UPGRADE_ITEM_TO_GIVE)) {
             Map<String, UpgradeSettings> upgradeSettings = changeItemRequest.getMinion().getMinionUpdateSettings().getUpgradeSettings();
             MinionUpgrade upgrade = changeItemRequest.getMinionUpgrade();
             Minion minion = changeItemRequest.getMinion();
 
-            if(changeItemRequest.is(ChangeItem.UPGRADE_ITEM_TO_GIVE)) {
+            if (changeItemRequest.is(ChangeItem.UPGRADE_ITEM_TO_GIVE)) {
                 upgradeSettings.get(upgrade.getId())
                         .getItemSettings()
                         .setItemsToGive(Collections.singletonList(newItem));
@@ -125,7 +125,7 @@ public final class ChangeItemGUI extends MinionGUI {
                 Bukkit.getScheduler().runTaskAsynchronously(TheMinions.getInstance(), () -> minion.getMinionConfig().save());
                 player.sendMessage(StringUtils.color("&aSuccessfully Changed item!"));
             }
-            if(changeItemRequest.is(ChangeItem.UPGRADE_ITEM_REQUIRED_ITEM)) {
+            if (changeItemRequest.is(ChangeItem.UPGRADE_ITEM_REQUIRED_ITEM)) {
                 upgradeSettings.get(upgrade.getId())
                         .getItemSettings()
                         .setRequiredItemsToCreate(FastMap.builder(Integer.class, ItemStack.class)
@@ -137,7 +137,7 @@ public final class ChangeItemGUI extends MinionGUI {
                 player.sendMessage(StringUtils.color("&aSuccessfully Changed item!"));
 
             }
-        }else if(changeItemRequest.is(ChangeItem.DROP_ITEM)){
+        } else if (changeItemRequest.is(ChangeItem.DROP_ITEM)) {
             MinionSettings minionSettings = changeItemRequest.getMinion().getMinionUpdateSettings();
             Minion minion = changeItemRequest.getMinion();
 
@@ -154,15 +154,15 @@ public final class ChangeItemGUI extends MinionGUI {
     public void onInventoryClick(InventoryClickEvent event) {
         Player player = (Player) event.getWhoClicked();
 
-        if(!getTarget(event).equals(ClickTarget.INSIDE)) return;
+        if (!getTarget(event).equals(ClickTarget.INSIDE)) return;
 
         event.setCancelled(true);
 
         int slot = event.getSlot();
 
-        if(isItem(slot, config.getCloseGUI())) {
+        if (isItem(slot, config.getCloseGUI())) {
             player.closeInventory();
-        } else if(isItem(slot, config.getConfirmItem())) {
+        } else if (isItem(slot, config.getConfirmItem())) {
             updateItem(player);
 
             player.closeInventory();

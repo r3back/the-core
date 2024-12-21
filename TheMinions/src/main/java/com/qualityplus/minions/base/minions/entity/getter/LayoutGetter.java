@@ -10,25 +10,25 @@ import com.qualityplus.minions.persistance.data.upgrade.UpgradeEntity;
 import java.util.Optional;
 
 public interface LayoutGetter extends DataGetter {
-    default LayoutType getMinionLayout(Minion minion){
-        if(minion.is(LayoutType.THREE_X_THREE)) return LayoutType.THREE_X_THREE;
+    default LayoutType getMinionLayout(Minion minion) {
+        if (minion.is(LayoutType.THREE_X_THREE)) return LayoutType.THREE_X_THREE;
 
         Optional<MinionData> minionData = getData();
 
         boolean firstUpgrade = minionData.map(data -> hasMinionExpander(data.getFirstUpgrade())).orElse(false);
         boolean secondUpgrade = minionData.map(data -> hasMinionExpander(data.getSecondUpgrade())).orElse(false);
 
-        if(firstUpgrade || secondUpgrade) return LayoutType.THREE_X_THREE;
+        if (firstUpgrade || secondUpgrade) return LayoutType.THREE_X_THREE;
 
         return LayoutType.TWO_X_TWO;
     }
 
-    default boolean hasMinionExpander(UpgradeEntity entity){
-        if(entity == null) return false;
+    default boolean hasMinionExpander(UpgradeEntity entity) {
+        if (entity == null) return false;
 
         MinionUpgrade upgrade = TheMinions.getApi().getConfigFiles().upgrades().normalUpgrades.getOrDefault(entity.getId(), null);
 
-        if(upgrade == null) return false;
+        if (upgrade == null) return false;
 
         return upgrade.isExpandsOneBlock();
     }

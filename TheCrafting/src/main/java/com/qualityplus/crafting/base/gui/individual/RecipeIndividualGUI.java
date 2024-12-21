@@ -68,31 +68,31 @@ public final class RecipeIndividualGUI extends CraftingGUI {
 
         if (isItem(slot, config.getCloseGUI())) {
             player.closeInventory();
-        } else if(isItem(slot, config.getGoBack())) {
+        } else if (isItem(slot, config.getGoBack())) {
             player.openInventory(new RecipesGUI(box, 1, edition).getInventory());
-        } else if(isItem(slot, config.getModifyRecipeItem())) {
+        } else if (isItem(slot, config.getModifyRecipeItem())) {
             player.openInventory(new ModifyRecipeGUI(box, recipe, edition).getInventory());
-        } else if(isItem(slot, config.getModifyDisplayNameItem())) {
+        } else if (isItem(slot, config.getModifyDisplayNameItem())) {
             player.closeInventory();
             player.sendMessage(StringUtils.color(box.files().messages().recipeMessages.typeDisplayName));
             edition.setEditMode(player.getUniqueId(), new EditionObject(recipe, RecipeEdition.EditionType.DISPLAY_NAME));
-        } else if(isItem(slot, config.getModifyPermissionItem())) {
+        } else if (isItem(slot, config.getModifyPermissionItem())) {
             player.closeInventory();
             player.sendMessage(StringUtils.color(box.files().messages().recipeMessages.typePermission));
             edition.setEditMode(player.getUniqueId(), new EditionObject(recipe, RecipeEdition.EditionType.PERMISSION));
-        } else if(isItem(slot, config.getModifyCategoryItem())){
+        } else if (isItem(slot, config.getModifyCategoryItem())) {
             player.closeInventory();
             player.sendMessage(StringUtils.color(box.files().messages().recipeMessages.typeCategory));
             edition.setEditMode(player.getUniqueId(), new EditionObject(recipe, RecipeEdition.EditionType.CATEGORY));
-        } else if(isItem(slot, config.getModifySlotItem())) {
+        } else if (isItem(slot, config.getModifySlotItem())) {
             player.closeInventory();
             player.sendMessage(StringUtils.color(box.files().messages().recipeMessages.typeSlot));
             edition.setEditMode(player.getUniqueId(), new EditionObject(recipe, RecipeEdition.EditionType.SLOT));
-        } else if(isItem(slot, config.getModifyPageItem())) {
+        } else if (isItem(slot, config.getModifyPageItem())) {
             player.closeInventory();
             player.sendMessage(StringUtils.color(box.files().messages().recipeMessages.typePage));
             edition.setEditMode(player.getUniqueId(), new EditionObject(recipe, RecipeEdition.EditionType.PAGE));
-        } else if(isItem(slot, config.getDeleteItem())) {
+        } else if (isItem(slot, config.getDeleteItem())) {
             player.closeInventory();
 
             final CustomRecipe exist = Recipes.getByID(this.recipe.getId());

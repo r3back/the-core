@@ -47,7 +47,7 @@ public final class BreakAnimation extends BukkitRunnable {
         blockToPerform = 9D / maxTimes;
     }
 
-    public static BukkitRunnable start(FinishAnimation callBack, ArmorStand armorStand, Block block){
+    public static BukkitRunnable start(FinishAnimation callBack, ArmorStand armorStand, Block block) {
         BukkitRunnable runnable = new BreakAnimation(callBack, armorStand, block);
 
         runnable.runTaskTimer(TheMinions.getInstance(), 0L, 1L);
@@ -57,14 +57,14 @@ public final class BreakAnimation extends BukkitRunnable {
 
 
     @Override
-    public void run(){
+    public void run() {
 
         armorStand.setHeadPose(new EulerAngle(-24.5, 0, 0));
 
-        if(passedTimes >= maxTimes){
+        if (passedTimes >= maxTimes) {
             cancel();
 
-            if(ArmorStandUtil.entityIsValid(armorStand))
+            if (ArmorStandUtil.entityIsValid(armorStand))
                 armorStand.setRightArmPose(new EulerAngle(0, 0, 0));
 
             TheAssistantPlugin.getAPI().getNms().damageBlock(PlayerUtils.all(), block, -1);
@@ -74,7 +74,7 @@ public final class BreakAnimation extends BukkitRunnable {
             return;
         }
 
-        if(counter == toIterate.length - 1){
+        if (counter == toIterate.length - 1) {
             counter = 0;
             iterateId = !iterateId;
             toIterate = iterateId ? MinionAnimationUtil.rightHandFastPickaxeMovementNew : MinionAnimationUtil.rightHandFastPickaxeMovementNew2;
@@ -82,7 +82,7 @@ public final class BreakAnimation extends BukkitRunnable {
 
         TheAssistantPlugin.getAPI().getNms().damageBlock(PlayerUtils.all(), block, (int) Math.ceil(damageCounter));
 
-        if(ArmorStandUtil.entityIsValid(armorStand))
+        if (ArmorStandUtil.entityIsValid(armorStand))
             armorStand.setRightArmPose(toIterate[this.counter]);
 
 

@@ -20,9 +20,9 @@ public final class FuelHandlerImpl implements FuelHandler, DataGetter {
 
         FuelEntity fuel = data.map(MinionData::getFuel).orElse(null);
 
-        if(fuel == null) return;
+        if (fuel == null) return;
 
-        if(fuel.getMarkable().isMarked()) return;
+        if (fuel.getMarkable().isMarked()) return;
 
         data.ifPresent(MinionData::removeFuel);
     }

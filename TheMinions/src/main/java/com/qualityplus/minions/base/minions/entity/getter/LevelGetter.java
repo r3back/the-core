@@ -7,7 +7,7 @@ import java.util.Optional;
 
 public interface LevelGetter extends MinionUUIDGetter{
 
-    default int getLevel(){
+    default int getLevel() {
         Optional<MinionData> petData = TheMinions.getApi().getMinionsService().getData(getMinionUniqueId());
 
         return petData.map(MinionData::getLevel).orElse(1);

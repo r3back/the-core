@@ -61,7 +61,7 @@ public final class CollectionGUI extends CollectionsGUI {
         for (Integer slot : config.getLevelSlots()) {
             count++;
 
-            if(count > collection.getMaxLevel()) break;
+            if (count > collection.getMaxLevel()) break;
 
             Item item = count == level + 1 ? config.getInProgressItem() :
                         count > level ? config.getLockedItem() : config.getUnlockedItem();
@@ -78,7 +78,7 @@ public final class CollectionGUI extends CollectionsGUI {
         return inventory;
     }
 
-    private ItemStack getItem(Item item, UserData data, Collection collection, int level){
+    private ItemStack getItem(Item item, UserData data, Collection collection, int level) {
         PlaceholderBuilder builder = CollectionsPlaceholderUtil.getCollectionsPlaceholders(data, collection, level);
 
         List<String> loreInGui = collection.getCollectionsCacheMessage(level, Collection.MessageType.GUI);
@@ -97,18 +97,18 @@ public final class CollectionGUI extends CollectionsGUI {
 
         int slot = event.getSlot();
 
-        if(isItem(slot, config.getCloseGUI())){
+        if (isItem(slot, config.getCloseGUI())) {
             player.closeInventory();
-        }else if(isItem(slot, config.getGoBack())){
+        } else if (isItem(slot, config.getGoBack())) {
             box.files().categories().getById(collection.getCategory()).ifPresent(category -> player.openInventory(new CategoryGUI(box, player, category).getInventory()));
-        }else if(levelsMap.containsKey(slot)){
+        } else if (levelsMap.containsKey(slot)) {
             Integer level = levelsMap.getOrDefault(slot, null);
 
-            if(level == null) return;
+            if (level == null) return;
 
             CommandReward reward = collection.getGuiCommand(level);
 
-            if(reward == null) return;
+            if (reward == null) return;
 
             player.closeInventory();
 

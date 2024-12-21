@@ -38,8 +38,6 @@ public final class BankServiceImpl implements BankService {
 
     @Override
     public Optional<TrxResponse> handleTransaction(final Player player, final BankTransaction transaction, final boolean sendMessages) {
-        Bukkit.getConsoleSender().sendMessage("DEPOSIT ALL BANK SERVICE");
-
         return getData(player.getUniqueId()).flatMap(data -> this.gateway.handle(data, transaction, sendMessages));
     }
 }

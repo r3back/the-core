@@ -26,10 +26,10 @@ public abstract class BlockBreakSkill extends Skill {
         this.rewards = rewards;
     }
 
-    protected void onBreak(BlockBreakEvent e){
+    protected void onBreak(BlockBreakEvent e) {
         final Player player = e.getPlayer();
 
-        if(!SkillsPlayerUtil.isInSurvival(player)) return;
+        if (!SkillsPlayerUtil.isInSurvival(player)) return;
 
         XMaterial xmaterial = XMaterial.matchXMaterial(e.getBlock().getType());
 

@@ -33,7 +33,7 @@ public final class MinionSkin extends OkaeriConfig {
     private ItemStack boots;
     private ItemStack inHand;
 
-    public ItemStack getItemStack(){
+    public ItemStack getItemStack() {
         Item item = TheMinions.getApi().getConfigFiles().config().skinItem;
 
         ItemStack itemStack = ItemStackUtils.makeItem(item,
@@ -45,17 +45,17 @@ public final class MinionSkin extends OkaeriConfig {
         return MinionUpgradeUtil.addSkinTags(itemStack, id);
     }
 
-    public void apply(ArmorStandHandler handler){
+    public void apply(ArmorStandHandler handler) {
         Optional.ofNullable(handler).ifPresent(armorStandHandler -> armorStandHandler.manipulateEntity(this::apply));
     }
 
-    public void apply(ArmorStand entity){
+    public void apply(ArmorStand entity) {
 
-        if(entity == null) return;
+        if (entity == null) return;
 
         EntityEquipment equipment = entity.getEquipment();
 
-        if(equipment == null) return;
+        if (equipment == null) return;
 
         Optional.ofNullable(helmet).map(ItemStack::clone).ifPresent(equipment::setHelmet);
         Optional.ofNullable(chestplate).map(ItemStack::clone).ifPresent(equipment::setChestplate);

@@ -39,11 +39,11 @@ public final class Minion extends OkaeriConfig {
     private LayoutGUISettings layoutGUISettings;
     private OkaeriConfig minionConfig;
 
-    public boolean is(LayoutType layoutType){
+    public boolean is(LayoutType layoutType) {
         return minionLayout.getType().equals(layoutType);
     }
 
-    public int getMaxLevel(){
+    public int getMaxLevel() {
         return minionLevels.size();
     }
 

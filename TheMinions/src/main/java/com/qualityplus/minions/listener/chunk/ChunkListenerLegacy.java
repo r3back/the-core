@@ -21,10 +21,10 @@ public final class ChunkListenerLegacy implements Listener {
     public void onChunk(ChunkLoadEvent e) {
         Chunk chunk = e.getChunk();
 
-        for(MinionEntity entity : MinionEntityTracker.values()){
+        for (MinionEntity entity : MinionEntityTracker.values()) {
             Location location = entity.getState().getSpawn();
 
-            if(!isIn(chunk.getChunkSnapshot(), location)) return;
+            if (!isIn(chunk.getChunkSnapshot(), location)) return;
 
             entity.load();
         }
@@ -33,12 +33,12 @@ public final class ChunkListenerLegacy implements Listener {
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
     public void onChunk(ChunkUnloadEvent e) {
 
-        for(Entity entity : e.getChunk().getEntities()){
-            if(!(entity instanceof ArmorStand)) return;
+        for (Entity entity : e.getChunk().getEntities()) {
+            if (!(entity instanceof ArmorStand)) return;
 
             Optional<MinionEntity> minionEntity = MinionArmorStandTracker.getByID(entity.getUniqueId());
 
-            if(!minionEntity.isPresent()) continue;
+            if (!minionEntity.isPresent()) continue;
 
 
             minionEntity.get().unload();

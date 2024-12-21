@@ -73,7 +73,7 @@ public final class ArmorStandHandlerImpl implements ArmorStandHandler {
 
     @Override
     public void teleportToSpawn() {
-        if(!entityIsValid()) return;
+        if (!entityIsValid()) return;
 
         entity.teleport(spawn);
     }
@@ -83,7 +83,7 @@ public final class ArmorStandHandlerImpl implements ArmorStandHandler {
         MinionStatus status = minionState.getStatus();
         MinionStatus oldStatus = minionState.getOldStatus();
 
-        if(status == null || (oldStatus != null && oldStatus.equals(status)))
+        if (status == null || (oldStatus != null && oldStatus.equals(status)))
             return;
 
         List<RandomMessage> randomMessages = TheMinions.getApi().getConfigFiles().config().messages.getOrDefault(status, null);
@@ -95,9 +95,9 @@ public final class ArmorStandHandlerImpl implements ArmorStandHandler {
         //TODO check this with a future or boolean
         Bukkit.getScheduler().runTask(TheMinions.getInstance(), () -> {
 
-            if(hologram == null){
+            if (hologram == null) {
                 hologram = TheHologram.create(msg, spawn.clone());
-            }else{
+            } else {
                 hologram.rename(msg);
             }
         });
@@ -108,7 +108,7 @@ public final class ArmorStandHandlerImpl implements ArmorStandHandler {
 
     @Override
     public void manipulateEntity(Consumer<ArmorStand> consumer) {
-        if(!entityIsValid()) return;
+        if (!entityIsValid()) return;
 
         consumer.accept(entity);
     }

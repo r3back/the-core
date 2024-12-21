@@ -23,7 +23,7 @@ public final class ModelEnginePet extends MinecraftPet{
         super(petUniqueId, owner, pet);
     }
 
-    public static ModelEnginePet create(UUID petUniqueId, UUID owner, Pet pet){
+    public static ModelEnginePet create(UUID petUniqueId, UUID owner, Pet pet) {
         return new ModelEnginePet(petUniqueId, owner, pet);
     }
 
@@ -80,17 +80,17 @@ public final class ModelEnginePet extends MinecraftPet{
                 .ifPresent(this::teleportAndRotate);
     }
 
-    private void teleportAndRotate(Location location){
+    private void teleportAndRotate(Location location) {
         armorStand.teleport(location);
         armorStand.setRotation((float) (20 * count / (2 * Math.PI)), 0f);
     }
 
 
-    private static boolean entityIsValid(ArmorStand armorStand){
+    private static boolean entityIsValid(ArmorStand armorStand) {
         return armorStand != null && !armorStand.isDead();
     }
 
-    private void createArmorStand(Location location){
+    private void createArmorStand(Location location) {
 
         armorStand = location.getWorld().spawn(location, ArmorStand.class);
 

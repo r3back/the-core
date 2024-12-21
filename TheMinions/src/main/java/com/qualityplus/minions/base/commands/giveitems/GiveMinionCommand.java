@@ -29,31 +29,31 @@ public final class GiveMinionCommand extends AssistantCommand {
     @Override
     public boolean execute(CommandSender sender, String[] args) {
 
-        if(args.length == 3){
+        if (args.length == 3) {
             Player toGive = Bukkit.getPlayer(args[1]);
 
             Minion pet = Minions.getByID(args[2]);
 
-            if(toGive == null){
+            if (toGive == null) {
                 sender.sendMessage(StringUtils.color(box.files().messages().pluginMessages.invalidPlayer));
                 return false;
             }
 
-            if(pet == null){
+            if (pet == null) {
                 sender.sendMessage(StringUtils.color(box.files().messages().minionMessages.invalidMinion));
                 return false;
             }
 
             Optional<ItemStack> petEgg = MinionEggUtil.createNewEgg(toGive, box.files().config().minionEggItem, pet);
 
-            if(!petEgg.isPresent()){
+            if (!petEgg.isPresent()) {
                 sender.sendMessage(StringUtils.color(box.files().messages().minionMessages.invalidEgg));
                 return false;
             }
 
             toGive.getInventory().addItem(petEgg.get());
 
-        }else{
+        } else {
             String message = box.files().messages().pluginMessages.useSyntax.replace("%usage%", syntax);
 
             sender.sendMessage(StringUtils.color(message));
@@ -67,7 +67,7 @@ public final class GiveMinionCommand extends AssistantCommand {
     }
 
     @Delayed(time = MinecraftTimeEquivalent.SECOND)
-    public void register(@Inject Box box){
+    public void register(@Inject Box box) {
         TheAssistantPlugin.getAPI().getCommandProvider().registerCommand(this, e -> e.getCommand().setDetails(box.files().commands().giveMinionCommand));
     }
 

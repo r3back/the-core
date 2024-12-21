@@ -24,11 +24,11 @@ public final class WithdrawHandler implements TrxHandler {
 
         double bankMoney = bankData.getMoney();
 
-        if(bankMoney <= 0){
+        if (bankMoney <= 0) {
             throw new ZeroMoneyException(bankData);
         }
 
-        if(transaction.getAmount() > bankMoney){
+        if (transaction.getAmount() > bankMoney) {
             throw new NotEnoughMoneyException(bankData);
         }
 

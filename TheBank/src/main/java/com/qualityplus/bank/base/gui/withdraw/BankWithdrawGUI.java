@@ -41,7 +41,7 @@ public final class BankWithdrawGUI extends BankGUI {
         this.type = type;
     }
 
-    private BankData getData(){
+    private BankData getData() {
         return box.service().getData(uuid).orElse(new BankData());
     }
 
@@ -62,7 +62,7 @@ public final class BankWithdrawGUI extends BankGUI {
         return inventory;
     }
 
-    private List<IPlaceholder> getPlaceholders(BankData bankData){
+    private List<IPlaceholder> getPlaceholders(BankData bankData) {
         return Arrays.asList(
                 new Placeholder("bank_balance", bankData.getMoney()),
                 new Placeholder("bank_balance_custom_percentage", getCustomPercentage(bankData)),
@@ -70,11 +70,11 @@ public final class BankWithdrawGUI extends BankGUI {
         );
     }
 
-    private double getCustomPercentage(BankData bankData){
+    private double getCustomPercentage(BankData bankData) {
         return (config.getCustomPercentage() * bankData.getMoney()) / 100;
     }
 
-    private double getHalf(BankData bankData){
+    private double getHalf(BankData bankData) {
         return Math.max(0, bankData.getMoney() / 2);
     }
 
@@ -86,23 +86,23 @@ public final class BankWithdrawGUI extends BankGUI {
 
         e.setCancelled(true);
 
-        if(!getTarget(e).equals(ClickTarget.INSIDE)) return;
+        if (!getTarget(e).equals(ClickTarget.INSIDE)) return;
 
         if (isItem(slot, config.getCloseGUI())) {
             e.setCancelled(true);
             player.closeInventory();
-        }else if(isItem(slot, config.getGoBack())){
+        } else if (isItem(slot, config.getGoBack())) {
             player.openInventory(new BankInterfaceGUI(box, player, type).getInventory());
-        }else if(isItem(slot, config.getWithdrawAll())){
+        } else if (isItem(slot, config.getWithdrawAll())) {
             box.service().handleTransaction(player, new BankTransaction(getData().getMoney(), TransactionType.WITHDRAW, type, TransactionCaller.PLAYER), true);
             player.openInventory(new BankWithdrawGUI(box, player, type).getInventory());
-        }else if(isItem(slot, config.getWithdrawHalf())){
+        } else if (isItem(slot, config.getWithdrawHalf())) {
             box.service().handleTransaction(player, new BankTransaction(getHalf(getData()), TransactionType.WITHDRAW, type, TransactionCaller.PLAYER), true);
             player.openInventory(new BankWithdrawGUI(box, player, type).getInventory());
-        }else if(isItem(slot, config.getWithDrawCustomPercentage())){
+        } else if (isItem(slot, config.getWithDrawCustomPercentage())) {
             box.service().handleTransaction(player, new BankTransaction(getCustomPercentage(getData()), TransactionType.WITHDRAW, type, TransactionCaller.PLAYER), true);
             player.openInventory(new BankWithdrawGUI(box, player, type).getInventory());
-        }else if(isItem(slot, config.getWithdrawAmount())){
+        } else if (isItem(slot, config.getWithdrawAmount())) {
             final Location location = player.getLocation().clone().add(0, 100, 0);
             final SignGUIFinishHandler signGUIFinishHandler = (player1, signGUIResult) -> {
                 Bukkit.getScheduler().runTaskLater(this.box.plugin(), () -> {
@@ -124,7 +124,7 @@ public final class BankWithdrawGUI extends BankGUI {
         }
     }
 
-    private void handleWithdraw(final Player player, final SignGUIResult event){
+    private void handleWithdraw(final Player player, final SignGUIResult event) {
         int value = 0;
 
         try {

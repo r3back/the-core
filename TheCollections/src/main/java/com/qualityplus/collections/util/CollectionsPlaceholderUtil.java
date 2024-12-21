@@ -70,7 +70,7 @@ public class CollectionsPlaceholderUtil {
         );
     }
 
-    public Placeholder getCategoryStatePlaceholder(UserData userData, CollectionCategory category, Box box){
+    public Placeholder getCategoryStatePlaceholder(UserData userData, CollectionCategory category, Box box) {
         List<Collection> collections = new ArrayList<>(CollectionsRegistry.getByCategory(category));
 
         double xp = collections.stream()

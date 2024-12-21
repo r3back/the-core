@@ -20,7 +20,7 @@ public final class StartAnimation extends BukkitRunnable{
     private int counter2 = MinionAnimationUtil.rightArmUp.length;
     private int counter = 0;
 
-    public static BukkitRunnable start(FinishAnimation callBack, ArmorStand armorStand){
+    public static BukkitRunnable start(FinishAnimation callBack, ArmorStand armorStand) {
         BukkitRunnable runnable = new StartAnimation(callBack, armorStand);
 
         runnable.runTaskTimer(TheMinions.getInstance(), 0L, 1L);
@@ -29,7 +29,7 @@ public final class StartAnimation extends BukkitRunnable{
     }
 
     @Override
-    public void run(){
+    public void run() {
         if (this.counter >= animationsToPerform) {
             if (this.counter2 <= 0) {
                 cancel();
@@ -38,12 +38,12 @@ public final class StartAnimation extends BukkitRunnable{
             }
 
             this.counter2--;
-            if(ArmorStandUtil.entityIsValid(armorStand)){
+            if (ArmorStandUtil.entityIsValid(armorStand)) {
                 armorStand.setRightArmPose(MinionAnimationUtil.rightArmUp[counter2]);
                 armorStand.setLeftArmPose(MinionAnimationUtil.leftArmUp[counter2]);
                 armorStand.setHeadPose(MinionAnimationUtil.moveHeadBack[counter2]);
             }
-        }else {
+        } else {
             if (ArmorStandUtil.entityIsValid(armorStand)) {
                 armorStand.setRightArmPose(MinionAnimationUtil.rightArmUp[counter]);
                 armorStand.setLeftArmPose(MinionAnimationUtil.leftArmUp[counter]);
