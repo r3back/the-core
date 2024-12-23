@@ -103,7 +103,7 @@ public final class BankWithdrawGUI extends BankGUI {
             box.service().handleTransaction(player, new BankTransaction(getCustomPercentage(getData()), TransactionType.WITHDRAW, type, TransactionCaller.PLAYER), true);
             player.openInventory(new BankWithdrawGUI(box, player, type).getInventory());
         } else if (isItem(slot, config.getWithdrawAmount())) {
-            final Location location = player.getLocation().clone().add(0, 100, 0);
+            final Location location = player.getLocation().clone().add(0, 10, 0);
             final SignGUIFinishHandler signGUIFinishHandler = (player1, signGUIResult) -> {
                 Bukkit.getScheduler().runTaskLater(this.box.plugin(), () -> {
                     this.handleWithdraw(player1, signGUIResult);

@@ -4,7 +4,6 @@ import com.qualityplus.assistant.TheAssistantPlugin;
 import com.qualityplus.assistant.api.util.BukkitItemUtil;
 import com.qualityplus.assistant.api.util.IPlaceholder;
 import com.qualityplus.assistant.lib.de.rapha149.signgui.SignGUI;
-import com.qualityplus.assistant.lib.de.rapha149.signgui.SignGUIFinishHandler;
 import com.qualityplus.assistant.util.StringUtils;
 import com.qualityplus.assistant.util.itemstack.ItemStackUtils;
 import com.qualityplus.assistant.util.placeholder.Placeholder;
@@ -156,17 +155,17 @@ public final class CreateAuctionGUI extends AuctionGUI {
             } else if (isItem(slot, this.config.getAuctionInitialBid())) {
                 player.closeInventory();
 
-                final Location location = player.getLocation().clone().add(0, 100, 0);
-                final SignGUIFinishHandler signGUIFinishHandler = (player1, signGUIResult) -> {
-                    changeBidPrice(player1, auctionItem, signGUIResult.getLine(0));
-                    return Collections.emptyList();
-                };
+                final Location location = player.getLocation().clone().add(0, 10, 0);
                 Bukkit.getScheduler().runTaskLater(this.box.plugin(), () -> {
                     final SignGUI signGUI = SignGUI.builder().
                             setLocation(location).
                             setColor(DyeColor.BLACK).
                             setType(Material.OAK_SIGN).
-                            setHandler(signGUIFinishHandler).setGlow(false).
+                            setHandler((player1, signGUIResult) -> {
+                                changeBidPrice(player1, auctionItem, signGUIResult.getLine(0));
+                                return Collections.emptyList();
+                            })
+                            .setGlow(false).
                             setLines(box.files().messages().getAuctionMessages().getStartingBid().toArray(new String[0])).
                             build();
                     signGUI.open(player);
@@ -237,6 +236,9 @@ public final class CreateAuctionGUI extends AuctionGUI {
             }
 
         } catch (NumberFormatException e) {
+            Bukkit.getScheduler().runTaskLater(box.plugin(), () -> player.openInventory(
+                            new CreateAuctionGUI(box, player, this.searcher).getInventory()),
+                    3);
             player.sendMessage(StringUtils.color(box.files().messages().getAuctionMessages().getInvalidAmount()));
             return;
         }

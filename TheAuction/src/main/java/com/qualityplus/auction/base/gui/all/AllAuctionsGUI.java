@@ -242,7 +242,7 @@ public final class AllAuctionsGUI extends AuctionGUI {
             }
             player.closeInventory();
 
-            final Location location = player.getLocation().clone().add(0, 100, 0);
+            final Location location = player.getLocation().clone().add(0, 10, 0);
             final SignGUIFinishHandler signGUIFinishHandler = (player1, signGUIResult) -> {
                 final AuctionSearcher filter = getBuilder().
                         stringFilter(new StringFilter(signGUIResult.getLine(0))).

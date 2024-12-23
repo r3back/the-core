@@ -103,7 +103,7 @@ public final class BankDepositGUI extends BankGUI {
             box.service().handleTransaction(player, new BankTransaction(getHalf(), TransactionType.DEPOSIT, type, TransactionCaller.PLAYER), true);
             player.openInventory(new BankDepositGUI(box, player, type).getInventory());
         } else if (isItem(slot, config.getDepositCustomAmount())) {
-            final Location location = player.getLocation().clone().add(0, 100, 0);
+            final Location location = player.getLocation().clone().add(0, 10, 0);
             final SignGUIFinishHandler signGUIFinishHandler = (player1, signGUIResult) -> {
                 Bukkit.getScheduler().runTaskLater(this.box.plugin(), () -> {
                     this.handleDeposit(player1, signGUIResult);

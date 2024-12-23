@@ -160,107 +160,104 @@ public final class NormalAuctionViewGUI extends AuctionGUI {
 
         if (isItem(slot, this.config.getCloseGUI())) {
             player.closeInventory();
-        } else if (isCollectItemOrMoneyItem(slot)) {
-            //Esto es para agarrar las monedas o el item en caso de que nadie lo haya comprado (seller side)
+        } else if (isOwnAuction()) {
+            if (isCollectItemOrMoneyItem(slot)) {
+                //Esto es para agarrar las monedas o el item en caso de que nadie lo haya comprado (seller side)
+                player.closeInventory();
 
-            player.closeInventory();
-
-            final double topPrice = getTopPrice();
-
-            final List<IPlaceholder> placeholders = Arrays.asList(
-                    new Placeholder("auction_item_name", BukkitItemUtil.getName(this.auctionItem.getItemStack())),
-                    new Placeholder("auction_buyer_name", PlayerUtils.getPlayerName(this.auctionItem.getWhoBought())),
-                    new Placeholder("auction_top_bid", topPrice)
-            );
-
-            if (this.auctionItem.getWhoBought() == null) {
-                player.sendMessage(StringUtils.processMulti(box.files().messages().getAuctionMessages().getPickUpBack(), placeholders));
-                player.getInventory().addItem(this.auctionItem.getItemStack().clone());
-            } else {
-                player.sendMessage(StringUtils.processMulti(box.files().messages().getAuctionMessages().getCollectedMoney(), placeholders));
-                TheAssistantPlugin.getAPI().getAddons().getEconomy().depositMoney(player, topPrice);
-            }
-
-            markAndRemoveIfNeeded();
-        } else if (isItem(slot, this.config.getCollectItemAuctionItem()) && !isOwnAuction() && this.
-                auctionItem.isExpired() && this.auctionItem.getBid(uuid).isPresent()) {
-            //Esto es para agarrar las monedas o el item en caso de que lo haya ganado (buyer side)
-            player.closeInventory();
-
-            if (isTopBidder()) {
-                player.getInventory().addItem(this.auctionItem.getItemStack().clone());
-                player.sendMessage(StringUtils.color(box.files().messages().getAuctionMessages().getClaimedAuctionItem()
-                        .replace("%auction_owner_name%", this.auctionItem.getOwnerName())
-                        .replace("%auction_item_name%", BukkitItemUtil.getName(this.auctionItem.getItemStack()))
-                ));
-            } else {
-                final double ownBid = this.auctionItem.getBids()
-                        .stream().map(AuctionBid::getBidAmount)
-                        .max(Comparator.comparingDouble(auctionItem -> auctionItem))
-                        .orElse(0D);
+                final double topPrice = getTopPrice();
 
                 final List<IPlaceholder> placeholders = Arrays.asList(
-                        new Placeholder("auction_owner_name", this.auctionItem.getOwnerName()),
-                        new Placeholder("auction_own_bid", ownBid));
+                        new Placeholder("auction_item_name", BukkitItemUtil.getName(this.auctionItem.getItemStack())),
+                        new Placeholder("auction_buyer_name", PlayerUtils.getPlayerName(this.auctionItem.getWhoBought())),
+                        new Placeholder("auction_top_bid", topPrice)
+                );
 
-                player.sendMessage(StringUtils.processMulti(box.files().messages().getAuctionMessages().getClaimedMoneyBack(), placeholders));
+                if (this.auctionItem.getWhoBought() == null) {
+                    player.sendMessage(StringUtils.processMulti(box.files().messages().getAuctionMessages().getPickUpBack(), placeholders));
+                    player.getInventory().addItem(this.auctionItem.getItemStack().clone());
+                } else {
+                    player.sendMessage(StringUtils.processMulti(box.files().messages().getAuctionMessages().getCollectedMoney(), placeholders));
+                    TheAssistantPlugin.getAPI().getAddons().getEconomy().depositMoney(player, topPrice);
+                }
 
-                TheAssistantPlugin.getAPI().getAddons().getEconomy().depositMoney(player, ownBid);
-            }
-
-            markAndRemoveIfNeeded();
-        } else if (isItem(slot, this.config.getSubmitBid())) {
-            if (isOwnAuction()) {
-                player.sendMessage(StringUtils.color(box.files().messages().getAuctionMessages().getYouCannotBidYourOwn()));
-                return;
-            }
-
-            if (this.auctionItem.getMarkable().getRemainingTime().isZero()) {
-                player.sendMessage(StringUtils.color(box.files().messages().getAuctionMessages().getAuctionExpired()));
-                return;
-            }
-
-            if (!canSubmit()) {
-                player.sendMessage(StringUtils.color(box.files().messages().getAuctionMessages().getYouCannotAffordIt()));
-                return;
-            }
-
-            if (isTopBidder()) {
-                player.sendMessage(StringUtils.color(box.files().messages().getAuctionMessages().getYouAlreadyHaveTheHighestBid()));
-                return;
-            }
-
-            final double newTopPrice = Math.max(getAutomaticBidPrice(), this.newCost);
-
-            player.openInventory(new ConfirmAuctionGUI(box, uuid, this.searcher, this.auctionItem, newTopPrice).getInventory());
-
-        } else if (isItem(slot, this.config.getGoBack())) {
-            if (isOwnAuction()) {
+                markAndRemoveIfNeeded();
+            } else if (isItem(slot, this.config.getGoBack())) {
                 player.openInventory(new ManageAuctionGUI(box, uuid, this.searcher, 1).getInventory());
 
-            } else {
-                player.openInventory(new AllAuctionsGUI(box, 1, player.getUniqueId(), this.searcher).getInventory());
             }
-        } else if (isItem(slot, this.config.getBidAmount()) && !isOwnAuction() && canSubmit()) {
-            player.closeInventory();
+        } else {
+            if (isItem(slot, this.config.getCollectItemAuctionItem()) && this.
+                    auctionItem.isExpired() && this.auctionItem.getBid(uuid).isPresent()) {
+                //Esto es para agarrar las monedas o el item en caso de que lo haya ganado (buyer side)
+                player.closeInventory();
 
-            final Location location = player.getLocation().clone().add(0, 100, 0);
-            final SignGUIFinishHandler signGUIFinishHandler = (player1, signGUIResult) -> {
+                if (isTopBidder()) {
+                    player.getInventory().addItem(this.auctionItem.getItemStack().clone());
+                    player.sendMessage(StringUtils.color(box.files().messages().getAuctionMessages().getClaimedAuctionItem()
+                            .replace("%auction_owner_name%", this.auctionItem.getOwnerName())
+                            .replace("%auction_item_name%", BukkitItemUtil.getName(this.auctionItem.getItemStack()))
+                    ));
+                } else {
+                    final double ownBid = this.auctionItem.getBids()
+                            .stream().map(AuctionBid::getBidAmount)
+                            .max(Comparator.comparingDouble(auctionItem -> auctionItem))
+                            .orElse(0D);
+
+                    final List<IPlaceholder> placeholders = Arrays.asList(
+                            new Placeholder("auction_owner_name", this.auctionItem.getOwnerName()),
+                            new Placeholder("auction_own_bid", ownBid));
+
+                    player.sendMessage(StringUtils.processMulti(box.files().messages().getAuctionMessages().getClaimedMoneyBack(), placeholders));
+
+                    TheAssistantPlugin.getAPI().getAddons().getEconomy().depositMoney(player, ownBid);
+                }
+
+                markAndRemoveIfNeeded();
+            } else if (isItem(slot, this.config.getSubmitBid())) {
+                if (this.auctionItem.getMarkable().getRemainingTime().isZero()) {
+                    player.sendMessage(StringUtils.color(box.files().messages().getAuctionMessages().getAuctionExpired()));
+                    return;
+                }
+
+                if (!canSubmit()) {
+                    player.sendMessage(StringUtils.color(box.files().messages().getAuctionMessages().getYouCannotAffordIt()));
+                    return;
+                }
+
+                if (isTopBidder()) {
+                    player.sendMessage(StringUtils.color(box.files().messages().getAuctionMessages().getYouAlreadyHaveTheHighestBid()));
+                    return;
+                }
+
+                final double newTopPrice = Math.max(getAutomaticBidPrice(), this.newCost);
+
+                player.openInventory(new ConfirmAuctionGUI(box, uuid, this.searcher, this.auctionItem, newTopPrice).getInventory());
+
+            } else if (isItem(slot, this.config.getGoBack())) {
+                player.openInventory(new AllAuctionsGUI(box, 1, player.getUniqueId(), this.searcher).getInventory());
+
+            } else if (isItem(slot, this.config.getBidAmount()) && canSubmit()) {
+                player.closeInventory();
+
+                final Location location = player.getLocation().clone().add(0, 10, 0);
+                final SignGUIFinishHandler signGUIFinishHandler = (player1, signGUIResult) -> {
+                    Bukkit.getScheduler().runTaskLater(this.box.plugin(), () -> {
+                        this.changeBid(player1, signGUIResult.getLine(0));
+                    }, 5);
+                    return Collections.emptyList();
+                };
                 Bukkit.getScheduler().runTaskLater(this.box.plugin(), () -> {
-                    this.changeBid(player1, signGUIResult.getLine(0));
+                    final com.qualityplus.assistant.lib.de.rapha149.signgui.SignGUI signGUI = SignGUI.builder().
+                            setLocation(location).
+                            setColor(DyeColor.BLACK).
+                            setType(Material.OAK_SIGN).
+                            setHandler(signGUIFinishHandler).setGlow(false).
+                            setLines(box.files().messages().getAuctionMessages().getSubmitBid().toArray(new String[0])).
+                            build();
+                    signGUI.open(player);
                 }, 5);
-                return Collections.emptyList();
-            };
-            Bukkit.getScheduler().runTaskLater(this.box.plugin(), () -> {
-                final com.qualityplus.assistant.lib.de.rapha149.signgui.SignGUI signGUI = SignGUI.builder().
-                        setLocation(location).
-                        setColor(DyeColor.BLACK).
-                        setType(Material.OAK_SIGN).
-                        setHandler(signGUIFinishHandler).setGlow(false).
-                        setLines(box.files().messages().getAuctionMessages().getSubmitBid().toArray(new String[0])).
-                        build();
-                signGUI.open(player);
-            }, 5);
+            }
         }
     }
 
