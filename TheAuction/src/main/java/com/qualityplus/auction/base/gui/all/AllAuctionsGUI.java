@@ -251,14 +251,18 @@ public final class AllAuctionsGUI extends AuctionGUI {
                 Bukkit.getScheduler().runTaskLater(this.box.plugin(), () -> player1.openInventory(inventory1), 5);
                 return Collections.emptyList();
             };
-            final SignGUI signGUI = SignGUI.builder().
-                    setLocation(location).
-                    setColor(DyeColor.BLACK).
-                    setType(Material.OAK_SIGN).
-                    setHandler(signGUIFinishHandler).setGlow(false).
-                    setLines(box.files().messages().getAuctionMessages().getEnterQuery().toArray(new String[0])).
-                    build();
-            Bukkit.getScheduler().runTaskLater(this.box.plugin(), () -> signGUI.open(player), 5);
+            try {
+                final SignGUI signGUI = SignGUI.builder().
+                        setLocation(location).
+                        setColor(DyeColor.BLACK).
+                        setType(Material.OAK_SIGN).
+                        setHandler(signGUIFinishHandler).setGlow(false).
+                        setLines(box.files().messages().getAuctionMessages().getEnterQuery().toArray(new String[0])).
+                        build();
+                Bukkit.getScheduler().runTaskLater(this.box.plugin(), () -> signGUI.open(player), 5);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         } else if (isItem(slot, this.config.getGoBack())) {
             player.openInventory(new MainAuctionGUI(box, this.searcher, uuid).getInventory());
         }

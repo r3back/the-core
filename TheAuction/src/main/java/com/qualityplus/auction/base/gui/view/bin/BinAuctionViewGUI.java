@@ -13,6 +13,7 @@ import com.qualityplus.auction.base.gui.AuctionGUI;
 import com.qualityplus.auction.base.gui.all.AllAuctionsGUI;
 import com.qualityplus.auction.base.gui.confirm.ConfirmAuctionGUI;
 import com.qualityplus.auction.base.gui.manage.ManageAuctionGUI;
+import com.qualityplus.auction.base.gui.manage.sort.ManageAuctionSortType;
 import com.qualityplus.auction.base.searcher.AuctionSearcher;
 import com.qualityplus.auction.persistence.data.AuctionBid;
 import com.qualityplus.auction.persistence.data.AuctionItem;
@@ -165,7 +166,7 @@ public final class BinAuctionViewGUI extends AuctionGUI {
         } else if (isOwnAuction() ) {
 
             if (isItem(slot, this.config.getGoBack())) {
-                player.openInventory(new ManageAuctionGUI(box, player.getUniqueId(), this.searcher, 1).getInventory());
+                player.openInventory(new ManageAuctionGUI(box, player.getUniqueId(), this.searcher, 1, ManageAuctionSortType.RECENTLY_UPDATED).getInventory());
 
             } else if (isItem(slot, this.config.getCancelAuctionItem())) {
                 if (!this.auctionItem.getBidsWithoutOwner().isEmpty()) {

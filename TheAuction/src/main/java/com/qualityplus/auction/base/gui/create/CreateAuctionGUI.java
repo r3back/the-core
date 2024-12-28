@@ -4,6 +4,7 @@ import com.qualityplus.assistant.TheAssistantPlugin;
 import com.qualityplus.assistant.api.util.BukkitItemUtil;
 import com.qualityplus.assistant.api.util.IPlaceholder;
 import com.qualityplus.assistant.lib.de.rapha149.signgui.SignGUI;
+import com.qualityplus.assistant.lib.de.rapha149.signgui.exception.SignGUIVersionException;
 import com.qualityplus.assistant.util.StringUtils;
 import com.qualityplus.assistant.util.itemstack.ItemStackUtils;
 import com.qualityplus.assistant.util.placeholder.Placeholder;
@@ -156,19 +157,24 @@ public final class CreateAuctionGUI extends AuctionGUI {
                 player.closeInventory();
 
                 final Location location = player.getLocation().clone().add(0, 10, 0);
+
                 Bukkit.getScheduler().runTaskLater(this.box.plugin(), () -> {
-                    final SignGUI signGUI = SignGUI.builder().
-                            setLocation(location).
-                            setColor(DyeColor.BLACK).
-                            setType(Material.OAK_SIGN).
-                            setHandler((player1, signGUIResult) -> {
-                                changeBidPrice(player1, auctionItem, signGUIResult.getLine(0));
-                                return Collections.emptyList();
-                            })
-                            .setGlow(false).
-                            setLines(box.files().messages().getAuctionMessages().getStartingBid().toArray(new String[0])).
-                            build();
-                    signGUI.open(player);
+                    try {
+                        final SignGUI signGUI = SignGUI.builder()
+                                .setLocation(location)
+                                .setColor(DyeColor.BLACK)
+                                .setType(Material.OAK_SIGN)
+                                .setHandler((player1, signGUIResult) -> {
+                                    changeBidPrice(player1, auctionItem, signGUIResult.getLine(0));
+                                    return Collections.emptyList();
+                                })
+                                .setGlow(false)
+                                .setLines(box.files().messages().getAuctionMessages().getStartingBid().toArray(new String[0]))
+                                .build();
+                        signGUI.open(player);
+                    } catch (SignGUIVersionException ex) {
+                        ex.printStackTrace();
+                    }
                 }, 5);
             } else if (isItem(slot, this.config.getCreateAuctionFilled())) {
                 if (auctionItem.getItemStack() == null) {

@@ -4,6 +4,7 @@ import com.qualityplus.assistant.api.util.IPlaceholder;
 import com.qualityplus.assistant.lib.de.rapha149.signgui.SignGUI;
 import com.qualityplus.assistant.lib.de.rapha149.signgui.SignGUIFinishHandler;
 import com.qualityplus.assistant.lib.de.rapha149.signgui.SignGUIResult;
+import com.qualityplus.assistant.lib.de.rapha149.signgui.exception.SignGUIVersionException;
 import com.qualityplus.assistant.util.inventory.InventoryUtils;
 import com.qualityplus.assistant.util.placeholder.Placeholder;
 import com.qualityplus.bank.api.box.Box;
@@ -111,14 +112,18 @@ public final class BankWithdrawGUI extends BankGUI {
                 return Collections.emptyList();
             };
             Bukkit.getScheduler().runTaskLater(this.box.plugin(), () -> {
-                final com.qualityplus.assistant.lib.de.rapha149.signgui.SignGUI signGUI = SignGUI.builder().
-                        setLocation(location).
-                        setColor(DyeColor.BLACK).
-                        setType(Material.OAK_SIGN).
-                        setHandler(signGUIFinishHandler).setGlow(false).
-                        setLines(box.files().messages().bankMessages.enterAmountToWithdraw.toArray(new String[0])).
-                        build();
-                signGUI.open(player);
+                try {
+                    final com.qualityplus.assistant.lib.de.rapha149.signgui.SignGUI signGUI = SignGUI.builder().
+                            setLocation(location).
+                            setColor(DyeColor.BLACK).
+                            setType(Material.OAK_SIGN).
+                            setHandler(signGUIFinishHandler).setGlow(false).
+                            setLines(box.files().messages().bankMessages.enterAmountToWithdraw.toArray(new String[0])).
+                            build();
+                    signGUI.open(player);
+                } catch (SignGUIVersionException ex) {
+                    ex.printStackTrace();
+                }
             }, 5);
 
         }

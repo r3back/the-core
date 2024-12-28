@@ -7,6 +7,7 @@ import com.qualityplus.assistant.base.dependency.ProtocolLibDependency;
 import com.qualityplus.assistant.lib.de.rapha149.signgui.SignGUI;
 import com.qualityplus.assistant.lib.de.rapha149.signgui.SignGUIFinishHandler;
 import com.qualityplus.assistant.lib.de.rapha149.signgui.SignGUIResult;
+import com.qualityplus.assistant.lib.de.rapha149.signgui.exception.SignGUIVersionException;
 import com.qualityplus.assistant.util.inventory.InventoryUtils;
 import com.qualityplus.assistant.util.placeholder.Placeholder;
 import com.qualityplus.bank.api.box.Box;
@@ -111,15 +112,19 @@ public final class BankDepositGUI extends BankGUI {
                 return Collections.emptyList();
             };
             Bukkit.getScheduler().runTaskLater(this.box.plugin(), () -> {
-                final SignGUI signGUI = SignGUI.builder().
-                        setLocation(location).
-                        setColor(DyeColor.BLACK).
-                        setType(Material.OAK_SIGN).
-                        setHandler(signGUIFinishHandler).setGlow(false).
-                        setLines(box.files().messages().bankMessages.enterAmountToDeposit.toArray(new String[0])).
-                        build();
-                signGUI.open(player);
-                }, 5);
+                try {
+                    final SignGUI signGUI = SignGUI.builder().
+                            setLocation(location).
+                            setColor(DyeColor.BLACK).
+                            setType(Material.OAK_SIGN).
+                            setHandler(signGUIFinishHandler).setGlow(false).
+                            setLines(box.files().messages().bankMessages.enterAmountToDeposit.toArray(new String[0])).
+                            build();
+                    signGUI.open(player);
+                } catch (SignGUIVersionException ex) {
+                    ex.printStackTrace();
+                }
+            }, 5);
         }
     }
 

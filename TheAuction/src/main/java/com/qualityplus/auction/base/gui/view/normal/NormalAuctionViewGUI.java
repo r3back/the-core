@@ -5,6 +5,7 @@ import com.qualityplus.assistant.api.util.BukkitItemUtil;
 import com.qualityplus.assistant.api.util.IPlaceholder;
 import com.qualityplus.assistant.lib.de.rapha149.signgui.SignGUI;
 import com.qualityplus.assistant.lib.de.rapha149.signgui.SignGUIFinishHandler;
+import com.qualityplus.assistant.lib.de.rapha149.signgui.exception.SignGUIVersionException;
 import com.qualityplus.assistant.util.StringUtils;
 import com.qualityplus.assistant.util.itemstack.ItemStackUtils;
 import com.qualityplus.assistant.util.placeholder.Placeholder;
@@ -15,6 +16,7 @@ import com.qualityplus.auction.base.gui.AuctionGUI;
 import com.qualityplus.auction.base.gui.all.AllAuctionsGUI;
 import com.qualityplus.auction.base.gui.confirm.ConfirmAuctionGUI;
 import com.qualityplus.auction.base.gui.manage.ManageAuctionGUI;
+import com.qualityplus.auction.base.gui.manage.sort.ManageAuctionSortType;
 import com.qualityplus.auction.base.gui.view.ViewOpener;
 import com.qualityplus.auction.base.searcher.AuctionSearcher;
 import com.qualityplus.auction.persistence.data.AuctionBid;
@@ -183,7 +185,7 @@ public final class NormalAuctionViewGUI extends AuctionGUI {
 
                 markAndRemoveIfNeeded();
             } else if (isItem(slot, this.config.getGoBack())) {
-                player.openInventory(new ManageAuctionGUI(box, uuid, this.searcher, 1).getInventory());
+                player.openInventory(new ManageAuctionGUI(box, uuid, this.searcher, 1, ManageAuctionSortType.RECENTLY_UPDATED).getInventory());
 
             }
         } else {
@@ -248,14 +250,18 @@ public final class NormalAuctionViewGUI extends AuctionGUI {
                     return Collections.emptyList();
                 };
                 Bukkit.getScheduler().runTaskLater(this.box.plugin(), () -> {
-                    final com.qualityplus.assistant.lib.de.rapha149.signgui.SignGUI signGUI = SignGUI.builder().
-                            setLocation(location).
-                            setColor(DyeColor.BLACK).
-                            setType(Material.OAK_SIGN).
-                            setHandler(signGUIFinishHandler).setGlow(false).
-                            setLines(box.files().messages().getAuctionMessages().getSubmitBid().toArray(new String[0])).
-                            build();
-                    signGUI.open(player);
+                    try {
+                        final SignGUI signGUI = SignGUI.builder().
+                                setLocation(location).
+                                setColor(DyeColor.BLACK).
+                                setType(Material.OAK_SIGN).
+                                setHandler(signGUIFinishHandler).setGlow(false).
+                                setLines(box.files().messages().getAuctionMessages().getSubmitBid().toArray(new String[0])).
+                                build();
+                        signGUI.open(player);
+                    } catch (SignGUIVersionException e) {
+                        e.printStackTrace();
+                    }
                 }, 5);
             }
         }
