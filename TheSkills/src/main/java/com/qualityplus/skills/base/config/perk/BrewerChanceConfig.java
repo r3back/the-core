@@ -53,6 +53,7 @@ public final class BrewerChanceConfig extends OkaeriConfig implements PerkFile {
                 .potionAndChances(ImmutableMap.<XPotion, Double>builder()
                         .put(XPotion.ABSORPTION, 2D)
                         .put(XPotion.CONFUSION, 4D)
+                        //.put(XPotion.NAUSEA, 4D)
                         .put(XPotion.CONDUIT_POWER, 5D)
                         .build())
                 .baseAmount(0)

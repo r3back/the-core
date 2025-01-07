@@ -28,7 +28,7 @@ public final class TheEnchantingProvider extends CommonEnchantmentProvider {
     }
 
     @Override
-    public ItemStack getFinalItem(AnvilSession session) {
+    public ItemStack getFinalItem(final AnvilSession session) {
         ItemStack newItem = session.getItemToUpgrade().clone();
 
         for (Map.Entry<ICoreEnchantment, Integer> entry : getNewEnchantments(session).entrySet())

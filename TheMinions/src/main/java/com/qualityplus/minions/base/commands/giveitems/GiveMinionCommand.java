@@ -44,14 +44,14 @@ public final class GiveMinionCommand extends AssistantCommand {
                 return false;
             }
 
-            Optional<ItemStack> petEgg = MinionEggUtil.createNewEgg(toGive, box.files().config().minionEggItem, pet);
+            final Optional<ItemStack> minionEgg = MinionEggUtil.createNewEgg(toGive, box.files().config().minionEggItem, pet);
 
-            if (!petEgg.isPresent()) {
+            if (!minionEgg.isPresent()) {
                 sender.sendMessage(StringUtils.color(box.files().messages().minionMessages.invalidEgg));
                 return false;
             }
 
-            toGive.getInventory().addItem(petEgg.get());
+            toGive.getInventory().addItem(minionEgg.get());
 
         } else {
             String message = box.files().messages().pluginMessages.useSyntax.replace("%usage%", syntax);

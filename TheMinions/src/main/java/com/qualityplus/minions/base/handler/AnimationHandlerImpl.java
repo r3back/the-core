@@ -32,15 +32,15 @@ public final class AnimationHandlerImpl implements AnimationHandler, LayoutGette
 
     @Override
     public CompletableFuture<Block> getBlockToRotate(ArmorStandHandler handler) {
-        CompletableFuture<Block> future = new CompletableFuture<>();
+        final CompletableFuture<Block> future = new CompletableFuture<>();
 
         handler.manipulateEntity(armorStand1 -> armorStand1.setHeadPose(new EulerAngle(-24.5, 0, 0)));
 
-        List<Vector> vectors = getMinionLayout(minion).equals(LayoutType.THREE_X_THREE) ? MinionAnimationUtil.getThree() : MinionAnimationUtil.getSecond();
+        final List<Vector> vectors = getMinionLayout(minion).equals(LayoutType.THREE_X_THREE) ? MinionAnimationUtil.getThree() : MinionAnimationUtil.getSecond();
 
-        Vector vector = /*vectors.get(0)*/RandomUtil.getRandom(vectors);
+        final Vector vector = /*vectors.get(0)*/RandomUtil.getRandom(vectors);
 
-        Location location = Optional.ofNullable(handler)
+        final Location location = Optional.ofNullable(handler)
                 .map(ArmorStandHandler::getLocation)
                 .filter(Objects::nonNull)
                 .map(e -> e.subtract(new Vector(0, 1, 0)))
@@ -56,26 +56,13 @@ public final class AnimationHandlerImpl implements AnimationHandler, LayoutGette
             return future;
         }
 
-        Location newLocation = location.clone().add(vector);
+        final Location newLocation = location.clone().add(vector);
 
         handler.manipulateEntity(armorStand -> ArmorStandUtil.rotate(armorStand, newLocation));
 
         future.complete(newLocation.getBlock());
 
         return future;
-    }
-
-    private void moveTo(final ArmorStand armorStand, Location newLocation, Entity entity) {
-        double x = (armorStand.getLocation().getX() - newLocation.getX());
-        double y = (armorStand.getLocation().getY() - newLocation.getY());
-        double z = (armorStand.getLocation().getZ() - newLocation.getZ());
-
-        float yaw = (float) ((Math.atan2(z, x) * 180) / Math.PI);
-        float pitch = (float) ((Math.atan2(y, x) * 180) / Math.PI);
-
-        armorStand.getLocation().setYaw(yaw);
-        armorStand.getLocation().setPitch(pitch);
-        //armorStand.setVelocity(entity.getLocation().getDirection());
     }
 
     @Override

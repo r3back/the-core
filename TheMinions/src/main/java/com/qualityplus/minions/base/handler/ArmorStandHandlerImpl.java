@@ -80,17 +80,18 @@ public final class ArmorStandHandlerImpl implements ArmorStandHandler {
 
     @Override
     public void updateDisplayName(MinionState minionState) {
-        MinionStatus status = minionState.getStatus();
-        MinionStatus oldStatus = minionState.getOldStatus();
+        final MinionStatus status = minionState.getStatus();
+        final MinionStatus oldStatus = minionState.getOldStatus();
 
-        if (status == null || (oldStatus != null && oldStatus.equals(status)))
+        if (status == null || (oldStatus != null && oldStatus.equals(status))) {
             return;
+        }
 
-        List<RandomMessage> randomMessages = TheMinions.getApi().getConfigFiles().config().messages.getOrDefault(status, null);
+        final List<RandomMessage> randomMessages = TheMinions.getApi().getConfigFiles().config().messages.getOrDefault(status, null);
 
-        RandomMessage randomSelector = new RandomSelector<>(randomMessages).getRandomOrUniqueItem();
+        final RandomMessage randomSelector = new RandomSelector<>(randomMessages).getRandomOrUniqueItem();
 
-        List<String> msg = Optional.ofNullable(randomSelector).map(RandomMessage::getMessage).orElse(Collections.singletonList("       "));
+        final List<String> msg = Optional.ofNullable(randomSelector).map(RandomMessage::getMessage).orElse(Collections.singletonList("&cInvalid Error!"));
 
         //TODO check this with a future or boolean
         Bukkit.getScheduler().runTask(TheMinions.getInstance(), () -> {

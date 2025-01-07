@@ -55,8 +55,8 @@ public final class Config extends OkaeriConfig {
     public Item skinItem = ItemBuilder.of(XMaterial.PLAYER_HEAD, 1, "&a%minion_skin_display_name%", Collections.singletonList("&7%minion_skin_lore%")).build();
 
     public Map<MinionStatus, List<RandomMessage>> messages = FastMap.listBuilder(MinionStatus.class, RandomMessage.class)
-            .put(MinionStatus.IDEAL_LAYOUT, Arrays.asList(new RandomMessage(Collections.singletonList("          "), 100)))
-            .put(MinionStatus.INVALID_LAYOUT, Arrays.asList(new RandomMessage(Arrays.asList("&c/!\\", "&cInvalid Layout!"), 100)))
-            .put(MinionStatus.STORAGE_FULL, Arrays.asList(new RandomMessage(Arrays.asList("&c/!\\", "&cStorage limit reached!"), 100)))
+            .put(MinionStatus.IDEAL_LAYOUT, List.of(new RandomMessage(Collections.singletonList("          "), 100)))
+            .put(MinionStatus.INVALID_LAYOUT, List.of(new RandomMessage(Arrays.asList("&c/!\\", "&cInvalid Layout!"), 100)))
+            .put(MinionStatus.STORAGE_FULL, List.of(new RandomMessage(Arrays.asList("&c/!\\", "&cStorage limit reached!"), 100)))
             .build();
 }

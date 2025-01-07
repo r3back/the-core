@@ -38,6 +38,7 @@ public final class Config extends OkaeriConfig {
     @Comment("Required levels when TheEnchanting is")
     @Comment("disabled.")
     public Map<XEnchantment, VanillaEnchantRequirement> requiredLevelsForVanilla = FastMap.builder(XEnchantment.class, VanillaEnchantRequirement.class)
+           // .put(XEnchantment.SHARPNESS, VanillaEnchantRequirement.builder()
             .put(XEnchantment.DAMAGE_ALL, VanillaEnchantRequirement.builder()
                     .requiredLevelsToEnchant(FastMap.builder(Integer.class, Integer.class)
                             .put(2, 4)

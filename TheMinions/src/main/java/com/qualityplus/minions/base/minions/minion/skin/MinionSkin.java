@@ -49,13 +49,17 @@ public final class MinionSkin extends OkaeriConfig {
         Optional.ofNullable(handler).ifPresent(armorStandHandler -> armorStandHandler.manipulateEntity(this::apply));
     }
 
-    public void apply(ArmorStand entity) {
+    public void apply(final ArmorStand entity) {
 
-        if (entity == null) return;
+        if (entity == null) {
+            return;
+        }
 
-        EntityEquipment equipment = entity.getEquipment();
+        final EntityEquipment equipment = entity.getEquipment();
 
-        if (equipment == null) return;
+        if (equipment == null) {
+            return;
+        }
 
         Optional.ofNullable(helmet).map(ItemStack::clone).ifPresent(equipment::setHelmet);
         Optional.ofNullable(chestplate).map(ItemStack::clone).ifPresent(equipment::setChestplate);

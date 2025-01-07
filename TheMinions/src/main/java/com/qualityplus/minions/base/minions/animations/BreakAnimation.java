@@ -34,7 +34,7 @@ public final class BreakAnimation extends BukkitRunnable {
     private final double maxTimes;
     private final double blockToPerform;
 
-    protected BreakAnimation(FinishAnimation callback, ArmorStand armorStand, Block block) {
+    private BreakAnimation(final FinishAnimation callback, final ArmorStand armorStand, final Block block) {
         this.callback = callback;
         this.armorStand = armorStand;
         this.block = block;
@@ -47,7 +47,7 @@ public final class BreakAnimation extends BukkitRunnable {
         blockToPerform = 9D / maxTimes;
     }
 
-    public static BukkitRunnable start(FinishAnimation callBack, ArmorStand armorStand, Block block) {
+    public static BukkitRunnable start(final FinishAnimation callBack, final ArmorStand armorStand, final Block block) {
         BukkitRunnable runnable = new BreakAnimation(callBack, armorStand, block);
 
         runnable.runTaskTimer(TheMinions.getInstance(), 0L, 1L);

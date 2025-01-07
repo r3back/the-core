@@ -70,17 +70,21 @@ public final class AnvilMainGUI extends AnvilGUI {
         if (slot == config.getCombinedFilledItem().getSlot()) {
             final ItemStack result = session.getResult();
             final ItemStack cursor = player.getItemOnCursor();
+
+            event.setCancelled(true);
+
             if (BukkitItemUtil.isNull(result)) {
-                event.setCancelled(true);
             } else if (BukkitItemUtil.isNotNull(cursor)) {
-                event.setCancelled(true);
             } else {
+                final ItemStack newItem = this.session.getResult().clone();
                 this.session.setResult(null);
                 Bukkit.getScheduler().runTask(box.plugin(), this::updateInventory);
+                Bukkit.getScheduler().runTask(box.plugin(), () -> player.setItemOnCursor(newItem));
                 return;
             }
         }
 
+        // Handle when anvil to combine is clicked
         if (slot == config.getCombineFilledItem().getSlot()) {
             event.setCancelled(true);
 
@@ -178,7 +182,7 @@ public final class AnvilMainGUI extends AnvilGUI {
         }
 
         if (!BukkitItemUtil.isNull(this.session.getResult())) {
-            this.inventory.setItem(this.config.getCombinedFilledItem().getSlot(), ItemStackUtils.makeItem(this.config.getCombinedFilledItem(), getPlaceholders(this.session.getResult()), this.session.getResult()));
+            this.inventory.setItem(this.config.getCombinedFilledItem().getSlot(), this.session.getResult());
         }
 
         if (answer.isError()) {
