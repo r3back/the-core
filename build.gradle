@@ -41,7 +41,7 @@ subprojects {
         implementation("org.jetbrains:annotations:22.0.0")
 
         compileOnly("org.projectlombok:lombok:1.18.30")
-        compileOnly 'com.github.r3back:the-assistant:3.6.0'
+        compileOnly 'com.github.r3back:the-assistant:3.9.0'
         //These both are temporal until jar class loader be added
         compileOnly 'io.lettuce:lettuce-core:6.1.1.RELEASE'
         compileOnly 'org.mongodb:mongo-java-driver:3.12.10'
