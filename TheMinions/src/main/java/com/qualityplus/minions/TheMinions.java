@@ -19,6 +19,7 @@ import com.qualityplus.minions.base.minions.entity.tracker.MinionEntityTracker;
 import com.qualityplus.minions.listener.chunk.ChunkListenerLegacy;
 import com.qualityplus.minions.listener.chunk.ChunkListenerNewest;
 import com.qualityplus.minions.persistance.MinionsRepository;
+import com.qualityplus.minions.persistance.UserRepository;
 import com.qualityplus.minions.persistance.data.MinionData;
 import com.qualityplus.minions.persistance.data.UserData;
 import com.qualityplus.minions.util.MinionAnimationUtil;
@@ -85,6 +86,7 @@ public final class TheMinions extends OkaeriSilentPlugin {
         AtomicInteger countDown = new AtomicInteger(0);
 
         for (MinionEntity minionEntity : MinionEntityTracker.values()) {
+
             minionEntity.deSpawn(MinionEntity.DeSpawnReason.SERVER_TURNED_OFF);
 
             minionsService.getData(minionEntity.getMinionUniqueId()).ifPresent(Document::save);
@@ -118,34 +120,41 @@ public final class TheMinions extends OkaeriSilentPlugin {
 
 
     @Delayed(time = 5)
-    private void whenStart(@Inject Logger logger, @Inject MinionsRepository repository, @Inject MinionsService service) {
+    private void whenStart(@Inject Logger logger, @Inject MinionsRepository repository, @Inject MinionsService service, @Inject UserRepository userRepository) {
         Collection<MinionData> allData = repository.findAll();
 
         logger.info(String.format("Plugin has loaded %s minions from database!", allData.size()));
 
         allData.forEach(data -> {
 
+            if (data.getOwner() == null) {
+                userRepository.findAll().stream().filter(userData -> userData.getMinionsPlaced()
+                                .contains(data.getUuid()))
+                        .findFirst()
+                        .ifPresent(user -> data.setOwner(user.getUuid()));
+            }
+
             if (data.getLocation() != null) {
 
                 loadChunk(data.getLocation()).thenRun(() -> {
-
-                    Minion minion = Minions.getByID(data.getMinionId());
+                    final Minion minion = Minions.getByID(data.getMinionId());
 
                     if (minion == null) {
                         logger.warning("Failed to load minion " + data.getMinionId());
                         return;
                     }
-                    logger.warning("Loaded Minion with id " + data.getMinionId());
+
+                    logger.warning("Loaded Minion with id " + data.getMinionId() + " and uuid " + data.getUuid() +  " and owner " + data.getOwner());
 
                     service.addData(data);
 
-                    MinionEntity entity = MinionEntityFactory.create(data.getUuid(), data.getOwner(), minion, false);
+                    final MinionEntity entity = MinionEntityFactory.create(data.getUuid(), data.getOwner(), minion, false);
 
                     entity.spawn(data.getLocation(), true);
-
                 });
-
+                return;
             }
+            service.addData(data);
 
         });
     }

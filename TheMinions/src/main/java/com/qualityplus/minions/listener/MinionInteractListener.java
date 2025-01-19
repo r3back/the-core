@@ -30,7 +30,7 @@ public final class MinionInteractListener implements Listener {
 
         Optional<MinionEntity> armorStand = MinionArmorStandTracker.getByID(event.getRightClicked().getUniqueId());
 
-        if (!armorStand.isPresent()) return;
+        if (armorStand.isEmpty()) return;
 
         event.setCancelled(true);
 

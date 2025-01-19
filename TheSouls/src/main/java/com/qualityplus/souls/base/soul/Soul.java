@@ -3,6 +3,7 @@ package com.qualityplus.souls.base.soul;
 import com.qualityplus.assistant.util.StringUtils;
 import com.qualityplus.assistant.util.itemstack.ItemStackUtils;
 import com.qualityplus.assistant.util.location.ALocation;
+import com.qualityplus.souls.TheSouls;
 import com.qualityplus.souls.api.box.Box;
 import com.qualityplus.assistant.lib.eu.okaeri.configs.OkaeriConfig;
 import com.qualityplus.assistant.lib.eu.okaeri.configs.annotation.Exclude;
@@ -15,6 +16,8 @@ import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.metadata.FixedMetadataValue;
+import org.bukkit.scheduler.BukkitRunnable;
+import org.bukkit.scheduler.BukkitTask;
 
 import java.util.List;
 import java.util.Optional;
@@ -47,27 +50,39 @@ public final class Soul extends OkaeriConfig {
                 .forEach(message -> player.sendMessage(StringUtils.color(message)));
     }
 
-    public void enable(Box box) {
-        if (soulEntity != null) soulEntity.remove();
+    public void enable(Box box, boolean serverStart) {
+        if (soulEntity != null) {
+            soulEntity.remove();
+        }
 
-        Location loc = location.getLocation();
+        if (Bukkit.getPluginManager().isPluginEnabled("BentoBox") && serverStart) {
+            spawnSoul(box, 20 * 15);
+            return;
+        }
 
-        soulEntity = loc.getWorld().spawn(loc, ArmorStand.class);
+        spawnSoul(box, 1);
+    }
 
-        soulEntity.setVisible(false);
+    private void spawnSoul(final Box box, final int time) {
+        Bukkit.getScheduler().runTaskLater(box.plugin(), () -> {
+            Location loc = location.getLocation();
 
-        soulEntity.setGravity(false);
+            soulEntity = loc.getWorld().spawn(loc, ArmorStand.class);
 
-        soulEntity.setHelmet(ItemStackUtils.makeItem(box.files().config().soulItem));
+            soulEntity.setVisible(false);
 
-        soulEntity.setInvulnerable(true);
+            soulEntity.setGravity(false);
 
-        soulEntity.setCustomName("theSouls");
+            soulEntity.setHelmet(ItemStackUtils.makeItem(box.files().config().soulItem));
 
-        soulEntity.setCustomNameVisible(false);
+            soulEntity.setInvulnerable(true);
 
-        soulEntity.setMetadata("soulData", new FixedMetadataValue(box.plugin(), "soulData"));
+            soulEntity.setCustomName("theSouls");
 
+            soulEntity.setCustomNameVisible(false);
+
+            soulEntity.setMetadata("soulData", new FixedMetadataValue(box.plugin(), "soulData"));
+        }, time);
     }
 
     public void disable() {

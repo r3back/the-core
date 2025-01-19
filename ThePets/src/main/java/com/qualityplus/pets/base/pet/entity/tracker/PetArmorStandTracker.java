@@ -1,4 +1,4 @@
-package com.qualityplus.pets.base.pet.entity.tracket;
+package com.qualityplus.pets.base.pet.entity.tracker;
 
 import com.qualityplus.pets.api.pet.entity.PetEntity;
 import org.bukkit.entity.ArmorStand;

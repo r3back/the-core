@@ -63,7 +63,7 @@ public final class SoulsPlaceListener implements Listener {
                 .location(new ALocation(location))
                 .build();
 
-        soul.enable(box);
+        soul.enable(box, false);
 
         box.files().souls().soulList.add(soul);
 

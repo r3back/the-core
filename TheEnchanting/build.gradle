@@ -7,10 +7,9 @@ dependencies {
     project(':TheEnchanting:TheEnchanting-NMS:TheEnchanting-Legacy')
     project(':TheEnchanting:TheEnchanting-NMS:TheEnchanting-Newest')
     project(':TheEnchanting:TheEnchanting-NMS:TheEnchanting-Newest-1_20')
-    compileOnly ("org.spigotmc:spigot-api:1.15.2-R0.1-SNAPSHOT") {
-        exclude group: "net.md-5", module: "bungeecord-chat"
-    }
+    compileOnly 'org.spigotmc:spigot-api:1.18.1-R0.1-SNAPSHOT'
     compileOnly fileTree(dir: 'libs', include: ['*.jar'])
     compileOnly("com.willfp:EcoEnchants:12.19.3")
+    compileOnly("com.willfp:EcoSkills:3.60.4")
     compileOnly("com.willfp:eco:6.74.5")
 }

@@ -66,7 +66,9 @@ public abstract class ArmorStandMinion<T> extends MinecraftMinion implements Lis
     public void spawn(Location location, boolean load) {
         super.spawn(location, load);
 
-        if (load) load();
+        if (load) {
+            load();
+        }
 
         updateInventory();
 
@@ -81,7 +83,11 @@ public abstract class ArmorStandMinion<T> extends MinecraftMinion implements Lis
 
         if (!deSpawnReason.equals(DeSpawnReason.PLAYER_DE_SPAWN_PET)) return;
 
-        getData().ifPresent(data -> data.setLocation(null));
+        final Optional<MinionData> data = getData();
+        if (data.isPresent()) {
+            data.get().setLocation(null);
+            data.ifPresent(d -> Bukkit.getScheduler().runTaskAsynchronously(TheMinions.getInstance(), () -> d.save()));
+        }
     }
 
     @Override

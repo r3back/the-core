@@ -17,7 +17,7 @@ import java.util.Optional;
 
 @UtilityClass
 public class EnchantingFinderUtil {
-    public int getItemLevel(ItemStack itemStack, Enchantment enchantment) {
+    public int getItemLevel(final ItemStack itemStack, final Enchantment enchantment) {
         if (itemStack == null || enchantment == null) return 0;
 
         ItemMeta meta = itemStack.getItemMeta();

@@ -15,7 +15,10 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerInteractAtEntityEvent;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Component
 public final class PlayerCollectSoulListener implements Listener {
@@ -78,6 +81,16 @@ public final class PlayerCollectSoulListener implements Listener {
     }
 
     private void checkIfCollectedAll(Player player, SoulsData data) {
+        final List<UUID> collectedSouls = new ArrayList<>();
+
+        for (UUID uuid : data.getSoulsCollected()) {
+            if (box.files().souls().soulList.stream().anyMatch(soul -> soul.getUuid() == uuid)) {
+                collectedSouls.add(uuid);
+            }
+        }
+
+        data.setSoulsCollected(collectedSouls);
+
         if (data.getSoulsCollected().size() != box.files().souls().soulList.size()) return;
 
         box.files().config().allSoulsFoundCommands.stream()

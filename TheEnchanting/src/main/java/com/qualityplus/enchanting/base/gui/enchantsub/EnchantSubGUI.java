@@ -38,7 +38,7 @@ public final class EnchantSubGUI extends EnchantingGUI {
     private final int bookShelf;
     private final UUID uuid;
 
-    public EnchantSubGUI(Box box, int bookShelf, ItemStack item, ICoreEnchantment enchantment, UUID uuid) {
+    public EnchantSubGUI(final Box box, final int bookShelf, final ItemStack item, final ICoreEnchantment enchantment, final UUID uuid) {
         super(box.files().inventories().levelEnchantGUI, box);
 
         this.config = box.files().inventories().levelEnchantGUI;
@@ -52,12 +52,12 @@ public final class EnchantSubGUI extends EnchantingGUI {
     public @NotNull Inventory getInventory() {
         InventoryUtils.fillInventory(inventory, config.getBackground());
 
-        List<Integer> slots = config.getEnchantmentSlotsMap().getOrDefault(enchantment.getMaxLevel(), Collections.emptyList());
+        final List<Integer> slots = config.getEnchantmentSlotsMap().getOrDefault(enchantment.getMaxLevel(), Collections.emptyList());
 
         int level = enchantment.getStartLevel();
 
         //enchanting_enchant_level_to_enchant_roman
-        for (Integer slot : slots) {
+        for (final Integer slot : slots) {
             List<IPlaceholder> placeholders = EnchantingPlaceholderUtil.getEnchantPlaceholders(enchantment, level);
 
             inventory.setItem(slot, ItemStackUtils.makeItem(config.getEnchantItem(), PlaceholderBuilder.create(placeholders)
@@ -79,14 +79,16 @@ public final class EnchantSubGUI extends EnchantingGUI {
     }
 
     @Override
-    public void onInventoryClick(InventoryClickEvent event) {
+    public void onInventoryClick(final InventoryClickEvent event) {
         event.setCancelled(true);
 
-        if (!getTarget(event).equals(ClickTarget.INSIDE)) return;
+        if (!getTarget(event).equals(ClickTarget.INSIDE)) {
+            return;
+        }
 
-        Player player = (Player) event.getWhoClicked();
+        final Player player = (Player) event.getWhoClicked();
 
-        int slot = event.getSlot();
+        final int slot = event.getSlot();
 
         if (isItem(slot, config.getCloseGUI())) {
             player.closeInventory();
@@ -94,36 +96,37 @@ public final class EnchantSubGUI extends EnchantingGUI {
             giveItem = false;
             player.openInventory(new EnchantMainGUI(box, 1, bookShelf, item).getInventory());
         } else if (enchantments.containsKey(slot)) {
-            int level = enchantments.get(slot);
+            final int level = enchantments.get(slot);
 
-            ClickStatus status = getClickStatus(level);
+            final ClickStatus status = getClickStatus(level);
 
             if (status != ClickStatus.ENCHANT_AVAILABLE && status != ClickStatus.REMOVE_AVAILABLE) {
                 sendWrongMessage(player, status);
                 return;
             }
-            boolean isRemoveEnchant = status == ClickStatus.REMOVE_AVAILABLE;
+            final boolean isRemoveEnchant = status == ClickStatus.REMOVE_AVAILABLE;
 
-            EnchantmentSession session = new EnchantmentSessionImpl(enchantment, level);
+            final EnchantmentSession session = new EnchantmentSessionImpl(enchantment, level);
 
-            TheEnchantingEnchantEvent event1 = new TheEnchantingEnchantEvent(player, session);
+            final TheEnchantingEnchantEvent event1 = new TheEnchantingEnchantEvent(player, session);
 
             Bukkit.getServer().getPluginManager().callEvent(event1);
 
-            if (event1.isCancelled())
+            if (event1.isCancelled()) {
                 return;
+            }
 
             removeRequirements(player, isRemoveEnchant, level);
 
             giveItem = false;
 
-            ItemStack itemStack = isRemoveEnchant ? TheEnchanting.getApi().removeEnchantment(item, session) : TheEnchanting.getApi().addEnchantment(item, session);
+            final ItemStack itemStack = isRemoveEnchant ? TheEnchanting.getApi().removeEnchantment(item, session) : TheEnchanting.getApi().addEnchantment(item, session);
 
             player.openInventory(new EnchantSubGUI(box, bookShelf, itemStack, enchantment, uuid).getInventory());
 
-            String message = isRemoveEnchant ? box.files().messages().enchantingMessages.enchantRemoved : box.files().messages().enchantingMessages.enchantApplied;
+            final String message = isRemoveEnchant ? box.files().messages().enchantingMessages.enchantRemoved : box.files().messages().enchantingMessages.enchantApplied;
 
-            List<IPlaceholder> placeholders = PlaceholderBuilder.create(EnchantingPlaceholderUtil.getEnchantPlaceholders(enchantment, level))
+            final List<IPlaceholder> placeholders = PlaceholderBuilder.create(EnchantingPlaceholderUtil.getEnchantPlaceholders(enchantment, level))
                     .with(new Placeholder("enchanting_enchant_level_roman", NumberUtil.toRoman(level)))
                     .with(new Placeholder("enchanting_item_name", BukkitItemUtil.getName(itemStack)))
                     .get();
@@ -133,28 +136,29 @@ public final class EnchantSubGUI extends EnchantingGUI {
     }
 
 
-    private void sendWrongMessage(Player player, ClickStatus status) {
-        if (status.equals(ClickStatus.NOT_ENOUGH_MONEY_TO_REMOVE) || status.equals(ClickStatus.NOT_ENOUGH_MONEY))
+    private void sendWrongMessage(final Player player, final ClickStatus status) {
+        if (status.equals(ClickStatus.NOT_ENOUGH_MONEY_TO_REMOVE) || status.equals(ClickStatus.NOT_ENOUGH_MONEY)) {
             player.sendMessage(StringUtils.color(box.files().messages().enchantingMessages.youDontHaveEnoughMoney));
-        else if (status.equals(ClickStatus.NOT_ENOUGH_LEVELS_TO_REMOVE) || status.equals(ClickStatus.NOT_ENOUGH_LEVELS))
+        } else if (status.equals(ClickStatus.NOT_ENOUGH_LEVELS_TO_REMOVE) || status.equals(ClickStatus.NOT_ENOUGH_LEVELS)) {
             player.sendMessage(StringUtils.color(box.files().messages().enchantingMessages.youDontHaveEnoughLevels));
-        else if (status.equals(ClickStatus.NOT_ENOUGH_PERMISSIONS_TO_REMOVE) || status.equals(ClickStatus.NOT_ENOUGH_PERMISSIONS))
+        } else if (status.equals(ClickStatus.NOT_ENOUGH_PERMISSIONS_TO_REMOVE) || status.equals(ClickStatus.NOT_ENOUGH_PERMISSIONS)) {
             player.sendMessage(StringUtils.color(box.files().messages().enchantingMessages.youDontHaveEnoughPermissions));
-        else
+        } else {
             player.sendMessage(StringUtils.color(box.files().messages().enchantingMessages.higherLevelAlreadyPresent));
+        }
     }
 
-    private void removeRequirements(Player player, boolean isRemoveEnchant, int level) {
-        double xp = isRemoveEnchant ? enchantment.getRequiredLevelToRemove(level) : enchantment.getRequiredLevelToEnchant(level);
-        double money = isRemoveEnchant ? enchantment.getRequiredMoneyToRemove(level) : enchantment.getRequiredMoneyToEnchant(level);
+    private void removeRequirements(final Player player, final boolean isRemoveEnchant, final int level) {
+        final double xp = isRemoveEnchant ? enchantment.getRequiredLevelToRemove(level) : enchantment.getRequiredLevelToEnchant(level);
+        final double money = isRemoveEnchant ? enchantment.getRequiredMoneyToRemove(level) : enchantment.getRequiredMoneyToEnchant(level);
 
         player.setLevel((int) (player.getLevel() - xp));
         TheAssistantPlugin.getAPI().getAddons().getEconomy().withdrawMoney(player, money);
     }
 
     @Override
-    public void onInventoryClose(InventoryCloseEvent event) {
-        Player player = (Player) event.getPlayer();
+    public void onInventoryClose(final InventoryCloseEvent event) {
+        final Player player = (Player) event.getPlayer();
 
         if (BukkitItemUtil.isNull(item)) return;
 
@@ -179,11 +183,10 @@ public final class EnchantSubGUI extends EnchantingGUI {
     }
 
     private List<IPlaceholder> getWarnings(int level) {
-        int itemLevel = EnchantingFinderUtil.getItemLevel(item, enchantment.getEnchantment());
-
-        Optional<ICoreEnchantment> incompatibility = TheEnchanting.getApi().getIncompatibility(item, enchantment);
+        final int itemLevel = EnchantingFinderUtil.getItemLevel(item, enchantment.getEnchantment());
+        final Optional<ICoreEnchantment> incompatibility = TheEnchanting.getApi().getIncompatibility(item, enchantment);
         if (incompatibility.isPresent()) {
-            List<String> processed = StringUtils.processMulti(box.files().messages().enchantingPlaceholders.warningThisWillRemoveEnchantment, Collections.singletonList(new Placeholder("enchanting_enchant_conflict_displayname", incompatibility.get().getName())));
+            final List<String> processed = StringUtils.processMulti(box.files().messages().enchantingPlaceholders.warningThisWillRemoveEnchantment, Collections.singletonList(new Placeholder("enchanting_enchant_conflict_displayname", incompatibility.get().getName())));
             return Collections.singletonList(new Placeholder("enchanting_enchant_warning", processed));
         } else if (itemLevel == level) {
             return Collections.singletonList(new Placeholder("enchanting_enchant_warning", box.files().messages().enchantingPlaceholders.enchantmentIsAlreadyPresent));
@@ -191,8 +194,8 @@ public final class EnchantSubGUI extends EnchantingGUI {
             return Collections.singletonList(new Placeholder("enchanting_enchant_warning", box.files().messages().enchantingPlaceholders.emptyWarning));
     }
 
-    private IPlaceholder getClickPlaceholder(int level) {
-        ClickStatus status = getClickStatus(level);
+    private IPlaceholder getClickPlaceholder(final int level) {
+        final ClickStatus status = getClickStatus(level);
         if (status.equals(ClickStatus.HIGHER_LEVEL_PRESENT))
             return new Placeholder("enchanting_enchant_click_placeholder", box.files().messages().enchantingPlaceholders.higherLevelPresent);
         else if (status.equals(ClickStatus.NOT_ENOUGH_MONEY_TO_REMOVE) || status.equals(ClickStatus.NOT_ENOUGH_MONEY))

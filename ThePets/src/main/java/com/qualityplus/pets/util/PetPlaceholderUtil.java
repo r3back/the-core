@@ -9,6 +9,7 @@ import com.qualityplus.pets.api.category.Categories;
 import com.qualityplus.pets.api.pet.Pets;
 import com.qualityplus.pets.api.pet.category.PetCategory;
 import com.qualityplus.pets.base.pet.Pet;
+import com.qualityplus.pets.base.pet.egg.PetEgg;
 import com.qualityplus.pets.persistance.data.PetData;
 import lombok.experimental.UtilityClass;
 
@@ -104,6 +105,7 @@ public class PetPlaceholderUtil {
         double percentage = ActionBarUtils.getPercentageFromTotal(xp, maxXp);
 
         return PlaceholderBuilder.create(
+                new Placeholder("pet_egg_displayname", pet.map(Pet::getPetEgg).map(PetEgg::getDisplayName).orElse("")),
                 new Placeholder("pet_level_number", level),
                 new Placeholder("pet_level_roman", NumberUtil.toRoman(level)),
                 new Placeholder("pet_level_progress", percentage),

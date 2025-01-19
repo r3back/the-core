@@ -67,6 +67,7 @@ public final class PetsInternalListener implements Listener {
             if (settings.message.isEnabled())
                 StringUtils.processMulti(settings.message.getMessages(), placeholders).forEach(msg -> player.sendMessage(StringUtils.color(msg)));
 
+            entity.get().update();
         });
     }
 }
