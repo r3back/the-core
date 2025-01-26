@@ -33,7 +33,6 @@ import lombok.Getter;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
-import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.util.Vector;
 
 import java.util.Collection;
@@ -45,8 +44,8 @@ import java.util.logging.Logger;
 
 @Scan(deep = true)
 public final class TheMinions extends OkaeriSilentPlugin {
-    private static @Inject
-    @Getter TheMinionsAPI api;
+    @Inject @Getter
+    private static TheMinionsAPI api;
     private static TheMinions INSTANCE;
 
     public static TheMinions getInstance() {
@@ -82,14 +81,11 @@ public final class TheMinions extends OkaeriSilentPlugin {
     }
 
     @Planned(ExecutionPhase.PRE_SHUTDOWN)
-    private void whenStopSaveMinions(@Inject Logger logger, @Inject MinionsService minionsService) {
-        AtomicInteger countDown = new AtomicInteger(0);
+    private void whenStopSaveMinions(final @Inject Logger logger) {
+        final AtomicInteger countDown = new AtomicInteger(0);
 
-        for (MinionEntity minionEntity : MinionEntityTracker.values()) {
-
-            minionEntity.deSpawn(MinionEntity.DeSpawnReason.SERVER_TURNED_OFF);
-
-            minionsService.getData(minionEntity.getMinionUniqueId()).ifPresent(Document::save);
+        for (final MinionEntity minionEntity : MinionEntityTracker.values()) {
+            minionEntity.unloadMinion(MinionEntity.DeSpawnReason.SERVER_TURNED_OFF, false);
 
             countDown.getAndIncrement();
         }
@@ -98,7 +94,7 @@ public final class TheMinions extends OkaeriSilentPlugin {
     }
 
     @Planned(ExecutionPhase.POST_STARTUP)
-    private void whenStartFixMessages(@Inject Messages messages) {
+    private void whenStartFixMessages(final @Inject Messages messages) {
         boolean save = false;
         if (messages.minionMessages.pickUpMinion == null) {
             save = true;
@@ -150,7 +146,7 @@ public final class TheMinions extends OkaeriSilentPlugin {
 
                     final MinionEntity entity = MinionEntityFactory.create(data.getUuid(), data.getOwner(), minion, false);
 
-                    entity.spawn(data.getLocation(), true);
+                    entity.spawnMinion(data.getLocation(), true);
                 });
                 return;
             }

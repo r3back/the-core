@@ -55,7 +55,9 @@ public final class Soul extends OkaeriConfig {
             soulEntity.remove();
         }
 
-        if (Bukkit.getPluginManager().isPluginEnabled("BentoBox") && serverStart) {
+        final boolean loadAsync = Bukkit.getPluginManager().isPluginEnabled("BentoBox") || Bukkit.getPluginManager().isPluginEnabled("SuperiorSkyblock2");
+
+        if (loadAsync && serverStart) {
             spawnSoul(box, 20 * 15);
             return;
         }

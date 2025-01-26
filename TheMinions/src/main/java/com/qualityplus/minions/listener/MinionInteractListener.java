@@ -7,6 +7,7 @@ import com.qualityplus.minions.base.gui.main.MainMinionGUI;
 import com.qualityplus.minions.base.minions.entity.tracker.MinionArmorStandTracker;
 
 import com.qualityplus.assistant.lib.eu.okaeri.platform.core.annotation.Component;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;

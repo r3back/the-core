@@ -26,7 +26,7 @@ public final class ChunkListenerLegacy implements Listener {
 
             if (!isIn(chunk.getChunkSnapshot(), location)) return;
 
-            entity.load();
+            entity.spawnMinionEntity();
         }
     }
 
@@ -41,7 +41,7 @@ public final class ChunkListenerLegacy implements Listener {
             if (!minionEntity.isPresent()) continue;
 
 
-            minionEntity.get().unload();
+            minionEntity.get().unloadMinionEntity();
 
         }
     }

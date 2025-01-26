@@ -32,19 +32,19 @@ public final class GiveMinionCommand extends AssistantCommand {
         if (args.length == 3) {
             Player toGive = Bukkit.getPlayer(args[1]);
 
-            Minion pet = Minions.getByID(args[2]);
+            Minion minion = Minions.getByID(args[2]);
 
             if (toGive == null) {
                 sender.sendMessage(StringUtils.color(box.files().messages().pluginMessages.invalidPlayer));
                 return false;
             }
 
-            if (pet == null) {
+            if (minion == null) {
                 sender.sendMessage(StringUtils.color(box.files().messages().minionMessages.invalidMinion));
                 return false;
             }
 
-            final Optional<ItemStack> minionEgg = MinionEggUtil.createNewEgg(toGive, box.files().config().minionEggItem, pet);
+            final Optional<ItemStack> minionEgg = MinionEggUtil.createNewEgg(toGive, box.files().config().minionEggItem, minion);
 
             if (!minionEgg.isPresent()) {
                 sender.sendMessage(StringUtils.color(box.files().messages().minionMessages.invalidEgg));

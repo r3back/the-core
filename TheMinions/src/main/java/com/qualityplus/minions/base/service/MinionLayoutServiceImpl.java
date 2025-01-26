@@ -1,14 +1,17 @@
-package com.qualityplus.minions.base.newarch.base.handler;
+package com.qualityplus.minions.base.service;
 
 import com.qualityplus.assistant.lib.com.cryptomorin.xseries.XMaterial;
+import com.qualityplus.assistant.lib.eu.okaeri.platform.core.annotation.Component;
+import com.qualityplus.assistant.util.armorstand.ArmorStandUtil;
 import com.qualityplus.assistant.util.block.BlockUtils;
-import com.qualityplus.minions.api.TheMinionsAPI;
+import com.qualityplus.minions.TheMinions;
+import com.qualityplus.minions.api.handler.ArmorStandHandler;
+import com.qualityplus.minions.api.minion.MinionEntity;
+import com.qualityplus.minions.api.service.MinionLayoutService;
 import com.qualityplus.minions.base.minions.minion.Minion;
 import com.qualityplus.minions.base.minions.minion.layout.LayoutType;
 import com.qualityplus.minions.base.minions.minion.layout.MinionLayout;
 import com.qualityplus.minions.base.minions.minion.upgrade.MinionUpgrade;
-import com.qualityplus.minions.base.newarch.api.entity.NewMinionEntity;
-import com.qualityplus.minions.base.newarch.api.handler.NewLayoutHandler;
 import com.qualityplus.minions.persistance.data.MinionData;
 import com.qualityplus.minions.persistance.data.upgrade.UpgradeEntity;
 import com.qualityplus.minions.util.MinionAnimationUtil;
@@ -21,72 +24,70 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
-public final class NewLayoutHandlerImpl implements NewLayoutHandler {
-    private TheMinionsAPI api;
+@Component
+public class MinionLayoutServiceImpl implements MinionLayoutService {
+    @Override
+    public LayoutType getMinionLayout(final MinionEntity entity) {
+        final Minion minion = entity.getMinion();
+        final LayoutType layoutType = minion.getMinionLayout().getType();
+
+        final Optional<MinionData> data = TheMinions.getApi().getMinionsService().getData(entity.getMinionUniqueId());
+        if (data.isEmpty()) {
+            return layoutType;
+        }
+
+        final boolean hasExpander = hasMinionExpander(data.get().getFirstUpgrade()) || hasMinionExpander(data.get().getSecondUpgrade());
+        if (hasExpander) {
+            return LayoutType.THREE_X_THREE;
+        }
+
+        return layoutType;
+    }
 
     @Override
-    public boolean hasValidLayout(final NewMinionEntity entity) {
-        final Minion minion = entity.getConfig();
-
+    public boolean hasInvalidLayout(final MinionEntity entity) {
+        final Minion minion = entity.getMinion();
         final MinionLayout minionLayout = minion.getMinionLayout();
 
         final List<XMaterial> noException = minionLayout.getAllMaterialsCauseExceptionExcept();
         final List<XMaterial> exceptions = minionLayout.getMaterialThatCauseException();
-
-        final List<Vector> vectors = getMinionLayout(entity).equals(LayoutType.THREE_X_THREE) ? MinionAnimationUtil.getThree() : MinionAnimationUtil.getSecond();
+        final LayoutType layoutType = minion.getMinionLayout().getType();
+        final List<Vector> vectors = layoutType.equals(LayoutType.THREE_X_THREE) ? MinionAnimationUtil.getThree() : MinionAnimationUtil.getSecond();
 
         final Location location = Optional.ofNullable(entity.getEntity())
-                .filter(Objects::nonNull)
+                .filter(ArmorStandUtil::entityIsValid)
                 .map(ArmorStand::getLocation)
-                .filter(Objects::nonNull)
-                .map(Location::clone)
                 .map(e -> e.subtract(new Vector(0, 1, 0)))
                 .orElse(null);
 
         if (location == null) {
-            return true;
+            return false;
         }
 
         for (final Vector vector : vectors) {
+            if (!entity.getState().isArmorStandLoaded()) {
+                return false;
+            }
+
             final Location newLocation = location.clone().add(vector);
-
             final Block block = newLocation.getBlock();
-
             if (BlockUtils.isNull(block)) {
                 continue;
             }
 
             final XMaterial material = XMaterial.matchXMaterial(block.getType());
-
             if (exceptions.contains(material)) {
-                return false;
+                return true;
             }
 
             if (noException.contains(material)) {
                 continue;
             }
 
-            return false;
+            return true;
         }
 
-        return true;
-    }
-
-    private LayoutType getMinionLayout(final NewMinionEntity entity) {
-        final Minion minion = entity.getConfig();
-
-        if (minion.isLayoutType(LayoutType.THREE_X_THREE)) {
-            return LayoutType.THREE_X_THREE;
-        }
-
-        Optional<MinionData> minionData = this.api.getMinionsService().getData(entity.getId());
-
-        boolean firstUpgrade = minionData.map(data -> hasMinionExpander(data.getFirstUpgrade())).orElse(false);
-        boolean secondUpgrade = minionData.map(data -> hasMinionExpander(data.getSecondUpgrade())).orElse(false);
-
-        if (firstUpgrade || secondUpgrade) return LayoutType.THREE_X_THREE;
-
-        return LayoutType.TWO_X_TWO;
+        return false;
     }
 
     private boolean hasMinionExpander(final UpgradeEntity entity) {
@@ -94,8 +95,7 @@ public final class NewLayoutHandlerImpl implements NewLayoutHandler {
             return false;
         }
 
-        final MinionUpgrade upgrade = this.api.getConfigFiles().upgrades().normalUpgrades.getOrDefault(entity.getId(), null);
-
+        final MinionUpgrade upgrade = TheMinions.getApi().getConfigFiles().upgrades().normalUpgrades.getOrDefault(entity.getId(), null);
         if (upgrade == null) {
             return false;
         }

@@ -1,116 +1,34 @@
 package com.qualityplus.minions.base.handler;
 
-import com.qualityplus.assistant.util.armorstand.ArmorStandUtil;
-import com.qualityplus.assistant.util.random.RandomUtil;
 import com.qualityplus.minions.TheMinions;
 import com.qualityplus.minions.api.handler.AnimationHandler;
 import com.qualityplus.minions.api.handler.ArmorStandHandler;
-import com.qualityplus.minions.base.minions.entity.getter.LayoutGetter;
+import com.qualityplus.minions.base.minions.entity.getter.DataGetter;
 import com.qualityplus.minions.base.minions.entity.mob.MinionMobEntity;
 import com.qualityplus.minions.base.minions.minion.Minion;
-import com.qualityplus.minions.base.minions.minion.layout.LayoutType;
 import com.qualityplus.minions.base.minions.minion.mob.MinionMob;
-import com.qualityplus.minions.util.MinionAnimationUtil;
 import lombok.AllArgsConstructor;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.block.Block;
-import org.bukkit.block.BlockFace;
-import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Entity;
-import org.bukkit.scheduler.BukkitScheduler;
-import org.bukkit.util.EulerAngle;
-import org.bukkit.util.Vector;
 
 import java.util.*;
 import java.util.concurrent.CompletableFuture;
 
 @AllArgsConstructor
-public final class AnimationHandlerImpl implements AnimationHandler, LayoutGetter {
+public final class AnimationHandlerImpl implements AnimationHandler, DataGetter {
     private final UUID minionUniqueId;
     private final Minion minion;
 
     @Override
-    public CompletableFuture<Block> getBlockToRotate(ArmorStandHandler handler) {
-        final CompletableFuture<Block> future = new CompletableFuture<>();
-
-        handler.manipulateEntity(armorStand1 -> armorStand1.setHeadPose(new EulerAngle(-24.5, 0, 0)));
-
-        final List<Vector> vectors = getMinionLayout(minion).equals(LayoutType.THREE_X_THREE) ? MinionAnimationUtil.getThree() : MinionAnimationUtil.getSecond();
-
-        final Vector vector = /*vectors.get(0)*/RandomUtil.getRandom(vectors);
-
-        final Location location = Optional.ofNullable(handler)
-                .map(ArmorStandHandler::getLocation)
-                .filter(Objects::nonNull)
-                .map(e -> e.subtract(new Vector(0, 1, 0)))
-                .orElse(null);
-
-        if (location == null) {
-            future.complete(null);
-            return future;
-        }
-
-        if (vector == null) {
-            future.complete(location.getBlock());
-            return future;
-        }
-
-        final Location newLocation = location.clone().add(vector);
-
-        handler.manipulateEntity(armorStand -> ArmorStandUtil.rotate(armorStand, newLocation));
-
-        future.complete(newLocation.getBlock());
-
-        return future;
+    public CompletableFuture<Block> getBlockToRotate(final ArmorStandHandler handler) {
+        return null;
     }
 
     @Override
     public CompletableFuture<MinionMobEntity> getEntityToRotate(ArmorStandHandler handler) {
-        CompletableFuture<MinionMobEntity> future = new CompletableFuture<>();
-
-        //handler.manipulateEntity(armorStand1 -> armorStand1.setHeadPose(new EulerAngle(-24.5, 0, 0)));
-
-        Location location = Optional.ofNullable(handler)
-                .map(ArmorStandHandler::getLocation)
-                .filter(Objects::nonNull)
-                .orElse(null);
-
-        if (location == null) {
-            future.complete(MinionMobEntity.builder().build());
-            return future;
-        }
-
-        getNearEntity(location).thenAccept(entity -> {
-            int random = RandomUtil.randomUpTo(100);
-
-            if (entity == null || random > 50) {
-                double x = RandomUtil.randomBetween(1, 2);
-                double z = RandomUtil.randomBetween(1, 2);
-
-                Location newLocation = location.clone()
-                        .add(x, 0, z);
-
-                handler.manipulateEntity(armorStand -> ArmorStandUtil.rotate(armorStand, newLocation));
-
-                future.complete(MinionMobEntity.builder().location(newLocation).build());
-                return;
-            }
-
-            Location block = entity.getLocation().getBlock().getRelative(BlockFace.DOWN).getLocation().clone();
-
-            //Vector vector = block.getDirection().normalize();
-
-            //Location newLocation = location.clone().add(vector);
-
-            handler.manipulateEntity(armorStand -> ArmorStandUtil.rotate(armorStand, block));
-
-            future.complete(MinionMobEntity.builder().entity(entity).build());
-        });
-
-
-
-        return future;
+        return null;
     }
 
     private CompletableFuture<Entity> getNearEntity(Location location) {

@@ -23,6 +23,7 @@ import com.qualityplus.minions.base.minions.minion.Minion;
 import com.qualityplus.minions.base.minions.minion.layout.LayoutGUISettings;
 import com.qualityplus.minions.base.minions.minion.layout.LayoutItem;
 import com.qualityplus.minions.base.minions.minion.update.MinionSettings;
+import com.qualityplus.minions.base.minions.minion.update.item.ItemSettings;
 import com.qualityplus.minions.base.minions.minion.update.item.UpgradeSettings;
 import com.qualityplus.minions.base.minions.minion.upgrade.MinionUpgrade;
 import com.qualityplus.minions.persistance.data.MinionData;
@@ -53,8 +54,6 @@ public final class ChangeItemGUI extends MinionGUI {
     @Override
     public @NotNull Inventory getInventory() {
         InventoryUtils.fillInventory(inventory, config.getBackground());
-
-
 
         List<IPlaceholder> newItemPlaceholders = PlaceholderBuilder.create(
                 new Placeholder("new_item_displayname", BukkitItemUtil.getName(newItem)),
@@ -101,9 +100,18 @@ public final class ChangeItemGUI extends MinionGUI {
                         .getRequiredItemsToCreateSingle();
             }
         } else if (changeItemRequest.is(ChangeItem.DROP_ITEM)) {
-            MinionSettings minionSettings = changeItemRequest.getMinion().getMinionUpdateSettings();
+            final MinionSettings minionSettings = changeItemRequest.getMinion().getMinionUpdateSettings();
+            final ItemSettings baseItem = minionSettings.getBaseItem();
+            if (baseItem == null) {
+                return null;
+            }
 
-            return minionSettings.getBaseItem().getItemsToGive().stream().findFirst().orElse(null);
+            final List<ItemStack> itemsToGive = baseItem.getItemsToGive();
+            if (itemsToGive == null || itemsToGive.isEmpty()) {
+                return null;
+            }
+
+            return itemsToGive.getFirst();
         }
 
 
