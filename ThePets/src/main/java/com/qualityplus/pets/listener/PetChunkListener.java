@@ -25,36 +25,35 @@ public final class PetChunkListener implements Listener {
     private @Inject Plugin plugin;
 
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
-    public void onChunk(ChunkLoadEvent e) {
+    public void onChunk(final ChunkLoadEvent e) {
+        final Chunk chunk = e.getChunk();
+        for (final PetEntity entity : PetEntityTracker.values()) {
+            final Location location = entity.getSpawn();
 
-        Chunk chunk = e.getChunk();
-        //Bukkit.getScheduler().runTaskAsynchronously(plugin, () -> {
-        for (PetEntity entity : PetEntityTracker.values()) {
-            Location location = entity.getSpawn();
-
-            if (!isIn(chunk.getChunkSnapshot(), location)) return;
+            if (!isIn(chunk.getChunkSnapshot(), location)) {
+                continue;
+            }
 
             entity.load();
         }
-        //});
 
     }
 
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
-    public void onChunk(ChunkUnloadEvent e) {
+    public void onChunk(final ChunkUnloadEvent e) {
+        for (final Entity entity : e.getChunk().getEntities()) {
+            if (!(entity instanceof ArmorStand)) {
+                continue;
+            }
 
-        //Bukkit.getScheduler().runTaskAsynchronously(plugin, () -> {
-        for (Entity entity : e.getChunk().getEntities()) {
-            if (!(entity instanceof ArmorStand)) return;
+            final Optional<PetEntity> minionEntity = PetArmorStandTracker.getByID(entity.getUniqueId());
 
-            Optional<PetEntity> minionEntity = PetArmorStandTracker.getByID(entity.getUniqueId());
-
-            if (!minionEntity.isPresent()) continue;
+            if (minionEntity.isEmpty()) {
+                continue;
+            }
 
             minionEntity.get().unload();
-
         }
-        //});
     }
 
 

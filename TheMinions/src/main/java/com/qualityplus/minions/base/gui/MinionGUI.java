@@ -39,10 +39,14 @@ public abstract class MinionGUI extends GUI {
         setItem(item, placeholderList, box.files().config().loreWrapper);
     }
 
-    protected static String getTitle(String title, MinionEntity entity) {
-        Minion minion = Minions.getByID(entity.getData().map(MinionData::getMinionId).orElse("null"));
+    protected static String getTitle(final String title, final MinionEntity entity) {
+        final Minion minion = Minions.getByID(entity.getData()
+                .map(MinionData::getMinionId)
+                .orElse("null"));
 
-        List<IPlaceholder> placeholders = MinionPlaceholderUtil
+
+
+        final List<IPlaceholder> placeholders = MinionPlaceholderUtil
                 .getMinionPlaceholders(entity.getMinionUniqueId())
                 .with(MinionPlaceholderUtil.getMinionPlaceholders(minion))
                 .get();

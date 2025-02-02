@@ -87,7 +87,7 @@ public final class ModifyRecipeGUI extends CraftingGUI {
             } else if (isItem(slot, config.getSaveRecipe())) {
                 final Map<Integer, String> ingredients = getIngredients();
 
-                if (ingredients.size() <= 0) {
+                if (ingredients.isEmpty()) {
                     player.sendMessage(StringUtils.color(box.files().messages().recipeMessages.recipeIngredientsCantBeEmpty));
                     return;
                 }
@@ -99,10 +99,10 @@ public final class ModifyRecipeGUI extends CraftingGUI {
                     return;
                 }
 
-                player.closeInventory();
-
                 recipe.setIngredientsSerialized(ingredients);
-                recipe.setResultSerialized(BukkitItemUtil.serialize(result));
+                recipe.setResultSerialized(BukkitItemUtil.serialize(result.clone()));
+
+                player.closeInventory();
 
                 player.sendMessage(StringUtils.color(box.files().messages().recipeMessages.recipeSuccessfullyCreated.replace("%crafting_recipe_id%", recipe.getId())));
 
@@ -119,11 +119,13 @@ public final class ModifyRecipeGUI extends CraftingGUI {
         Map<Integer, String> ingredients = new HashMap<>();
 
         for (int i = 1; i<=config.getRecipeSlots().size(); i++) {
-            ItemStack itemStack = inventory.getItem(config.getRecipeSlots().get(i - 1));
+            final ItemStack itemStack = inventory.getItem(config.getRecipeSlots().get(i - 1));
 
-            if (BukkitItemUtil.isNull(itemStack)) continue;
+            if (BukkitItemUtil.isNull(itemStack)) {
+                continue;
+            }
 
-            ingredients.put(i, BukkitItemUtil.serialize(itemStack));
+            ingredients.put(i, BukkitItemUtil.serialize(itemStack.clone()));
         }
         return ingredients;
     }

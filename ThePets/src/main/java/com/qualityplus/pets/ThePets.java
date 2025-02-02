@@ -54,10 +54,10 @@ public final class ThePets extends OkaeriSilentPlugin {
                 .filter(Optional::isPresent)
                 .map(Optional::get)
                 .forEach(data -> {
-                    Optional<PetData> petData = data.getSpawnedPetData();
+                    final Optional<PetData> petData = data.getSpawnedPetData();
 
                     if (petData.isPresent()) {
-                        Optional<PetEntity> petEntity = PetEntityTracker.getByID(petData.get().getUuid());
+                        final Optional<PetEntity> petEntity = PetEntityTracker.getByID(petData.get().getUuid());
 
                         petEntity.ifPresent(pet -> pet.deSpawn(PetEntity.DeSpawnReason.SERVER_TURNED_OFF));
                     }

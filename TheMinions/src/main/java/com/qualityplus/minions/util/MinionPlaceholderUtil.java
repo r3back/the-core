@@ -28,19 +28,19 @@ public class MinionPlaceholderUtil {
         );
     }
 
-    public PlaceholderBuilder getMinionPlaceholders(String id) {
+    public PlaceholderBuilder getMinionPlaceholders(final String id) {
         return getMinionPlaceholders(Minions.getByID(id));
     }
 
-    public PlaceholderBuilder getMinionPlaceholders(UUID petUuid) {
-        Optional<MinionData> petData = TheMinions.getApi().getMinionsService().getData(petUuid);
+    public PlaceholderBuilder getMinionPlaceholders(final UUID petUuid) {
+        final Optional<MinionData> minionData = TheMinions.getApi().getMinionsService().getData(petUuid);
 
-        int level = petData.map(MinionData::getLevel).orElse(1);
+        final int level = minionData.map(MinionData::getLevel).orElse(1);
 
         return getMinionPlaceholders(petUuid, level);
     }
 
-    public PlaceholderBuilder getMinionPlaceholders(MinionData data) {
+    public PlaceholderBuilder getMinionPlaceholders(final MinionData data) {
         Optional<MinionData> petData = Optional.ofNullable(data);
 
         int level = petData.map(MinionData::getLevel).orElse(1);

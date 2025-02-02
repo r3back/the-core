@@ -16,7 +16,7 @@ import java.util.concurrent.CompletableFuture;
 public final class MinionArmorStandServiceImpl implements MinionArmorStandService {
     @Override
     public CompletableFuture<ArmorStand> spawnArmorStand(final MinionEntity minionEntity, final Location location) {
-        CompletableFuture<ArmorStand> future = new CompletableFuture<>();
+        final CompletableFuture<ArmorStand> future = new CompletableFuture<>();
 
         Bukkit.getScheduler().runTask(TheMinions.getInstance(), () -> {
             final ArmorStand entity = ArmorStandUtil.createDefault(location);

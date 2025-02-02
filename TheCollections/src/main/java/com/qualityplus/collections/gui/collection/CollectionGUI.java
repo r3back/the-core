@@ -61,9 +61,11 @@ public final class CollectionGUI extends CollectionsGUI {
         for (Integer slot : config.getLevelSlots()) {
             count++;
 
-            if (count > collection.getMaxLevel()) break;
+            if (count > collection.getMaxLevel()) {
+                break;
+            }
 
-            Item item = count == level + 1 ? config.getInProgressItem() :
+            Item item = count == level ? config.getInProgressItem() :
                         count > level ? config.getLockedItem() : config.getUnlockedItem();
 
             inventory.setItem(slot, getItem(item, data, collection, count));
@@ -79,10 +81,9 @@ public final class CollectionGUI extends CollectionsGUI {
     }
 
     private ItemStack getItem(Item item, UserData data, Collection collection, int level) {
-        PlaceholderBuilder builder = CollectionsPlaceholderUtil.getCollectionsPlaceholders(data, collection, level);
+        final PlaceholderBuilder builder = CollectionsPlaceholderUtil.getCollectionsPlaceholders(data, collection, level);
 
-        List<String> loreInGui = collection.getCollectionsCacheMessage(level, Collection.MessageType.GUI);
-
+        final List<String> loreInGui = collection.getCollectionsCacheMessage(level, Collection.MessageType.GUI);
 
         return ItemStackUtils.makeItem(item, builder
                 .with(new Placeholder("collection_info_gui", StringUtils.processMulti(loreInGui, builder.get())))

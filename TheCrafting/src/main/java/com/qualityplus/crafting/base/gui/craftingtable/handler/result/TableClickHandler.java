@@ -71,11 +71,11 @@ public final class TableClickHandler {
     Chequea si hay recipe y si hay pone los items
      */
     private void checkRecipe(Player player) {
-        int slot = config.getResultSlot();
+        final int slot = config.getResultSlot();
 
-        IRecipe recipe = CraftingFinderUtil.getCraftingRecipe(inventory, view, tableRelationSlots);
+        final IRecipe recipe = CraftingFinderUtil.getCraftingRecipe(inventory, view, tableRelationSlots);
 
-        ItemStack item = getItem(player, recipe);
+        final ItemStack item = getItem(player, recipe);
 
         Bukkit.getScheduler().runTask(box.plugin(), () -> inventory.setItem(slot, item));
     }

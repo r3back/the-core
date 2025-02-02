@@ -1,10 +1,10 @@
 package com.qualityplus.pets.base.pet.entity;
 
+import com.qualityplus.pets.ThePets;
 import com.qualityplus.pets.api.pet.entity.PetEntity;
 import com.qualityplus.pets.base.pet.Pet;
 import com.ticxo.modelengine.api.ModelEngineAPI;
 import com.ticxo.modelengine.api.animation.AnimationHandler;
-import com.ticxo.modelengine.api.animation.AnimationProperty;
 import com.ticxo.modelengine.api.animation.property.IAnimationProperty;
 import com.ticxo.modelengine.api.model.ActiveModel;
 import com.ticxo.modelengine.api.model.ModeledEntity;
@@ -12,11 +12,12 @@ import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Entity;
+import org.bukkit.metadata.FixedMetadataValue;
 
 import java.util.Optional;
 import java.util.UUID;
 
-public final class ModelEnginePet extends MinecraftPet{
+public final class ModelEnginePet extends MinecraftPet {
     private ArmorStand armorStand;
 
     private ModelEnginePet(UUID petUniqueId, UUID owner, Pet pet) {

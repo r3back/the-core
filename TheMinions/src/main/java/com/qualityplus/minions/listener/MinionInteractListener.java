@@ -25,13 +25,17 @@ public final class MinionInteractListener implements Listener {
     @EventHandler
     private void onClick(PlayerInteractAtEntityEvent event) {
 
-        if (!(event.getRightClicked() instanceof ArmorStand)) return;
+        if (!(event.getRightClicked() instanceof ArmorStand)) {
+            return;
+        }
 
-        Player player = event.getPlayer();
+        final Player player = event.getPlayer();
 
-        Optional<MinionEntity> armorStand = MinionArmorStandTracker.getByID(event.getRightClicked().getUniqueId());
+        final Optional<MinionEntity> armorStand = MinionArmorStandTracker.getByID(event.getRightClicked().getUniqueId());
 
-        if (armorStand.isEmpty()) return;
+        if (armorStand.isEmpty()) {
+            return;
+        }
 
         event.setCancelled(true);
 

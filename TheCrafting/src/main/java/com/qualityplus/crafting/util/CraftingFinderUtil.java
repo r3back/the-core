@@ -21,32 +21,47 @@ public class CraftingFinderUtil {
     //Normal Slot | Special Slot
     public IRecipe getCraftingRecipe(Inventory inventory, InventoryView fakeTable, Map<Integer, Integer> tableRelationSlots) {
         //Trying to get Vanilla -
-        ItemStack result = fakeTable.getItem(0);
+        final ItemStack result = fakeTable.getItem(0);
 
         if (BukkitItemUtil.isNull(result)) {
             for (CustomRecipe recipe : Recipes.values()) {
-                Map<Integer, ItemStack> ingredients = recipe.getIngredients();
+                final Map<Integer, ItemStack> ingredients = recipe.getIngredients();
 
                 int count = 0;
 
                 //Fake Slot | Special Slot
                 for (Map.Entry<Integer, Integer> entry : tableRelationSlots.entrySet()) {
-                    ItemStack inRecipe = ingredients.getOrDefault(entry.getKey(), null);
+                    final int recipeSlot = entry.getKey();
 
-                    if (BukkitItemUtil.isNull(inRecipe)) continue;
+                    final ItemStack inRecipe = ingredients.getOrDefault(recipeSlot, null);
+                    final ItemStack inTable = inventory.getItem(entry.getValue());
 
-                    ItemStack inTable = inventory.getItem(entry.getValue());
 
-                    if (BukkitItemUtil.isNull(inTable)) continue;
+                    final boolean inRecipeIsNull = BukkitItemUtil.isNull(inRecipe);
+                    final boolean inTableIsNull = BukkitItemUtil.isNull(inTable);
 
-                    if (!inTable.isSimilar(inRecipe)) continue;
+                    if ((inRecipeIsNull && !inTableIsNull)) {
+                        count++;
+                    }
 
-                    if (inTable.getAmount() < inRecipe.getAmount()) continue;
+                    if (inRecipeIsNull || inTableIsNull) {
+                        continue;
+                    }
+
+                    if (!inTable.isSimilar(inRecipe)) {
+                        continue;
+                    }
+
+                    if (inTable.getAmount() < inRecipe.getAmount()) {
+                        continue;
+                    }
 
                     count++;
                 }
 
-                if (count == ingredients.size()) return recipe;
+                if (count == ingredients.size()) {
+                    return recipe;
+                }
             }
 
         } else {

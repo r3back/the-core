@@ -3,7 +3,7 @@ plugins {
 }
 
 group = 'com.qualityplus.core'
-version = '3.31.0'
+version = '3.36.0'
 
 subprojects {
     version = rootProject.version

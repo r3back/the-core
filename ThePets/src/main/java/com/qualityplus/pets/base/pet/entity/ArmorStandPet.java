@@ -2,11 +2,14 @@ package com.qualityplus.pets.base.pet.entity;
 
 import com.qualityplus.assistant.util.armorstand.ArmorStandUtil;
 import com.qualityplus.assistant.util.itemstack.ItemBuilder;
+import com.qualityplus.pets.ThePets;
 import com.qualityplus.pets.base.pet.Pet;
 import com.qualityplus.pets.base.pet.entity.tracker.PetArmorStandTracker;
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.metadata.FixedMetadataValue;
 
 import java.util.ArrayList;
 import java.util.Optional;
@@ -40,8 +43,16 @@ public final class ArmorStandPet extends MinecraftPet {
                 .filter(ArmorStandUtil::entityIsValid)
                 .ifPresent(e -> {
                     final UUID uuid = e.getUniqueId();
-                    PetArmorStandTracker.unregisterEntity(uuid);
+                    final Location location = e.getLocation();
+                    try {
+                        location.getChunk().load();
+                        location.getChunk().setForceLoaded(true);
+                    } catch (Exception ex) {
+                        ex.printStackTrace();
+                    }
+
                     e.remove();
+                    PetArmorStandTracker.unregisterEntity(uuid);
                 });
 
         loaded = false;
