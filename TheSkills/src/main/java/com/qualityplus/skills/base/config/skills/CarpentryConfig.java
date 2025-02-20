@@ -38,7 +38,9 @@ public final class CarpentryConfig extends OkaeriConfig {
     private Map<Integer, List<String>> skillInfoInGUI = getInfo();
     private Map<Integer, List<StatReward>> statRewards = getInternalRewards();
     private Map<Integer, List<String>> skillInfoInMessage = getInfo();
-    private Map<Integer, List<CommandReward>> commandRewards = new HashMap<>();
+    private Map<Integer, List<CommandReward>> commandRewards = ImmutableMap.<Integer, List<CommandReward>>builder()
+            .put(1, List.of(new CommandReward(CommandReward.CommandExecutor.CONSOLE, "test command")))
+            .build();
     private Map<XMaterial, Double> rewards = ImmutableMap.<XMaterial, Double>builder()
             .put(XMaterial.FURNACE, 2D)
             .build();

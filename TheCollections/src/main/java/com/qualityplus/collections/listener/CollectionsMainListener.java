@@ -9,6 +9,7 @@ import com.qualityplus.collections.base.collection.Collection;
 import com.qualityplus.collections.base.collection.registry.CollectionsRegistry;
 
 import com.qualityplus.assistant.lib.eu.okaeri.platform.core.annotation.Component;
+import com.qualityplus.collections.base.config.Config;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.block.Block;
@@ -21,19 +22,23 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockDispenseEvent;
+import org.bukkit.event.block.BlockExplodeEvent;
 import org.bukkit.event.block.BlockPistonExtendEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
+import org.bukkit.event.entity.EntityExplodeEvent;
 import org.bukkit.event.inventory.FurnaceExtractEvent;
 import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.event.player.PlayerPickupItemEvent;
 import org.bukkit.inventory.ItemStack;
 
+import java.util.Iterator;
 import java.util.Optional;
 
 @Component
 public final class CollectionsMainListener implements Listener {
     private @Inject AntiExploitService antiExploitService;
     private @Inject CollectionsService collectionsService;
+    private @Inject Config config;
 
     @EventHandler(ignoreCancelled = true, priority = EventPriority.HIGHEST)
     public void onExtractFromFurnace(FurnaceExtractEvent e) {
@@ -83,7 +88,7 @@ public final class CollectionsMainListener implements Listener {
         Player player = e.getPlayer();
 
         final Block block = e.getBlock();
-        if (block.getBlockData() instanceof Ageable ageable && ageable.getAge() == ageable.getMaximumAge()) {
+        if (block.getBlockData() instanceof Ageable ageable && ageable.getAge() != ageable.getMaximumAge()) {
             addMetadataToNearEntities(player.getLocation(), 5);
         } else if (antiExploitService.hasMetadata(block)) {
             addMetadataToNearEntities(player.getLocation(), 5);
@@ -92,6 +97,25 @@ public final class CollectionsMainListener implements Listener {
         if (block.getState() instanceof org.bukkit.inventory.InventoryHolder) {
             addMetadataToNearEntities(player.getLocation(), 5);
             antiExploitService.setPlayerTimer(player, System.currentTimeMillis() + 140L);
+        }
+    }
+
+    @EventHandler(ignoreCancelled = true)
+    public void onExplode(final EntityExplodeEvent e) {
+        if (this.config.allowXPFromTNTExplosions) {
+            return;
+        }
+
+        for (final Block block : e.blockList()) {
+            if (block.getBlockData() instanceof Ageable ageable && ageable.getAge() == ageable.getMaximumAge()) {
+                addMetadataToNearEntities(block.getLocation(), 5);
+            } else if (antiExploitService.hasMetadata(block)) {
+                addMetadataToNearEntities(block.getLocation(), 5);
+            }
+
+            if (block.getState() instanceof org.bukkit.inventory.InventoryHolder) {
+                addMetadataToNearEntities(block.getLocation(), 5);
+            }
         }
     }
 

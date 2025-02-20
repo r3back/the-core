@@ -3,6 +3,7 @@ package com.qualityplus.auction.base.gui.view.normal;
 import com.qualityplus.assistant.TheAssistantPlugin;
 import com.qualityplus.assistant.api.util.BukkitItemUtil;
 import com.qualityplus.assistant.api.util.IPlaceholder;
+import com.qualityplus.assistant.lib.com.cryptomorin.xseries.XMaterial;
 import com.qualityplus.assistant.lib.de.rapha149.signgui.SignGUI;
 import com.qualityplus.assistant.lib.de.rapha149.signgui.SignGUIFinishHandler;
 import com.qualityplus.assistant.lib.de.rapha149.signgui.exception.SignGUIVersionException;
@@ -19,6 +20,7 @@ import com.qualityplus.auction.base.gui.manage.ManageAuctionGUI;
 import com.qualityplus.auction.base.gui.manage.sort.ManageAuctionSortType;
 import com.qualityplus.auction.base.gui.view.ViewOpener;
 import com.qualityplus.auction.base.searcher.AuctionSearcher;
+import com.qualityplus.auction.base.sign.SignGUIAPI;
 import com.qualityplus.auction.persistence.data.AuctionBid;
 import com.qualityplus.auction.persistence.data.AuctionItem;
 import org.bukkit.Bukkit;
@@ -243,22 +245,35 @@ public final class NormalAuctionViewGUI extends AuctionGUI {
                 player.closeInventory();
 
                 final Location location = player.getLocation().clone().add(0, 10, 0);
-                final SignGUIFinishHandler signGUIFinishHandler = (player1, signGUIResult) -> {
-                    Bukkit.getScheduler().runTaskLater(this.box.plugin(), () -> {
-                        this.changeBid(player1, signGUIResult.getLine(0));
-                    }, 5);
-                    return Collections.emptyList();
-                };
+
                 Bukkit.getScheduler().runTaskLater(this.box.plugin(), () -> {
                     try {
-                        final SignGUI signGUI = SignGUI.builder().
-                                setLocation(location).
-                                setColor(DyeColor.BLACK).
-                                setType(Material.OAK_SIGN).
-                                setHandler(signGUIFinishHandler).setGlow(false).
-                                setLines(box.files().messages().getAuctionMessages().getSubmitBid().toArray(new String[0])).
-                                build();
-                        signGUI.open(player);
+                        if (XMaterial.getVersion() > 20) {
+                            final SignGUIFinishHandler signGUIFinishHandler = (player1, signGUIResult) -> {
+                                Bukkit.getScheduler().runTaskLater(this.box.plugin(), () -> {
+                                    this.changeBid(player1, signGUIResult.getLine(0));
+                                }, 5);
+                                return Collections.emptyList();
+                            };
+                            final SignGUI signGUI = SignGUI.builder().
+                                    setLocation(location).
+                                    setColor(DyeColor.BLACK).
+                                    setType(Material.OAK_SIGN).
+                                    setHandler(signGUIFinishHandler).setGlow(false).
+                                    setLines(box.files().messages().getAuctionMessages().getSubmitBid().toArray(new String[0])).
+                                    build();
+                            signGUI.open(player);
+                        } else {
+                            SignGUIAPI.builder()
+                                    .action((result) -> {
+                                        changeBid(result.getPlayer(), (result.getLines().isEmpty() ?  "" : result.getLines().getFirst()));
+                                    })
+                                    .withLines(box.files().messages().getAuctionMessages().getSubmitBid())
+                                    .uuid(player.getUniqueId())
+                                    .plugin(box.plugin())
+                                    .build()
+                                    .open();
+                        }
                     } catch (SignGUIVersionException e) {
                         e.printStackTrace();
                     }

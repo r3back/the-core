@@ -12,4 +12,5 @@ public final class TrxRequest {
     private final BankTransaction transaction;
     private final BankData bankData;
     private final boolean sendMsg;
+    private final boolean force;
 }

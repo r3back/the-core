@@ -17,8 +17,7 @@ import java.util.Optional;
 
 @Scan(deep = true)
 public final class TheBank extends OkaeriSilentPlugin {
-    private static @Inject
-    @Getter TheBankAPI api;
+    private static @Inject @Getter TheBankAPI api;
 
     @Planned(ExecutionPhase.PRE_SETUP)
     private void beforeStart() {

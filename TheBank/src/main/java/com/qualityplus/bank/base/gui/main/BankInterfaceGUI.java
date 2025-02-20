@@ -1,6 +1,7 @@
 package com.qualityplus.bank.base.gui.main;
 
 import com.qualityplus.assistant.api.util.IPlaceholder;
+import com.qualityplus.assistant.lib.org.h2.mvstore.tx.Transaction;
 import com.qualityplus.assistant.util.StringUtils;
 import com.qualityplus.assistant.util.inventory.InventoryUtils;
 import com.qualityplus.assistant.util.placeholder.Placeholder;
@@ -103,10 +104,13 @@ public final class BankInterfaceGUI extends BankGUI {
 
     private List<String> getLatestTransactions(BankData data) {
         int count = 0;
-        List<String> transactions = new ArrayList<>();
+        final List<String> transactions = new ArrayList<>();
+        final List<BankTransaction> transactionsOrdered = data.getTransactionList().reversed();
 
-        for (BankTransaction trx : data.getTransactionList()) {
-            if (count == config.getTransactionLimit()) break;
+        for (BankTransaction trx : transactionsOrdered) {
+            if (count == config.getTransactionLimit()) {
+                break;
+            }
 
             Messages.BankMessages messages = box.files().messages().bankMessages;
 

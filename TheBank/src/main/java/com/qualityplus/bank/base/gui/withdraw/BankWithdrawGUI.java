@@ -1,17 +1,18 @@
 package com.qualityplus.bank.base.gui.withdraw;
 
 import com.qualityplus.assistant.api.util.IPlaceholder;
+import com.qualityplus.assistant.lib.com.cryptomorin.xseries.XMaterial;
 import com.qualityplus.assistant.lib.de.rapha149.signgui.SignGUI;
 import com.qualityplus.assistant.lib.de.rapha149.signgui.SignGUIFinishHandler;
-import com.qualityplus.assistant.lib.de.rapha149.signgui.SignGUIResult;
-import com.qualityplus.assistant.lib.de.rapha149.signgui.exception.SignGUIVersionException;
 import com.qualityplus.assistant.util.inventory.InventoryUtils;
 import com.qualityplus.assistant.util.placeholder.Placeholder;
+import com.qualityplus.bank.TheBank;
 import com.qualityplus.bank.api.box.Box;
 import com.qualityplus.bank.api.transaction.TransactionType;
 import com.qualityplus.bank.base.gui.BankGUI;
 import com.qualityplus.bank.base.gui.main.BankInterfaceGUI;
 import com.qualityplus.bank.base.gui.main.BankInterfaceGUI.GUIType;
+import com.qualityplus.bank.base.sign.SignGUIAPI;
 import com.qualityplus.bank.persistence.data.BankData;
 import com.qualityplus.bank.persistence.data.BankTransaction;
 import com.qualityplus.bank.persistence.data.TransactionCaller;
@@ -95,33 +96,49 @@ public final class BankWithdrawGUI extends BankGUI {
         } else if (isItem(slot, config.getGoBack())) {
             player.openInventory(new BankInterfaceGUI(box, player, type).getInventory());
         } else if (isItem(slot, config.getWithdrawAll())) {
-            box.service().handleTransaction(player, new BankTransaction(getData().getMoney(), TransactionType.WITHDRAW, type, TransactionCaller.PLAYER), true);
+            box.service().handleTransaction(player, new BankTransaction(getData().getMoney(), TransactionType.WITHDRAW, type, TransactionCaller.PLAYER), true, false);
             player.openInventory(new BankWithdrawGUI(box, player, type).getInventory());
         } else if (isItem(slot, config.getWithdrawHalf())) {
-            box.service().handleTransaction(player, new BankTransaction(getHalf(getData()), TransactionType.WITHDRAW, type, TransactionCaller.PLAYER), true);
+            box.service().handleTransaction(player, new BankTransaction(getHalf(getData()), TransactionType.WITHDRAW, type, TransactionCaller.PLAYER), true, false);
             player.openInventory(new BankWithdrawGUI(box, player, type).getInventory());
         } else if (isItem(slot, config.getWithDrawCustomPercentage())) {
-            box.service().handleTransaction(player, new BankTransaction(getCustomPercentage(getData()), TransactionType.WITHDRAW, type, TransactionCaller.PLAYER), true);
+            box.service().handleTransaction(player, new BankTransaction(getCustomPercentage(getData()), TransactionType.WITHDRAW, type, TransactionCaller.PLAYER), true, false);
             player.openInventory(new BankWithdrawGUI(box, player, type).getInventory());
         } else if (isItem(slot, config.getWithdrawAmount())) {
             final Location location = player.getLocation().clone().add(0, 10, 0);
-            final SignGUIFinishHandler signGUIFinishHandler = (player1, signGUIResult) -> {
-                Bukkit.getScheduler().runTaskLater(this.box.plugin(), () -> {
-                    this.handleWithdraw(player1, signGUIResult);
-                }, 5);
-                return Collections.emptyList();
-            };
+
             Bukkit.getScheduler().runTaskLater(this.box.plugin(), () -> {
                 try {
-                    final com.qualityplus.assistant.lib.de.rapha149.signgui.SignGUI signGUI = SignGUI.builder().
-                            setLocation(location).
-                            setColor(DyeColor.BLACK).
-                            setType(Material.OAK_SIGN).
-                            setHandler(signGUIFinishHandler).setGlow(false).
-                            setLines(box.files().messages().bankMessages.enterAmountToWithdraw.toArray(new String[0])).
-                            build();
-                    signGUI.open(player);
-                } catch (SignGUIVersionException ex) {
+                    final String[] signLines = box.files().messages().bankMessages.enterAmountToWithdraw.toArray(new String[0]);
+                    if (XMaterial.getVersion() > 20) {
+                        final SignGUIFinishHandler signGUIFinishHandler = (player1, signGUIResult) -> {
+                            Bukkit.getScheduler().runTaskLater(this.box.plugin(), () -> {
+                                this.handleWithdraw(player1, signGUIResult.getLines());
+                            }, 5);
+                            return Collections.emptyList();
+                        };
+                        final com.qualityplus.assistant.lib.de.rapha149.signgui.SignGUI signGUI = SignGUI.builder().
+                                setLocation(location).
+                                setColor(DyeColor.BLACK).
+                                setType(Material.OAK_SIGN).
+                                setHandler(signGUIFinishHandler).setGlow(false).
+                                setLines(signLines).
+                                build();
+                        signGUI.open(player);
+                    } else {
+                        SignGUIAPI.builder()
+                                .action((result) -> {
+                                    Bukkit.getScheduler().runTaskLater(this.box.plugin(), () -> {
+                                        this.handleWithdraw(result.getPlayer(), result.getLines().toArray(new String[0]));
+                                    }, 5);
+                                })
+                                .withLines(box.files().messages().bankMessages.enterAmountToWithdraw)
+                                .uuid(player.getUniqueId())
+                                .plugin(TheBank.getApi().getPlugin())
+                                .build()
+                                .open();
+                    }
+                } catch (Exception ex) {
                     ex.printStackTrace();
                 }
             }, 5);
@@ -129,16 +146,16 @@ public final class BankWithdrawGUI extends BankGUI {
         }
     }
 
-    private void handleWithdraw(final Player player, final SignGUIResult event) {
+    private void handleWithdraw(final Player player, final String[] lines) {
         int value = 0;
 
         try {
-            value = Integer.parseInt(event.getLine(0));
+            value = Integer.parseInt(lines[0]);
         } catch (final NumberFormatException ignored) {
 
         }
 
-        box.service().handleTransaction(player, new BankTransaction(Math.max(0, value), TransactionType.WITHDRAW, type, TransactionCaller.PLAYER), true);
+        box.service().handleTransaction(player, new BankTransaction(Math.max(0, value), TransactionType.WITHDRAW, type, TransactionCaller.PLAYER), true, false);
 
         Bukkit.getScheduler().runTaskLater(box.plugin(), () -> player.openInventory(new BankWithdrawGUI(box, player, type).getInventory()), 3);
     }

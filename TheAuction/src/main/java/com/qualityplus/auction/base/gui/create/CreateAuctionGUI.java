@@ -3,6 +3,7 @@ package com.qualityplus.auction.base.gui.create;
 import com.qualityplus.assistant.TheAssistantPlugin;
 import com.qualityplus.assistant.api.util.BukkitItemUtil;
 import com.qualityplus.assistant.api.util.IPlaceholder;
+import com.qualityplus.assistant.lib.com.cryptomorin.xseries.XMaterial;
 import com.qualityplus.assistant.lib.de.rapha149.signgui.SignGUI;
 import com.qualityplus.assistant.lib.de.rapha149.signgui.exception.SignGUIVersionException;
 import com.qualityplus.assistant.util.StringUtils;
@@ -16,6 +17,7 @@ import com.qualityplus.auction.base.gui.main.MainAuctionGUI;
 import com.qualityplus.auction.base.gui.time.AuctionTimeGUI;
 import com.qualityplus.auction.base.gui.view.ViewOpener;
 import com.qualityplus.auction.base.searcher.AuctionSearcher;
+import com.qualityplus.auction.base.sign.SignGUIAPI;
 import com.qualityplus.auction.persistence.data.AuctionBid;
 import com.qualityplus.auction.persistence.data.AuctionItem;
 import com.qualityplus.auction.persistence.data.User;
@@ -160,18 +162,30 @@ public final class CreateAuctionGUI extends AuctionGUI {
 
                 Bukkit.getScheduler().runTaskLater(this.box.plugin(), () -> {
                     try {
-                        final SignGUI signGUI = SignGUI.builder()
-                                .setLocation(location)
-                                .setColor(DyeColor.BLACK)
-                                .setType(Material.OAK_SIGN)
-                                .setHandler((player1, signGUIResult) -> {
-                                    changeBidPrice(player1, auctionItem, signGUIResult.getLine(0));
-                                    return Collections.emptyList();
-                                })
-                                .setGlow(false)
-                                .setLines(box.files().messages().getAuctionMessages().getStartingBid().toArray(new String[0]))
-                                .build();
-                        signGUI.open(player);
+                        if (XMaterial.getVersion() > 20) {
+                            final SignGUI signGUI = SignGUI.builder()
+                                    .setLocation(location)
+                                    .setColor(DyeColor.BLACK)
+                                    .setType(Material.OAK_SIGN)
+                                    .setHandler((player1, signGUIResult) -> {
+                                        changeBidPrice(player1, auctionItem, signGUIResult.getLine(0));
+                                        return Collections.emptyList();
+                                    })
+                                    .setGlow(false)
+                                    .setLines(box.files().messages().getAuctionMessages().getStartingBid().toArray(new String[0]))
+                                    .build();
+                            signGUI.open(player);
+                        } else {
+                            SignGUIAPI.builder()
+                                    .action((result) -> {
+                                        changeBidPrice(result.getPlayer(), auctionItem, (result.getLines().isEmpty() ?  "" : result.getLines().getFirst()));
+                                    })
+                                    .withLines(box.files().messages().getAuctionMessages().getStartingBid())
+                                    .uuid(player.getUniqueId())
+                                    .plugin(box.plugin())
+                                    .build()
+                                    .open();
+                        }
                     } catch (SignGUIVersionException ex) {
                         ex.printStackTrace();
                     }

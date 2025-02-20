@@ -31,7 +31,11 @@ public final class TransactionGatewayImpl implements TransactionGateway {
     private @Inject Messages messages;
 
     @Override
-    public Optional<TrxResponse> handle(final BankData bankData, final BankTransaction transaction, final boolean sendMessages) {
+    public Optional<TrxResponse> handle(
+            final BankData bankData,
+            final BankTransaction transaction,
+            final boolean sendMessages,
+            final boolean force) {
 
         if (bankData == null) {
             return Optional.empty();
@@ -45,7 +49,7 @@ public final class TransactionGatewayImpl implements TransactionGateway {
             return Optional.empty();
         }
 
-        final TrxRequest request = createRequest(bankData, transaction, sendMessages);
+        final TrxRequest request = createRequest(bankData, transaction, sendMessages, force);
 
         switch (transaction.getType()) {
             case SET:
@@ -124,11 +128,12 @@ public final class TransactionGatewayImpl implements TransactionGateway {
     }
 
 
-    private TrxRequest createRequest(final BankData data, final BankTransaction trx, final boolean sendMessages) {
+    private TrxRequest createRequest(final BankData data, final BankTransaction trx, final boolean sendMessages, final boolean force) {
         return TrxRequest.builder()
                 .sendMsg(sendMessages)
                 .transaction(trx)
                 .bankData(data)
+                .force(force)
                 .build();
     }
 }
