@@ -44,10 +44,10 @@ public final class BankInterestHandler implements Runnable {
 
             final BankTransaction trx = new BankTransaction(interest, TransactionType.DEPOSIT, BankInterfaceGUI.GUIType.GENERAL, TransactionCaller.SERVER);
 
-            final Optional<TrxResponse> response = box.service().handleTransaction(player, trx, false, false);
+            final Optional<TrxResponse> response = box.service().handleTransaction(player, trx, false, false, true);
 
-            if (!response.isPresent()) {
-                return;
+            if (response.isEmpty()) {
+                continue;
             }
 
             bankData.setLastInterestTime(System.currentTimeMillis());

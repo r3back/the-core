@@ -22,20 +22,20 @@ import java.util.List;
 @UtilityClass
 public class SkillsPlaceholderUtil {
     public List<IPlaceholder> getSkillsPlaceholders(UserData userData, Skill skill) {
-        int level = userData.getSkills().getLevel(skill.getId());
+        double level = userData.getSkills().getLevel(skill.getId());
 
         return getSkillsPlaceholders(userData, skill, level);
     }
 
-    public List<IPlaceholder> getSkillsPlaceholders(UserData userData, Skill skill, int level) {
+    public List<IPlaceholder> getSkillsPlaceholders(UserData userData, Skill skill, double level) {
         double xp = userData.getSkills().getXp(skill.getId());
-        double maxXp = skill.getLevelRequirement(level + 1);
+        double maxXp = skill.getLevelRequirement((int)level + 1);
         double percentage = ActionBarUtils.getPercentageFromTotal(xp, maxXp);
 
         return Arrays.asList(
                 new Placeholder("skill_displayname", skill.getDisplayName()),
                 new Placeholder("skill_description", skill.getDescription()),
-                new Placeholder("skill_level_roman", NumberUtil.toRoman(level)),
+                new Placeholder("skill_level_roman", NumberUtil.toRoman((int)level)),
                 new Placeholder("skill_level_number", level),
                 new Placeholder("skill_level_progress", percentage),
                 new Placeholder("skill_action_bar", ActionBarUtils.getReplacedBar(percentage)),
@@ -96,10 +96,10 @@ public class SkillsPlaceholderUtil {
         return builder;
     }
 
-    private static List<IPlaceholder> getCommonPlaceholders(CommonObject object, int level) {
+    private static List<IPlaceholder> getCommonPlaceholders(CommonObject object, double level) {
         List<IPlaceholder> placeholders = new ArrayList<>();
         placeholders.add(new Placeholder("skill_level_" + object.getId() + "_number", level));
-        placeholders.add(new Placeholder("skill_level_" + object.getId() + "_roman", NumberUtil.toRoman(level)));
+        placeholders.add(new Placeholder("skill_level_" + object.getId() + "_roman", NumberUtil.toRoman((int)level)));
         placeholders.add(new Placeholder("skill_" + object.getId() + "_displayname", object.getDisplayName()));
         placeholders.add(new Placeholder("skill_" + object.getId() + "_description", object.getFormattedDescription(level)));
         return placeholders;

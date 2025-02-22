@@ -56,7 +56,7 @@ public final class RemoveCommand extends AssistantCommand {
                 return false;
             }
 
-            Integer level = NumberUtil.intOrNull(args[3]);
+            Double level = NumberUtil.doubleOrNull(args[3]);
 
             if (level == null) {
                 sender.sendMessage(StringUtils.color(box.files().messages().pluginMessages.invalidAmount));
@@ -69,7 +69,7 @@ public final class RemoveCommand extends AssistantCommand {
             List<IPlaceholder> placeholders = Arrays.asList(new Placeholder("amount", level)
                     , new Placeholder("object", object.getId())
                     , new Placeholder("player", player.getName())
-                    , new Placeholder("new_level", data.map(d -> d.getSkills().getLevel(object.getId())).orElse(0)));
+                    , new Placeholder("new_level", data.map(d -> d.getSkills().getLevel(object.getId())).orElse(0D)));
 
             sender.sendMessage(StringUtils.processMulti(box.files().messages().skillsMessages.removedAmount, placeholders));
         } else

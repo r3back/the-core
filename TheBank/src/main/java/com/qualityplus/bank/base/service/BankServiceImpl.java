@@ -37,7 +37,11 @@ public final class BankServiceImpl implements BankService {
     }
 
     @Override
-    public Optional<TrxResponse> handleTransaction(final Player player, final BankTransaction transaction, final boolean sendMessages, final boolean force) {
-        return getData(player.getUniqueId()).flatMap(data -> this.gateway.handle(data, transaction, sendMessages, force));
+    public Optional<TrxResponse> handleTransaction(final Player player,
+                                                   final BankTransaction transaction,
+                                                   final boolean sendMessages,
+                                                   final boolean force,
+                                                   final boolean interest) {
+        return getData(player.getUniqueId()).flatMap(data -> this.gateway.handle(data, transaction, sendMessages, force, interest));
     }
 }

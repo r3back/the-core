@@ -53,7 +53,7 @@ public final class ProjectileMasterPerk extends Perk {
     }
 
     @Override
-    public List<String> getFormattedDescription(int level) {
+    public List<String> getFormattedDescription(double level) {
         return StringUtils.processMulti(super.getFormattedDescription(level), PlaceholderBuilder.create(new Placeholder("projectile_percent", getPercentage())).get());
     }
 

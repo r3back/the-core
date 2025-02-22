@@ -49,10 +49,11 @@ public final class MagicFindStat extends Stat {
 
         if (itemAndChances == null || itemAndChances.size() == 0) return;
 
-        int level = getStat(player);
+        double level = getStat(player);
 
-        if (RandomUtil.randomBetween(0.0, 100.0) >= chancePerLevel * level)
+        if (RandomUtil.randomBetween(0.0, 100.0) >= chancePerLevel * level) {
             return;
+        }
 
         final ItemStack toGive = Optional.ofNullable(RandomUtil.getRandom(itemAndChances))
                 .map(XMaterial::parseItem)
@@ -68,10 +69,10 @@ public final class MagicFindStat extends Stat {
     }
 
     @Override
-    public List<String> getFormattedDescription(final int level) {
+    public List<String> getFormattedDescription(final double level) {
         final List<IPlaceholder> placeholders = PlaceholderBuilder.create()
                 .with(new Placeholder("level_number", level),
-                      new Placeholder("level_roman", NumberUtil.toRoman(level)),
+                      new Placeholder("level_roman", NumberUtil.toRoman((int)level)),
                       new Placeholder("chance", chancePerLevel * level)
                 ).get();
         return StringUtils.processMulti(description, placeholders);

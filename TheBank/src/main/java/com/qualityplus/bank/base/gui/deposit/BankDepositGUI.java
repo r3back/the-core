@@ -97,10 +97,10 @@ public final class BankDepositGUI extends BankGUI {
         } else if (isItem(slot, config.getGoBack())) {
             player.openInventory(new BankInterfaceGUI(box, player, type).getInventory());
         } else if (isItem(slot, config.getDepositAll())) {
-            box.service().handleTransaction(player, new BankTransaction(getBalance(), TransactionType.DEPOSIT, type, TransactionCaller.PLAYER), true, false);
+            box.service().handleTransaction(player, new BankTransaction(getBalance(), TransactionType.DEPOSIT, type, TransactionCaller.PLAYER), true, false, false);
             player.openInventory(new BankDepositGUI(box, player, type).getInventory());
         } else if (isItem(slot, config.getDepositHalf())) {
-            box.service().handleTransaction(player, new BankTransaction(getHalf(), TransactionType.DEPOSIT, type, TransactionCaller.PLAYER), true, false);
+            box.service().handleTransaction(player, new BankTransaction(getHalf(), TransactionType.DEPOSIT, type, TransactionCaller.PLAYER), true, false, false);
             player.openInventory(new BankDepositGUI(box, player, type).getInventory());
         } else if (isItem(slot, config.getDepositCustomAmount())) {
             final Location location = player.getLocation().clone().add(0, 10, 0);
@@ -149,7 +149,7 @@ public final class BankDepositGUI extends BankGUI {
             value = Integer.parseInt(event[0]);
         } catch (NumberFormatException ignored) {}
 
-        box.service().handleTransaction(player, new BankTransaction(Math.max(0, value), TransactionType.DEPOSIT, type, TransactionCaller.PLAYER), true, false);
+        box.service().handleTransaction(player, new BankTransaction(Math.max(0, value), TransactionType.DEPOSIT, type, TransactionCaller.PLAYER), true, false, false);
 
         Bukkit.getScheduler().runTaskLater(box.plugin(), () -> player.openInventory(new BankDepositGUI(box, player, type).getInventory()), 3);
     }

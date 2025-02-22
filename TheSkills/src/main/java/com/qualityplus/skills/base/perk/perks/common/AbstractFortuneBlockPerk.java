@@ -44,7 +44,7 @@ public abstract class AbstractFortuneBlockPerk extends AbstractFortunePerk {
         if (BlockUtils.isPlacedByPlayer(block))
             return;
 
-        int level = getStat(player);
+        double level = getStat(player);
 
         double chance = getChance(level);
 

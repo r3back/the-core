@@ -35,7 +35,8 @@ public final class TransactionGatewayImpl implements TransactionGateway {
             final BankData bankData,
             final BankTransaction transaction,
             final boolean sendMessages,
-            final boolean force) {
+            final boolean force,
+            final boolean interest) {
 
         if (bankData == null) {
             return Optional.empty();
@@ -49,7 +50,7 @@ public final class TransactionGatewayImpl implements TransactionGateway {
             return Optional.empty();
         }
 
-        final TrxRequest request = createRequest(bankData, transaction, sendMessages, force);
+        final TrxRequest request = createRequest(bankData, transaction, sendMessages, force, interest);
 
         switch (transaction.getType()) {
             case SET:
@@ -128,12 +129,13 @@ public final class TransactionGatewayImpl implements TransactionGateway {
     }
 
 
-    private TrxRequest createRequest(final BankData data, final BankTransaction trx, final boolean sendMessages, final boolean force) {
+    private TrxRequest createRequest(final BankData data, final BankTransaction trx, final boolean sendMessages, final boolean force, final boolean interest) {
         return TrxRequest.builder()
                 .sendMsg(sendMessages)
                 .transaction(trx)
                 .bankData(data)
                 .force(force)
+                .interest(interest)
                 .build();
     }
 }

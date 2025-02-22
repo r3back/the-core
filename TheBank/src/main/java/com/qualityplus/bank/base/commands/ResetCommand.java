@@ -38,7 +38,7 @@ public final class ResetCommand extends AssistantCommand {
 
             final BankTransaction transaction = new BankTransaction(0, TransactionType.SET, BankInterfaceGUI.GUIType.GENERAL, TransactionCaller.SERVER);
 
-            this.box.service().handleTransaction(player, transaction, false, true);
+            this.box.service().handleTransaction(player, transaction, false, true, false);
 
             final List<IPlaceholder> placeholders = PlaceholderBuilder
                     .init("player", player.getName())

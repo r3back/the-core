@@ -13,5 +13,6 @@ public interface BankService extends DataManagementService<BankData> {
             final Player player,
             final BankTransaction transaction,
             final boolean sendMessages,
-            final boolean force);
+            final boolean force,
+            final boolean interest);
 }

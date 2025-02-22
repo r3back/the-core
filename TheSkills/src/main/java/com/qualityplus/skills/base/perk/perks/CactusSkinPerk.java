@@ -47,12 +47,12 @@ public final class CactusSkinPerk extends Perk {
         ((LivingEntity)e.getEntity()).damage(toDamage);
     }
 
-    private double damage(int level) {
+    private double damage(double level) {
         return (damagePerLevel * level) + damageBase;
     }
 
     @Override
-    public List<String> getFormattedDescription(int level) {
+    public List<String> getFormattedDescription(double level) {
         return StringUtils.processMulti(super.getFormattedDescription(level), PlaceholderBuilder.create(new Placeholder("damage", damage(level))).get());
     }
 }

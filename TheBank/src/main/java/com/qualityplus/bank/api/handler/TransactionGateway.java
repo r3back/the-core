@@ -10,5 +10,6 @@ public interface TransactionGateway {
     public Optional<TrxResponse> handle(final BankData data,
                                         final BankTransaction transaction,
                                         final boolean showMessage,
-                                        final boolean force);
+                                        final boolean force,
+                                        final boolean interest);
 }

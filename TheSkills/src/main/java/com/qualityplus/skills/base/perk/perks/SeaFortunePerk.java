@@ -38,7 +38,7 @@ public final class SeaFortunePerk extends AbstractFortunePerk {
 
         if (state == PlayerFishEvent.State.CAUGHT_ENTITY) return;
 
-        int level = getStat(player);
+        double level = getStat(player);
 
         double chance = getChance(level);
 

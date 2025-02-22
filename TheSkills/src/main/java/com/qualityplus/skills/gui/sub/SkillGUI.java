@@ -52,7 +52,7 @@ public final class SkillGUI extends SkillsGUI {
 
         UserData data = box.service().getData(uuid).orElse(new UserData());
 
-        int level = data.getSkills().getLevel(skill.getId());
+        double level = data.getSkills().getLevel(skill.getId());
 
         int maxPerPage = config.getLevelSlots().size();
 

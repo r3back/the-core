@@ -44,7 +44,9 @@ public final class DepositHandler implements TrxHandler {
             }
         }
 
-        economy.withdrawMoney(player, transaction.getAmount());
+        if (!request.isInterest()) {
+            economy.withdrawMoney(player, transaction.getAmount());
+        }
 
         bankData.addMoney(transaction.getAmount());
 

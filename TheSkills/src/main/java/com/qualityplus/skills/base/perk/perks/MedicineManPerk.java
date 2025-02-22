@@ -46,7 +46,7 @@ public final class MedicineManPerk extends Perk {
     }
 
     @Override
-    public List<String> getFormattedDescription(int level) {
+    public List<String> getFormattedDescription(double level) {
         return StringUtils.processMulti(super.getFormattedDescription(level), PlaceholderBuilder.create(new Placeholder("regen_percent", getPercentage())).get());
     }
 

@@ -96,13 +96,13 @@ public final class BankWithdrawGUI extends BankGUI {
         } else if (isItem(slot, config.getGoBack())) {
             player.openInventory(new BankInterfaceGUI(box, player, type).getInventory());
         } else if (isItem(slot, config.getWithdrawAll())) {
-            box.service().handleTransaction(player, new BankTransaction(getData().getMoney(), TransactionType.WITHDRAW, type, TransactionCaller.PLAYER), true, false);
+            box.service().handleTransaction(player, new BankTransaction(getData().getMoney(), TransactionType.WITHDRAW, type, TransactionCaller.PLAYER), true, false, false);
             player.openInventory(new BankWithdrawGUI(box, player, type).getInventory());
         } else if (isItem(slot, config.getWithdrawHalf())) {
-            box.service().handleTransaction(player, new BankTransaction(getHalf(getData()), TransactionType.WITHDRAW, type, TransactionCaller.PLAYER), true, false);
+            box.service().handleTransaction(player, new BankTransaction(getHalf(getData()), TransactionType.WITHDRAW, type, TransactionCaller.PLAYER), true, false, false);
             player.openInventory(new BankWithdrawGUI(box, player, type).getInventory());
         } else if (isItem(slot, config.getWithDrawCustomPercentage())) {
-            box.service().handleTransaction(player, new BankTransaction(getCustomPercentage(getData()), TransactionType.WITHDRAW, type, TransactionCaller.PLAYER), true, false);
+            box.service().handleTransaction(player, new BankTransaction(getCustomPercentage(getData()), TransactionType.WITHDRAW, type, TransactionCaller.PLAYER), true, false, false);
             player.openInventory(new BankWithdrawGUI(box, player, type).getInventory());
         } else if (isItem(slot, config.getWithdrawAmount())) {
             final Location location = player.getLocation().clone().add(0, 10, 0);
@@ -155,7 +155,7 @@ public final class BankWithdrawGUI extends BankGUI {
 
         }
 
-        box.service().handleTransaction(player, new BankTransaction(Math.max(0, value), TransactionType.WITHDRAW, type, TransactionCaller.PLAYER), true, false);
+        box.service().handleTransaction(player, new BankTransaction(Math.max(0, value), TransactionType.WITHDRAW, type, TransactionCaller.PLAYER), true, false, false);
 
         Bukkit.getScheduler().runTaskLater(box.plugin(), () -> player.openInventory(new BankWithdrawGUI(box, player, type).getInventory()), 3);
     }

@@ -39,7 +39,7 @@ public abstract class CommonObject {
         return Collections.emptyList();
     }
 
-    public List<String> getFormattedDescription(int level) {
+    public List<String> getFormattedDescription(double level) {
         return description;
     }
 
