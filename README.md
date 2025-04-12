@@ -28,6 +28,7 @@ aimed to customers which want versatile software and easy to use.
 
 ## Requirements
 * Spigot 1.8 Server or Higher
+* Java 21 or newest
 
 ## License
 This App is licensed under the GNU license. Please see [`LICENSE.txt`](https://github.com/r3back/the-core/blob/master/LICENSE.txt) for more info.
