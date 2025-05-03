@@ -1,0 +1,12 @@
+name: VoxTrades
+description: The Trades Plugin
+main: com.qualityplus.trades.VoxTrades
+version: ${version}
+api-version: 1.13
+authors: [QualityPlus]
+load: POSTWORLD
+depend: [TheAssistant]
+commands:
+  thetrades:
+    aliases: ["voxtrades"]
+    description: Trades's main command

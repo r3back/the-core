@@ -1,0 +1,13 @@
+name: VoxPets
+description: The Pets Plugin
+main: com.qualityplus.pets.VoxPets
+version: ${version}
+api-version: 1.13
+authors: [QualityPlus]
+load: POSTWORLD
+depend: [TheAssistant]
+softdepend: [VoxSkills]
+commands:
+  thepets:
+    aliases: ["voxpets", "pets", "pet"]
+    description: VoxPets's main command

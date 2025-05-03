@@ -1,0 +1,12 @@
+name: VoxAuctions
+description: The Auction Plugin
+main: com.qualityplus.auction.VoxAuctions
+version: ${version}
+api-version: 1.13
+authors: [QualityPlus]
+load: POSTWORLD
+depend: [TheAssistant]
+commands:
+  theauction:
+    aliases: ["voxauctions", "ah", "auctionhouse", "auction"]
+    description: VoxAuctions's main command

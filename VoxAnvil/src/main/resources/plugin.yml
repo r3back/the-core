@@ -1,0 +1,13 @@
+name: VoxAnvil
+description: The VoxAnvil Plugin
+main: com.qualityplus.anvil.VoxAnvil
+version: ${version}
+api-version: 1.13
+authors: [QualityPlus]
+load: POSTWORLD
+depend: [TheAssistant]
+softdepend: [EcoEnchants, VoxEnchanting]
+commands:
+  theanvil:
+    aliases: ["voxanvil", "anvil", "theanv"]
+    description: VoxAnvil's main command

@@ -1,0 +1,13 @@
+name: VoxSkills
+description: The Skills Plugin
+main: com.qualityplus.skills.VoxSkills
+version: ${version}
+api-version: 1.13
+authors: [QualityPlus]
+load: POSTWORLD
+depend: [TheAssistant]
+softdepend: [VoxMinions]
+commands:
+  theskills:
+    aliases: ["voxskills", "skills", "sk"]
+    description: Skills's main command

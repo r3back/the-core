@@ -1,0 +1,15 @@
+repositories {
+    maven { url 'https://repo.auxilor.io/repository/maven-public/' }
+}
+
+dependencies {
+    project(':VoxEnchanting').subprojects.forEach(project -> implementation project)
+    project(':VoxEnchanting:VoxEnchanting-NMS:VoxEnchanting-Legacy')
+    project(':VoxEnchanting:VoxEnchanting-NMS:VoxEnchanting-Newest')
+    project(':VoxEnchanting:VoxEnchanting-NMS:VoxEnchanting-Newest-1_20')
+    compileOnly 'org.spigotmc:spigot-api:1.18.1-R0.1-SNAPSHOT'
+    compileOnly fileTree(dir: 'libs', include: ['*.jar'])
+    compileOnly("com.willfp:EcoEnchants:12.19.3")
+    compileOnly("com.willfp:EcoSkills:3.60.4")
+    compileOnly("com.willfp:eco:6.74.5")
+}

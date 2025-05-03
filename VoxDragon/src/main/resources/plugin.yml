@@ -1,0 +1,12 @@
+name: VoxDragon
+description: The Dragon Plugin
+main: com.qualityplus.dragon.VoxDragon
+version: ${version}
+api-version: 1.13
+authors: [QualityPlus]
+load: POSTWORLD
+depend: [TheAssistant]
+commands:
+  thedragon:
+    aliases: ["voxdragon", "dragon", "drg"]
+    description: VoxDragon's main command

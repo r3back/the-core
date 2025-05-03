@@ -1,24 +1,24 @@
-rootProject.name = 'TheCore'
-include 'TheSkills'
-include 'TheAlchemy'
-include 'ThePets'
-include 'TheBank'
-include 'TheAuction'
-include 'TheCrafting'
-include 'TheDragon'
-include 'TheMinions'
-include 'TheAnvil'
-include 'TheCollections'
-include 'TheTrades'
-include 'TheSouls'
-include ('TheRunes',
-        'TheRunes:TheRunes-NMS',
-        'TheRunes:TheRunes-NMS:TheRunes-Legacy',
-        'TheRunes:TheRunes-NMS:TheRunes-Newest',
-        'TheRunes:TheRunes-NMS:TheRunes-Newest-1_20')
-include ('TheEnchanting',
-         'TheEnchanting:TheEnchanting-NMS',
-         'TheEnchanting:TheEnchanting-NMS:TheEnchanting-Legacy',
-         'TheEnchanting:TheEnchanting-NMS:TheEnchanting-Newest',
-         'TheEnchanting:TheEnchanting-NMS:TheEnchanting-Newest-1_20')
+rootProject.name = 'VoxCore'
+include 'VoxSkills'
+include 'VoxAlchemy'
+include 'VoxPets'
+include 'VoxBank'
+include 'VoxAuctions'
+include 'VoxCrafting'
+include 'VoxDragon'
+include 'VoxMinions'
+include 'VoxAnvil'
+include 'VoxCollections'
+include 'VoxTrades'
+include 'VoxSouls'
+include ('VoxRunes',
+        'VoxRunes:VoxRunes-NMS',
+        'VoxRunes:VoxRunes-NMS:VoxRunes-Legacy',
+        'VoxRunes:VoxRunes-NMS:VoxRunes-Newest',
+        'VoxRunes:VoxRunes-NMS:VoxRunes-Newest-1_20')
+include ('VoxEnchanting',
+         'VoxEnchanting:VoxEnchanting-NMS',
+         'VoxEnchanting:VoxEnchanting-NMS:VoxEnchanting-Legacy',
+         'VoxEnchanting:VoxEnchanting-NMS:VoxEnchanting-Newest',
+         'VoxEnchanting:VoxEnchanting-NMS:VoxEnchanting-Newest-1_20')
 

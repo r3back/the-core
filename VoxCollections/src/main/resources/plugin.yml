@@ -1,0 +1,13 @@
+name: VoxCollections
+description: The Collections Plugin
+main: com.qualityplus.collections.VoxCollections
+version: ${version}
+api-version: 1.13
+authors: [QualityPlus]
+load: POSTWORLD
+depend: [TheAssistant]
+softdepend: [VoxMinions]
+commands:
+  thecollections:
+    aliases: ["voxcollections", "collections", "cl"]
+    description: Collections's main command

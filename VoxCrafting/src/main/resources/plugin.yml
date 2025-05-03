@@ -1,0 +1,12 @@
+name: VoxCrafting
+description: The Crafting Plugin
+main: com.qualityplus.crafting.VoxCrafting
+version: ${version}
+api-version: 1.13
+authors: [QualityPlus]
+load: POSTWORLD
+depend: [TheAssistant]
+commands:
+  thecrafting:
+    aliases: ["voxcrafting", "crafting", "tc"]
+    description: Crafting's main command

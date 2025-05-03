@@ -1,0 +1,15 @@
+name: VoxSouls
+description: The Souls Plugin
+main: com.qualityplus.souls.VoxSouls
+version: ${version}
+api-version: 1.13
+authors: [QualityPlus]
+load: POSTWORLD
+depend: [TheAssistant]
+softdepend:
+  - BentoBox
+  - BentoBox-BSkyBlock
+commands:
+  thesouls:
+    aliases: ["voxsouls"]
+    description: Souls's main command

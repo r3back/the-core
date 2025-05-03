@@ -1,0 +1,13 @@
+name: VoxMinions
+description: The Minions Plugin
+main: com.qualityplus.minions.VoxMinions
+version: ${version}
+api-version: 1.13
+authors: [QualityPlus]
+load: POSTWORLD
+depend: [TheAssistant]
+softdepend: [VoxCrafting]
+commands:
+  theminions:
+    aliases: ["minions", "voxminions"]
+    description: Minions's main command

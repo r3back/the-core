@@ -1,0 +1,12 @@
+name: VoxAlchemy
+description: The VoxAlchemy Plugin
+main: com.qualityplus.alchemist.VoxAlchemy
+version: ${version}
+api-version: 1.13
+authors: [QualityPlus]
+load: POSTWORLD
+depend: [TheAssistant]
+commands:
+  thealchemist:
+    aliases: ["voxalchemy", "alchemist", "alch"]
+    description: VoxAlchemy's main command

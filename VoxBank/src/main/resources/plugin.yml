@@ -1,0 +1,12 @@
+name: VoxBank
+description: The Bank Plugin
+main: com.qualityplus.bank.VoxBank
+version: ${version}
+api-version: 1.13
+authors: [QualityPlus]
+load: POSTWORLD
+depend: [TheAssistant]
+commands:
+  thebank:
+    aliases: ["bank", "voxbank"]
+    description: TheBank's main command

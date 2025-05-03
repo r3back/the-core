@@ -1,0 +1,13 @@
+name: VoxRunes
+description: The Runes Plugin
+main: com.qualityplus.runes.VoxRunes
+version: ${version}
+api-version: 1.13
+authors: [QualityPlus]
+load: POSTWORLD
+softdepend: [VoxSkills]
+depend: [TheAssistant]
+commands:
+  therunes:
+    aliases: ["voxrunes", "runes"]
+    description: Runes's main command
