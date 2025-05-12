@@ -105,8 +105,8 @@ public final class BankInterfaceGUI extends BankGUI {
     private List<String> getLatestTransactions(BankData data) {
         int count = 0;
         final List<String> transactions = new ArrayList<>();
-        final List<BankTransaction> transactionsOrdered = data.getTransactionList().reversed();
-
+        final List<BankTransaction> transactionsOrdered = new ArrayList<>(data.getTransactionList());
+        Collections.reverse(transactionsOrdered);
         for (BankTransaction trx : transactionsOrdered) {
             if (count == config.getTransactionLimit()) {
                 break;

@@ -98,7 +98,7 @@ public final class ChangeItemGUI extends MinionGUI {
                 return null;
             }
 
-            return itemsToGive.getFirst();
+            return itemsToGive.get(0);
         }
 
 

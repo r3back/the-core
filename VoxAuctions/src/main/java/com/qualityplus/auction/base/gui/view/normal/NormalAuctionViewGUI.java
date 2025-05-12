@@ -266,7 +266,7 @@ public final class NormalAuctionViewGUI extends AuctionGUI {
                         } else {
                             SignGUIAPI.builder()
                                     .action((result) -> {
-                                        changeBid(result.getPlayer(), (result.getLines().isEmpty() ?  "" : result.getLines().getFirst()));
+                                        changeBid(result.getPlayer(), (result.getLines().isEmpty() ?  "" : result.getLines().get(0)));
                                     })
                                     .withLines(box.files().messages().getAuctionMessages().getSubmitBid())
                                     .uuid(player.getUniqueId())

@@ -178,7 +178,7 @@ public final class CreateAuctionGUI extends AuctionGUI {
                         } else {
                             SignGUIAPI.builder()
                                     .action((result) -> {
-                                        changeBidPrice(result.getPlayer(), auctionItem, (result.getLines().isEmpty() ?  "" : result.getLines().getFirst()));
+                                        changeBidPrice(result.getPlayer(), auctionItem, (result.getLines().isEmpty() ?  "" : result.getLines().get(0)));
                                     })
                                     .withLines(box.files().messages().getAuctionMessages().getStartingBid())
                                     .uuid(player.getUniqueId())
