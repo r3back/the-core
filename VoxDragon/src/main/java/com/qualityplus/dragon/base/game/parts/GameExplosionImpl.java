@@ -17,13 +17,16 @@ import com.qualityplus.assistant.lib.eu.okaeri.tasker.core.Tasker;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.World;
 import org.bukkit.block.Block;
+import org.bukkit.block.data.BlockData;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.FallingBlock;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.*;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ThreadLocalRandom;
@@ -48,9 +51,8 @@ public final class GameExplosionImpl implements GameExplosion {
         return future;
     }
 
-    private static final int ANIMATED_BLOCKS = 5;
+    private static final int ANIMATED_BLOCKS = 300;
     private final ProtocolManager protocolManager = ProtocolLibrary.getProtocolManager();
-    private final static Map<UUID, Integer> tasks = new HashMap<>();
 
     private CompletableFuture<Void> spawnFallingBlocksFake(PasterSession session, Collection<Player> players) {
         CompletableFuture<Void> future = new CompletableFuture<>();
@@ -67,108 +69,111 @@ public final class GameExplosionImpl implements GameExplosion {
         List<Block> chosen = allBlocks.subList(0, Math.min(ANIMATED_BLOCKS, allBlocks.size()));
         Set<Block> chosenSet = new HashSet<>(chosen);
 
-        // Guarda info de cada Fake FallingBlock para animación/movimiento
-        //List<FakeFallingBlock> fakeBlocks = new ArrayList<>();
+        List<Block> blocksToProcess = new ArrayList<>(chosenSet);
+        int batchSize = 3;
 
-        Bukkit.getScheduler().runTask(VoxDragon.getApi().getPlugin(), () -> {
-            for (Block block : allBlocks) {
-                if (chosenSet.contains(block)) {
-                    // 1. Desaparece el bloque real
-                    block.setType(Material.AIR);
-
-                    // 2. Spawnea FAKE FallingBlock sólo en cliente
-                    sendFakeFallingBlock(block, players);
-                    //fakeBlocks.add(ffb);
-                } else {
-                    // 3. Los demás sólo se borran
-                    block.setType(Material.AIR);
-                }
+        for (final Block block : allBlocks) {
+            if (chosenSet.contains(block)) {
+                continue;
             }
-        });
+            block.setType(Material.AIR);
+        }
 
-        final UUID uuid = UUID.randomUUID();
-        // 4. Animación de movimiento fake durante n ticks (puedes mejorar el movimiento aquí)
-        /*final int taskID = Bukkit.getScheduler().runTaskTimer(VoxDragon.getApi().getPlugin(), new Runnable() {
-            int tick = 0;
+        new BukkitRunnable() {
+            int index = 0;
+
             @Override
             public void run() {
-                tick++;
-                Iterator<FakeFallingBlock> it = fakeBlocks.iterator();
-                while (it.hasNext()) {
-                    FakeFallingBlock ffb = it.next();
-                    // movimiento simple: simula caída (puedes hacer algo más complejo!)
-                    ffb.location.add(ffb.motion);
+                int end = Math.min(index + batchSize, blocksToProcess.size());
+                for (int i = index; i < end; i++) {
+                    Block block = blocksToProcess.get(i);
 
-                    // Teleporta a los clientes
-                    sendMoveFallingBlock(ffb, players);
+                    final Material material = block.getType();
+                    final BlockData data = block.getBlockData().clone();
+                    Location location = block.getLocation().clone();
+                    block.setType(Material.AIR);
 
-                    // Opcional: destruye después de 25 ticks (~1.25 seg)
-                    if (tick > 25) {
-                        sendDestroyFallingBlock(ffb, players);
-                        it.remove();
+                    if (chosenSet.contains(block) && material != Material.AIR) {
+                        int entityID = sendFakeFallingBlock(data, location, players);
+
+                        new BukkitRunnable() {
+                            @Override
+                            public void run() {
+                                PacketContainer destroyPacket = protocolManager.createPacket(PacketType.Play.Server.ENTITY_DESTROY);
+                                destroyPacket.getIntLists().write(0, Collections.singletonList(entityID));
+                                try {
+                                    Bukkit.getOnlinePlayers().forEach(p -> {
+                                        try {
+                                            protocolManager.sendServerPacket(p, destroyPacket);
+                                        } catch (InvocationTargetException e) {
+                                            e.printStackTrace();
+                                        }
+                                    });
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        }.runTaskLater(VoxDragon.getApi().getPlugin(), 40L);
                     }
                 }
-                if (fakeBlocks.isEmpty()) {
-                    int toCancel = tasks.get(uuid);
-                    if (toCancel > 0) {
-                        tasks.remove(uuid);
-                        Bukkit.getScheduler().cancelTask(toCancel);
-                    }
-                    future.complete(null);
-                }
+
+                index += batchSize;
+                if (index >= blocksToProcess.size()) cancel();
             }
-        }, 1, 1).getTaskId();*/
+        }.runTaskTimer(VoxDragon.getApi().getPlugin(), 0L, 0L);
 
-        //tasks.put(uuid, taskID);
+        Bukkit.getScheduler().runTaskLater(VoxDragon.getApi().getPlugin(), () -> {
+            future.complete(null);
+        }, 20 * 3);
+
         return future;
     }
 
-    // Estructura para llevar la info de cada bloque fake
-    /*private static class FakeFallingBlock {
-        int entityId;
-        Location location;
-        WrappedBlockData blockData;
-        Vector motion;
-
-        FakeFallingBlock(int entityId, Location location, WrappedBlockData blockData, Vector motion) {
-            this.entityId = entityId;
-            this.location = location.clone();
-            this.blockData = blockData;
-            this.motion = motion;
-        }
-    }*/
-
-    // SPAWNEA EL BLOQUE FAKE
-    private void sendFakeFallingBlock(Block block, Collection<Player> players) {
+    private int sendFakeFallingBlock(final BlockData material, Location location, Collection<Player> players) {
         int entityId = (int) (Integer.MAX_VALUE * Math.random());
-        Location loc = block.getLocation().add(0.5, 0, 0.5); // centro del bloque
+        Location loc = location.add(0.5, 0, 0.5); // centro del bloque
 
         // Usa el blockdata real del bloque original
         PacketContainer spawnPacket = protocolManager.createPacket(PacketType.Play.Server.SPAWN_ENTITY);
+        Vector velocity = new Vector(
+                (Math.random() - 0.5) * 0.5,
+                Math.random() * 0.8 + 0.4,
+                (Math.random() - 0.5) * 0.5
+        );
 
         spawnPacket.getIntegers()
                 .write(0, entityId);
+        spawnPacket.getUUIDs()
+                .write(0, UUID.randomUUID());
+        spawnPacket.getDoubles()
+                .write(0, loc.getX())
+                .write(1, loc.getY())
+                .write(2, loc.getZ());
 
-        spawnPacket.getUUIDs().write(0, UUID.randomUUID()); // UUID
-        spawnPacket.getDoubles().write(0, loc.getX()); // X
-        spawnPacket.getDoubles().write(1, loc.getY()); // Y
-        spawnPacket.getDoubles().write(2, loc.getZ()); // Z
         spawnPacket.getEntityTypeModifier().write(0, EntityType.FALLING_BLOCK);
 
         // Block state id para falling_block
-        WrappedBlockData blockData = WrappedBlockData.createData(block.getType());
-        int blockStateID = blockData.getData();
-        spawnPacket.getIntegers().write(4, blockStateID); // SÓLO index 1, no index 5
+        /*try {
+            Bukkit.getConsoleSender().sendMessage("Spawning block " + material.getMaterial().name());
+
+            WrappedBlockData blockData = WrappedBlockData.createData(material);
+            int blockStateID = blockData.getData();
+            spawnPacket.getIntegers().write(4, blockStateID);
+        } catch (Exception e) {*/
+            spawnPacket.getIntegers()
+                    .write(4, 1);
+        //}
 
 
-        // block state ID
-        //int blockStateId = (int) blockData.getHandle(); // En 1.13+ esto es safe
-        //spawnPacket.getIntegers().write(6, blockStateId);
+        int x = (int) (velocity.getX() * 8000);
+        int y = (int) (velocity.getY() * 8000);
+        int z = (int) (velocity.getZ() * 8000);
 
-        // Sin velocidad (puedes agregar motion directo por paquete si quieres)
-        //spawnPacket.getShorts().write(0, (short) 0);
-        //spawnPacket.getShorts().write(1, (short) 0);
-        //spawnPacket.getShorts().write(2, (short) 0);
+
+        spawnPacket.getIntegers()
+                .write(1, x)
+                .write(2, y)
+                .write(3, z);
 
         try {
             for (Player player : players) {
@@ -178,10 +183,7 @@ public final class GameExplosionImpl implements GameExplosion {
             e.printStackTrace();
         }
 
-        // Genera una motion aleatoria para el efecto
-       // Vector motion = new Vector(Math.random() - 0.5, 0.95, Math.random() - 0.5);
-
-        //return new FakeFallingBlock(entityId, loc, blockData, motion);
+        return entityId;
     }
 
     // MUEVE EL BLOQUE FAKE en el lado cliente

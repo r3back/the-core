@@ -52,6 +52,9 @@ public final class BreakAnimation implements MinionAnimation {
                 }
 
                 TheAssistantPlugin.getAPI().getNms().damageBlock(PlayerUtils.all(), block, -1);
+                context.getMinionEntity().getData().ifPresent(entity -> {
+                    entity.setResourcesGenerated(entity.getResourcesGenerated() + 1);
+                });
                 future.complete(null);
 
                 this.runnable.cancel();

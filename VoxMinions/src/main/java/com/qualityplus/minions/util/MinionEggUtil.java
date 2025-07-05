@@ -78,6 +78,19 @@ public class MinionEggUtil {
 
     }
 
+    public Optional<ItemStack> createFromExistentWithLevel(final Item item, final UUID petUuid, int level) {
+        final Optional<MinionData> data = VoxMinions.getApi().getMinionsService().getData(petUuid);
+
+        if (data.isEmpty()) {
+            return Optional.empty();
+        }
+
+        final Optional<Minion> minion = Optional.ofNullable(Minions.getByID(data.get().getMinionId()));
+
+        return minion.flatMap(m -> getItemStackWithLevel(item, m, data.get(), level));
+    }
+
+
     public Optional<ItemStack> createFromExistent(final Item item, final UUID petUuid) {
         final Optional<MinionData> data = VoxMinions.getApi().getMinionsService().getData(petUuid);
 
@@ -94,6 +107,10 @@ public class MinionEggUtil {
     private Optional<ItemStack> getItemStack(final Item item, final Minion minion, final MinionData minionData) {
         final int level = minionData.getLevel();
 
+        return getItemStackWithLevel(item, minion, minionData, level);
+    }
+
+    private Optional<ItemStack> getItemStackWithLevel(final Item item, final Minion minion, final MinionData minionData, final int level) {
         final Optional<MinionSkin> minionSkin = minion.getSkin(level);
 
         final List<IPlaceholder> placeholderList = MinionPlaceholderUtil.getMinionPlaceholders(minion)

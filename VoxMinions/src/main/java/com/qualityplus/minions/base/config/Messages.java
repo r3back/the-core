@@ -30,6 +30,7 @@ public final class Messages extends OkaeriConfig {
         public String invalidSkin = "&cInvalid Skin!";
         public String invalidUpgrade = "&cInvalid Upgrade!";
         public String canBeCraftedMinion = "&eClick to view recipe!";
+        public String youReceivedCoins = "&aYou received &e%coins% &acoins from minion!";
         public String cantBeCraftedMinion = "&cThis minion can't be crafted!";
         public String cantBeCraftedMinionMessage = "&cYou can't craft this Minion!";
         public List<String> upgradeMaxLevelPlaceholder = Collections.singletonList("&aMax Level has been reached!");

@@ -31,6 +31,11 @@ public final class FuelClickHandler implements ClickHandler {
             return;
         }
 
+        final ItemStack cursorPrev = event.getCursor();
+        if (BukkitItemUtil.isNotNull(cursorPrev) && cursorPrev.getAmount() > 1) {
+            return;
+        }
+
         final Optional<MinionData> data = VoxMinions.getApi().getMinionsService().getData(minionEntity.getMinionUniqueId());
         final FuelEntity entity = data.map(MinionData::getFuel).orElse(null);
 

@@ -202,9 +202,17 @@ public abstract class AuctionGUI extends GUI {
     protected List<AuctionItem> getAuctionsWherePlayerBid(final UUID uuid) {
         return this.box.auctionService().getItems().stream()
                 .filter(auctionItem -> !auctionItem.getOwner().equals(uuid))
-                .filter(auctionItem -> auctionItem.getBid(uuid).isPresent())
+                .filter(this::isAuctionOrBuyItNow)
                 .filter(auctionItem -> !isClaimed(auctionItem, uuid))
                 .collect(Collectors.toList());
+    }
+
+    protected boolean isAuctionOrBuyItNow(final AuctionItem auctionItem) {
+        if (!auctionItem.isBuyItNow() && auctionItem.getBid(uuid).isPresent()) {
+            return true;
+        }
+        final UUID whoBought = auctionItem.getWhoBought();
+        return auctionItem.isBuyItNow() && whoBought != null && whoBought.equals(uuid);
     }
 
     protected List<AuctionItem> getNotClaimedOwned(final UUID uuid) {

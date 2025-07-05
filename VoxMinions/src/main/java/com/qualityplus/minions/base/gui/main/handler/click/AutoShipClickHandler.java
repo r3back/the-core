@@ -1,6 +1,9 @@
 package com.qualityplus.minions.base.gui.main.handler.click;
 
+import com.qualityplus.assistant.TheAssistantPlugin;
 import com.qualityplus.assistant.api.util.BukkitItemUtil;
+import com.qualityplus.assistant.util.StringUtils;
+import com.qualityplus.assistant.util.placeholder.Placeholder;
 import com.qualityplus.minions.VoxMinions;
 import com.qualityplus.minions.api.box.Box;
 import com.qualityplus.minions.api.minion.MinionEntity;
@@ -30,17 +33,32 @@ public final class AutoShipClickHandler implements ClickHandler {
 
         ItemStack cursor = BukkitItemUtil.cloneOrNull(event.getCursor());
         ItemStack oldToGive = getTaken(box, entity, minionEntity);
-        boolean cursorIsEntity = MinionUpgradeUtil.isAutoShip(cursor);
+        boolean isPlacingAutoShip = MinionUpgradeUtil.isAutoShip(cursor);
 
-        if (cursorIsEntity) {
-            AutomatedShippingEntity newAuto = getEntityFromItem(box, entity, data, cursor);
+        if (isPlacingAutoShip) {
+            final AutomatedShippingEntity newAuto = getEntityFromItem(box, entity, data, cursor);
 
             data.ifPresent(d -> d.setAutoSell(newAuto));
 
             player.setItemOnCursor(oldToGive);
 
         } else {
-            if (entity == null) return;
+            if (entity == null) {
+                return;
+            }
+
+            if (entity.getHeldCoins() > 0) {
+                TheAssistantPlugin.getAPI().getAddons().getEconomy().depositMoney(player, entity.getHeldCoins());
+                final String msg = VoxMinions.getApi().getConfigFiles().messages().minionMessages.youReceivedCoins;
+                final String finalMsg = StringUtils.processMulti(
+                        Optional.ofNullable(msg).orElse("&aYou received &e%coins% &acoins from minion!"),
+                        new Placeholder("coins", entity.getHeldCoins()).alone()
+                );
+                entity.setHeldCoins(0);
+                entity.setSoldItems(0);
+                player.sendMessage(finalMsg);
+                return;
+            }
 
             if (BukkitItemUtil.isNull(cursor)) {
                 Optional.ofNullable(oldToGive).ifPresent(player::setItemOnCursor);

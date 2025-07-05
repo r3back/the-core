@@ -9,6 +9,7 @@ repositories {
     maven {
         url = 'https://repo.papermc.io/repository/maven-public/'
     }
+
 }
 
 dependencies {
@@ -16,6 +17,7 @@ dependencies {
     compileOnly 'org.spigotmc:spigot-api:1.18.1-R0.1-SNAPSHOT'
     compileOnly 'com.github.Archy-X:AureliumSkills:Beta1.3.11'
     compileOnly("io.papermc.paper:paper-api:1.18.1-R0.1-SNAPSHOT")
+    compileOnly("com.ticxo.modelengine:ModelEngine:R4.0.4")
 
     compileOnly fileTree(dir: 'libs', include: ['*.jar'])
 }

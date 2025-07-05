@@ -37,6 +37,7 @@ public final class StrengthConfig extends OkaeriConfig implements StatFile {
             .mainMenuLore(Collections.singletonList("%skill_strength_description%"))
             .build();
     public double baseAmount = 0;
+    public double extraPercentageOfDamagePerLevel = 1;
 
     public Stat getStat() {
         return StrengthStat.builder()
@@ -46,6 +47,7 @@ public final class StrengthConfig extends OkaeriConfig implements StatFile {
                 .enabled(enabled)
                 .skillGUIOptions(guiOptions)
                 .baseAmount(baseAmount)
+                .extraPercentageOfDamagePerLevel(extraPercentageOfDamagePerLevel)
                 .build();
     }
 }

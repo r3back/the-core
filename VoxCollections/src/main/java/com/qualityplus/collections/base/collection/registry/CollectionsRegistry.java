@@ -79,17 +79,7 @@ public final class CollectionsRegistry {
     public static Optional<Collection> getByItem(ItemStack toMatch) {
         Bukkit.getConsoleSender().sendMessage("+++++++++++++++++++++++");
 
-        ItemStack key = ITEM_COLLECTIONS_REGISTRY.keySet().stream().filter(item -> {
-            final String cat = ITEM_COLLECTIONS_REGISTRY.get(item);
-            Bukkit.getConsoleSender().sendMessage("------");
-            Bukkit.getConsoleSender().sendMessage(cat);
-            if (cat.equals("wheat")) {
-                Bukkit.getConsoleSender().sendMessage("Wheat 1: " + item.getType().name());
-                Bukkit.getConsoleSender().sendMessage("Wheat 2: " + toMatch.getType().name());
-
-            }
-            return item.isSimilar(toMatch);
-        }).findFirst().orElse(null);
+        ItemStack key = ITEM_COLLECTIONS_REGISTRY.keySet().stream().filter(item -> item.isSimilar(toMatch)).findFirst().orElse(null);
 
         Collection collection = key == null ? null : getByID(ITEM_COLLECTIONS_REGISTRY.get(key));
 

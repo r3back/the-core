@@ -22,6 +22,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 public final class MainMenuGUI extends TheDragonGUI {
     private final MainMenuGUIConfig config;
@@ -84,10 +85,15 @@ public final class MainMenuGUI extends TheDragonGUI {
     }
 
     private List<IPlaceholder> getSpawnPlaceholders() {
-        return PlaceholderBuilder.create(new Placeholder("thedragon_spawn_location", LocationUtils.toString(box.structures().getSpawn()
-                .map(DragonSpawn::getLocation).
-                orElse(null))))
-                .get();
+        final String spawn = Optional.ofNullable(this.box.structures().getSpawn())
+                .filter(Optional::isPresent)
+                .map(Optional::get)
+                .filter(Objects::nonNull)
+                .map(GameStructure::getLocation)
+                .filter(Objects::nonNull)
+                .map(LocationUtils::toString)
+                .orElse("Invalid Location");
+        return new Placeholder("thedragon_spawn_location", spawn).alone();
     }
 
 

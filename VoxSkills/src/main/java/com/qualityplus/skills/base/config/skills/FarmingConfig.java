@@ -41,7 +41,11 @@ public final class FarmingConfig extends OkaeriConfig {
     private Map<Integer, List<String>> skillInfoInGUI = getInfo();
     private Map<Integer, List<StatReward>> statRewards = getInternalRewards();
     private Map<Integer, List<String>> skillInfoInMessage = getInfo();
-    private Map<Integer, List<CommandReward>> commandRewards = new HashMap<>();
+    private Map<Integer, List<CommandReward>> commandRewards = ImmutableMap.<Integer, List<CommandReward>>builder()
+            .put(1, List.of(new CommandReward(CommandReward.CommandExecutor.CONSOLE, "test command"), new CommandReward(CommandReward.CommandExecutor.PLAYER, "test command")))
+            .put(2, List.of(new CommandReward(CommandReward.CommandExecutor.CONSOLE, "test command"), new CommandReward(CommandReward.CommandExecutor.PLAYER, "test command")))
+            .put(3, List.of(new CommandReward(CommandReward.CommandExecutor.CONSOLE, "test command"), new CommandReward(CommandReward.CommandExecutor.PLAYER, "test command")))
+            .build();
     private Map<XMaterial, Double> rewards = ImmutableMap.<XMaterial, Double>builder()
             .put(XMaterial.WHEAT, 2D)
             .put(XMaterial.CARROTS, 4D)

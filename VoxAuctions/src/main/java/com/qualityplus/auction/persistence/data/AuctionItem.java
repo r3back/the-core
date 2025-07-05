@@ -111,10 +111,10 @@ public final class AuctionItem extends OkaeriConfig {
      * @param bid {@link AuctionBid}
      */
     public void addBid(final AuctionBid bid) {
-        if (this.isBuyItNow) {
+        /*if (this.isBuyItNow) {
             Bukkit.getConsoleSender().sendMessage("Couldn't add bid to auction item");
             return;
-        }
+        }*/
         this.bids.add(bid);
     }
 

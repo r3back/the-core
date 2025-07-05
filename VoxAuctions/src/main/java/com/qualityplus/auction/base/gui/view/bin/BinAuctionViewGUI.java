@@ -195,7 +195,10 @@ public final class BinAuctionViewGUI extends AuctionGUI {
 
                 markAndRemoveIfNeeded();
             } else if (
-                    (isItem(slot, this.config.getCollectAuctionEmptyItem())) && this.auctionItem.isExpired()
+                    this.auctionItem.getOwner().equals(uuid) && (
+                        isItem(slot, this.config.getCollectAuctionItem()) && this.auctionItem.isExpired() ||
+                        isItem(slot, this.config.getCollectAuctionEmptyItem()) && !this.auctionItem.isExpired()
+                    )
             ) {
                 //Esto es para agarrar las monedas o el item en caso de que nadie lo haya comprado (seller side)
                 if (this.auctionItem.getWhoBought() == null && !this.auctionItem.isExpired()) {
@@ -226,8 +229,8 @@ public final class BinAuctionViewGUI extends AuctionGUI {
             }
 
         } else {
-
-            if (isItem(slot, this.config.getCollectItemAuctionItem()) && this.auctionItem.getBid(uuid).isPresent()) {
+            final UUID whoBought = this.auctionItem.getWhoBought();
+            if (isItem(slot, this.config.getCollectItemAuctionItem()) && (this.auctionItem.getBid(uuid).isPresent() || whoBought != null && whoBought.equals(uuid)) ) {
                 //Esto es para agarrar las monedas o el item en caso de que lo haya ganado (buyer side)
                 player.closeInventory();
 

@@ -3,7 +3,7 @@ package com.qualityplus.pets.base.pet.entity;
 import com.qualityplus.pets.api.pet.entity.PetEntity;
 import com.qualityplus.pets.base.pet.Pet;
 import com.ticxo.modelengine.api.ModelEngineAPI;
-import com.ticxo.modelengine.api.animation.AnimationHandler;
+import com.ticxo.modelengine.api.animation.handler.AnimationHandler;
 import com.ticxo.modelengine.api.animation.property.IAnimationProperty;
 import com.ticxo.modelengine.api.model.ActiveModel;
 import com.ticxo.modelengine.api.model.ModeledEntity;
@@ -13,6 +13,7 @@ import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Entity;
 
 import java.util.Optional;
+import java.util.StringJoiner;
 import java.util.UUID;
 
 public final class ModelEnginePet extends MinecraftPet {
@@ -112,7 +113,20 @@ public final class ModelEnginePet extends MinecraftPet {
             if (animationProperty != null) {
                 animationHandler.playAnimation(animationProperty, true);
             } else {
-                Bukkit.getConsoleSender().sendMessage("Animation $meAnimation not found in model" + modelId + ", defaulting to walk!");
+                Bukkit.getConsoleSender().sendMessage("Animation "+ animationId +" not found in model" + modelId + ", defaulting to walk!");
+
+                try {
+                    final StringJoiner builder = new StringJoiner(",");
+
+                    for (final String animation : animationHandler.getAnimations().keySet()) {
+                        builder.add(animation);
+                    }
+                    Bukkit.getConsoleSender().sendMessage("Available animations for " + modelId+ " are: " + builder.toString());
+
+                } catch (Exception e ) {
+                    e.printStackTrace();
+                }
+
 
                 IAnimationProperty animationPropertyWalk = animationHandler.getAnimation("walk");
                 if (animationPropertyWalk != null) {

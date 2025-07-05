@@ -64,23 +64,22 @@ public final class MinionsRecipesGUI extends MinionGUI {
     }
 
     private void setRecipes(Minion minion) {
+        final PlaceholderBuilder minionPlaceholders = MinionPlaceholderUtil.getMinionPlaceholders(minion);
 
-        PlaceholderBuilder minionPlaceholders = MinionPlaceholderUtil.getMinionPlaceholders(minion);
-
-        for (Integer slot : config.getLevelSlotsMap().keySet()) {
+        for (final Integer slot : config.getLevelSlotsMap().keySet()) {
             int level = config.getLevelSlotsMap().get(slot);
 
-            RecipeStatus status = getRecipeStatus(minion, level);
+            final RecipeStatus status = getRecipeStatus(minion, level);
 
-            String message = getRecipeMessageStatus(status);
+            final String message = getRecipeMessageStatus(status);
 
-            List<IPlaceholder> placeholders = MinionPlaceholderUtil
+            final List<IPlaceholder> placeholders = MinionPlaceholderUtil
                     .getMinionPlaceholders(minionEntity.getMinionUniqueId(), level)
                     .with(minionPlaceholders)
                     .with(new Placeholder("minion_recipe_status", message))
                     .get();
 
-            setMinionItem(slot, placeholders);
+            setMinionItem(slot, placeholders, level);
 
             slotsAndLevels.put(slot, new RecipeSlot(status, level));
         }
@@ -102,8 +101,8 @@ public final class MinionsRecipesGUI extends MinionGUI {
         return !recipeConfig.isEnabled() || recipe == null ? RecipeStatus.CANNOT_BE_CRAFTED : RecipeStatus.CAN_BE_CRAFTED;
     }
 
-    private void setMinionItem(int slot, List<IPlaceholder> placeholders) {
-        Optional<ItemStack> itemStack = MinionEggUtil.createFromExistent(box.files().config().minionEggItem, minionEntity.getMinionUniqueId());
+    private void setMinionItem(int slot, List<IPlaceholder> placeholders, int level) {
+        Optional<ItemStack> itemStack = MinionEggUtil.createFromExistentWithLevel(box.files().config().minionEggItem, minionEntity.getMinionUniqueId(), level);
 
         itemStack.ifPresent(item -> inventory.setItem(slot, ItemStackUtils.makeItem(config.getMinionItem(), placeholders, item)));
     }

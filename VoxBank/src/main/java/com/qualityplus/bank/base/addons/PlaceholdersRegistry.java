@@ -11,19 +11,23 @@ import com.qualityplus.assistant.lib.eu.okaeri.commons.bukkit.time.MinecraftTime
 import com.qualityplus.assistant.lib.eu.okaeri.platform.bukkit.annotation.Delayed;
 import com.qualityplus.assistant.lib.eu.okaeri.platform.core.annotation.Component;
 
+import java.text.DecimalFormat;
 import java.util.stream.Stream;
 
 @Component
 public final class PlaceholdersRegistry {
+    private static final DecimalFormat DECIMAL_FORMAT = new DecimalFormat("#,##0.00");
+
     @Delayed(time = MinecraftTimeEquivalent.SECOND * 5)
     public void registerBankPlaceholders(@Inject BankService service) {
         PlaceholdersAddon addon = TheAssistantPlugin.getAPI().getAddons().getPlaceholders();
 
+
         addon.registerPlaceholders("bank_user_money",
-                e -> String.valueOf(service.getData(e.getPlayer().getUniqueId()).map(BankData::getMoney).orElse(0D)));
+                e -> DECIMAL_FORMAT.format(service.getData(e.getPlayer().getUniqueId()).map(BankData::getMoney).orElse(0D)));
 
         addon.registerPlaceholders("bank_last_interest",
-                e -> String.valueOf(service.getData(e.getPlayer().getUniqueId()).map(BankData::getLastInterest).orElse(0D)));
+                e -> DECIMAL_FORMAT.format(service.getData(e.getPlayer().getUniqueId()).map(BankData::getLastInterest).orElse(0D)));
 
         addon.registerPlaceholders("bank_current_profile_id",
                 e -> service.getData(e.getPlayer().getUniqueId()).map(BankData::getBankUpgrade).orElse(""));
